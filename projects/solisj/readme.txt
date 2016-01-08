@@ -1,0 +1,1 @@
+If you are reading this, the git environement was correctly set up!

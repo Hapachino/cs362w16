@@ -1209,7 +1209,7 @@ int playAdventurer(struct gameState *state) {
 
     drawCard(player, state);
     // Top card of hand is most recently drawn card
-    cardDrawn = state->hand[player][state->handCount[player]-1];
+    cardDrawn = state->hand[player][state->handCount[player]];
 
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
       drawnTreasure++;
@@ -1283,7 +1283,7 @@ int playFeast(int choice1, struct gameState *state) {
       if (DEBUG) {
         printf("Cards Left: %d\n", supplyCount(choice1, state));
       }
-    } else if (state->coins < getCost(choice1)) {
+    } else if (state->coins <= getCost(choice1)) {
       printf("That card is too expensive!\n");
 
       if (DEBUG) {
@@ -1355,7 +1355,6 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state) {
   for (i = 0; i < state->handCount[player]; i++) {
     if (state->hand[player][i] == j) {
       discardCard(i, player, state, 0);
-      break;
     }
   }
 
@@ -1372,7 +1371,7 @@ int playSmithy(int handPos, struct gameState *state) {
   }
 
   // Discard card from hand
-  discardCard(handPos, player, state, 0);
+  discardCard(handPos, player, state, 1);
   return 0;
 }
 

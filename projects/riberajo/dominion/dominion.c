@@ -724,20 +724,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
     case remodel:
 
-
-
-      return 0;
+      return playRemodel(handPos, choice1, choice2, state);
 
     case smithy:
-      //+3 Cards
-      for (i = 0; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
 
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+      return playSmithy();
 
     case village:
       //+1 Card
@@ -1286,7 +1277,7 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state){
     int currentPlayer = whoseTurn(state);
     int j;
     int i;
-    
+
     j = state->hand[currentPlayer][choice1];  //store card we will trash
 
     if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
@@ -1321,5 +1312,47 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state){
   return 0;
 }
 
+int playRemodel(int handPos, int choice1, int choice2, struct gameState *state) {
+  int currentPlayer = whoseTurn(state);
+  int j;
+  int i;
+
+  j = state->hand[currentPlayer][choice1];  //store card we will trash
+
+     if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+      {
+       return -1;
+      }
+
+     gainCard(choice2, state, 0, currentPlayer);
+
+     //discard card from hand
+     discardCard(handPos, currentPlayer, state, 0);
+
+     //discard trashed card
+     for (i = 0; i < state->handCount[currentPlayer]; i++)
+     {
+         if (state->hand[currentPlayer][i] == j)
+       {
+         discardCard(i, currentPlayer, state, 0);
+         break;
+       }
+     }
+  return 0;
+}
+int playSmithy(int handPos, struct gameState *state) {
+  int currentPlayer = whoseTurn(state);
+  int i;
+
+  //+3 Cards
+  for (i = 0; i < 3; i++)
+  {
+  drawCard(currentPlayer, state);
+  }
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  return 0;
+}
 
 //end of dominion.c

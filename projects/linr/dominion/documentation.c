@@ -19,4 +19,4 @@
 //updateCoins()
 //This method is called in the Game start functions, Play a card functions, and End turn functions. It returns
 //the number of a specific card that you own in total (including the number in your hand and discard deck). It uses data
-//structure int i, which is an index counter.
+//structure int i, which serves as an index counter.

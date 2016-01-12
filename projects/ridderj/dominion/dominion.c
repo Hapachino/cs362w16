@@ -667,6 +667,21 @@ int adventurerFunc(int drawntreasure, struct gameState *state, int currentPlayer
          return 0;
 }
 
+int smithyFunc(struct gameState *state, int currentPlayer, int handPos, int i)
+{
+  for (i = 0; i < 3; i++)
+	{
+	  drawCard(currentPlayer, state);
+	}
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+		
+}
+
+
+
 
 
 
@@ -865,8 +880,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-      //+3 Cards
-      for (i = 0; i < 3; i++)
+    
+    
+      smithyFunc(state, currentPlayer, handPos, i);
+/*       //+3 Cards
+       for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -874,7 +892,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
-		
+		 */
+       
+       
     case village:
       //+1 Card
       drawCard(currentPlayer, state);
@@ -885,7 +905,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
-		
+		 
     case baron:
       state->numBuys++;//Increase buys by 1!
       if (choice1 > 0){//Boolean true or going to discard an estate

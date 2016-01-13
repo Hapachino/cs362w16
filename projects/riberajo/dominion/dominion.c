@@ -663,6 +663,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   }
 
 
+
+
   //uses switch to select card and perform actions
   switch( card )
     {
@@ -1202,6 +1204,12 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 int playAdventurer(struct gameState *state) {
+  int currentPlayer = whoseTurn(state);
+  int drawntreasure=0;
+  int cardDrawn;
+  int temphand[MAX_HAND];// moved above the if statement
+  int z = 0;// this is the counter for the temp hand
+
     while(drawntreasure<2){
       if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
         shuffle(currentPlayer, state);

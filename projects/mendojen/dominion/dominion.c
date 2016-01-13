@@ -1264,7 +1264,13 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 int playAdventurer(struct gameState *state)
 {
-	while(drawntreasure<2){
+	int currentPlayer = whoseTurn(state);
+	int drawntreasure=0;
+	int cardDrawn;
+	int temphand[MAX_HAND];
+	int z = 0;
+	
+	while(drawntreasure<=2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
 	}
@@ -1287,7 +1293,10 @@ int playAdventurer(struct gameState *state)
 
 int playSmithy(struct gameState *state, int handPos)
 {
-	for (i = 0; i < 3; i++)
+	int i;
+	int currentPlayer = whoseTurn(state);
+	
+	for (i = 1; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -1299,19 +1308,22 @@ int playSmithy(struct gameState *state, int handPos)
 
 int playVillage(struct gameState *state, int handPos)		
 {
-      //+1 Card
-      drawCard(currentPlayer, state);
+	int currentPlayer = whoseTurn(state);
+    //+1 Card
+    drawCard(currentPlayer, state);
 			
-      //+2 Actions
-      state->numActions = state->numActions + 2;
+    //+2 Actions
+    state->numActions = state->numActions + 2;
 			
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+    //discard played card from hand
+    discardCard(handPos, currentPlayer, state, 1);
+    return 0;
 }
 
 int playSteward(struct gameState *state, int choice1, int choice2, int choice3, int handPos)
 {
+	int currentPlayer = whoseTurn(state);
+	
 	if (choice1 == 1)
 	{
 	  //+2 cards
@@ -1326,7 +1338,7 @@ int playSteward(struct gameState *state, int choice1, int choice2, int choice3, 
       else
 	{
 	  //trash 2 cards in hand
-	  discardCard(choice2, currentPlayer, state, 1);
+	  discardCard(choice2, currentPlayer, state, 0);
 	  discardCard(choice3, currentPlayer, state, 1);
 	}
 			
@@ -1337,13 +1349,15 @@ int playSteward(struct gameState *state, int choice1, int choice2, int choice3, 
 
 int playSalvager(struct gameState *state, int handPos, int choice1)
 {
+	int currentPlayer = whoseTurn(state);	
+	
 	//+1 buy
       state->numBuys++;
 			
       if (choice1)
 	{
 	  //gain coins equal to trashed card
-	  state->coins = state->coins + getCost( handCard(choice1, state) );
+	  state->coins = state->coins + getCost( handCard(choice1, state) )+1;
 	  //trash card
 	  discardCard(choice1, currentPlayer, state, 1);	
 	}

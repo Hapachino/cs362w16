@@ -1337,14 +1337,14 @@ int playSteward(struct gameState *state, int choice1, int choice2, int choice3, 
 	}
       else
 	{
-	  //trash 2 cards in hand
+	//trash 2 cards in hand
 	  discardCard(choice2, currentPlayer, state, 0);
 	  discardCard(choice3, currentPlayer, state, 1);
 	}
 			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+    //discard card from hand
+    discardCard(handPos, currentPlayer, state, 0);
+    return 0;
 }
 
 int playSalvager(struct gameState *state, int handPos, int choice1)
@@ -1352,9 +1352,9 @@ int playSalvager(struct gameState *state, int handPos, int choice1)
 	int currentPlayer = whoseTurn(state);	
 	
 	//+1 buy
-      state->numBuys++;
+    state->numBuys++;
 			
-      if (choice1)
+    if (choice1)
 	{
 	  //gain coins equal to trashed card
 	  state->coins = state->coins + getCost( handCard(choice1, state) )+1;
@@ -1363,8 +1363,8 @@ int playSalvager(struct gameState *state, int handPos, int choice1)
 	}
 			
       //discard card
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+    discardCard(handPos, currentPlayer, state, 0);
+    return 0;
 }
 
 

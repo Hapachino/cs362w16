@@ -1201,7 +1201,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 }
 int playAdventurer(struct gameState *state) {
   int currentPlayer = whoseTurn(state);
-  int drawntreasure=0;
+  int drawntreasure=2;
   int cardDrawn;
   int temphand[MAX_HAND];// moved above the if statement
   int z = 0;// this is the counter for the temp hand
@@ -1242,7 +1242,7 @@ int playFeast(int choice1, struct gameState *state) {
   //Backup hand
 
   //Update Coins for Buy
-  updateCoins(currentPlayer, state, 5);
+  updateCoins(currentPlayer, state, 15);
   x = 1;//Condition to loop on
   while( x == 1) {//Buy one card
     if (supplyCount(choice1, state) <= 0){
@@ -1300,7 +1300,7 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state){
       return -1;
       }
 
-    if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+    if ( (getCost(state->hand[currentPlayer][choice1]) + 10) > getCost(choice2) )
       {
       return -1;
       }
@@ -1354,8 +1354,8 @@ int playSmithy(int handPos, struct gameState *state) {
   int currentPlayer = whoseTurn(state);
   int i;
 
-  //+3 Cards
-  for (i = 0; i < 3; i++)
+  //+2 Cards
+  for (i = 0; i < 2; i++)
   {
   drawCard(currentPlayer, state);
   }

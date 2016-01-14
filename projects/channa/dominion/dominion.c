@@ -1339,4 +1339,3 @@ int playSmithy(int i, int currentPlayer, struct gameState *state, int handPos)
 }
 
 //end of dominion.c
-

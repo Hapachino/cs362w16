@@ -20,3 +20,9 @@ remodel
 village
   Created 'playVillage()' method.
   Changed the add action statement to add 4 actions instead of 2.
+
+great_hall
+  Created 'playGreatHall()' method.
+  Added an additional draw card statemet after discard card.
+  Changed 'addAction' statement to instead add to players.
+  Made method return -1 instead of 1.

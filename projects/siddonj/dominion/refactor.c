@@ -16,6 +16,7 @@ remodel
   Created 'playRemodel()' method.
   Changed the discard statement immediately following call to gaincard()
   so the 'trash' flag is set. Will trash the card instead of discarding it.
+  Changed the definition of j to use 'choice2' instead of 'choice1'.
 
 village
   Created 'playVillage()' method.

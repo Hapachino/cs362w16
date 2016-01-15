@@ -1326,7 +1326,7 @@ int playAdventurer(struct gameState *state, int currentPlayer) {
 }
 
 int playRemodel(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2) {
-  int j = state->hand[currentPlayer][choice1];  //store card we will trash
+  int j = state->hand[currentPlayer][choice2];  //store card we will trash
 
   if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
   {

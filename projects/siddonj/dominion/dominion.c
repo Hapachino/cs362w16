@@ -1351,7 +1351,7 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
   gainCard(choice2, state, 0, currentPlayer);
 
   //discard card from hand
-  discardCard(handPos, currentPlayer, state, 0);
+  discardCard(handPos, currentPlayer, state, 1);
 
   //discard trashed card
   for (int i = 0; i < state->handCount[currentPlayer]; i++)

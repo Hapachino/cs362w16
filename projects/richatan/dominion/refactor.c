@@ -42,3 +42,15 @@ Changes made to dominion.c:
 	     as loop/conditional statement, closing braces on own line.
 
 
+---Introduce Bugs---
+
+All changes made in dominion.c.
+
+Changes made to runAdventurer():
+	1. Changed first while loop expression from (drawntreasure<2) to <=
+	2. In second while loop (discard temp hand), z=z-1 in last line
+	     replaced with z++
+	
+Changes made to runSmithy():
+	1. Changed for loop expression from i<3 to i<=3
+	2. Changed trashFlag parameter in discardCard method from 0 to 1

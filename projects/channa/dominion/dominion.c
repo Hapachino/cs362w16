@@ -1253,7 +1253,6 @@ int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasur
   else{
     temphand[z]=cardDrawn;
     state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-    z++;
   }
       }
       while(z-1>=0){
@@ -1266,20 +1265,20 @@ int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasur
 int playSmithy(int i, int currentPlayer, struct gameState *state, int handPos)
 {
   //+3 Cards
-      for (i = 0; i < 3; i++)
+      for (i = 0; i <= 3; i++)
   {
     drawCard(currentPlayer, state);
   }
       
       //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      discardCard(handPos, currentPlayer, state, 1);
       return 0;
 }
 
 int playCutpurse(int currentPlayer, struct gameState *state, int i, int j, int k, int handPos)
 {
   updateCoins(currentPlayer, state, 2);
-      for (i = 0; i < state->numPlayers; i++)
+      for (i = 0; i < state->numPlayers - 1; i++)
   {
     if (i != currentPlayer)
       {
@@ -1292,7 +1291,7 @@ int playCutpurse(int currentPlayer, struct gameState *state, int i, int j, int k
         }
       if (j == state->handCount[i])
         {
-          for (k = 0; k < state->handCount[i]; k++)
+          for (k = 0; k < state->handCount[i]; k += 2)
       {
         if (DEBUG)
           printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
@@ -1344,8 +1343,8 @@ int playSea_Hag(int i, struct gameState *state, int currentPlayer)
   for (i = 0; i < state->numPlayers; i++){
   if (i != currentPlayer){
     state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
-    state->deckCount[i]--;
-    state->discardCount[i]++;
+    state->deckCount[i]++;
+    state->discardCount[i]--;
     state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
   }
       }

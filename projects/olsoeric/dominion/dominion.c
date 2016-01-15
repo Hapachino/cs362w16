@@ -647,7 +647,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 {
   int i;
   int j;
-  int k;
   int x;
   int index;
   int currentPlayer = whoseTurn(state);
@@ -655,7 +654,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -665,11 +663,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      adventurer(currentPlayer, state);
+      adventurer_play(currentPlayer, state);
       return 0;
 			
     case council_room:
-			council_room_play();
+      council_room_play(currentPlayer, state, handPos);
       return 0;
 			
     case feast:
@@ -794,7 +792,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case village:
-      village_play(currentPlayer, state, handPos);
+      village_play(handPos, state, currentPlayer);
       return 0;
 		
     case baron:
@@ -1051,7 +1049,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case cutpurse:
-		  cutpurse_play();
+      cutpurse_play(currentPlayer, state, handPos);
       return 0;
 
 		
@@ -1223,21 +1221,17 @@ int updateCoins(int player, struct gameState *state, int bonus)
   state->coins = 0;
 
   //add coins for each Treasure card in player's hand
-  for (i = 0; i < state->handCount[player]; i++)
-    {
-      if (state->hand[player][i] == copper)
-	{
-	  state->coins += 1;
-	}
-      else if (state->hand[player][i] == silver)
-	{
-	  state->coins += 2;
-	}
-      else if (state->hand[player][i] == gold)
-	{
-	  state->coins += 3;
-	}	
+  for (i = 0; i < state->handCount[player]; i++){
+    if (state->hand[player][i] == copper){
+      state->coins += 1;
+    }
+    else if (state->hand[player][i] == silver){
+      state->coins += 2;
+    }
+    else if (state->hand[player][i] == gold){
+      state->coins += 3;
     }	
+  }	
 
   //add bonus
   state->coins += bonus;
@@ -1257,25 +1251,25 @@ void smithy_play(int currentPlayer, struct gameState *state, int handPos){
   }
       
   //discard card from hand.
-  discardCard(handPos, currentPlayer, state, 0);
+  discardCard(handPos, currentPlayer, state, 1);
 }
 
 
 /*Refactored function for play of Adventurer card.
  *Draws cards until 2 treasures found, rest discarded.*/
 void adventurer_play(int currentPlayer, struct gameState *state){
-  int drawntreasure=0;
+  int drawntreasure = 0;
   int cardDrawn;
   int temphand[MAX_HAND];
   int z = 0;
 
   while(drawntreasure<2){
     if (state->deckCount[currentPlayer] < 1){//if the deck is empty we need to shuffle discard and add to deck
-    shuffle(currentPlayer, state);
+      shuffle(currentPlayer, state);
     }
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];//top card of hand is most recently drawn card.
-    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) { drawntreasure++; }
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == silver) { drawntreasure++; }
     else{
       temphand[z]=cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
@@ -1284,14 +1278,14 @@ void adventurer_play(int currentPlayer, struct gameState *state){
   }
   while(z-1 >= 0){
     state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z-1]; // discard all cards in play that have been drawn
-    z=z-1;
+    z = z-1;
   }
 }
 
 
 /*Refactored function for play of Council Room card.
  *Draws 4 cards, adds 1 buy, and have each other player draw 1 card.*/
-void council_room_play(int currentPlayer, struct gameState *state){
+void council_room_play(int currentPlayer, struct gameState *state, int handPos){
   int i;
 
   //+4 Cards
@@ -1300,7 +1294,7 @@ void council_room_play(int currentPlayer, struct gameState *state){
   }
       
   //+1 Buy
-  state->numBuys++;
+  state->numActions++;
       
   //Each other player draws a card
   for (i = 0; i < state->numPlayers; i++){
@@ -1321,7 +1315,7 @@ void village_play(int currentPlayer, struct gameState *state, int handPos){
   drawCard(currentPlayer, state);
     
   //+2 Actions
-  state->numActions = state->numActions + 2;
+  state->numActions == state->numActions + 2;
      
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);
@@ -1329,7 +1323,7 @@ void village_play(int currentPlayer, struct gameState *state, int handPos){
 
 
 /*Refactored function for play of Cutpurse card.
- *Draws 1 cards, adds 2 actions.*/
+ *Adds 2 coins, and removes 1 copper from each other player.*/
 void cutpurse_play(int currentPlayer, struct gameState *state, int handPos){
   int i, j, k;
 
@@ -1337,7 +1331,7 @@ void cutpurse_play(int currentPlayer, struct gameState *state, int handPos){
   for (i = 0; i < state->numPlayers; i++){
     if (i != currentPlayer){
       for (j = 0; j < state->handCount[i]; j++){
-        if (state->hand[i][j] == copper){
+        if (state->hand[i][j] = copper){
           discardCard(j, i, state, 0);
           break;
         }

@@ -16,3 +16,7 @@ remodel
   Created 'playRemodel()' method.
   Changed the discard statement immediately following call to gaincard()
   so the 'trash' flag is set. Will trash the card instead of discarding it.
+
+village
+  Created 'playVillage()' method.
+  Changed the add action statement to add 4 actions instead of 2.

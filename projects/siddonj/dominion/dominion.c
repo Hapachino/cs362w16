@@ -1362,8 +1362,8 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos) {
   //+1 Card
   drawCard(currentPlayer, state);
 
-  //+2 Actions
-  state->numActions = state->numActions + 2;
+  //+4 Actions
+  state->numActions = state->numActions + 4;
 
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);

@@ -8,4 +8,6 @@ smithy
 
 adventurer
   Created 'playAdventurer()' method.
-  
+  Changed the conditional statement checking the card type drawn from 'cardDrawn == copper'
+  to 'cardDrawn != copper'.
+  Will allow user to reveal copper cards and not count towards revealed treasure total.

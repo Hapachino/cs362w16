@@ -42,12 +42,19 @@ Bugs introduced:
     If a player has a hand with no coppers, then only every other card in that hand is revealed instead of all of them.
 
   remodel:
-    - Changed the below to the opposite operation
+    - Swapped choice1 and choice2 in:
+    if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+    Scenario: choice1 = 3 coins, choice2 = 6 coins
+    Normally, this would evaluate to 3 + 2 > 6; false.
+    But swapping causes it to be 6 + 2 > 3; true, allowing the player to buy a more expensive card than stated.
+    Scenario: choice1 = 6 coins, choice2 = 3 coins
+    Normally, this would evaluate to 6 + 2 > 3; true.
+    But swapping causes it to be 3 + 2 > 6; false, preventing the player from buying a card they should be able to.
+
+  sea_hag:
+    - Changed the below to the opposite operations
     (decrementing to incrementing and incrementing to decrementing):
     state->deckCount[i]--;
     state->discardCount[i]++;
     This card forces other players to discard the top cards of their decks but the bug treats the card as if players were
     taking cards from the discard pile and putting them into their decks so the card pile counts will be incorrect.
-
-  sea_hag:
-    - No bugs introduced.

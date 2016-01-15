@@ -1240,6 +1240,12 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
+/*
+Adventurer
+
+Reveal cards from your deck until you reveal 2 Treasure cards.
+Put those Treasure cards into your hand and discard the other revealed cards.
+*/
 int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z)
 {
   while(drawntreasure<2){
@@ -1262,6 +1268,11 @@ int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasur
       return 0;
 }
 
+/*
+Smithy
+
++3 Cards
+*/
 int playSmithy(int i, int currentPlayer, struct gameState *state, int handPos)
 {
   //+3 Cards
@@ -1275,6 +1286,12 @@ int playSmithy(int i, int currentPlayer, struct gameState *state, int handPos)
       return 0;
 }
 
+/*
+Cutpurse
+
++2 Coins
+Each other player discards a Copper card (or reveals a hand with no Copper).
+*/
 int playCutpurse(int currentPlayer, struct gameState *state, int i, int j, int k, int handPos)
 {
   updateCoins(currentPlayer, state, 2);
@@ -1310,11 +1327,17 @@ int playCutpurse(int currentPlayer, struct gameState *state, int i, int j, int k
       return 0;
 }
 
+/*
+Remodel
+
+Trash a card from your hand.
+Gain a card costing up to 2 coins more than the trashed card.
+*/
 int playRemodel(int j, struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos, int i)
 {
   j = state->hand[currentPlayer][choice1];  //store card we will trash
 
-      if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+      if ( (getCost(state->hand[currentPlayer][choice2]) + 2) > getCost(choice1) )
   {
     return -1;
   }
@@ -1338,6 +1361,12 @@ int playRemodel(int j, struct gameState *state, int currentPlayer, int choice1, 
       return 0;
 }
 
+/*
+Sea Hag
+
+Each other player discards the top card of his deck,
+then gains a Curse card, putting it on top of his deck.
+*/
 int playSea_Hag(int i, struct gameState *state, int currentPlayer)
 {
   for (i = 0; i < state->numPlayers; i++){

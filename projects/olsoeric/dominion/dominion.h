@@ -130,11 +130,28 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+/*** Following 5 functions added by Eric Olson for CS396 Assignment 2: ***/
+void smithy_play(int currentPlayer, struct gameState *state, int handPos);
+/* Executes Smithy card actions (draw 3 cards from deck) */
+
+void adventurer_play(int currentPlayer, struct gameState *state);
+/* Executes Adventurer card action (draw until 2 treasures) */
+
+void council_room_play(int currentPlayer, struct gameState *state);
+/* Executes Council Room card action (draw 4, +1 Buy, opponents draw 1) */
+
+void village_play(int currentPlayer, struct gameState *state, int handPos);
+/* Executes Village card action (draw 1, +2 Action) */
+
+void cutpurse_play(int currentPlayer, struct gameState *state, int handPos);
+/* Executes Cutpurse card action (+2 coins, -1 copper from each other player's hand)
+
+/**I believe this is leftover from some other student's work.
 int playAdventurer(struct gameState *state);
 int playSmithy(struct gameState *state, int handPos);
 int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
-int playCouncil_Room(struct gameState *state, int handPos);
+int playCouncil_Room(struct gameState *state, int handPos);*/
 
 
 #endif

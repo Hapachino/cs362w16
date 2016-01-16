@@ -136,5 +136,10 @@ int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
 
+int adventurer(struct gameState *state, int handPos, int currentPlayer);
+int smithy(struct gameState *state, int handPos, int currentPlayer);
+int mine(struct gameState *state, int handPos, int choice1, int choice2, int currentPlayer);
+int village (struct gameState *state, int handPos, int currentPlayer);
+int embargo(struct gameState *state, int handPos, int choice1, int choice2, int currentPlayer);
 
 #endif

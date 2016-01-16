@@ -1373,7 +1373,7 @@ int ambassadorCard(int choice1, int choice2, int choice3, struct gameState *stat
   
       j = 0;		//used to check if player has enough cards to discard
 
-      if (choice2 > 2 || choice2 < 0)
+      if (choice2 > 2 && choice2 < 0)
 	{
 	  return -1;				
 	}

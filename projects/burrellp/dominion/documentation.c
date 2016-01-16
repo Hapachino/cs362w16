@@ -34,3 +34,9 @@ is decremented and the discard ends. Otehrwise, the next card in the player's ha
 replaces the discared card, the last card is set to -1, and the player's handCount
 is decremented before the discard end.
 
+updateCoins() - this function starts by setting the player's coins total to 0. It then
+iterates through all cards in a player's hand and adds the appropriate number of coins
+to the player's coin total for each treasure card (1 for copper, 2 for silver, and 3
+for gold). Finally, any bonus coins associated with the cards played are added to the
+coin total (the number of bonus coins is passed to the function).
+

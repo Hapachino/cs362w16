@@ -1257,7 +1257,7 @@ int adventurerCard(int choice1, int choice2, int choice3, struct gameState *stat
 	  shuffle(currentPlayer, state);
 	}
 	drawCard(currentPlayer, state);
-	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];//top card of hand is most recently drawn card.
 	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 	  drawntreasure++;
 	else{
@@ -1283,7 +1283,7 @@ int smithyCard(int choice1, int choice2, int choice3, struct gameState *state, i
     nextPlayer = 0;
   }
       //+3 Cards
-      for (i = 0; i < 3; i++)
+      for (i = 0; i <= 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -1315,7 +1315,7 @@ int feastCard(int choice1, int choice2, int choice3, struct gameState *state, in
 
       //Update Coins for Buy
       updateCoins(currentPlayer, state, 5);
-      x = 1;//Condition to loop on
+      //x = 1;//Condition to loop on
       while( x == 1) {//Buy one card
 	if (supplyCount(choice1, state) <= 0){
 	  if (DEBUG)

@@ -690,7 +690,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return 0; */
 
         case council_room:
-            return playCouncilRoom(currentPlayer, gameState *state, handPos);
+            return playCouncilRoom(currentPlayer, state, handPos);
             
             /* //+4 Cards
             for (i = 0; i < 4; i++)
@@ -1190,7 +1190,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return 0;
 
         case sea_hag:
-            return playSeaHag(currentPlayer, gameState *state);
+            return playSeaHag(currentPlayer, state);
             
             /*
             for (i = 0; i < state->numPlayers; i++){
@@ -1205,7 +1205,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         case treasure_map:
             //search hand for another treasure_map
             index = -1;
-            for (i = 0; i < state->handCougint[currentPlayer]; i++)
+            for (i = 0; i < state->handCount[currentPlayer]; i++)
             {
                 if (state->hand[currentPlayer][i] == treasure_map && i != handPos)
                 {

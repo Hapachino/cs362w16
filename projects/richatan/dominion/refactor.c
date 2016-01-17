@@ -48,9 +48,8 @@ All changes made in dominion.c.
 
 Changes made to runAdventurer():
 	1. Changed first while loop expression from (drawntreasure<2) to <=
-	2. Changed card drawn from top card in hand to bottom card in hand 
-	    (replaced state->hand[currentPlayer][state->handCount[currentPlayer]-1]
-		 with state->hand[currentPlayer][0], and removed comment)
+	2. Removed state->handCount[currentPlayer]-- from else statement that
+	     removes drawn non-treasure cards from users hand. 
 	
 Changes made to runSmithy():
 	1. Changed for loop expression from i<3 to i<=3

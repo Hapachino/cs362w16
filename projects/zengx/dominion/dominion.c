@@ -9,7 +9,7 @@ void playSmithy(int handPos, int currentPlayer, struct gameState *state)
 {
 	//+3 Cards
 	int i = 0;
-	for (i = 0; i < 3; i++)
+	for (i = 1; i < 3; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
@@ -33,7 +33,7 @@ void playAdventurer(struct gameState *state, int currentPlayer, int temphand[MAX
 			z++;
 		}
 	}
-	while (z - 1 >= 0) {
+	while (z - 1 > 0) {
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
 		z = z - 1;
 	}
@@ -44,20 +44,20 @@ void playVillage(int handPos, int currentPlayer, struct gameState *state)
 	drawCard(currentPlayer, state);
 
 	//+2 Actions
-	state->numActions = state->numActions + 2;
+	state->numActions = state->numActions + 1;
 
 	//discard played card from hand
 	discardCard(handPos, currentPlayer, state, 0);
 }
 void playSteward(int handPos, int currentPlayer, struct gameState *state, int choice1, int choice2, int choice3)
 {
-	if (choice1 == 1)
+	if (choice1 == 2)
 	{
 		//+2 cards
 		drawCard(currentPlayer, state);
 		drawCard(currentPlayer, state);
 	}
-	else if (choice1 == 2)
+	else if (choice1 == 1)
 	{
 		//+2 coins
 		state->coins = state->coins + 2;
@@ -78,7 +78,7 @@ void playCutpurse(int handPos, int currentPlayer, struct gameState *state)
 	int i = 0;
 	int k = 0;
 	int j = 0;
-	for (i = 0; i < state->numPlayers; i++)
+	for (i = 0; i <= state->numPlayers; i++)
 	{
 		if (i != currentPlayer)
 		{

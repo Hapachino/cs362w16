@@ -1328,6 +1328,8 @@ int updateCoins(int player, struct gameState *state, int bonus)
     return 0;
 }
 
+int playAdventurer(struct gameState *state)
+{
+}
 
 //end of dominion.c
-

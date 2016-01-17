@@ -1156,7 +1156,7 @@ int runAdventurer(int currentPlayer, struct gameState *state){
 			shuffle(currentPlayer, state);
 		}
 		drawCard(currentPlayer, state);
-		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+		cardDrawn = state->hand[currentPlayer][0];
 		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 			drawntreasure++;			
 		else{
@@ -1167,7 +1167,7 @@ int runAdventurer(int currentPlayer, struct gameState *state){
 	}
 	while(z-1>=0){
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-		z++;
+		z=z-1;
 	}
 
 	return 0;

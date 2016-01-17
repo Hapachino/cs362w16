@@ -1,6 +1,6 @@
 /*
 Jack Holkeboer
-OSU CS362 Assignment 2
+OSU CS362 Assignment 2 part 2
 Documentation of Smithy and Adventurer cards in dominion
 
 Smithy:

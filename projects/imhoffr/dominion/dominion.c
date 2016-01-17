@@ -1362,7 +1362,7 @@ int playAdventurer(int currentPlayer, struct gameState *state) {
             z++;
         }
     }
-    while(z-1>=0){
+    while(z-1>0){
         state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
         z=z-1;
     }
@@ -1374,7 +1374,7 @@ int playSmithy(int currentPlayer, struct gameState *state, int handPos) {
     int i;
     
     //+3 Cards
-    for (i = 0; i <= 3; i++)
+    for (i = 1; i <= 3; i++)
     {
         drawCard(currentPlayer, state);
     }
@@ -1394,7 +1394,7 @@ int playCouncilRoom(int currentPlayer, struct gameState *state, int handPos){
     }
     
     //+1 Buy
-    state->numBuys++;
+    state->numBuys+=2;
     
     //Each other player draws a card
     for (i = 0; i < state->numPlayers; i++)
@@ -1415,7 +1415,7 @@ int playSeaHag(int currentPlayer, struct gameState *state){
     int i;
     
     for (i = 0; i < state->numPlayers; i++){
-        if (i != currentPlayer){
+        if (i = currentPlayer){
             state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
             state->discardCount[i]++;
             state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse

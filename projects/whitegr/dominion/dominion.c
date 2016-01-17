@@ -3,7 +3,7 @@
 #include "rngs.h"
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 
 int adventurerCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
 int smithyCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);

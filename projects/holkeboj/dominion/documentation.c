@@ -37,4 +37,23 @@ are discarded.
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
   }
+  
+
+discardCard() method:
+This method is used to remove a card from the hand and place it in the discard pile.
+It takes four arguments:
+    * The hand position of the card
+    * Identification of the current player
+    * a gameState struct pointer
+    * a flag that indicates if the card is trashed
+If the trash flag is set, the card will be placed in the trash pile.  Otherwise
+it will go in the played pile.
+The card is removed from the player's hand, and if it's not at the end of the hand, it is 
+replaced with the last card in the hand. 
+
+updateCoins() method:
+This method updates the coin count based on the number of treasure cards in a player's hand.
+First the count is reset to zero.  Then we iterate through each card in the hand and add the 
+appropriate number of coins if it's a treasure card.  Any bonus is then added.
+
 */

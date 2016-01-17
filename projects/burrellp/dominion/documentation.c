@@ -1,24 +1,42 @@
-Jana Gallina
-CS362 Fall 2015
+Documentation.c
+Patrick Burrell
+CS 362 - W2016
 Assignment 2
-October 11, 2015
 
-Documentation should contain your understanding of smithy and adventurer cards (code). It should also contain 
-documentation of your understanding of discardCard() and updateCoins() method.  Keep your documentation short, 
-though there is no upper limit. Documentation.txt file should contain at least 100 words.  
+The Cards:
+Smithy - allows the player who played the card to draw three more cards
+Adventurer - allows the player to add the next two treasure cards from his/her
+deck to the current hand. The cards in the plyer's deck are revealed as the
+deck is searched through for two coins.
 
+The Code:
+Smithy - the code associated with drawing a Smithy calls drawCard() three times
+and then discardCard().
 
-Smithy: The smithy uses the drawCard function to draw 3 cards, and then calls the discardCard function to end 
-the turn.
+Adventurer - the code associated with drawing an Adventurer creates a while loop
+that runs until two treasure cards have been reached in the deck. Within this loop,
+the code checks that the player has cards remaining in the deck (the discard pile
+is shuffled and added to deck if not), then the player draws a card using drawCard().
+If the drawn card is a treasure card, the treasure card count is incremented.
+Otherwise, the drawn card is revealed as part of the tempHand and the next card is
+drawn. The tempHand is discarded at the end of the turn.
 
-Adventurer: While the drawntreasure count is less than 2, drawCard is called to draw a card and cardDrawn 
-identifies the card. If the card is a treasure, drawntreasure is incremented. If the card is not a treasure,
-the card is added to the temphand which is discarded at the end of the turn along with the regular hand.
+drawCard() - this function first checks that the players deck is empty. If it is,
+all of the cards in the discard pile are added back to the deck and shuffled.
+The top card from the resulting deck is then drawn. If the original deck is nonempty,
+the top card from this deck is added to the player's hand.
 
-discardCard(): If the trashFlag is set to less than 1 (meaning the card is played rather than trashed), 
-the card is discarded to the played pile. Then if the last card was played or there is only one card in hand, 
-the handCount is decremented and then turn is over. Otherwise the card in hand will replace the discarded 
-card on top of the pile and the handCount is decremented.
+discardCard() - this function first checks a card's trashFlag. If the trashFlag < 1,
+the card is added to the player's discard pile (i.e. the card has been played) and
+the player's playerCardCount is incremented for the turn. If the player has played
+his/her last card or only has one card left in his/her hand, the palyer's handCount
+is decremented and the discard ends. Otehrwise, the next card in the player's hand
+replaces the discared card, the last card is set to -1, and the player's handCount
+is decremented before the discard end.
 
-updateCoins(): The updateCoins function tallies the number of coins available to spend if a bonus is applied 
-from the played card. It grants one coin for each copper, two for each silver, and three for each gold.
+updateCoins() - this function starts by setting the player's coins total to 0. It then
+iterates through all cards in a player's hand and adds the appropriate number of coins
+to the player's coin total for each treasure card (1 for copper, 2 for silver, and 3
+for gold). Finally, any bonus coins associated with the cards played are added to the
+coin total (the number of bonus coins is passed to the function).
+

@@ -1,8 +1,6 @@
-Jana Gallina
-CS362 Fall 2015
+Eric Anderson
+CS362 Winter 2016
 Assignment 2
-October 11, 2015
-
 
 Pick five cards implemented in dominion.c. Choose 3 cards of your choice and smithy and adventurer cards are 
 mandatory. Refactor the code so that these cards are implemented in their own functions, rather than as part 
@@ -14,14 +12,22 @@ bugs in smithy and adventurer is mandatory.  Write information of your bugs also
 other students will test your code, so try to keep your bugs not superficial. Refactored program should compile 
 without any error.
 
-
 Refactored cards:
-Smithy: In the call to the discardCard function, the value being passed as trashFlag is 1 instead if 0. 
 
-Adventurer: In the while loop, the loop should run as long as drawntreasure is less than 2, not less than or equal to 2.
+Adventurer: In the adventurer() card implementation, I deleted the -- decrementer from the state->handCount[currentPlayer]--;
+statement, this will be real easy to miss and the discard will not be right.  Really subtle!
 
-Village: In the call to the discardCard function, the value being passed as trashFlag is 9 instead if 0.  
+Council_Room: In the council_room() card implementation, state->numBuys is incremented, I changed this to 
+decrement. The action is doing the opposite and subtracting coins. Ouch!
 
-Feast: In the final for loop to reset the hand, the value of i should be less than or equal to state->handcount...
+Smithy: In the smithy() card implementation, I changed the i++ to ==i, this will cause an increment before the loop
+is executed resulting in on less card. 
 
-Council_Room: Implemented in own function but no bugs
+Village: In the village() card implementation, I introduce two bugs.  First I set numActions to three, the
+card is only supposed to have two.  It will all work but the player will get an additional action than they
+should have. and second,when discardCard() is called, a 1 is passed in as the trash flag. The discardCard()
+function only checks if the trash flag is <1, Passing a 1 to it will cause the logic to be skipped and it will
+always return 0.  
+
+Great_Hall: This one is correct.
+

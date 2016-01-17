@@ -1,24 +1,58 @@
-Jana Gallina
-CS362 Fall 2015
-Assignment 2
-October 11, 2015
+CS 362 - Software Engineering II
+Assignment 2 - Documentation
+Mark Giles
 
-Documentation should contain your understanding of smithy and adventurer cards (code). It should also contain 
-documentation of your understanding of discardCard() and updateCoins() method.  Keep your documentation short, 
-though there is no upper limit. Documentation.txt file should contain at least 100 words.  
+Smithy Card
+	Summmary:
+	- The Smithy card is an Action card
+	- Allows the player to draw three additional cards for use. 
+	- The cost of purchasing Smithy is 4 coins.
+	- The effect code for Smithy is activated in the cardEffect function.
 
+	Pseudo Code:
+	for loop iterates three times
+		 execute drawCard function
+	discardCard function is called effectively discarding the Smithy card
 
-Smithy: The smithy uses the drawCard function to draw 3 cards, and then calls the discardCard function to end 
-the turn.
+Aventurer Card
+	Summary: 
+	- The Adventurer card is an Action card
+	- Allows the player to draw cards from the deck until 2	Treasure cards are revealed.
+	- The Treasure cards are placed in the hand.
+	- The non-treasure cards drawn during the process are discarded.
 
-Adventurer: While the drawntreasure count is less than 2, drawCard is called to draw a card and cardDrawn 
-identifies the card. If the card is a treasure, drawntreasure is incremented. If the card is not a treasure,
-the card is added to the temphand which is discarded at the end of the turn along with the regular hand.
+	Pseudo Code:
+	while drawnTreasure is < 2
+		if the current player's deck is empty
+			shuffle function which will refill the player's deck
+		drawCard function adds a card from the player's deck to the player's hand
+		set cardDrawn variable to card on top of hand (most recent card)
+		if cardDrawn is Treasure card
+			add 1 to drawnTreasure variable
+		else
+			remove the drawnCard from the player's hand and place it on the temp pile
+	while z-1>=0 // while there are still cards on the temp deck
+		discard the top card from temp deck
 
-discardCard(): If the trashFlag is set to less than 1 (meaning the card is played rather than trashed), 
-the card is discarded to the played pile. Then if the last card was played or there is only one card in hand, 
-the handCount is decremented and then turn is over. Otherwise the card in hand will replace the discarded 
-card on top of the pile and the handCount is decremented.
-
-updateCoins(): The updateCoins function tallies the number of coins available to spend if a bonus is applied 
-from the played card. It grants one coin for each copper, two for each silver, and three for each gold.
+discardCard() Method
+	Description: Removes the card from the player's hand. If the card is the only card in the deck,
+		the count of the player's hand is decremented by one. If the card is the top card in the
+		player's hand, the card count is decremented by one. Otherwise, the top card is assigned
+		to the position of the discarded card and the card count is decremented by one.
+	Input:
+		- int handPos
+		- int currentPlayer
+		- struct gameState *state
+		- int trashFlag
+	Return:
+		Returns 0 once tasks are completed
+		
+updateCoins() Method
+	Description: Adds coins for the value of each Treasure card in the player's hand as well as
+		and coins obtained through a bonus.
+	Input:
+		- int player
+		- struct gameState *state
+		- int bonus
+	Return:
+		Returns 0 once tasks are completed

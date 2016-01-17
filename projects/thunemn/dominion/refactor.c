@@ -1,7 +1,5 @@
-Jana Gallina
-CS362 Fall 2015
-Assignment 2
-October 11, 2015
+Nathan Thunem
+CS362 Winter 2016 -- Assignment 2
 
 
 Pick five cards implemented in dominion.c. Choose 3 cards of your choice and smithy and adventurer cards are 
@@ -16,12 +14,12 @@ without any error.
 
 
 Refactored cards:
-Smithy: In the call to the discardCard function, the value being passed as trashFlag is 1 instead if 0. 
+Adventurer: In the second while loop, the loop should run as long as z-1 >= 0, not greater than 0.
 
-Adventurer: In the while loop, the loop should run as long as drawntreasure is less than 2, not less than or equal to 2.
+Smithy: In the call to the discardCard function, the value being passed as trashFlag is 1 instead of 0. 
 
-Village: In the call to the discardCard function, the value being passed as trashFlag is 9 instead if 0.  
+Council_Room: In the for loop, the number of cards should be less than 4, not less than 5.
 
-Feast: In the final for loop to reset the hand, the value of i should be less than or equal to state->handcount...
+Village: state->numActions should add 2, not 1
 
-Council_Room: Implemented in own function but no bugs
+GreatHall: There are no bugs in this function 

@@ -1,24 +1,29 @@
-Jana Gallina
-CS362 Fall 2015
-Assignment 2
-October 11, 2015
+Nathan Thunem
+CS362 Winter 2016 - Assignment 2
 
-Documentation should contain your understanding of smithy and adventurer cards (code). It should also contain 
-documentation of your understanding of discardCard() and updateCoins() method.  Keep your documentation short, 
-though there is no upper limit. Documentation.txt file should contain at least 100 words.  
+Smithy Card:
+The Smithy card can be bought by the player for 4 coins, and if 
+the player has less than 2 Smithy cards already.  The Smithy card
+uses the drawCard function to add 3 cards into the players 
+hand, then calls the discardCard function to discard the Smithy Card.
 
+Adventurer Card: 
+The Adventurer card can be bought by the player for 6 coins.  This
+card allows cards to be drawn until the player gets 2 treasure
+cards.  The discardCard function is called for every card that is 
+not a treasure card. 
 
-Smithy: The smithy uses the drawCard function to draw 3 cards, and then calls the discardCard function to end 
-the turn.
+discardCard function:
+The discardCard function takes parameters: handPos (hand position),
+currentPlayer (current player), state (game state), and an int 
+(trash flag).  If the trash flag is set to 0, the card will be played,
+otherwise it will be trashed.  It will check if the card was played
+or discarded, and will update the hand count and number of cards in the
+player's hand.
 
-Adventurer: While the drawntreasure count is less than 2, drawCard is called to draw a card and cardDrawn 
-identifies the card. If the card is a treasure, drawntreasure is incremented. If the card is not a treasure,
-the card is added to the temphand which is discarded at the end of the turn along with the regular hand.
+updateCoins function:
 
-discardCard(): If the trashFlag is set to less than 1 (meaning the card is played rather than trashed), 
-the card is discarded to the played pile. Then if the last card was played or there is only one card in hand, 
-the handCount is decremented and then turn is over. Otherwise the card in hand will replace the discarded 
-card on top of the pile and the handCount is decremented.
-
-updateCoins(): The updateCoins function tallies the number of coins available to spend if a bonus is applied 
-from the played card. It grants one coin for each copper, two for each silver, and three for each gold.
+The updateCoins function takes parameters: currentPlayer (current player),
+state (game state), and an int (trash flag).  The function will reset the 
+coin count and then add up the treasure cards in the hand and update 
+the coin count again.

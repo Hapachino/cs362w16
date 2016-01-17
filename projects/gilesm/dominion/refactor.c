@@ -1,27 +1,37 @@
-Jana Gallina
-CS362 Fall 2015
-Assignment 2
-October 11, 2015
+CS 362 - Software Engineering II
+Assignment 2 - Refactor
+Mark Giles
 
+Adventurer Card
+In the switch statement under the case adventurer section, I removed all code
+except for the return 0, which allow the function to exit upon completion. I
+added a new line: "adventurerEff(currentPlayer, drawnTreasure, cardDrawn, 
+temphand, state);". This line effectively calls the new function I created. 
+The deleted code from cardEffect was added back to the new function and 
+executed. The bug I introduced in the function is by removing the z++ section
+in the first while loop. The z variable is used to track how many cards that
+must be discarded once the primary part of the adventurer card is produced.
+This will result in z-1 = -1, which means the second while loop will never run,
+and the temphand cards will never be discarded.
 
-Pick five cards implemented in dominion.c. Choose 3 cards of your choice and smithy and adventurer cards are 
-mandatory. Refactor the code so that these cards are implemented in their own functions, rather than as part 
-of the switch statement in cardEffect. You should call the functions for these cards in the appropriate place 
-in cardEffect. Check in your changes, with appropriate git commit messages. Document your changes in a text file 
-in your dominion source directory, called “refactor.c.” Your implementation of at least 4 of these 5 cards should 
-be incorrect in some way, i.e., you should introduce subtle bugs that are hard to catch in your changes. Introducing 
-bugs in smithy and adventurer is mandatory.  Write information of your bugs also in refactor.c.   Later in this class, 
-other students will test your code, so try to keep your bugs not superficial. Refactored program should compile 
-without any error.
+Smithy Card
+For smithy I created a new function called smithyEffect(int currentPlayer,
+struct gameState *state). The change I made was in the for loop. I made the
+conditional based on if i <= 3 instead of just i < 3. This will cause an
+additional card to be drawn each time smithy is played.
 
+Remodel Card
+New function called remodelEffect(int currentPlayer, int choice1, int choice2,
+struct gameState *state, int handpos). The initial value of i in the for loop
+has been changed from 0 to 1. This will skip the first card while checking
+for a match.
 
-Refactored cards:
-Smithy: In the call to the discardCard function, the value being passed as trashFlag is 1 instead if 0. 
+Village Card
+New function called villageEffect(int currentPlayer, struct gameState *state,
+int handpos). In the section where two actions are added, there is only one
+action added.
 
-Adventurer: In the while loop, the loop should run as long as drawntreasure is less than 2, not less than or equal to 2.
-
-Village: In the call to the discardCard function, the value being passed as trashFlag is 9 instead if 0.  
-
-Feast: In the final for loop to reset the hand, the value of i should be less than or equal to state->handcount...
-
-Council_Room: Implemented in own function but no bugs
+Great Hall Card
+New function called greatHallEffect(int currentPlayer, struct gameState 
+*state, int handpos). The line that adds one to the number of actions is typed
+twice, essentialls adding two actions.

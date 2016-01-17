@@ -1,27 +1,64 @@
-Jana Gallina
-CS362 Fall 2015
-Assignment 2
-October 11, 2015
+Tanna Richardson
+CS362 - Winter 2016
+Assignment 2 part 3
+
+---cardEffects Refactor---
+
+Changes made to dominion_helpers.h:
+	1. Added function prototypes for each refactored card:
+		Adventurer -> runAdventurer()
+		Council Room -> runCouncilRoom()
+		Mine -> runMine()
+		Remodel -> runRemodel()
+		Smithy -> runSmithy()
+
+Changes made to dominion.c:
+	1. Replaced existing code in cardEffect for each of the following case statements:
+		adventure
+		council_room
+		mine
+		remodel
+		smithy
+	New code simply calls appropriate card method and then returns 0.
+	
+	2. Added new methods for each refactored card at end of file:
+		Adventurer -> runAdventurer()
+		Council Room -> runCouncilRoom()
+		Mine -> runMine()
+		Remodel -> runRemodel()
+		Smithy -> runSmithy()
+	New methods include a copy/paste of code previously located in the case
+	statement for the corresponding card and a copy/paste of related
+	variable declarations from the cardEffect method.
+
+	
+---General Refactor---
+
+Changes made to dominion.c:
+	1. Added comment headers to delineate sections of code (definitions, game setup,
+	     game play, game completion, helper functions, card actions)
+	2. Fixed white space issues so nested blocks of code lined up properly
+	3. Updated all curly braces for consistency. Opening curly braces on same line
+	     as loop/conditional statement, closing braces on own line.
 
 
-Pick five cards implemented in dominion.c. Choose 3 cards of your choice and smithy and adventurer cards are 
-mandatory. Refactor the code so that these cards are implemented in their own functions, rather than as part 
-of the switch statement in cardEffect. You should call the functions for these cards in the appropriate place 
-in cardEffect. Check in your changes, with appropriate git commit messages. Document your changes in a text file 
-in your dominion source directory, called “refactor.c.” Your implementation of at least 4 of these 5 cards should 
-be incorrect in some way, i.e., you should introduce subtle bugs that are hard to catch in your changes. Introducing 
-bugs in smithy and adventurer is mandatory.  Write information of your bugs also in refactor.c.   Later in this class, 
-other students will test your code, so try to keep your bugs not superficial. Refactored program should compile 
-without any error.
+---Introduce Bugs---
 
+All changes made in dominion.c.
 
-Refactored cards:
-Smithy: In the call to the discardCard function, the value being passed as trashFlag is 1 instead if 0. 
+Changes made to runAdventurer():
+	1. Changed first while loop expression from (drawntreasure<2) to <=
+	2. Removed state->handCount[currentPlayer]-- from else statement that
+	     removes drawn non-treasure cards from users hand. 
+	
+Changes made to runSmithy():
+	1. Changed for loop expression from i<3 to i<=3
+	2. Changed trashFlag parameter in discardCard method from 0 to 1
 
-Adventurer: In the while loop, the loop should run as long as drawntreasure is less than 2, not less than or equal to 2.
+Changes made to runCouncilRoom():
+	1. Changed state-->numBuys from ++ to =1 (under comment +1 Buy)
+	2. Changed in for loop to draw card for each other player,
+	     changed !=currentPlayer to ==currentPlayer
 
-Village: In the call to the discardCard function, the value being passed as trashFlag is 9 instead if 0.  
-
-Feast: In the final for loop to reset the hand, the value of i should be less than or equal to state->handcount...
-
-Council_Room: Implemented in own function but no bugs
+Changes made to runMine():
+	1. Switched all choice1 to choice2, and all choice2 to choice1

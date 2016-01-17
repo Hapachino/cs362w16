@@ -1,27 +1,59 @@
-Jana Gallina
-CS362 Fall 2015
-Assignment 2
-October 11, 2015
+Stephen Heng
+CS362 Winter 2016
+Assignment 2: refactor.c and bugs
 
+In the dominion.c file, I have refactored the following cases:
 
-Pick five cards implemented in dominion.c. Choose 3 cards of your choice and smithy and adventurer cards are 
-mandatory. Refactor the code so that these cards are implemented in their own functions, rather than as part 
-of the switch statement in cardEffect. You should call the functions for these cards in the appropriate place 
-in cardEffect. Check in your changes, with appropriate git commit messages. Document your changes in a text file 
-in your dominion source directory, called “refactor.c.” Your implementation of at least 4 of these 5 cards should 
-be incorrect in some way, i.e., you should introduce subtle bugs that are hard to catch in your changes. Introducing 
-bugs in smithy and adventurer is mandatory.  Write information of your bugs also in refactor.c.   Later in this class, 
-other students will test your code, so try to keep your bugs not superficial. Refactored program should compile 
-without any error.
+int playAdventurer(struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z);
+int playSmithy(int currentPlayer, struct gameState *state, int handPos);
+int playVillage(int currentPlayer, struct gameState *state, int handPos);
+int playMine(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2, int i, int j);
+int playSteward(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2, int choice3);
 
+I have added these functions in the dominion.h file.
 
-Refactored cards:
-Smithy: In the call to the discardCard function, the value being passed as trashFlag is 1 instead if 0. 
+Bugs for 4 of the 5 cases:
 
-Adventurer: In the while loop, the loop should run as long as drawntreasure is less than 2, not less than or equal to 2.
+1. int playSmithy
+  
+correct:
 
-Village: In the call to the discardCard function, the value being passed as trashFlag is 9 instead if 0.  
+  for (i = 0; i < 3; i++)
+  
+bug:
 
-Feast: In the final for loop to reset the hand, the value of i should be less than or equal to state->handcount...
+  for (i = 1; i < 3; i++)
 
-Council_Room: Implemented in own function but no bugs
+This will result in 2 cards drawn to the player instead of 3.  
+
+2. int playAdventurer
+
+correct:
+	state->handCount[currentPlayer]--;
+
+bug:
+    //state->handCount[currentPlayer]--; 
+
+I have whitedout the statement which will not remove the top card(the most recently drawn one)
+
+3. playVillage
+
+correct:
+	state->numActions = state->numActions + 2;
+
+bug:
+	state->numActions = state->numActions + 1;
+	
+This will allow the player to only have 1 bonus action instead of 2.
+
+4. playSteward
+
+correct:
+    drawCard(currentPlayer, state);
+    drawCard(currentPlayer, state);
+bug:
+	drawCard(currentPlayer, state);
+    //drawCard(currentPlayer, state);
+	
+I have whitedout one of the drawcards which will allow the player in choice1==1 to only draw 1 card
+instead of 2

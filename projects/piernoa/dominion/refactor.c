@@ -1,27 +1,26 @@
-Jana Gallina
-CS362 Fall 2015
-Assignment 2
-October 11, 2015
+Cards moved into their own functions:
+  Adventurer:
+    - shuffle(currentPlayer - 1, state); istead of shuffle(currentPlayer, state);
+    - cardDrawn = state->hand[currentPlayer - 1 ][state->handCount[currentPlayer]-1]; instead of cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
+    - if (cardDrawn == copper && cardDrawn == silver || cardDrawn == gold) instead of         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+    - state->handCount[currentPlayer]; instead of state->handCount[currentPlayer]--;
+    - while(z-1<=0) instaed of while(z-1>=0)
 
+  Smithy:
+    - drawCard(currentPlayer - 1, state); instead of drawCard(currentPlayer, state);
+    - discardCard(handPos, currentPlayer, state, 1); instead of discardCard(handPos, currentPlayer, state, 0);
 
-Pick five cards implemented in dominion.c. Choose 3 cards of your choice and smithy and adventurer cards are 
-mandatory. Refactor the code so that these cards are implemented in their own functions, rather than as part 
-of the switch statement in cardEffect. You should call the functions for these cards in the appropriate place 
-in cardEffect. Check in your changes, with appropriate git commit messages. Document your changes in a text file 
-in your dominion source directory, called “refactor.c.” Your implementation of at least 4 of these 5 cards should 
-be incorrect in some way, i.e., you should introduce subtle bugs that are hard to catch in your changes. Introducing 
-bugs in smithy and adventurer is mandatory.  Write information of your bugs also in refactor.c.   Later in this class, 
-other students will test your code, so try to keep your bugs not superficial. Refactored program should compile 
-without any error.
+  Feast:
+    - if (nextPlayer < (state->numPlayers - 1)) instead  of if (nextPlayer > (state->numPlayers - 1))
+    - deleted line instead of   temphand[i] = state->hand[currentPlayer][i];//Backup card
 
+  Council Room:
+    - for (i = 4; i > 0; i++) instead of for (i = 0; i < 4; i++)
+    - drawCard(i, state); drawCard(i, state); instead of drawCard(i, state);
 
-Refactored cards:
-Smithy: In the call to the discardCard function, the value being passed as trashFlag is 1 instead if 0. 
+  Gardens:
+    returns 0 instead of -1;
 
-Adventurer: In the while loop, the loop should run as long as drawntreasure is less than 2, not less than or equal to 2.
-
-Village: In the call to the discardCard function, the value being passed as trashFlag is 9 instead if 0.  
-
-Feast: In the final for loop to reset the hand, the value of i should be less than or equal to state->handcount...
-
-Council_Room: Implemented in own function but no bugs
+  Mine:
+    - if (state->hand[currentPlayer][choice1] < gold || state->hand[currentPlayer][choice1] > copper)  instead of if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
+    - if (choice2 > treasure_map && choice2 < curse) instaed of if (choice2 > treasure_map || choice2 < curse)

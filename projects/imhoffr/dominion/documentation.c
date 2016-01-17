@@ -27,7 +27,9 @@ Adventurer:
   as an array size z, z being increased by one each time a non-copper/silver/gold card is
   drawn.  
 
-discardCard()
+Functions:
+
+discardCard():
   This function determines how to handle a discarded card.  
   If the trashFlag is less than one, then the card goes from being a played card to being
   a card currently being held.  Otherwise, the card goes to the player's discard pile.  The
@@ -35,7 +37,7 @@ discardCard()
   decreased by one.  The card that the player is holding (handPos) is updated each time
   to the next card in the player's hand.  
 
-updateCoins()
+updateCoins():
   This function coverts copper, silver, and gold cards in the player's hands into 
   a coin value.  It also updates with any bonuses from other cards that may have been
   played.  

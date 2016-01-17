@@ -650,7 +650,7 @@ int smithy_card(int handPos, int currentPlayer, struct gameState *state) {
     int i;
     // +3 Cards
     for (i = 0; i < 3; i++) {
-        if (handPos != 2) {}
+        if (handPos != 2) {
             drawCard(currentPlayer, state);
         }
     }
@@ -736,7 +736,7 @@ int village_card(int handPos, int currentPlayer, struct gameState *state) {
     state->numActions = state->numActions + 2;
 
     // discard played card from hand
-    if state->numActions > 3 {
+    if (state->numActions > 3) {
         discardCard(handPos, currentPlayer, state, 0);
     }
     return 0;

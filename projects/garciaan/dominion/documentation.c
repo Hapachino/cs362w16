@@ -1,7 +1,7 @@
 ------
 Smithy
 ------
-Draws a card 3 times and then discards the smithy. Return 0. 
+Draws a card 3 times and then discards the smithy. Return 0.
 
 ----------
 Adventurer

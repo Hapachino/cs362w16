@@ -34,5 +34,15 @@ drawn during the play of the adventurer card are discarded at the end of
 the function. Treasure cards are retained for the buy phase. 
 **************************************************************************/
 
+/*************************************************************************
+playSmithy
+Prototype: 
+int playSmithy(struct gameState *state, int CurrentPlayer, int handPos)
+
+The playSmithy() function implements the action of playing the smithy
+card.  This function receives the current state of the game and the current
+player, and it draws 3 additional cards from the players deck into his hand.
+**************************************************************************/
+
 
 

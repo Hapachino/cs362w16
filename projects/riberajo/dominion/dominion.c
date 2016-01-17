@@ -1201,7 +1201,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 }
 int playAdventurer(struct gameState *state) {
   int currentPlayer = whoseTurn(state);
-  int drawntreasure=2;
+  int drawntreasure=0;
   int cardDrawn;
   int temphand[MAX_HAND];// moved above the if statement
   int z = 0;// this is the counter for the temp hand
@@ -1212,12 +1212,15 @@ int playAdventurer(struct gameState *state) {
         }
         drawCard(currentPlayer, state);
         cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+        drawntreasure++;
       if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
         drawntreasure++;
       else{
         temphand[z]=cardDrawn;
         state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
         z++;
+        drawntreasure++;
+
       }
     }
     while(z-1>=0){
@@ -1267,7 +1270,7 @@ int playFeast(int choice1, struct gameState *state) {
     }
 
       gainCard(choice1, state, 0, currentPlayer);//Gain the card
-      x = 0;//No more buying cards
+      x += 0;//No more buying cards
 
         if (DEBUG){
         printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
@@ -1300,12 +1303,12 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state){
       return -1;
       }
 
-    if ( (getCost(state->hand[currentPlayer][choice1]) + 10) > getCost(choice2) )
+    if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
       {
       return -1;
       }
 
-    gainCard(choice2, state, 2, currentPlayer);
+    gainCard(choice2, state, 1, currentPlayer);
 
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
@@ -1337,7 +1340,7 @@ int playRemodel(int handPos, int choice1, int choice2, struct gameState *state) 
      gainCard(choice2, state, 0, currentPlayer);
 
      //discard card from hand
-     discardCard(handPos, currentPlayer, state, 0);
+     discardCard(handPos, currentPlayer, state, 1);
 
      //discard trashed card
      for (i = 0; i < state->handCount[currentPlayer]; i++)

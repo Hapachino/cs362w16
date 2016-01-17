@@ -645,6 +645,8 @@ int getCost(int cardNumber)
 
 int councilRoomFunc(int currentPlayer, struct gameState *state, int handPos)
 {
+    int i; 
+
     //+4 Cards
       for (i = 0; i < 4; i++)
 	{
@@ -765,7 +767,7 @@ int remodelFunc(struct gameState *state, int currentPlayer, int choice1, int cho
     return 0; 
 }
 
-int smithyFunc(gameState *state, int currentPlayer, int handPos)
+int smithyFunc(struct gameState *state, int currentPlayer, int handPos)
 {
     int i; 
     
@@ -793,9 +795,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }

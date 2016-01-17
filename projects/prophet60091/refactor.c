@@ -3,7 +3,7 @@ Second while loop should be (z - 1 >= 0)
 */
 
 /* Smithy bug
-should be
+should be:
 for (i = 0; i < 3; i++)
 {
 */

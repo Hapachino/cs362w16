@@ -3,16 +3,9 @@ eldridgs
 CS 362
 Winter 2016
 
-<<<<<<< HEAD:projects/eldridgs/dominion/documentation.c
 Smithy:
 This allows the current player to draw three cards, adding to the total number of cards in their hand.
 Then the Smithy card is discarded as it can only be used once.
-=======
-/* adventurer: */
-This card draws cards from the player's deck until the player draws three
-treasure cards total. All cards drawn from the player's deck that were not
-treasure cards are moved into the player's discard pile.
->>>>>>> 86f5fb16c2c1797902d608386527b1fdb83758fd:projects/swaffork/dominion/documentation.c
 
 Adventurer:
 While drawntreasure is less than two, this reshuffles if the deck is empty, then draws a card.  If the

@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
+#include <math.h>
+#include <stdlib.h>
 
 #define DEBUG 0
 #define NOISY_TEST 1
@@ -37,6 +39,8 @@ int checkDrawCard(int p, struct gameState *post) {
   assert (r == 0);
 
   assert(memcmp(&pre, post, sizeof(struct gameState)) == 0);
+
+  return 0;
 }
 
 int main () {

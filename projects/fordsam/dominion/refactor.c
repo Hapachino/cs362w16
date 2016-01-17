@@ -16,7 +16,7 @@ At the same time, I cleaned up the code in these functions (standardizing it wit
 
 Bugs Introduced
 ---------------
-1. playAdventurer() was modified to introduce an off-by-one bug.  Namely, "cardDrawn = state->hand[player][state->handCount[player]-1]" turned into "cardDrawn = state->hand[player][state->handCount[player]]".
+1. playAdventurer() was modified to introduce an off-by-one bug.  Namely, the loop condition when discarding the non-treasure cards that were drawn went from "while (z - 1 >= 0)" to "while (z - 1 > 0)".  This results in one of the non-treasure cards that were drawn not being discarded.
 
 2. playFeast() was modified to introduce a bug in a condition, such that code will be executed when it's actually inappropriate.  Namely, "else if (state->coins < getCost(choice1))" turned into "else if (state->coins <= getCost(choice1))".
 

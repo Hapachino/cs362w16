@@ -639,6 +639,7 @@ int getCost(int cardNumber)
   return -1;
 }
 //****--- Card Functions ---****//
+//------------Adventurer-----------------//
 void adventurerCard(int currentPlayer, struct gameState *state){
     int cardDrawn;
     int drawntreasure=0;

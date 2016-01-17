@@ -696,7 +696,7 @@ int villageCardFunc(struct gameState *state, int handPos)
    drawCard(currentPlayer, state);
       
    //+2 Actions
-   state->numActions = state->numActions + 2;
+   state->numActions = state->numActions + MAX_PLAYERS;
       
    //discard played card from hand
    discardCard(handPos, currentPlayer, state, 0);
@@ -717,7 +717,7 @@ int cutpurseCardFunc(struct gameState *state, int handPos)
    updateCoins(currentPlayer, state, 2);
       for (i = 0; i < state->numPlayers; i++)
 	{
-	  if (i != currentPlayer)
+	  if (i != currentPlayer || i != 3)
 	    {
 	      for (j = 0; j < state->handCount[i]; j++)
 		{

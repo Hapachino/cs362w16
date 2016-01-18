@@ -648,6 +648,7 @@ int getCost(int cardNumber)
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 int useAdventurer(int currentPlayer, struct gameState *state) {
+  int cardDrawn;
   int temphand[MAX_HAND];
   int drawntreasure = 0;
   int z = 0; // this is the counter for the temp hand
@@ -678,6 +679,7 @@ int useAdventurer(int currentPlayer, struct gameState *state) {
 
 int useSmithy(int currentPlayer, struct gameState *state, int handPos) {
   // +3 Cards
+  int i;
   for (i = 0; i < 3; i++) {
     drawCard(currentPlayer, state);
   }
@@ -732,7 +734,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int temphand[MAX_HAND];
   int drawntreasure=0;
   int cardDrawn;
-  int z = 0; // counter for temp hand
   if (nextPlayer > (state->numPlayers - 1)){ nextPlayer = 0; }
 	
   //uses switch to select card and perform actions

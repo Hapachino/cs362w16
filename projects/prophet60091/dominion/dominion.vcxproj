@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{52CC7141-627E-4AFB-8C4F-AB5B1CD73AD9}</ProjectGuid>
+    <ProjectGuid>{50AD0FF6-CE49-45A1-8580-A1003C3EBAF4}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -36,17 +36,34 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeOutput>dominion.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <NMakeOutput>dominion.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
+    <ClCompile Include="badTestDrawCard.c" />
+    <ClCompile Include="betterTestDrawCard.c" />
+    <ClCompile Include="dominion.c" />
+    <ClCompile Include="interface.c" />
+    <ClCompile Include="playdom.c" />
+    <ClCompile Include="player.c" />
+    <ClCompile Include="documentation.c" />
+    <ClCompile Include="rngs.c" />
+    <ClCompile Include="rt.c" />
+    <ClCompile Include="supplyTest.c" />
+    <ClCompile Include="testBuyCard.c" />
+    <ClCompile Include="testDrawCard.c" />
+    <ClCompile Include="testInit.c" />
+    <ClCompile Include="testShuffle.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dominion.h" />
+    <ClInclude Include="dominion_helpers.h" />
+    <ClInclude Include="interface.h" />
+    <ClInclude Include="rngs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

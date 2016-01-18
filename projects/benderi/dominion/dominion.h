@@ -129,11 +129,4 @@ int scoreFor(int player, struct gameState *state);
 int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
-   
-/*Function declarations for refactor of 5 player cards for assignment 1 for dominion.c   */ 
-int runAdventurer(struct gameState *state, int drawntreasure, int currentPlayer, int cardDrawn, int tempHand[], int z);
-int runCouncilRm(struct gameState *state, int currentPlayer, int handPos);
-int runSmithy(struct gameState *state, int currentPlayer, int handPos, int nextPlayer);
-int runGreatHall(struct gameState *state, int currentPlayer, int handPos);
-int runSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos);
 #endif

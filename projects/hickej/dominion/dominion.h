@@ -74,25 +74,7 @@ struct gameState {
   int playedCards[MAX_DECK];
   int playedCardCount;
 };
-struct infosStruct {
-  int i;
-  int j;
-  int k;
-  int x;
-  int index;
-  int currentPlayer;
-  int nextPlayer;
 
-  int tributeRevealedCards[2];
-  int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure;
-  int cardDrawn;
-  int handPos;
-  int z;// this is the counter for the temp hand
-  int choice1;
-  int choice2;
-  int choice3;
-};
 /* All functions return -1 on failure, and DO NOT CHANGE GAME STATE;
    unless specified for other return, return 0 on success */
 
@@ -149,10 +131,9 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
    1, others to 0 */
 
 int playAdventurer(struct gameState *state);
-int playSmithy(struct gameState *state, int handPos);
-int playVillage(struct gameState *state, int handPos);
-int playFeast(struct gameState *state, int choice1);
-int playCouncil_Room(struct gameState *state, int handPos);
-
+int playSmithy(struct gameState *state);
+int playVillage(struct gameState *state );
+int playCouncil_Room(struct gameState *state);
+int playGreat_Hall(struct gameState*state);
 
 #endif

@@ -42,3 +42,23 @@ Changes made to dominion.c:
 	     as loop/conditional statement, closing braces on own line.
 
 
+---Introduce Bugs---
+
+All changes made in dominion.c.
+
+Changes made to runAdventurer():
+	1. Changed first while loop expression from (drawntreasure<2) to <=
+	2. Removed state->handCount[currentPlayer]-- from else statement that
+	     removes drawn non-treasure cards from users hand. 
+	
+Changes made to runSmithy():
+	1. Changed for loop expression from i<3 to i<=3
+	2. Changed trashFlag parameter in discardCard method from 0 to 1
+
+Changes made to runCouncilRoom():
+	1. Changed state-->numBuys from ++ to =1 (under comment +1 Buy)
+	2. Changed in for loop to draw card for each other player,
+	     changed !=currentPlayer to ==currentPlayer
+
+Changes made to runMine():
+	1. Switched all choice1 to choice2, and all choice2 to choice1

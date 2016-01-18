@@ -1,1 +1,0 @@
-Anna Murphy's directory.

@@ -11,10 +11,65 @@
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
+    <ClCompile Include="badTestDrawCard.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="betterTestDrawCard.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dominion.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="interface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="playdom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="player.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rngs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="supplyTest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="testBuyCard.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="testDrawCard.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="testInit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="testShuffle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="documentation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dominion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dominion_helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rngs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -74,7 +74,25 @@ struct gameState {
   int playedCards[MAX_DECK];
   int playedCardCount;
 };
+struct infosStruct {
+  int i;
+  int j;
+  int k;
+  int x;
+  int index;
+  int currentPlayer;
+  int nextPlayer;
 
+  int tributeRevealedCards[2];
+  int temphand[MAX_HAND];// moved above the if statement
+  int drawntreasure;
+  int cardDrawn;
+  int handPos;
+  int z;// this is the counter for the temp hand
+  int choice1;
+  int choice2;
+  int choice3;
+};
 /* All functions return -1 on failure, and DO NOT CHANGE GAME STATE;
    unless specified for other return, return 0 on success */
 

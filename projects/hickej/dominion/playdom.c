@@ -8,9 +8,10 @@ int main (int argc, char** argv) {
   int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
            sea_hag, tribute, smithy};
 
-
   printf ("Starting game.\n");
+
   initializeGame(2, k, atoi(argv[1]), &G);
+
   int money = 0;
   int smithyPos = -1;
   int adventurerPos = -1;
@@ -37,10 +38,7 @@ int main (int argc, char** argv) {
     }
 
     if (whoseTurn(&G) == 0) {
-
-  printf("InSIDE PLAYER 0 and smithyPos is: %d\n", smithyPos);
-      if (smithyPos != -1) 
-      {
+      if (smithyPos != -1) {
         printf("0: smithy played from position %d\n", smithyPos);
         playCard(smithyPos, -1, -1, -1, &G);
         printf("smithy played.\n");
@@ -85,7 +83,6 @@ int main (int argc, char** argv) {
       endTurn(&G);
     }
     else {
-      printf("INSIDE PLAYER 2 and adventurer pos is %d\n", adventurerPos);
       if (adventurerPos != -1) {
         printf("1: adventurer played from position %d\n", adventurerPos);
         playCard(adventurerPos, -1, -1, -1, &G);
@@ -107,7 +104,6 @@ int main (int argc, char** argv) {
           i++;
         }
       }
-      printf("MONEY OF PLAYER 2 IS %d\n", money);
 
       if (money >= 8) {
         printf("1: bought province\n");

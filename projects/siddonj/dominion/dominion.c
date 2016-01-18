@@ -1282,8 +1282,9 @@ int playCouncil_Room(struct gameState *state, int handPos);
 
 /* This method executes the 'smithy' card behavior. */
 int playSmithy(struct gameState *state, int currentPlayer, int handPos) {
+  int i;  // C99 compile error on linux.
   // Draw cards.
-  for (int i = 0; i <= 3; i++)
+  for (i = 0; i <= 3; i++)
   {
     drawCard(currentPlayer, state);
   }
@@ -1327,6 +1328,7 @@ int playAdventurer(struct gameState *state, int currentPlayer) {
 
 int playRemodel(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2) {
   int j = state->hand[currentPlayer][choice2];  //store card we will trash
+  int i;  // C99 compile error linux.
 
   if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
   {
@@ -1339,7 +1341,7 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
   discardCard(handPos, currentPlayer, state, 1);
 
   //discard trashed card
-  for (int i = 0; i < state->handCount[currentPlayer]; i++)
+  for (i = 0; i < state->handCount[currentPlayer]; i++)
   {
     if (state->hand[currentPlayer][i] == j)
     {

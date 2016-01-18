@@ -1317,7 +1317,7 @@ int greatHallCard(struct gameState *state, int currentPlayer, int handPos)
     drawCard(currentPlayer, state);
 
     //+1 Actions
-    //state->numActions++; // BUG - great hall does not increment number of actions as intended
+    //state->numActions++;
 
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);

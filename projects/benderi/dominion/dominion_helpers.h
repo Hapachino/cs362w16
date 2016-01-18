@@ -11,5 +11,14 @@ int gainCard(int supplyPos, struct gameState *state, int toFlag, int player);
 int getCost(int cardNumber);
 int cardEffect(int card, int choice1, int choice2, int choice3, 
 	       struct gameState *state, int handPos, int *bonus);
+//Refactored functions
+int playAdventurer(int currentPlayer, struct gameState *state);
+int playSmithy(int currentPlayer, struct gameState *state, int handPos);
+int playCouncil_room(int currentPlayer, struct gameState *state, int handPos);
+int playMine(int currentPlayer, struct gameState *state, int handPos,
+            int choice1, int choice2);
+int playRemodel(int currentPlayer, struct gameState *state, int handPos,
+            int choice1, int choice2);
+//End refactored functions
 
 #endif

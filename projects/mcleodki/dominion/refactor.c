@@ -43,7 +43,7 @@ Village - The player will receive only one extra action instead of 2.
 Outpost - The outpostPlayed count will be incremented by 2 each time instead of by 1.
 
 
-
+*/
 
 
 

@@ -1,5 +1,4 @@
 /*
-
 Understanding of smithy:
 Smithy seems to be a fairly basic case where a for loop is ran for 3 iterations where the drawCard()
 function is call once each iteration.  Once the for loop is complete, discardCard() is called to remove the card 

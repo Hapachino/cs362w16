@@ -1159,7 +1159,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 int playAdventurer (struct gameState *state)
 {
     int drawntreasure = 0;
-    int currentPlayer = whoseTurn (state);
+    int currentPlayer = whoseTurn(state);
     int cardDrawn;
     int temphand[MAX_HAND];
     int z = 0;			// this is the counter for the temp hand
@@ -1172,9 +1172,9 @@ int playAdventurer (struct gameState *state)
             shuffle (currentPlayer, state);
         }
         drawCard (currentPlayer, state);
-        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];	//top card of hand is most recently drawn card.
         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
         {
+            cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];	//top card of hand is most recently drawn card.
             drawntreasure++;
         }
         else
@@ -1198,7 +1198,7 @@ int playAdventurer (struct gameState *state)
 int playSmithy(struct gameState *state, int handPos)
 {
     int i;
-    int currentPlayer = whoseTurn (state);
+    int currentPlayer = whoseTurn(state);
 
     //+3 Cards
     for (i = 0; i < 3; i++)
@@ -1215,7 +1215,7 @@ int playMine(struct gameState *state, int handPos, int choice1, int choice2)
 {
     int i;
     int j;
-    int currentPlayer = whoseTurn (state);
+    int currentPlayer = whoseTurn(state);
 
     j = state->hand[currentPlayer][choice1];  //store card we will trash
 

@@ -12,4 +12,13 @@ int getCost(int cardNumber);
 int cardEffect(int card, int choice1, int choice2, int choice3, 
 	       struct gameState *state, int handPos, int *bonus);
 
+//functions added for cardEffects, HW-2 1/14/16
+//int smithyCard();
+int adventurerCard(struct gameState *state, int currentPlayer);
+int smithyCard(struct gameState *state, int currentPlayer, int handPos);
+int villageCard(struct gameState *state, int currentPlayer, int handPos);
+int greatHallCard(struct gameState *state, int currentPlayer, int handPos);
+int outpostCard(struct gameState *state, int currentPlayer, int handPos);
+
+
 #endif

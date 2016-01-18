@@ -1188,6 +1188,9 @@ adventurerCard(struct gameState *state, int handPos)
 
 
     while(drawntreasure<2){
+	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+	  shuffle(currentPlayer, state);
+	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
 	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
@@ -1211,7 +1214,7 @@ smithyCard(struct gameState *state, int handPos)
   int currentPlayer = whoseTurn(state);
 
       //+3 Cards
-      for (i = 0; i <= 3; i++)
+      for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -1229,7 +1232,7 @@ villageCard(struct gameState *state, int handPos)
       drawCard(currentPlayer, state);
 
       //+2 Actions
-      state->numActions + 2;
+      state->numActions = state->numActions + 2;
 
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
@@ -1247,7 +1250,7 @@ greatHallCard(struct gameState *state, int handPos)
       state->numActions++;
 
       //discard card from hand
-      discardCard(handPos, currentPlayer, state, 1);
+      discardCard(handPos, currentPlayer, state, 0);
       return 0;
 }
 

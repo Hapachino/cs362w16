@@ -130,11 +130,74 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
-int playAdventurer(struct gameState *state);
-int playSmithy(struct gameState *state, int handPos);
-int playVillage(struct gameState *state, int handPos);
-int playFeast(struct gameState *state, int choice1);
-int playCouncil_Room(struct gameState *state, int handPos);
+
+
+int playCardAdventurer(struct gameState *state, int currentPlayer, int handPos);
+/*  Plays the adventurer card. Will draw cards from player's deck until
+ *  two additional treasure cards are added to players hand.  Then will
+ *  discard all non treasure cards that were drawn back to the player's
+ *  played pile.
+ *
+ *  Params:
+ *    struct gameState *state: a pointer to the current state of the game
+ *    int currentPlayer: which player in the game is playing the card
+ *    int handPos: the position in the hand that the smithy card was in
+ *
+ *  Return:
+ *    Always returns 0 when complete.
+*/
+
+int playCardSmithy(struct gameState *state, int currentPlayer, int handPos);
+/*  Plays the smithy card. Draws three cards from the player's deck, Then
+ *  discard the smithy card onto the played pile.
+ *
+ *  Params:
+ *    struct gameState *state: a pointer to the current state of the game
+ *    int currentPlayer: which player in the game is playing the card
+ *    int handPos: the position in the hand that the smithy card was in
+ *
+ *  Return:
+ *    Always returns 0 when complete.
+*/
+
+int playCardVillage(struct gameState *state, int currentPlayer);
+/*  Plays the village card. Draws 1 card and adds 2 actions.
+ *
+ *  Params:
+ *    struct gameState *state: a pointer to the current state of the game
+ *    int currentPlayer: which player in the game is playing the card
+ *
+ *  Return:
+ *    Always returns 0 when complete.
+*/
+
+
+int playCardMinion(struct gameState *state, int currentPlayer, int handPos, int choice1);
+/*  Plays the minion card. Discards hand and draws 4 cards.  Every other player
+ *  with more than 5 cards must discard their hands and draw as well.
+ *
+ *  Params:
+ *    struct gameState *state: a pointer to the current state of the game
+ *    int currentPlayer: which player in the game is playing the card
+ *    int handPos: the position in the hand that the smithy card was in
+ *    int choice1: determine whether to take the 2 coins or not
+ *
+ *  Return:
+ *    Always returns 0 when complete.
+*/
+
+int playCardGreatHall(struct gameState *state, int currentPlayer, int handPos);
+/*  Plays the Great Hall card. Draws 1 card from the player's deck and adds 1 action.
+ *  Then discard the smithy card onto the played pile.
+ *
+ *  Params:
+ *    struct gameState *state: a pointer to the current state of the game
+ *    int currentPlayer: which player in the game is playing the card
+ *    int handPos: the position in the hand that the smithy card was in
+ *
+ *  Return:
+ *    Always returns 0 when complete.
+*/
 
 
 #endif

@@ -647,7 +647,8 @@ int getCost(int cardNumber)
 /*Refactored code*/
 int play_smithy(int currentPlayer, struct gameState *state, int handPos){
     //+3 Cards
-    for (int i = 0; i < 3; i++)
+    int i;
+    for (i = 0; i < 3; i++)
     {
         drawCard(currentPlayer, state);
     }
@@ -697,7 +698,6 @@ int play_adventurer(int drawntreasure, struct gameState *state, int currentPlaye
             drawntreasure++;
         else{
             temphand[z]=cardDrawn;
-            state->handCount[currentPlayer]; //this should just remove the top card (the most recently drawn one).
             z++;
         }
     }
@@ -755,7 +755,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
       //put played card in played card pile
 
-            (handPos, currentPlayer, state, 0);
+  discardCard(handPos, currentPlayer, state, 0);
 
       return 0;
 

@@ -1204,10 +1204,10 @@ int playSmithy(struct gameState *state, int handPos)
     for (i = 0; i < 3; i++)
     {
         drawCard(currentPlayer, state);
+        //discard card from hand
+        discardCard(handPos, currentPlayer, state, 0);
     }
 
-    //discard card from hand
-    discardCard(handPos, currentPlayer, state, 0);
     return 0;
 }
 

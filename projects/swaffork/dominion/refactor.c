@@ -1,5 +1,4 @@
 adventurer:
-MOVE INITIALIZATION OF CARD DRAWN TO INSIDE IF STATEMENT 
 The bug introduced in playAdventurer is in the check to see if the card drawn
 is a treasure card. Instead of assigning the cardDrawn variable to the top
 card of the hand and then checking to see if that card is a treasure card,
@@ -63,4 +62,26 @@ int playAdventurer (struct gameState *state)
 /*****************************************************************************/
 
 smithy:
+This function still draws three cards for the current player, but instead of
+discarding only the smithy card after all three cards are drawn, it now
+discards a card each time the player draws a card.
 
+The code appears as follows:
+
+int playSmithy(struct gameState *state, int handPos)
+{
+    int i;
+    int currentPlayer = whoseTurn(state);
+
+    //+3 Cards
+    for (i = 0; i < 3; i++)
+    {
+        drawCard(currentPlayer, state);
+        //discard card from hand
+        discardCard(handPos, currentPlayer, state, 0);
+    }
+    /* Original version:
+    discardCard(handPos, currentPlayer, state, 0); */
+
+    return 0;
+}

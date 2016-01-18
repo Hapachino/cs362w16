@@ -136,5 +136,13 @@ int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
 
+//Todd Waddell waddelto CS362W16 Assignent 2 Forward Declarations
+int adventureEffect(struct gameState *state);
+int smithyEffect(struct gameState *state, int handPos);
+int feastEffect(int choice1, struct gameState *state); 
+int mineEffect(int choice1, int choice2, struct gameState *state, int handPos);
+int cutpurseEffect(struct gameState *state, int handPos);
+
+
 
 #endif

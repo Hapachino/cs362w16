@@ -30,12 +30,6 @@ Introduced the following bugs:
 
 in playAdventurer:
 	Changed this line:
-		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-	To this:
-		if (cardDrawn == copper && cardDrawn == silver && cardDrawn == gold)
-	Which will guarantee that the condition will never be met.
-
-	Changed this line:
 		while(z-1>=0){
 	To this:
 		while(z-1>0){

@@ -1,3 +1,6 @@
+/* 	File: documentation.c
+	Author: Martin Stryffeler
+
 Smithy
 When a player plays a Smithy card, that player will draw three cards. Then the player will discard the Smithy card.
 
@@ -20,3 +23,5 @@ updateCoins()
 The function updateCoins() takes three parameters: the player, a pointer to the game state, and the coin bonus the 
 player receives this round. First, the game state's coin integer is reset to 0. Then, the player's treasure cards 
 are added together and stored in the game state. Finally, the bonus is added and the total remains in the game state.
+
+*/

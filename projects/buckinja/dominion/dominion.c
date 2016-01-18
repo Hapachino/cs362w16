@@ -538,7 +538,7 @@ int drawCard(int player, struct gameState *state)
     state->deckCount[player] = state->discardCount[player];
     state->discardCount[player] = 0;//Reset discard
 
-    //Shufffle the deck
+    //Shuffle the deck
     shuffle(player, state);//Shuffle the deck up and make it so that we can draw
    
     if (DEBUG){//Debug statements
@@ -648,17 +648,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 {
   int i;
   int j;
-  int k;
   int x;
   int index;
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
-
+  int temphand[MAX_HAND];
   int tributeRevealedCards[2] = {-1, -1};
-  int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -1112,14 +1107,17 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 }
 
 int playAdventurer(int currentPlayer, struct gameState *state) {
-	
+	int z=0;
+	int drawntreasure=0;
+  	int temphand[MAX_HAND];
+	int cardDrawn;
 	  while(drawntreasure<2){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 		  shuffle(currentPlayer, state);
 		}
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-		if (cardDrawn == copper && cardDrawn == silver && cardDrawn == gold)
+		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 		  drawntreasure++;
 		else{
 		  temphand[z]=cardDrawn;
@@ -1135,6 +1133,7 @@ int playAdventurer(int currentPlayer, struct gameState *state) {
 }
 
 int playSmithy(int currentPlayer, struct gameState *state, int handPos) {
+	int i;
 	 //+3 Cards
       for (i = 0; i <= 3; i++)
 		{
@@ -1147,7 +1146,7 @@ int playSmithy(int currentPlayer, struct gameState *state, int handPos) {
 }
 
 int playCutpurse(int currentPlayer, struct gameState *state, int handPos) {
-	
+	int i, j, k;	
 	updateCoins(currentPlayer, state, 2);
 	for (i = 0; i < state->numPlayers; i++)
 	{
@@ -1182,6 +1181,7 @@ int playCutpurse(int currentPlayer, struct gameState *state, int handPos) {
 }
 
 int playRemodel (int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2) {
+	int i, j;
 	j = state->hand[currentPlayer][choice1];  //store card we will trash
 
       if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
@@ -1208,8 +1208,8 @@ int playRemodel (int currentPlayer, struct gameState *state, int handPos, int ch
 }
 
 int playMine(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2) {
-	
-	  j = state->hand[currentPlayer][choice1];  //store card we will trash
+	int i, j;	
+      j = state->hand[currentPlayer][choice1];  //store card we will trash
 
       if (state->hand[currentPlayer][choice1] > copper || state->hand[currentPlayer][choice1] > gold)
 		{

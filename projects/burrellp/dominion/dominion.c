@@ -647,7 +647,7 @@ int getCost(int cardNumber)
 void playSmithy (int currentPlayer, int handPos, struct gameState *state)
 {
     //draw three cards
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i <= 3; i++)
         drawCard(currentPlayer, state)
     
     //discard card from hand
@@ -680,7 +680,8 @@ void playAdventurer(int currentPlayer, int drawntreasure, int cardDrawn, int tem
     }
     
     while (z - 1 >= 0) {
-        state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]
+        state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1];
+        z--;
     }
 }
 
@@ -693,7 +694,7 @@ void playVillage(int currentPlayer, int handPos, struct gameState *state)
     state->numActions = state->numActions + 2;
     
     //Discard played card from hand
-    discardCard(handPos, currentPlayer, state, 0);
+    discardCard(handPos, currentPlayer, state, 1);
 }
 
 void playFeast(int currentPlayer, int temphand[], struct gameState *state)
@@ -706,7 +707,7 @@ void playFeast(int currentPlayer, int temphand[], struct gameState *state)
     }
     
     //Update coins for buy
-    updateCoins(currentPlayer, state, 5);
+    updateCoins(currentPlayer, state, 4);
     x = 1;      //Condition to loop on
     while(x == 1)
     {

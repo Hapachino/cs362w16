@@ -131,10 +131,21 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
    1, others to 0 */
 
 int playAdventurer(struct gameState *state);
-int playSmithy(struct gameState *state, int handPos);
-int playVillage(struct gameState *state, int handPos);
-int playFeast(struct gameState *state, int choice1);
-int playCouncil_Room(struct gameState *state, int handPos);
+/* Plays adventurer card which reveals cards until the player has
+   two treasure cards. It then discards all revealed cards. */
+
+int playFeast(int choice1, struct gameState *state);
+/*  Trash the feast card and gain a card costing up to 5 coins */
+
+int playMine(int handPos, int choice1, int choice2, struct gameState *state);
+/*  Trash a treasure card to gain a card that cost up to +3 coins more */
+
+int playRemodel(int handPos, int choice1, int choice2, struct gameState *state);
+/*  Trash a card from your hand. Gain a card costing up to 2 coins more than
+     the trashed card */
+
+int playSmithy(int handPos, struct gameState *state);
+/*  Gain 3 cards */
 
 
 #endif

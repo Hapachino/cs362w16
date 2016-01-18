@@ -1332,11 +1332,8 @@ int playTribute(struct gameState *state)
             drawCard(currentPlayer, state);
             drawCard(currentPlayer, state);
         }
-        else
-        {
-            //Action Card
-            state->numActions = state->numActions + 2;
-        }
+        //Action Card
+        state->numActions = state->numActions + 2;
     }
 
     return 0;

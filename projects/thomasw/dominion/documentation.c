@@ -1,42 +1,43 @@
-/* smithy: */
-This card places three cards from the player's deck into the player's hand. It
-also moves the smithy card into the player's discard pile.
+/*
+Name: Will Thomas
+Class: CS 362
+Homework 2
+1/17/2016
 
-/* adventurer: */
-This card draws cards from the player's deck until the player draws three
-treasure cards total. All cards drawn from the player's deck that were not
-treasure cards are moved into the player's discard pile.
-    case adventurer:
-      while(drawntreasure<2){
-    if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
-      shuffle(currentPlayer, state);
-    }
-    drawCard(currentPlayer, state);
-    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-      drawntreasure++;
-    else{
-      temphand[z]=cardDrawn;
-      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-      z++;
-    }
-      }
-      while(z-1>=0){
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-    z=z-1;
-      }
-      return 0;
+Smithy Card: 
+The Smithy card uses a for loop to call the drawCard() function 3 times, placing 
+3 cards into the player's hand. Once complete the discardCard function is called. 
+I will explain discarding below.
 
-/* discardCard(): */
-This function removes the card the player is currently holding from handPos and
-moves it either into the trash pile (if the trashFlag is 1), thereby removing
-the card from the game, OR into the player's discard pile. The side effects are
-incrementing the count of played cards (if card was discarded) and decrementing
-the count of cards still in the player's hand. Additionally, the card that the
-player is currently holding (in handPos) is updated to be the next card in the
-player's hand.
+Adventurer Card:
+The Adventurer Card is meant to draw cards until the player draws 3 treasure cards.
+All non treasure cards are then moved to the discard pile. The function creates a temp
+array that stores the newly drawn cards. It also tracks card drawn and counts treasure
+drawn. 
 
-/* updateCoins(): */
-This function effectively converts the copper, silver, and gold in the player's
-hand into coins. It also adds any bonuses to the player's coin count (which may
-come from cards like feast or cutpurse).
+The function uses a while loop to check the drawn treasure conditional, and then
+loops through a card draw. If the card is treasure it keeps it, otherwise it decrements
+which effectively drops the last drawn card.
+
+discardCard():
+This function accepts the player info and gameState struct, and handPos. 
+It removes the card at handPos from the player's hand and moves it to the played or trashed pile, 
+depending on whether or not the trashFlag is set. If moved to the trashed pile it is 
+removed from the game. If it is played, the played card count also goes up.
+
+Hand position is decremented, hand count is decremented. If the player has more
+cards in hand, discarded card is replaced with the last card in hand. All of this utilizes
+various settings in the gameState struct.
+
+Params: hand position int, player id, player gamestate struct, trashflag int
+returns: 0;
+
+updateCoints():
+This function uses a for loop to iterate through the players hand. It uses conditional
+statements to find copper, silver and gold cards. When it does it converts them into 
+an appropriate number of coins for the player. Copper = 1, Silver = 2, Gold = 3. It also
+adds any bonus.
+
+Params: player number, player gamestate, bonus value
+returns: 0
+

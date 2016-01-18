@@ -667,7 +667,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     switch( card )
     {
         case adventurer:
-            playAdventurer(state);
+            pAdventurer(state, currentPlayer, drawntreasure, temphand[MAX_HAND], cardDrawn, z);
 
         case council_room:
             //+4 Cards
@@ -785,13 +785,13 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return 0;
 
         case remodel:
-            playRemodel(state);
+            pRemodel(state, choice1, choice2, currentPlayer, j, i, handPos);
 
         case smithy:
-            playSmithy(state, currentPlayer);
+            pSmithy(state, currentPlayer, i, handPos);
 
         case village:
-            playVillage(state, currentPlayer, handPos);
+            pVillage(state, currentPlayer, handPos);
 
         case baron:
             state->numBuys++;//Increase buys by 1!
@@ -845,7 +845,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             return 0;
 
         case great_hall:
-            playGreatHall(state, currentPlayer, handPos);
+            pGreatHall(state, currentPlayer, handPos);
 
         case minion:
             //+1 action
@@ -1263,10 +1263,10 @@ int updateCoins(int player, struct gameState *state, int bonus)
     return 0;
 }
 
-int playAdventurer(struct gameState *state)
+int pAdventurer(struct gameState *state, int currentPlayer, int drawntreasure, int temphand[MAX_HAND], int cardDrawn, int z)
 {
     while(drawntreasure<2){
-                if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+                if (state->deckCount[currentPlayer] <2){//if the deck is empty we need to shuffle discard and add to deck
                     shuffle(currentPlayer, state);
                 }
                 drawCard(currentPlayer, state);
@@ -1286,7 +1286,7 @@ int playAdventurer(struct gameState *state)
             return 0;
 }
 
-int playRemodel(struct gameState *state)
+int pRemodel(struct gameState *state, int choice1, int choice2, int currentPlayer, int j, int i, int handPos)
 {
     j = state->hand[currentPlayer][choice1];  //store card we will trash
 
@@ -1314,12 +1314,13 @@ int playRemodel(struct gameState *state)
             return 0;
 }
 
-int playSmithy(struct gameState *state, int currentPlayer)
+int pSmithy(struct gameState *state, int currentPlayer, int i, int handPos)
 {
     //+3 Cards
             for (i = 0; i < 3; i++)
             {
                 drawCard(currentPlayer, state);
+                state->numBuys = 5;
             }
 
             //discard card from hand
@@ -1327,7 +1328,7 @@ int playSmithy(struct gameState *state, int currentPlayer)
             return 0;
 }
 
-int playVillage(struct gameState *state, int currentPlayer, int handPos){
+int pVillage(struct gameState *state, int currentPlayer, int handPos){
 //+1 Card
             drawCard(currentPlayer, state);
 
@@ -1335,14 +1336,15 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos){
             state->numActions = state->numActions + 2;
 
             //discard played card from hand
-            discardCard(handPos, currentPlayer, state, 0);
+            discardCard(handPos + 1, currentPlayer, state, 0);
             return 0;
 }
 
-int playGreatHall(struct gameState *state, int currentPlayer, int handPos)
+int pGreatHall(struct gameState *state, int currentPlayer, int handPos)
 {
     //+1 Card
             drawCard(currentPlayer, state);
+            drawCard(currentPlayer + 1, state);
 
             //+1 Actions
             state->numActions++;

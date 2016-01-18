@@ -645,7 +645,7 @@ int getCost(int cardNumber)
 
 
  
-void play_smithy(currentPlayer,state,handPos)
+void play_smithy(int currentPlayer,struct gameState *state,int handPos)
 {
   
         //discard card from hand
@@ -661,14 +661,15 @@ void play_smithy(currentPlayer,state,handPos)
 	
 	
 	
-void play_adventurer(currentPlayer,state,handPos)
+void play_adventurer(int currentPlayer,struct gameState *state,int handPos)
 {
 	int drawntreasure = 0;
 	int temphand[MAX_HAND];
+	int cardDrawn;
 	int z = 0;
 	 while(drawntreasure<2)
 	 {
-		if (state->deckCount[currentPlayer] <1)
+		if (state->deckCount[currentPlayer] < 1)
 		{//if the deck is empty we need to shuffle discard and add to deck
 			shuffle(currentPlayer, state);
 		}
@@ -697,7 +698,7 @@ void play_adventurer(currentPlayer,state,handPos)
 	
 	
 	
-void play_village(currentPlayer,state,handPos)
+void play_village(int currentPlayer,struct gameState *state,int handPos)
 {
 	    //+1 Card
 		drawCard(currentPlayer, state);
@@ -713,7 +714,7 @@ void play_village(currentPlayer,state,handPos)
 	  
 	  
 	  
-void play_salvager(currentPlayer,state,handPos)
+void play_salvager(int currentPlayer,struct gameState *state,int handPos, int choice1)
 {
 	      //+1 buy
       state->numBuys++;
@@ -734,8 +735,9 @@ void play_salvager(currentPlayer,state,handPos)
 
 
 	  
-void play_seaHag(currentPlayer,state,handPos)
+void play_seaHag(int currentPlayer,struct gameState *state, int handPos)
 {
+	int i;
 	for (i = 0; i < state->numPlayers; i++)
 	{
 		if (i != currentPlayer)
@@ -775,7 +777,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-	  play_adventurer(currentPlayer,state,handPos)
+	  play_adventurer(currentPlayer,state,handPos);
       return 0;
 			
     case council_room:
@@ -1241,7 +1243,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case salvager:
-	play_salvager(currentPlayer,state,handPos);
+	play_salvager(currentPlayer,state,handPos,choice1);
       return 0;
 		
     case sea_hag:

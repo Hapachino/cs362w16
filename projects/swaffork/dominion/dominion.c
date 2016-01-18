@@ -1234,7 +1234,7 @@ int playMine(struct gameState *state, int handPos, int choice1, int choice2)
         return -1;
     }
 
-    gainCard(choice2, state, 2, currentPlayer);
+    gainCard(choice1, state, 2, currentPlayer);
 
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);

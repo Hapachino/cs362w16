@@ -85,3 +85,60 @@ int playSmithy(struct gameState *state, int handPos)
 
     return 0;
 }
+
+/*****************************************************************************/
+mine:
+This function now passes in choice1 (the treasure card the player chose to
+discard) into the gainCard function instead of choice2 (the card the player
+wanted to exchange the treasure card for). All the logic in this function will
+still check out, but the player will not receive the card they intended to.
+
+The code appears as follows:
+
+int playMine(struct gameState *state, int handPos, int choice1, int choice2)
+{
+    int i;
+    int j;
+    int currentPlayer = whoseTurn(state);
+
+    j = state->hand[currentPlayer][choice1];  //store card we will trash
+
+    if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
+    {
+        return -1;
+    }
+
+    if (choice2 > treasure_map || choice2 < curse)
+    {
+        return -1;
+    }
+
+    if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+    {
+        return -1;
+    }
+
+    /* Original version:
+    gainCard(choice2, state, 2, currentPlayer); */
+    gainCard(choice1, state, 2, currentPlayer);
+
+    //discard card from hand
+    discardCard(handPos, currentPlayer, state, 0);
+
+    //discard trashed card
+    for (i = 0; i < state->handCount[currentPlayer]; i++)
+    {
+        if (state->hand[currentPlayer][i] == j)
+        {
+            discardCard(i, currentPlayer, state, 0);			
+            break;
+        }
+    }
+
+    return 0;
+}
+
+/*****************************************************************************/
+
+tribute:
+

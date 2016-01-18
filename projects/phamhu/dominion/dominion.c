@@ -680,7 +680,7 @@ void adventurerCard(int currentPlayer, struct gameState *state)
   	int temphand[MAX_HAND];
   	int z = 0;// this is the counter for the temp hand
  
-	while(drawntreasure<2){
+	while(drawntreasure<1){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  		shuffle(currentPlayer, state);
 		}	
@@ -742,7 +742,7 @@ void feastCard(int choice1, int handPos, int currentPlayer, struct gameState *st
 	//Backup hand
       
 	//Update Coins for Buy
-    updateCoins(currentPlayer, state, 3);
+    updateCoins(currentPlayer, state, 5);
     int x = 1;//Condition to loop on
     while( x == 1) {//Buy one card
 		if (supplyCount(choice1, state) <= 0){

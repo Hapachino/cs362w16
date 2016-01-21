@@ -12,14 +12,15 @@ const char* Card_Strings[] = {"curse", "estate", "duchy", "province", "copper", 
   "embargo", "outpost", "salvager", "sea_hag", "treasure_map"};
   
 //Create a gameState with random, but valid, values
-struct gameState* randomGame(){
+struct gameState* randomGame(int randInt){
 	int i, j;
 	int numCards = 0;
 	int selectedCard;
 	struct gameState* g = malloc(sizeof(struct gameState));
 	
 	//Seed random number generator
-	PlantSeeds(-1);
+	SelectStream(randInt+1);
+	PutSeed(randInt+2);
 	
 	//Random players between 1 and MAX
 	g->numPlayers = ceil(Random() * MAX_PLAYERS);

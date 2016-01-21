@@ -10,7 +10,7 @@
 #define MAX_EMBARGO 3
 #define MAX_COINS 10
 
-struct gameState* randomGame();
+struct gameState* randomGame(int randInt);
 void printGameState(struct gameState *g);
 
 #endif

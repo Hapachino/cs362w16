@@ -17,8 +17,8 @@ int main () {
 	struct gameState *g;
 		
 	//Generate random games and print current game state
-	for (i = 0; i < 5; i++){
-		g = randomGame();
+	for (i = 0; i < 10; i++){
+		g = randomGame(i);
 		
 		printf("Game #%d state:\n", i);
 		printGameState(g);

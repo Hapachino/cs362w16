@@ -1,9 +1,5 @@
 /* -----------------------------------------------------------------------
- * Demonstration of how to write unit tests for dominion-base
- * Include the following lines in your makefile:
- *
- * testUpdateCoins: testUpdateCoins.c dominion.o rngs.o
- *      gcc -o testUpdateCoins -g  testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
+ * Testing fullDeckCount()
  * -----------------------------------------------------------------------
  */
 
@@ -15,8 +11,6 @@
 #include "rngs.h"
 #include <math.h>
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
 
 int main() {
     int i;
@@ -47,45 +41,12 @@ int main() {
        }
     }
     
-    
-    // arrays of all coppers, silvers, and golds
-    // int coppers[MAX_HAND];
-    // int silvers[MAX_HAND];
-    // int golds[MAX_HAND];
-    // for (i = 0; i < MAX_HAND; i++)
-    // {
-        // coppers[i] = copper;
-        // silvers[i] = silver;
-        // golds[i] = gold;
-    // }
-   
-   
-   
-   
-   
-   
-   
-   
-    //SelectStream(1);
-    //PutSeed((long)randomSeed);
-    //PlantSeeds(1);
-    //SelectStream(2);
-    //PutSeed(3);
-    //Testing Random
-    // t = floor(Random()*100000);
-    // for(i=0; i < 10; i++) {
-      // t = floor(Random()*10);
-      // printf("\nRandom Test %d\n", t);
-    // }
-    
-    printf("Card %d", adventurer);
     printf ("TESTING fullDeckCount( ):\n");    
-    p=0;
     
     for (p = 0; p < numPlayer; p++){
        
        for (allCards = 0; allCards <= 26; allCards++){
-       for (deckCards = 0; deckCards <= totalCards; deckCards++){
+         for (deckCards = 0; deckCards <= totalCards; deckCards++){
           
           for (handCards = 0; handCards <= totalCards; handCards++){
              
@@ -108,7 +69,7 @@ int main() {
                       
                       G.discardCount[p] =discardCards;                 // set the number of cards on discardCount
                       memcpy(G.discard[p], nameCards[allCards], sizeof(int) * discardCards); // set all the cards to current test card "nameCards"
-                      //memcpy(G.discard[p], adventurers, sizeof(int) * discardCards); // set all the cards to current test card
+
                       
                       
                       
@@ -118,51 +79,10 @@ int main() {
                  
              } //END discardCards
           } //END handCards
-       } //END deckCards
+         } //END deckCards
        } //END allCards
     } // END player
      printf("All tests passed!\n");
-    
-    
-    
-    
-    // for (p = 0; p < numPlayer; p++)
-    // {
-        // for (handCount = 1; handCount <= maxHandCount; handCount++)
-        // {
-            // for (bonus = 0; bonus <= maxBonus; bonus++)
-            // {
-// #if (NOISY_TEST == 1)
-                // printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
-// #endif
-                // memset(&G, 23, sizeof(struct gameState));   // clear the game state
-                // r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-                // G.handCount[p] = handCount;                 // set the number of cards on hand
-                // memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
-                // updateCoins(p, &G, bonus);
-// #if (NOISY_TEST == 1)
-                // printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
-// #endif
-                // assert(G.coins == handCount * 1 + bonus); // check if the number of coins is correct
-
-                // memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silver
-                // updateCoins(p, &G, bonus);
-// #if (NOISY_TEST == 1)
-                // printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
-// #endif
-                // assert(G.coins == handCount * 2 + bonus); // check if the number of coins is correct
-
-                // memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
-                // updateCoins(p, &G, bonus);
-// #if (NOISY_TEST == 1)
-                // printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
-// #endif
-                // assert(G.coins == handCount * 3 + bonus); // check if the number of coins is correct
-            // }
-        // }
-    // }
-
-    // printf("All tests passed!\n");
 
     return 0;
 }

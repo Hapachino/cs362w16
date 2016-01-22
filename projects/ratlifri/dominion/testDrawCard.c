@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
+#include <math.h>   //rr - fix warning: implicit declaration of function ‘floor’
+#include <stdlib.h> //rr - fix warning: implicit declaration of function ‘exit’
 
 #define DEBUG 0
 #define NOISY_TEST 1
@@ -37,6 +39,8 @@ int checkDrawCard(int p, struct gameState *post) {
   assert (r == 0);
 
   assert(memcmp(&pre, post, sizeof(struct gameState)) == 0);
+
+  return 0; //rr - fix warning: control reaches end of non-void function
 }
 
 int main () {

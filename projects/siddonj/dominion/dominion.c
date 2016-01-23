@@ -512,26 +512,26 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
   return 0;
 }
 
-int drawCard(int player, struct gameState *state)
-{	int count;
+int drawCard(int player, struct gameState *state) {
+  int count;
   int deckCounter;
-  if (state->deckCount[player] <= 0){//Deck is empty
 
+  if (state->deckCount[player] <= 0) { //Deck is empty
     //Step 1 Shuffle the discard pile back into a deck
     int i;
     //Move discard to deck
-    for (i = 0; i < state->discardCount[player];i++){
+    for (i = 0; i < state->discardCount[player]; i++) {
       state->deck[player][i] = state->discard[player][i];
       state->discard[player][i] = -1;
     }
 
     state->deckCount[player] = state->discardCount[player];
-    state->discardCount[player] = 0;//Reset discard
+    state->discardCount[player] = 0;  //Reset discard
 
     //Shufffle the deck
     shuffle(player, state);//Shuffle the deck up and make it so that we can draw
 
-    if (DEBUG){//Debug statements
+    if (DEBUG) {//Debug statements
       printf("Deck count now: %d\n", state->deckCount[player]);
     }
 
@@ -552,9 +552,9 @@ int drawCard(int player, struct gameState *state)
     state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
     state->deckCount[player]--;
     state->handCount[player]++;//Increment hand count
-  }
+  }  // End condition, deck empty
 
-  else{
+  else {
     int count = state->handCount[player];//Get current hand count for player
     int deckCounter;
     if (DEBUG){//Debug statements

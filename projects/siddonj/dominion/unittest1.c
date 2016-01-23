@@ -1,3 +1,6 @@
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,7 +14,6 @@
 void testInitializeGame() {
   int i = 0;
   int j = 0;
-
 
   int numPlayers = 2;
   int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,

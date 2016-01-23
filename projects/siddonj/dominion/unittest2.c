@@ -1,6 +1,3 @@
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -10,7 +7,6 @@
 #define BUYCARD_PASS "buyCard() PASS: "
 #define BUYCARD_FAIL "buyCard() FAIL: "
 
-// int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) {
 
 void testBuyCard() {
   int i = 0;                  // Initialize iterators.

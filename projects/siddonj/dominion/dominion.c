@@ -34,9 +34,7 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
   return k;
 }
 
-int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
-		   struct gameState *state) {
-
+int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) {
   int i;
   int j;
   int it;
@@ -45,25 +43,21 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   PutSeed((long)randomSeed);
 
   //check number of players
-  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
-    {
-      return -1;
-    }
+  if (numPlayers > MAX_PLAYERS || numPlayers < 2) {
+    return -1;
+  }
 
   //set number of players
   state->numPlayers = numPlayers;
 
   //check selected kingdom cards are different
-  for (i = 0; i < 10; i++)
-    {
-      for (j = 0; j < 10; j++)
-        {
-	  if (j != i && kingdomCards[j] == kingdomCards[i])
-	    {
-	      return -1;
+  for (i = 0; i < 10; i++) {
+    for (j = 0; j < 10; j++) {
+	    if (j != i && kingdomCards[j] == kingdomCards[i]) {
+         return -1;
 	    }
-        }
     }
+  }
 
 
   //initialize supply

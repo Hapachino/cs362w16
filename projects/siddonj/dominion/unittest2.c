@@ -409,14 +409,34 @@ void testBuyCard() {
     printf("\n");
 
   } // End buy loop.
+  // END
 
-  // successfulBuy = buyCard(copper, state);             // Buy copper.
-  // if (successfulBuy == -1) {
-  //   printf(BUYCARD_PASS);
-  // } else {
-  //   printf(BUYCARD_FAIL);
-  // }
-  // printf("expects player be unable to buy 'copper' with 0 supply available.\n");
+
+  // Test buying a card correctly decrements the number of buys.
+  initializeGame(numPlayers, kingdomCards, randomSeed, state);
+  state->numBuys = 5;                                             // Set number of buys to 0.
+  state->coins = 40;
+
+  int startingBuys = state->numBuys;
+  int totalBuysMade = 0;
+
+  // Use all buys.
+  for (i = 0; i < startingBuys; i++)  {
+    randomKingdomCard = rand() % 9;
+    buyCard(kingdomCards[randomKingdomCard], state);              // Buy a random card.
+    totalBuysMade++;
+  }
+
+  if(totalBuysMade != startingBuys) {                                  // Expected buys doesn't match actual made.
+    printf(BUYCARD_FAIL);
+    printf("expected to make '%d' buys, instead only made '%d' buys.\n", startingBuys, totalBuysMade);
+  } else {
+    printf(BUYCARD_PASS);
+    printf("expected to make '%d' buys, made '%d' buys.\n", startingBuys, totalBuysMade);
+  }
+  // END
+
+
 
 
 

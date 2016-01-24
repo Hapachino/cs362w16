@@ -27,7 +27,7 @@ int main() {
     int numPlayer = 2;
     int p, r;
     int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
+               , remodel, smithy, village, tribute, embargo};
 
     // int k[27] = {curse, estate, duchy, province, copper, silver, gold, adventurer, council_room,
     //     feast, gardens, mine, remodel, smithy, village, baron, great_hall, minion, steward,
@@ -40,8 +40,8 @@ int main() {
     };
 
     struct gameState G;
-
     int count;
+    int result;
 
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
@@ -53,34 +53,89 @@ int main() {
 
         printf("Testing for Player %d:\n", p);
 
+        // Enable buy phases and coins
+        G.numBuys = 1000;
+        G.coins = 1000;
+
         // Estates
-        count = fullDeckCount(p, 1, &G);
-        printf("Estate count: %d\n", count);
+        result = fullDeckCount(p, 1, &G);
+        printf("estate result: %d\n", result);
+        assert(result == 3);
 
         // Coppers
-        count = fullDeckCount(p, 4, &G);
-        printf("Copper count: %d\n", count);
+        result = fullDeckCount(p, 4, &G);
+        printf("copper result: %d\n", result);
+        assert(result == 7);
 
-        // int drawCard(int player, struct gameState *state)
         // int buyCard(int supplyPos, struct gameState *state)
-        buyCard(smithy, &G);
-        buyCard(estate, &G);
-        buyCard(province, &G);
+
+        // Test update of coppers
+        count = 5;
+        for (i = 0; i < count; i++) {
+            buyCard(copper, &G);
+        }
+        result = fullDeckCount(p, 4, &G);
+        printf("updated copper result: %d\n", result);
+        assert(result == 7 + count);
+
+        // Test update of golds
+        count = 10;
+        for (i = 0; i < count; i++) {
+            buyCard(gold, &G);
+        }
+        result = fullDeckCount(p, 6, &G);
+        printf("gold result: %d\n", result);
+        assert(result == count);
+
+        // Test province
+        count = 2;
+        for (i = 0; i < count; i++) {
+            buyCard(province, &G);
+        }
+        result = fullDeckCount(p, 3, &G);
+        printf("province result: %d\n", result);
+        assert(result == count);
+
+        // Test smithy
+        count = 3;
+        for (i = 0; i < count; i++) {
+            buyCard(smithy, &G);
+        }
+        result = fullDeckCount(p, 13, &G);
+        printf("smithy result: %d\n", result);
+        assert(result == count);
+
+        // Test tribute
+        count = 4;
+        for (i = 0; i < count; i++) {
+            buyCard(tribute, &G);
+        }
+        result = fullDeckCount(p, 19, &G);
+        printf("tribute result: %d\n", result);
+        assert(result == count);
+
+        // Test embargo
+        count = 5;
+        for (i = 0; i < count; i++) {
+            buyCard(embargo, &G);
+        }
+        result = fullDeckCount(p, 22, &G);
+        printf("embargo result: %d\n", result);
+        assert(result == count);
 
         // int endTurn(struct gameState *state)
         endTurn(&G);
 
-        // int updateCoins(int player, struct gameState *state, int bonus)
-        G.numBuys = 100;
-        G.coins = 100;
+        // Enable buy phases and coins
+        G.numBuys = 1000;
+        G.coins = 1000;
 
         // 27 types of cards
+        printf("Totals of cards by type for Player %d:\n", p);
         for (i = 0; i < 27; i++) {
-            count = fullDeckCount(p, i, &G);
-            printf("Card count of %s: %d\n", cards[i], count);
+            result = fullDeckCount(p, i, &G);
+            printf("Card count for %s: %d\n", cards[i], result);
         }
-
-        // assert(G.coins == expected);
     }
 
     printf("\nAll tests passed!");

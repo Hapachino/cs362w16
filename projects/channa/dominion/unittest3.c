@@ -78,6 +78,12 @@ int main() {
     printf("Game is over: %d\n", result);
     assert(result == 1);
 
+    G.supplyCount[great_hall] = 10;
+
+    result = isGameOver(&G);
+    printf("Game is over: %d\n", result);
+    assert(result == 0);
+
     printf("\nAll tests passed!");
 
     return 0;

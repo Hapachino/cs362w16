@@ -1,3 +1,3 @@
-make ass3
+make unittest2
 make clean
-./unittest1
+./unittest2

@@ -1,3 +1,3 @@
+make ass3
 make clean
-make playdom
-./playdom 2
+./unittest1

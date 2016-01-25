@@ -27,12 +27,22 @@ int unitTest(int player, struct gameState *post){
     //call function
     smithyCard(player,post,handPos);
     //memcmp game state size
-    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
+    if (memcmp(&pre,post, sizeof(struct gameState))!=0){
+        printf("Memory mismatch");
+        exit(1);
+    }
     //card specific checks
     //plus one card- minus village card, hand remains the same
-    assert(post->handCount == pre.handCount);
+    if (post->handCount != pre.handCount){
+        printf("HandSize changed");
+        exit(2);
+    }
     //plus 2 actions
-    assert(post->numActions == pre.numActions+2);
+    if(post->numActions != pre.numActions+2){
+        printf("Not the correct number of actions");
+        exit(3);
+    }
+
     
     return 0;
 }

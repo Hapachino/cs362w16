@@ -21,24 +21,28 @@ int unitTest(struct gameState *post){
     srand(time(NULL));
 
     //define variables
-    int sucess;
+    int success;
     struct gameState pre;
     memcpy(&pre,post,sizeof(struct gameState));
-    //create an array to hold four integer inputs
-    int input[4];
-    //randomly generate 4 ints
-    for(int i=0; i<4; i++){
-        input[i]= rand();
-    }
 
     //call function
-    sucess=isGameOver(post);
+    success=isGameOver(post);
     //memcmp game state size
-    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
-    //if stack of Province cards is empty, the game ends
-    assert (post->supplyCount[province] > 0);
+    if (memcmp(&pre,post, sizeof(struct gameState))!=0){
+        printf ("Error in size of gamestate.\n");
+        exit(1);
+    }
+    if (success == -1){
+        printf ("Error in game is over function returned not sucessful.\n");
+        exit(1);
+    }
 
-    assert (sucess == 0);
+    //if stack of Province cards is empty, the game ends
+    if (post->supplyCount[province] > 0){
+        printf ("Error in game is over function.\n");
+        exit(1);
+    }
+
     return 0;
 }
 

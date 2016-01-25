@@ -13,7 +13,6 @@
 #define NOISY_TEST 1
 
 //Unit test for endTurn function
-//Preconditions:
 //function accepts struct gameState *state 
 
 //oracle makes sure returns valid 
@@ -24,12 +23,6 @@ int unitTest(struct gameState *post){
     int success;
     struct gameState pre;
     memcpy(&pre,post,sizeof(struct gameState));
-    //create an array to hold four integer inputs
-    int input[4];
-    //randomly generate 4 ints
-    for(int i=0; i<4; i++){
-        input[i]= rand();
-    }
 
     //call function
     success=endTurn(post);
@@ -37,9 +30,16 @@ int unitTest(struct gameState *post){
     assert (memcmp(&pre,post, sizeof(struct gameState))==0);
     //check to see if whose turn it is has changed
     if(post->numPlayers > 1){
-        assert( post->whoseTurn != pre.whoseTurn );
+        if( post->whoseTurn != pre.whoseTurn ){
+            printf ("the players turn has not properly changed.\n");
+            exit(1);
+        }
     }
-    assert (success == 0);
+
+    if (success == -1){
+        printf ("Error in end turn function.\n");
+        exit(2);
+    }
     return 0;
 }
 

@@ -26,10 +26,16 @@ int unitTest(int player, struct gameState *post){
     //call function
     smithyCard(player,post, handPos);
     //memcmp game state size
-    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
+    if(memcmp(&pre,post, sizeof(struct gameState))!=0){
+        printf("memory mismatch");
+        exit(1);
+    }
     //card specific checks
     //players handsize should be 3 larger after playing the smithy
-    assert(post->handCount == pre.handCount+3);
+    if(post->handCount != pre.handCount+3){
+        printf("handsize is incorrect");
+        exit(2);
+    }
 
     return 0;
 }

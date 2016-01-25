@@ -744,6 +744,7 @@ void smithyCard(int currentPlayer,struct gameState *state,int handPos){
 		
 }		
 /*------------------------Village-------------------------------*/
+//plus 1 card plus 2 actions
 void villageCard(int currentPlayer,struct gameState *state,int handPos){
     //+1 Card
     drawCard(currentPlayer, state);

@@ -39,13 +39,16 @@ int unitTest(struct gameState *post){
     //memcmp game state size
     assert (memcmp(&pre,post, sizeof(struct gameState))==0);
     if (success == -1){
-        printf ("Error in playCard.\n");
+        printf ("Error in playCard function bad exit status.\n");
+        exit(1);
     }
-    assert (success == 0);
+
     //specific function check 
     //confirm that actions is one less
-    assert (pre.numActions == post->numActions+1);
-
+    if (pre.numActions != post->numActions+1){
+        printf("Error action count was not decrimented");
+        exit(2);
+    }
     return 0;
 }
 
@@ -77,9 +80,8 @@ int main () {
     G.handCount[p] = floor(Random() * MAX_HAND);
     //call function with test input
     unitTest(&G);
-
   }
-  printf ("ALL TESTS OK\n");
+  printf ("ALL Random TESTS OK\n");
 
   //fixed tests
   printf ("SIMPLE FIXED TESTS.\n");

@@ -20,7 +20,7 @@ int unitTest(int player, struct gameState *post){
     srand(time(NULL));
 
     //define variables
-    int sucess;
+    int success;
     int card;
     struct gameState pre;
     memcpy(&pre,post,sizeof(struct gameState));
@@ -28,11 +28,22 @@ int unitTest(int player, struct gameState *post){
     card= rand()%10;
     
     //call function
-    sucess=fullDeckCount(player,card, post);
+    success=fullDeckCount(player,card, post);
+
+    if (success > MAX_DECK){
+        printf ("Error in end turn function.\n");
+        exit(2);
+    }
+
+    if (success == -1){
+        printf ("Error in full deck function.\n");
+        exit(1);
+    }
     //memcmp game state size
-    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
-    assert (success > MAX_DECK);
-    assert (success == 0);
+    if (memcmp(&pre,post, sizeof(struct gameState))!=0);{
+        printf ("Memory size different.\n");
+        exit(3);
+    }
     return 0;
 }
 

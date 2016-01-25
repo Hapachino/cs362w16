@@ -27,12 +27,21 @@ int unitTest(int player,struct gameState *post){
     adventurerCard(player, post);
 
     //memcmp game state size
-    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
+    if(memcmp(&pre,post, sizeof(struct gameState))!=0){
+        printf("gameState memory is wrong");
+        exit(3);
+    }
     //card specific checks 
     //player hand size should be 2 larger after gaining treasure
-    assert(post->handCount == pre.handCount +2);
+    if(post->handCount != pre.handCount +2){
+        printf("Player did not receive 2 additional cards correctly");
+        exit(1);
+    }
     //player should have at least 2 more treasures
-    assert(post->coins >= pre.coins +2);
+    if(post->coins < pre.coins +2){
+        printf("player did not receive 2 additional coins");
+        exit(2);
+    }
 
     return 0;
 }

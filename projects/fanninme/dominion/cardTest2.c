@@ -27,9 +27,16 @@ int unitTest(int player, struct gameState *post){
     //call function
     feastCard(player,post,choice);
     //memcmp game state size
-    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
+    if (memcmp(&pre,post, sizeof(struct gameState))!=0){
+        printf("memory match error \n");
+        exit(2);
+
+    }
     //card specific checks
-    assert(post->handCount == pre.handCount+1);    
+    if(post->handCount != pre.handCount+1){
+        printf("hand count was not incrimented by1 \n");
+        exit(2);
+    }    
 
     return 0;
 }

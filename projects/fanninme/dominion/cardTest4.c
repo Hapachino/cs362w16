@@ -27,64 +27,76 @@ int unitTest(int player, struct gameState *post){
     //call function
     smithyCard(player,post,handPos);
     //memcmp game state size
-    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
+    if (memcmp(&pre,post, sizeof(struct gameState))!=0){
+        printf("Memory mismatch");
+        exit(1);
+    }
     //card specific checks
     //plus one card- minus village card, hand remains the same
-    assert(post->handCount == pre.handCount);
+    if (post->handCount != pre.handCount){
+        printf("HandSize changed");
+        exit(2);
+    }
     //plus 2 actions
-    assert(post->numActions == pre.numActions+2);
+    if(post->numActions != pre.numActions+2){
+        printf("Not the correct number of actions");
+        exit(3);
+    }
+
     
     return 0;
 }
 
 int main () {
   //define variables  
-  int i, n, r, player, deckCount, discardCount, handCount;
+  int i, n, r, p, deckCount, discardCount, handCount;
   //define a array of cards
   int k[10] = {adventurer, council_room, feast, gardens, mine,
 	       remodel, smithy, village, baron, great_hall};
   //define a gamestate
   struct gameState G;
 
-  printf ("RANDOM TESTS.\n");
+  printf ("Testing village Card.\n");
 
+  printf ("RANDOM TESTS.\n");
   //create random seed
   SelectStream(2);
   PutSeed(3);
-
   //for 2000 test cases
   for (n = 0; n < 2000; n++) {
     for (i = 0; i < sizeof(struct gameState); i++) {
-      ((char*)&G)[i] = floor(rand() * 256);
+      //fill gamestate with random bits between 0-256 using ofset
+      ((char*)&G)[i] = floor(Random() * 256);
     }
-    player = floor(rand() * 2);
-    //game state
-    G.deckCount[player] = floor(rand() * MAX_DECK);
-    G.discardCount[player] = floor(rand() * MAX_DECK);
-    G.handCount[player] = floor(rand() * MAX_HAND);
-    //call unit test function with test input
-    unitTest(player, &G);
-  }
-  printf ("ALL TESTS OK\n");
-  exit(0);
+    p = floor(Random() * 2);
+    G.deckCount[p] = floor(Random() * MAX_DECK);
+    G.discardCount[p] = floor(Random() * MAX_DECK);
+    G.handCount[p] = floor(Random() * MAX_HAND);
+    //call function with test input
+    unitTest(p, &G);
 
+  }
+
+  printf ("ALL TESTS OK\n");
+
+  exit(0);
   //fixed tests
   printf ("SIMPLE FIXED TESTS.\n");
-  for (player = 0; player < 2; player++) {
+  for (p = 0; p < 2; p++) {
     for (deckCount = 0; deckCount < 5; deckCount++) {
       for (discardCount = 0; discardCount < 5; discardCount++) {
-	for (handCount = 0; handCount < 5; handCount++) {
-	  memset(&G, 23, sizeof(struct gameState)); 
-	  r = initializeGame(2, k, 1, &G);  
-	  G.deckCount[player] = deckCount;
-	  memset(G.deck[player], 0, sizeof(int) * deckCount);
-	  G.discardCount[player] = discardCount;
-	  memset(G.discard[player], 0, sizeof(int) * discardCount);
-	  G.handCount[player] = handCount;
-	  memset(G.hand[player], 0, sizeof(int) * handCount);
-      //call unit test
-	  unitTest(player, &G);
-	}
+	   for (handCount = 0; handCount < 5; handCount++) {
+	    memset(&G, 23, sizeof(struct gameState)); 
+	    r = initializeGame(2, k, 1, &G);
+	    G.deckCount[p] = deckCount;
+	    memset(G.deck[p], 0, sizeof(int) * deckCount);
+	    G.discardCount[p] = discardCount;
+	    memset(G.discard[p], 0, sizeof(int) * discardCount);
+	    G.handCount[p] = handCount;
+	    memset(G.hand[p], 0, sizeof(int) * handCount);
+	    //run unit test.
+        unitTest(p, &G);
+        }
       }
     }
   }

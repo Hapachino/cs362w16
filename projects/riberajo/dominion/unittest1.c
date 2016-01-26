@@ -4,12 +4,13 @@
  *   - if a treasure card adds the proper value
  *   - if the bonus is calculated correctly
  *   - if the game state is changed post update coins
-
- * Include the following lines in your makefile:
- *
- * testUpdateCoins: testUpdateCoins.c dominion.o rngs.o
- *      gcc -o testUpdateCoins -g  testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
+*  Inputs to generate randomly:
+*    - gameState
+ *      - treasure Cards
+*       - coins
+ *   - bonus
+ *   - players
+ * --------------------------------------------------------------------
  */
 
 #include "dominion.h"
@@ -57,39 +58,51 @@ int main() {
       for (i = 0; i < sizeof(struct gameState); i++) {
         ((char*)&G)[i] = floor(Random() * 256);
       }
+      randomCardCount = floor(Random() * MAX_HAND);
       p = floor(Random() * 2);
       G.deckCount[p] = floor(Random() * MAX_DECK);
       G.discardCount[p] = floor(Random() * MAX_DECK);
-      G.handCount[p] = floor(Random() * MAX_HAND);
+      G.handCount[p] = randomCardCount;
 
-      //add coins for each Treasure card in player's hand
-      for (i = 0; i < state->handCount[player]; i++)
-        {
-          if (state->hand[player][i] == copper)
-      {
-        state->coins += 1;
-      }
-          else if (state->hand[player][i] == silver)
-      {
-        state->coins += 2;
-      }
-          else if (state->hand[player][i] == gold)
-      {
-        state->coins += 3;
-      }
+
+      // give players random Cards
+      for(j = 0; j < randomCardCount; j++) {
+        G.hand[p][j] = 0;
+        randomCard = floor(Random() * 3);
+
+        if(randomCard == 0) {
+          G.hand[p][j] == copper;
         }
-    // give players random Cards
-    randomCardCount = floor(Random() * MAX_HAND);
-
-    for(j = 0; j < randomCardCount; j++) {
-      G.hand[p][j] = 0;
-      randomCard = floor(Random() * 3);
-
-      if(randomCard == 0) {
-        G.hand[p][j] == copper;
-        G.coins +=1;
+        else if (randomCard == 1) {
+          G.hand[p][j] == silver;
+        }
+        else if (randomCard == 2) {
+          G.hand[p][j] == gold;
+        }
       }
-    }
+
+      // add coins for the random Cards
+      G.coins = 0;  // reset coins to 0
+      for(j = 0; j < randomCardCount; j++) {
+        if(G.hand[p][j] == copper) {
+          G.coins +=1;
+        }
+        else if (G.hand[p][j] == silver) {
+          G.coins +=2;
+        }
+        else if (G.hand[p][j] == gold) {
+          G.coins +=3;
+        }
+      }
+
+      // generate random bonus coins
+      bonus = floor(Random() * 35);
+
+      /* At this point we have generated random:
+         - players, deckCount, discardCount, handCount
+         - treasure cards, coins, bonus
+      */
+      unitTest(p, bonus, &G);
   }
 
     printf("All tests passed!\n");

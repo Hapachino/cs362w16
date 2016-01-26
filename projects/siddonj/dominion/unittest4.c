@@ -26,7 +26,8 @@ void testDrawCard() {
 
   // Create game.
   struct gameState *state = newGame();          // Initialize game state.
-  srand(time(NULL));
+
+  printf("\n***** TESTING DRAW CARD *****\n");
 
 
   // Start Test

@@ -21,7 +21,8 @@ void testUpdateCoins() {
 
   // Create game.
   struct gameState *state = newGame();          // Initialize game state.
-  srand(time(NULL));
+
+  printf("\n***** TESTING UPDATE COINS *****\n");
 
 
   // Start Test

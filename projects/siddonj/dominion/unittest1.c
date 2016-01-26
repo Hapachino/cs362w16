@@ -25,6 +25,7 @@ void testInitializeGame() {
   struct gameState *state = newGame();          // Initialize game state.
 
 
+  printf("\n***** TESTING INITIALIZE GAME *****\n");
   for(numPlayers = 0; numPlayers < MAX_PLAYERS+2; numPlayers++) {               // Create games with less than, equal to, and more players that supported.
 
     // Initialize game with valid game values.

@@ -40,7 +40,7 @@ int main() {
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
 #if (NOISY_TEST == 1)
-    printf("\n========TESTING fullDeckCount():========\n");
+    printf("========TESTING fullDeckCount():========\n");
 #endif
 
     for (p = 0; p < numPlayer; p++)

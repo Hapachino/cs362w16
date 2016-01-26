@@ -54,10 +54,11 @@ int main() {
     G.numActions = 1000;
 
     // Start testing
-    p = whoseTurn(&G);
+    p = 0;
     printf("========Player %d's turn:\n", p);
 
     // Buy smithy
+    // buyCard() calls gainCard() to put newly acquired smithy in discard
     buyCard(smithy, &G);
 
     // Check pile counts
@@ -86,7 +87,7 @@ int main() {
     // Draw will add the following 6 cards to hand:
     // - 5 from deck (for total of 7 coppers and 3 estates)
     // - 1 card from discard (newly acquired smithy)
-    // 6th card drawn will be smithy
+    // 6th card drawn will be smithy (shuffle smithy with an empty deck)
     for (i = 0; i < 6; i++) {
         drawCard(p, &G);
     }
@@ -145,9 +146,11 @@ int main() {
         printf("Position %d, Card: %d\n", i, G.hand[p][i]);
     }
 
-    // smithy should draw 3 cards from player's own pile
+    // smithy should draw 3 cards from player's own discard
     // and add them to player's own hand
     // Other cards bought should go to player's own deck
+    // We have an empty deck but the cards bought previously with
+    // buyCard() will be shuffled into the deck so we will draw them
     playSmithy(0, p, &G, 10);
 
     // Check pile counts
@@ -159,11 +162,19 @@ int main() {
         printf("Position %d, Card: %d\n", i, G.deck[p][i]);
     }
 
+    // Verify
+    printf("Deck count:%d\n", G.deckCount[p]);
+    printf("Deck count should be: %d\n", 0);
+
     printf("DISCARD COUNT\n");
     for (i = 0; i < G.discardCount[p]; i++)
     {
         printf("Position %d, Card: %d\n", i, G.discard[p][i]);
     }
+
+    // Verify
+    printf("Discard count:%d\n", G.discardCount[p]);
+    printf("Discard count should be: %d\n", 0);
 
     printf("HAND COUNT\n");
     for (i = 0; i < G.handCount[p]; i++)
@@ -171,11 +182,12 @@ int main() {
         printf("Position %d, Card: %d\n", i, G.hand[p][i]);
     }
 
-    // Switch to next player
-    endTurn(&G);
+    // Verify
+    printf("Hand count:%d\n", G.handCount[p]);
+    printf("Hand count should be: %d\n", 0);
 
     // Should be NO state changes made to next player's decks
-    p = whoseTurn(&G);
+    p = 1;
     printf("========Player %d's turn:\n", p);
 
     // Check pile counts
@@ -185,17 +197,29 @@ int main() {
         printf("Position %d, Card: %d\n", i, G.deck[p][i]);
     }
 
+    // Verify
+    printf("Deck count:%d\n", G.deckCount[p]);
+    printf("Deck count should be: %d\n", 10);
+
     printf("DISCARD COUNT\n");
     for (i = 0; i < G.discardCount[p]; i++)
     {
         printf("Position %d, Card: %d\n", i, G.discard[p][i]);
     }
 
+    // Verify
+    printf("Discard count:%d\n", G.discardCount[p]);
+    printf("Discard count should be: %d\n", 0);
+
     printf("HAND COUNT\n");
     for (i = 0; i < G.handCount[p]; i++)
     {
         printf("Position %d, Card: %d\n", i, G.hand[p][i]);
     }
+
+    // Verify
+    printf("Hand count:%d\n", G.handCount[p]);
+    printf("Hand count should be: %d\n", 0);
 
     // Should be NO state changes made to victory and kingdom cards
     // (besides the changes intentionally made outside of playSmithy)

@@ -18,33 +18,34 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <math.h>
 #include "rngs.h"
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
-
+#define TEST_FAIL 0
 // unit test for updateCoins function
 int unitTest(int p, int bonus, struct gameState *post) {
   struct gameState pre;
   memcpy(&pre, post, sizeof(struct gameState));
-  int r = updateCoins(p, bonus, post);
+  int r = updateCoins(p, post, bonus);
 
   // general test to see if function reaches the end
   assert(r == 0);
   // check to see if coins before and after are the same
   assert(pre.coins + bonus == post->coins);
+
+#if (TEST_FAIL  == 1)
+  // make test fail
+  pre.coins = 0;
+  assert(pre.coins + bonus == post->coins);
+#endif
+
 }
 
 
 int main() {
-    int i, p, r, j,
-        handCount, deckCount, discardCount, randomCardCount, randomCard, bonus;
-    int seed = 1000;
-    int numPlayer = 2;
-    int maxBonus = 10;
-    int maxHandCount = 5;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
+    int i, p, n, j,
+       randomCardCount, randomCard, bonus;
+
     struct gameState G;
 
     SelectStream(2);
@@ -54,7 +55,7 @@ int main() {
 
     // initialize hand
     // taken from betterTestDrawCard.c
-    for (n = 0; n < 2000; n++) {
+    for (n = 0; n < 10000; n++) {
       for (i = 0; i < sizeof(struct gameState); i++) {
         ((char*)&G)[i] = floor(Random() * 256);
       }
@@ -71,13 +72,13 @@ int main() {
         randomCard = floor(Random() * 3);
 
         if(randomCard == 0) {
-          G.hand[p][j] == copper;
+          G.hand[p][j] = copper;
         }
         else if (randomCard == 1) {
-          G.hand[p][j] == silver;
+          G.hand[p][j] = silver;
         }
         else if (randomCard == 2) {
-          G.hand[p][j] == gold;
+          G.hand[p][j] = gold;
         }
       }
 

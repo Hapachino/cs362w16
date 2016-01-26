@@ -19,12 +19,11 @@ void testBuyCard() {
   int numPlayers = 2;
   int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
 	       sea_hag, tribute, smithy};
-  int randomSeed = 3;
+  int randomSeed = -1;                          // Set randomSeed to less than 0 so it is based off system clock in the initializeGame method.
 
   // Create game.
   struct gameState *state = newGame();          // Initialize game state.
 
-  srand(time(NULL));
 
   // Test buying kingdom card with no buys available.
   initializeGame(numPlayers, kingdomCards, randomSeed, state);

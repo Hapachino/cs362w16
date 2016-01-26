@@ -29,11 +29,19 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+exampletestUpdateCoins: exampletestUpdateCoins.c dominion.o rngs.o
+	gcc -o exampletestUpdateCoins -g exampletestUpdateCoins.c dominion.o rngs.o $(CFLAGS)
+
+exampleruntests: exampletestUpdateCoins
+	./exampletestUpdateCoins &> unittestresult.out
+	gcov dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittesstresult.out
+
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard
+all: playdom player testDrawCard testBuyCard badTestDrawCard exampletestUpdateCoins
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

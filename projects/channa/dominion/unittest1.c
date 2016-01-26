@@ -76,7 +76,7 @@ int main() {
         for (handCount = 0; handCount <= maxHandCount; handCount++)
         {
 #if (NOISY_TEST == 1)
-            // random numnber for bonus
+            // random number for bonus
             bonus = rand() % maxBonus;
 
             printf("\nTest player %d with %d copper(s), %d silver(s), and %d bonus.\n", p, copperCount, silverCount, bonus);
@@ -142,7 +142,7 @@ int main() {
         for (handCount = 0; handCount <= maxHandCount; handCount++)
         {
 #if (NOISY_TEST == 1)
-            // random numnber for bonus
+            // random number for bonus
             bonus = rand() % maxBonus;
 
             printf("\nTest player %d with %d copper(s), %d gold(s), and %d bonus.\n", p, copperCount, goldCount, bonus);

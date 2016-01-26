@@ -45,15 +45,9 @@ int main() {
 
     for (p = 0; p < numPlayer; p++)
     {
-        // int fullDeckCount(int player, int card, struct gameState *state)
-
 #if (NOISY_TEST == 1)
         printf("\nTesting for Player %d:\n", p);
 #endif
-
-        // Enable buy phases and coins
-        G.numBuys = 1000;
-        G.coins = 1000;
 
         // Estates
         result = fullDeckCount(p, 1, &G);
@@ -69,12 +63,11 @@ int main() {
 #endif
         assert(result == 7);
 
-        // int buyCard(int supplyPos, struct gameState *state)
-
-        // Test update of coppers
+        // Test update of coppers (discard)
         count = 5;
         for (i = 0; i < count; i++) {
-            buyCard(copper, &G);
+            G.discard[p][ G.discardCount[p] ] = copper;
+            G.discardCount[p]++;
         }
         result = fullDeckCount(p, 4, &G);
 #if (NOISY_TEST == 1)
@@ -82,10 +75,11 @@ int main() {
 #endif
         assert(result == 7 + count);
 
-        // Test update of golds
+        // Test update of golds (hand)
         count = 10;
         for (i = 0; i < count; i++) {
-            buyCard(gold, &G);
+            G.hand[p][ G.handCount[p] ] = gold;
+            G.handCount[p]++;
         }
         result = fullDeckCount(p, 6, &G);
 #if (NOISY_TEST == 1)
@@ -93,10 +87,11 @@ int main() {
 #endif
         assert(result == count);
 
-        // Test province
+        // Test province (discard)
         count = 2;
         for (i = 0; i < count; i++) {
-            buyCard(province, &G);
+            G.discard[p][ G.discardCount[p] ] = province;
+            G.discardCount[p]++;
         }
         result = fullDeckCount(p, 3, &G);
 #if (NOISY_TEST == 1)
@@ -104,10 +99,11 @@ int main() {
 #endif
         assert(result == count);
 
-        // Test smithy
+        // Test smithy (hand)
         count = 3;
         for (i = 0; i < count; i++) {
-            buyCard(smithy, &G);
+            G.hand[p][ G.handCount[p] ] = smithy;
+            G.handCount[p]++;
         }
         result = fullDeckCount(p, 13, &G);
 #if (NOISY_TEST == 1)
@@ -115,10 +111,11 @@ int main() {
 #endif
         assert(result == count);
 
-        // Test tribute
+        // Test tribute (discard)
         count = 4;
         for (i = 0; i < count; i++) {
-            buyCard(tribute, &G);
+            G.discard[p][ G.discardCount[p] ] = tribute;
+            G.discardCount[p]++;
         }
         result = fullDeckCount(p, 19, &G);
 #if (NOISY_TEST == 1)
@@ -126,23 +123,17 @@ int main() {
 #endif
         assert(result == count);
 
-        // Test embargo
+        // Test embargo (hand)
         count = 5;
         for (i = 0; i < count; i++) {
-            buyCard(embargo, &G);
+            G.hand[p][ G.handCount[p] ] = embargo;
+            G.handCount[p]++;
         }
         result = fullDeckCount(p, 22, &G);
 #if (NOISY_TEST == 1)
         printf("embargo result: %d\n", result);
 #endif
         assert(result == count);
-
-        // int endTurn(struct gameState *state)
-        endTurn(&G);
-
-        // Enable buy phases and coins
-        G.numBuys = 1000;
-        G.coins = 1000;
 
         // 27 types of cards
 #if (NOISY_TEST == 1)

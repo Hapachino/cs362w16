@@ -12,6 +12,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include "rngs.h"
 
@@ -55,7 +56,10 @@ int main() {
         golds[i] = gold;
     }
 
-    printf ("\n========TESTING updateCoins() with coppers and silvers:========\n");
+#if (NOISY_TEST == 1)
+    printf ("========TESTING updateCoins() with coppers and silvers:\n");
+#endif
+
     for (p = 0; p < numPlayer; p++)
     {
         // reset counts and checks for next player
@@ -72,7 +76,7 @@ int main() {
         for (handCount = 0; handCount <= maxHandCount; handCount++)
         {
 #if (NOISY_TEST == 1)
-            // random numnber for bonus
+            // random number for bonus
             bonus = rand() % maxBonus;
 
             printf("\nTest player %d with %d copper(s), %d silver(s), and %d bonus.\n", p, copperCount, silverCount, bonus);
@@ -118,7 +122,10 @@ int main() {
     first = true;
     reset = true;
 
-    printf ("\n========TESTING updateCoins() with coppers and golds:========\n");
+#if (NOISY_TEST == 1)
+    printf ("\n========TESTING updateCoins() with coppers and golds:\n");
+#endif
+
     for (p = 0; p < numPlayer; p++)
     {
         // reset counts and checks for next player
@@ -135,7 +142,7 @@ int main() {
         for (handCount = 0; handCount <= maxHandCount; handCount++)
         {
 #if (NOISY_TEST == 1)
-            // random numnber for bonus
+            // random number for bonus
             bonus = rand() % maxBonus;
 
             printf("\nTest player %d with %d copper(s), %d gold(s), and %d bonus.\n", p, copperCount, goldCount, bonus);

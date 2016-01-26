@@ -1,0 +1,28 @@
+# aliases for commands
+CXX = gcc #compiler
+CFLAGS = -o -Wall -fprofile-arcs -ftest-coverage
+#create targetfiles
+TARGETFILES = unitTest1.c
+TARGETFILES += unitTest2.c
+TARGETFILES += unitTest3.c
+TARGETFILES += unitTest4.c
+TARGETFILES += cardTest1.c
+TARGETFILES += cardTest2.c
+TARGETFILES += cardTest3.c
+TARGETFILES += cardTest4.c
+#unitTest1.c, unitTest2.c, unitTest3.c, unitTest4.c, cardTest1.c, cardTest2.c, cardTest3.c, cardTest4.c
+
+#recipe
+all:  clean TARGETFILES
+	${CC} TARGETFILES ${CFLAGS} unittestresults.out #generate & execute
+	gcov TARGETFILES >> unittestreults.out
+	cat TARGTFILES.c.gcov >>unittestresults.out # append complete test results
+
+unitTests: dominion.h rngs.h dominion_helpers.h unitTest*.c
+	gcc -o unitTest* unitTest*.c -g $(CFLAGS)
+	gcov unitTest*.c >> unitTestResults.out
+	cat unitTest*.c.gcov >> unitTestResults.out
+
+# define clean
+clean:
+	rm -rf *.o all

@@ -15,6 +15,9 @@
 #include <stdbool.h>
 #include "rngs.h"
 
+// set NOISY_TEST to 0 to remove printfs from output
+#define NOISY_TEST 1
+
 int main() {
     int i;
     int seed = 1000;
@@ -45,7 +48,9 @@ int main() {
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
-    printf("\n========TESTING scoreFor():========\n");
+#if (NOISY_TEST == 1)
+    printf("========TESTING scoreFor():========\n");
+#endif
 
     // TESTING PLAYER 0
     p = 0;
@@ -81,18 +86,22 @@ int main() {
         buyCard(curse, &G);
     }
 
+#if (NOISY_TEST == 1)
     // 27 types of cards
     printf("Totals of cards by type for Player %d:\n", p);
     for (i = 0; i < 27; i++) {
         result = fullDeckCount(p, i, &G);
         printf("Card count for %s: %d\n", cards[i], result);
     }
+#endif
 
     endTurn(&G);
 
     // Test scoreFor()
     result = scoreFor(p, &G);
+#if (NOISY_TEST == 1)
     printf("Player %d score: %d\n", p, result);
+#endif
     
     // Calculate correct score
     score = 0;
@@ -109,7 +118,9 @@ int main() {
     score = score + (discard_plus_hand / 10 * gardensCount);
 
     // Verify
+#if (NOISY_TEST == 1)
     printf("Player %d score should be: %d\n\n", p, score);
+#endif
     if (result != score) {
         pass = false;
         failed++;
@@ -118,18 +129,22 @@ int main() {
     // TESTING PLAYER 1
     p = 1;
 
+#if (NOISY_TEST == 1)
     // 27 types of cards
     printf("Totals of cards by type for Player %d:\n", p);
     for (i = 0; i < 27; i++) {
         result = fullDeckCount(p, i, &G);
         printf("Card count for %s: %d\n", cards[i], result);
     }
+#endif
 
     endTurn(&G);
 
     // Test scoreFor()
     result = scoreFor(p, &G);
+#if (NOISY_TEST == 1)
     printf("Player %d score: %d\n", p, result);
+#endif
 
     // Calculate correct score
     score = 0;
@@ -146,7 +161,9 @@ int main() {
     score = score + (discard_plus_hand / 10 * gardensCount);
 
     // Verify
+#if (NOISY_TEST == 1)
     printf("Player %d score should be: %d\n\n", p, score);
+#endif
     if (result != score) {
         pass = false;
         failed++;
@@ -156,7 +173,7 @@ int main() {
         printf("All tests passed!");
     }
     else {
-        printf("%d tests failed!", failed);
+        printf("%d test(s) failed!", failed);
     }
 
     return 0;

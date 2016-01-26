@@ -40,7 +40,7 @@ int main() {
     // Correct calculation
     int score;
     // For keeping track of gardens effect
-    int gardensCount, discard_plus_hand;
+    int gardensCount, deck_discard_hand;
     // Check for pass/fail
     bool pass = true;
     int failed = 0;
@@ -99,9 +99,6 @@ int main() {
 
     // Test scoreFor()
     result = scoreFor(p, &G);
-#if (NOISY_TEST == 1)
-    printf("Player %d score: %d\n", p, result);
-#endif
     
     // Calculate correct score
     score = 0;
@@ -110,15 +107,18 @@ int main() {
     score = score + (fullDeckCount(p, duchy, &G) * 3);
     score = score + (fullDeckCount(p, province, &G) * 6);
     score = score + (fullDeckCount(p, great_hall, &G));
-    // printf("discardCount: %d\n", G.discardCount[p]);
-    // printf("handCount: %d\n", G.handCount[p]);
-    // printf("deckCount: %d\n", G.deckCount[p]);
+#if (NOISY_TEST == 1)
+    printf("deckCount: %d\n", G.deckCount[p]);
+    printf("discardCount: %d\n", G.discardCount[p]);
+    printf("handCount: %d\n", G.handCount[p]);
+#endif
     gardensCount = fullDeckCount(p, gardens, &G);
-    discard_plus_hand = G.handCount[p] + G.discardCount[p];
-    score = score + (discard_plus_hand / 10 * gardensCount);
+    deck_discard_hand = G.deckCount[p] + G.discardCount[p] + G.handCount[p];
+    score = score + (deck_discard_hand / 10 * gardensCount);
 
     // Verify
 #if (NOISY_TEST == 1)
+    printf("Player %d score: %d\n", p, result);
     printf("Player %d score should be: %d\n\n", p, score);
 #endif
     if (result != score) {
@@ -142,9 +142,6 @@ int main() {
 
     // Test scoreFor()
     result = scoreFor(p, &G);
-#if (NOISY_TEST == 1)
-    printf("Player %d score: %d\n", p, result);
-#endif
 
     // Calculate correct score
     score = 0;
@@ -153,15 +150,18 @@ int main() {
     score = score + (fullDeckCount(p, duchy, &G) * 3);
     score = score + (fullDeckCount(p, province, &G) * 6);
     score = score + (fullDeckCount(p, great_hall, &G));
-    // printf("discardCount: %d\n", G.discardCount[p]);
-    // printf("handCount: %d\n", G.handCount[p]);
-    // printf("deckCount: %d\n", G.deckCount[p]);
+#if (NOISY_TEST == 1)
+    printf("deckCount: %d\n", G.deckCount[p]);
+    printf("discardCount: %d\n", G.discardCount[p]);
+    printf("handCount: %d\n", G.handCount[p]);
+#endif
     gardensCount = fullDeckCount(p, gardens, &G);
-    discard_plus_hand = G.handCount[p] + G.discardCount[p];
-    score = score + (discard_plus_hand / 10 * gardensCount);
+    deck_discard_hand = G.deckCount[p] + G.discardCount[p] + G.handCount[p];
+    score = score + (deck_discard_hand / 10 * gardensCount);
 
     // Verify
 #if (NOISY_TEST == 1)
+    printf("Player %d score: %d\n", p, result);
     printf("Player %d score should be: %d\n\n", p, score);
 #endif
     if (result != score) {

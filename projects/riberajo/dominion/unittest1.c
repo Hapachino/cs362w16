@@ -44,7 +44,7 @@ int unitTest(int p, int bonus, struct gameState *post) {
 
 int main() {
     int i, p, n, j,
-        handCount, deckCount, discardCount, randomCardCount, randomCard, bonus;
+       randomCardCount, randomCard, bonus;
 
     struct gameState G;
 

@@ -33,7 +33,7 @@ int main() {
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
 #if (NOISY_TEST == 1)
-    printf("========TESTING isGameOver():========\n");
+    printf("TESTING isGameOver():\n");
 #endif
 
     // Test without any changes
@@ -111,7 +111,7 @@ int main() {
     assert(result == 0);
 
    // Test with an almost empty province pile
-    G.supplyCount[province] = 9;
+    G.supplyCount[province] = 1;
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Game is over: %d\n", result);

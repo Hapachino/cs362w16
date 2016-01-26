@@ -1,6 +1,3 @@
-
-
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,7 +6,6 @@
 #define INITGAME_PASS "initializeGame() PASS: "
 #define INITGAME_FAIL "initializeGame() FAIL: "
 
-// int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) {
 
 void testInitializeGame() {
   int i = 0;
@@ -20,7 +16,6 @@ void testInitializeGame() {
 	       sea_hag, tribute, smithy};
   int randomSeed = -1;                          // Set randomSeed to less than 0 so it is based off system clock in the initializeGame method.
   int successfulInit = 0;                       // Variable to hold if the game was created successfully or not.
-//  bool gameSuccess = true;                      // Variable to display if the game failed creating or not.
 
   struct gameState *state = newGame();          // Initialize game state.
 

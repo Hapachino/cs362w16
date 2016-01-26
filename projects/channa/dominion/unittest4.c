@@ -121,6 +121,8 @@ int main() {
     printf("Player %d score: %d\n", p, result);
     printf("Player %d score should be: %d\n\n", p, score);
 #endif
+    // Assert here halts program execution
+    // assert(result == score);
     if (result != score) {
         pass = false;
         failed++;
@@ -164,6 +166,7 @@ int main() {
     printf("Player %d score: %d\n", p, result);
     printf("Player %d score should be: %d\n\n", p, score);
 #endif
+    assert(result == score);
     if (result != score) {
         pass = false;
         failed++;

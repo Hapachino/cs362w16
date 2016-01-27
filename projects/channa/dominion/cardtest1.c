@@ -273,10 +273,10 @@ int main() {
     printf("No state changes for victory and kingdom card piles: %d\n", equal);
 
     if (pass) {
-        printf("All tests passed!");
+        printf("\nAll tests passed!");
     }
     else {
-        printf("Some test(s) failed!");
+        printf("\nSome test(s) failed!");
     }
     
     return 0;

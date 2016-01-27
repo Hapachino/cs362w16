@@ -108,3 +108,16 @@ dominion.c.gcov
      2592:  454:  return score;
         -:  455:}
 ************************************************/
+
+
+
+
+Testing gainCard()
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+----------------------------------------
+*Basic requirements of gainCard()
+   1)Fail if card is not in supplyCount()
+   2)Add card to players deck - check if deck has been updated.
+   3)Add card to players hand - check if hand has been updated.
+   4)Add card to players discard - check if discard has been updated.
+   5)Was supplyCount decressed in size.

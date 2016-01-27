@@ -50,6 +50,9 @@ unittest2: unittest2.c dominion.o rngs.o
 unittest3: unittest3.c dominion.o rngs.o
 	gcc -o unittest3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
 
+unittest4: unittest4.c dominion.o rngs.o
+	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
+
 unittests: 
 	make cardtest1
 	make cardtest2
@@ -58,6 +61,7 @@ unittests:
 	make unittest1
 	make unittest2
 	make unittest3
+	make unittest4
 
 rununittests:  
 	./cardtest1
@@ -67,6 +71,7 @@ rununittests:
 	./unittest1
 	./unittest2
 	./unittest3
+	./unittest4
 
 codecoverage:
 	gcov -f -b dominion.c

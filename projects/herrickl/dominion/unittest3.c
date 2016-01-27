@@ -70,11 +70,11 @@ int main(){
 		testNum++;
 		//print info from test case
 		printf("\n%d. Did player 1's hand change:\n", testNum);
-		if(Test.handCount[p1] == Clean.handCount[p1] + 1 - 1){ 
+		if(Test.handCount[p1] == Clean.handCount[p1]){ 
 			printf("Passed. Hand count is %d = %d\n", Clean.handCount[p1], Test.handCount[p1]);
 		} 
 		else{  //fail
-			printf("Failed. Hand count is %d + 1 - 1 = %d\n", Clean.handCount[p1], Test.handCount[p1]);
+			printf("Failed. Hand count is %d = %d\n", Clean.handCount[p1], Test.handCount[p1]);
 		}
 		testNum++;
 		printf("\n%d. Did player 2's hand change:\n", testNum);
@@ -85,12 +85,12 @@ int main(){
 			printf("Failed. Hand count is %d - 0 = %d", Clean.handCount[p2], Test.handCount[p2]);
 		}
 		testNum++;
-		printf("\n%d. Did player 1's deck change - 3:\n", testNum);
-		if(Test.deckCount[p1] == Clean.deckCount[p1]-3){
-			printf("Passed. Deck count is %d - 3 = %d\n", Clean.deckCount[p1], Test.deckCount[p1]);
+		printf("\n%d. Did player 1's deck change:\n", testNum);
+		if(Test.deckCount[p1] == Clean.deckCount[p1]){
+			printf("Passed. Deck count is %d = %d\n", Clean.deckCount[p1], Test.deckCount[p1]);
 		}
 		else{	//fail
-			printf("Failed. Deck count is %d - 3 = %d\n", Clean.deckCount[p1], Test.deckCount[p1]);
+			printf("Failed. Deck count is %d = %d\n", Clean.deckCount[p1], Test.deckCount[p1]);
 		}
 		testNum++;
 		printf("\n%d. Did player 2's deck change - 0:\n", testNum);
@@ -101,20 +101,20 @@ int main(){
 			printf("Passed. Deck count is %d - 0 = %d\n", Clean.deckCount[p2], Test.deckCount[p2]);
 		}
 		testNum++;
-		printf("\n%d. Did player 1's discard pile change - 1:\n", testNum);
-		if(Test.discardCount[p1] == Clean.discardCount[p1]-1){
-			printf("Passed. Discard count is %d - 1 = %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
+		printf("\n%d. Did player 1's discard pile change:\n", testNum);
+		if(Test.discardCount[p1] == Clean.discardCount[p1]){
+			printf("Passed. Discard count is %d = %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
 		}
 		else{	//fail
-			printf("Failed. Discard count is %d - 1 = %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
+			printf("Failed. Discard count is %d = %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
 		}
 		testNum++;
 		printf("\n%d. Did player 2's discard pile change - 0:\n", testNum);
 		if(Test.discardCount[p2] == Clean.discardCount[p2]){
-			printf("Passed. Discard count is %d - 1 = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
+			printf("Passed. Discard count is %d = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
 		}
 		else{	//fail
-			printf("Failed. Discard count is %d - 1 = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
+			printf("Failed. Discard count is %d = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
 		}
 		testNum++;
 		printf("\n%d. Did the number of players change - 0:\n", testNum);
@@ -157,12 +157,12 @@ int main(){
 			printf("Failed. Phase is %d + 0 = %d\n", Clean.phase, Test.phase);
 		}
 		testNum++;
-		printf("\n%d. Did the number of actions change + 2':\n", testNum);
+		printf("\n%d. Did the number of actions change':\n", testNum);
 		if(Test.numActions == Clean.numActions){
-			printf("Passed. Numbers of actions is %d + 2 = %d\n", Clean.numActions, Test.numActions);
+			printf("Passed. Numbers of actions is %d = %d\n", Clean.numActions, Test.numActions);
 		}
 		else{	//fail
-			printf("Failed. Phase is %d + 2 = %d\n", Clean.numActions, Test.numActions);
+			printf("Failed. Phase is %d = %d\n", Clean.numActions, Test.numActions);
 		}
 		testNum++;
 		printf("\n%d. Did the number of buys change + 0':\n", testNum);
@@ -173,7 +173,7 @@ int main(){
 			printf("Failed. Number of buys is %d + 0 = %d\n", Clean.numBuys, Test.numBuys);
 		}
 		testNum++;
-		printf("\n%d. Did the played card count change + 1':\n", testNum);
+		printf("\n%d. Did the played card count change':\n", testNum);
 		if(Test.playedCardCount == Clean.playedCardCount){
 			printf("Passed. Played card count is %d + 0 = %d\n", Clean.playedCardCount, Test.playedCardCount);
 		}
@@ -241,11 +241,11 @@ void segfault(int sig_num){
 		testNum++;
 		//print info from test case
 		printf("\n%d. Did player 1's hand change:\n", testNum);
-		if(Test.handCount[p1] == Clean.handCount[p1] + 1 - 1){ 
+		if(Test.handCount[p1] == Clean.handCount[p1]){ 
 			printf("Passed. Hand count is %d = %d\n", Clean.handCount[p1], Test.handCount[p1]);
 		} 
 		else{  //fail
-			printf("Failed. Hand count is %d + 1 - 1 = %d\n", Clean.handCount[p1], Test.handCount[p1]);
+			printf("Failed. Hand count is %d = %d\n", Clean.handCount[p1], Test.handCount[p1]);
 		}
 		testNum++;
 		printf("\n%d. Did player 2's hand change:\n", testNum);
@@ -256,12 +256,12 @@ void segfault(int sig_num){
 			printf("Failed. Hand count is %d - 0 = %d", Clean.handCount[p2], Test.handCount[p2]);
 		}
 		testNum++;
-		printf("\n%d. Did player 1's deck change - 3:\n", testNum);
-		if(Test.deckCount[p1] == Clean.deckCount[p1]-3){
-			printf("Passed. Deck count is %d - 3 = %d\n", Clean.deckCount[p1], Test.deckCount[p1]);
+		printf("\n%d. Did player 1's deck change:\n", testNum);
+		if(Test.deckCount[p1] == Clean.deckCount[p1]){
+			printf("Passed. Deck count is %d = %d\n", Clean.deckCount[p1], Test.deckCount[p1]);
 		}
 		else{	//fail
-			printf("Failed. Deck count is %d - 3 = %d\n", Clean.deckCount[p1], Test.deckCount[p1]);
+			printf("Failed. Deck count is %d = %d\n", Clean.deckCount[p1], Test.deckCount[p1]);
 		}
 		testNum++;
 		printf("\n%d. Did player 2's deck change - 0:\n", testNum);
@@ -272,20 +272,20 @@ void segfault(int sig_num){
 			printf("Passed. Deck count is %d - 0 = %d\n", Clean.deckCount[p2], Test.deckCount[p2]);
 		}
 		testNum++;
-		printf("\n%d. Did player 1's discard pile change - 1:\n", testNum);
+		printf("\n%d. Did player 1's discard pile change:\n", testNum);
 		if(Test.discardCount[p1] == Clean.discardCount[p1]-1){
-			printf("Passed. Discard count is %d - 1 = %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
+			printf("Passed. Discard count is %d = %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
 		}
 		else{	//fail
-			printf("Failed. Discard count is %d - 1 = %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
+			printf("Failed. Discard count is %d = %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
 		}
 		testNum++;
 		printf("\n%d. Did player 2's discard pile change - 0:\n", testNum);
 		if(Test.discardCount[p2] == Clean.discardCount[p2]){
-			printf("Passed. Discard count is %d - 1 = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
+			printf("Passed. Discard count is %d = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
 		}
 		else{	//fail
-			printf("Failed. Discard count is %d - 1 = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
+			printf("Failed. Discard count is %d = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
 		}
 		testNum++;
 		printf("\n%d. Did the number of players change - 0:\n", testNum);
@@ -328,12 +328,12 @@ void segfault(int sig_num){
 			printf("Failed. Phase is %d + 0 = %d\n", Clean.phase, Test.phase);
 		}
 		testNum++;
-		printf("\n%d. Did the number of actions change + 2':\n", testNum);
-		if(Test.numActions == Clean.numActions + 2){
-			printf("Passed. Numbers of actions is %d + 2 = %d\n", Clean.numActions, Test.numActions);
+		printf("\n%d. Did the number of actions change':\n", testNum);
+		if(Test.numActions == Clean.numActions){
+			printf("Passed. Numbers of actions is %d = %d\n", Clean.numActions, Test.numActions);
 		}
 		else{	//fail
-			printf("Failed. Phase is %d + 2 = %d\n", Clean.numActions, Test.numActions);
+			printf("Failed. Phase is %d = %d\n", Clean.numActions, Test.numActions);
 		}
 		testNum++;
 		printf("\n%d. Did the number of buys change + 0':\n", testNum);
@@ -344,7 +344,7 @@ void segfault(int sig_num){
 			printf("Failed. Number of buys is %d + 0 = %d\n", Clean.numBuys, Test.numBuys);
 		}
 		testNum++;
-		printf("\n%d. Did the played card count change + 1':\n", testNum);
+		printf("\n%d. Did the played card count change':\n", testNum);
 		if(Test.playedCardCount == Clean.playedCardCount){
 			printf("Passed. Played card count is %d + 0 = %d\n", Clean.playedCardCount, Test.playedCardCount);
 		}

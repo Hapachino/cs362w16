@@ -27,6 +27,12 @@ int main() {
     struct gameState G, testG;
     int temphand[MAX_HAND];
     int count;
+
+    // Default
+    int estateDefault = 8;
+    // Check pile counts
+    int copperCount = 0;
+    int estateCount = 0;
     bool pass = true;
 
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
@@ -335,10 +341,6 @@ int main() {
     printf("----------------- Player %d:\n", p);
     printf("----------------- Test 4: Check that no state changes were made to other player's deck\n");
 
-    // Check pile counts
-    int copperCount = 0;
-    int estateCount = 0;
-
     printf("DECK COUNT\n");
     for (i = 0; i < G.deckCount[p]; i++)
     {
@@ -380,11 +382,15 @@ int main() {
     printf("Hand count: %d, Expected: 0\n", G.handCount[p]);
     assert(G.handCount[p] == 0);
 
+    printf("----------------- Test 5: Check that no state changes were made to estate pile\n");
+    printf("Estate count: %d, Expected: %d\n", G.supplyCount[estate], estateDefault);
+    assert(G.supplyCount[estate] == estateDefault);
+
     if (pass) {
-        printf("All tests passed!");
+        printf("\nAll tests passed!");
     }
     else {
-        printf("Some test(s) failed!");
+        printf("\nSome test(s) failed!");
     }
     
     return 0;

@@ -647,7 +647,8 @@ int getCost(int cardNumber)
 void playSmithy (int currentPlayer, int handPos, struct gameState *state)
 {
     //draw three cards
-    for (int i = 0; i <= 3; i++)
+    int i;
+    for (i = 0; i <= 3; i++)
         drawCard(currentPlayer, state);
     
     //discard card from hand
@@ -700,7 +701,8 @@ void playVillage(int currentPlayer, int handPos, struct gameState *state)
 void playFeast(int currentPlayer, int choice1, int temphand[], struct gameState *state)
 {
     //Backup hand
-    for (int i = 0; i <= state->handCount[currentPlayer]; i++)
+    int i;
+    for (i = 0; i <= state->handCount[currentPlayer]; i++)
     {
         temphand[i] = state->hand[currentPlayer][i];     //Backup each card
         state->hand[currentPlayer][i] = -1;              //Set to nothing
@@ -749,16 +751,16 @@ void playFeast(int currentPlayer, int choice1, int temphand[], struct gameState 
 void playCouncilRoom(int currentPlayer, int handPos, struct gameState *state)
 {
     //+4 Cards
-    int i = 0;
-    for (i; i < 4; i++)
+    int i;
+    for (i = 0; i < 4; i++)
         drawCard(currentPlayer, state);
     
     //#1 Buy
     state->numBuys++;
     
     //Each other player draws a card
-    int j = 0;
-    for (j; j < state->numPlayers; j++)
+    int j;
+    for (j = 0; j < state->numPlayers; j++)
     {
         if (i != currentPlayer)
             drawCard(j, state);
@@ -871,7 +873,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         return 0;
 		
     case village:
-        playVillage(currentPlayer, handPos, state)
+            playVillage(currentPlayer, handPos, state);
         return 0;
 		
     case baron:

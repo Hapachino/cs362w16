@@ -37,6 +37,8 @@ int main() {
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
+    printf("----------------- Testing smithy ----------------\n");
+
     // Before testing, check victory and kingdom cards
     // victory_kingdom[] saves pre-test pile counts
     printf("========BEFORE PLAYER ACTIONS AND BUYS\n");

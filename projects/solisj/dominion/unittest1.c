@@ -22,7 +22,7 @@
 ***
 * Include the following lines in your makefile:
 *
-* testUpdateCoins: unittest1.c dominion.o rngs.o
+* unittest1: unittest1.c dominion.o rngs.o
 *      gcc -o testUpdateCoins -g  unittest1.c dominion.o rngs.o $(CFLAGS)
 * -----------------------------------------------------------------------
 *
@@ -34,13 +34,10 @@
 #include <string.h>
 #include <assert.h>
 
-
 // set NOISY_TEST to 0 to remove printfs from output
 #define NOISY_TEST 1
 
-
 int main(){
-
      int r;
      int player;
      int numPlayer = 2;
@@ -48,20 +45,12 @@ int main(){
      int maxHandCount = 5;
      int bonus;
      int maxBonus = 10;
-
      //int previousGameStateCoins; //variable to check for correct change in gamestate. Should always be 0 in this unit test due to clearing the gamestate
      int numTests = 0; //variable to keep track of how many tests have been run.
-     
-
-
      int seed = 1000; 
-
      struct gameState Gstate;
-
      int k[10] = { adventurer, council_room, feast, gardens, mine
           , remodel, smithy, village, baron, great_hall };
-
-
      // arrays of all coppers, silvers, and golds
      int coppers[MAX_HAND];
      int silvers[MAX_HAND];
@@ -74,10 +63,8 @@ int main(){
           golds[i] = gold;
      }
 
-
-
-
-     printf("\nBeginning testing for updateCoins():\n");
+     printf("==============================================\n");
+     printf("\n   Beginning testing for updateCoins():\n");
      printf("==============================================\n");
 
      for (player = 0; player < numPlayer; player++)
@@ -106,7 +93,6 @@ int main(){
                     assert(Gstate.coins == handCount * 1 + bonus); // check if the number of coins is correct
                     numTests++;
 
-
                     /*==================================================
                                 Testing silver treasure cards
                     ===================================================*/
@@ -121,8 +107,6 @@ int main(){
                     assert(Gstate.coins == handCount * 2 + bonus); // check if the number of coins is correct
                     numTests++;
 
-
-
                     /*===================================================
                                    Testing gold treasure cards
                     ===================================================*/
@@ -136,7 +120,6 @@ int main(){
 #endif
                     assert(Gstate.coins == handCount * 3 + bonus); // check if the number of coins is correct
                     numTests++;
-
 
                     /*=============================================
                             Testing mixed treasure cards
@@ -163,7 +146,6 @@ int main(){
                          assert(Gstate.coins == 3 + bonus); // check if the number of coins is correct
                          numTests++;
 
-
                          //Copper + Gold
 #if (NOISY_TEST == 1)
                          printf("Testing player %d with 1 copper and 1 gold card(s) and %d bonus.\n", player, bonus);
@@ -179,7 +161,6 @@ int main(){
                          assert(Gstate.coins == 4 + bonus); // check if the number of coins is correct
                          numTests++;
 
-
                          //Silver + gold
 #if (NOISY_TEST == 1)
                          printf("Testing player %d with 1 silver and 1 gold card(s) and %d bonus.\n", player, bonus);
@@ -194,10 +175,7 @@ int main(){
 #endif
                          assert(Gstate.coins == 5 + bonus); // check if the number of coins is correct
                          numTests++;
-
-
                     }
-
 
                     if (handCount == 3)
                     {
@@ -218,14 +196,10 @@ int main(){
 #endif
                          assert(Gstate.coins == 6 + bonus); // check if the number of coins is correct
                          numTests++;
-
                     }
-
                }
-
           }
      }
-
 
      printf("All %d tests passed!\n", numTests);
 

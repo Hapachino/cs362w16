@@ -33,12 +33,13 @@ int main() {
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
 #if (NOISY_TEST == 1)
-    printf("TESTING isGameOver():\n");
+    printf("----------------- TESTING isGameOver():\n");
 #endif
 
     // Test without any changes
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
+    printf("Test 1: No changes\n");
     printf("Game is over: %d\n", result);
 #endif
     // False
@@ -48,6 +49,7 @@ int main() {
     G.supplyCount[province] = 0;
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
+    printf("Test 2: Empty province pile\n");
     printf("Game is over: %d\n", result);
 #endif
     // True
@@ -56,55 +58,61 @@ int main() {
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
-    // Test with one empty supply pile
+    // Test with 1 empty supply pile
     G.supplyCount[adventurer] = 0;
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
+    printf("Test 3: 1 empty supply pile\n");
     printf("Game is over: %d\n", result);
 #endif
     // False
     assert(result == 0);
 
-    // Test with two empty supply piles
+    // Test with 2 empty supply piles
     G.supplyCount[village] = 0;
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
+    printf("Test 4: 2 empty supply piles\n");
     printf("Game is over: %d\n", result);
 #endif
     // False
     assert(result == 0);
 
-    // Test with three empty supply piles
+    // Test with 3 empty supply piles
     G.supplyCount[great_hall] = 0;
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
+    printf("Test 5: 3 empty supply piles\n");
     printf("Game is over: %d\n", result);
 #endif
     // True
     assert(result == 1);
 
-    // Re-test with two empty supply piles
+    // Re-test with 2 empty supply piles
     G.supplyCount[great_hall] = 10;
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
+    printf("Test 6: Re-test with 2 empty supply piles\n");
     printf("Game is over: %d\n", result);
 #endif
     // False
     assert(result == 0);
 
-    // Re-test with one empty supply pile
+    // Re-test with 1 empty supply pile
     G.supplyCount[village] = 10;
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
+    printf("Test 7: Re-test with 1 empty supply piles\n");
     printf("Game is over: %d\n", result);
 #endif
     // False
     assert(result == 0);
 
-    // Re-test with zero supply piles
+    // Re-test with 0 supply piles
     G.supplyCount[adventurer] = 10;
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
+    printf("Test 8: Re-test with 0 empty supply piles\n");
     printf("Game is over: %d\n", result);
 #endif
     // False
@@ -114,6 +122,7 @@ int main() {
     G.supplyCount[province] = 1;
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
+    printf("Test 9: Re-test with almost empty province pile\n");
     printf("Game is over: %d\n", result);
 #endif
     // False

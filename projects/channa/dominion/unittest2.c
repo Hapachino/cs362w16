@@ -48,7 +48,7 @@ int main() {
     {
 #if (NOISY_TEST == 1)
         printf("\n----------------- Testing for Player %d:\n", p);
-        printf("----------------- Add the following to discard/hand:\n");
+        printf("----------------- Adding the following to discard/hand:\n");
         printf("----------------- 5 coppers\n");
         printf("----------------- 10 golds\n");
         printf("----------------- 2 provinces\n");

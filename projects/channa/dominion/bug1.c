@@ -19,5 +19,8 @@ playSmithy():
 	cardtest1 detected incorrect counts of the player's cards after playing smithy. Instead of 7
 	cards in the deck, there were 6. Instead of 8 cards in the hand, there were 9. This means that
 	there was an extra card in the hand and one missing card from the deck and so smithy drew 4
-	cards instead of 3. Additionally, the discard pile was empty which means that after being played,
+	cards instead of 3 since the other player's cards, victory card piles, and kingdom card piles
+	were unaffected.
+	
+	Additionally, the discard pile was empty which means that after being played,
 	smithy was trashed rather than discarded.

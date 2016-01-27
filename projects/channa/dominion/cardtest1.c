@@ -154,9 +154,7 @@ int main() {
         printf("========TEST 1 FAILED\n");
         failed++;
     }
-    printf("Deck count: %d\n", G.deckCount[p]);
-    printf("Deck count should be: %d\n", count);
-
+    printf("Deck count: %d, Expected: %d\n", G.deckCount[p], count);
 
     printf("DISCARD COUNT\n");
     for (i = 0; i < G.discardCount[p]; i++)
@@ -172,8 +170,7 @@ int main() {
         printf("========TEST 2 FAILED\n");
         failed++;
     }
-    printf("Discard count: %d\n", G.discardCount[p]);
-    printf("Discard count should be: %d\n", count);
+    printf("Discard count: %d, Expected: %d\n", G.discardCount[p], count);
 
     printf("HAND COUNT\n");
     for (i = 0; i < G.handCount[p]; i++)
@@ -189,8 +186,7 @@ int main() {
         printf("========TEST 3 FAILED\n");
         failed++;
     }
-    printf("Hand count: %d\n", G.handCount[p]);
-    printf("Hand count should be: %d\n", count);
+    printf("Hand count: %d, Expected: %d\n", G.handCount[p], count);
 
     // Should be NO state changes made to next player's decks
     p = 1;
@@ -216,8 +212,7 @@ int main() {
     assert(copperCount == 7);
     assert(estateCount == 3);
 
-    printf("Deck count:%d\n", G.deckCount[p]);
-    printf("Deck count should be: %d\n", 10);
+    printf("Deck count: %d, Expected: 10\n", G.deckCount[p]);
     assert(G.deckCount[p] == 10);
 
     printf("DISCARD COUNT\n");
@@ -227,8 +222,7 @@ int main() {
     }
 
     // Verify
-    printf("Discard count:%d\n", G.discardCount[p]);
-    printf("Discard count should be: %d\n", 0);
+    printf("Discard count: %d, Expected: 0\n", G.discardCount[p]);
     assert(G.discardCount[p] == 0);
 
     printf("HAND COUNT\n");
@@ -238,8 +232,7 @@ int main() {
     }
 
     // Verify
-    printf("Hand count:%d\n", G.handCount[p]);
-    printf("Hand count should be: %d\n", 0);
+    printf("Hand count: %d, Expected: 0\n", G.handCount[p]);
     assert(G.handCount[p] == 0);
 
     // Should be NO state changes made to victory and kingdom cards

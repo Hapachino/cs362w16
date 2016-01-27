@@ -34,13 +34,13 @@ int main() {
 
     struct gameState G;
     // Count of cards to buy
-    int count;
+    int estateCount, duchyCount, provinceCount, ghCount, gardensCount, curseCount;
     // Test function calculation
     int result;
     // Correct calculation
     int score;
     // For keeping track of gardens effect
-    int gardensCount, deck_discard_hand;
+    int deck_discard_hand;
     // Check for pass/fail
     bool pass = true;
     int failed = 0;
@@ -55,64 +55,67 @@ int main() {
     // TESTING PLAYER 0
     p = 0;
 
-    // Enable buy phases and coins
-    G.numBuys = 1000;
-    G.coins = 1000;
+    // From initializeGame()
+    estateCount = 3;
 
     // Buy duchy
-    buyCard(duchy, &G);
+    duchyCount = 1;
+    G.discard[p][ G.discardCount[p] ] = duchy;
+    G.discardCount[p]++;
 
     // Buy province
-    count = 2;
-    for (i = 0; i < count; i++) {
-        buyCard(province, &G);
+    provinceCount = 2;
+    for (i = 0; i < provinceCount; i++) {
+        G.discard[p][ G.discardCount[p] ] = province;
+        G.discardCount[p]++;
     }
     
     // Buy great_hall
-    count = 5;
-    for (i = 0; i < count; i++) {
-        buyCard(great_hall, &G);
+    ghCount = 5;
+    for (i = 0; i < ghCount; i++) {
+        G.discard[p][ G.discardCount[p] ] = great_hall;
+        G.discardCount[p]++;
     }
 
     // Buy gardens
-    count = 4;
-    for (i = 0; i < count; i++) {
-        buyCard(gardens, &G);
+    gardensCount = 4;
+    for (i = 0; i < gardensCount; i++) {
+        G.discard[p][ G.discardCount[p] ] = gardens;
+        G.discardCount[p]++;
     }
 
     // Buy curse
-    count = 2;
-    for (i = 0; i < count; i++) {
-        buyCard(curse, &G);
+    curseCount = 2;
+    for (i = 0; i < curseCount; i++) {
+        G.discard[p][ G.discardCount[p] ] = curse;
+        G.discardCount[p]++;
     }
 
 #if (NOISY_TEST == 1)
+    printf("Test 1: Player %d:\n", p);
     // 27 types of cards
-    printf("Totals of cards by type for Player %d:\n", p);
-    for (i = 0; i < 27; i++) {
-        result = fullDeckCount(p, i, &G);
-        printf("Card count for %s: %d\n", cards[i], result);
-    }
+    // printf("Totals of cards by type for Player %d:\n", p);
+    // for (i = 0; i < 27; i++) {
+    //     result = fullDeckCount(p, i, &G);
+    //     printf("Card count for %s: %d\n", cards[i], result);
+    // }
 #endif
-
-    endTurn(&G);
 
     // Test scoreFor()
     result = scoreFor(p, &G);
     
     // Calculate correct score
     score = 0;
-    score = score + (fullDeckCount(p, curse, &G) * -1);
-    score = score + (fullDeckCount(p, estate, &G));
-    score = score + (fullDeckCount(p, duchy, &G) * 3);
-    score = score + (fullDeckCount(p, province, &G) * 6);
-    score = score + (fullDeckCount(p, great_hall, &G));
+    score = score + (curseCount * -1);
+    score = score + estateCount;
+    score = score + (duchyCount * 3);
+    score = score + (provinceCount * 6);
+    score = score + ghCount;
 #if (NOISY_TEST == 1)
     printf("deckCount: %d\n", G.deckCount[p]);
     printf("discardCount: %d\n", G.discardCount[p]);
     printf("handCount: %d\n", G.handCount[p]);
 #endif
-    gardensCount = fullDeckCount(p, gardens, &G);
     deck_discard_hand = G.deckCount[p] + G.discardCount[p] + G.handCount[p];
     score = score + (deck_discard_hand / 10 * gardensCount);
 
@@ -132,32 +135,38 @@ int main() {
     p = 1;
 
 #if (NOISY_TEST == 1)
+    printf("Test 1: Player %d:\n", p);
     // 27 types of cards
-    printf("Totals of cards by type for Player %d:\n", p);
-    for (i = 0; i < 27; i++) {
-        result = fullDeckCount(p, i, &G);
-        printf("Card count for %s: %d\n", cards[i], result);
-    }
+    // printf("Test 2\nTotals of cards by type for Player %d:\n", p);
+    // for (i = 0; i < 27; i++) {
+    //     result = fullDeckCount(p, i, &G);
+    //     printf("Card count for %s: %d\n", cards[i], result);
+    // }
 #endif
-
-    endTurn(&G);
 
     // Test scoreFor()
     result = scoreFor(p, &G);
 
+    // From initializeGame()
+    curseCount = 0;
+    estateCount = 3;
+    duchyCount = 0;
+    provinceCount = 0;
+    ghCount = 0;
+    gardensCount = 0;
+
     // Calculate correct score
     score = 0;
-    score = score + (fullDeckCount(p, curse, &G) * -1);
-    score = score + (fullDeckCount(p, estate, &G));
-    score = score + (fullDeckCount(p, duchy, &G) * 3);
-    score = score + (fullDeckCount(p, province, &G) * 6);
-    score = score + (fullDeckCount(p, great_hall, &G));
+    score = score + (curseCount * -1);
+    score = score + estateCount;
+    score = score + (duchyCount * 3);
+    score = score + (provinceCount * 6);
+    score = score + ghCount;
 #if (NOISY_TEST == 1)
     printf("deckCount: %d\n", G.deckCount[p]);
     printf("discardCount: %d\n", G.discardCount[p]);
     printf("handCount: %d\n", G.handCount[p]);
 #endif
-    gardensCount = fullDeckCount(p, gardens, &G);
     deck_discard_hand = G.deckCount[p] + G.discardCount[p] + G.handCount[p];
     score = score + (deck_discard_hand / 10 * gardensCount);
 
@@ -166,7 +175,8 @@ int main() {
     printf("Player %d score: %d\n", p, result);
     printf("Player %d score should be: %d\n\n", p, score);
 #endif
-    assert(result == score);
+    // Assert here halts program execution
+    // assert(result == score);
     if (result != score) {
         pass = false;
         failed++;
@@ -176,7 +186,7 @@ int main() {
         printf("All tests passed!");
     }
     else {
-        printf("%d test(s) failed!", failed);
+        printf("%d/2 test(s) failed!", failed);
     }
 
     return 0;

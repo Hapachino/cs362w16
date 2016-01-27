@@ -11,3 +11,6 @@ scoreFor():
 	are a part of the player's deck at that point) rounded down. Instead of counting all of the
 	player's cards and then dividing by 10. scoreFor() uses fullDeckCount() to only get the
 	player's total number of curse cards and then dividing by 10.
+
+	unittest4 also detected a bug in the score calculation of the player's deck. scoreFor() fails
+	to consider cards in the player's deck when the player's discard pile count is zero.

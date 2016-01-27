@@ -130,4 +130,23 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+int playSmithy(int i, int currentPlayer, struct gameState *state, int handPos);
+/* +3 Cards */
+
+int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z);
+/* Reveal cards from your deck until you reveal 2 Treasure cards.
+Put those Treasure cards into your hand and discard the other revealed cards. */
+
+int playCutpurse(int currentPlayer, struct gameState *state, int i, int j, int k, int handPos);
+/* +2 Coins
+Each other player discards a Copper card (or reveals a hand with no Copper). */
+
+int playRemodel(int j, struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos, int i);
+/* Trash a card from your hand.
+Gain a card costing up to 2 coins more than the trashed card. */
+
+int playSea_Hag(int i, struct gameState *state, int currentPlayer);
+/* Each other player discards the top card of his deck,
+then gains a Curse card, putting it on top of his deck. */
+
 #endif

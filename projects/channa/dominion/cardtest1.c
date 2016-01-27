@@ -133,7 +133,7 @@ int main() {
     // smithy should draw 3 cards from player's own discard
     // and add them to player's own hand
     // 14, 25, and 12 should be drawn and added to hand
-    // 7 and 12 should stay in the deck
+    // 7 and 21 should stay in the deck
     // smithy should be added to discard
     playSmithy(0, p, &G, 5);
 

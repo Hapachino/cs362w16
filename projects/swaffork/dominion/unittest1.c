@@ -17,6 +17,7 @@
 
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
@@ -33,7 +34,7 @@ int main() {
                , remodel, smithy, village, baron, great_hall};
     struct gameState *state = malloc(sizeof(struct gameState));
     struct gameState *originalState = malloc(sizeof(struct gameState));
-    int maxHandCount = 5;
+    // int maxHandCount = 5;
 
     // Initialize game
     
@@ -51,7 +52,7 @@ int main() {
     int player;
     for (player = 0; player < numPlayers; player++)
     {
-        if (shuffle(player), state) < 0)
+        if (shuffle(player, state) < 0)
         {
             printf("shuffe() failed.\n");
             return -1;

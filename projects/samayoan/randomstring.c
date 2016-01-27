@@ -46,6 +46,9 @@ Lastly I add the terminating \0 character and return the string.
 	}
 
 I both functions I limited the domain of inputs to make the test produce interesting and valuable
-results.
+results. The tester first looks for specific characters in the randomly generated char. As it finds 
+each char, it incrememts the "stage" variable. The tester reaches stage 9, then starts looking for 
+the string "reset". Once that string is found, it "errors out". Giving the limited domain, that 
+string shows up usually in less than a minute and the test terminates.
 
 */

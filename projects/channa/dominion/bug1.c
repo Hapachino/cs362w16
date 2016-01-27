@@ -27,5 +27,6 @@ playSmithy():
 
 playAdventurer():
 	cardtest2 detected that non-treasure cards revealed are not properly discarded. They could not be
-	accounted for in either the player's own piles nor the other player's piles. Instead of being
-	discarded, it seems that they have been removed from play.
+	accounted for in the player's own piles, the other player's piles, nor the estate pile (only the
+	initial coppers and estates were used). Instead of being discarded, it seems that they have been
+	removed from play.

@@ -23,8 +23,7 @@
 #include <assert.h>
 #include "rngs.h"
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+int compare(const int* a, const int* b);
 
 int main() {
     int i;
@@ -34,10 +33,8 @@ int main() {
                , remodel, smithy, village, baron, great_hall};
     struct gameState *state = malloc(sizeof(struct gameState));
     struct gameState *originalState = malloc(sizeof(struct gameState));
-    // int maxHandCount = 5;
 
     // Initialize game
-    
     if (initializeGame(numPlayers, cards, seed, state) < 0)
     {
         printf("Error initializing game.\n");
@@ -58,19 +55,49 @@ int main() {
             return -1;
         }
 
-        //Set of cards in deck is the same (check first that deck count is unchanged)
-        for (i = 0; i < numPlayers; i++)
+        // Check first that each player's deck count is unchanged)
+        int p;
+        for (p = 0; p < numPlayers; p++)
         {
-            if (state->handCount[i] != originalState->handCount[i])
+            if (state->handCount[p] != originalState->handCount[p])
             {
-                printf("handCount not the same at player%d\n", i);
+                printf("handCount not the same at player%d\n", p);
                 return -1;
             }
         }
-      
-/*  -Order of cards in deck is not the same
- *  -Set and order of other players' decks is the same
- *  -If the player has <= 1 card in his or her deck, everything should be the same */
+
+        // Check order of cards for each player 
+        for (p = 0; j < numPlayers; p++)
+        {
+            while ( (i < state->deckCount[p]) &&
+                    (state->deck[p][i] == originalState->deck[p][i]) )
+            {
+                i++;
+            }
+            
+            // Check if order of cards in shuffled deck is the same
+            if (p == player && i >= state->deckCount[p])
+            {
+                printf("Error: Order of player %d's deck is the same.\n", player);
+                return -1;
+            }
+
+            // Check if order of cards in unshuffled deck is the same
+            if (p != player && i < state->deckCount(p))
+            {
+                printf("Error: Order of non-shuffled deck is different.\n");
+                return -1;
+            }
+        }
+        
+        // Check that shuffled deck has same set of cards
+        qsort((void*)(state.deck[player]), state.deckCount[player], sizeof(int), compare);
+        qsort((void*)(originalState.deck[player]), state.deckCount[player], sizeof(int), compare);
+
+        if (memcmp(state, originalState, sizeof(struct gameState)) != 0)
+        {
+            printf("Error: Shuffled deck does not have same set of cards.\n");
+        }
     }
 
     printf("All tests passed!\n");

@@ -152,10 +152,11 @@ int main() {
     int check1[] = {estate, estate, copper, copper, copper, adventurer, cutpurse};
     count = sizeof(check1)/sizeof(check1[0]);
 
+    printf("Deck count: %d, Expected: %d\n", G.deckCount[p], count);
     if (G.deckCount[p] != count) {
+        printf("----------------- TEST FAILED!\n");
         pass = false;
     }
-    printf("Deck count: %d, Expected: %d\n", G.deckCount[p], count);
 
     printf("DISCARD COUNT\n");
     for (i = 0; i < G.discardCount[p]; i++)
@@ -167,10 +168,11 @@ int main() {
     int check2[] = {smithy};
     count = sizeof(check2)/sizeof(check2[0]);
 
+    printf("Discard count: %d, Expected: %d\n", G.discardCount[p], count);
     if (G.discardCount[p] != count) {
+        printf("----------------- TEST FAILED!\n");
         pass = false;
     }
-    printf("Discard count: %d, Expected: %d\n", G.discardCount[p], count);
 
     printf("HAND COUNT\n");
     for (i = 0; i < G.handCount[p]; i++)
@@ -182,10 +184,11 @@ int main() {
     int check3[] = {copper, copper, estate, copper, copper, village, sea_hag, remodel};
     count = sizeof(check3)/sizeof(check3[0]);
 
+    printf("Hand count: %d, Expected: %d\n", G.handCount[p], count);
     if (G.handCount[p] != count) {
+        printf("----------------- TEST FAILED!\n");
         pass = false;
     }
-    printf("Hand count: %d, Expected: %d\n", G.handCount[p], count);
 
     // Should be NO state changes made to next player's decks
     p = 1;

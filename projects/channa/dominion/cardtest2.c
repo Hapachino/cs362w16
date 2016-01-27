@@ -191,6 +191,7 @@ int main() {
     // Check that count of cards is correct
     printf("Card count: %d, Expected: %d\n", testG.discardCount[p], count);
     if (testG.discardCount[p] != count) {
+        printf("----------------- TEST FAILED!\n");
         pass = false;
     }
 
@@ -199,6 +200,7 @@ int main() {
     for (i = 0; i < count; i++) {
         printf("%d\n", expected5[i]);
         if (testG.discard[p][i] != expected5[i]) {
+            printf("----------------- TEST FAILED!\n");
             pass = false;
         }
     }
@@ -293,6 +295,7 @@ int main() {
     // Check that count of cards is correct
     printf("Card count: %d, Expected: %d\n", testG.discardCount[p], count);
     if (testG.discardCount[p] != count) {
+        printf("----------------- TEST FAILED!\n");
         pass = false;
     }
 
@@ -301,6 +304,7 @@ int main() {
     for (i = 0; i < count; i++) {
         printf("%d\n", expected8[i]);
         if (testG.discard[p][i] != expected8[i]) {
+            printf("----------------- TEST FAILED!\n");
             pass = false;
         }
     }

@@ -38,6 +38,7 @@ int main() {
 
     // Player 1
     p = 0;
+    printf("----------------- Player %d:\n", p);
 
     printf("----------------- Test 1: coppers at top of deck\n");
     printf("----------------- Initial counts\n");
@@ -324,6 +325,56 @@ int main() {
         printf("%d\n", expected9[i]);
         assert(testG.hand[p][i] == expected9[i]);
     }
+
+    // Should be NO state changes made to next player's decks
+    p = 1;
+    printf("----------------- Player %d:\n", p);
+    printf("----------------- Test 4: Check that no state changes were made to other player's deck\n");
+
+    // Check pile counts
+    int copperCount = 0;
+    int estateCount = 0;
+
+    printf("DECK COUNT\n");
+    for (i = 0; i < G.deckCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.deck[p][i]);
+        if (G.deck[p][i] == copper) {
+            copperCount++;
+        }
+        if (G.deck[p][i] == estate) {
+            estateCount++;
+        }
+    }
+
+    // Verify
+    printf("Copper count: %d, Expected: 7\n", copperCount);
+    printf("Estate count: %d, Expected: 3\n", estateCount);
+    assert(copperCount == 7);
+    assert(estateCount == 3);
+
+    printf("Deck count: %d, Expected: 10\n", G.deckCount[p]);
+    assert(G.deckCount[p] == 10);
+
+    printf("DISCARD COUNT\n");
+    for (i = 0; i < G.discardCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.discard[p][i]);
+    }
+
+    // Verify
+    printf("Discard count: %d, Expected: 0\n", G.discardCount[p]);
+    assert(G.discardCount[p] == 0);
+
+    printf("HAND COUNT\n");
+    for (i = 0; i < G.handCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.hand[p][i]);
+    }
+
+    // Verify
+    printf("Hand count: %d, Expected: 0\n", G.handCount[p]);
+    assert(G.handCount[p] == 0);
 
     if (pass) {
         printf("All tests passed!");

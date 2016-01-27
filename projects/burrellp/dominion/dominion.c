@@ -648,7 +648,7 @@ void playSmithy (int currentPlayer, int handPos, struct gameState *state)
 {
     //draw three cards
     for (int i = 0; i <= 3; i++)
-        drawCard(currentPlayer, state)
+        drawCard(currentPlayer, state);
     
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
@@ -662,10 +662,10 @@ void playAdventurer(int currentPlayer, int drawntreasure, int cardDrawn, int tem
     while (drawntreasure < 2)
     {
         //if the deck is empty, we need to shuffle, discard, and add to deck
-        if (State->deckCount[currentPlayer] < 1)
+        if (state->deckCount[currentPlayer] < 1)
             shuffle(currentPlayer, state);
         
-        drawCard(currentPlayer, state)
+        drawCard(currentPlayer, state);
         //top card of hand is most recently drawn hand
         int cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];
         
@@ -697,18 +697,18 @@ void playVillage(int currentPlayer, int handPos, struct gameState *state)
     discardCard(handPos, currentPlayer, state, 1);
 }
 
-void playFeast(int currentPlayer, int temphand[], struct gameState *state)
+void playFeast(int currentPlayer, int choice1, int temphand[], struct gameState *state)
 {
     //Backup hand
     for (int i = 0; i <= state->handCount[currentPlayer]; i++)
     {
-        temphand[i] = state->hand[currentPlayer][i]     //Backup each card
-        state->hand[currentPlayer][i] = -1              //Set to nothing
+        temphand[i] = state->hand[currentPlayer][i];     //Backup each card
+        state->hand[currentPlayer][i] = -1;              //Set to nothing
     }
     
     //Update coins for buy
     updateCoins(currentPlayer, state, 4);
-    x = 1;      //Condition to loop on
+    int x = 1;      //Condition to loop on
     while(x == 1)
     {
         if (supplyCount(choice1, state) <= 0)
@@ -749,14 +749,16 @@ void playFeast(int currentPlayer, int temphand[], struct gameState *state)
 void playCouncilRoom(int currentPlayer, int handPos, struct gameState *state)
 {
     //+4 Cards
-    for (int i = 0; i < 4; i++)
+    int i = 0;
+    for (i; i < 4; i++)
         drawCard(currentPlayer, state);
     
     //#1 Buy
     state->numBuys++;
     
     //Each other player draws a card
-    for (int j = 0; j < state->numPlayers; j++)
+    int j = 0;
+    for (j; j < state->numPlayers; j++)
     {
         if (i != currentPlayer)
             drawCard(j, state);
@@ -794,11 +796,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         return 0;
 			
     case council_room:
-        playCouncilRoom(currentPlayer, handPos, state;
+        playCouncilRoom(currentPlayer, handPos, state);
         return 0;
 			
     case feast:
-        int playFeast(currentPlayer, temphand[], state)
+        int playFeast(currentPlayer, choice1, temphand[], state);
         return 0;
 			
     case gardens:

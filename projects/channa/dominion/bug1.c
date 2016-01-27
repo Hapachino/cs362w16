@@ -14,3 +14,10 @@ scoreFor():
 
 	unittest4 also detected a bug in the score calculation of the player's deck. scoreFor() fails
 	to consider cards in the player's deck when the player's discard pile count is zero.
+
+playSmithy():
+	cardtest1 detected incorrect counts of the player's cards after playing smithy. Instead of 7
+	cards in the deck, there were 6. Instead of 8 cards in the hand, there were 9. This means that
+	there was an extra card in the hand and one missing card from the deck and so smithy drew 4
+	cards instead of 3. Additionally, the discard pile was empty which means that after being played,
+	smithy was trashed rather than discarded.

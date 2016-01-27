@@ -12,8 +12,7 @@ void testPlayAdventurer() {
   int j = 0;
 
   int numPlayers = 0;
-  int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-	       sea_hag, tribute, smithy};
+  int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
   int randomSeed = -1;                          // Set randomSeed to less than 0 so it is based off system clock in the initializeGame method.
   int successfulInit = 0;                       // Variable to hold if the game was created successfully or not.
 

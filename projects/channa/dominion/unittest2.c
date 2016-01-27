@@ -48,13 +48,13 @@ int main() {
     {
 #if (NOISY_TEST == 1)
         printf("\n----------------- Testing for Player %d:\n", p);
-        printf("- Adding the following to\n");
-        printf("- discard pile: 5 coppers\n");
-        printf("- hand:         10 golds to hand\n");
-        printf("- discard pile: 2 provinces\n");
-        printf("- hand:         3 smithys\n");
-        printf("- discard pile: 4 tributes\n");
-        printf("- hand:         5 embargos\n");
+        printf("Adding the following to\n");
+        printf("    discard pile: 5 coppers\n");
+        printf("    hand:         10 golds\n");
+        printf("    discard pile: 2 provinces\n");
+        printf("    hand:         3 smithys\n");
+        printf("    discard pile: 4 tributes\n");
+        printf("    hand:         5 embargos\n");
 #endif
 
         // Estates

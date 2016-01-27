@@ -226,7 +226,7 @@ int main() {
         assert(testG.hand[p][i] == expected6[i]);
     }
 
-   printf("----------------- Test 3: coppers interspersed through deck\n");
+    printf("----------------- Test 3: coppers interspersed through deck\n");
     printf("----------------- Initial counts\n");
 
     memcpy(&testG, &G, sizeof(struct gameState));

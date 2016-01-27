@@ -127,7 +127,7 @@ int main() {
 
     // Verify
 #if (NOISY_TEST == 1)
-    printf("Player %d score: %d, Expected: %d\n", p, result, score);
+    printf("Player %d score: %d, expected: %d\n", p, result, score);
 #endif
     // Assert here halts program execution
     // assert(result == score);
@@ -178,7 +178,7 @@ int main() {
 
     // Verify
 #if (NOISY_TEST == 1)
-    printf("Player %d score: %d, Expected: %d\n", p, result, score);
+    printf("Player %d score: %d, expected: %d\n", p, result, score);
 #endif
     // Assert here halts program execution
     // assert(result == score);

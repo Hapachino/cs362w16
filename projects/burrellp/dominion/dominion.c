@@ -800,9 +800,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case council_room:
         playCouncilRoom(currentPlayer, handPos, state);
         return 0;
-			
+            
     case feast:
-        int playFeast(currentPlayer, choice1, temphand, state);
+        playFeast(currentPlayer, choice1, temphand, state);
         return 0;
 			
     case gardens:

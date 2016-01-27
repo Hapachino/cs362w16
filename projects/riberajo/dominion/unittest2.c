@@ -56,6 +56,7 @@ int main() {
       G.supplyCount[feast] = 0;
       r =  isGameOver(&G);
       assert(r == 0);
+      
       // test if game ends with 2 empty pile
       G.supplyCount[smithy] = 0;
       r = isGameOver(&G);

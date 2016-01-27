@@ -24,3 +24,8 @@ playSmithy():
 	
 	Additionally, the discard pile was empty which means that after being played,
 	smithy was trashed rather than discarded.
+
+playAdventurer():
+	cardtest2 detected that non-treasure cards revealed are not properly discarded. They could not be
+	accounted for in either the player's own piles nor the other player's piles. Instead of being
+	discarded, it seems that they have been removed from play.

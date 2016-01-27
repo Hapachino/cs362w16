@@ -9,8 +9,14 @@ dominion.o: dominion.h dominion.c rngs.o
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 
-test: dominion.o unittest1.c
-	gcc -o tester unittest1.c -g dominion.o rngs.o $(CFLAGS)
+testFunctions.o: testFunctions.h testFunctions.c dominion.o rngs.o
+	gcc -c testFunctions.c -g $(CFLAGS)
+
+unittest1: dominion.o testFunctions.o unittest1.c
+	gcc -o unittest1 unittest1.c -g dominion.o rngs.o testFunctions.o $(CFLAGS)
+
+unittest2: dominion.o testFunctions.o unittest2.c
+	gcc -o unittest2 unittest2.c -g dominion.o rngs.o testFunctions.o $(CFLAGS)
 
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
@@ -36,11 +42,16 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player test testDrawCard testBuyCard badTestDrawCard
+unittests: unittest1 unittest2
+
+rununittests: unittest1
+	./unittest1 &> myunittestsresults.out
+
+all: playdom player unittest1 unittest2 testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test tester player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test unittest1 unittest2 player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
 
 remake: 
 	make clean
-	make all
+	make unittest2

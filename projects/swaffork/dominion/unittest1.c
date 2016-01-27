@@ -67,7 +67,7 @@ int main() {
         }
 
         // Check order of cards for each player 
-        for (p = 0; j < numPlayers; p++)
+        for (p = 0; p < numPlayers; p++)
         {
             while ( (i < state->deckCount[p]) &&
                     (state->deck[p][i] == originalState->deck[p][i]) )
@@ -83,7 +83,7 @@ int main() {
             }
 
             // Check if order of cards in unshuffled deck is the same
-            if (p != player && i < state->deckCount(p))
+            if (p != player && i < state->deckCount[p])
             {
                 printf("Error: Order of non-shuffled deck is different.\n");
                 return -1;
@@ -91,8 +91,8 @@ int main() {
         }
         
         // Check that shuffled deck has same set of cards
-        qsort((void*)(state.deck[player]), state.deckCount[player], sizeof(int), compare);
-        qsort((void*)(originalState.deck[player]), state.deckCount[player], sizeof(int), compare);
+        qsort((void*)(state->deck[0]), state->deckCount[player], sizeof(int), compare);
+        qsort((void*)(originalState->deck[0]), state->deckCount[player], sizeof(int), compare);
 
         if (memcmp(state, originalState, sizeof(struct gameState)) != 0)
         {

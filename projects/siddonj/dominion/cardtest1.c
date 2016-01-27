@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <string.h>
+#include <unistd.h>
 
 #include "dominion.h"
 
@@ -10,7 +12,6 @@
 
 void testPlaySmithy() {
   int i = 0;
-  int j = 0;
   int playerHandSize = 0;       // Get hand size.
   int playerActions = 0;
   int handSizeIncrease = 0;
@@ -28,7 +29,6 @@ void testPlaySmithy() {
   int numPlayers = 2;
   int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
   int randomSeed = -1;                          // Set randomSeed to less than 0 so it is based off system clock in the initializeGame method.
-  int successfulInit = 0;                       // Variable to hold if the game was created successfully or not.
   struct gameState *state = newGame();          // Initialize game state.
 
 
@@ -36,7 +36,7 @@ void testPlaySmithy() {
 
   // Test playing smithy correctly increments player's handsize.
   // Initialize game with valid game values.
-  successfulInit = initializeGame(numPlayers, kingdomCards, randomSeed, state);
+  initializeGame(numPlayers, kingdomCards, randomSeed, state);
   playerHandSize = numHandCards(state);       // Get hand size.
   playerActions = state->numActions;          // Get initial action amount.
 

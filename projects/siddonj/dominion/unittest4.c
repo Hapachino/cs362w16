@@ -3,15 +3,13 @@
 #include <time.h>
 
 #include "dominion.h"
+#include "dominion_helpers.h"
 
 #define DRAWCARD_PASS "drawCard() PASS: "
 #define DRAWCARD_FAIL "drawCard() FAIL: "
 
 
 void testDrawCard() {
-  int i = 0;                  // Initialize iterators.
-  int j = 0;
-
   // Initilize game variables.
   int numPlayers = 2;
   int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,

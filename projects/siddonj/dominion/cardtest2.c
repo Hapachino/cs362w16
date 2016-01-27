@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 #include "dominion.h"
+#include "dominion_helpers.h"
 
 #define PLAYADVENTURER_PASS "playAdventurer() PASS: "
 #define PLAYADVENTURER_FAIL "playAdventurer() FAIL: "
@@ -9,7 +12,6 @@
 
 void testPlayAdventurer() {
   int i = 0;
-  int j = 0;
   int playerHandSize = 0;       // Get hand size.
   int playerActions = 0;
   int handSizeIncrease = 0;
@@ -25,19 +27,17 @@ void testPlayAdventurer() {
   int otherDiscardIncrease = 0;
 
 
-
   int numPlayers = 2;
   int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
   int randomSeed = -1;                          // Set randomSeed to less than 0 so it is based off system clock in the initializeGame method.
-  int successfulInit = 0;                       // Variable to hold if the game was created successfully or not.
   struct gameState *state = newGame();          // Initialize game state.
 
 
   printf("\n***** TESTING PLAY ADVENTURER *****\n");
 
   // Initialize game with valid game values.
-  memset(state, 0, sizeof(state));        // Clean out previous state.
-  successfulInit = initializeGame(numPlayers, kingdomCards, randomSeed, state);
+  memset(state, 0, sizeof(struct gameState));        // Clean out previous state.
+  initializeGame(numPlayers, kingdomCards, randomSeed, state);
   playerHandSize = numHandCards(state);       // Get hand size.
   playerActions = state->numActions;          // Get initial action amount.
 
@@ -183,7 +183,7 @@ void testPlayAdventurer() {
 
   // Initialize new game.
   // Initialize game with valid game values.
-  successfulInit = initializeGame(numPlayers, kingdomCards, randomSeed, state);
+  initializeGame(numPlayers, kingdomCards, randomSeed, state);
   int failPlay = playAdventurer(state, state->whoseTurn);   // Don't put adventurer card in player 1's hand.
 
   if(failPlay == -1) {    // Should return error.
@@ -196,7 +196,7 @@ void testPlayAdventurer() {
 
   // Initialize new game, test playing without deck.
   // Initialize game with valid game values.
-  successfulInit = initializeGame(numPlayers, kingdomCards, randomSeed, state);
+  initializeGame(numPlayers, kingdomCards, randomSeed, state);
 
   // Set each card in players hand to a treasure.
   for(i = 0; i < state->handCount[state->whoseTurn]; i++) {

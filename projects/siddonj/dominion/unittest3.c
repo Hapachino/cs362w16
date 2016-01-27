@@ -3,13 +3,13 @@
 #include <time.h>
 
 #include "dominion.h"
+#include "dominion_helpers.h"
 
 #define UPDATECOINS_PASS "updateCoins() PASS: "
 #define UPDATECOINS_FAIL "updateCoins() FAIL: "
 
 void testUpdateCoins() {
   int i = 0;                  // Initialize iterators.
-  int j = 0;
 
   // Initilize game variables.
   int numPlayers = 2;

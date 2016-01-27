@@ -9,7 +9,7 @@
 
 void testPlayVillage() {
   int i = 0;
-  int j = 0;
+
 
   int numPlayers = 0;
   int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
@@ -24,7 +24,7 @@ void testPlayVillage() {
   for(numPlayers = 0; numPlayers < MAX_PLAYERS+2; numPlayers++) {               // Create games with less than, equal to, and more players that supported.
 
     // Initialize game with valid game values.
-    successfulInit = initializeGame(numPlayers, kingdomCards, randomSeed, state);
+    initializeGame(numPlayers, kingdomCards, randomSeed, state);
     // playSmithy(struct gameState *state, int currentPlayer, int handPos);
   }
 }

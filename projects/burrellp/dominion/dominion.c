@@ -718,7 +718,7 @@ void playFeast(int currentPlayer, int choice1, int temphand[], struct gameState 
             if (DEBUG)
             {
                 printf("None of that card left, sorry!\n");
-                printf("Coins: %d < %d\n", supplyCount(choice1, state));
+                printf("Cards Left: %d\n", supplyCount(choice1, state));
             }
         }
         else if (state->coins < getCost(choice1))
@@ -802,7 +802,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         return 0;
 			
     case feast:
-        int playFeast(currentPlayer, choice1, temphand[], state);
+        int playFeast(currentPlayer, choice1, temphand, state);
         return 0;
 			
     case gardens:

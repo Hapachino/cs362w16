@@ -32,7 +32,8 @@ playAdventurer():
 	removed from play.
 
 playCutpurse():
-	cardtest3 detected that when the number of players is 4, the last player is unaffected by the card's
-	effect of having to discard a copper despite having coppers in their hand. Additionally, cardtest3
-	detectd that even though a player may have no coppers in their hand, they are not forced to reveal
-	their hand per the card's effect.
+	cardtest3 detected that the last (highest numbered) player is always skipped and thus, is unaffected 
+	by the card's effect of having to discard a copper despite having coppers in their hand. 
+
+	Additionally, cardtest3 detectd that even though a player may have no coppers in their hand, they
+	are not forced to reveal their hand per the card's effect.

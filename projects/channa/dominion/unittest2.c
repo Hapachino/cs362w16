@@ -49,12 +49,12 @@ int main() {
 #if (NOISY_TEST == 1)
         printf("\n----------------- Testing for Player %d:\n", p);
         printf("Adding the following to\n");
-        printf("    discard pile: 5 coppers\n");
+        printf("    deck:         5 coppers\n");
         printf("    hand:         10 golds\n");
         printf("    discard pile: 2 provinces\n");
         printf("    hand:         3 smithys\n");
         printf("    discard pile: 4 tributes\n");
-        printf("    hand:         5 embargos\n");
+        printf("    deck:         5 embargos\n");
 #endif
 
         // Estates
@@ -73,11 +73,11 @@ int main() {
 #endif
         assert(result == copperCount);
 
-        // Test update of coppers (discard)
+        // Test update of coppers (deck)
         count = 5;
         for (i = 0; i < count; i++) {
-            G.discard[p][ G.discardCount[p] ] = copper;
-            G.discardCount[p]++;
+            G.deck[p][ G.deckCount[p] ] = copper;
+            G.deckCount[p]++;
         }
         copperCount = copperCount + count;
         result = fullDeckCount(p, 4, &G);
@@ -134,11 +134,11 @@ int main() {
 #endif
         assert(result == count);
 
-        // Test embargo (hand)
+        // Test embargo (deck)
         count = 5;
         for (i = 0; i < count; i++) {
-            G.hand[p][ G.handCount[p] ] = embargo;
-            G.handCount[p]++;
+            G.deck[p][ G.deckCount[p] ] = embargo;
+            G.deckCount[p]++;
         }
         result = fullDeckCount(p, 22, &G);
 #if (NOISY_TEST == 1)

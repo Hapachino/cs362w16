@@ -15,6 +15,10 @@
 #include <stdbool.h>
 #include "rngs.h"
 
+// set NOISY_TEST to 0 to remove full deck printfs from output
+// (0 to show hands only not decks and discard piles)
+#define NOISY_TEST 1
+
 int main() {
     int i;
     int seed = 1000;
@@ -68,6 +72,7 @@ int main() {
 
         printf("----------------- Player %d\n", p);
 
+#if (NOISY_TEST == 1)
         printf("DECK COUNT\n");
         for (i = 0; i < testG.deckCount[p]; i++)
         {
@@ -79,6 +84,7 @@ int main() {
         {
             printf("Position %d, Card: %d\n", i, testG.discard[p][i]);
         }
+#endif
 
         printf("HAND COUNT\n");
         for (i = 0; i < testG.handCount[p]; i++)
@@ -111,6 +117,7 @@ int main() {
 
         printf("----------------- Player %d\n", p);
 
+#if (NOISY_TEST == 1)
         printf("DECK COUNT\n");
         for (i = 0; i < testG.deckCount[p]; i++)
         {
@@ -122,6 +129,7 @@ int main() {
         {
             printf("Position %d, Card: %d\n", i, testG.discard[p][i]);
         }
+#endif
 
         printf("HAND COUNT\n");
         for (i = 0; i < testG.handCount[p]; i++)
@@ -194,6 +202,7 @@ int main() {
 
         printf("----------------- Player %d\n", p);
 
+#if (NOISY_TEST == 1)
         printf("DECK COUNT\n");
         for (i = 0; i < testG.deckCount[p]; i++)
         {
@@ -205,6 +214,7 @@ int main() {
         {
             printf("Position %d, Card: %d\n", i, testG.discard[p][i]);
         }
+#endif
 
         printf("HAND COUNT\n");
         for (i = 0; i < testG.handCount[p]; i++)
@@ -237,6 +247,7 @@ int main() {
 
         printf("----------------- Player %d\n", p);
 
+#if (NOISY_TEST == 1)
         printf("DECK COUNT\n");
         for (i = 0; i < testG.deckCount[p]; i++)
         {
@@ -248,6 +259,7 @@ int main() {
         {
             printf("Position %d, Card: %d\n", i, testG.discard[p][i]);
         }
+#endif
 
         printf("HAND COUNT\n");
         for (i = 0; i < testG.handCount[p]; i++)
@@ -258,6 +270,9 @@ int main() {
             }
         }
     }
+
+    printf("Expected output: Player 1's hand should have been revealed (hand with no coppers).\n");
+    printf("If 'Player 1 reveals card number ...' did not appear in the output, then this test has failed.\n");
 
     if (pass) {
         printf("\nAll tests passed!");

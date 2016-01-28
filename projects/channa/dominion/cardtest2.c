@@ -40,6 +40,7 @@ int main() {
 
     printf("----------------- Testing adventurer\n");
 
+    // Copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // Player 1
@@ -131,6 +132,7 @@ int main() {
     printf("----------------- Test 2: coppers at bottom of deck\n");
     printf("----------------- Initial counts\n");
 
+    // Copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // 4, 4, 4, 1, 1

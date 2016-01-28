@@ -17,7 +17,7 @@
 
 // set NOISY_TEST to 0 to remove full deck printfs from output
 // (0 to show hands only not decks and discard piles)
-#define NOISY_TEST 1
+#define NOISY_TEST 0
 
 int main() {
     int i;
@@ -40,9 +40,11 @@ int main() {
     // Copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
+    printf("----------------- Testing cutpurse\n");
+
     // Start testing
     p = 0;
-    printf("----------------- Testing cutpurse: all hands with coppers\n");
+    printf("\n----------------- Test 1: 4 hands with coppers\n");
 
     // Put cutpurse in hand of player 0
     testG.hand[p][ testG.handCount[p] ] = cutpurse;
@@ -89,7 +91,9 @@ int main() {
         printf("HAND COUNT\n");
         for (i = 0; i < testG.handCount[p]; i++)
         {
+#if (NOISY_TEST == 1)
             printf("Position %d, Card: %d\n", i, testG.hand[p][i]);
+#endif
             if (testG.hand[p][i] == copper) {
                 copperCount++;
             }
@@ -134,7 +138,9 @@ int main() {
         printf("HAND COUNT\n");
         for (i = 0; i < testG.handCount[p]; i++)
         {
+#if (NOISY_TEST == 1)
             printf("Position %d, Card: %d\n", i, testG.hand[p][i]);
+#endif
             if (testG.hand[p][i] == copper) {
                 copperCount++;
             }
@@ -163,7 +169,263 @@ int main() {
 
     // Start testing
     p = 0;
-    printf("\n----------------- Testing cutpurse: hand with no coppers\n");
+    printf("\n----------------- Test 2: 3 hands with coppers\n");
+
+    // Change number of players
+    numPlayer = 3;
+
+    // Put cutpurse in hand of player 0
+    testG.hand[p][ testG.handCount[p] ] = cutpurse;
+    testG.handCount[p]++;
+
+    // Move players' cards from decks to hands
+    // so that we can check their hands for coppers to discard
+    for (p = 1; p < numPlayer; p++) {
+        for (i = 0; i < 10; i++) {
+            testG.hand[p][i] = testG.deck[p][i];//Add card to hand
+            testG.deckCount[p]--;
+            testG.handCount[p]++;//Increment hand count
+        }
+    }
+
+    // Check pile counts
+    printf("----------------- AFTER PUT CUTPURSE IN HAND FOR PLAYER 0:\n");
+    printf("----------------- AFTER MOVE CARDS FROM DECKS TO HANDS FOR PLAYER 1, 2:\n");
+
+    // Initial coins
+    initialCoins = testG.coins;
+    printf("Initial coins: %d\n", initialCoins);
+
+    for (p = 0; p < numPlayer; p++) {
+
+        copperCount = 0;
+
+        printf("----------------- Player %d\n", p);
+
+#if (NOISY_TEST == 1)
+        printf("DECK COUNT\n");
+        for (i = 0; i < testG.deckCount[p]; i++)
+        {
+            printf("Position %d, Card: %d\n", i, testG.deck[p][i]);
+        }
+
+        printf("DISCARD COUNT\n");
+        for (i = 0; i < testG.discardCount[p]; i++)
+        {
+            printf("Position %d, Card: %d\n", i, testG.discard[p][i]);
+        }
+#endif
+
+        printf("HAND COUNT\n");
+        for (i = 0; i < testG.handCount[p]; i++)
+        {
+#if (NOISY_TEST == 1)
+            printf("Position %d, Card: %d\n", i, testG.hand[p][i]);
+#endif
+            if (testG.hand[p][i] == copper) {
+                copperCount++;
+            }
+        }
+
+        copperList[p] = copperCount;
+        printf("Copper count: %d\n", copperCount);
+    }
+
+    // Play cutpurse
+    p = 0;
+    playCutpurse(p, &testG, 0, 0, 0, 5);
+
+    // Check pile counts
+    printf("----------------- AFTER PLAY CUTPURSE\n");
+
+    // cutpurse gives +2 coins
+    updatedCoins = initialCoins + 2;
+    printf("Updated coins: %d, Expected: %d\n", testG.coins, updatedCoins);
+    assert(testG.coins == updatedCoins);
+
+    for (p = 0; p < numPlayer; p++) {
+
+        copperCount = 0;
+
+        printf("----------------- Player %d\n", p);
+
+#if (NOISY_TEST == 1)
+        printf("DECK COUNT\n");
+        for (i = 0; i < testG.deckCount[p]; i++)
+        {
+            printf("Position %d, Card: %d\n", i, testG.deck[p][i]);
+        }
+
+        printf("DISCARD COUNT\n");
+        for (i = 0; i < testG.discardCount[p]; i++)
+        {
+            printf("Position %d, Card: %d\n", i, testG.discard[p][i]);
+        }
+#endif
+
+        printf("HAND COUNT\n");
+        for (i = 0; i < testG.handCount[p]; i++)
+        {
+#if (NOISY_TEST == 1)
+            printf("Position %d, Card: %d\n", i, testG.hand[p][i]);
+#endif
+            if (testG.hand[p][i] == copper) {
+                copperCount++;
+            }
+        }
+
+        // If not Player 0, then each other player discards a copper
+        if (p != 0) {
+            printf("Copper count: %d, Expected: %d\n", copperCount, copperList[p] - 1);
+            if (copperCount != copperList[p] - 1) {
+                printf("----------------- TEST FAILED!\n");
+                pass = false;
+            }
+        }
+        // Player 0 played cutpurse and so copper count should not change
+        else {
+            printf("Copper count: %d, Expected: %d\n", copperCount, copperList[p]);
+            if (copperCount != copperList[p]) {
+                printf("----------------- TEST FAILED!\n");
+                pass = false;               
+            }
+        }
+    }
+
+    // Copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
+
+    // Start testing
+    p = 0;
+    printf("\n----------------- Test 3: 2 hands with coppers\n");
+
+    // Change number of players
+    numPlayer = 2;
+
+    // Put cutpurse in hand of player 0
+    testG.hand[p][ testG.handCount[p] ] = cutpurse;
+    testG.handCount[p]++;
+
+    // Move players' cards from decks to hands
+    // so that we can check their hands for coppers to discard
+    for (p = 1; p < numPlayer; p++) {
+        for (i = 0; i < 10; i++) {
+            testG.hand[p][i] = testG.deck[p][i];//Add card to hand
+            testG.deckCount[p]--;
+            testG.handCount[p]++;//Increment hand count
+        }
+    }
+
+    // Check pile counts
+    printf("----------------- AFTER PUT CUTPURSE IN HAND FOR PLAYER 0:\n");
+    printf("----------------- AFTER MOVE CARDS FROM DECKS TO HANDS FOR PLAYER 1:\n");
+
+    // Initial coins
+    initialCoins = testG.coins;
+    printf("Initial coins: %d\n", initialCoins);
+
+    for (p = 0; p < numPlayer; p++) {
+
+        copperCount = 0;
+
+        printf("----------------- Player %d\n", p);
+
+#if (NOISY_TEST == 1)
+        printf("DECK COUNT\n");
+        for (i = 0; i < testG.deckCount[p]; i++)
+        {
+            printf("Position %d, Card: %d\n", i, testG.deck[p][i]);
+        }
+
+        printf("DISCARD COUNT\n");
+        for (i = 0; i < testG.discardCount[p]; i++)
+        {
+            printf("Position %d, Card: %d\n", i, testG.discard[p][i]);
+        }
+#endif
+
+        printf("HAND COUNT\n");
+        for (i = 0; i < testG.handCount[p]; i++)
+        {
+#if (NOISY_TEST == 1)
+            printf("Position %d, Card: %d\n", i, testG.hand[p][i]);
+#endif
+            if (testG.hand[p][i] == copper) {
+                copperCount++;
+            }
+        }
+
+        copperList[p] = copperCount;
+        printf("Copper count: %d\n", copperCount);
+    }
+
+    // Play cutpurse
+    p = 0;
+    playCutpurse(p, &testG, 0, 0, 0, 5);
+
+    // Check pile counts
+    printf("----------------- AFTER PLAY CUTPURSE\n");
+
+    // cutpurse gives +2 coins
+    updatedCoins = initialCoins + 2;
+    printf("Updated coins: %d, Expected: %d\n", testG.coins, updatedCoins);
+    assert(testG.coins == updatedCoins);
+
+    for (p = 0; p < numPlayer; p++) {
+
+        copperCount = 0;
+
+        printf("----------------- Player %d\n", p);
+
+#if (NOISY_TEST == 1)
+        printf("DECK COUNT\n");
+        for (i = 0; i < testG.deckCount[p]; i++)
+        {
+            printf("Position %d, Card: %d\n", i, testG.deck[p][i]);
+        }
+
+        printf("DISCARD COUNT\n");
+        for (i = 0; i < testG.discardCount[p]; i++)
+        {
+            printf("Position %d, Card: %d\n", i, testG.discard[p][i]);
+        }
+#endif
+
+        printf("HAND COUNT\n");
+        for (i = 0; i < testG.handCount[p]; i++)
+        {
+#if (NOISY_TEST == 1)
+            printf("Position %d, Card: %d\n", i, testG.hand[p][i]);
+#endif
+            if (testG.hand[p][i] == copper) {
+                copperCount++;
+            }
+        }
+
+        // If not Player 0, then each other player discards a copper
+        if (p != 0) {
+            printf("Copper count: %d, Expected: %d\n", copperCount, copperList[p] - 1);
+            if (copperCount != copperList[p] - 1) {
+                printf("----------------- TEST FAILED!\n");
+                pass = false;
+            }
+        }
+        // Player 0 played cutpurse and so copper count should not change
+        else {
+            printf("Copper count: %d, Expected: %d\n", copperCount, copperList[p]);
+            if (copperCount != copperList[p]) {
+                printf("----------------- TEST FAILED!\n");
+                pass = false;               
+            }
+        }
+    }
+
+    // Copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
+
+    // Start testing
+    p = 0;
+    printf("\n----------------- Test 4: hand with no coppers\n");
 
     // Put cutpurse in hand of player 0
     testG.hand[p][ testG.handCount[p] ] = cutpurse;
@@ -216,7 +478,9 @@ int main() {
         printf("HAND COUNT\n");
         for (i = 0; i < testG.handCount[p]; i++)
         {
+#if (NOISY_TEST == 1)
             printf("Position %d, Card: %d\n", i, testG.hand[p][i]);
+#endif
             if (testG.hand[p][i] == copper) {
                 copperCount++;
             }
@@ -261,7 +525,9 @@ int main() {
         printf("HAND COUNT\n");
         for (i = 0; i < testG.handCount[p]; i++)
         {
+#if (NOISY_TEST == 1)
             printf("Position %d, Card: %d\n", i, testG.hand[p][i]);
+#endif
             if (testG.hand[p][i] == copper) {
                 copperCount++;
             }

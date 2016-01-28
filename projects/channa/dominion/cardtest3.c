@@ -427,6 +427,9 @@ int main() {
     p = 0;
     printf("\n----------------- Test 4: hand with no coppers\n");
 
+    // Change number of players
+    numPlayer = 4;
+
     // Put cutpurse in hand of player 0
     testG.hand[p][ testG.handCount[p] ] = cutpurse;
     testG.handCount[p]++;

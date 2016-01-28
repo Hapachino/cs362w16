@@ -19,13 +19,12 @@ int main() {
     int i;
     int seed = 1000;
 
-    int numPlayer = 3;
+    int numPlayer = 2;
     int p, r;
     int k[10] = {adventurer, great_hall, cutpurse, gardens, mine
                , remodel, smithy, village, sea_hag, embargo};
 
     struct gameState G, testG;
-    int result;
     bool pass = true;
 
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
@@ -38,53 +37,110 @@ int main() {
 
     // Start testing
     p = 0;
-    printf("----------------- Player %d:\n", p);
+    printf("----------------- Trash embargo\n");
 
-    // Put remodel in hand
-    testG.hand[p][ testG.handCount[p] ] = remodel;
-    testG.handCount[p]++;
+    // Card enum - Name        - Cost 
+    // 22        - embargo     - 2
+    // 14        - village     - 3
+    // 13        - smithy      - 4
+    // 11        - mine        - 5
+    //  7        - adventurer  - 6
+    int toTest[] = {embargo, village, smithy, mine, adventurer};
 
-    displayDeck(&testG, p);
+    // choice1: 2, choice2: 2
+    // Expect: 0
+    // choice1: 2, choice2: 3
+    // Expect: 0
+    // choice1: 2, choice2: 4
+    // Expect: 0
+    // choice1: 2, choice2: 5
+    // Expect: -1
+    // choice1: 2, choice2: 6
+    // Expect: -1
+    int expected1[] = {0, 0, 0, -1, -1};
+    remodelTrash(&testG, p, embargo, toTest, expected1);
+    
+    p = 0;
+    printf("----------------- Trash village\n");
 
-    // int playRemodel(int j, struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos, int i)
+    // Copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
 
-    printf("Left: %d\n", getCost(testG.hand[p][embargo]) + 2);
-    printf("Right: %d\n", getCost(0));
+    // choice1: 3, choice2: 2
+    // Expect: 0
+    // choice1: 3, choice2: 3
+    // Expect: 0
+    // choice1: 3, choice2: 4
+    // Expect: 0
+    // choice1: 3, choice2: 5
+    // Expect: 0
+    // choice1: 3, choice2: 6
+    // Expect: -1
+    int expected2[] = {0, 0, 0, 0, -1};
+    remodelTrash(&testG, p, village, toTest, expected2);
 
-    result = playRemodel(0, &testG, p, 0, embargo, 5, 0);
-    printf("Success: %d\n", result);
+    p = 0;
+    printf("----------------- Trash smithy\n");
 
-    printf("Left: %d\n", getCost(testG.hand[p][embargo]) + 2);
-    printf("Right: %d\n", getCost(1));
+    // Copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
 
-    result = playRemodel(0, &testG, p, 1, embargo, 5, 0);
-    printf("Success: %d\n", result);
+    // choice1: 4, choice2: 2
+    // Expect: 0
+    // choice1: 4, choice2: 3
+    // Expect: 0
+    // choice1: 4, choice2: 4
+    // Expect: 0
+    // choice1: 4, choice2: 5
+    // Expect: 0
+    // choice1: 4, choice2: 6
+    // Expect: 0
+    int expected3[] = {0, 0, 0, 0, 0};
+    remodelTrash(&testG, p, smithy, toTest, expected3);
 
-    printf("Left: %d\n", getCost(testG.hand[p][embargo]) + 2);
-    printf("Right: %d\n", getCost(2));
+    p = 0;
+    printf("----------------- Trash mine\n");
 
-    result = playRemodel(0, &testG, p, 2, embargo, 5, 0);
-    printf("Success: %d\n", result);
+    // Copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
 
-    printf("Left: %d\n", getCost(testG.hand[p][embargo]) + 2);
-    printf("Right: %d\n", getCost(3));
+    // choice1: 5, choice2: 2
+    // Expect: 0
+    // choice1: 5, choice2: 3
+    // Expect: 0
+    // choice1: 5, choice2: 4
+    // Expect: 0
+    // choice1: 5, choice2: 5
+    // Expect: 0
+    // choice1: 5, choice2: 6
+    // Expect: 0
+    int expected4[] = {0, 0, 0, 0, 0};
+    remodelTrash(&testG, p, mine, toTest, expected4);
 
-    result = playRemodel(0, &testG, p, 3, embargo, 5, 0);
-    printf("Success: %d\n", result);
+    p = 0;
+    printf("----------------- Trash adventurer\n");
 
-    printf("Left: %d\n", getCost(testG.hand[p][embargo]) + 2);
-    printf("Right: %d\n", getCost(4));
+    // Copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
 
-    result = playRemodel(0, &testG, p, 4, embargo, 5, 0);
-    printf("Success: %d\n", result);
-
-    displayDeck(&testG, p);
+    // choice1: 5, choice2: 2
+    // Expect: 0
+    // choice1: 5, choice2: 3
+    // Expect: 0
+    // choice1: 5, choice2: 4
+    // Expect: 0
+    // choice1: 5, choice2: 5
+    // Expect: 0
+    // choice1: 5, choice2: 6
+    // Expect: 0
+    int expected5[] = {0, 0, 0, 0, 0};
+    remodelTrash(&testG, p, adventurer, toTest, expected5);
 
     if (pass) {
-        printf("\nAll tests passed!");
+        printf("All tests passed!");
     }
     else {
-        printf("\nSome test(s) failed!");
+        printf("Some test(s) failed!");
     }
 
     return 0;
@@ -109,6 +165,42 @@ int displayDeck(struct gameState *state, int p) {
     for (i = 0; i < state->handCount[p]; i++)
     {
         printf("Position %d, Card: %d\n", i, state->hand[p][i]);
+    }
+
+    return 0;
+}
+
+int remodelTrash(struct gameState *state, int p, int trashCard, int toTest[], int expected[]) {
+    int i, j;
+    int result;
+
+    // int playRemodel(int j, struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos, int i)
+    for (i = 0; i < 5; i++) {
+        // Shift elements over so 
+        // remodel always at index 0
+        // trashCard always at index 1
+        for (j = state->handCount[p] + 1; j > 0; j--) {
+            state->hand[p][j] = state->hand[p][j - 2];
+        }
+
+        // Put remodel in hand
+        state->hand[p][0] = remodel;
+        state->handCount[p]++;
+
+        // Put card to trash in hand
+        state->hand[p][1] = trashCard;
+        state->handCount[p]++;
+
+        displayDeck(state, p);
+
+        // card to trash: int choice1 = trashCard (testG.hand[p][1])
+        // card to gain : int choice2 = toTest[]
+        // remodel index: int handPos = 0 (testG.hand[p][0])
+        result = playRemodel(0, state, p, 1, toTest[i], 0, 0);
+        printf("choice1 cost: %d, choice2 cost: %d\n", getCost(trashCard), getCost(toTest[i]));
+        printf("Result: %d, Expected: %d\n\n", result, expected[i]);
+
+        // displayDeck(state, p);
     }
 
     return 0;

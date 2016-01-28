@@ -180,7 +180,7 @@ int remodelTrash(struct gameState *state, int p, int trashCard, int toTest[], in
         // remodel always at index 0
         // trashCard always at index 1
         for (j = state->handCount[p] + 1; j > 0; j--) {
-            state->hand[p][j] = state->hand[p][j - 2];
+            state->hand[p][j] = 1;
         }
 
         // Put remodel in hand

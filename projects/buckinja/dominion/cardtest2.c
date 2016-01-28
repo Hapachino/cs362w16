@@ -104,7 +104,7 @@ void testAdventurer(struct gameState *G, int cardsInPlay[10]) {
     printf("testAdventurer(): PASS other player's discard count unchanged.\n");
     
     if(cards != G->discardCount[player]){
-        printf("testAdventurer(): FAIL expected number of cards were not discarded to correct player's discard.  Expected %d, actual value: %d\n", cards, G->discardCount[player]);
+        printf("testAdventurer(): FAIL expected number of cards were not discarded to player's discard.  Expected %d, actual value: %d\n", cards, G->discardCount[player]);
     } else {
         printf("testAdventurer(): PASS correct number of cards were discarded to correct player's discard.\n");
     }

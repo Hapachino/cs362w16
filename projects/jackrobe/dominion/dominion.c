@@ -671,8 +671,9 @@ int adventurerCard( struct gameState * state ){
 				state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
 				z++;
 			}
+
 		}
-		while (z - 1 > 0){
+		while (z - 1 >= 0){
 			state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
 			z = z - 1;
 		}

@@ -1364,7 +1364,6 @@ int playRemodel(int j, struct gameState *state, int currentPlayer, int choice1, 
       }
   }
 
-
   return 0;
 }
 

@@ -30,3 +30,9 @@ playAdventurer():
 	accounted for in the player's own piles, the other player's piles, nor the estate pile (only the
 	initial coppers and estates were used). Instead of being discarded, it seems that they have been
 	removed from play.
+
+playCutpurse():
+	cardtest3 detected that when the number of players is 4, the last player is unaffected by the card's
+	effect of having to discard a copper despite having coppers in their hand. Additionally, cardtest3
+	detectd that even though a player may have no coppers in their hand, they are not forced to reveal
+	their hand per the card's effect.

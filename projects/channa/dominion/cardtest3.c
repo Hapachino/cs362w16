@@ -161,9 +161,6 @@ int main() {
     // Copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    // Change number of players
-    numPlayer = 2;
-
     // Start testing
     p = 0;
     printf("\n----------------- Testing cutpurse: hand with no coppers\n");
@@ -267,6 +264,25 @@ int main() {
             printf("Position %d, Card: %d\n", i, testG.hand[p][i]);
             if (testG.hand[p][i] == copper) {
                 copperCount++;
+            }
+        }
+
+        // If not Player 0, then each other player discards a copper
+        // Player 1 should be revealing hand with no coppers
+        if (p != 0 && p != 1) {
+            printf("Copper count: %d, Expected: %d\n", copperCount, copperList[p] - 1);
+            if (copperCount != copperList[p] - 1) {
+                printf("----------------- TEST FAILED!\n");
+                pass = false;
+            }
+        }
+        // Player 0 played cutpurse and so copper count should not change
+        // Player 1 has no coppers so copper count should not change
+        else {
+            printf("Copper count: %d, Expected: %d\n", copperCount, copperList[p]);
+            if (copperCount != copperList[p]) {
+                printf("----------------- TEST FAILED!\n");
+                pass = false;               
             }
         }
     }

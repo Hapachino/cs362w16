@@ -2,7 +2,7 @@
  * Demonstration of how to write unit tests for dominion-base
  * Include the following lines in your makefile:
  *
- * updateCoins: unittest2.c dominion.o rngs.o
+ * updateCoins9: unittest2.c dominion.o rngs.o
  *      gcc -o unit2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
  *
  * -----------------------------------------------------------------------
@@ -20,13 +20,10 @@
 
 int main() {
     int i;
-    int seed = 1000;
     int numPlayer = 2;
     int maxBonus = 5;
-    int p, r, handCount;
+    int p,handCount;
     int bonus;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
     struct gameState G;
     int maxHandCount = 5;
     // arrays of all coppers, silvers, and golds
@@ -60,7 +57,6 @@ int main() {
                 printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
 #endif
                 memset(&G, 23, sizeof(struct gameState));   // clear the game state
-                r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
                 G.handCount[p] = handCount;                 // set the number of cards on hand
                 memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
                 updateCoins(p, &G, bonus);
@@ -155,12 +151,13 @@ int main() {
 	
 	printf("Testing updateCoins with 1 copper and 4 gold treasure cards.\n");
 #endif
-	memcpy(G.hand[p], mixCards6,sizeof(int) * handCount );
+	memcpy(G.hand[p], mixCards8,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
-	assert(G.coins==10);
+	assert(G.coins==13);
 #if (NOISY_TEST == 1)
-	printf("G.coins= %d, expected= 10\n", G.coins);
-    printf("All tests passed!\n");
+	printf("G.coins= %d, expected= 13\n", G.coins);
 #endif	
+printf("All tests passed!\n");
+
     return 0;
 }

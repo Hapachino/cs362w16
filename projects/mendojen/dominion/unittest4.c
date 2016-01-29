@@ -43,6 +43,7 @@ int main() {
 #if (NOISY_TEST == 1)
 	printf("Player is unable to buy a card....PASSED\n");
 #endif
+
 		
 	G.numBuys=100;
 #if (NOISY_TEST == 1)
@@ -52,9 +53,9 @@ int main() {
 	assert (result==0);
 #if (NOISY_TEST == 1)
 	printf("Player is able to buy a card....PASSED\n");
-#endif	
-	G.supplyCount[gardens]=0;
+#endif
 	
+	G.supplyCount[gardens]=0;
 #if (NOISY_TEST == 1)
 	printf("Testing when supply count of desired card is 0\n ");
 #endif
@@ -63,6 +64,7 @@ int main() {
 #if (NOISY_TEST == 1)
 	printf("Player is unable to buy a card....PASSED\n");
 #endif
+
 	G.coins=100;
 	G.supplyCount[gardens]=5;
 	G.supplyCount[adventurer]=5;
@@ -77,26 +79,26 @@ int main() {
 	
 	for (a=0;a<10;a++)
 	{
-	#if (NOISY_TEST == 1)
+#if (NOISY_TEST == 1)
 		printf("Testing when supply count of desired card is not 0\n ");
-	#endif
+#endif
 		result=buyCard(k[a],&G);
 		assert (result==0);
-	#if (NOISY_TEST == 1)
+#if (NOISY_TEST == 1)
 		printf("Player is able to buy a card....PASSED\n");
-	#endif
+#endif
 	}
 	for (a=0;a<10;a++)
 	{
 		G.coins=1;
-	#if (NOISY_TEST == 1)
+#if (NOISY_TEST == 1)
 		printf("Testing when there is not enough coins to purchase card \n ");
-	#endif
+#endif
 		result=buyCard(k[a],&G);
 		assert (result==-1);
-	#if (NOISY_TEST == 1)
+#if (NOISY_TEST == 1)
 		printf("Player is unable to buy a card....PASSED\n");
-	#endif
+#endif
 	}
 		
 	G.coins=5;
@@ -105,9 +107,9 @@ int main() {
 #endif
 	result=buyCard(k[3],&G);
 	assert (result==0);
-#if (NOISY_TEST == 1) 
-	printf("Player is able to buy a card....PASSED\n");
- #endif
+#if (NOISY_TEST == 1)
+ 	printf("Player is able to buy a card....PASSED\n");
+#endif 
 	printf("All tests passed!\n");
     return 0;
 }

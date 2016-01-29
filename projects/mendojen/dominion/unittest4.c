@@ -2,8 +2,8 @@
  * Demonstration of how to write unit tests for dominion-base
  * Include the following lines in your makefile:
  *
- * getCost: unittest1.c dominion.o rngs.o
- *      gcc -o unit1 -g  unitttest1.c dominion.o rngs.o $(CFLAGS)
+ * buyCard: unittest4.c dominion.o rngs.o
+ *      gcc -o unit4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
  *
  * -----------------------------------------------------------------------
  */
@@ -20,173 +20,94 @@
 
 
 int main() {
-    int result;
-    printf ("TESTING getCost():\n");
-	result = getCost(curse);
-#if (NOISY_TEST==1)	
-	printf ("Testing curse card cost.\n");
-	printf("Result: %d Expected: 0\n",result);
-#endif
-	assert(result==0);
-	result = getCost(estate);
-#if (NOISY_TEST==1)
-	printf ("Testing estate card cost.\n");
-	printf("Result: %d Expected: 2\n",result);
-#endif	
-	assert(result==2);
-	result = getCost(duchy);
-#if (NOISY_TEST==1)
-	printf ("Testing duchy card cost.\n");
-	printf("Result: %d Expected: 5\n",result);
-#endif
-	assert(result==5);
-	result = getCost(province);
-#if (NOISY_TEST==1)	
-	printf ("Testing province card cost.\n");
-	printf("Result: %d Expected: 8\n",result);
-#endif
-	assert(result==8);
-	result = getCost(copper);
-#if (NOISY_TEST==1)	
-	printf ("Testing copper card cost.\n");
-	printf("Result: %d Expected: 0\n",result);
-#endif
-	assert(result==0);
-	result = getCost(silver);
-#if (NOISY_TEST==1)	
-	printf ("Testing silver card cost.\n");
-	printf("Result: %d Expected: 3\n",result);
-#endif
-	assert(result==3);
-	result = getCost(gold);
-#if (NOISY_TEST==1)	
-	printf ("Testing gold card cost.\n");
-	printf("Result: %d Expected: 6\n",result);
-#endif
-	assert(result==6);
-	result = getCost(adventurer);
-#if (NOISY_TEST==1)	
-	printf ("Testing adventurer card cost.\n");
-	printf("Result: %d Expected: 6\n",result);
-#endif
-	assert(result==6);
-	result = getCost(council_room);
-#if (NOISY_TEST==1)	
-	printf ("Testing council room card cost.\n");
-	printf("Result: %d Expected: 5\n",result);
-#endif
-	assert(result==5);
-	result = getCost(feast);
-#if (NOISY_TEST==1)	
-	printf ("Testing feast card cost.\n");
-	printf("Result: %d Expected: 4\n",result);
-#endif
-	assert(result==4);
-	result = getCost(gardens);
-#if (NOISY_TEST==1)	
-	printf ("Testing gardens card cost.\n");
-	printf("Result: %d Expected: 4\n",result);
-#endif
-	assert(result==4);
-	result = getCost(mine);
-#if (NOISY_TEST==1)	
-	printf ("Testing mine card cost.\n");
-	printf("Result: %d Expected: 5\n",result);
-#endif
-	assert(result==5);
-	result = getCost(remodel);
-#if (NOISY_TEST==1)	
-	printf ("Testing remodel card cost.\n");
-	printf("Result: %d Expected: 4\n",result);
-#endif
-	assert(result==4);
-	result = getCost(smithy);
-#if (NOISY_TEST==1)	
-	printf ("Testing smithy card cost.\n");
-	printf("Result: %d Expected: 4\n",result);
-#endif
-	assert(result==4);
-	result = getCost(village);
-#if (NOISY_TEST==1)
-	printf ("Testing village card cost.\n");
-	printf("Result: %d Expected: 3\n",result);
-#endif
-	assert(result==3);
-	result = getCost(baron);
-#if (NOISY_TEST==1)	
-	printf ("Testing baron card cost.\n");
-	printf("Result: %d Expected: 4\n",result);
-#endif
-	assert(result==4);
-	result = getCost(great_hall);
-#if (NOISY_TEST==1)	
-	printf ("Testing great hall card cost.\n");
-	printf("Result: %d Expected: 3\n",result);
-#endif
-	assert(result==3);
-	result = getCost(minion);
-#if (NOISY_TEST==1)	
-	printf ("Testing minion card cost.\n");
-	printf("Result: %d Expected: 5\n",result);
-#endif
-	assert(result==5);
-	result = getCost(steward);
-#if (NOISY_TEST==1)	
-	printf ("Testing steward card cost.\n");
-	printf("Result: %d Expected: 3\n",result);
-#endif
-	assert(result==3);
-	result = getCost(tribute);
-#if (NOISY_TEST==1)	
-	printf ("Testing tribute card cost.\n");
-	printf("Result: %d Expected: 5\n",result);
-#endif
-	assert(result==5);
-	result = getCost(ambassador);
-#if (NOISY_TEST==1)	
-	printf ("Testing ambassador card cost.\n");
-	printf("Result: %d Expected: 3\n",result);
-#endif
-	assert(result==3);
-	result = getCost(cutpurse);
-#if (NOISY_TEST==1)	
-	printf ("Testing cutpurse card cost.\n");
-	printf("Result: %d Expected: 4\n",result);
-#endif
-	assert(result==4);
-	result = getCost(embargo);
-#if (NOISY_TEST==1)	
-	printf ("Testing embargo card cost.\n");
-	printf("Result: %d Expected: 2\n",result);
-#endif
-	assert(result==2);
-	result = getCost(outpost);
-#if (NOISY_TEST==1)
-	printf ("Testing outpost card cost.\n");
-	printf("Result: %d Expected: 5\n",result);
-#endif
-	result = getCost(salvager);
-#if (NOISY_TEST==1)	
-	printf ("Testing salvager card cost.\n");
-	printf("Result: %d Expected: 4\n",result);
-#endif
-	assert(result==4);
-	result = getCost(sea_hag);
-#if (NOISY_TEST==1)	
-	printf ("Testing sea_hag card cost.\n");
-	printf("Result: %d Expected: 4\n",result);
-#endif
-	assert(result==4);
-	result = getCost(treasure_map);
-#if (NOISY_TEST==1)	
-	printf ("Testing treasure_map card cost.\n");
-	printf("Result: %d Expected: 4\n",result);
-#endif
-	assert(result==4);
-	
-	
+    int a, result;
+    int seed = 1000;
+    int numPlayer = 2;
+    int r;
+    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+    struct gameState G;
+    
 
-    printf("All tests passed!\n");
+    printf ("TESTING buyCard():\n");
+  
+    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+	G.coins=10;
 	
+	G.numBuys=0;
+	result=buyCard(k[3],&G);
+#if (NOISY_TEST == 1)
+	printf("Testing when numBuys=0\n");
+#endif
+	assert (result==-1);
+#if (NOISY_TEST == 1)
+	printf("Player is unable to buy a card....PASSED\n");
+#endif
+		
+	G.numBuys=100;
+#if (NOISY_TEST == 1)
+	printf("Testing when there are enough buys. \n");
+#endif
+	result=buyCard(k[3],&G);
+	assert (result==0);
+#if (NOISY_TEST == 1)
+	printf("Player is able to buy a card....PASSED\n");
+#endif	
+	G.supplyCount[gardens]=0;
+	
+#if (NOISY_TEST == 1)
+	printf("Testing when supply count of desired card is 0\n ");
+#endif
+	result=buyCard(k[3],&G);
+	assert (result==-1);
+#if (NOISY_TEST == 1)
+	printf("Player is unable to buy a card....PASSED\n");
+#endif
+	G.coins=100;
+	G.supplyCount[gardens]=5;
+	G.supplyCount[adventurer]=5;
+	G.supplyCount[council_room]=5;
+	G.supplyCount[feast]=5;
+	G.supplyCount[mine]=5;
+	G.supplyCount[remodel]=5;
+	G.supplyCount[smithy]=5;
+	G.supplyCount[village]=5;
+	G.supplyCount[baron]=5;
+	G.supplyCount[great_hall]=5;
+	
+	for (a=0;a<10;a++)
+	{
+	#if (NOISY_TEST == 1)
+		printf("Testing when supply count of desired card is not 0\n ");
+	#endif
+		result=buyCard(k[a],&G);
+		assert (result==0);
+	#if (NOISY_TEST == 1)
+		printf("Player is able to buy a card....PASSED\n");
+	#endif
+	}
+	for (a=0;a<10;a++)
+	{
+		G.coins=1;
+	#if (NOISY_TEST == 1)
+		printf("Testing when there is not enough coins to purchase card \n ");
+	#endif
+		result=buyCard(k[a],&G);
+		assert (result==-1);
+	#if (NOISY_TEST == 1)
+		printf("Player is unable to buy a card....PASSED\n");
+	#endif
+	}
+		
+	G.coins=5;
+#if (NOISY_TEST == 1)
+	printf("Testing when player has enough coins ");
+#endif
+	result=buyCard(k[3],&G);
+	assert (result==0);
+#if (NOISY_TEST == 1) 
+	printf("Player is able to buy a card....PASSED\n");
+ #endif
+	printf("All tests passed!\n");
     return 0;
 }

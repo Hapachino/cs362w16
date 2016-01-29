@@ -3,7 +3,7 @@
  * Include the following lines in your makefile:
  *
  * getCost: unittest1.c dominion.o rngs.o
- *      gcc -o unit1 -g  unitttest1.c dominion.o rngs.o $(CFLAGS)
+ *      gcc -o unit1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
  *
  * -----------------------------------------------------------------------
  */

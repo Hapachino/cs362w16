@@ -2,8 +2,8 @@
  * Demonstration of how to write unit tests for dominion-base
  * Include the following lines in your makefile:
  *
- * gainCard: unittest2.c dominion.o rngs.o
- *      gcc -o unit2 -g  unitttest2.c dominion.o rngs.o $(CFLAGS)
+ * updateCoins: unittest2.c dominion.o rngs.o
+ *      gcc -o unit2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
  *
  * -----------------------------------------------------------------------
  */
@@ -96,6 +96,7 @@ int main() {
 #endif
 	memcpy(G.hand[p], mixCards1,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
+	assert(G.coins==7);
 #if (NOISY_TEST == 1)
 	printf("G.coins= %d, expected= 7\n", G.coins);
 	
@@ -103,6 +104,7 @@ int main() {
 #endif
 	memcpy(G.hand[p], mixCards2,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
+	assert(G.coins==8);
 #if (NOISY_TEST == 1)
 	printf("G.coins= %d, expected= 8\n", G.coins);
 
@@ -110,6 +112,7 @@ int main() {
 #endif
 	memcpy(G.hand[p], mixCards3,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
+	assert(G.coins==11);
 #if (NOISY_TEST == 1)
 	printf("G.coins= %d, expected= 11\n", G.coins);
  
@@ -118,6 +121,7 @@ int main() {
 #endif
 	memcpy(G.hand[p], mixCards4,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
+	assert(G.coins==12);
 #if (NOISY_TEST == 1)
 	printf("G.coins= %d, expected= 12\n", G.coins);
   
@@ -126,6 +130,7 @@ int main() {
 #endif
 	memcpy(G.hand[p], mixCards5,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
+	assert(G.coins==12);
 #if (NOISY_TEST == 1)
 	printf("G.coins= %d, expected= 12\n", G.coins);
 
@@ -134,6 +139,7 @@ int main() {
 #endif
 	memcpy(G.hand[p], mixCards6,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
+	assert(G.coins==10);
 #if (NOISY_TEST == 1)
 	printf("G.coins= %d, expected= 10\n", G.coins);
 
@@ -142,6 +148,7 @@ int main() {
 #endif
 	memcpy(G.hand[p], mixCards7,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
+	assert(G.coins==13);
 #if (NOISY_TEST == 1)
 	printf("G.coins= %d, expected= 13\n", G.coins);
 
@@ -150,6 +157,7 @@ int main() {
 #endif
 	memcpy(G.hand[p], mixCards6,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
+	assert(G.coins==10);
 #if (NOISY_TEST == 1)
 	printf("G.coins= %d, expected= 10\n", G.coins);
     printf("All tests passed!\n");

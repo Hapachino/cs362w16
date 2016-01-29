@@ -173,177 +173,82 @@ void printDeck(int player, struct gameState *game) {
 
 
 
-int testAdventurer(struct gameState *state ){
+int testGreatHall(struct gameState *state, int currentPlayer, int handPos ) {
 
     //set some beginning vars
-    int currentPlayer = whoseTurn(state);
     int beginHandCount = state->handCount[currentPlayer];
     int beginDeckCount = state->deckCount[currentPlayer];
     int beginDiscardCount = state->discardCount[currentPlayer];
+    int beginActions = state->numActions;
+    int beginPlayedCount = state->playedCardCount;
     int status = 0;
+
     assert(currentPlayer >= 0);
     assert(beginHandCount > 0);
 
     int i;
 
-    printf("BeginDeck Count was: %i \n", beginDeckCount);
-    //printDeck(currentPlayer, state);
+    //put greatHall in deck
+    state->hand[currentPlayer][0] = great_hall;
 
-    //stack the deck
-    for( i = 0; i < state->deckCount[currentPlayer]; i++ ){
-        //todo fix this it cannot equal "gold"
-        state->deck[currentPlayer][i] = gold;
-    }
-    //printDeck(currentPlayer, state);
+    //run great Hall
+    great_hallCard(state, currentPlayer, handPos);
 
-    //run adventurer
-    adventurerCard(state);
-    printf("PERFORMING DRAW TESTs-------------------------: \n");
-    //Adventurer should draw two cards from the deck
-    if(state->handCount[currentPlayer] != beginHandCount+2){
-        status ++;
+    printf("PERFORMING DRAW TEST-------------------------: \n");
+
+    if (state->handCount[currentPlayer] != beginHandCount) {
+        status++;
         printf("BeginHand Count was: %i \n", beginHandCount);
         printf("Actual Hand Count was: %i \n", state->handCount[currentPlayer]);
-        printf("Hand Count should be: %i \n", beginHandCount+2);
-    }else if(state->deckCount[currentPlayer] != beginDeckCount-2){
-        status ++;
+        printf("Hand Count should be: %i \n", beginHandCount);
+    } else if (state->deckCount[currentPlayer] != beginDeckCount - 1) {
+        status++;
         printf("Begin DECK Count was: %i \n", beginDeckCount);
         printf("Actual DECK Count was: %i \n", state->deckCount[currentPlayer]);
-        printf("Hand Count should be: %i \n",beginDeckCount-2);
+        printf("Hand Count should be: %i \n", beginDeckCount - 1);
 
-    }else{
+    } else {
         printf("PASSED \n");
     }
 
-    printf("PERFORMING TEST 1-------------------------: \n");
-
-    //Test 1
-    //since the entire deck is gold just check to see if
-    //the discard count hasn't grown
-    if (beginDiscardCount != state->discardCount[currentPlayer] ){
+    //Num actions should increase by one
+    printf("PERFORMING TEST on Actions-------------------------: \n");
+    if (state->numActions != beginActions + 1) {
         status++;
-        printf("FAIL: solid gold - discard count mismatch \n");
-        printf("BeginDiscard Count was: %i \n", beginDiscardCount);
-        printf("Actual Count was: %i \n", state->discardCount[currentPlayer]);
-        printf("Hand Count should be same as BeginDiscard \n");
-    }else{
+        printf("FAIL: Actions - discard count mismatch \n");
+        printf("BeginAction Count was: %i \n", beginActions);
+        printf("Actual Count was: %i \n", state->numActions);
+        printf(" should be same %i \n", beginActions + 1);
+    } else {
         printf("PASSED \n");
     }
-    printf("PERFORMING TEST 2-------------------------: \n");
+    printf("PERFORMING TEST on Discard-------------------------: \n");
     //Test2
-    //Make each card something else other than gold, copper, silver
 
-    //stack the deck
-    for(i = 0; i < MAX_DECK; i++ ){
+    //should add 1 to played cards pile,
 
-        state->deck[currentPlayer][i] = estate;
-    }
-
-    //reset the vars
-    currentPlayer = whoseTurn(state);
-    beginHandCount = state->handCount[currentPlayer];
-    beginDeckCount = state->deckCount[currentPlayer];
-    beginDiscardCount = state->discardCount[currentPlayer];
-    assert(currentPlayer >= 0);
-    assert(beginHandCount > 0);
-
-    //run adventurer
-    adventurerCard(state);
-
-    //should add entire deck to discard,
-    if (state->discardCount[currentPlayer] != beginDiscardCount+beginDeckCount){
+    if (state->playedCardCount != beginPlayedCount + 1) {
         status++;
-        printf("FAIL: solid estate DISCARD - discard count mismatch \n");
+        printf("FAIL: DISCARD - discard count mismatch \n");
 
         printf("Begin DiscardCount was:\t\t %i \n", beginDiscardCount);
-        printf("Begin DeckCount was:\t\t %i \n", beginDeckCount);
-        //printDeck(currentPlayer, state);
-        //printf("Begin HandCount was:\t\t %i \n", beginHandCount);
-
-        printHand(currentPlayer, state);
         printf("Actual Discard Count was:\t %i \n", state->discardCount[currentPlayer]);
-        printf("Actual deck Count was:\t\t %i \n", state->deckCount[currentPlayer]);
-        printf("Actual hand Count was:\t\t %i \n", state->handCount[currentPlayer]);
-
-        printf("DiscardCount should be:\t\t %i \n", beginDiscardCount+beginDeckCount);
-        printf("DeckCount should be:\t\t 0 \n");
-        //printDeck(currentPlayer, state);
-        printf("handCount should be:\t\t %i \n", beginHandCount);
-        //printHand(currentPlayer, state);
+        printf("DiscardCount should be:\t\t %i \n", beginDiscardCount + 1);
 
     }
-    //should make hand be equal to beginning hand
-    else if ( state->handCount[currentPlayer] != beginHandCount ){
+        //card should be of type great_hall
+    else if (state->playedCards[state->playedCardCount - 1] != great_hall) {
 
         status++;
-        printf("FAIL: solid estate HAND - discard count mismatch \n");
-        printf("Begin HandCount was:\t\t %i \n", beginHandCount);
-
-        printHand(currentPlayer, state);
-
-        printf("Actual hand Count was:\t\t %i \n", state->handCount[currentPlayer]);
-
-        printf("DiscardCount should be:\t\t %i \n", beginDiscardCount+beginDeckCount);
-        printf("DeckCount should be:\t\t 0 \n");
-        //printDeck(currentPlayer, state);
-        printf("handCount should be:\t\t %i \n", beginHandCount);
+        printf("FAIL: Wrong card in discard pile - discard count mismatch \n");
         //printHand(currentPlayer, state);
-
-    }
-    //Deck should be 0
-    else if (state->deckCount[currentPlayer] != 0 ){
-        status++;
-        printf("FAIL: solid estate DECK COUNT - discard count mismatch \n");
-
-        printf("Begin DeckCount was:\t\t %i \n", beginDeckCount);
-        printf("Actual deck Count was:\t\t %i \n", state->deckCount[currentPlayer]);
-        printf("DeckCount should be:\t\t 0 \n");
-
-        printDeck(currentPlayer, state);
-
-
-    }else{
-        printf("PASSED \n");
-    }
-
-    //Test3
-    //Case of Empty Deck
-    printf("PERFORMING TEST 3-------------------------: \n");
-    printf("Current Deck Count was: %i \n", state->deckCount[currentPlayer]);
-
-    //reset the vars
-    currentPlayer = whoseTurn(state);
-    beginHandCount = state->handCount[currentPlayer];
-    beginDeckCount = state->deckCount[currentPlayer];
-    beginDiscardCount = state->discardCount[currentPlayer];
-    assert(currentPlayer >= 0);
-    assert(beginHandCount > 0);
-    beginDiscardCount = state->discardCount[currentPlayer];
-
-
-    //set deck count = 0
-    state->deckCount[currentPlayer] = 0;
-
-    //run adventurer
-    adventurerCard(state);
-
-    //when the deck is 0, nothing should get discarded either
-    if(state->discardCount[currentPlayer] > beginDiscardCount) {
-
-        printf("FAIL: Begin DiscardCount was: %i \n", beginDiscardCount);
-        printf("Begin DeckCount was: %i \n", beginDeckCount);
-        printf("Begin HandCount was: %i \n", beginHandCount);
-
-        printf("Actual Discard Count was: %i \n", state->discardCount[currentPlayer]);
-        printf("Actual deck Count was: %i \n", state->deckCount[currentPlayer]);
-        printf("Actual hand Count was: %i \n", state->handCount[currentPlayer]);
-        status ++;
-    }else{
+        //printDiscard(currentPlayer, state);
+        //printPlayed(currentPlayer, state);
+    } else {
         printf("PASSED \n");
     }
     return status;
 }
-
 
 int main(int argc, char** argv) {
     struct gameState G;
@@ -363,12 +268,12 @@ int main(int argc, char** argv) {
     int numAdventurers = 0;
     int currentPlayer = whoseTurn(&G);
 
-    int testResult = testAdventurer(&G);
+    int testResult = testGreatHall(&G, currentPlayer, 0);
     if( testResult == 0){
-        printf ("testAdventurer: OK");
+        printf ("test GreatHall: OK");
 
     }else{
-        printf ("FAILD : %i tests", testResult );
+        printf ("FAILED : %i tests", testResult );
     }
 
 return 0;

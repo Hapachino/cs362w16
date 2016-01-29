@@ -29,7 +29,8 @@
 #include <stdlib.h>
 #include "rngs.h"
 
-#define MEMBERS 19     /* Number of member variables in a gameState */
+#define MEMBERS 18     /* Number of member variables in a gameState (gS) */
+#define DECKCOUNTMEMBER 13  /* The deckCount is 14th member of gS, index 13*/
 #define CARDTYPES treasure_map+1  /* Number of different card types in game */
 #define NUMTESTS 10   /* Number of times to run the tests */
 
@@ -128,10 +129,10 @@ int compareGameState(struct gameState *old, struct gameState *new,
  
     /*checking the player's hands */
     for (k = 0; k < MAX_HAND; k++){
-
       /*If a player's hand has changed, record a 1 in that digit */	
       if (difference.hand[j][k])   {diffArray[10] += (int) pow(10, j);}
     }
+
 
     /*If a player's hand Count has changed, record a 1 in that digit */
     if(difference.handCount[j])    {diffArray[11] += (int) pow(10, j);}
@@ -140,8 +141,26 @@ int compareGameState(struct gameState *old, struct gameState *new,
     /*checking all of the decks */
     for(int k = 0; k < MAX_DECK; k++){
 
-      if(difference.deck[j][k])    {diffArray[12] += (int) pow(10, j);}
-      if(difference.discard[j][k]) {diffArray[14] += (int) pow(10, j);}
+      /* If any card in player j's deck has changed record player number */
+      /* player 1 = 1, player 2=10, player 3= 100, etc.- then break out  */
+      /* to examine the next player's deck.  */
+      if(difference.deck[j][k])    {
+	diffArray[12] += (int) pow(10, j);
+	break;
+      }
+
+    }
+
+    /*checking all of the discards */
+    for(int k = 0; k < MAX_DECK; k++){
+
+      /* If any card in player j's discard changed record player number  */
+      /* player 1 = 1, player 2=10, player 3= 100, etc.- then break out  */
+      /* to examine the next player's deck.  */
+      if(difference.discard[j][k]) {
+	diffArray[14] += (int) pow(10, j);
+	break;
+      }
 
     }
 
@@ -174,18 +193,42 @@ int checkShuffle(int player, struct gameState *pre){
   struct gameState *post = malloc(sizeof(struct gameState));
   memcpy(post, pre, sizeof(struct gameState)); 
 
+  /* Business Rule #1: The function accepts 1 player and a game state... */
   shuffle(player, post); 
 
   /* create an array to track differences from pre to post and zeroize */
-  int *differences = malloc(sizeof(int)*18);
-  memset(differences, 0, (sizeof(int)*18));
+  int *differences = malloc(sizeof(int)*MEMBERS);
+  memset(differences, 0, (sizeof(int)*MEMBERS));
 
-  compareGameState(pre, post, differences, 18); 
+  /* **  tests still to accomplish: 
+ ** 1. ... and the discard deck of the chosen player is permuted. 
+  
+ ** 3. Should result in the same number of each type of card in the player's
+ **    deck following shuffling as existed in the deck before shuffling
+ ** 
+ ** 4. The permutation after shuffling should look relatively random (i.e.
+ **    the order of cards should be varied somewhat randomly).
+ ** 
 
-  for (int i =0; i < 18; i++){
-    printf("test %d: %d\n", i, differences[i]); 
+ */
+
+  compareGameState(pre, post, differences, MEMBERS); 
+
+
+  /* 2. Should result in the same number of total cards in the player's deck
+     following shuffling. */
+  if (differences[DECKCOUNTMEMBER]) {
+    printf("shuffle() fails business rule #2: # of cards in deck changed"); 
   }
 
+
+  /*5. The other features of the state of the game should all be unchanged. */
+  for (int i =0; i < MEMBERS; i++){
+    if ((differences[i]) && (i != 12)){
+      printf("shuffle fails business rule #5:");
+      printf(" state param #%d fails\n with code %d", i, differences[i]); 
+    }
+  }
 
   free(post); 
   free(differences);

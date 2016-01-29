@@ -195,10 +195,10 @@ int main() {
     printf("If 'Player 1 reveals card number ...' did not appear in the output, then this test has failed.\n");
 
     if (pass) {
-        printf("\nAll tests passed!");
+        printf("\nAll tests passed!\n");
     }
     else {
-        printf("\nSome test(s) failed!");
+        printf("\nSome test(s) failed!\n");
     }
     
     return 0;

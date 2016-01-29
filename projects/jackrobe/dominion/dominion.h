@@ -142,5 +142,5 @@ int baronCard(struct gameState *state, int choice1);
 int smithyCard(struct gameState *state, int handPos);
 int councilRoomCard(struct gameState *state, int handPos);
 int villageCard(struct gameState *state, int handPos);
-
+int great_hallCard(struct gameState *state, int currentPlayer, int handPos);
 #endif

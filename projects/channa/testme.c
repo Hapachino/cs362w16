@@ -6,13 +6,33 @@
 char inputChar()
 {
     // TODO: rewrite this function
-    return ' ';
+    char array[] = {'[', '(', '{', ' ', 'a', 'x', '}', ')', ']'};
+    int size = sizeof(array)/sizeof(array[0]);
+    int index = rand() % size;
+
+    char toReturn = array[index];
+
+    return toReturn;
 }
 
 char *inputString()
 {
     // TODO: rewrite this function
-    return "";
+    char array[] = {'r', 'e', 's', 'e', 't'};
+    int size = sizeof(array)/sizeof(array[0]);
+    int i, index;
+    int length = rand() % 6;
+
+    char *string = malloc(sizeof(char) * (length + 1));
+
+    for (i = 0; i < length; i++) {
+      index = rand() % size;
+      string[i] = array[index];
+    }
+
+    string[length] = '\0';
+
+    return string;
 }
 
 void testme()

@@ -130,7 +130,7 @@ int main() {
 
     // Play cutpurse
     p = 0;
-    playCutpurse(p, &testG, 0, 0, 0, 5);
+    playCutpurse(p, &testG, 5);
 
     // Check pile counts
     printf("----------------- AFTER PLAY CUTPURSE\n");
@@ -290,7 +290,7 @@ int cutpurseDiscard(int nP, int tN, int hN) {
 
     // Play cutpurse
     p = 0;
-    playCutpurse(p, &testG, 0, 0, 0, 5);
+    playCutpurse(p, &testG, 5);
 
     // Check pile counts
     printf("----------------- AFTER PLAY CUTPURSE\n");

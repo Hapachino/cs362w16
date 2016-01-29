@@ -389,10 +389,10 @@ int main() {
     assert(G.supplyCount[estate] == estateDefault);
 
     if (pass) {
-        printf("\nAll tests passed!");
+        printf("\nAll tests passed!\n");
     }
     else {
-        printf("\nSome test(s) failed!");
+        printf("\nSome test(s) failed!\n");
     }
     
     return 0;

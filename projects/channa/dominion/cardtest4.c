@@ -170,13 +170,13 @@ int main() {
     // Check if any tests failed (returned -1)
     for (i = 0; i < 10; i++) {
         if (passValues[i] == -1) {
-            printf("Some test(s) failed!");
+            printf("Some test(s) failed!\n");
             return 0;
         }
     }
 
     // If all returned 0, then all tests passed
-    printf("All tests passed!");
+    printf("All tests passed!\n");
 
     return 0;
 }

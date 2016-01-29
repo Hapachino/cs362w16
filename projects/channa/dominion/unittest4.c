@@ -188,10 +188,10 @@ int main() {
     }
 
     if (pass) {
-        printf("\nAll tests passed!");
+        printf("\nAll tests passed!\n");
     }
     else {
-        printf("\n%d/2 test(s) failed!", failed);
+        printf("\n%d/2 test(s) failed!\n", failed);
     }
 
     return 0;

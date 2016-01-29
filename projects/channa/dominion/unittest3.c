@@ -128,7 +128,7 @@ int main() {
     // False
     assert(result == 0);
 
-    printf("All tests passed!");
+    printf("All tests passed!\n");
 
     return 0;
 }

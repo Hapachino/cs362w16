@@ -23,19 +23,14 @@
 #include <assert.h>
 #include "rngs.h"
 
-int compare(const void* a, const void* b)
-{
-    if (*(int*)a > *(int*)b)
-        return 1;
-    if (*(int*)a < *(int*)b)
-        return -1;
-    return 0;
-}
+int compare(const void* a, const void* b);
 
 // This function differs from the original initializeGame() in dominion.c
 // in that it does not call shuffle() and does not draw cards for first player
 int initializeState(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
 {
+    printf("Beginning initializing state.\n");
+
     int i;
     int j;
     //set up random number generator
@@ -167,6 +162,8 @@ int initializeState(int numPlayers, int kingdomCards[10], int randomSeed, struct
     state->playedCardCount = 0;
     state->whoseTurn = 0;
     state->handCount[state->whoseTurn] = 0;
+
+    printf("Completed initializing state.\n");
     
     return 0;
 }
@@ -194,9 +191,11 @@ int main() {
 
     for (player = 0; player < numPlayers; player++)
     {
+        printf("Player %d:\n", player);
+
         if (shuffle(player, state) < 0)
         {
-            printf("shuffe() failed.\n");
+            printf("\tERROR: shuffe() failed.\n");
             return -1;
         }
         
@@ -208,7 +207,7 @@ int main() {
         {
             if (state->handCount[p] != originalState->handCount[p])
             {
-                printf("handCount not the same at player%d\n", p);
+                printf("\tERROR: handCount not the same at player%d\n", p);
                 return -1;
             }
         }
@@ -220,8 +219,8 @@ int main() {
             while ( (i < state->deckCount[p]) &&
                     (state->deck[p][i] == originalState->deck[p][i]) )
             {
-                printf("shuffled card %d: %d\n", i, state->deck[p][i]);
-                printf("original card %d: %d\n", i, originalState->deck[p][i]);
+                printf("\tshuffled card %d: %d\n", i, state->deck[p][i]);
+                printf("\toriginal card %d: %d\n", i, originalState->deck[p][i]);
                 i++;
             }
             
@@ -246,7 +245,8 @@ int main() {
 
         if (memcmp(state, originalState, sizeof(struct gameState)) != 0)
         {
-            printf("Error: Shuffled deck does not have same set of cards.\n");
+            printf("\tERROR: memcmp failed.\n");
+            return -1;
         }
     }
 

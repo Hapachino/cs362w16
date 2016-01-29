@@ -1,14 +1,50 @@
-profiling:/nfs/stak/students/s/swaffork/cs362/dominion/cs362w16/projects/swaffork/dominion/dominion.gcda:Merge mismatch for summaries
-profiling:/nfs/stak/students/s/swaffork/cs362/dominion/cs362w16/projects/swaffork/dominion/rngs.gcda:Merge mismatch for summaries
+Beginning initializing state.
+Completed initializing state.
 Testing shuffle():
-card 0: 1
-original card 0: 1
-card 1: 1
-original card 1: 1
-card 2: 4
-original card 2: 4
-card 3: 4
-original card 3: 4
-card 4: 4
-original card 4: 4
-Error: Order of shuffled deck is the same.
+Player 0:
+	shuffled card 0: 1
+	original card 0: 1
+	shuffled card 1: 1
+	original card 1: 1
+	shuffled card 0: 1
+	original card 0: 1
+	shuffled card 1: 1
+	original card 1: 1
+	shuffled card 2: 1
+	original card 2: 1
+	shuffled card 3: 4
+	original card 3: 4
+	shuffled card 4: 4
+	original card 4: 4
+	shuffled card 5: 4
+	original card 5: 4
+	shuffled card 6: 4
+	original card 6: 4
+	shuffled card 7: 4
+	original card 7: 4
+	shuffled card 8: 4
+	original card 8: 4
+	shuffled card 9: 4
+	original card 9: 4
+Player 1:
+	shuffled card 0: 1
+	original card 0: 1
+	shuffled card 1: 1
+	original card 1: 1
+	shuffled card 2: 1
+	original card 2: 1
+	shuffled card 3: 4
+	original card 3: 4
+	shuffled card 4: 4
+	original card 4: 4
+	shuffled card 5: 4
+	original card 5: 4
+	shuffled card 6: 4
+	original card 6: 4
+	shuffled card 7: 4
+	original card 7: 4
+	shuffled card 8: 4
+	original card 8: 4
+	shuffled card 9: 4
+	original card 9: 4
+	ERROR: memcmp failed.

@@ -20,6 +20,7 @@
 
 #define ASCII_MINIMUM 0
 #define ASCII_MAXIMUM 255
+#define INPUT_STRING_SIZE 6
 
 char inputChar()
 /* Produces a random ASCII character */
@@ -27,7 +28,7 @@ char inputChar()
     // TODO: rewrite this function
     
     int range_of_characters = ASCII_MAXIMUM - ASCII_MINIMUM + 1;
-    char random_character = (rand() * range_of_characters) + ASCII_MINIMUM;
+    char random_character = (rand() % range_of_characters) + ASCII_MINIMUM;
     
     return random_character;
 }
@@ -35,15 +36,16 @@ char inputChar()
 char *inputString()
 {
     // TODO: rewrite this function
-    int size_of_string = 5;
-    char string_set[size_of_string] = "reset";
-    char *character_string = malloc(size_of_string);
+    int i;
+    char string_set[INPUT_STRING_SIZE] = "reset\0";
+    char *character_string = malloc(INPUT_STRING_SIZE);
     
-    for(int i = 0; i < size_of_string; i++){
-        character_string[i] = string_set[rand() % size_of_string];
+    
+    for(i = 0; i < (INPUT_STRING_SIZE - 1); i++){
+        character_string[i] = string_set[rand() % (INPUT_STRING_SIZE - 1)];
     }
     
-    character_string[5] = '\0'; // at spot 6, the null value
+    character_string[INPUT_STRING_SIZE - 1] = '\0'; // at spot 6, the null value
     
     return character_string;
 }

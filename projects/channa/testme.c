@@ -8,7 +8,7 @@ char inputChar()
     // TODO: rewrite this function
 
     // array of characters from which we select a single one to return
-    char array[] = {'[', '(', '{', ' ', 'a', 'x', '}', ')', ']'};
+    char array[] = {'@', '!', '[', '~', '(', '^', '{', '*', ' ', '%', '$', 'a', '#', 'x', '}', '&', ')', ']'};
     // number of elements in the array
     int size = sizeof(array)/sizeof(array[0]);
     // randomly select an index
@@ -22,13 +22,13 @@ char inputChar()
 char *inputString()
 {
     // TODO: rewrite this function
-  
+
     // message that will cause the error message to print
     char message[] = "reset";
     int messageLength = strlen(message) + 1;
     
-    // array of characters from which we will use to construct a string
-    char array[] = {'r', 'e', 's', 'e', 't'};
+    // array of characters which we will use to construct a string
+    char array[] = {'a', 'b', 'c', 'r', 'd', 'e', 'f', 'g', 's', 'e', 't'};
     // number of elements in the array
     int size = sizeof(array)/sizeof(array[0]);
     // length of the string is the full length of the message or shorter

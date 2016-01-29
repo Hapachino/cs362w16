@@ -667,7 +667,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      return playAdventurer(state, currentPlayer, drawntreasure, cardDrawn, temphand, z);
+      return playAdventurer(state, currentPlayer);
 			
     case council_room:
       //+4 Cards
@@ -1246,8 +1246,13 @@ Adventurer
 Reveal cards from your deck until you reveal 2 Treasure cards.
 Put those Treasure cards into your hand and discard the other revealed cards.
 */
-int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z)
+int playAdventurer (struct gameState *state, int currentPlayer)
 {
+  int cardDrawn;
+  int drawntreasure = 0;
+  int temphand[MAX_HAND];
+  int z = 0;
+
   while(drawntreasure<2) 
   {
     if (state->deckCount[currentPlayer] <1)

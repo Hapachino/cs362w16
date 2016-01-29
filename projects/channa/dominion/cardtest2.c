@@ -71,7 +71,7 @@ int main() {
     printf("----------------- After playAdventurer\n");
 
     // int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z);
-    playAdventurer(&testG, p, 0, 0, temphand, 0);
+    playAdventurer(&testG, p);
 
     // 1, 1, 4,
     printf("DECK COUNT\n");
@@ -163,7 +163,7 @@ int main() {
 
     printf("----------------- After playAdventurer\n");
 
-    playAdventurer(&testG, p, 0, 0, temphand, 0);
+    playAdventurer(&testG, p);
 
     // 4
     printf("DECK COUNT\n");
@@ -267,7 +267,7 @@ int main() {
 
     printf("----------------- After playAdventurer\n");
 
-    playAdventurer(&testG, p, 0, 0, temphand, 0);
+    playAdventurer(&testG, p);
 
     // 4, 1
     printf("DECK COUNT\n");

@@ -133,7 +133,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 int playSmithy(int i, int currentPlayer, struct gameState *state, int handPos);
 /* +3 Cards */
 
-int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z);
+int playAdventurer (struct gameState *state, int currentPlayer);
 /* Reveal cards from your deck until you reveal 2 Treasure cards.
 Put those Treasure cards into your hand and discard the other revealed cards. */
 

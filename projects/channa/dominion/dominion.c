@@ -788,7 +788,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return playRemodel(j, state, currentPlayer, choice1, choice2, handPos, i);
 		
     case smithy:
-      return playSmithy(i, currentPlayer, state, handPos);
+      return playSmithy(currentPlayer, state, handPos);
 		
     case village:
       //+1 Card
@@ -1287,8 +1287,10 @@ Smithy
 
 +3 Cards
 */
-int playSmithy(int i, int currentPlayer, struct gameState *state, int handPos)
+int playSmithy(int currentPlayer, struct gameState *state, int handPos)
 {
+  int i;
+
   //+3 Cards
   for (i = 0; i <= 3; i++)
   {

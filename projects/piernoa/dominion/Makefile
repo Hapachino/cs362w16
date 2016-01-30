@@ -39,15 +39,15 @@ tests: cardtest4.c cardtest3.c cardtest2.c cardtest1.c unittest4.c unittest3.c u
 	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
 
-runtests: 
-	rm unittestresult.out
+runtests:
+	rm -f unittestresult.out
 	./unittest1 >> unittestresult.out
 	./unittest2 >> unittestresult.out
 	./unittest3 >> unittestresult.out
 	./unittest4 >> unittestresult.out
 	./cardtest1 >> unittestresult.out
 	./cardtest2 >> unittestresult.out
-	./cardtest3 >> unittestresult.out
+	
 	./cardtest4 >> unittestresult.out
 	gcov -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out

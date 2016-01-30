@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
+#include <math.h>
 
 #define DEBUG 1
 #define NOISY_TEST 1
@@ -13,20 +14,40 @@ int checkCouncilRoom(struct gameState *post, int handPos) {
   memcpy (&pre, post, sizeof(struct gameState));
   int p2 = 1- pre.whoseTurn;
 
+  printf("\n * 1 \n ");
+
   int r;
   r = _goodCouncilRoom(post, handPos);
+
+  printf("\n * 2 \n ");
+
 
   // assert this current player has +3 cards ( +4 cards -1 for discard )
   assert( pre.handCount[0] + 3 == post->handCount[0] );
 
+  printf("\n * 3 \n ");
+
+
   // assert incremented numBuys
   assert( pre.numBuys + 1 == post->numBuys);
+
+  printf("\n * 4 \n ");
+
 
   // assert player 2 has drawn a card;
   assert( pre.handCount[p2] + 1 == post->handCount[p2] );
 
+
+  printf("\n * 5 \n ");
+
+
   // assert played card cound increments
   assert(pre.playedCardCount + 1 == post->playedCardCount );
+
+
+  printf("\n * 6 \n ");
+
+
   return 0;
 }
 

@@ -24,3 +24,9 @@ Cards moved into their own functions:
   Mine:
     - if (state->hand[currentPlayer][choice1] < gold || state->hand[currentPlayer][choice1] > copper)  instead of if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
     - if (choice2 > treasure_map && choice2 < curse) instaed of if (choice2 > treasure_map || choice2 < curse)
+
+
+Notes from assignment III.
+
+While no new bugs were introduced, I did make two versions of the funcitons I tested and introduced bugs to.
+For example, there are two smithy funcitons, one with bugs I introduced, and one without. 

@@ -16,33 +16,33 @@ cardtest1:
 cardtest2:
 	statements not covered in playAdventurer():
 		-: 1258:      //if the deck is empty we need to shuffle discard and add to deck
-    #####: 1259:      shuffle(currentPlayer, state);
-    	6: 1274:  while(z-1>=0)
-    	-: 1275:  {
-    #####: 1276:    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-    #####: 1277:    z=z-1;
-    	-: 1278:  }
-    I did not use an empty deck in any of the tests here so shuffle was never called. The bug I introduced
-    made it so that the counter z does not increment correctly. As a result, z, which was intialized to 0,
-    stays at 0 and the while conditiion cannot be met for the following two lines below it to execute.
-    
-    branch coverage: function playAdventurer called 3 returned 100% blocks executed 86%
-    Not all branches were taken because 1) I did not use an empty deck at any point, 2) the only treasure
+	#####: 1259:      shuffle(currentPlayer, state);
+		6: 1274:  while(z-1>=0)
+		-: 1275:  {
+	#####: 1276:    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+	#####: 1277:    z=z-1;
+		-: 1278:  }
+	I did not use an empty deck in any of the tests here so shuffle was never called. The bug I introduced
+	made it so that the counter z does not increment correctly. As a result, z, which was intialized to 0,
+	stays at 0 and the while conditiion cannot be met for the following two lines below it to execute.
+	
+	branch coverage: function playAdventurer called 3 returned 100% blocks executed 86%
+	Not all branches were taken because 1) I did not use an empty deck at any point, 2) the only treasure
 	card used was copper (so silver and gold were not tested), and 3) I introduced a bug affecting the
 	z counter.
 
 cardtest3:
 	statements not covered in playCutpurse():
 	#####: 1327:          for (k = 0; k < state->handCount[i]; k += 2)
-        -: 1328:          {
-    #####: 1329:            if (DEBUG)
-        -: 1330:              printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
-        -: 1331:          } 
-    #####: 1332:          break;
-    Although I did have a test involving a hand with no copper that should have resulted in the player
-    revealing the cards in their hand, the condition required for the for loop to execute: 
-    if (j == state->handCount[i]) was not satisfied. j would increase to state->handCount[i] - 1 but not
-    state->handCount[i]. We do not see j reaching state->handCount[i] because the outer for loop condition:
+		-: 1328:          {
+	#####: 1329:            if (DEBUG)
+		-: 1330:              printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
+		-: 1331:          } 
+	#####: 1332:          break;
+	Although I did have a test involving a hand with no copper that should have resulted in the player
+	revealing the cards in their hand, the condition required for the for loop to execute: 
+	if (j == state->handCount[i]) was not satisfied. j would increase to state->handCount[i] - 1 but not
+	state->handCount[i]. We do not see j reaching state->handCount[i] because the outer for loop condition:
 	j < state->handCount[i] prevents us from evaluating if (j == state->handCount[i]) again once we have
 	examined all the cards.
 

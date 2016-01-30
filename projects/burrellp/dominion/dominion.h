@@ -134,7 +134,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 void playAdventurer(int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], struct gameState *state);
 void playSmithy(int currentPlayer, int handPos, struct gameState *game);
 void playVillage(int currentPlayer, int handPos, struct gameState *state);
-void playFeast(int currentPlayer, int temphand[], struct gameState *state);
+void playFeast(int currentPlayer, int choice1, int temphand[], struct gameState *state);
 void playCouncilRoom(int currentPlayer, int handPos, struct gameState *state);
 
 

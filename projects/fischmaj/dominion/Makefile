@@ -35,6 +35,10 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+
+unittest1: unittest1.c dominion.o 
+	gcc -o test1 unittest1.c  dominion.o rngs.o  $(CFLAGS)
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:

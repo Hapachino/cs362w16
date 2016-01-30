@@ -783,7 +783,8 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
     int _goodSmithy( struct gameState *state, int handPos)
     {
       int currentPlayer = whoseTurn(state);
-      for (int i = 0; i < 3; i++)
+      int i;
+      for ( i = 0; i < 3; i++)
       {
         drawCard(currentPlayer, state);
       }
@@ -898,7 +899,8 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
       discardCard(handPos, currentPlayer, state, 0);
 
       //discard trashed card
-      for (int i = 0; i < state->handCount[currentPlayer]; i++)
+      int i;
+      for ( i = 0; i < state->handCount[currentPlayer]; i++)
       {
         if (state->hand[currentPlayer][i] == j)
         {

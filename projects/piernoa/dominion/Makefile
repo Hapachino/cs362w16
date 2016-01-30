@@ -47,7 +47,7 @@ runtests:
 	./unittest4 >> unittestresult.out
 	./cardtest1 >> unittestresult.out
 	./cardtest2 >> unittestresult.out
-	
+	./cardtest3 >> unittestresult.out
 	./cardtest4 >> unittestresult.out
 	gcov -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out

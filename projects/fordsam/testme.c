@@ -3,16 +3,37 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define CHAR_MAX (127 - 32)
+#define STRING_MAX 5
+
 char inputChar()
 {
-  // TODO: rewrite this function
-  return ' ';
+    /* Return an ASCII char from 32 (space) to 126 (~), thusly avoiding
+       control characters */
+    return (char)(rand() % CHAR_MAX + 32);
 }
 
 char *inputString()
 {
-  // TODO: rewrite this function
-  return "";
+    /* Generate a string of up to 5 chars (and a null terminator) */
+    int length = rand() % STRING_MAX + 1;
+    char *s = NULL;
+    int i = 0;
+
+    /* Allocate memory for the string */
+    s = (char *)malloc((length + 1) * sizeof(char));
+    if (s == NULL) {
+      perror("Error allocating memory for inputString");
+    }
+
+    /* Populate the string with [length] chars followed by a null terminator */
+    for (i = 0; i < length; i++) {
+      /* Add a random character from 97 (a) to 122 (z) to the string */
+      s[i] = (char)(rand() % 26 + 97);
+    }
+    s[length] = '\0';
+
+    return s;
 }
 
 void testme()
@@ -43,8 +64,11 @@ void testme()
        && state == 9)
     {
       printf("error ");
+      free(s);    /* Free the generated string before exiting */
       exit(200);
     }
+
+    free(s);      /* Free the generated string before the next iteration */
   }
 }
 

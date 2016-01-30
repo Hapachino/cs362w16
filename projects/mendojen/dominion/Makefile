@@ -33,13 +33,13 @@ buyCard: unittest4.c dominion.o rngs.o
 testVillage: cardtest1.c dominion.o rngs.o
 	gcc -o card1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
 	
-playSalvager: cardtest2.c dominion.o rngs.o
+testSalvager: cardtest2.c dominion.o rngs.o
 	gcc -o card2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
 	
-playSmithy: cardtest3.c dominion.o rngs.o
+testSmithy: cardtest3.c dominion.o rngs.o
 	gcc -o card3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
 	
-playAdventurer: cardtest4.c dominion.o rngs.o
+testAdventurer: cardtest4.c dominion.o rngs.o
 	gcc -o card4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
 
 testAll: dominion.o testSuite.c
@@ -59,7 +59,7 @@ player: player.c interface.o
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
-test: getCost updateCoins isGameOver buyCard
+test: getCost updateCoins isGameOver buyCard testVillage testAdventurer testSalvager testSmithy
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

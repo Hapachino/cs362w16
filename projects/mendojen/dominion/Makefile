@@ -30,6 +30,18 @@ isGameOver: unittest3.c dominion.o rngs.o
 buyCard: unittest4.c dominion.o rngs.o
 	gcc -o unit4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
 
+testVillage: cardtest1.c dominion.o rngs.o
+	gcc -o card1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+	
+playSalvager: cardtest2.c dominion.o rngs.o
+	gcc -o card2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+	
+playSmithy: cardtest3.c dominion.o rngs.o
+	gcc -o card3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+	
+playAdventurer: cardtest4.c dominion.o rngs.o
+	gcc -o card4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 

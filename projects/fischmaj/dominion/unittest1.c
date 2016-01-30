@@ -32,7 +32,7 @@
 #define MEMBERS 18     /* Number of member variables in a gameState (gS) */
 #define DECKCOUNTMEMBER 13  /* The deckCount is 14th member of gS, index 13*/
 #define CARDTYPES treasure_map+1  /* Number of different card types in game */
-#define NUMTESTS 10   /* Number of times to run the tests */
+#define NUMTESTS 100   /* Number of times to run the tests */
 
 
 /* function prototypes */
@@ -208,6 +208,7 @@ int countCards(int *deck, int *cardCount){
 
 int checkShuffle(int player, struct gameState *pre){
 
+  int testFail = 0; 
 
   /* create two arrays to track the number of each cardtype in a deck */
   int *cardListPre = malloc(sizeof(int)*CARDTYPES);
@@ -228,50 +229,62 @@ int checkShuffle(int player, struct gameState *pre){
   /* Business Rule #1: The function accepts 1 player and a game state... */
   shuffle(player, post); 
 
-  /*  
- ** 3. Should result in the same number of each type of card in the player's
- **    deck following shuffling as existed in the deck before shuffling
- ** 
- ** 4. The permutation after shuffling should look relatively random (i.e.
- **    the order of cards should be varied somewhat randomly).
- ** 
-
- */
 
   compareGameState(pre, post, differences, MEMBERS); 
 
 
-  /* 2. Should result in the same number of total cards in the player's deck
-     following shuffling. */
+  /* Business rule #2: Should result in the same number of total cards in the
+     player's deck following shuffling. */
   if (differences[DECKCOUNTMEMBER]) {
     printf("shuffle() fails business rule #2: # of cards in deck changed"); 
+    testFail = 1; 
   }
 
 
-  /*3. Should result in the same number of each type of card in the deck */
-  /*   following shuffling as existed before shuffling.*/
+  /* Business rule #3: Should result in the same number of each type of card in     the deck following shuffling as existed before shuffling.*/
   countCards(pre->hand[player], cardListPre);
   countCards(post->hand[player], cardListPost);
 
   for (int i = 0; i < CARDTYPES; i++){
-    printf("\n%d =?= %d\n", cardListPre[i], cardListPost[i]); 
     if (cardListPre[i] != cardListPost[i]){
       printf("\nshuffle() fails business rule #3: card types changed\n");
+      testFail = 1; 
       break;
     }
   }
    
+ 
+/** 4. The permutation after shuffling should look relatively random (i.e.
+ **    the order of cards should be varied somewhat randomly).  */
+
+  /* if player's deck isn't different then it isn't shuffled*/
+  /* if the difference code doesn't match the correct player then the*/
+  /* wrong deck was shuffled. */
+  if (   !(  ( (differences[12]== 1) && (player == 0))
+	     || ((differences[12] == 10) && (player == 1))
+	     || ((differences[12] == 100) && (player == 2))
+	     || ((differences[12] == 1000) && (player == 3)))){
+
+    testFail =1; 
+    printf("shuffle fails business rule #4: player's deck not changed\n");
+    printf("or wrong player's deck changed.\n");
+
+  }
 
 
   /*5. The other features of the state of the game should all be unchanged. */
   for (int i =0; i < MEMBERS; i++){
     if ((differences[i]) && (i != 12)){
+      testFail =1; 
       printf("shuffle fails business rule #5:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
     }
   }
+  
 
-
+  if(!testFail){
+    printf("\tTests passed.");
+  }
 
 
   free(post); 

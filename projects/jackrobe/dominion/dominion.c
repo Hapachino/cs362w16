@@ -523,9 +523,13 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
 }
 
 int drawCard(int player, struct gameState *state)
-{	int count;
+{
+
+  int count;
   int deckCounter;
-  if (state->deckCount[player] <= 0){//Deck is empty
+
+  ///Deck is empty
+  if (state->deckCount[player] <= 0){
     
     //Step 1 Shuffle the discard pile back into a deck
     int i;
@@ -564,6 +568,7 @@ int drawCard(int player, struct gameState *state)
     state->handCount[player]++;//Increment hand count
   }
 
+  ///DECK HAS CARDS!
   else{
     int count = state->handCount[player];//Get current hand count for player
     int deckCounter;
@@ -653,22 +658,25 @@ int adventurerCard( struct gameState * state ){
 	int temphand[MAX_HAND];
 	int drawntreasure = 0;
 
-		while (drawntreasure<2){
-			if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
-				shuffle(currentPlayer, state);
-			}
-			drawCard(currentPlayer, state);
-			cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];//top card of hand is most recently drawn card.
-			if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-				drawntreasure++;
+		while (drawntreasure<2) {
+          if (state->deckCount[currentPlayer] < 1) {//if the deck is empty we need to shuffle discard and add to deck
+            shuffle(currentPlayer, state);
+          }
+          drawCard(currentPlayer, state);
+          cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] -1];//top card of hand is most recently drawn card.
+          if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
+            drawntreasure++;
+
+        }
 			else{
 				temphand[z] = cardDrawn;
 				state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
 				z++;
 			}
+
 		}
-		while (z - 1 > 0){
-			state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
+		while (z - 1 >= 0){
+			state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z-1]; // discard all cards in play that have been drawn
 			z = z - 1;
 		}
 		return 0;
@@ -689,7 +697,7 @@ int councilRoomCard(struct gameState * state, int handPos){
 	state->numBuys++;
 
 	//Each other player draws a card
-	for (i; i < state->numPlayers; i++)
+	for (i=0; i < state->numPlayers; i++)
 	{
 		if (i != currentPlayer)
 		{
@@ -709,7 +717,7 @@ int smithyCard(struct gameState * state, int handPos){
 	int currentPlayer = whoseTurn(state);
 	int i;
 	//+3 Cards
-	for (i = 0; i <= 3; i++)
+	for (i = 0; i < 3; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
@@ -724,6 +732,9 @@ int smithyCard(struct gameState * state, int handPos){
 int villageCard(struct gameState* state, int handPos){
 
 	int currentPlayer = whoseTurn(state);
+
+    //+1 Card
+    drawCard(currentPlayer, state);
 
 	//+2 Actions
 	state->numActions = state->numActions + 2;
@@ -740,7 +751,7 @@ int baronCard(struct gameState *state, int choice1){
 	if (choice1 > 0){//Boolean true or going to discard an estate
 		
 		int p = 0;//Iterator for hand!
-		int card_not_discarded = 0;//Flag for discard set!
+		int card_not_discarded = 1;//Flag for discard set!
 		
 		while (card_not_discarded){
 			if (state->hand[currentPlayer][p] == estate){//Found an estate card!
@@ -788,6 +799,19 @@ int baronCard(struct gameState *state, int choice1){
 
 	return 0;
 
+}
+int great_hallCard(struct gameState *state, int currentPlayer, int handPos){
+
+  //+1 Card
+  drawCard(currentPlayer, state);
+
+  //+1 Actions
+  state->numActions++;
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+
+  return 0;
 }
 
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
@@ -950,15 +974,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		baronCard(state, choice1);
 		
     case great_hall:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+1 Actions
-      state->numActions++;
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+
+      great_hallCard(state, currentPlayer, handPos);
 		
     case minion:
       //+1 action

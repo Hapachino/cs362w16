@@ -38,6 +38,9 @@ unittest1: dominion.o unittest1.c
 unittest2: dominion.o unittest2.c 
 	gcc -o unittest2 unittest2.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 
+unittest3: dominion.o unittest3.c 
+	gcc -o unittest3 unittest3.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o cardFunctions.o rngs.o interface.o
 

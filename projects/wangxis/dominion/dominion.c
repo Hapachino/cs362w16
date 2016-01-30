@@ -1241,15 +1241,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 int adventurerCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
-  int i;
-  int j;
-  int k;
-  int x;
-  int index;
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
 
-  int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
   int drawntreasure=0;
   int cardDrawn;
@@ -1263,7 +1257,7 @@ int adventurerCard(int choice1, int choice2, int choice3, struct gameState *stat
 	  shuffle(currentPlayer, state);
 	}
 	drawCard(currentPlayer, state);
-	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];//top card of hand is most recently drawn card.
 	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 	  drawntreasure++;
 	else{
@@ -1282,23 +1276,14 @@ int adventurerCard(int choice1, int choice2, int choice3, struct gameState *stat
 int smithyCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int i;
-  int j;
-  int k;
-  int x;
-  int index;
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
 
-  int tributeRevealedCards[2] = {-1, -1};
-  int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
       //+3 Cards
-      for (i = 0; i < 3; i++)
+      for (i = 0; i <= 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -1311,18 +1296,11 @@ int smithyCard(int choice1, int choice2, int choice3, struct gameState *state, i
 int feastCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int i;
-  int j;
-  int k;
   int x;
-  int index;
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
 
-  int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -1337,7 +1315,7 @@ int feastCard(int choice1, int choice2, int choice3, struct gameState *state, in
 
       //Update Coins for Buy
       updateCoins(currentPlayer, state, 5);
-      x = 1;//Condition to loop on
+      //x = 1;//Condition to loop on
       while( x == 1) {//Buy one card
 	if (supplyCount(choice1, state) <= 0){
 	  if (DEBUG)
@@ -1385,24 +1363,17 @@ int ambassadorCard(int choice1, int choice2, int choice3, struct gameState *stat
 {
   int i;
   int j;
-  int k;
-  int x;
-  int index;
+
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
 
-  int tributeRevealedCards[2] = {-1, -1};
-  int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
   
       j = 0;		//used to check if player has enough cards to discard
 
-      if (choice2 > 2 || choice2 < 0)
+      if (choice2 > 2 && choice2 < 0)
 	{
 	  return -1;				
 	}
@@ -1463,16 +1434,9 @@ int cutpurseCard(int choice1, int choice2, int choice3, struct gameState *state,
   int i;
   int j;
   int k;
-  int x;
-  int index;
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
 
-  int tributeRevealedCards[2] = {-1, -1};
-  int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -1508,10 +1472,6 @@ int cutpurseCard(int choice1, int choice2, int choice3, struct gameState *state,
       discardCard(handPos, currentPlayer, state, 0);			
 
       return 0;
-	
-	
-	
-	
 }
 
 

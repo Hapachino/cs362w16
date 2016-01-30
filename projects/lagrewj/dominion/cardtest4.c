@@ -1,7 +1,7 @@
-/* -----------------------------------------------------------------------
-	* Testing playCouncil_Room()
-	* -----------------------------------------------------------------------
-*/
+/*Jonathan Lagrew
+ *test playCouncil_Room()
+ */
+ 
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>

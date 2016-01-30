@@ -1,7 +1,7 @@
-/* -----------------------------------------------------------------------
-	* Testing playSmithy()
-	* -----------------------------------------------------------------------
-*/
+/*Jonathan Lagrew
+ *test playSmithy()
+ */
+ 
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>

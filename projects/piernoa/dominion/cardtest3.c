@@ -6,9 +6,6 @@
 #include "rngs.h"
 #include <math.h>
 
-#define DEBUG 1
-#define NOISY_TEST 1
-
 int checkCouncilRoom(struct gameState *post, int handPos) {
   struct gameState pre;
   memcpy (&pre, post, sizeof(struct gameState));
@@ -52,18 +49,24 @@ int checkCouncilRoom(struct gameState *post, int handPos) {
 }
 
 int main () {
-
+  printf("\n * A \n ");
   int i, j, n, r, p, deckCount, discardCount, handCount, handPos, randomCard, randomHandCount;
 
-  int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+  int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+  printf("\n * B \n ");
 
   struct gameState G;
+  printf("\n * C \n ");
 
   printf ("Testing CARD councilRoom.\n");
 
   SelectStream(2);
+  printf("\n * D \n ");
+
   PutSeed(3);
+
+  printf("\n * E \n ");
+
 
   for (n = 0; n < 1; n++) {
     for (i = 0; i < sizeof(struct gameState); i++) {
@@ -98,6 +101,9 @@ int main () {
           break;
       }
     }
+
+
+    printf("\n * F \n ");
 
 
     int p2 = 1-p;
@@ -147,6 +153,10 @@ int main () {
     //       break;
     //   }
     // }
+
+
+    printf("\n * G \n ");
+
     G.whoseTurn = 0;
     handPos = 0;
 
@@ -163,6 +173,8 @@ int main () {
 
 
   }
+  printf("\n * H \n ");
+
   printf ("ALL TESTS OK FOR councilRoom \n\n");
   exit(0);
   return 0;

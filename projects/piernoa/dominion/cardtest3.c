@@ -4,15 +4,12 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-
-#define DEBUG 1
-#define NOISY_TEST 1
+#include <math.h>
 
 int checkCouncilRoom(struct gameState *post, int handPos) {
   struct gameState pre;
   memcpy (&pre, post, sizeof(struct gameState));
-  int p2 = 1- pre.whoseTurn;
-
+  int p2 = 1 - pre.whoseTurn;
   int r;
   r = _goodCouncilRoom(post, handPos);
 
@@ -27,22 +24,19 @@ int checkCouncilRoom(struct gameState *post, int handPos) {
 
   // assert played card cound increments
   assert(pre.playedCardCount + 1 == post->playedCardCount );
+
   return 0;
 }
 
 int main () {
-
   int i, j, n, r, p, deckCount, discardCount, handCount, handPos, randomCard, randomHandCount;
-
-  int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
-
+  int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
   struct gameState G;
-
   printf ("Testing CARD councilRoom.\n");
 
   SelectStream(2);
   PutSeed(3);
+
 
   for (n = 0; n < 1; n++) {
     for (i = 0; i < sizeof(struct gameState); i++) {
@@ -78,7 +72,6 @@ int main () {
       }
     }
 
-
     int p2 = 1-p;
     for ( j=0; j< randomHandCount; j++)
     {
@@ -109,32 +102,18 @@ int main () {
       }
     }
 
-    // /* player two now has real cards */
-    // for ( j=0; j< randomHandCount; j++)
-    // {
-    //   G.hand[1-p][j] = 0;
-    //   randomCard = floor(Random() * 3);
-    //   switch (randomCard) {
-    //     case 0:
-    //       G.hand[1-p][j] = copper;
-    //       break;
-    //     case 1:
-    //       G.hand[1-p][j] = silver;
-    //       break;
-    //     case 2:
-    //       G.hand[1-p][j] = gold;
-    //       break;
-    //   }
-    // }
     G.whoseTurn = 0;
     handPos = 0;
 
     handPos = 5;
 
     G.deckCount[p] = 40;
+    G.deckCount[1-p] = 40;
     G.discardCount[p] = 10;
-    G.handCount[p] = 8;
-    G.discard[p][G.discardCount[p]] = 100;
+    G.handCount[p] = 60;
+    G.handCount[1-p] = 60;
+
+    G.discard[p][G.discardCount[p]] = 30;
     G.playedCardCount = 3;
     G.playedCards[ G.playedCardCount ] = G.hand[p][handPos-1];
 

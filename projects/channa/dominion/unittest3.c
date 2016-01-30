@@ -40,7 +40,7 @@ int main() {
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Test 1: No changes\n");
-    printf("Game is over: %d\n", result);
+    printf("Game is over: %d, expected: 0\n\n", result);
 #endif
     // False
     assert(result == 0);
@@ -50,7 +50,7 @@ int main() {
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Test 2: Empty province pile\n");
-    printf("Game is over: %d\n", result);
+    printf("Game is over: %d, expected: 1\n\n", result);
 #endif
     // True
     assert(result == 1);
@@ -63,7 +63,7 @@ int main() {
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Test 3: 1 empty supply pile\n");
-    printf("Game is over: %d\n", result);
+    printf("Game is over: %d, expected: 0\n\n", result);
 #endif
     // False
     assert(result == 0);
@@ -73,7 +73,7 @@ int main() {
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Test 4: 2 empty supply piles\n");
-    printf("Game is over: %d\n", result);
+    printf("Game is over: %d, expected: 0\n\n", result);
 #endif
     // False
     assert(result == 0);
@@ -83,7 +83,7 @@ int main() {
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Test 5: 3 empty supply piles\n");
-    printf("Game is over: %d\n", result);
+    printf("Game is over: %d, expected: 1\n\n", result);
 #endif
     // True
     assert(result == 1);
@@ -93,7 +93,7 @@ int main() {
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Test 6: Re-test with 2 empty supply piles\n");
-    printf("Game is over: %d\n", result);
+    printf("Game is over: %d, expected: 0\n\n", result);
 #endif
     // False
     assert(result == 0);
@@ -103,7 +103,7 @@ int main() {
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Test 7: Re-test with 1 empty supply piles\n");
-    printf("Game is over: %d\n", result);
+    printf("Game is over: %d, expected: 0\n\n", result);
 #endif
     // False
     assert(result == 0);
@@ -113,7 +113,7 @@ int main() {
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Test 8: Re-test with 0 empty supply piles\n");
-    printf("Game is over: %d\n", result);
+    printf("Game is over: %d, expected: 0\n\n", result);
 #endif
     // False
     assert(result == 0);
@@ -123,12 +123,12 @@ int main() {
     result = isGameOver(&G);
 #if (NOISY_TEST == 1)
     printf("Test 9: Re-test with almost empty province pile\n");
-    printf("Game is over: %d\n", result);
+    printf("Game is over: %d, expected: 0\n\n", result);
 #endif
     // False
     assert(result == 0);
 
-    printf("\nAll tests passed!");
+    printf("All tests passed!\n");
 
     return 0;
 }

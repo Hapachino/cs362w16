@@ -27,10 +27,10 @@ int main() {
     int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, tribute, embargo};
 
-    const char *cards[] = {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
-        "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
-        "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"
-    };
+    // const char *cards[] = {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
+    //     "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
+    //     "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"
+    // };
 
     struct gameState G;
     int copperCount, estateCount;
@@ -48,13 +48,13 @@ int main() {
     {
 #if (NOISY_TEST == 1)
         printf("\n----------------- Testing for Player %d:\n", p);
-        printf("----------------- Adding the following to discard/hand:\n");
-        printf("----------------- 5 coppers\n");
-        printf("----------------- 10 golds\n");
-        printf("----------------- 2 provinces\n");
-        printf("----------------- 3 smithys\n");
-        printf("----------------- 4 tributes\n");
-        printf("----------------- 5 embargos\n");
+        printf("Adding the following to\n");
+        printf("    deck:         5 coppers\n");
+        printf("    hand:         10 golds\n");
+        printf("    discard pile: 2 provinces\n");
+        printf("    hand:         3 smithys\n");
+        printf("    discard pile: 4 tributes\n");
+        printf("    deck:         5 embargos\n");
 #endif
 
         // Estates
@@ -73,11 +73,11 @@ int main() {
 #endif
         assert(result == copperCount);
 
-        // Test update of coppers (discard)
+        // Test update of coppers (deck)
         count = 5;
         for (i = 0; i < count; i++) {
-            G.discard[p][ G.discardCount[p] ] = copper;
-            G.discardCount[p]++;
+            G.deck[p][ G.deckCount[p] ] = copper;
+            G.deckCount[p]++;
         }
         copperCount = copperCount + count;
         result = fullDeckCount(p, 4, &G);
@@ -134,11 +134,11 @@ int main() {
 #endif
         assert(result == count);
 
-        // Test embargo (hand)
+        // Test embargo (deck)
         count = 5;
         for (i = 0; i < count; i++) {
-            G.hand[p][ G.handCount[p] ] = embargo;
-            G.handCount[p]++;
+            G.deck[p][ G.deckCount[p] ] = embargo;
+            G.deckCount[p]++;
         }
         result = fullDeckCount(p, 22, &G);
 #if (NOISY_TEST == 1)
@@ -156,7 +156,7 @@ int main() {
 #endif
     }
 
-    printf("\nAll tests passed!");
+    printf("\nAll tests passed!\n");
 
     return 0;
 }

@@ -137,7 +137,7 @@ int main() {
     // 14, 25, and 12 should be drawn and added to hand
     // 7 and 21 should stay in the deck
     // smithy should be added to discard
-    playSmithy(0, p, &G, 5);
+    playSmithy(p, &G, 5);
 
     // Check pile counts
     printf("----------------- AFTER PLAY SMITHY\n");
@@ -273,10 +273,10 @@ int main() {
     printf("No state changes for victory and kingdom card piles: %d\n", equal);
 
     if (pass) {
-        printf("\nAll tests passed!");
+        printf("\nAll tests passed!\n");
     }
     else {
-        printf("\nSome test(s) failed!");
+        printf("\nSome test(s) failed!\n");
     }
     
     return 0;

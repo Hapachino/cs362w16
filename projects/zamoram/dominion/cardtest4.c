@@ -10,6 +10,9 @@
 #include "rngs.h"
 #include <math.h>
 
+#define MAX_HAND_TEST 200
+#define MAX_DECK_TEST 200
+
 int testPlayCouncil_Room(struct gameState *post, int handPos)
 {
 	int i;
@@ -44,7 +47,17 @@ int testPlayCouncil_Room(struct gameState *post, int handPos)
 			}
 		}
 	}
-	//printf("DEBUG: deckCount: %d, handCount: %d, discardCount: %d. POST: deckCount: %d, handCount: %d, discardCount: %d. \n", pre.deckCount[p], pre.handCount[p], pre.discardCount[p], post->deckCount[p], post->handCount[p], post->discardCount[p]);
+
+	//still current player?
+	if(pre.whoseTurn != post->whoseTurn)
+		printf("ERROR: Current player has changed from %i to %i", pre.whoseTurn, post->whoseTurn);
+	
+	//check coins
+	if(pre.coins != post->coins)
+		printf("ERROR: Number of coins changed from %i to %i", pre.coins, post->coins);
+	//check number of actions
+	if(pre.numActions != post->numActions)
+		printf("ERROR: Number of actions has changed from %i to %i", pre.numActions, post->numActions);
 	
 	return 0;
 }
@@ -81,9 +94,9 @@ int main()
 				//give cards to all players
 				for(j = 0; j < numPlayers; j++)
 				{
-					G.handCount[j] = floor(Random() * MAX_HAND)+1;//need at least one village in our hand
-					G.deckCount[j] = floor(Random() * MAX_DECK);
-					G.discardCount[j] = floor(Random() * MAX_DECK);
+					G.handCount[j] = floor(Random() * MAX_HAND_TEST)+1;//need at least one village in our hand
+					G.deckCount[j] = floor(Random() * MAX_DECK_TEST);
+					G.discardCount[j] = floor(Random() * MAX_DECK_TEST);
 					
 					for(m = 0; m < G.handCount[j]; m++)
 					{
@@ -103,7 +116,7 @@ int main()
 				}
 				
 				//only current player has played cards
-				G.playedCardCount = floor(Random() * MAX_DECK);
+				G.playedCardCount = floor(Random() * MAX_DECK_TEST);
 				for(q = 0; q < G.playedCardCount; q++)
 				{
 					G.playedCards[q] = floor(Random() * treasure_map) + 1;

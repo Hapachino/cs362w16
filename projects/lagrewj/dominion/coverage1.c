@@ -1,4 +1,4 @@
-Nancy Chan
+Jonathan Lagrew
 CS 362
 Winter 2016
 Assignment 3: coverage1.c

@@ -1,10 +1,5 @@
-/* -----------------------------------------------------------------------
- * test updateCoins()
- * 
- *
- * unittest1: unittest1.c dominion.o rngs.o
- *      gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
+/*Jonathan Lagrew
+ *test updateCoins()
  */
 
 #include "dominion.h"

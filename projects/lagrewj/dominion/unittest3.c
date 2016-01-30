@@ -1,10 +1,5 @@
-/* -----------------------------------------------------------------------
- * test isGameOver()
- * 
- *
- * unittest3: unittest3.c dominion.o rngs.o
- *      gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
+/*Jonathan Lagrew
+ *test isGameOver()
  */
 
 #include "dominion.h"

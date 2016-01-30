@@ -1,10 +1,5 @@
-/* -----------------------------------------------------------------------
- * test scoreFor()
- * 
- *
- * unittest4: unittest4.c dominion.o rngs.o
- *      gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
+/*Jonathan Lagrew
+ *test scoreFor()
  */
 
 #include "dominion.h"

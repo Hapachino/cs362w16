@@ -1,10 +1,5 @@
-/* -----------------------------------------------------------------------
- * test fullDeckCount()
- * 
- *
- * unittest2: unittest2.c dominion.o rngs.o
- *      gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
+/*Jonathan Lagrew
+ *test fullDeckCount()
  */
 
 #include "dominion.h"

@@ -49,5 +49,8 @@ cardtest3:
 cardtest4:
 
 	function playCouncil_Room called 5400 returned 100% blocks executed 100%.
-	
+
+After looking through the rest of the results, I've noticed some weak areas that will need to be improved later. discardCard() is only executed 75%.
+gainCard function is called 0, returned 0% and executed 0%. newGame function is the same as gainCard and can be improved for overall coverage. Initialize
+game function is only executed 88%. Playcard function has some improvements too called 0 returned 0% blocks executed 0%. 
 */

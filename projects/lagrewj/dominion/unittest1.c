@@ -45,6 +45,7 @@ int main() {
         golds[i] = gold;
     }
 
+//testing coppers and silvers
 #if (NOISY_TEST == 1)
     printf ("TESTING updateCoins() first coppers and silvers:\n");
 #endif
@@ -101,6 +102,7 @@ int main() {
     first = true;
     reset = true;
 
+//testing coppers and gold
 #if (NOISY_TEST == 1)
     printf ("TESTING updateCoins() with coppers and golds:\n");
 #endif

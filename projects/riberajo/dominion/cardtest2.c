@@ -155,7 +155,9 @@ int unitTest1(int handPos, struct gameState *post, int p, int victoryCount, int 
 
 
    int r =  checkCounts(&pre, post, 0, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
-
+   if( r > 0) {
+     failedTests++;
+   }
    // last two cards added in hand should be gold
    if(post->hand[p][6] != gold && post->hand[p][5] != gold) {
      printf ("FAIL: Gold card not added \n");

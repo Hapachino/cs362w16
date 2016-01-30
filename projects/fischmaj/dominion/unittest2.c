@@ -1,23 +1,16 @@
 /***************************************************************************
- ** unittest1.c ( test of shuffle() function) 
+ ** unittest1.c ( test of updateCoins() function) 
  ** Jeremy Fischman
  ** 
- ** This program is a unit test of the shuffle function.  It tests that the
- ** shuffle function complies with the following business rules: 
+ ** This program is a unit test of the updateCoins function.  It tests that the
+ ** function complies with the following business rules: 
  **
- ** 1. The function accepts 1 player and a game state, and the discard deck
- ** of the chosen player is permuted. 
+ ** 1. The function accepts 1 player and a game state, and a bonus
  **
- ** 2. Should result in the same number of total cards in the player's deck
- **    following shuffling.
- ** 
- ** 3. Should result in the same number of each type of card in the player's
- **    deck following shuffling as existed in the deck before shuffling
- ** 
- ** 4. The permutation after shuffling should look relatively random (i.e.
- **    the order of cards should be varied somewhat randomly).
- ** 
- ** 5. The other features of the state of the game should all be unchanged. 
+ ** 2. updateCoins should update the coin state by to 1 for each copper, 
+ **    2 for silver, 3 for gold, and then the bonus should be added. 
+ **
+ ** 3. The other features of the state of the game should all be unchanged. 
  **
  **************************************************************************/
 
@@ -42,7 +35,7 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 int countCards(int *deck, int *cardCount);
 
-int checkShuffle(int player, struct gameState *pre); 
+int checkUpdateCoins(int player, struct gameState *pre); 
 
 
 
@@ -52,7 +45,7 @@ int main(){
 
   int n, i, j, p; 
  
-  struct gameState *pre= malloc(sizeof(struct gameState));
+  struct gameState pre;
 
 
   SelectStream(2);
@@ -67,21 +60,24 @@ int main(){
   for (n = 0; n < NUMTESTS; n ++){
     /* generate a random gamestate*/
     for (i=0; i <sizeof(struct gameState); i++){
-      ((char*) pre)[i]= floor(Random() * 256);
+      ((char*)&pre)[i]= floor(Random() * 256);
     }
     p=floor(Random()*2);
-    pre->deckCount[p]= floor(Random() * MAX_DECK);
-    pre->discardCount[p] = floor(Random() * MAX_DECK);
-    pre->handCount[p] = floor(Random() * MAX_HAND);
+    pre.deckCount[p]= floor(Random() * MAX_DECK);
+    pre.discardCount[p] = floor(Random() * MAX_DECK);
+    pre.handCount[p] = floor(Random() * MAX_HAND); 
 
-    /* Fill deck with a random selection of cards. */
+
+    /* Fill hands with random cards*/
     for (i = 0; i < MAX_PLAYERS; i++){
-      for( j=0; j < MAX_DECK; j++){
-	pre->deck[i][j]=floor(Random()*CARDTYPES);
+      for( j=0; j < MAX_HAND; j++){
+	pre.hand[i][j]=floor(Random()*CARDTYPES);
       }
     }
     printf("\nTest run %i:", n);
-    checkShuffle(p, pre);
+
+    
+    checkUpdateCoins(p, &pre);
   
  }
 
@@ -206,15 +202,15 @@ int countCards(int *deck, int *cardCount){
 } 
 
 
-int checkShuffle(int player, struct gameState *pre){
+int checkUpdateCoins(int player, struct gameState *pre){
 
   int testFail = 0; 
+  int programTally;
+  int myTally;
 
-  /* create two arrays to track the number of each cardtype in a deck */
-  int *cardListPre = malloc(sizeof(int)*CARDTYPES);
-  memset(cardListPre, 0, (sizeof(int)*CARDTYPES));
- int *cardListPost = malloc(sizeof(int)*CARDTYPES);
-  memset(cardListPost, 0, (sizeof(int)*CARDTYPES));
+  /* use a random bonus -- I choose max of 100, higher than the 
+     highest likely bonus number */
+  int randomBonus = floor(Random()*100);
 
   /* create a copy of the input gameState */
   struct gameState *post = malloc(sizeof(struct gameState));
@@ -224,11 +220,28 @@ int checkShuffle(int player, struct gameState *pre){
   int *differences = malloc(sizeof(int)*MEMBERS);
   memset(differences, 0, (sizeof(int)*MEMBERS));
 
+  /* create an array to track the number of each cardtype in a deck */
+  int *cardListPre = malloc(sizeof(int)*CARDTYPES);
+  memset(cardListPre, 0, (sizeof(int)*CARDTYPES));
 
 
-  /* Business Rule #1: The function accepts 1 player and a game state... */
-  shuffle(player, post); 
 
+
+  /* Business Rule #1: The function accepts a player, a game state & bonus */
+  updateCoins(player, post, randomBonus); 
+
+  /* 2. updateCoins should return an integer equal to 1 for each copper, 
+     2 for silver, 3 for gold, and then the bonus should be added. */
+  countCards(pre->hand[player], cardListPre);
+  myTally = cardListPre[copper]+(2*cardListPre[silver])+(3*cardListPre[gold]);
+  myTally += randomBonus; 
+
+  programTally = post->coins; 
+
+  if(programTally != myTally){
+    printf("updateCoins fails business rule #2: incorrect coin count.\n");
+    printf("%d == %d, b=%d\n", myTally, programTally, randomBonus);
+  }
 
   compareGameState(pre, post, differences, MEMBERS); 
 
@@ -241,42 +254,12 @@ int checkShuffle(int player, struct gameState *pre){
   }
 
 
-  /* Business rule #3: Should result in the same number of each type of card in     the deck following shuffling as existed before shuffling.*/
-  countCards(pre->deck[player], cardListPre);
-  countCards(post->deck[player], cardListPost);
-
-  for (int i = 0; i < CARDTYPES; i++){
-    if (cardListPre[i] != cardListPost[i]){
-      printf("\nshuffle() fails business rule #3: card types changed\n");
-      testFail = 1; 
-      break;
-    }
-  }
-   
- 
-/** 4. The permutation after shuffling should look relatively random (i.e.
- **    the order of cards should be varied somewhat randomly).  */
-
-  /* if player's deck isn't different then it isn't shuffled*/
-  /* if the difference code doesn't match the correct player then the*/
-  /* wrong deck was shuffled. */
-  if (   !(  ( (differences[12]== 1) && (player == 0))
-	     || ((differences[12] == 10) && (player == 1))
-	     || ((differences[12] == 100) && (player == 2))
-	     || ((differences[12] == 1000) && (player == 3)))){
-
-    testFail =1; 
-    printf("shuffle fails business rule #4: player's deck not changed\n");
-    printf("or wrong player's deck changed.\n");
-
-  }
-
 
   /*5. The other features of the state of the game should all be unchanged. */
   for (int i =0; i < MEMBERS; i++){
-    if ((differences[i]) && (i != 12)){
+    if ((differences[i]) && (i != 8)){
       testFail =1; 
-      printf("shuffle fails business rule #5:");
+      printf("updateCoins fails business rule #5:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
     }
   }

@@ -22,7 +22,7 @@
 
 int main() {
 	int i;
-	int j;
+	int j,p;
     int seed = 1000;
     int numPlayer = 2;
     int r;
@@ -30,15 +30,41 @@ int main() {
                , remodel, smithy, village, baron, great_hall};
     struct gameState G;
     int drawntreasure = 0;
-    srand(time(NULL));
-
+	
     printf ("TESTING adventurer():\n");
+	p=1;
+    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+	G.handCount[0]=0;
+	printf ("****Playing adventurer card 1 time****\n");
+    playAdventurer(&G); 
+	printf("Handcount: %d\n", G.handCount[0]);
 
-    //testing Copper
-    printf("Testing Copper\n");
+	printf ("****Playing adventurer card another time****\n");
+    playAdventurer(&G); 
+	printf("Handcount: %d\n", G.handCount[0]);
+	
+	printf ("****Playing adventurer card another time****\n");
+    playAdventurer(&G); 
+	printf("Handcount: %d\n", G.handCount[0]);
+	
+	printf ("****Playing adventurer card another time****\n");
+    playAdventurer(&G); 
+	printf("Handcount: %d\n", G.handCount[0]);
+	
+	printf ("****Playing adventurer card another time****\n");
+    playAdventurer(&G); 
+	printf("Handcount: %d\n", G.handCount[0]);
+	
+	printf ("****Playing adventurer card another time****\n");
+    playAdventurer(&G); 
+	printf("Handcount: %d\n", G.handCount[0]);
+	
+	printf ("****Playing adventurer card another time****\n");
+    playAdventurer(&G); 
+	printf("Handcount: %d\n", G.handCount[0]);
 
- 
-
+	printf("Testing completed\n");
     return 0;
 }
 

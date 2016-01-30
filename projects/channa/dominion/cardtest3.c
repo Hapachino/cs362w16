@@ -15,6 +15,8 @@
 #include <stdbool.h>
 #include "rngs.h"
 
+int cutpurseDiscard(int numPlayer, int testNum, int handNum, bool *pass);
+
 // set NOISY_TEST to 0 to remove full deck printfs from output
 // (0 to show hands only not decks and discard piles)
 #define NOISY_TEST 0
@@ -44,13 +46,13 @@ int main() {
     // number of hands: 4, 3, 2...
     handNum = 4;
 
-    cutpurseDiscard(4, testNum, handNum);
+    cutpurseDiscard(4, testNum, handNum, &pass);
     testNum++;
     handNum--;
-    cutpurseDiscard(3, testNum, handNum);
+    cutpurseDiscard(3, testNum, handNum, &pass);
     testNum++;
     handNum--;
-    cutpurseDiscard(2, testNum, handNum);
+    cutpurseDiscard(2, testNum, handNum, &pass);
 
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
@@ -191,8 +193,31 @@ int main() {
         }
     }
 
-    printf("Expected output: Player 1's hand should have been revealed (hand with no coppers).\n");
-    printf("If 'Player 1 reveals card number ...' did not appear in the output, then this test has failed.\n");
+    // Check if satisfied condition for printing: Player %d reveals card number %d\n
+    // Condition: if (j == state->handCount[i])
+    // Player 1 has a hand with no coppers
+    p = 1;
+    int j;
+    // Use logic from playCutpurse
+    for (i = 0; i < testG.handCount[p]; i++)
+    {
+        // If there is a copper in the hand, then j will never reach handCount
+        if (testG.hand[p][i] == copper) {
+            break;
+        }
+
+        // If there are no coppers in the hand, then j should reach handCount
+        j = i;
+    }
+
+    // No coppers so we expect to satisfy the condition for revealing cards
+    printf("Check if satisfied condition for revealing cards\n");
+    printf("(j == handCount):\n");
+    printf("j = %d, handCount: %d\n", j, testG.handCount[p]);
+    if (j != testG.handCount[p]) {
+        printf("----------------- TEST FAILED!\n");
+        pass = false;               
+    }
 
     if (pass) {
         printf("\nAll tests passed!\n");
@@ -204,13 +229,10 @@ int main() {
     return 0;
 }
 
-int cutpurseDiscard(int nP, int tN, int hN) {
+int cutpurseDiscard(int numPlayer, int testNum, int handNum, bool *pass) {
     int i;
     int seed = 1000;
 
-    int numPlayer = nP;
-    int testNum = tN;
-    int handNum = hN;
     int p, r;
     int k[10] = {adventurer, great_hall, cutpurse, gardens, mine
                , remodel, smithy, village, sea_hag, embargo};
@@ -219,7 +241,6 @@ int cutpurseDiscard(int nP, int tN, int hN) {
     int copperCount;
     int copperList[4];
     int initialCoins, updatedCoins;
-    bool pass = true;
 
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game

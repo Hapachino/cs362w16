@@ -10,7 +10,7 @@
 #include <stdlib.h>
 
 #define DEBUG 0
-#define NOISY_TEST 1
+#define NOISY_TEST 0
 
 //Unit test for isgameOver function
 //Preconditions:
@@ -27,20 +27,30 @@ int unitTest(struct gameState *post){
 
     //call function
     success=isGameOver(post);
+
     //memcmp game state size
     if (memcmp(&pre,post, sizeof(struct gameState))!=0){
+        #if (NOISY_TEST == 1)
         printf ("Error in size of gamestate.\n");
-        exit(1);
+        #endif
+        return 1;
+        
     }
+
+    //assert (success==0);
     if (success == -1){
-        printf ("Error in game is over function returned not sucessful.\n");
-        exit(1);
+        #if (NOISY_TEST == 1)
+        printf ("Error in playCard function bad exit status.\n");
+        #endif
+        return 2;
     }
 
     //if stack of Province cards is empty, the game ends
-    if (post->supplyCount[province] > 0){
-        printf ("Error in game is over function.\n");
-        exit(1);
+    if (post->supplyCount[province] < 0){
+        #if (NOISY_TEST == 1)
+        printf ("supply count is negative.\n");
+        #endif
+        return 3;
     }
 
     return 0;
@@ -48,10 +58,11 @@ int unitTest(struct gameState *post){
 
 int main () {
   //define variables  
-  int i, n, r, p, deckCount, discardCount, handCount;
-  //define a array of cards
-  int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+  int error, errorA, errorB,errorC;
+  errorB=0;
+  errorA=0; 
+  errorC=0;
+  int i, n, r, p;
   //define a gamestate
   struct gameState G;
 
@@ -71,33 +82,27 @@ int main () {
     G.deckCount[p] = floor(Random() * MAX_DECK);
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
+
     //call function with test input
-    unitTest(&G);
+    error=unitTest(&G);
 
-  }
-  printf ("ALL TESTS OK\n");
-
-  //fixed tests
-  printf ("SIMPLE FIXED TESTS.\n");
-  for (p = 0; p < 2; p++) {
-    for (deckCount = 0; deckCount < 5; deckCount++) {
-      for (discardCount = 0; discardCount < 5; discardCount++) {
-	for (handCount = 0; handCount < 5; handCount++) {
-	  memset(&G, 23, sizeof(struct gameState)); 
-	  r = initializeGame(2, k, 1, &G);
-	  G.deckCount[p] = deckCount;
-	  memset(G.deck[p], 0, sizeof(int) * deckCount);
-	  G.discardCount[p] = discardCount;
-	  memset(G.discard[p], 0, sizeof(int) * discardCount);
-	  G.handCount[p] = handCount;
-	  memset(G.hand[p], 0, sizeof(int) * handCount);
-	  //run unit test.
-      unitTest(&G);
-
-	}
-      }
+    if (error > 0){
+        if(error == 1){
+            errorA++;
+        }else if(error == 2){
+            errorB++;
+        }else{
+            errorC++;
+        }
     }
   }
+  printf ("ALL Random TESTS Complete\n");
+  printf ("Errors type 1: %d ",errorA);
+  printf ("Error memory size wrong.\n");
+  printf ("Errors type 2: %d ",errorB);
+  printf("Error bad return value from function \n");
+  printf ("Errors type 3: %d ",errorC);
+  printf("Error negative supply count \n");
 
   return 0;
 }

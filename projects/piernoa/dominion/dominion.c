@@ -724,6 +724,7 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
     }
     int _goodCouncilRoom(struct gameState *state, int handPos)
     {
+      printf('\n a \n');
       int currentPlayer = whoseTurn(state);
       int nextPlayer = currentPlayer + 1;
       int i;
@@ -733,6 +734,8 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
       {
         drawCard(currentPlayer, state);
       }
+
+      printf('\n b \n');
 
       //+1 Buy
       state->numBuys++;
@@ -746,8 +749,11 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
           }
       }
 
+      printf('\n c \n');
+
       //put played card in played card pile
       discardCard(handPos, currentPlayer, state, 0);
+      printf('\n d \n');
       return 0;
     }
     int _councilRoom(struct gameState *state, int handPos)

@@ -49,23 +49,13 @@ int checkCouncilRoom(struct gameState *post, int handPos) {
 }
 
 int main () {
-  printf("\n * A \n ");
   int i, j, n, r, p, deckCount, discardCount, handCount, handPos, randomCard, randomHandCount;
-
   int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
-  printf("\n * B \n ");
-
   struct gameState G;
-  printf("\n * C \n ");
-
   printf ("Testing CARD councilRoom.\n");
 
   SelectStream(2);
-  printf("\n * D \n ");
-
   PutSeed(3);
-
-  printf("\n * E \n ");
 
 
   for (n = 0; n < 1; n++) {
@@ -102,10 +92,6 @@ int main () {
       }
     }
 
-
-    printf("\n * F \n ");
-
-
     int p2 = 1-p;
     for ( j=0; j< randomHandCount; j++)
     {
@@ -135,27 +121,6 @@ int main () {
           break;
       }
     }
-
-    // /* player two now has real cards */
-    // for ( j=0; j< randomHandCount; j++)
-    // {
-    //   G.hand[1-p][j] = 0;
-    //   randomCard = floor(Random() * 3);
-    //   switch (randomCard) {
-    //     case 0:
-    //       G.hand[1-p][j] = copper;
-    //       break;
-    //     case 1:
-    //       G.hand[1-p][j] = silver;
-    //       break;
-    //     case 2:
-    //       G.hand[1-p][j] = gold;
-    //       break;
-    //   }
-    // }
-
-
-    printf("\n * G \n ");
 
     G.whoseTurn = 0;
     handPos = 0;

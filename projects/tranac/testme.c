@@ -1,3 +1,8 @@
+/* 	File: testme.c
+	Author: Chris Trana
+	CS 362
+*/
+
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -13,8 +18,10 @@ char inputChar()
 char *inputString()
 {
     // TODO: rewrite this function
-	//
-	int i, j;
+	//inputString needs to be "reset" in order to end.  
+	//we will use a limited pool of chars in order to run in a reasonable amount of time
+	
+	int i, j;  //used for loop and indexing variables
 	char rest[14] = "restingmyhead"; //pool of chars to populate inputString
 	static char testString[6];  //must be static to keep string in memory until program ends
 

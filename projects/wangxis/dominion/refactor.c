@@ -9,6 +9,6 @@ These functions are called inside of cardEffect function. The codes for implemen
 Introduced bugs:
 1.	smithyCard: 
 Change statement: for (i = 0; i < 3; i++) to: for (i = 0; i < =3; i++) drawntreasure=3.
-2.	adventurerCard: Change statement: cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1] to: cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]]
+2.	adventurerCard: Change statement: while(drawntreasure<2) to: while(drawntreasure<4)
 3.	feastCard: Missing statement x = 1 before while loop
 4.	ambassadorCard: Change statement: if (choice2 > 2 || choice2 < 0) to: if (choice2 > 2 && choice2 < 0)

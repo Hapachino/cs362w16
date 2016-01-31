@@ -47,7 +47,7 @@ int main() {
     int seed = 7;
     int c;          //Index variable
     
-    //Test conditions where player cannot buy card. Game state should be unchanged
+    //Initialize a game
     if (initializeGame(2, gameCards, seed, gs1) == -1)
     {
         printf("Game state failed to initialize. No testing completed.\n");
@@ -58,6 +58,7 @@ int main() {
     //Copy game state for comparison after failed call to buyCard()
     memcpy(gs2, gs1, sizeof(struct gameState));
     
+    //Test conditions where player cannot buy card. Game state should be unchanged
     printf("Starting test for player attempting to buy cards without any buys available.\n");
     //Condition where player has no buys
     //Test for each card in deck

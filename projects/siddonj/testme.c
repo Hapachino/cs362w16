@@ -14,22 +14,27 @@ char *inputString()
 {
     // TODO: rewrite this function
     static char testCharacters[] = { 'r', 'e', 's', 'e', 't' };
-    static char input[10];
+    static char input[6];
     int randomnessFactor = rand() % 10;
     char randomChar;
     int i;
+    int testIndex;
 
     if(randomnessFactor % 9 == 0) {
-      for(i = 0; i < randomnessFactor; i++) {
-        randomChar = rand() % 123 + 97;
+      for(i = 0; i < 5; i++) {
+        randomChar = ((rand() % 26) + 97);
         input[i] = randomChar;
       }
+      input[randomnessFactor] = '\0';
+
     } else {
-        randomChar = rand() % 6;
-        input[i] = testCharacters[randomChar];       // Generate random number between 101 and 115.
+      for(i = 0; i < 5; i++) {
+        testIndex = rand() % 6;
+        input[i] = testCharacters[testIndex];       // Generate random number between 101 and 115.
+      }
+      input[5] = '\0';
     }
 
-    input[9] = '\0';
     return input;
 }
 

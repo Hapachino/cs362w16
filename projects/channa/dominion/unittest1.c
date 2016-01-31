@@ -57,7 +57,7 @@ int main() {
     }
 
 #if (NOISY_TEST == 1)
-    printf ("========TESTING updateCoins() with coppers and silvers:\n");
+    printf ("----------------- TESTING updateCoins() with coppers and silvers:\n");
 #endif
 
     for (p = 0; p < numPlayer; p++)
@@ -123,7 +123,7 @@ int main() {
     reset = true;
 
 #if (NOISY_TEST == 1)
-    printf ("\n========TESTING updateCoins() with coppers and golds:\n");
+    printf ("\n----------------- TESTING updateCoins() with coppers and golds:\n");
 #endif
 
     for (p = 0; p < numPlayer; p++)
@@ -178,7 +178,7 @@ int main() {
         }
     }
 
-    printf("\nAll tests passed!");
+    printf("\nAll tests passed!\n");
 
     return 0;
 }

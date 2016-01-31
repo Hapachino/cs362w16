@@ -26,7 +26,7 @@ int main() {
 
     struct gameState G;
     int count;
-    int failed = 0;
+    bool pass = true;
 
     // Use for checking state change
     int victoryCount, kingdomCount;
@@ -37,9 +37,11 @@ int main() {
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
+    printf("----------------- Testing smithy\n");
+
     // Before testing, check victory and kingdom cards
     // victory_kingdom[] saves pre-test pile counts
-    printf("========BEFORE PLAYER ACTIONS AND BUYS\n");
+    printf("----------------- BEFORE PLAYER ACTIONS AND BUYS\n");
 
     victoryCount = G.supplyCount[estate];
     victory_kingdom[index] = victoryCount;
@@ -65,14 +67,14 @@ int main() {
 
     // Start testing
     p = 0;
-    printf("========Player %d's turn:\n", p);
+    printf("----------------- Player %d:\n", p);
 
     // Put smithy in hand
     G.hand[p][ G.handCount[p] ] = smithy;
     G.handCount[p]++;
 
     // Check pile counts
-    printf("========AFTER PUT SMITHY IN HAND\n");
+    printf("----------------- AFTER PUT SMITHY IN HAND\n");
 
     printf("DECK COUNT\n");
     for (i = 0; i < G.deckCount[p]; i++)
@@ -110,7 +112,7 @@ int main() {
     G.deckCount[p]++;
 
     // Check pile counts
-    printf("========AFTER PUT OTHER CARDS IN DECK\n");
+    printf("----------------- AFTER PUT 5 MORE CARDS IN DECK\n");
 
     printf("DECK COUNT\n");
     for (i = 0; i < G.deckCount[p]; i++)
@@ -135,10 +137,10 @@ int main() {
     // 14, 25, and 12 should be drawn and added to hand
     // 7 and 21 should stay in the deck
     // smithy should be added to discard
-    playSmithy(0, p, &G, 5);
+    playSmithy(p, &G, 5);
 
     // Check pile counts
-    printf("========AFTER PLAY SMITHY\n");
+    printf("----------------- AFTER PLAY SMITHY\n");
 
     printf("DECK COUNT\n");
     for (i = 0; i < G.deckCount[p]; i++)
@@ -150,13 +152,11 @@ int main() {
     int check1[] = {estate, estate, copper, copper, copper, adventurer, cutpurse};
     count = sizeof(check1)/sizeof(check1[0]);
 
+    printf("Deck count: %d, Expected: %d\n", G.deckCount[p], count);
     if (G.deckCount[p] != count) {
-        printf("========TEST 1 FAILED\n");
-        failed++;
+        printf("----------------- TEST FAILED!\n");
+        pass = false;
     }
-    printf("Deck count: %d\n", G.deckCount[p]);
-    printf("Deck count should be: %d\n", count);
-
 
     printf("DISCARD COUNT\n");
     for (i = 0; i < G.discardCount[p]; i++)
@@ -168,12 +168,11 @@ int main() {
     int check2[] = {smithy};
     count = sizeof(check2)/sizeof(check2[0]);
 
+    printf("Discard count: %d, Expected: %d\n", G.discardCount[p], count);
     if (G.discardCount[p] != count) {
-        printf("========TEST 2 FAILED\n");
-        failed++;
+        printf("----------------- TEST FAILED!\n");
+        pass = false;
     }
-    printf("Discard count: %d\n", G.discardCount[p]);
-    printf("Discard count should be: %d\n", count);
 
     printf("HAND COUNT\n");
     for (i = 0; i < G.handCount[p]; i++)
@@ -185,16 +184,16 @@ int main() {
     int check3[] = {copper, copper, estate, copper, copper, village, sea_hag, remodel};
     count = sizeof(check3)/sizeof(check3[0]);
 
+    printf("Hand count: %d, Expected: %d\n", G.handCount[p], count);
     if (G.handCount[p] != count) {
-        printf("========TEST 3 FAILED\n");
-        failed++;
+        printf("----------------- TEST FAILED!\n");
+        pass = false;
     }
-    printf("Hand count: %d\n", G.handCount[p]);
-    printf("Hand count should be: %d\n", count);
 
     // Should be NO state changes made to next player's decks
     p = 1;
-    printf("========Player %d's turn:\n", p);
+    printf("----------------- Player %d:\n", p);
+    printf("----------------- Check that no state changes were made to other player's deck\n");
 
     // Check pile counts
     int copperCount = 0;
@@ -213,11 +212,12 @@ int main() {
     }
 
     // Verify
+    printf("Copper count: %d, Expected: 7\n", copperCount);
+    printf("Estate count: %d, Expected: 3\n", estateCount);
     assert(copperCount == 7);
     assert(estateCount == 3);
 
-    printf("Deck count:%d\n", G.deckCount[p]);
-    printf("Deck count should be: %d\n", 10);
+    printf("Deck count: %d, Expected: 10\n", G.deckCount[p]);
     assert(G.deckCount[p] == 10);
 
     printf("DISCARD COUNT\n");
@@ -227,8 +227,7 @@ int main() {
     }
 
     // Verify
-    printf("Discard count:%d\n", G.discardCount[p]);
-    printf("Discard count should be: %d\n", 0);
+    printf("Discard count: %d, Expected: 0\n", G.discardCount[p]);
     assert(G.discardCount[p] == 0);
 
     printf("HAND COUNT\n");
@@ -238,12 +237,13 @@ int main() {
     }
 
     // Verify
-    printf("Hand count:%d\n", G.handCount[p]);
-    printf("Hand count should be: %d\n", 0);
+    printf("Hand count: %d, Expected: 0\n", G.handCount[p]);
     assert(G.handCount[p] == 0);
 
     // Should be NO state changes made to victory and kingdom cards
     // (besides the changes intentionally made outside of playSmithy)
+    printf("----------------- Check that no state changes were made to victory and kingdom card piles\n");
+
     victoryCount = G.supplyCount[estate];
     printf("estate count: %d\n", victoryCount);
     assert(victoryCount == victory_kingdom[0]);
@@ -270,13 +270,13 @@ int main() {
         x++;
     }
 
-    printf("No state change for victory and kingdom card piles: %d\n", equal);
+    printf("No state changes for victory and kingdom card piles: %d\n", equal);
 
-    if (failed > 0) {
-        printf("%d test(s) failed!", failed);
+    if (pass) {
+        printf("\nAll tests passed!\n");
     }
     else {
-        printf("All tests passed!");
+        printf("\nSome test(s) failed!\n");
     }
     
     return 0;

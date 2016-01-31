@@ -27,10 +27,10 @@ int main() {
     int k[10] = {adventurer, great_hall, feast, gardens, mine
                , remodel, smithy, village, tribute, embargo};
 
-    const char *cards[] = {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
-        "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
-        "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"
-    };
+    // const char *cards[] = {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
+    //     "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
+    //     "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"
+    // };
 
     struct gameState G;
     // Count of cards to buy
@@ -48,12 +48,19 @@ int main() {
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
-#if (NOISY_TEST == 1)
-    printf("========TESTING scoreFor():========\n");
-#endif
-
     // TESTING PLAYER 0
     p = 0;
+
+#if (NOISY_TEST == 1)
+    printf("----------------- TESTING scoreFor():\n");
+    printf("\n----------------- Test 1 - Player %d:\n", p);
+    printf("Adding the following to discard:\n");
+    printf("    1 duchy\n");
+    printf("    2 provinces\n");
+    printf("    5 great halls\n");
+    printf("    4 gardens\n");
+    printf("    2 curses\n");
+#endif
 
     // From initializeGame()
     estateCount = 3;
@@ -92,7 +99,6 @@ int main() {
     }
 
 #if (NOISY_TEST == 1)
-    printf("Test 1: Player %d:\n", p);
     // 27 types of cards
     // printf("Totals of cards by type for Player %d:\n", p);
     // for (i = 0; i < 27; i++) {
@@ -121,8 +127,7 @@ int main() {
 
     // Verify
 #if (NOISY_TEST == 1)
-    printf("Player %d score: %d\n", p, result);
-    printf("Player %d score should be: %d\n\n", p, score);
+    printf("Player %d score: %d, expected: %d\n", p, result, score);
 #endif
     // Assert here halts program execution
     // assert(result == score);
@@ -135,7 +140,6 @@ int main() {
     p = 1;
 
 #if (NOISY_TEST == 1)
-    printf("Test 1: Player %d:\n", p);
     // 27 types of cards
     // printf("Test 2\nTotals of cards by type for Player %d:\n", p);
     // for (i = 0; i < 27; i++) {
@@ -163,6 +167,8 @@ int main() {
     score = score + (provinceCount * 6);
     score = score + ghCount;
 #if (NOISY_TEST == 1)
+    printf("\n----------------- Test 2 - Player %d:\n", p);
+    printf("No changes and all cards in deck:\n");
     printf("deckCount: %d\n", G.deckCount[p]);
     printf("discardCount: %d\n", G.discardCount[p]);
     printf("handCount: %d\n", G.handCount[p]);
@@ -172,8 +178,7 @@ int main() {
 
     // Verify
 #if (NOISY_TEST == 1)
-    printf("Player %d score: %d\n", p, result);
-    printf("Player %d score should be: %d\n\n", p, score);
+    printf("Player %d score: %d, expected: %d\n", p, result, score);
 #endif
     // Assert here halts program execution
     // assert(result == score);
@@ -183,10 +188,10 @@ int main() {
     }
 
     if (pass) {
-        printf("All tests passed!");
+        printf("\nAll tests passed!\n");
     }
     else {
-        printf("%d/2 test(s) failed!", failed);
+        printf("\n%d/2 test(s) failed!\n", failed);
     }
 
     return 0;

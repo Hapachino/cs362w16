@@ -25,7 +25,6 @@ int main() {
                , remodel, smithy, village, sea_hag, embargo};
 
     struct gameState G, testG;
-    int temphand[MAX_HAND];
     int count;
 
     // Default
@@ -71,7 +70,7 @@ int main() {
     printf("----------------- After playAdventurer\n");
 
     // int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z);
-    playAdventurer(&testG, p, 0, 0, temphand, 0);
+    playAdventurer(&testG, p);
 
     // 1, 1, 4,
     printf("DECK COUNT\n");
@@ -163,7 +162,7 @@ int main() {
 
     printf("----------------- After playAdventurer\n");
 
-    playAdventurer(&testG, p, 0, 0, temphand, 0);
+    playAdventurer(&testG, p);
 
     // 4
     printf("DECK COUNT\n");
@@ -267,7 +266,7 @@ int main() {
 
     printf("----------------- After playAdventurer\n");
 
-    playAdventurer(&testG, p, 0, 0, temphand, 0);
+    playAdventurer(&testG, p);
 
     // 4, 1
     printf("DECK COUNT\n");
@@ -389,10 +388,10 @@ int main() {
     assert(G.supplyCount[estate] == estateDefault);
 
     if (pass) {
-        printf("\nAll tests passed!");
+        printf("\nAll tests passed!\n");
     }
     else {
-        printf("\nSome test(s) failed!");
+        printf("\nSome test(s) failed!\n");
     }
     
     return 0;

@@ -23,7 +23,8 @@ Things to check to ensure pass:
 #include <stdio.h>
 #include "rngs.h"
 #include <stdlib.h>
-#include <assert.h>
+#include <signal.h>
+#include <unistd.h>
 
 
 int main (int argc, char** argv) {
@@ -34,7 +35,7 @@ int main (int argc, char** argv) {
 
   int seed = 2;
   
-  int* test = malloc(played_card_count * sizeof(int));
+  int* test = malloc(last_tester * sizeof(int));
   createCompareStateArray(test,1);
   //draw card should only affect player hand, player hand count, and player deck count
   test[player_hand] = 0;
@@ -49,8 +50,13 @@ int main (int argc, char** argv) {
   int hand_count = 0;
   int offset = 0;
 
+
+  signal(SIGALRM,timeout);
+  signal(SIGSEGV,handle_segfault);
+
   printf("\n-------------------- Testing drawCard --------------------\n\n");
   for (i = 1; i <= 1; i++){ //for some fuzzing, set seed to i
+    resetError();
     initTestGame(2, k, seed, &G);
     limit = 0;
     total_deck_count = 0;
@@ -64,19 +70,23 @@ int main (int argc, char** argv) {
                 draw card with empty hand
       ***************************************************/
       printf("TEST1: Draw card with empty hand\n");
+      alarm(2);
       previousG = G;
-      assert(!drawCard(0,&G)); 
-      assert(checkStates(&previousG,&G,test,0)); //check nothing else got affected
+      checkError(drawCard(0,&G) == 0); 
+      checkError(checkStates(&previousG,&G,test,0) == 1); //check nothing else got affected
       offset = 1; //should be 1 card more
-      assert(!checkDeck(0,&previousG,&G));
-      assert(!checkHand(hand_count,offset,0,&G));
-      printf("\t- RESULT: PASS\n\n");
+      checkError(checkDeck(0,&previousG,&G) == 0);
+      checkError(checkHand(hand_count,offset,0,&G) == 0);
+      alarm(0);
+      printResults();
+      resetError();
 
 
       /***************************************************
             tests drawing all the rest of cards in deck
       ***************************************************/
       printf("TEST2: Draw all cards in deck\n");
+      alarm(2);
       //set limit for drawing all card in deck to hand
       if (MAX_HAND > total_deck_count){
         limit = total_deck_count - numHandCards(&G);
@@ -88,29 +98,35 @@ int main (int argc, char** argv) {
       hand_count = numHandCards(&G);
       for (j = 0; j < limit; j++) { //draw all rest of cards in deck
         previousG = G;
-        assert(!drawCard(0,&G)); 
-        assert(checkStates(&previousG,&G,test,0)); 
+        checkError(drawCard(0,&G) == 0); 
+        checkError(checkStates(&previousG,&G,test,0) == 1); 
       }
-      assert(!checkHand(hand_count,limit, 0, &G)); //should be offset by limit
-      printf("\t- RESULT: PASS\n\n");
+      checkError(checkHand(hand_count,limit, 0, &G) == 0); //should be offset by limit
+      alarm(0);
+      printResults();
+      resetError();
 
       /***************************************************
       check that another card is not drawn when deck and 
       discard are empty
       ***************************************************/
       printf("TEST3: Draw card with all cards in hand\n");
+      alarm(2);
       hand_count = numHandCards(&G);
       previousG = G;
-      assert(drawCard(0,&G)); //we want the -1 return value here
-      assert(checkStates(&previousG,&G,test,0));
+      checkError(drawCard(0,&G)); //we want the -1 return value here
+      checkError(checkStates(&previousG,&G,test,0) == 1);
       offset = 0; //hand count should not change, so no offset
-      assert(!checkHand(hand_count,offset,0,&G));
-      printf("\t- RESULT: PASS\n\n");
+      checkError(checkHand(hand_count,offset,0,&G) == 0);
+      alarm(0);
+      printResults();
+      resetError();
 
       /***************************************************
         check when all cards are in discard pile
       ***************************************************/
-      printf("TEST4: Draw card when all cards in discard\n");
+      printf("TEST4: Draw card when all cards in discard pile\n");
+      alarm(2);
       test[player_deck] = 0; //deck should change due to reshuffle
       test[player_discard] = 0; //discard should change due to reshuffle
       test[player_discard_count] = 0; //discare count should change due to reshuffle
@@ -118,11 +134,13 @@ int main (int argc, char** argv) {
       offset = 1;
       hand_count = numHandCards(&G);
       previousG = G;
-      assert(!drawCard(0,&G)); 
-      assert(checkStates(&previousG,&G,test,0));
-      assert(!checkDeck(0,&previousG,&G));
-      assert(!checkHand(hand_count,offset,0,&G));
-      printf("\t- RESULT: PASS\n\n");
+      checkError(drawCard(0,&G) == 0); 
+      checkError(checkStates(&previousG,&G,test,0) == 1);
+      checkError(checkDeck(0,&previousG,&G) == 0);
+      checkError(checkHand(hand_count,offset,0,&G) == 0);
+      alarm(0);
+      printResults();
+      resetError();
       
     }
     

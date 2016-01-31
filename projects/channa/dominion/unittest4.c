@@ -27,10 +27,10 @@ int main() {
     int k[10] = {adventurer, great_hall, feast, gardens, mine
                , remodel, smithy, village, tribute, embargo};
 
-    const char *cards[] = {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
-        "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
-        "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"
-    };
+    // const char *cards[] = {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
+    //     "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
+    //     "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"
+    // };
 
     struct gameState G;
     // Count of cards to buy
@@ -188,10 +188,10 @@ int main() {
     }
 
     if (pass) {
-        printf("\nAll tests passed!");
+        printf("\nAll tests passed!\n");
     }
     else {
-        printf("\n%d/2 test(s) failed!", failed);
+        printf("\n%d/2 test(s) failed!\n", failed);
     }
 
     return 0;

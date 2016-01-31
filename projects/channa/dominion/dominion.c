@@ -647,7 +647,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 {
   int i;
   int j;
-  int k;
   int x;
   int index;
   int currentPlayer = whoseTurn(state);
@@ -655,9 +654,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
+
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -667,7 +664,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      return playAdventurer(state, currentPlayer, drawntreasure, cardDrawn, temphand, z);
+      return playAdventurer(state, currentPlayer);
 			
     case council_room:
       //+4 Cards
@@ -785,10 +782,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 			
     case remodel:
-      return playRemodel(j, state, currentPlayer, choice1, choice2, handPos, i);
+      return playRemodel(state, currentPlayer, choice1, choice2, handPos);
 		
     case smithy:
-      return playSmithy(i, currentPlayer, state, handPos);
+      return playSmithy(currentPlayer, state, handPos);
 		
     case village:
       //+1 Card
@@ -1055,7 +1052,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case cutpurse:
-      return playCutpurse(currentPlayer, state, i, j, k, handPos);
+      return playCutpurse(currentPlayer, state, handPos);
 		
     case embargo: 
       //+2 Coins
@@ -1099,7 +1096,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case sea_hag:
-      return playSea_Hag(i, state, currentPlayer);
+      return playSea_Hag(state, currentPlayer);
 		
     case treasure_map:
       //search hand for another treasure_map
@@ -1246,8 +1243,14 @@ Adventurer
 Reveal cards from your deck until you reveal 2 Treasure cards.
 Put those Treasure cards into your hand and discard the other revealed cards.
 */
-int playAdventurer (struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z)
+int playAdventurer (struct gameState *state, int currentPlayer)
 {
+  int cardDrawn;
+  int drawntreasure = 0;
+  int temphand[MAX_HAND];
+  // this is the counter for the temp hand
+  int z = 0;
+
   while(drawntreasure<2) 
   {
     if (state->deckCount[currentPlayer] <1)
@@ -1282,8 +1285,10 @@ Smithy
 
 +3 Cards
 */
-int playSmithy(int i, int currentPlayer, struct gameState *state, int handPos)
+int playSmithy(int currentPlayer, struct gameState *state, int handPos)
 {
+  int i;
+
   //+3 Cards
   for (i = 0; i <= 3; i++)
   {
@@ -1301,8 +1306,10 @@ Cutpurse
 +2 Coins
 Each other player discards a Copper card (or reveals a hand with no Copper).
 */
-int playCutpurse(int currentPlayer, struct gameState *state, int i, int j, int k, int handPos)
+int playCutpurse(int currentPlayer, struct gameState *state, int handPos)
 {
+  int i, j, k;
+
   updateCoins(currentPlayer, state, 2);
   for (i = 0; i < state->numPlayers - 1; i++)
   {
@@ -1340,8 +1347,10 @@ Remodel
 Trash a card from your hand.
 Gain a card costing up to 2 coins more than the trashed card.
 */
-int playRemodel(int j, struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos, int i)
+int playRemodel(struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos)
 {
+  int i, j;
+
   j = state->hand[currentPlayer][choice1];  //store card we will trash
 
   if ( (getCost(state->hand[currentPlayer][choice2]) + 2) > getCost(choice1) )
@@ -1373,8 +1382,10 @@ Sea Hag
 Each other player discards the top card of his deck,
 then gains a Curse card, putting it on top of his deck.
 */
-int playSea_Hag(int i, struct gameState *state, int currentPlayer)
+int playSea_Hag(struct gameState *state, int currentPlayer)
 {
+  int i;
+
   for (i = 0; i < state->numPlayers; i++)
   {
     if (i != currentPlayer)

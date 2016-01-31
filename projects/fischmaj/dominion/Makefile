@@ -39,6 +39,15 @@ player: player.c interface.o
 unittest1: unittest1.c dominion.o 
 	gcc -o test1 unittest1.c  dominion.o rngs.o  $(CFLAGS)
 
+unittest2: unittest2.c dominion.o 
+	gcc -o test2 unittest2.c  dominion.o rngs.o  $(CFLAGS)
+
+unittest3: unittest3.c dominion.o 
+	gcc -o test3 unittest3.c  dominion.o rngs.o  $(CFLAGS)
+
+unittest4: unittest4.c dominion.o 
+	gcc -o test4 unittest4.c  dominion.o rngs.o  $(CFLAGS)
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:

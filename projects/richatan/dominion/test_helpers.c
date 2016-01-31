@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 
 //For printing card names 
 const char* Card_Strings[] = {"curse", "estate", "duchy", "province", "copper", "silver" ,
@@ -12,6 +13,7 @@ const char* Card_Strings[] = {"curse", "estate", "duchy", "province", "copper", 
   "embargo", "outpost", "salvager", "sea_hag", "treasure_map"};
   
 //Create a gameState with random, but valid, values
+//Note: not used for assignment 3
 struct gameState* randomGame(int randInt){
 	int i, j;
 	int numCards = 0;
@@ -126,6 +128,7 @@ struct gameState* randomGame(int randInt){
 }
 
 //Print current game state
+//Note: helper function while testing unit test code
 void printGameState(struct gameState *g){
 	
 	int i, j;
@@ -195,3 +198,158 @@ void printGameState(struct gameState *g){
 	
 	return;
 }
+
+int checkGameState(struct gameState *before, struct gameState *after){
+	if (memcmp(before, after, sizeof(struct gameState)) != 0){
+		return -1;
+	} else {
+		return 0;
+	}
+}
+
+int checkNumPlayers(struct gameState *before, struct gameState *after){
+	if (before->numPlayers != after->numPlayers){
+		return -1;
+	} else {
+		return 0;
+	}
+}
+
+int checkSupply(struct gameState *before, struct gameState *after){
+	int i;
+	
+	for (i = 0; i <= treasure_map; i++){
+		if (before->supplyCount[i] != after->supplyCount[i]){
+			return i;
+		}
+	}
+	return 0;
+}
+
+int checkEmbargo(struct gameState *before, struct gameState *after){
+	int i;
+	
+	for (i = 0; i <= treasure_map; i++){
+		if (before->embargoTokens[i] != after->embargoTokens[i]){
+			return i;
+		}
+	}
+	return 0;
+}
+
+int checkOutpost(struct gameState *before, struct gameState *after){
+	if (before->outpostPlayed != after->outpostPlayed){
+		return -1;
+	} else if (before->outpostTurn != after->outpostTurn){
+		return -1;
+	} else {
+		return 0;
+	}
+}
+
+int checkTurn(struct gameState *before, struct gameState *after){
+	if (before->whoseTurn != after->whoseTurn){
+		return -1;
+	} else {
+		return 0;
+	}
+}
+
+int checkPhase(struct gameState *before, struct gameState *after){
+	if (before->phase != after->phase){
+		return -1;
+	} else {
+		return 0;
+	}
+}
+
+int checkCoins(struct gameState *before, struct gameState *after){
+	if (before->coins != after->coins){
+		return -1;
+	} else {
+		return 0;
+	}
+}
+
+int checkNumActions(struct gameState *before, struct gameState *after){
+	if (before->numActions != after->numActions){
+		return -1;
+	} else {
+		return 0;
+	}
+}
+
+int checkNumBuys(struct gameState *before, struct gameState *after){
+	if (before->numBuys != after->numBuys) {
+		return -1;
+	} else {
+		return 0;
+	}
+}
+
+int checkHands(struct gameState *before, struct gameState *after){
+	int i, j;
+	
+	for (i = 0; i < before->numPlayers; i++){
+		if (before->handCount[i] != after->handCount[i]){
+			return -1;
+		} else {   //check each card
+			for (j = 0; j < before->handCount[i]; j++){
+				if (before->hand[i][j] != after->hand[i][j]){
+					return -1;
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+int checkDecks(struct gameState *before, struct gameState *after){
+	int i, j;
+	
+	for (i = 0; i < before->numPlayers; i++){
+		if (before->deckCount[i] != after->deckCount[i]){
+			return -1;
+		} else {   //check each card
+			for (j = 0; j < before->deckCount[i]; j++){
+				if (before->deck[i][j] != after->deck[i][j]){
+					return -1;
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+int checkDiscards(struct gameState *before, struct gameState *after){
+	int i, j;
+	
+	for (i = 0; i < before->numPlayers; i++){
+		if (before->discardCount[i] != after->discardCount[i]){
+			return -1;
+		} else {   //check each card
+			for (j = 0; j < before->discardCount[i]; j++){
+				if (before->discard[i][j] != after->discard[i][j]){
+					return -1;
+				}
+			}
+		}
+	}	
+	return 0;
+}
+
+int checkPlayed(struct gameState *before, struct gameState *after){
+	int i;
+	
+	if (before->playedCardCount != after->playedCardCount){
+		return -1;
+	} else {   //check each card
+		for (i = 0; i < before->playedCardCount; i++){
+			if (before->playedCards[i] != after->playedCards[i]){
+				return -1;
+			}
+		}
+	}	
+	return 0;
+}
+

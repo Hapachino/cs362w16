@@ -31,18 +31,24 @@ int unitTest(int player, struct gameState *post){
     success=fullDeckCount(player,card, post);
 
     if (success > MAX_DECK){
+        #if (NOISY_TEST == 1)
         printf ("Error in end turn function.\n");
-        exit(2);
+        #endif
+        return 1;
     }
 
     if (success == -1){
-        printf ("Error in full deck function.\n");
-        exit(1);
+       #if (NOISY_TEST == 1) 
+       printf ("Error in full deck function.\n");
+        #endif
+        return 2;
     }
     //memcmp game state size
     if (memcmp(&pre,post, sizeof(struct gameState))!=0);{
+        #if (NOISY_TEST == 1)
         printf ("Memory size different.\n");
-        exit(3);
+        #endif
+        return 3;
     }
     return 0;
 }
@@ -50,10 +56,10 @@ int unitTest(int player, struct gameState *post){
 
 int main () {
   //define variables  
-  int i, n, r, p, deckCount, discardCount, handCount;
-  //define a array of cards
-  int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+  int i, n, r, p, error,errorA,errorB,errorC;
+  errorA=0;
+  errorB=0;
+  errorC=0;
   //define a gamestate
   struct gameState G;
 
@@ -74,34 +80,28 @@ int main () {
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
     //call function with test input
-    unitTest(p, &G);
+    error=unitTest(p,&G);
+
+    if (error > 0){
+        if(error == 1){
+            errorA++;
+        }else if(error == 2){
+            errorB++;
+        }else if(error == 3){
+            errorC++;
+        }
+    }
 
   }
 
   printf ("ALL TESTS OK\n");
-
-  exit(0);
-  //fixed tests
-  printf ("SIMPLE FIXED TESTS.\n");
-  for (p = 0; p < 2; p++) {
-    for (deckCount = 0; deckCount < 5; deckCount++) {
-      for (discardCount = 0; discardCount < 5; discardCount++) {
-	for (handCount = 0; handCount < 5; handCount++) {
-	  memset(&G, 23, sizeof(struct gameState)); 
-	  r = initializeGame(2, k, 1, &G);
-	  G.deckCount[p] = deckCount;
-	  memset(G.deck[p], 0, sizeof(int) * deckCount);
-	  G.discardCount[p] = discardCount;
-	  memset(G.discard[p], 0, sizeof(int) * discardCount);
-	  G.handCount[p] = handCount;
-	  memset(G.hand[p], 0, sizeof(int) * handCount);
-	  //run unit test.
-      unitTest(p, &G);
-
-	}
-      }
-    }
-  }
+  printf ("ALL Random TESTS Complete\n");
+  printf ("Errors type 1: %d ",errorA);
+  printf ("Error in end turn function.\n");
+  printf ("Errors type 2: %d ",errorB);
+  printf ("Error in full deck function.\n");
+  printf ("Errors type 3: %d ",errorC);
+  printf ("Memory size different.\n");
 
   return 0;
 }

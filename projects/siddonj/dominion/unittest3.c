@@ -167,6 +167,13 @@ void testUpdateCoins() {
   printf("expected coin count to total '0' coins when coin total was set before calling updateCoins(), got: '%d' \n", testGame->coins);
   //END
 
+  // Clean up memory.
+  free(state);
+  state = 0;
+
+  free(testGame);
+  testGame = 0;
+
 }
 
 

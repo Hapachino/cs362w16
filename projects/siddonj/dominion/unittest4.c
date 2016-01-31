@@ -17,8 +17,6 @@ void testDrawCard() {
   int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
   int randomSeed = 3;
   int player = 0;
-
-  int discardBefore = 0;
   int cardVariation = 0;
 
   // Create game.
@@ -133,6 +131,13 @@ void testDrawCard() {
     printf(DRAWCARD_PASS);
   }
   printf("expected 'discard' total to equal 0 after drawing a card with no cards in deck, got : %d.\n", testGame->discardCount[player]);
+
+  // Clean memory.
+  free(state);
+  state = 0;
+
+  free(testGame);
+  testGame = 0;
 
 }
 

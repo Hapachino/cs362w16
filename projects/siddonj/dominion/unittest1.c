@@ -304,7 +304,6 @@ void testInitializeGame() {
   free(state);
   state = 0;
 
-
 }
 
 

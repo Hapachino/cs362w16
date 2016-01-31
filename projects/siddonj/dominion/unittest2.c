@@ -536,6 +536,13 @@ void testBuyCard() {
   printf("expected buy to increase discard pile by 1, discard pile increased by: %d\n", discardIncrease);
   // END
 
+  // Clean memory
+  free(state);
+  state = 0;
+
+  free(testGame);
+  testGame = 0;
+
 }
 
 

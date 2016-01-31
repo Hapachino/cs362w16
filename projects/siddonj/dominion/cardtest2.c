@@ -12,10 +12,7 @@
 
 void testPlayAdventurer() {
   int i = 0;
-  int playerHandSize = 0;       // Get hand size.
-  int playerActions = 0;
-  int handSizeIncrease = 0;
-  int actionDecrease = 0;
+
   int adventurerHandCount = 0;
   int adventurerDiscardCount = 0;
   int adventurerPlayedCount = 0;
@@ -31,56 +28,50 @@ void testPlayAdventurer() {
   int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
   int randomSeed = -1;                          // Set randomSeed to less than 0 so it is based off system clock in the initializeGame method.
   struct gameState *state = newGame();          // Initialize game state.
+  struct gameState *testGame = newGame();
 
+  initializeGame(numPlayers, kingdomCards, randomSeed, state);  // Initialize game with valid game values.
 
   printf("\n***** TESTING PLAY ADVENTURER *****\n");
-
-  // Initialize game with valid game values.
-  memset(state, 0, sizeof(struct gameState));        // Clean out previous state.
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);
-  playerHandSize = numHandCards(state);       // Get hand size.
-  playerActions = state->numActions;          // Get initial action amount.
+  memcpy(testGame, state, sizeof(struct gameState));            // Clean out previous state.
 
   // Figure out how many treasure in player's hand before playing adventurer.
-  for(i = 0; i < playerHandSize; i++) {
-    if(state->hand[state->whoseTurn][i] == copper || state->hand[state->whoseTurn][i] == silver || state->hand[state->whoseTurn][i] == gold ) {
+  for(i = 0; i < testGame->handCount[testGame->whoseTurn]; i++) {
+    if(testGame->hand[testGame->whoseTurn][i] == copper || testGame->hand[testGame->whoseTurn][i] == silver || testGame->hand[testGame->whoseTurn][i] == gold ) {
       treasureCount++;
     }
   }
 
-  handSizeIncrease = 0;
   otherHandIncrease = 0;
   otherDeckIncrease = 0;
   otherDiscardIncrease = 0;
 
   // Set player 1's first card in hand to be adventurer card.
-  state->hand[state->whoseTurn][0] = adventurer;
-  playAdventurer(state, state->whoseTurn);         // First card is adventurer;
+  testGame->hand[testGame->whoseTurn][0] = adventurer;
+  playAdventurer(testGame, testGame->whoseTurn);         // First card is adventurer;
 
-  handSizeIncrease = numHandCards(state) - playerHandSize;       // Find amount players hand size increased by.
-  actionDecrease = playerActions - state->numActions;
 
   // See if any other players handsize increased, don't include player that played adventurer.
   for(i = 1; i < numPlayers; i++) {
-    if(state->handCount[i] > 0) {
+    if(testGame->handCount[i] > 0) {
       otherHandIncrease++;
     }
-    if(state->deckCount[i] > 10) {
+    if(testGame->deckCount[i] > 10) {
       otherDeckIncrease++;
     }
-    if(state->discardCount[i] > 0) {
+    if(testGame->discardCount[i] > 0) {
       otherDiscardIncrease++;
     }
   }
 
   // Check what player has in hand.
-  for(i = 0; i < numHandCards(state); i++) {
-    if(state->hand[state->whoseTurn][i] == adventurer) {        // There is a adventurer in hand.
+  for(i = 0; i < numHandCards(testGame); i++) {
+    if(testGame->hand[testGame->whoseTurn][i] == adventurer) {        // There is a adventurer in hand.
       adventurerHandCount++;
     }
 
     // Count up # of treasures.
-    if(state->hand[state->whoseTurn][i] == copper || state->hand[state->whoseTurn][i] == silver || state->hand[state->whoseTurn][i] == gold ) {
+    if(testGame->hand[testGame->whoseTurn][i] == copper || testGame->hand[testGame->whoseTurn][i] == silver || testGame->hand[testGame->whoseTurn][i] == gold ) {
       increasedTreasure++;
     }
   }
@@ -88,68 +79,68 @@ void testPlayAdventurer() {
   increasedTreasure = increasedTreasure - treasureCount;    // Determine total quantity treasure increased by.
 
   // Make sure player has no adventurer cards in discard pile.
-  for(i = 0; i < state->discardCount[state->whoseTurn]; i++) {
-    if(state->discard[state->whoseTurn][i] == adventurer) {        // There is a adventurer in discard.
+  for(i = 0; i < testGame->discardCount[testGame->whoseTurn]; i++) {
+    if(testGame->discard[testGame->whoseTurn][i] == adventurer) {        // There is a adventurer in discard.
       adventurerDiscardCount++;
     }
   }
 
   // Make sure player has 1 adventurer card in played card pile.
-  for(i = 0; i < state->playedCardCount; i++) {
-    if(state->playedCards[i] == adventurer) {        // There is a adventurer in played cards.
+  for(i = 0; i < testGame->playedCardCount; i++) {
+    if(testGame->playedCards[i] == adventurer) {        // There is a adventurer in played cards.
       adventurerDiscardCount++;
     }
   }
 
   // Player who played card.
-  if(handSizeIncrease == 1) {    // Adventurer puts two treasures in hand but discards Adventurer making net handsize gain only 1.
+  if(state->handCount[state->whoseTurn]+1 == testGame->handCount[testGame->whoseTurn]) {    // Adventurer puts two treasures in hand but discards Adventurer making net handsize gain only 1.
     printf(PLAYADVENTURER_PASS);
   } else {
     printf(PLAYADVENTURER_FAIL);
   }
-  printf("expects Player 1's 'hand' size to increase by a total of '1', 'hand' increased by: %d\n", handSizeIncrease);
+  printf("expects Player 1's 'hand' size to increase by a total of '1', 'hand' increased by: %d\n", testGame->handCount[testGame->whoseTurn]-state->handCount[state->whoseTurn]);
 
-  if(actionDecrease == 1) {    // Action reduced by 1 the same.
+  if(state->numActions-1 == testGame->numActions) {    // Action reduced by 1 the same.
     printf(PLAYADVENTURER_PASS);
   } else {
     printf(PLAYADVENTURER_FAIL);
   }
-  printf("expects Player 1's 'action' amount to decrease by '1', 'actions' decreased by: %d\n", actionDecrease);
+  printf("expects Player 1's 'action' amount to decrease by '1', 'actions' decreased by: %d\n", state->numActions-testGame->numActions);
 
-  if(state->numBuys == 1) {    // Number of buys should still be 1.
+  if(testGame->numBuys == state->numBuys) {    // Number of buys should still be 1.
     printf(PLAYADVENTURER_PASS);
   } else {
     printf(PLAYADVENTURER_FAIL);
   }
-  printf("expects Player 1's 'buy' amount to be '1', got: %d\n", state->numBuys);
+  printf("expects Player 1's 'buy' amount to not change, changed by: %d\n", state->numBuys-testGame->numBuys);
 
   if(adventurerHandCount == 0) {    // No adventurer in hand.
     printf(PLAYADVENTURER_PASS);
   } else {
     printf(PLAYADVENTURER_FAIL);
   }
-  printf("expects Player 1 to have 0 'adventurer' cards in hand, got: %d\n", adventurerHandCount);
+  printf("expects Player 1 to have 0 'adventurer' cards in hand after playing it, got: %d\n", adventurerHandCount);
 
   if(adventurerPlayedCount == 1) {    // 1 adventurer in played cards pile.
     printf(PLAYADVENTURER_PASS);
   } else {
     printf(PLAYADVENTURER_FAIL);
   }
-  printf("expects Player 1 to have 1 'adventurer' card in played card pile, got: %d\n", adventurerPlayedCount);
+  printf("expects Player 1 to have 1 'adventurer' card in played card pile after playing it, got: %d\n", adventurerPlayedCount);
 
   if(adventurerDiscardCount == 0) {    // 0 adventurer in discard.
     printf(PLAYADVENTURER_PASS);
   } else {
     printf(PLAYADVENTURER_FAIL);
   }
-  printf("expects Player 1 to have 0 'adventurer' cards in discard pile, got: %d\n", adventurerDiscardCount);
+  printf("expects Player 1 to have 0 'adventurer' cards in discard pile after playing it, got: %d\n", adventurerDiscardCount);
 
-  if(state->coins == 0) {         // 0 coin change.
+  if(testGame->coins == state->coins) {         // 0 coin change.
     printf(PLAYADVENTURER_PASS);
   } else {
     printf(PLAYADVENTURER_FAIL);
   }
-  printf("expects Player 1 'coins' to be 0 after playing adventurer, got: %d\n", state->coins);
+  printf("expects Player 1 'coins' to be the same after playing adventurer, changed by: %d\n", testGame->coins-state->coins);
 
   if(increasedTreasure == 2) {         // Player should have 2 more treasures in hand.
     printf(PLAYADVENTURER_PASS);
@@ -183,8 +174,8 @@ void testPlayAdventurer() {
 
   // Initialize new game.
   // Initialize game with valid game values.
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);
-  int failPlay = playAdventurer(state, state->whoseTurn);   // Don't put adventurer card in player 1's hand.
+  memcpy(testGame, state, sizeof(struct gameState));            // Clean out previous state.
+  int failPlay = playAdventurer(testGame, testGame->whoseTurn);   // Don't put adventurer card in player 1's hand.
 
   if(failPlay == -1) {    // Should return error.
     printf(PLAYADVENTURER_PASS);
@@ -196,25 +187,27 @@ void testPlayAdventurer() {
 
   // Initialize new game, test playing without deck.
   // Initialize game with valid game values.
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);
+  memcpy(testGame, state, sizeof(struct gameState));            // Clean out previous state.
 
   // Set each card in players hand to a treasure.
-  for(i = 0; i < state->handCount[state->whoseTurn]; i++) {
-    state->hand[state->whoseTurn][i] = copper;
+  for(i = 0; i < testGame->handCount[testGame->whoseTurn]; i++) {
+    testGame->hand[testGame->whoseTurn][i] = copper;
   }
 
   // Set each card remaining in deck to a treasure.
-  for(i = 0; i < state->deckCount[state->whoseTurn]; i++) {
-    state->deck[state->whoseTurn][i] = copper;
+  for(i = 0; i < testGame->deckCount[testGame->whoseTurn]; i++) {
+    testGame->deck[testGame->whoseTurn][i] = copper;
   }
 
   // Draw entire deck and discard each card. Sets deck to empty.
-  for(i = 0; i < state->deckCount[state->whoseTurn]; i++) {
-    drawCard(state->whoseTurn, state);              // Draw card.
-    discardCard(i, state->whoseTurn, state, 0);     // Discard card.
+  for(i = 0; i < testGame->deckCount[testGame->whoseTurn]; i++) {
+    drawCard(testGame->whoseTurn, testGame);              // Draw card.
+    discardCard(i, testGame->whoseTurn, testGame, 0);     // Discard card.
   }
-  state->hand[state->whoseTurn][0] = adventurer;    // Turn first card in hand to adventurer.
-  failPlay = playAdventurer(state, state->whoseTurn);          // Play adventurer with empty deck.
+  testGame->hand[testGame->whoseTurn][0] = adventurer;    // Turn first card in hand to adventurer.
+  testGame->handCount[testGame->whoseTurn] = 1;                                // Set hand total to only 1.
+
+  failPlay = playAdventurer(testGame, testGame->whoseTurn);          // Play adventurer with empty deck.
 
   if(failPlay == 0) {    // Should be successful.
     printf(PLAYADVENTURER_PASS);
@@ -224,20 +217,62 @@ void testPlayAdventurer() {
   printf("expects method to return '0', when player plays adventurer with no cards in deck, got: %d\n", failPlay);
 
   // Since each card in players hand and deck was set to treasure, there should be cards remaning in deck after playing adventure.
-  if(state->deckCount[state->whoseTurn] > 0) {
+  if(testGame->deckCount[testGame->whoseTurn] > 0) {
     printf(PLAYADVENTURER_PASS);
   } else {
     printf(PLAYADVENTURER_FAIL);
   }
-  printf("expects deck to contain more than '0', after player plays adventurer with no cards in deck, got: %d\n", state->deckCount[state->whoseTurn]);
+  printf("expects deck to contain more than '0' cards, after player plays adventurer with no cards in deck, deck contains: %d\n", testGame->deckCount[testGame->whoseTurn]);
 
-  if(state->discardCount[state->whoseTurn] == 0) {
+  if(testGame->discardCount[testGame->whoseTurn] == 0) {
     printf(PLAYADVENTURER_PASS);
   } else {
     printf(PLAYADVENTURER_FAIL);
   }
-  printf("expects discard to contain '0' cards, after player plays adventurer with no cards in deck, got: %d\n", state->discardCount[state->whoseTurn]);
+  printf("expects discard to contain '0' cards, after player plays adventurer with no cards in deck, discard contains: %d\n", testGame->discardCount[testGame->whoseTurn]);
 
+
+
+  // Initialize new game, test playing with only 1 treasure in deck.
+  // Initialize game with valid game values.
+  memcpy(testGame, state, sizeof(struct gameState));            // Clean out previous state.
+
+  // Set each card in players hand to a estate.
+  for(i = 0; i < testGame->handCount[testGame->whoseTurn]; i++) {
+    testGame->hand[testGame->whoseTurn][i] = estate;
+  }
+
+  // Set each card remaining in deck to a estate.
+  for(i = 0; i < testGame->deckCount[testGame->whoseTurn]; i++) {
+    testGame->deck[testGame->whoseTurn][i] = estate;
+  }
+
+  testGame->deck[testGame->whoseTurn][0] = copper;              // Set first card in deck to copper.
+  testGame->hand[testGame->whoseTurn][0] = adventurer;          // Turn first card in hand to adventurer.
+
+  failPlay = playAdventurer(testGame, testGame->whoseTurn);          // Play adventurer with 1 copper in deck.
+
+  if(failPlay == 0) {    // Should be successful.
+    printf(PLAYADVENTURER_PASS);
+  } else {
+    printf(PLAYADVENTURER_FAIL);
+  }
+  printf("expects method to return '0', when player plays adventurer with 1 treasure in deck, got: %d\n", failPlay);
+
+  if(testGame->handCount[testGame->whoseTurn] == state->handCount[state->whoseTurn]+1) {
+    printf(PLAYADVENTURER_PASS);
+  } else {
+    printf(PLAYADVENTURER_FAIL);
+  }
+  printf("expects players hand count to only increase by 1 when deck only contains 1 treasure card in deck, got increase of: %d\n", testGame->handCount[testGame->whoseTurn]-state->handCount[state->whoseTurn]);
+
+
+  // Clean memory
+  free(state);
+  state = 0;
+
+  free(testGame);
+  testGame = 0;
 
 }
 

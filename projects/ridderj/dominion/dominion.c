@@ -696,7 +696,7 @@ int villageCardFunc(struct gameState *state, int handPos)
    drawCard(currentPlayer, state);
       
    //+2 Actions
-   state->numActions = state->numActions + MAX_PLAYERS;
+   state->numActions = state->numActions + state->numPlayers;
       
    //discard played card from hand
    discardCard(handPos, currentPlayer, state, 0);

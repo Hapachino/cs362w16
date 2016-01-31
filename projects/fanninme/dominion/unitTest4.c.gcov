@@ -3,7 +3,6 @@
         -:    0:Data:unitTest4.gcda
         -:    0:Runs:1
         -:    0:Programs:1
-        -:    0:Source is newer than graph
         -:    1:#include "dominion.h"
         -:    2:#include "dominion_helpers.h"
         -:    3:#include "rngs.h"
@@ -22,92 +21,92 @@
         -:   16://Preconditions:
         -:   17://function accepts  int player, int card, struct gameState *state,
         -:   18://oracle makes sure returns valid 
-        1:   19:int unitTest(int player, struct gameState *post){
-        1:   20:    srand(time(NULL));
+     2000:   19:int unitTest(int player, struct gameState *post){
+     2000:   20:    srand(time(NULL));
         -:   21:
         -:   22:    //define variables
         -:   23:    int success;
         -:   24:    int card;
         -:   25:    struct gameState pre;
-        1:   26:    memcpy(&pre,post,sizeof(struct gameState));
+     2000:   26:    memcpy(&pre,post,sizeof(struct gameState));
         -:   27:    //randomly card int within size limits
-        1:   28:    card= rand()%10;
+     2000:   28:    card= rand()%10;
         -:   29:    
         -:   30:    //call function
-        1:   31:    success=fullDeckCount(player,card, post);
+     2000:   31:    success=fullDeckCount(player,card, post);
         -:   32:
-        1:   33:    if (success > MAX_DECK){
-    #####:   34:        printf ("Error in end turn function.\n");
-    #####:   35:        exit(2);
-        -:   36:    }
-        -:   37:
-        1:   38:    if (success == -1){
-    #####:   39:        printf ("Error in full deck function.\n");
-    #####:   40:        exit(1);
-        -:   41:    }
-        -:   42:    //memcmp game state size
-        1:   43:    if (memcmp(&pre,post, sizeof(struct gameState))!=0);{
-        1:   44:        printf ("Memory size different.\n");
-        1:   45:        exit(3);
-        -:   46:    }
-        -:   47:    return 0;
-        -:   48:}
-        -:   49:
-        -:   50:
-        -:   51:int main () {
-        -:   52:  //define variables  
-        1:   53:  int i, n, r, p, deckCount, discardCount, handCount;
-        -:   54:  //define a array of cards
-        -:   55:  int k[10] = {adventurer, council_room, feast, gardens, mine,
-        -:   56:	       remodel, smithy, village, baron, great_hall};
-        1:   57:  //define a gamestate
-        -:   58:  struct gameState G;
-        -:   59:
-        -:   60:  printf ("Testing full deck count.\n");
-        -:   61:
-        1:   62:  printf ("RANDOM TESTS.\n");
-        -:   63:  //create random seed
-        1:   64:  SelectStream(2);
-        -:   65:  PutSeed(3);
-        1:   66:  //for 2000 test cases
-        1:   67:  for (n = 0; n < 2000; n++) {
-        -:   68:    for (i = 0; i < sizeof(struct gameState); i++) {
-        1:   69:      //fill gamestate with random bits between 0-256 using ofset
-    26301:   70:      ((char*)&G)[i] = floor(Random() * 256);
-        -:   71:    }
-    26300:   72:    p = floor(Random() * 2);
-        -:   73:    G.deckCount[p] = floor(Random() * MAX_DECK);
-        1:   74:    G.discardCount[p] = floor(Random() * MAX_DECK);
-        1:   75:    G.handCount[p] = floor(Random() * MAX_HAND);
-        1:   76:    //call function with test input
-        1:   77:    unitTest(p, &G);
-        -:   78:
-        1:   79:  }
-        -:   80:
-        -:   81:  printf ("ALL TESTS OK\n");
-        -:   82:
-    #####:   83:  exit(0);
-        -:   84:  //fixed tests
-    #####:   85:  printf ("SIMPLE FIXED TESTS.\n");
-        -:   86:  for (p = 0; p < 2; p++) {
-        -:   87:    for (deckCount = 0; deckCount < 5; deckCount++) {
-        -:   88:      for (discardCount = 0; discardCount < 5; discardCount++) {
-        -:   89:	for (handCount = 0; handCount < 5; handCount++) {
-        -:   90:	  memset(&G, 23, sizeof(struct gameState)); 
-        -:   91:	  r = initializeGame(2, k, 1, &G);
-        -:   92:	  G.deckCount[p] = deckCount;
-        -:   93:	  memset(G.deck[p], 0, sizeof(int) * deckCount);
-        -:   94:	  G.discardCount[p] = discardCount;
-        -:   95:	  memset(G.discard[p], 0, sizeof(int) * discardCount);
-        -:   96:	  G.handCount[p] = handCount;
-        -:   97:	  memset(G.hand[p], 0, sizeof(int) * handCount);
-        -:   98:	  //run unit test.
-        -:   99:      unitTest(p, &G);
-        -:  100:
-        -:  101:	}
-        -:  102:      }
-        -:  103:    }
-        -:  104:  }
+     2000:   33:    if (success > MAX_DECK){
+        -:   34:        #if (NOISY_TEST == 1)
+    #####:   35:        printf ("Error in end turn function.\n");
+        -:   36:        #endif
+    #####:   37:        return 1;
+        -:   38:    }
+        -:   39:
+     2000:   40:    if (success == -1){
+        -:   41:       #if (NOISY_TEST == 1) 
+    #####:   42:       printf ("Error in full deck function.\n");
+        -:   43:        #endif
+    #####:   44:        return 2;
+        -:   45:    }
+        -:   46:    //memcmp game state size
+     2000:   47:    if (memcmp(&pre,post, sizeof(struct gameState))!=0);{
+        -:   48:        #if (NOISY_TEST == 1)
+     2000:   49:        printf ("Memory size different.\n");
+        -:   50:        #endif
+     2000:   51:        return 3;
+        -:   52:    }
+        -:   53:    return 0;
+        -:   54:}
+        -:   55:
+        -:   56:
+        1:   57:int main () {
+        -:   58:  //define variables  
+        -:   59:  int i, n, r, p, error,errorA,errorB,errorC;
+        1:   60:  errorA=0;
+        1:   61:  errorB=0;
+        1:   62:  errorC=0;
+        -:   63:  //define a gamestate
+        -:   64:  struct gameState G;
+        -:   65:
+        1:   66:  printf ("Testing full deck count.\n");
+        -:   67:
+        1:   68:  printf ("RANDOM TESTS.\n");
+        -:   69:  //create random seed
+        1:   70:  SelectStream(2);
+        1:   71:  PutSeed(3);
+        -:   72:  //for 2000 test cases
+     2001:   73:  for (n = 0; n < 2000; n++) {
+ 52602000:   74:    for (i = 0; i < sizeof(struct gameState); i++) {
+        -:   75:      //fill gamestate with random bits between 0-256 using ofset
+ 52600000:   76:      ((char*)&G)[i] = floor(Random() * 256);
+        -:   77:    }
+     2000:   78:    p = floor(Random() * 2);
+     2000:   79:    G.deckCount[p] = floor(Random() * MAX_DECK);
+     2000:   80:    G.discardCount[p] = floor(Random() * MAX_DECK);
+     2000:   81:    G.handCount[p] = floor(Random() * MAX_HAND);
+        -:   82:    //call function with test input
+     2000:   83:    error=unitTest(p,&G);
+        -:   84:
+     2000:   85:    if (error > 0){
+     2000:   86:        if(error == 1){
+    #####:   87:            errorA++;
+     2000:   88:        }else if(error == 2){
+    #####:   89:            errorB++;
+     2000:   90:        }else if(error == 3){
+     2000:   91:            errorC++;
+        -:   92:        }
+        -:   93:    }
+        -:   94:
+        -:   95:  }
+        -:   96:
+        1:   97:  printf ("ALL TESTS OK\n");
+        1:   98:  printf ("ALL Random TESTS Complete\n");
+        1:   99:  printf ("Errors type 1: %d ",errorA);
+        1:  100:  printf ("Error in end turn function.\n");
+        1:  101:  printf ("Errors type 2: %d ",errorB);
+        1:  102:  printf ("Error in full deck function.\n");
+        1:  103:  printf ("Errors type 3: %d ",errorC);
+        1:  104:  printf ("Memory size different.\n");
         -:  105:
-        -:  106:  return 0;
+        1:  106:  return 0;
         -:  107:}

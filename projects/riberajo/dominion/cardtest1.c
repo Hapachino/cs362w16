@@ -21,85 +21,18 @@
  #include <math.h>
  #include "rngs.h"
 
-int unitTest(int handPos, struct gameState *post, int p, int victoryCount, int kingdomCount, int k[]) {
-  struct gameState pre;
-  memcpy(&pre, post, sizeof(struct gameState));
-
-  int p2 = 0; // player 2
-  int failedTests = 0; // holds if any test fail
-
-  int r, i, victoryCount2, kingdomCount2;
-  // run fucntion
-  playSmithy(handPos, post);
-
-  // count victory cards post function call
-  victoryCount2 = post->supplyCount[estate] + post->supplyCount[province] +
-                  post->supplyCount[duchy] + post->supplyCount[curse];
-
-  // count all kingdom cards post function call
-  for(i = 0; i < 9; i++) {
-    kingdomCount2 += post->supplyCount[k[i]];
-  }
-
-  printf("POST FUNCTION COUNTS: \n");
-   printf("   Hand Count: %d \n", post->handCount[p]);
-   printf("   Played Count: %d \n", post->playedCardCount);
-   printf("   Deck Count: %d \n", post->deckCount[p]);
-   printf("   Discard Count: %d \n\n", post->discardCount[p]);
-
-    // printf("DECK Cards After Stacking\n");
-    // for (i = 0; i < post->handCount[p]; i++) {
-    //     printf("Index   %d      Card:   %d  \n", i, post->hand[p][i]);
-    // }
-
-   printf("Player: 2 PRE FUNC COUNTS: \n");
-   printf("Hand Count: %d Played Count: %d  Deck Count: %d Victory Count: %d, Kingdom Count: %d \n",
-            pre.handCount[p2], pre.playedCardCount, pre.deckCount[p], victoryCount, kingdomCount);
-
-   printf("\nPlayer: 2 POST FUNC COUNTS: \n");
-   printf("Hand Count: %d Played Count: %d  Deck Count: %d Victory Count: %d  Kingdom Count: %d \n\n",
-   post->handCount[p2], post->playedCardCount, post->deckCount[p2], victoryCount2);
-
- // check hand count
- if(pre.handCount[p]+2 != post->handCount[p]) {
-    printf("FAIL: Handcount mismatch\n");
-    failedTests++;
-  }
-
-// check played count
- if(pre.playedCardCount+1 != post->playedCardCount) {
-    printf("FAIL: Played card amount mismatch\n");
-    failedTests++;
- }
-
- // check deck count
- if(pre.deckCount[p] != post->deckCount[p] + 3) {
-   printf("FAIL: deck count mismatch\n");
-   failedTests++;
- }
-
- // check victory count
- if(victoryCount != victoryCount2) {
-   printf("FAIL: victory count mismatch\n");
-   failedTests++;
- }
-
- // check kingdom count
- if(kingdomCount != kingdomCount2) {
-   printf("FAIL: kingdom count mismatch\n");
-   failedTests++;
- }
-
-// card should be a silver because of our stacked deck/hand
- if(pre.hand[p][0] != 5) {
-   printf("FAIL: added card isn't silver\n");
-   failedTests++;
- }
-
-
-
-  return failedTests;
-}
+ // helper function prototypes
+ int otherPlayerState(struct gameState *pre, struct gameState *post, int p1, int p2, int vc1, int vc2, int kc1, int kc2);
+ int checkCounts(struct gameState *pre, struct gameState *post, int p, int victoryCount, int victoryCount2, int kingdomCount, int kingdomCount2);
+ int getVictoryCount(struct gameState *post);
+ int getKingdomCount(struct gameState *post);
+ int printDeck(struct gameState *post, int p, char *n);
+ int printHand(struct gameState *post, int p, char *n);
+ int printCounts(struct gameState *post, int p);
+ int stackDeck(struct gameState *post, int player, int start, int end, int card);
+ int stackHand(struct gameState *post, int player, int start, int end, int card);
+ int passOrFail(int r);
+ int unitTest(int handPos, struct gameState *post, int p, int victoryCount, int kingdomCount, int k[]);
 
 int main() {
    int i, p, p2, r,
@@ -123,36 +56,174 @@ int main() {
    r = initializeGame(numPlayer, k, seed, &G);
 
 
-   printf ("TESTING playSmithy():\n");
+   printf ("TESTING playSmithy():\n\n");
 
    // stacking deck with copper (card 4)
-   for( i = 0; i < G.deckCount[p]; i++) {
-     G.deck[p][i] = copper;
-   }
+   stackDeck(&G, p, 0, G.handCount[p], copper);
 
    // stacking hand with silver (card 5)
-   for( i = 0; i < G.handCount[p]; i++) {
-     G.hand[p][i] = silver;
-   }
+   stackHand(&G, p, 0, G.handCount[p], silver);
 
-   // count all the kindom cards
-   for(i = 0; i < 9; i++) {
-     kingdomCount += G.supplyCount[k[i]];
-   }
 
    // count all victory cards
-   victoryCount = G.supplyCount[estate] + G.supplyCount[province]
-                + G.supplyCount[duchy] + G.supplyCount[curse];
-
-   printf("Player: %d PRE FUNCTION COUNTS: \n", p);
-   printf("   Hand Count: %d \n", G.handCount[p]);
-   printf("   Played Count: %d \n", G.playedCardCount);
-   printf("   Deck Count: %d \n", G.deckCount[p]);
-   printf("   Discard Count: %d \n", G.discardCount[p]);
-   printf("   Victory Count %d  \n\n", victoryCount);
+   victoryCount = getVictoryCount(&G);
 
  // run test
   r = unitTest(handPos, &G, p, victoryCount, kingdomCount, k);
+
+  passOrFail(r);
+
+
+
+return 0;
+}
+
+
+int unitTest(int handPos, struct gameState *post, int p, int victoryCount, int kingdomCount, int k[]) {
+  struct gameState pre;
+  memcpy(&pre, post, sizeof(struct gameState));
+  int failedTests = 0;
+  int p2 = 1; // player 2
+  int r, i, victoryCount2, kingdomCount2;
+
+  // run fucntion
+  playSmithy(handPos, post);
+
+  // count victory cards post function call
+  victoryCount2 = getVictoryCount(post);
+
+  // count all kingdom cards post function call
+  kingdomCount2 = getKingdomCount(post);
+  kingdomCount  = getKingdomCount(&pre);
+
+  r =  checkCounts(&pre, post, 0, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
+
+  if (r > 0 ) {
+    failedTests++;
+  }
+// card should be a silver because of our stacked deck/hand
+ if(pre.hand[p][0] != 5) {
+   printf("FAIL: added card isn't silver\n");
+   failedTests++;
+ }
+
+ // check player 2 state
+ printf("Checking Player %d: \n", p2+1);
+ int j =  checkPlayer2(&pre, post, p2, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
+
+ if(j > 0 ) {
+   failedTests++;
+   // check player 2 counts before and after function call
+   otherPlayerState(&pre, post, 0, 1, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
+   printf("\nERROR: PLAYER 2 STATE HAS CHANGED \n");
+
+   }
+
+return failedTests;
+}
+
+int otherPlayerState(struct gameState *pre, struct gameState *post, int p1, int p2, int vc1, int vc2, int kc1, int kc2) {
+  printf("Player: 2 PRE FUNC COUNTS: \n");
+  printf("Hand Count: %d Played Count: %d  Deck Count: %d Victory Count: %d, Kingdom Count: %d \n",
+           pre->handCount[p2], pre->playedCardCount, pre->deckCount[p2], vc1, kc1);
+
+  printf("\nPlayer: 2 POST FUNC COUNTS: \n");
+  printf("Hand Count: %d Played Count: %d  Deck Count: %d Victory Count: %d  Kingdom Count: %d \n\n",
+  post->handCount[p2], post->playedCardCount, post->deckCount[p2], vc2);
+  return 0;
+
+}
+
+int checkCounts(struct gameState *pre, struct gameState *post, int p, int victoryCount, int victoryCount2, int kingdomCount, int kingdomCount2) {
+  char *n = "Post";
+  char *n2 = "Pre";
+
+  // check hand count
+  int failedTests = 0;
+  if(pre->handCount[p]+2 != post->handCount[p]) {
+     printf("FAIL: Handcount mismatch\n");
+     failedTests++;
+   }
+
+  // check played count
+  if(pre->playedCardCount+1 != post->playedCardCount) {
+     printf("FAIL: Played card amount mismatch\n");
+     failedTests++;
+  }
+
+  // check deck count
+  if(pre->deckCount[p] != post->deckCount[p] + 3) {
+    printf("FAIL: deck count mismatch\n");
+    failedTests++;
+  }
+  // check discard count
+  if(pre->discardCount[p] != post->discardCount[p]) {
+    printf("FAIL: discard count mismatch\n");
+    failedTests++;
+  }
+  // check victory count
+  if(victoryCount != victoryCount2) {
+    printf("FAIL: victory count mismatch\n");
+    failedTests++;
+  }
+
+  // check kingdom count
+  if(kingdomCount != kingdomCount2) {
+    printf("FAIL: kingdom count mismatch\n");
+    failedTests++;
+  }
+  if(failedTests > 0) {
+    printDeck(pre, p, n2);
+    printDeck(post, p, n);
+
+    printHand(pre, p, n2);
+    printHand(post, p, n);
+
+    printCounts(pre, p);
+    printCounts(post, p);
+  }
+  return failedTests;
+}
+
+
+int getVictoryCount(struct gameState *post) {
+  return post->supplyCount[estate] + post->supplyCount[province] +
+         post->supplyCount[duchy] + post->supplyCount[curse];
+}
+
+int getKingdomCount(struct gameState *post) {
+  int kingdomCount, i;
+  kingdomCount = 0;
+
+  int k[10] = {adventurer, great_hall, cutpurse, gardens, mine,
+              remodel, smithy, village, sea_hag, embargo};
+
+
+  for(i = 0; i < 10; i++) {
+    kingdomCount += post->supplyCount[k[i]];
+  }
+
+return kingdomCount;
+}
+
+int printDeck(struct gameState *post, int p, char *n) {
+  int i;
+  printf("%s DECK Cards: \n", n);
+  for (i = 0; i < post->deckCount[p]; i++) {
+      printf("Index   %d      Card:   %d  \n", i, post->deck[p][i]);
+  }
+}
+
+int printCounts(struct gameState *post, int p) {
+     printf(" FUNCTION COUNTS: \n");
+     printf("   Hand Count: %d \n", post->handCount[p]);
+     printf("   Played Count: %d \n", post->playedCardCount);
+     printf("   Deck Count: %d \n", post->deckCount[p]);
+     printf("   Discard Count: %d \n\n", post->discardCount[p]);
+}
+
+
+int passOrFail(int r) {
   if( r < 1) {
     printf("TEST: PASS \n");
   }
@@ -160,8 +231,84 @@ int main() {
   else {
     printf("TEST: FAIL\n");
   }
+}
 
 
+int checkPlayer2(struct gameState *pre, struct gameState *post, int p, int victoryCount, int victoryCount2, int kingdomCount, int kingdomCount2) {
+  char *n = "Post";
+  char *n2 = "Pre";
 
-return 0;
+  // check hand count
+  int failedTests = 0;
+  if(pre->handCount[p] != post->handCount[p]) {
+     printf("FAIL: Handcount mismatch\n");
+     failedTests++;
+   }
+
+  // check played count
+  if(pre->playedCardCount != post->playedCardCount) {
+     printf("FAIL: Played card amount mismatch\n");
+     printf("Expected %d    Actual %d \n", pre->playedCardCount, post->playedCardCount);
+
+     failedTests++;
+  }
+
+  // check deck count
+  if(pre->deckCount[p] != post->deckCount[p] ) {
+    printf("FAIL: deck count mismatch\n");
+    failedTests++;
+  }
+
+  if(pre->discardCount[p] != post->discardCount[p]) {
+    printf("FAIL: discard count mismatch\n");
+    printf("Expected %d    Actual %d \n", pre->discardCount[p], post->discardCount[p]);
+    failedTests++;
+  }
+
+  // check victory count
+  if(victoryCount != victoryCount2) {
+    printf("FAIL: victory count mismatch\n");
+    failedTests++;
+  }
+
+  // check kingdom count
+  if(kingdomCount != kingdomCount2) {
+    printf("FAIL: kingdom count mismatch\n");
+    failedTests++;
+  }
+
+  return failedTests;
+}
+
+// stacking deck with card
+int stackDeck(struct gameState *post, int player, int start, int end, int card) {
+  int count = 0;
+  int i;
+  for( i = start; i < end; i++) {
+    post->deck[player][i] = card;
+    count++;
+  }
+//  printf("Added  %d cards of type %d \n", count, card);
+  return 0;
+}
+
+// stacking hand with card
+int stackHand(struct gameState *post, int player, int start, int end, int card) {
+  int count = 0;
+  int i;
+  for( i = start; i < end; i++) {
+    post->hand[player][i] = card;
+    count++;
+  }
+  //printf("Added  %d cards of type %d \n", count, card);
+  return 0;
+}
+
+int printHand(struct gameState *post, int p, char *n) {
+  int i;
+  printf("\n%s function call HAND Cards: \n", n);
+  for (i = 0; i < post->handCount[p]; i++) {
+      printf("Index   %d      Card:   %d  \n", i, post->hand[p][i]);
+  }
+  return 0;
 }

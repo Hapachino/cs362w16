@@ -12,6 +12,7 @@
 
 int testSmithy(struct gameState *post, int handPos)
 {
+	int i;
 	int p = post->whoseTurn;
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));
@@ -43,6 +44,27 @@ int testSmithy(struct gameState *post, int handPos)
 	{
 		printf("ERROR: playedCardCount is incorrect. Expected: %d Actual: %d\n", pre.playedCardCount, post->playedCardCount);
 	}
+	
+	//check supply counts
+	for(i = 0; i < treasure_map; i++)
+	{
+		if(pre.supplyCount[i] != post->supplyCount[i])
+			printf("ERROR: Supply counts for card#%i are different. Pre: %i, Post: %i", i, pre.supplyCount[i], post->supplyCount[i]);
+	}
+	
+	//still current player?
+	if(pre.whoseTurn != post->whoseTurn)
+		printf("ERROR: Current player has changed from %i to %i", pre.whoseTurn, post->whoseTurn);
+	
+	//check coins
+	if(pre.coins != post->coins)
+		printf("ERROR: Number of coins changed from %i to %i", pre.coins, post->coins);
+	//check number of buys
+	if(pre.numBuys != post->numBuys)
+		printf("ERROR: Number of buys has changed from %i, to %i", pre.numBuys, post->numBuys);
+	//check number of actions
+	if(pre.numActions != post->numActions)
+		printf("ERROR: Number of actions has changed from %i to %i", pre.numActions, post->numActions);
 	
 	return 0;
 }

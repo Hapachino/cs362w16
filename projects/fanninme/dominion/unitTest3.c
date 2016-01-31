@@ -26,19 +26,38 @@ int unitTest(struct gameState *post){
 
     //call function
     success=endTurn(post);
+
     //memcmp game state size
     assert (memcmp(&pre,post, sizeof(struct gameState))==0);
+
+
+    if( post->playedCardCount != 0){
+        #if(NOISY_TEST == 1)
+        printf("played card count is not 0 \n");
+        #endif
+    }
+
+    if(post->handCount[post->whoseTurn] == 0){
+        #if(NOISY_TEST == 1)
+        printf("Hand count was never increased!\n");
+        #endif
+    }
+
     //check to see if whose turn it is has changed
     if(post->numPlayers > 1){
         if( post->whoseTurn != pre.whoseTurn ){
-            printf ("the players turn has not properly changed.\n");
-            exit(1);
+            #if (NOISY_TEST == 1)
+            printf ("current players turn has not properly changed.\n");
+            #endif
+            return 1;
         }
     }
 
     if (success == -1){
+        #if (NOISY_TEST == 1)
         printf ("Error in end turn function.\n");
-        exit(2);
+        #endif
+        return 2;
     }
     return 0;
 }
@@ -46,10 +65,9 @@ int unitTest(struct gameState *post){
 
 int main () {
   //define variables  
-  int i, n, r, p, deckCount, discardCount, handCount;
-  //define a array of cards
-  int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+  int i, n, r, p, error,errorA,errorB;
+  errorA=0;
+  errorB=0;
   //define a gamestate
   struct gameState G;
 
@@ -69,35 +87,24 @@ int main () {
     G.deckCount[p] = floor(Random() * MAX_DECK);
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
+    G.numPlayers = floor(Random() * MAX_PLAYERS);
     //call function with test input
-    unitTest(&G);
+    error=unitTest(&G);
 
-  }
-
-  printf ("ALL TESTS OK\n");
-
-  exit(0);
-  //fixed tests
-  printf ("SIMPLE FIXED TESTS.\n");
-  for (p = 0; p < 2; p++) {
-    for (deckCount = 0; deckCount < 5; deckCount++) {
-      for (discardCount = 0; discardCount < 5; discardCount++) {
-	for (handCount = 0; handCount < 5; handCount++) {
-	  memset(&G, 23, sizeof(struct gameState)); 
-	  r = initializeGame(2, k, 1, &G);
-	  G.deckCount[p] = deckCount;
-	  memset(G.deck[p], 0, sizeof(int) * deckCount);
-	  G.discardCount[p] = discardCount;
-	  memset(G.discard[p], 0, sizeof(int) * discardCount);
-	  G.handCount[p] = handCount;
-	  memset(G.hand[p], 0, sizeof(int) * handCount);
-	  //run unit test.
-      unitTest(&G);
-
-	}
-      }
+    if (error > 0){
+        if(error == 1){
+            errorA++;
+        }else if(error > 1){
+            errorB++;
+        }
     }
   }
+
+  printf ("ALL TESTS complete\n");
+   printf ("Errors type 1: %d ",errorA);
+  printf ("Current player has not been changed at end of turn.\n");
+  printf ("Errors type 2: %d ",errorB);
+  printf("function received bad input/found a error returned a 1 \n");
 
   return 0;
 }

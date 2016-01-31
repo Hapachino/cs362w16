@@ -65,7 +65,7 @@ int main(){
     p=floor(Random()*2);
     pre.deckCount[p]= floor(Random() * MAX_DECK);
     pre.discardCount[p] = floor(Random() * MAX_DECK);
-    pre.handCount[p] = floor(Random() * MAX_HAND); 
+    pre.handCount[p] =floor(Random() * MAX_HAND);
 
 
     /* Fill hands with random cards*/
@@ -196,7 +196,10 @@ int countCards(int *deck, int *cardCount){
   int i; 
  
   for (i= 0; i < MAX_DECK; i++){
-    cardCount[deck[i]]++;
+
+    /* for each card in the deck or hand, increment the count of that */
+    /* card type-- relies on the fact that card type is an ENUM */
+    cardCount[deck[i]] += 1;
   }
   return 0;
 } 
@@ -205,8 +208,8 @@ int countCards(int *deck, int *cardCount){
 int checkUpdateCoins(int player, struct gameState *pre){
 
   int testFail = 0; 
-  int programTally;
-  int myTally;
+  int programTally = 0;
+  int myTally = 0;
 
   /* use a random bonus -- I choose max of 100, higher than the 
      highest likely bonus number */
@@ -232,10 +235,17 @@ int checkUpdateCoins(int player, struct gameState *pre){
 
   /* 2. updateCoins should return an integer equal to 1 for each copper, 
      2 for silver, 3 for gold, and then the bonus should be added. */
-  countCards(pre->hand[player], cardListPre);
-  myTally = cardListPre[copper]+(2*cardListPre[silver])+(3*cardListPre[gold]);
-  myTally += randomBonus; 
-
+    for (int i = 0; i < pre->handCount[player]; i++){
+        if (pre->hand[player][i]==copper){
+            myTally += 1;
+        } else if (pre->hand[player][i]==silver) {
+            myTally += 2;
+        } else if (pre->hand[player][i]==gold) {
+            myTally += 3;
+        }
+    }
+    
+    myTally += randomBonus;
   programTally = post->coins; 
 
   if(programTally != myTally){

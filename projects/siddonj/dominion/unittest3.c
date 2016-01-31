@@ -150,6 +150,63 @@ void testUpdateCoins() {
 
 
   // Start Test
+  // Checks that a bonusCoin correctly increases number of coins with bonus coins and copper.
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  bonusCoins = 3;
+  player = testGame->whoseTurn;
+  testGame->handCount[player] = 0;                     // Set hand total to 0.
+  testGame->hand[player][0] = copper;
+
+  updateCoins(player, testGame, bonusCoins);
+
+  if (testGame->coins != 3) {
+    printf(UPDATECOINS_FAIL);
+  } else {
+    printf(UPDATECOINS_PASS);
+  }
+  printf("expected coin count to total '4' coins with '3' bonus coins set and one 'copper' card in hand, got: '%d' \n", testGame->coins);
+  //END
+
+
+  // Start Test
+  // Checks that a bonusCoin correctly increases number of coins with bonus coins and silver.
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  bonusCoins = 3;
+  player = testGame->whoseTurn;
+  testGame->handCount[player] = 0;                     // Set hand total to 0.
+  testGame->hand[player][0] = silver;
+
+  updateCoins(player, testGame, bonusCoins);
+
+  if (testGame->coins != 3) {
+    printf(UPDATECOINS_FAIL);
+  } else {
+    printf(UPDATECOINS_PASS);
+  }
+  printf("expected coin count to total '5' coins with '3' bonus coins set and one 'silver' card in hand, got: '%d' \n", testGame->coins);
+  //END
+
+
+  // Start Test
+  // Checks that a bonusCoin correctly increases number of coins with bonus coins and gold.
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  bonusCoins = 3;
+  player = testGame->whoseTurn;
+  testGame->handCount[player] = 0;                     // Set hand total to 0.
+  testGame->hand[player][0] = gold;
+
+  updateCoins(player, testGame, bonusCoins);
+
+  if (testGame->coins != 3) {
+    printf(UPDATECOINS_FAIL);
+  } else {
+    printf(UPDATECOINS_PASS);
+  }
+  printf("expected coin count to total '6' coins with '3' bonus coins set and one 'gold' card in hand, got: '%d' \n", testGame->coins);
+  //END
+
+
+  // Start Test
   // Checks that coin total is correctly calculated even when the coin total value is already set.
   memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
   bonusCoins = 0;

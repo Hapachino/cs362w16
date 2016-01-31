@@ -52,7 +52,7 @@ void testBuyCard() {
       }
     }
 
-    if(beforeDeckCount == testGame->deckCount[j]) {
+    if(state->deckCount[j] == testGame->deckCount[j]) {
       printf(BUYCARD_PASS);
     } else {
       printf(BUYCARD_FAIL);

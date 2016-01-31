@@ -6,16 +6,31 @@
 char inputChar()
 {
     // TODO: rewrite this function
-    char character = rand() % 93 + 32;
-    printf("Char: %c", character);
-    return ' ';
+    char character = rand() % 94 + 32;        // Generate a character between ' ' and '}'.
+    return character;
 }
 
 char *inputString()
 {
     // TODO: rewrite this function
+    static char testCharacters[] = { 'r', 'e', 's', 'e', 't' };
+    static char input[10];
+    int randomnessFactor = rand() % 10;
+    char randomChar;
+    int i;
 
-    return "";
+    if(randomnessFactor % 9 == 0) {
+      for(i = 0; i < randomnessFactor; i++) {
+        randomChar = rand() % 123 + 97;
+        input[i] = randomChar;
+      }
+    } else {
+        randomChar = rand() % 6;
+        input[i] = testCharacters[randomChar];       // Generate random number between 101 and 115.
+    }
+
+    input[9] = '\0';
+    return input;
 }
 
 void testme()

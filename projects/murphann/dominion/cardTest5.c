@@ -6,7 +6,7 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTMETHOD "endTurn"
+#define TESTCARD ""
 
 int main() {
   int numPlayers = 2;
@@ -23,19 +23,5 @@ int main() {
 
    memcpy(&storeG, &G, sizeof(struct gameState));
 
-   endTurn(&G);
-
-   printf("Size of discards: %d  Excpected num of discards: %d\n",
-           G.discardCount[p1],
-           storeG.discardCount[p1] + storeG.handCount[p1]);
-
-   printf("Player Hand: %d  Expected Player Hand: %d\n",
-           G.handCount[p1], storeG.handCount[p1-5]);
-
-  printf("Player turn: %d  Expected Turn: %d\n", G.whoseTurn, storeG.whoseTurn+1);
-
-  printf("New Player Hand: %d  Expected Player Hand: %d\n",
-          G.handCount[p2], storeG.handCount[p2]+5);
-
-    return 0;
+   return 0;
 }

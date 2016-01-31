@@ -1,6 +1,6 @@
 /* -----------------------------------------------------------------------
- * Demonstration of how to write unit tests for dominion-base
- * Include the following lines in your makefile:
+ *  Business requirements
+ *  1) Correctly ends the game 
  *
  * isGameOver: unittest3.c dominion.o rngs.o
  *      gcc -o unit3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
@@ -38,9 +38,15 @@ int main() {
 #endif
 	G.supplyCount[province]=0;
 	result= isGameOver(&G);
-	assert(result==1);
 #if (NOISY_TEST == 1)
-	printf("Game over....Passed\n");
+	printf("Game over");
+	if (result==1)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 	
 	printf("Set adventurer, feast, gardens pile count to 0\n");
 #endif
@@ -49,9 +55,15 @@ int main() {
 	G.supplyCount[feast]=0;
 	G.supplyCount[gardens]=0;
 	result= isGameOver(&G);
-	assert(result==1);
 #if (NOISY_TEST == 1)
-	printf("Game over....Passed\n");
+	printf("Game over");
+	if (result==1)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 #endif
 	for (a=0;a<=26;a++) //sets supply count for the kingdom cards to be 5 each
 	{
@@ -63,9 +75,15 @@ int main() {
 	G.supplyCount[feast]=0;
 	G.supplyCount[gardens]=0;
 	result= isGameOver(&G);
-	assert(result==0);
 #if (NOISY_TEST == 1)
-	printf("Game not over....Passed\n");
+	printf("Game not over");
+	if (result==0)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 #endif
 	G.supplyCount[gardens]=5;
 	
@@ -74,21 +92,33 @@ int main() {
 #endif
 	G.supplyCount[treasure_map]=0;
 	result= isGameOver(&G);
-//	assert(result==-1); //assert fails
 #if (NOISY_TEST == 1)
-	printf("Game over....Passed\n");
+	printf("Game over");
+	if (result==1)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 	
 	printf("Set sea hag to 0 to have a total of 3 empty piles\n");
 #endif
 	G.supplyCount[sea_hag]=0;
 	result= isGameOver(&G);
-//	assert(result==-1); //assert fails
 #if (NOISY_TEST == 1)
-	printf("Game over....Passed\n");
+	printf("Game over");
+	if (result==1)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+
 #endif	
 	
-
-    printf("All tests passed!\n");
+    printf("Tests Completed!\n");
 	
     return 0;
 }

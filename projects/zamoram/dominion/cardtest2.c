@@ -12,16 +12,17 @@
 
 int testAdventurer(struct gameState *post)
 {
-	
 	int p = post->whoseTurn;
 	int preTreasure, postTreasure;
 	int i, j;
 	int card;
 	struct gameState pre;
+	
 	memcpy(&pre, post, sizeof(struct gameState));
 	
 	playAdventurer(post);
 	//post deck + discard should be smaller now by 2 treasure cards
+	//add these together because discard pile can be shuffled into the deck when drawing cards
 	int preTotal = pre.deckCount[p] + pre.discardCount[p] - 2;
 	int postTotal = post->deckCount[p] + post->discardCount[p];
 	if(postTotal != preTotal)
@@ -34,11 +35,6 @@ int testAdventurer(struct gameState *post)
 	{
 		printf("ERROR: pre hand count does not equal post hand count. Pre: %d Post: %d\n", pre.handCount[p], post->handCount[p]);
 	}
-	//post discard pile should be greater
-/* 	if(!(post->discardCount[p] > pre.discardCount[p]))
-	{
-		printf("ERROR: Pre discard count greater than post discard count. Pre: %d Post: %d\n", pre.discardCount[p], post->discardCount[p]);
-	} */
 	
 	//should be more treasure cards in hand in post than pre
 	for(i = 0; i < pre.handCount[p]; i++)
@@ -55,9 +51,21 @@ int testAdventurer(struct gameState *post)
 	}
 	
 	if(!(postTreasure > preTreasure))
-	{
 		printf("ERROR: Not enough treasure cards added to hand. Pre: %d Post: %d\n", preTreasure, postTreasure);
-	}
+	//still current player?
+	if(pre.whoseTurn != post->whoseTurn)
+		printf("ERROR: Current player has changed from %i to %i", pre.whoseTurn, post->whoseTurn);
+	
+	//check coins
+	if(pre.coins != post->coins)
+		printf("ERROR: Number of coins changed from %i to %i", pre.coins, post->coins);
+	//check number of buys
+	if(pre.numBuys != post->numBuys)
+		printf("ERROR: Number of buys has changed from %i, to %i", pre.numBuys, post->numBuys);
+	//check number of actions
+	if(pre.numActions != post->numActions)
+		printf("ERROR: Number of actions has changed from %i to %i", pre.numActions, post->numActions);
+	
 	return 0;
 }
 

@@ -6,13 +6,49 @@
 char inputChar()
 {
     // TODO: rewrite this function
-    return ' ';
+
+    // array of characters from which we select a single one to return
+    char array[] = {'@', '!', '[', '~', '(', '^', '{', '*', ' ', '%', '$', 'a', '#', 'x', '}', '&', ')', ']'};
+    // number of elements in the array
+    int size = sizeof(array)/sizeof(array[0]);
+    // randomly select an index
+    int index = rand() % size;
+
+    char toReturn = array[index];
+
+    return toReturn;
 }
 
 char *inputString()
 {
     // TODO: rewrite this function
-    return "";
+
+    // message that will cause the error message to print
+    char message[] = "reset";
+    int messageLength = strlen(message) + 1;
+    
+    // array of characters which we will use to construct a string
+    char array[] = {'a', 'b', 'c', 'r', 'd', 'e', 'f', 'g', 's', 'e', 't'};
+    // number of elements in the array
+    int size = sizeof(array)/sizeof(array[0]);
+    // length of the string is the full length of the message or shorter
+    int stringLength = rand() % messageLength;
+    int i, index;
+
+    // allocate memory for string to be returned
+    char *string = malloc(sizeof(char) * (stringLength + 1));
+
+    // construct a random string of random length
+    for (i = 0; i < stringLength; i++) {
+      // randomly select an index
+      index = rand() % size;
+      string[i] = array[index];
+    }
+
+    // string is null-terminated
+    string[stringLength] = '\0';
+
+    return string;
 }
 
 void testme()

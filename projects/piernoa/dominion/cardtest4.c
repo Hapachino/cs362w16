@@ -15,8 +15,9 @@ int checkRemodel(struct gameState *post, int handPos, int choice1, int choice2) 
   int j = pre.hand[pre.whoseTurn][choice1];  //store card we will trash
   int preCount = 0;
   int postCount = 0;
+  int i;
 
-  for (int i = 0; i < pre.handCount[pre.whoseTurn]; i++)
+  for ( i = 0; i < pre.handCount[pre.whoseTurn]; i++)
   {
     if (pre.hand[pre.whoseTurn][i] == j)
     {
@@ -34,7 +35,7 @@ int checkRemodel(struct gameState *post, int handPos, int choice1, int choice2) 
     return 0;
   }
 
-  for (int i = 0; i < post->handCount[pre.whoseTurn]; i++)
+  for (i = 0; i < post->handCount[pre.whoseTurn]; i++)
   {
     if (post->hand[pre.whoseTurn][i] == j)
     {

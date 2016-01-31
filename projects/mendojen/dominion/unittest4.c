@@ -1,6 +1,6 @@
 /* -----------------------------------------------------------------------
- * Demonstration of how to write unit tests for dominion-base
- * Include the following lines in your makefile:
+ *  Business requirements
+ *  1) Correctly lets a player buy a card 
  *
  * buyCard: unittest4.c dominion.o rngs.o
  *      gcc -o unit4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
@@ -38,21 +38,29 @@ int main() {
 	result=buyCard(k[3],&G);
 #if (NOISY_TEST == 1)
 	printf("Testing when numBuys=0\n");
+	printf("Player is unable to buy a card");
+	if (result==-1)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 #endif
-	assert (result==-1);
-#if (NOISY_TEST == 1)
-	printf("Player is unable to buy a card....PASSED\n");
-#endif
-
-		
 	G.numBuys=100;
 #if (NOISY_TEST == 1)
 	printf("Testing when there are enough buys. \n");
 #endif
 	result=buyCard(k[3],&G);
-	assert (result==0);
 #if (NOISY_TEST == 1)
-	printf("Player is able to buy a card....PASSED\n");
+	printf("Player is able to buy a card");
+	if (result==0)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 #endif
 	
 	G.supplyCount[gardens]=0;
@@ -60,9 +68,15 @@ int main() {
 	printf("Testing when supply count of desired card is 0\n ");
 #endif
 	result=buyCard(k[3],&G);
-	assert (result==-1);
 #if (NOISY_TEST == 1)
-	printf("Player is unable to buy a card....PASSED\n");
+	printf("Player is unable to buy a card");
+	if (result==-1)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 #endif
 
 	G.coins=100;
@@ -83,9 +97,15 @@ int main() {
 		printf("Testing when supply count of desired card is not 0\n ");
 #endif
 		result=buyCard(k[a],&G);
-		assert (result==0);
 #if (NOISY_TEST == 1)
-		printf("Player is able to buy a card....PASSED\n");
+		printf("Player is able to buy a card");
+		if (result==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
 #endif
 	}
 	for (a=0;a<10;a++)
@@ -95,21 +115,33 @@ int main() {
 		printf("Testing when there is not enough coins to purchase card \n ");
 #endif
 		result=buyCard(k[a],&G);
-		assert (result==-1);
 #if (NOISY_TEST == 1)
-		printf("Player is unable to buy a card....PASSED\n");
+		printf("Player is unable to buy a card");
+		if (result==-1)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
 #endif
 	}
 		
 	G.coins=5;
 #if (NOISY_TEST == 1)
-	printf("Testing when player has enough coins ");
+	printf("Testing when player has enough coins\n");
 #endif
 	result=buyCard(k[3],&G);
-	assert (result==0);
 #if (NOISY_TEST == 1)
- 	printf("Player is able to buy a card....PASSED\n");
+ 	printf("Player is able to buy a card");
+	if (result==0)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 #endif 
-	printf("All tests passed!\n");
+	printf("Tests Completed!\n");
     return 0;
 }

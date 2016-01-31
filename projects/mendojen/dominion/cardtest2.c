@@ -1,8 +1,11 @@
 /* -----------------------------------------------------------------------
- * Demonstration of how to write unit tests for dominion-base
- * Include the following lines in your makefile:
+ *  Business requirements
+ *  1) Player's hand gains an extra buy 
+ *  2) Current player gains coins equal to card
+ *  3) Hand count decreases by 2
+ *  4) Check's that other player's hand has not changed
  *
- * playSalvager: cardtest2.c dominion.o rngs.o
+ * testSalvager: cardtest2.c dominion.o rngs.o
  *      gcc -o card2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
  *
  * -----------------------------------------------------------------------
@@ -29,13 +32,12 @@ int main() {
 
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-    G.handCount[0] = 10;                 // set the number of cards on hand to 5 for player 0
+    G.handCount[0] = 10;                 // set the number of cards on hand to 5 for player 
 	G.numBuys=0;
-	G.discardCount[0]=0;
 	G.coins=0;
 	printf ("TESTING playSalvager():\n");
 #if (NOISY_TEST == 1)
-	printf("Set starting values:\n handcount=0\n numBuys=0\n coins=0\n playedCardCount=0\n\n");
+	printf("Set starting values:\n handcount=10\n numBuys=0\n coins=0\n\n");
 	
 	printf("****Testing 1 Salvager play****\n");
 #endif
@@ -145,6 +147,43 @@ int main() {
 	}
 	printf("Hand Count = %d, expected = 3", G.handCount[0]);
 	if (G.handCount[0]==3)
+	{
+		printf("....PASS\n\n");
+	}
+	else{
+		printf("....FAIL\n\n");
+	}
+#endif	
+
+	endTurn(&G);
+#if (NOISY_TEST == 1)
+	printf("****Testing other player's hand****\n");
+	printf("Buys = %d, expected = 1", G.numBuys);
+	if (G.numBuys==1)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	printf("Coins = %d, expected = 0", G.coins);
+	if (G.coins==0)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);
+	if (G.playedCardCount==0)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	printf("Hand Count = %d, expected = 0", G.handCount[0]);
+	if (G.handCount[0]==0)
 	{
 		printf("....PASS\n\n");
 	}

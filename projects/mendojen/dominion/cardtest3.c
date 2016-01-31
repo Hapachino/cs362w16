@@ -1,8 +1,10 @@
 /* -----------------------------------------------------------------------
- * Demonstration of how to write unit tests for dominion-base
- * Include the following lines in your makefile:
+ *  Business requirements
+ *  1) Current player gets 3 cards 
+ *  2) 3 cards will only come from current player's pile
+ *  3) Other player's state remains unchanged
  *
- * playSmithy: cardtest3.c dominion.o rngs.o
+ * testSmithy: cardtest3.c dominion.o rngs.o
  *      gcc -o card3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
  *
  * -----------------------------------------------------------------------
@@ -38,7 +40,7 @@ int main() {
 	printf("****Testing 1 Smithy play****\n");
 #endif
 	playSmithy(&G,0);
-
+#if (NOISY_TEST == 1)
 	printf("Hand Count = %d, expected = 3", G.handCount[0]);
 	if (G.handCount[0]==3)
 	{
@@ -56,9 +58,9 @@ int main() {
 		printf("....FAIL\n\n");
 	}
 	printf("****Testing another Smithy play****\n");
-
+#endif
 	playSmithy(&G,2);
-
+#if (NOISY_TEST == 1)
 	printf("Hand Count = %d, expected = 6", G.handCount[0]);
 	if (G.handCount[0]==6)
 	{
@@ -76,9 +78,9 @@ int main() {
 		printf("....FAIL\n\n");
 	}
 	printf("****Testing another Smithy play****\n");
-
+#endif
 	playSmithy(&G,0);
-
+#if (NOISY_TEST == 1)
 	printf("Hand Count = %d, expected = 9", G.handCount[0]);
 	if (G.handCount[0]==9)
 	{
@@ -96,25 +98,54 @@ int main() {
 		printf("....FAIL\n\n");
 	}
 	printf("****Testing another Smithy play****\n");
-
+#endif
 	playSmithy(&G,0);
-
+#if (NOISY_TEST == 1)
 	printf("Hand Count = %d, expected = 15", G.handCount[0]);
 	if (G.handCount[0]==15)
 	{
-		printf("....PASS\n\n");
+		printf("....PASS\n");
 	}
 	else{
-		printf("....FAIL\n\n");
+		printf("....FAIL\n");
 	}
 	printf("Number of Cards Played = %d, expected = 4", G.playedCardCount);	
 	if (G.playedCardCount==4)
 	{
+		printf("....PASS\n\n"); 
+	}
+	else{
+		printf("....FAIL\n\n");
+	}
+#endif
+	endTurn(&G);
+#if (NOISY_TEST == 1)
+	printf("****Testing other player's hand****\n");
+	printf("Buys = %d, expected = 1", G.numBuys);
+	if (G.numBuys==1)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
+	if (G.playedCardCount==0)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	printf("Hand Count = %d, expected = 0", G.handCount[0]);
+	if (G.handCount[0]==0)
+	{
 		printf("....PASS\n\n");
 	}
 	else{
 		printf("....FAIL\n\n");
 	}
+#endif	
 	
 	printf("Testing completed\n");
     return 0;

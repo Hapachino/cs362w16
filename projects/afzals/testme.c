@@ -5,31 +5,30 @@
 
 char inputChar()
 {
-	char c;
-    //ascii range 
-	int min = 32;
-	int max = 126;
-	
-	//random number in range
-	c = (rand() % (max - min)) + min;
-	
-	//return char 
-    return c;
+	int i;
+	char c=0;
+	char sym[9] = {'[', ']', '{', '}', '(', ')', ' ', 'a', 'x'};
+
+	i = rand() % 9;
+	c = sym[i];
+  
+	return c;
 }
 
 char *inputString()
 {
 
-	static char array[6];//static char array 0,1,2,3,4,5, spot 5 for '\0' 0-4 for 'reset'
-	int asciiRange = 26;//lowercase range 
-	char currentChar;//
-	int i;
-	for(i = 0; i < 5; i++){
-		currentChar = ((rand() % asciiRange) + 97);//adding 97 for lowercase letter range. 
-		array[i] = currentChar;
-	}
-	array[5] = '\0';
-    return array;
+	char string[] = {"rest\0"};
+	char *s = (char*)malloc(6 * sizeof(char));
+	int i, j;
+
+	for(i = 0; i < 6; i++)
+	{
+		j = rand() % 5;
+		s[i] = string[j]; 
+	}     
+
+	return s;
 }
 
 void testme()
@@ -39,7 +38,7 @@ void testme()
   char c;
   int state = 0;
   while (1)
-  {
+  { 
     tcCount++;
     c = inputChar();
     s = inputString();

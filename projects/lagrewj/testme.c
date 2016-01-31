@@ -5,14 +5,31 @@
 
 char inputChar()
 {
-    // TODO: rewrite this function
-    return ' ';
+	char c;
+    //ascii range 
+	int min = 32;
+	int max = 126;
+	
+	//random number in range
+	c = (rand() % (max - min)) + min;
+	
+	//return char 
+    return c;
 }
 
 char *inputString()
 {
-    // TODO: rewrite this function
-    return "";
+
+	static char array[6];//static char array 0,1,2,3,4,5, spot 5 for '\0' 0-4 for 'reset'
+	int asciiRange = 26;//lowercase range 
+	char currentChar;//
+	int i;
+	for(i = 0; i < 5; i++){
+		currentChar = ((rand() % asciiRange) + 97);//adding 97 for lowercase letter range. 
+		array[i] = currentChar;
+	}
+	array[5] = '\0';
+    return array;
 }
 
 void testme()

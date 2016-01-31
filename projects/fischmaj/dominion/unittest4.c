@@ -35,7 +35,7 @@
 int compareGameState(struct gameState *old, struct gameState *new, 
 		     int *diffArray, int length);
 
-int checkIsGameOver(struct gameState *pre); 
+int checkIsGameOver(struct gameState *pre, FILE *f); 
 
 
 
@@ -45,7 +45,8 @@ int main(){
 
   int n, i, p;
   int randomChance;  
- 
+  FILE *f= fopen("unittestresults.out", "a+");
+
   struct gameState pre;
 
 
@@ -53,10 +54,10 @@ int main(){
   PutSeed(3);
 
 
-  int k[10]= {adventurer, council_room, feast, gardens, mine, remodel, 
-	      smithy, village, baron, great_hall}; 
 
-  printf("\n Running tests of shuffle():\n");
+
+  printf("\n Running tests of isGameOver():\n");
+  fprintf(f,"\n Running tests of isGameOver():\n");
 
   for (n = 0; n < NUMTESTS; n ++){
     /* generate a random gamestate*/
@@ -82,12 +83,14 @@ int main(){
       }
     }
     
-    checkIsGameOver(&pre);
+    checkIsGameOver(&pre, f);
   
  }
 
  
   printf("\nTesting isGameOver() complete.  \n");
+  printf("Failed test results, if any, in unittestresults.out");
+  fprintf(f,"Testing isGameOver() complete.  \n");
 
   return 0;
 }
@@ -193,15 +196,14 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 
 
-int checkIsGameOver(struct gameState *pre){
+int checkIsGameOver(struct gameState *pre, FILE *f){
 
   int testFail = 0; 
   int myGameOver =0;
   int progGameOver =0;
   int suppliesEmpty=0;
 
-  /* a pointer to the supply of 'pre' */
-  int *supplyArray = pre->supplyCount;
+
 
   /* create a copy of the input gameState-- 'post' */
   struct gameState *post = malloc(sizeof(struct gameState));
@@ -238,23 +240,17 @@ int checkIsGameOver(struct gameState *pre){
     }
   }
 
-  if(myGameOver ==1){
-    printf("Testing a game over condition: \n");
-  } else {
-    printf("Testing a game NOT over condition:\n");
-  }
+
 
   if((myGameOver != progGameOver) && myGameOver) {
-    printf("Business rule 2a/b fail: Failed to detect game over condition\n");
+    printf("Business rule 2a/b fail: Failed to detect game over condition.\n");
+    fprintf(f,"Business rule 2a/b fail: Failed to detect game over");
+    fprintf(f," condition.\n");
     testFail = 1;
-
-    for (int i = 0; i < CARDTYPES; i++){
-
-      printf("%d= [%d]\n", i, pre->supplyCount[i]);
-    }
 
   } else if ((myGameOver != progGameOver) && !myGameOver) {
     printf("Business rule 3 fail: Game over detected erroneously.");
+    fprintf(f,"Business rule 3 fail: Game over detected erroneously.");
     testFail = 1;
   }
   
@@ -270,6 +266,8 @@ int checkIsGameOver(struct gameState *pre){
       testFail =1; 
       printf("isGameOver() fails business rule #4:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
+      fprintf(f,"isGameOver() fails business rule #4:");
+      fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     }
   }
   
@@ -281,5 +279,5 @@ int checkIsGameOver(struct gameState *pre){
 
   free(post); 
   free(differences);
-  return 0;
+  return testFail;
 } 

@@ -33,7 +33,7 @@
 int compareGameState(struct gameState *old, struct gameState *new, 
 		     int *diffArray, int length);
 
-int checkUpdateCoins(int player, struct gameState *pre); 
+int checkUpdateCoins(int player, struct gameState *pre, FILE *f); 
 
 
 
@@ -42,7 +42,9 @@ int checkUpdateCoins(int player, struct gameState *pre);
 int main(){
 
   int n, i, j, p; 
- 
+
+  FILE *f= fopen("unittestresults.out", "a+");
+
   struct gameState pre;
 
 
@@ -50,10 +52,10 @@ int main(){
   PutSeed(3);
 
 
-  int k[10]= {adventurer, council_room, feast, gardens, mine, remodel, 
-	      smithy, village, baron, great_hall}; 
+  printf("\n Running tests of updateCoins():\n");
+  fprintf(f,"\n Running tests of updateCoins():\n");
 
-  printf("\n Running tests of shuffle():\n");
+
 
   for (n = 0; n < NUMTESTS; n ++){
     /* generate a random gamestate*/
@@ -75,13 +77,17 @@ int main(){
     printf("\nTest run %i:", n);
 
     
-    checkUpdateCoins(p, &pre);
+    checkUpdateCoins(p, &pre, f);
   
  }
 
  
-  printf("\nTesting shuffle() complete.  \n");
+  printf("\nTesting updateCoins() complete.  \n");
+  printf("Failed test results, if any, in unittestresults.out\n");
 
+  fprintf(f,"Testing updateCoins() complete.  \n");
+
+  fclose(f);
   return 0;
 }
 
@@ -186,7 +192,7 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 
 
-int checkUpdateCoins(int player, struct gameState *pre){
+int checkUpdateCoins(int player, struct gameState *pre, FILE *f){
 
   int testFail = 0; 
   int programTally = 0;
@@ -227,6 +233,9 @@ int checkUpdateCoins(int player, struct gameState *pre){
     if(programTally != myTally){
       printf("updateCoins fails business rule #2: incorrect coin count.\n");
       printf("%d == %d, b=%d\n", myTally, programTally, randomBonus);
+      fprintf(f,"updateCoins fails business rule #2: incorrect coin count.\n");
+      fprintf(f,"%d == %d, b=%d\n", myTally, programTally, randomBonus);
+      testFail = 1;
     }
 
 
@@ -239,6 +248,8 @@ int checkUpdateCoins(int player, struct gameState *pre){
       testFail =1; 
       printf("updateCoins fails business rule #3:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
+      fprintf(f,"updateCoins fails business rule #3:");
+      fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     }
   }
   
@@ -250,5 +261,5 @@ int checkUpdateCoins(int player, struct gameState *pre){
 
   free(post); 
   free(differences);
-  return 0;
+  return testFail;
 } 

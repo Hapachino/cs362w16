@@ -22,8 +22,7 @@ int main() {
     int maxBonus = 10;
     int p, r, handCount;
     int bonus;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
+    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
     struct gameState G;
     int MAX_HAND_COUNT = 5;// starting values
     int changeIndex = 4;

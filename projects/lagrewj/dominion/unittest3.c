@@ -21,8 +21,7 @@ int main() {
     int seed = 1000; // random seed
     int numPlayer = 2; 
     int r;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, tribute, embargo};
+    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, tribute, embargo};
     struct gameState G;
     int result;
     memset(&G, 23, sizeof(struct gameState));   // clear the game state

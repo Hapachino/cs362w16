@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #include "dominion.h"
@@ -20,35 +21,38 @@ void testBuyCard() {
 
   // Initilize game variables.
   int numPlayers = 2;
-  int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-	       sea_hag, tribute, smithy};
+  int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
   int randomSeed = -1;                          // Set randomSeed to less than 0 so it is based off system clock in the initializeGame method.
 
   // Create game.
   struct gameState *state = newGame();          // Initialize game state.
+  struct gameState *testGame = newGame();
+
+  initializeGame(numPlayers, kingdomCards, randomSeed, state);       // Set game state to a 'clean' state.
 
   printf("\n***** TESTING BUY CARD *****\n");
 
   // BUY Kingdoms.
   // Kingdom - No buys
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);       // Set game state to a 'clean' state.
-  state->numBuys = 0;                                                // Set number of buys to 0.
-  state->coins = 1000;                                              // Give user enough coins to buy.
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+
+  testGame->numBuys = 0;                                                // Set number of buys to 0.
+  testGame->coins = 1000;                                              // Give user enough coins to buy.
   successfulBuy = 0;
 
   // Loop through each player in game to make sure no player's deck size increases from attempted buy.
   for(j = 0; j < numPlayers; j++) {
     numBought = 0;
-    beforeDeckCount = state->deckCount[j];
+    beforeDeckCount = testGame->deckCount[j];
 
-    for (i = 0; k < 10; k++) {                      // Try to buy each of kingdom cards available in supply.
-      successfulBuy = buyCard(kingdomCards[k], state);
+    for (i = 0; k < 10; k++) {                                         // Try to buy each of kingdom cards available in supply.
+      successfulBuy = buyCard(kingdomCards[k], testGame);
       if(successfulBuy > -1) {
         numBought++;
       }
     }
 
-    if(beforeDeckCount == state->deckCount[j]) {
+    if(beforeDeckCount == testGame->deckCount[j]) {
       printf(BUYCARD_PASS);
     } else {
       printf(BUYCARD_FAIL);
@@ -58,16 +62,16 @@ void testBuyCard() {
   }
 
   // Kingdom - No supply
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);       // Set game state to a 'clean' state.
-  state->numBuys = 50;                                               // Give suer plenty of buys to purchase with.
-  state->coins = 1000;                                              // Give user enough coins to buy.
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  testGame->numBuys = 50;                                               // Give suer plenty of buys to purchase with.
+  testGame->coins = 1000;                                              // Give user enough coins to buy.
   successfulBuy = 0;
 
   // Set each Kingdom card supply to 0.
   for (i = adventurer; i <= treasure_map; i++)  {
     for (j = 0; j < 10; j++) {
       if (kingdomCards[j] == i) {
-        state->supplyCount[i] = 0;
+        testGame->supplyCount[i] = 0;
       }
     }
   }
@@ -75,16 +79,16 @@ void testBuyCard() {
   // Loop through each player in game to make sure no player's deck size increases from attempted buy.
   for(j = 0; j < numPlayers; j++) {
     numBought = 0;
-    beforeDeckCount = state->deckCount[j];
+    beforeDeckCount = testGame->deckCount[j];
 
     for (i = 0; k < 10; k++) {                      // Try to buy each of kingdom cards available in supply.
-      successfulBuy = buyCard(kingdomCards[k], state);
+      successfulBuy = buyCard(kingdomCards[k], testGame);
       if(successfulBuy > -1) {
         numBought++;
       }
     }
 
-    if(beforeDeckCount == state->deckCount[j]) {
+    if(beforeDeckCount == testGame->deckCount[j]) {
       printf(BUYCARD_PASS);
     } else {
       printf(BUYCARD_FAIL);
@@ -96,157 +100,155 @@ void testBuyCard() {
 
 
   // Treasure - no buys
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);    // Reset game to starting state.
-  state->numBuys = 0;                                             // Set number of buys to 0.
-  state->coins = 1000;                                              // Give user enough coins to buy.
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  testGame->numBuys = 0;                                             // Set number of buys to 0.
+  testGame->coins = 1000;                                              // Give user enough coins to buy.
   successfulBuy = 0;                                              // Reset buy counters.
 
   // Loop through each player in game to make sure no player's deck size increases from attempted buy.
   for(j = 0; j < numPlayers; j++) {
     numBought = 0;
-    beforeDeckCount = state->deckCount[j];
+    beforeDeckCount = testGame->deckCount[j];
 
     // If any treasure buy was succesful increment counter. TODO: fix repetitive code.
-    successfulBuy = buyCard(copper, state);
+    successfulBuy = buyCard(copper, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(silver, state);
+    successfulBuy = buyCard(silver, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(gold, state);
+    successfulBuy = buyCard(gold, testGame);
     if(successfulBuy > -1)
       numBought++;
 
-    if(beforeDeckCount == state->deckCount[j]) {
+    if(beforeDeckCount == testGame->deckCount[j]) {
       printf(BUYCARD_PASS);
     } else {
       printf(BUYCARD_FAIL);
     }
     printf("expects Player %d's deck size to not increase when Player 1 ", j+1);
-    printf("attempts to purchase a treasure card with no buys available, Player %d's deck increased by: %d cards\n", j+1, beforeDeckCount-state->deckCount[j]);
+    printf("attempts to purchase a treasure card with no buys available, Player %d's deck increased by: %d cards\n", j+1, beforeDeckCount-testGame->deckCount[j]);
   }
 
   // Treasure - no supply
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);    // Reset game to starting state.
-  state->numBuys = 50;                                             // Set number of buys.
-  state->coins = 1000;                                              // Give user enough coins to buy.
-  successfulBuy = 0;                                              // Reset buy counters.
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  testGame->numBuys = 50;                                               // Set number of buys.
+  testGame->coins = 1000;                                              // Give user enough coins to buy.
+  successfulBuy = 0;                                                    // Reset buy counters.
 
   // Set all treasure to 0.
-  state->supplyCount[copper] = 0;
-  state->supplyCount[silver] = 0;
-  state->supplyCount[gold] = 0;
+  testGame->supplyCount[copper] = 0;
+  testGame->supplyCount[silver] = 0;
+  testGame->supplyCount[gold] = 0;
 
   // Loop through each player in game to make sure no player's deck size increases from attempted buy.
   for(j = 0; j < numPlayers; j++) {
     numBought = 0;
-    beforeDeckCount = state->deckCount[j];
+    beforeDeckCount = testGame->deckCount[j];
 
     // If any treasure buy was succesful increment counter. TODO: fix repetitive code.
-    successfulBuy = buyCard(copper, state);
+    successfulBuy = buyCard(copper, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(silver, state);
+    successfulBuy = buyCard(silver, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(gold, state);
+    successfulBuy = buyCard(gold, testGame);
     if(successfulBuy > -1)
       numBought++;
 
-    if(beforeDeckCount == state->deckCount[j]) {
+    if(beforeDeckCount == testGame->deckCount[j]) {
       printf(BUYCARD_PASS);
     } else {
       printf(BUYCARD_FAIL);
     }
     printf("expects Player %d's deck size to not increase when Player 1 ", j+1);
-    printf("attempts to purchase a treasure card with no supply available, Player %d's deck increased by: %d cards\n", j+1, beforeDeckCount-state->deckCount[j]);
+    printf("attempts to purchase a treasure card with no supply available, Player %d's deck increased by: %d cards\n", j+1, beforeDeckCount-testGame->deckCount[j]);
   }
 
 
   // Victory - no buys
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);       // Set game state to a 'clean' state.
-  state->numBuys = 0;                                                // Set number of buys to 0.
-  state->coins = 1000;                                              // Give user enough coins to buy.
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  testGame->numBuys = 0;                                                // Set number of buys to 0.
+  testGame->coins = 1000;                                              // Give user enough coins to buy.
   successfulBuy = 0;
 
   // Loop through each player in game to make sure no player's deck size increases from attempted buy.
   for(j = 0; j < numPlayers; j++) {
     numBought = 0;
-    beforeDeckCount = state->deckCount[j];
+    beforeDeckCount = testGame->deckCount[j];
 
     // If any victory card buy was succesful increment counter. TODO: fix repetitive code.
-    successfulBuy = buyCard(estate, state);
+    successfulBuy = buyCard(estate, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(duchy, state);
+    successfulBuy = buyCard(duchy, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(province, state);
+    successfulBuy = buyCard(province, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(curse, state);
+    successfulBuy = buyCard(curse, testGame);
     if(successfulBuy > -1)
       numBought++;
 
-    if(beforeDeckCount == state->deckCount[j]) {
+    if(beforeDeckCount == testGame->deckCount[j]) {
       printf(BUYCARD_PASS);
     } else {
       printf(BUYCARD_FAIL);
     }
     printf("expects Player %d's deck size to not increase when Player 1 ", j+1);
-    printf("attempts to purchase a victory card with no buys available, Player %d's deck increased by: %d cards\n", j+1, beforeDeckCount-state->deckCount[j]);
+    printf("attempts to purchase a victory card with no buys available, Player %d's deck increased by: %d cards\n", j+1, beforeDeckCount-testGame->deckCount[j]);
   }
 
   // Victory - no supply
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);       // Set game state to a 'clean' state.
-  state->numBuys = 50;                                               // Set number of buys to 50.
-  state->coins = 1000;                                              // Give user enough coins to buy.
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  testGame->numBuys = 50;                                               // Set number of buys to 50.
+  testGame->coins = 1000;                                              // Give user enough coins to buy.
   successfulBuy = 0;
 
   // Set all victory to 0.
-  state->supplyCount[estate] = 0;
-  state->supplyCount[duchy] = 0;
-  state->supplyCount[province] = 0;
-  state->supplyCount[curse] = 0;
+  testGame->supplyCount[estate] = 0;
+  testGame->supplyCount[duchy] = 0;
+  testGame->supplyCount[province] = 0;
+  testGame->supplyCount[curse] = 0;
 
   // Loop through each player in game to make sure no player's deck size increases from attempted buy.
   for(j = 0; j < numPlayers; j++) {
     numBought = 0;
-    beforeDeckCount = state->deckCount[j];
+    beforeDeckCount = testGame->deckCount[j];
 
     // If any victory card buy was succesful increment counter. TODO: fix repetitive code.
-    successfulBuy = buyCard(estate, state);
+    successfulBuy = buyCard(estate, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(duchy, state);
+    successfulBuy = buyCard(duchy, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(province, state);
+    successfulBuy = buyCard(province, testGame);
     if(successfulBuy > -1)
       numBought++;
-    successfulBuy = buyCard(curse, state);
+    successfulBuy = buyCard(curse, testGame);
     if(successfulBuy > -1)
       numBought++;
 
-    if(beforeDeckCount == state->deckCount[j]) {
+    if(beforeDeckCount == testGame->deckCount[j]) {
       printf(BUYCARD_PASS);
     } else {
       printf(BUYCARD_FAIL);
     }
     printf("expects Player %d's deck size to not increase when Player 1 ", j+1);
-    printf("attempts to purchase a victory card with no supply available, Player %d's deck increased by: %d cards\n", j+1, beforeDeckCount-state->deckCount[j]);
+    printf("attempts to purchase a victory card with no supply available, Player %d's deck increased by: %d cards\n", j+1, beforeDeckCount-testGame->deckCount[j]);
   }
   // END
 
 
 
 
-
-
   // Test buying kingdom cards, make sure correct amount of coin is required.
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);    // Reset game to starting state.
-  state->numBuys = 40;                                             // Set number of buys to 0.
-  state->coins = 5000;
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  testGame->numBuys = 40;                                             // Set number of buys to 0.
+  testGame->coins = 5000;
   int randomKingdomCard = 0;
   int beforeCoins = 0;
 
@@ -254,227 +256,227 @@ void testBuyCard() {
   numBought = 0;
 
   // Try to buy a bunch of random cards.
-  for(i = 0; i < state->numBuys; i++) {
+  for(i = 0; i < testGame->numBuys; i++) {
     randomKingdomCard = rand() % 10;
-    beforeCoins = state->coins;                                         // Get coin total before purchase.
-    buyCard(kingdomCards[randomKingdomCard], state);                    // Buy a random card.
+    beforeCoins = testGame->coins;                                         // Get coin total before purchase.
+    buyCard(kingdomCards[randomKingdomCard], testGame);                    // Buy a random card.
 
     // Check what was bought.
     if (kingdomCards[randomKingdomCard] == curse) {                             // curse
-      if (state->coins + 0 != beforeCoins) {
+      if (testGame->coins + 0 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'curse' to cost 0 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'curse' to cost 0 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == estate) {                     // estate
-      if (state->coins + 2 != beforeCoins) {
+      if (testGame->coins + 2 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'estate' to cost 2 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'estate' to cost 2 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == duchy) {                      // duchy
-      if (state->coins + 5 != beforeCoins) {
+      if (testGame->coins + 5 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'duchy' to cost 5 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'duchy' to cost 5 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == province) {                   // province
-      if (state->coins + 8 != beforeCoins) {
+      if (testGame->coins + 8 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'province' to cost 8 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'province' to cost 8 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == copper) {                     // copper
-      if (state->coins + 8 != beforeCoins) {
+      if (testGame->coins + 8 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'copper' to cost 0 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'copper' to cost 0 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == silver) {                     // silver
-      if (state->coins + 3 != beforeCoins) {
+      if (testGame->coins + 3 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'silver' to cost 3 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'silver' to cost 3 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == gold) {                       // gold
-      if (state->coins + 6 != beforeCoins) {
+      if (testGame->coins + 6 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'gold' to cost 6 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'gold' to cost 6 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == adventurer) {                 // adventurer
-      if (state->coins + 6 != beforeCoins) {
+      if (testGame->coins + 6 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'adventurer' to cost 6 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'adventurer' to cost 6 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == council_room) {               // council_room
-      if (state->coins + 5 != beforeCoins) {
+      if (testGame->coins + 5 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'council_room' to cost 5 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'council_room' to cost 5 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == feast) {                      // feast
-      if (state->coins + 4 != beforeCoins) {
+      if (testGame->coins + 4 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'feast' to cost 4 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'feast' to cost 4 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == gardens) {                    // gardens
-      if (state->coins + 4 != beforeCoins) {
+      if (testGame->coins + 4 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'gardens' to cost 4 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'gardens' to cost 4 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == mine) {                       // mine
-      if (state->coins + 5 != beforeCoins) {
+      if (testGame->coins + 5 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'mine' to cost 5 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'mine' to cost 5 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == remodel) {                    // remodel
-      if (state->coins + 4 != beforeCoins) {
+      if (testGame->coins + 4 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'remodel' to cost 4 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'remodel' to cost 4 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == smithy) {                     // smithy
-      if (state->coins + 4 != beforeCoins) {
+      if (testGame->coins + 4 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'smithy' to cost 4 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'smithy' to cost 4 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == village) {                    // village
-      if (state->coins + 3 != beforeCoins) {
+      if (testGame->coins + 3 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'village' to cost 3 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'village' to cost 3 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == baron) {                      // baron
-      if (state->coins + 4 != beforeCoins) {
+      if (testGame->coins + 4 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'baron' to cost 4 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'baron' to cost 4 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == great_hall) {                 // great_hall
-      if (state->coins + 3 != beforeCoins) {
+      if (testGame->coins + 3 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'great_hall' to cost 3 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'great_hall' to cost 3 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == minion) {                     // steward
-      if (state->coins + 5 != beforeCoins) {
+      if (testGame->coins + 5 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'minion' to cost 5 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'minion' to cost 5 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == steward) {                    // steward
-      if (state->coins + 3 != beforeCoins) {
+      if (testGame->coins + 3 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'steward' to cost 3 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'steward' to cost 3 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == tribute) {                    // tribute
-      if (state->coins + 5 != beforeCoins) {
+      if (testGame->coins + 5 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'tribute' to cost 5 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'tribute' to cost 5 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == ambassador) {                 // ambassador
-      if (state->coins + 3 != beforeCoins) {
+      if (testGame->coins + 3 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'ambassador' to cost 3 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'ambassador' to cost 3 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == cutpurse) {                   // cutpurse
-      if (state->coins + 4 != beforeCoins) {
+      if (testGame->coins + 4 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'cutpurse' to cost 4 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'cutpurse' to cost 4 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == embargo) {                    // embargo
-      if (state->coins + 2 != beforeCoins) {
+      if (testGame->coins + 2 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'embargo' to cost 2 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'embargo' to cost 2 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == outpost) {                    // outpost
-      if (state->coins + 5 != beforeCoins) {
+      if (testGame->coins + 5 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'outpost' to cost 5 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'outpost' to cost 5 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == salvager) {                   // salvager
-      if (state->coins + 4 != beforeCoins) {
+      if (testGame->coins + 4 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'salvager' to cost 4 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'salvager' to cost 4 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == sea_hag) {                    // sea_hag
-      if (state->coins + 4 != beforeCoins) {
+      if (testGame->coins + 4 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'sea_hag' to cost 4 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'sea_hag' to cost 4 coins, costs: %d", beforeCoins-testGame->coins);
 
     } else if (kingdomCards[randomKingdomCard] == treasure_map) {               // treasure_map
-      if (state->coins + 4 != beforeCoins) {
+      if (testGame->coins + 4 != beforeCoins) {
         printf(BUYCARD_FAIL);
       } else {
         printf(BUYCARD_PASS);
       }
-      printf("expects purchasing a 'treasure_map' to cost 4 coins, costs: %d", beforeCoins-state->coins);
+      printf("expects purchasing a 'treasure_map' to cost 4 coins, costs: %d", beforeCoins-testGame->coins);
 
     }
     printf("\n");
@@ -484,17 +486,17 @@ void testBuyCard() {
 
 
   // Test buying a card correctly decrements the number of buys from buying player.
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);
-  state->numBuys = 5;                                             // Set number of buys to 0.
-  state->coins = 500;
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  testGame->numBuys = 5;                                                // Set number of buys to 5.
+  testGame->coins = 500;
 
-  int startingBuys = state->numBuys;
+  int startingBuys = testGame->numBuys;
   int totalBuysMade = 0;
 
   // Use all buys.
   for (i = 0; i < startingBuys; i++)  {
     randomKingdomCard = rand() % 10;
-    buyCard(kingdomCards[randomKingdomCard], state);              // Buy a random card.
+    buyCard(kingdomCards[randomKingdomCard], testGame);              // Buy a random card.
     totalBuysMade++;
   }
 
@@ -509,22 +511,22 @@ void testBuyCard() {
 
 
   // Test buying a card correctly sets the phase to '1' after a successful buy.
-  initializeGame(numPlayers, kingdomCards, randomSeed, state);
-  state->numBuys = 5;                                             // Set number of buys to 0.
-  state->coins = 500;
-  initialDiscardCount = state->discardCount[state->whoseTurn];
+  initializeGame(numPlayers, kingdomCards, randomSeed, testGame);
+  testGame->numBuys = 5;                                             // Set number of buys to 0.
+  testGame->coins = 500;
+  initialDiscardCount = testGame->discardCount[testGame->whoseTurn];
 
   // Buys.
   randomKingdomCard = rand() % 10;
-  buyCard(kingdomCards[randomKingdomCard], state);              // Buy a random card.
-  int discardIncrease = state->discardCount[state->whoseTurn]-initialDiscardCount;
+  buyCard(kingdomCards[randomKingdomCard], testGame);              // Buy a random card.
+  int discardIncrease = testGame->discardCount[testGame->whoseTurn]-initialDiscardCount;
 
-  if(state->phase == 1) {                                  // Expected buys doesn't match actual made.
+  if(testGame->phase == 1) {                                  // Expected buys doesn't match actual made.
     printf(BUYCARD_PASS);
   } else {
     printf(BUYCARD_FAIL);
   }
-  printf("expected to make buy to set phase to '1', phase now: %d\n", state->phase);
+  printf("expected to make buy to set phase to '1', phase now: %d\n", testGame->phase);
 
   if(discardIncrease == 1) {              // Discard count is increased by 1.
     printf(BUYCARD_PASS);

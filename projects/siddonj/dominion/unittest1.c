@@ -10,21 +10,18 @@
 void testInitializeGame() {
   int i = 0;
   int j = 0;
-
   int numPlayers = 0;
-  int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-	       sea_hag, tribute, smithy};
+  int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
   int randomSeed = -1;                          // Set randomSeed to less than 0 so it is based off system clock in the initializeGame method.
   int successfulInit = 0;                       // Variable to hold if the game was created successfully or not.
-
   struct gameState *state = newGame();          // Initialize game state.
 
 
   printf("\n***** TESTING INITIALIZE GAME *****\n");
   for(numPlayers = 0; numPlayers < MAX_PLAYERS+2; numPlayers++) {               // Create games with less than, equal to, and more players that supported.
 
-    // Initialize game with valid game values.
-    successfulInit = initializeGame(numPlayers, kingdomCards, randomSeed, state);
+    printf("\n***** TESTING %d PLAYER GAME *****\n", numPlayers);
+    successfulInit = initializeGame(numPlayers, kingdomCards, randomSeed, state); // Initialize game with valid game values.
 
     // Make sure game successfully starts if at least 2 players are playing and less than or equal to the max number of players.
     if(successfulInit != -1 && (numPlayers > 1 && numPlayers <= MAX_PLAYERS)) {
@@ -36,12 +33,12 @@ void testInitializeGame() {
     } else {                                                        // No expected behavior occured so print fail.
       printf(INITGAME_FAIL);
     }
+
     printf("expects creation of a game with %d number of players to players to %s\n", numPlayers, successfulInit != -1 ? "SUCCEED" : "FAIL");
 
     if (successfulInit == -1) {     // Game wasn't successfully created so don't continue testing its other attrs.
       continue;
     }
-
 
     // Check number of players.
     if (state->numPlayers == numPlayers) {
@@ -93,7 +90,7 @@ void testInitializeGame() {
     printf("expects a %d player game, to contain %d 'curse' cards, got: %d\n", numPlayers, expectedCurses, state->supplyCount[curse]);
 
 
-    // Check number of victory cards for 2 players.
+    // Check number of victory cards based on player count players.
     int expectedSupply = 0;   // Variable to hold expected quantity of each victory card available.
 
     if (numPlayers == 2) {
@@ -301,6 +298,12 @@ void testInitializeGame() {
     printf("expects game to start with 0 cards 'played', got: %d\n", state->playedCardCount);
 
   } // End player variation loop.
+
+
+  // Clean up memory.
+  free(state);
+  state = 0;
+
 
 }
 

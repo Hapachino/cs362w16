@@ -1,10 +1,10 @@
 Business Rules
 
 updateCoins:
-	2.	For each copper card, add 1 coin
-	3.	For each silver card, add 2 coins
-	4.	For each gold card, add 3 coins
-	5.	Add the bonus to the coin count
+	1.	For each copper card, add 1 coin
+	2.	For each silver card, add 2 coins
+	3.	For each gold card, add 3 coins
+	4.	Add the bonus to the coin count
 
 isGameOver:
 	1.	if the stack of province cards is empty, game is over
@@ -43,17 +43,3 @@ Great Hall Card:
   1.  Current player should receive exactly 1 card
   2.  Current player gains 1 action
   3.  No state change should occur
-
-
-int playGreatHall(struct gameState *state, int handPos, int currentPlayer)
-{
-  //+1 Card
-      drawCard(currentPlayer, state);
-
-      //+1 Actions
-      state->numActions++;
-
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
-}

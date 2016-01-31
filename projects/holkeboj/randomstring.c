@@ -32,7 +32,7 @@ on each iteration very quickly.  The part that takes longer is guessing the rand
 There are several ways you could write the random generator for the string.  I decided to use 
 the lower case alphabet and a five-letter string for this assignment, because it would finish in 
 an reasonable amount of time and because I encountered errors using the full range of ASCII characters
-(for example, every once in a while a certain generate key input would try to print the console0).
+(for example, every once in a while a certain generate key input would try to print the console).
 
 I ran my test suite 3 times.  Each time it was able to print the error message.
 Trial 1: 29 seconds

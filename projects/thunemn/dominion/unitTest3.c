@@ -1,5 +1,5 @@
 /*
- * Unit test for isGameOver function
+ * Unit test for getCost function
  *
  * unitTest3: unitTest3.c dominion.o rngs.o
  *      gcc -o unitTest3 -g unitTest3.c dominion.o rngs.o $(FLAGS)

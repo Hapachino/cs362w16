@@ -13,24 +13,24 @@ char inputChar()
 char *inputString()
 {
     // TODO: rewrite this function
-    static char testCharacters[] = { 'r', 'e', 's', 'e', 't' };
+    static char testCharacters[] = { 'r', 'e', 's', 'e', 't' };   // limit domain for some tests.
     static char input[6];
     int randomnessFactor = rand() % 10;
     char randomChar;
     int i;
     int testIndex;
 
-    if(randomnessFactor % 9 == 0) {
+    if(randomnessFactor % 9 == 0) {           // All characters a-z
       for(i = 0; i < 5; i++) {
         randomChar = ((rand() % 26) + 97);
         input[i] = randomChar;
       }
       input[randomnessFactor] = '\0';
 
-    } else {
+    } else {                                  // Only pull characters from limited domain.
       for(i = 0; i < 5; i++) {
         testIndex = rand() % 6;
-        input[i] = testCharacters[testIndex];       // Generate random number between 101 and 115.
+        input[i] = testCharacters[testIndex];
       }
       input[5] = '\0';
     }

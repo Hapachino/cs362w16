@@ -11,3 +11,4 @@
  * --- Current Player ---
  * hand count = 7, expected = 6
  * Assertion failed: (testG.handCount[thisPlayer] == G.handCount[thisPlayer] + newCards - discarded)
+ *

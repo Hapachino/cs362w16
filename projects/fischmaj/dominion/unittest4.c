@@ -43,7 +43,8 @@ int checkIsGameOver(struct gameState *pre);
 
 int main(){
 
-  int n, i, j, p; 
+  int n, i, p;
+  int randomChance;  
  
   struct gameState pre;
 
@@ -72,17 +73,21 @@ int main(){
     for (i = 0; i < CARDTYPES; i++){
       /* want to get some 0's, so choosing a low upper limit of the */
       /* random number */
-      pre.supplyCount[i] = floor(Random() * CARDTYPES)
-    }
-    printf("\nTest run %i:", n);
+      pre.supplyCount[i] = floor(Random() * CARDTYPES);
 
+      /* artificially seeding some more 0's*/
+      randomChance = floor(Random()* 20); 
+      if (randomChance == 5){
+	pre.supplyCount[i]= 0;
+      }
+    }
     
-    checkGetCost(&pre);
+    checkIsGameOver(&pre);
   
  }
 
  
-  printf("\nTesting shuffle() complete.  \n");
+  printf("\nTesting isGameOver() complete.  \n");
 
   return 0;
 }
@@ -196,7 +201,7 @@ int checkIsGameOver(struct gameState *pre){
   int suppliesEmpty=0;
 
   /* a pointer to the supply of 'pre' */
-  int *supplyArray = pre.supplyCount;
+  int *supplyArray = pre->supplyCount;
 
   /* create a copy of the input gameState-- 'post' */
   struct gameState *post = malloc(sizeof(struct gameState));
@@ -219,11 +224,11 @@ int checkIsGameOver(struct gameState *pre){
   /* 2b. The function returns 1 if the supply of 3 other piles is 0  */
   /* 3.  If neither condition is true, the function returns 0*/
 
-  if(pre.supplyCount[province] == 0){
+  if(pre->supplyCount[province] == 0){
     myGameOver = 1;
   } else {
     for(int i = 0; i < CARDTYPES; i++){
-      if(pre.supplyCount[i] == 0){
+      if(pre->supplyCount[i] == 0){
 	suppliesEmpty +=1;
       }
     }
@@ -233,9 +238,21 @@ int checkIsGameOver(struct gameState *pre){
     }
   }
 
+  if(myGameOver ==1){
+    printf("Testing a game over condition: \n");
+  } else {
+    printf("Testing a game NOT over condition:\n");
+  }
+
   if((myGameOver != progGameOver) && myGameOver) {
     printf("Business rule 2a/b fail: Failed to detect game over condition\n");
     testFail = 1;
+
+    for (int i = 0; i < CARDTYPES; i++){
+
+      printf("%d= [%d]\n", i, pre->supplyCount[i]);
+    }
+
   } else if ((myGameOver != progGameOver) && !myGameOver) {
     printf("Business rule 3 fail: Game over detected erroneously.");
     testFail = 1;
@@ -258,7 +275,7 @@ int checkIsGameOver(struct gameState *pre){
   
 
   if(!testFail){
-    printf("\tTests passed.");
+    printf("\tTests passed.\n");
   }
 
 

@@ -1,6 +1,11 @@
 /*
  * Unit test for Village Card
  *
+ * Business Rules:
+ *  1.	Current player's hand count should not change
+ *	2.	Current player gains 2 actions
+ *	3.	No state change should occur
+ *
  * cardTest3: cardTest3.c dominion.o rngs.o
  *      gcc -o cardTest3 -g cardTest3.c dominion.o rngs.o $(FLAGS)
  *

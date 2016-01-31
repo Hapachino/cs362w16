@@ -1,6 +1,12 @@
 /*
  * Unit test for Smithy Card
  *
+ * Business Rules:
+ *  1.	Current player should receive exactly 3 cards
+ *	2.	3 cards should come from his own pile
+ *	3.	No state change should occur
+ *	4.	Current card should be discarded
+ *
  * cardTest1: cardTest1.c dominion.o rngs.o
  *      gcc -o cardTest1 -g cardTest1.c dominion.o rngs.o $(FLAGS)
  *
@@ -28,6 +34,7 @@ int main() {
     struct gameState G;
 
     printf("TESTING Smithy Card\n");
+
     //clear the game state
     memset(&G, 23, sizeof(struct gameState));
     //initialize a new game

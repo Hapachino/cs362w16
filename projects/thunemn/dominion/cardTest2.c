@@ -1,6 +1,11 @@
 /*
  * Unit test for Adventure Card
  *
+ * Business Rules:
+ *  1.	Current player should receive exactly 2 cards
+ *	2.	2 cards should come from his own pile
+ *	3.	No state change should occur
+ *
  * cardTest2: cardTest2.c dominion.o rngs.o
  *      gcc -o cardTest2 -g cardTest2.c dominion.o rngs.o $(FLAGS)
  *

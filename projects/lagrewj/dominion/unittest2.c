@@ -1,5 +1,7 @@
 /*Jonathan Lagrew
  *test fullDeckCount()
+ *Notes:
+ *Testing that fullDeckCount works correctly for 2 deck, 2 hand and 2 discard pile cards. 
  card numbers: 1 estate, 4 copper, 6 gold, province 3, smithy 13, tribute 19, embargo 22
  */
 
@@ -43,6 +45,7 @@ int main() {
         printf("hand:         3 smithys\n");
         printf("discard pile: 4 tributes\n");
         printf("deck:         5 embargos\n");
+		printf("Test results:\n");
 #endif
 
         estateCount = 3; //setting estate count to 3
@@ -131,7 +134,7 @@ int main() {
 
     }
 
-    printf("\nAll tests passed!\n");
+    printf("\nAll tests successful!\n");
 
     return 0;
 }

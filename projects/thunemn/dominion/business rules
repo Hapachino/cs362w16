@@ -1,0 +1,16 @@
+Business Rules
+
+updateCoins:
+	2.	For each copper card, add 1 coin
+	3.	For each silver card, add 2 coins
+	4.	For each gold card, add 3 coins
+	5.	Add the bonus to the coin count
+
+isGameOver:
+	1.	if the stack of province cards is empty, game is over
+	2.	if three supply piles are empty, the game is over
+	3.	if neither of these are true, the game continues
+
+getCost:
+  1.  Each card should return its correct cost
+  2.  Invalid card should return -1

@@ -6,12 +6,15 @@
 char inputChar()
 {
     // TODO: rewrite this function
+    char character = rand() % 93 + 32;
+    printf("Char: %c", character);
     return ' ';
 }
 
 char *inputString()
 {
     // TODO: rewrite this function
+
     return "";
 }
 

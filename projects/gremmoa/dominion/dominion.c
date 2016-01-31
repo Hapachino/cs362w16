@@ -664,7 +664,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card )
     {
     case adventurer:
-      playAdventurer(state);
+      playAdventurer(state, handPos);
       return 0;
 
     case council_room:
@@ -1147,7 +1147,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   return -1;
 }
 
-int playAdventurer(struct gameState *state)
+int playAdventurer(struct gameState *state, int handPos)
 {
   int z = 0;
   int temphand[MAX_HAND];
@@ -1176,6 +1176,8 @@ int playAdventurer(struct gameState *state)
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
   }
+
+  discardCard(handPos, currentPlayer, state, 0);
 
   return 0;
 }

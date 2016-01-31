@@ -272,6 +272,7 @@ int playCard( int handPos, int choice1, int choice2, int choice3, struct gameSta
 	return 0;
 }
 
+// apparently, supplyPos is the enum value of the card being bought
 int buyCard( int supplyPos, struct gameState *state )
 {
 	int who;

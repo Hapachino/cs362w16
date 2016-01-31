@@ -13,5 +13,7 @@ the post deck count plus discard count. This meant a card must be getting lost w
 does not discard the last card in the temp array.
 	Card test 3 tested the refactored village function. I did not introduce a bug to this and neither did I find one in my testing.
 	Finally card test 4 was to test the council room card. It allows the player to draw 4 cards and allows another buy. Additionally, all other players draw a card. My tests showed that the player was getting
-an extra card when I compared the hand counts. This is inline with the bug I introduced in the refactored function. There was another bug, however, that I was unable to figure out where it was originating from.
-The test will occassionally report that a player was not dealt a card and the hand counts would be off by hunderds and sometimes negative.
+an extra card when I compared the hand counts. This is in line with the bug I introduced in the refactored function. There was another bug, however, that I was unable to figure out where it was originating from.
+The test will occassionally report that a player was not dealt a card and the hand counts would be off by hunderds and sometimes negative. The problem seemed to arise when that players hand, deck, and discard
+counts were close to the maximum. Combining them during shuffle causedsome sort of error like an overflow. Using a test MAX_HAND/MAX_DECK solved the issue. It's a bug but one that should not exist in a sane
+game: the hand cards come from the deck and the discard cards come from the hand; in the tests, they were randomly generated.

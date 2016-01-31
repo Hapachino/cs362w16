@@ -9,6 +9,9 @@ dominion.o: dominion.h dominion.c rngs.o
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 
+testHelpers.o: test_helpers.h test_helpers.c dominion.o rngs.o 
+	gcc -c test_helpers.c -g $(CFLAGS)
+
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
@@ -29,14 +32,11 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-testUnit1: unittest1.c dominion.o testHelpers.o rngs.o
-	gcc -o unittest1 -g unittest1.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-
-unittestresults.out: unittest1.c dominion.o rngs.o
+unittestresults.out: unittest1.c testHelpers.o dominion.o rngs.o
 	echo "Results for Function Unit Tests:" > unittestresult.out
 	
 	echo "unittest1.c:" >> unittestresult.out
-	gcc -o unittest1 unittest1.c dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest1 unittest1.c test_helpers.o dominion.o rngs.o $(CFLAGS)
 	./unittest1 >> unittestresult.out
 	gcov ./dominion.c >> unittestresult.out
 

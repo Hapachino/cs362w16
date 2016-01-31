@@ -77,7 +77,6 @@ void testPlayVillage() {
     }
   }
 
-
   // Player who played card.
   if(testGame->handCount[testGame->whoseTurn] == state->handCount[state->whoseTurn]) {    // village draws 1 cards, but also the player discards village making net handsize gain 0.
     printf(PLAYVILLAGE_PASS);

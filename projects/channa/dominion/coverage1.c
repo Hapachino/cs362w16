@@ -31,6 +31,9 @@ cardtest2:
 	card used was copper (so silver and gold were not tested), and 3) I introduced a bug affecting the
 	z counter.
 
+	boundary coverage: I checked the boundaries of different placements of coppers in the deck (top of the deck,
+	bottom of the deck, and interspersed through the deck).
+
 cardtest3:
 	statements not covered in playCutpurse():
 	#####: 1327:          for (k = 0; k < state->handCount[i]; k += 2)
@@ -49,13 +52,22 @@ cardtest3:
 	branch coverage: function playCutpurse called 4 returned 100% blocks executed 74%
 	The branch not taken is the same code block described above in statement coverage.
 
+	boundary coverage: I checked the boundaries of having enough coppers to discard as well as
+	having no coppers to discard.
+
 cardtest4:
 	100% statement coverage of playRemodel()
 	branch coverage: function playRemodel called 50 returned 100% blocks executed 100%
+	boundary coverage: I checked the boundaries of attempting to trash cards to gain cards that
+	had a value of less than + 2 the value of the trashed card, exactly + 2 the value of the
+	trashed card, and more than + 2 the value of the trashed card.
 
 unittest1:
 	100% statement coverage of updateCoins()
 	branch coverage: function updateCoins called 63 returned 100% blocks executed 100%
+	boundary coverage: I tested the boundaries by using different combinations of coins.
+	I would start with coppers and gradually replace them with silvers and golds until
+	they were all silver or all gold instead of all copper.
 
 unittest2:
 	100% statement coverage of fullDeckCount()
@@ -64,6 +76,9 @@ unittest2:
 unittest3:
 	100% statement coverage of isGameOver()
 	branch coverage: function isGameOver called 9 returned 100% blocks executed 100%
+	boundary coverage: I tested the boundaries by using an empty province pile, an almost
+	empty province pile, and different numbers of other supply piles to check the minimum
+	numbers and types of empty piles that would cause the game to be over.
 
 unittest4:
 	100% statement coverage of scoreFor()

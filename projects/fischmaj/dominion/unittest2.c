@@ -33,8 +33,6 @@
 int compareGameState(struct gameState *old, struct gameState *new, 
 		     int *diffArray, int length);
 
-int countCards(int *deck, int *cardCount);
-
 int checkUpdateCoins(int player, struct gameState *pre); 
 
 
@@ -65,7 +63,7 @@ int main(){
     p=floor(Random()*2);
     pre.deckCount[p]= floor(Random() * MAX_DECK);
     pre.discardCount[p] = floor(Random() * MAX_DECK);
-    pre.handCount[p] = floor(Random() * MAX_HAND); 
+    pre.handCount[p] =floor(Random() * MAX_HAND);
 
 
     /* Fill hands with random cards*/
@@ -188,25 +186,11 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 
 
-
-/* This function counts the cards in a card deck and records number of each */
-/* type of card in an array */
-int countCards(int *deck, int *cardCount){
-
-  int i; 
- 
-  for (i= 0; i < MAX_DECK; i++){
-    cardCount[deck[i]]++;
-  }
-  return 0;
-} 
-
-
 int checkUpdateCoins(int player, struct gameState *pre){
 
   int testFail = 0; 
-  int programTally;
-  int myTally;
+  int programTally = 0;
+  int myTally = 0;
 
   /* use a random bonus -- I choose max of 100, higher than the 
      highest likely bonus number */
@@ -220,11 +204,6 @@ int checkUpdateCoins(int player, struct gameState *pre){
   int *differences = malloc(sizeof(int)*MEMBERS);
   memset(differences, 0, (sizeof(int)*MEMBERS));
 
-  /* create an array to track the number of each cardtype in a deck */
-  int *cardListPre = malloc(sizeof(int)*CARDTYPES);
-  memset(cardListPre, 0, (sizeof(int)*CARDTYPES));
-
-
 
 
   /* Business Rule #1: The function accepts a player, a game state & bonus */
@@ -232,34 +211,33 @@ int checkUpdateCoins(int player, struct gameState *pre){
 
   /* 2. updateCoins should return an integer equal to 1 for each copper, 
      2 for silver, 3 for gold, and then the bonus should be added. */
-  countCards(pre->hand[player], cardListPre);
-  myTally = cardListPre[copper]+(2*cardListPre[silver])+(3*cardListPre[gold]);
-  myTally += randomBonus; 
+    for (int i = 0; i < pre->handCount[player]; i++){
+        if (pre->hand[player][i]==copper){
+            myTally += 1;
+        } else if (pre->hand[player][i]==silver) {
+            myTally += 2;
+        } else if (pre->hand[player][i]==gold) {
+            myTally += 3;
+        }
+    }
+    
+    myTally += randomBonus;
+    programTally = post->coins; 
 
-  programTally = post->coins; 
+    if(programTally != myTally){
+      printf("updateCoins fails business rule #2: incorrect coin count.\n");
+      printf("%d == %d, b=%d\n", myTally, programTally, randomBonus);
+    }
 
-  if(programTally != myTally){
-    printf("updateCoins fails business rule #2: incorrect coin count.\n");
-    printf("%d == %d, b=%d\n", myTally, programTally, randomBonus);
-  }
+
+  /*3. The other features of the state of the game should all be unchanged. */
 
   compareGameState(pre, post, differences, MEMBERS); 
 
-
-  /* Business rule #2: Should result in the same number of total cards in the
-     player's deck following shuffling. */
-  if (differences[DECKCOUNTMEMBER]) {
-    printf("shuffle() fails business rule #2: # of cards in deck changed"); 
-    testFail = 1; 
-  }
-
-
-
-  /*5. The other features of the state of the game should all be unchanged. */
   for (int i =0; i < MEMBERS; i++){
     if ((differences[i]) && (i != 8)){
       testFail =1; 
-      printf("updateCoins fails business rule #5:");
+      printf("updateCoins fails business rule #3:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
     }
   }

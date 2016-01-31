@@ -25,16 +25,21 @@ int unitTest(int player, struct gameState *post){
 
     //call function
     smithyCard(player,post, handPos);
+
     //memcmp game state size
     if(memcmp(&pre,post, sizeof(struct gameState))!=0){
+        #if (NOISY_TEST == 1)
         printf("memory mismatch");
-        exit(1);
+        #endif
+        return 1;
     }
     //card specific checks
     //players handsize should be 3 larger after playing the smithy
     if(post->handCount != pre.handCount+3){
+        #if (NOISY_TEST == 1)
         printf("handsize is incorrect");
-        exit(2);
+        #endif
+        return 2;
     }
 
     return 0;
@@ -42,10 +47,9 @@ int unitTest(int player, struct gameState *post){
 
 int main () {
   //define variables  
-  int i, n, r, p, deckCount, discardCount, handCount;
-  //define a array of cards
-  int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+  int i, n, r, p, error,errorA,errorB;
+  errorA =0;
+  errorB =0;
   //define a gamestate
   struct gameState G;
 
@@ -65,35 +69,23 @@ int main () {
     G.deckCount[p] = floor(Random() * MAX_DECK);
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
+    G.numPlayers = floor(Random()* MAX_PLAYERS);
     //call function with test input
-    unitTest(p, &G);
+    error=unitTest(G.numPlayers,&G);
 
-  }
-
-  printf ("ALL TESTS OK\n");
-
-  exit(0);
-  //fixed tests
-  printf ("SIMPLE FIXED TESTS.\n");
-  for (p = 0; p < 2; p++) {
-    for (deckCount = 0; deckCount < 5; deckCount++) {
-      for (discardCount = 0; discardCount < 5; discardCount++) {
-	for (handCount = 0; handCount < 5; handCount++) {
-	  memset(&G, 23, sizeof(struct gameState)); 
-	  r = initializeGame(2, k, 1, &G);
-	  G.deckCount[p] = deckCount;
-	  memset(G.deck[p], 0, sizeof(int) * deckCount);
-	  G.discardCount[p] = discardCount;
-	  memset(G.discard[p], 0, sizeof(int) * discardCount);
-	  G.handCount[p] = handCount;
-	  memset(G.hand[p], 0, sizeof(int) * handCount);
-	  //run unit test.
-      unitTest(p, &G);
-
-	}
-      }
+        if (error > 0){
+            if(error == 1){
+                errorA++;
+            }else if(error > 1){
+                errorB++;
+            }
+        }
     }
-  }
+    printf ("ALL Random TESTS Complete\n");
+    printf ("Errors type 1: %d ",errorA);
+    printf ("Memory mismatch.\n");
+    printf ("Errors type 2: %d ",errorB);
+    printf("player did not gain 3 cards \n");
 
-  return 0;
+   return 0;
 }

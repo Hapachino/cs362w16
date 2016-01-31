@@ -12,5 +12,5 @@ in villageCard():
 	set trashcard switch to true (1) instead of (0) discardCard(handPos, currentPlayer, state, 1);
 in councilRoomCard():
 	set trashcard switch to true (1) instead of (0) discardCard(handPos, currentPlayer, state, 1);
-in feastCard():
-	set coins to buy to 3 instead of 5 - updateCoins(currentPlayer, state, 3);
+in adventurerCard():
+	set drawntreasure to 1 instead of 2 - while(drawntreasure<1)

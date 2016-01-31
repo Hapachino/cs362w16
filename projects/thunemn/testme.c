@@ -6,8 +6,8 @@
 
 char inputChar()
 {
-    //returns c
-    char rand_char[] = {'{', '[', '(', ' ', 'a', 'x', ')', '}', ']'};
+  //returns c
+  char rand_char[] = {'{', '[', '(', ' ', 'a', 'x', ')', '}', ']'};
   int num = rand() % 9;
 
     return rand_char[num];
@@ -16,9 +16,9 @@ char inputChar()
 
 char *inputString()
 {
-    //returns s
-    char rand_char[] = {'r', 'e', 's', 't'};
-    //allocate size for string
+  //returns s
+  char rand_char[] = {'r', 'e', 's', 't'};
+  //allocate size for string
   char *rand_string = (char*)malloc(6*sizeof(char));
   int i = 0;
   for(i = 0; i < 5; i++)
@@ -28,7 +28,7 @@ char *inputString()
   }
   //add null terminating char at end of string
   rand_string[i+1] = '\0';
-    return rand_string;
+  return rand_string;
 }
 
 void testme()
@@ -59,7 +59,7 @@ void testme()
        && state == 9)
     {
       printf("error ");
-  free(s);
+      free(s);
       exit(200);
     }
   free(s);

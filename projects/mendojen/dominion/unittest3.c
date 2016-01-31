@@ -20,7 +20,7 @@
 
 
 int main() {
-    int a, result;
+    int a,i, result, index, counter;
     struct gameState G;
     
 
@@ -28,7 +28,7 @@ int main() {
   
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     
-	for (a=0;a<=26;a++) //sets supply count for the kingdom cards to be 5 each
+	for (a=0;a<=27;a++) //sets supply count for the kingdom cards to be 5 each
 	{
 		G.supplyCount[a]=5;
 	}
@@ -47,7 +47,78 @@ int main() {
 	else{
 		printf("....FAIL\n");
 	}
-	
+	printf("Setting random piles of 3 to 0 of the supply pile\n");
+#endif
+	for (i=0;i<100;i++)
+	{
+
+		while (counter!=4)
+		{
+			index=1+rand() % 27;
+			
+			if (G.supplyCount[index]==0)
+			{
+				counter--;
+			}
+			else{
+				G.supplyCount[index]=0;
+			}
+			counter++;
+		}
+		result=isGameOver(&G);
+	#if (NOISY_TEST == 1)
+		printf("Game over");
+		if (result==1)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+	#endif
+		counter=1;
+		for (a=0;a<=27;a++) //resets supply count for the kingdom cards to be 5 each
+		{
+		G.supplyCount[a]=5;
+		}
+	}
+#if (NOISY_TEST == 1)
+	printf("Testing random piles of 2 of the supply pile\n");
+#endif
+	for (i=0;i<100;i++)
+	{
+
+		while (counter!=3)
+		{
+			index=1+rand() % 27;
+			
+			if (G.supplyCount[index]==0)
+			{
+				counter--;
+			}
+			else{
+				G.supplyCount[index]=0;
+			}
+			counter++;
+		}
+		result=isGameOver(&G);
+	#if (NOISY_TEST == 1)
+		printf("Game not over");
+		if (result==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+	#endif
+		counter=1;
+		for (a=0;a<=26;a++) //resets supply count for the kingdom cards to be 5 each
+		{
+		G.supplyCount[a]=5;
+		}
+	}
+#if (NOISY_TEST == 1)
 	printf("Set adventurer, feast, gardens pile count to 0\n");
 #endif
 	G.supplyCount[province]=2;

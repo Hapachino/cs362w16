@@ -1,8 +1,16 @@
 /*
- * Unit test for updateCoins function
+ * Unit test for gainCard function
  *
- * unitTest1: unitTest1.c dominion.o rngs.o
- *      gcc -o unitTest1 -g unitTest1.c dominion.o rngs.o $(FLAGS)
+ * Business Rules:
+ *  1.	If supply pile is empty or a card is invalid, dont let user gain a card
+ *	2.	With a toFlag = 0, add a card to discard
+ *	3.	With a toFlag = 1, add a card to the deck
+ *	4.	With a toFlag = 2, add a card to the hand
+ *  5.  Supply count must be decremented.
+ *  6.  Victory card and Kingdom card piles should not be changed
+ *
+ * unitTest4: unitTest4.c dominion.o rngs.o
+ *      gcc -o unitTest4 -g unitTest4.c dominion.o rngs.o $(FLAGS)
  *
  */
 
@@ -76,8 +84,6 @@ int main() {
         printf("TEST FAILED\n");
 #endif
 
-
-
     //check if supply pile is empty (0) or card is not used in game (-1)
 #if (NOISY_TEST == 1)
     printf("TESTING empty pile or invalid card\n");
@@ -89,8 +95,16 @@ int main() {
         printf("TEST FAILED\n");
     }
 #endif
+#if (NOISY_TEST == 1)
+    printf("TESTING supplyCount\n");
+    //check if supply count has been decremented
+    if(toFlag_2.supplyCount[supplyPos] - 1 == G.supplyCount[supplyPos])
+        printf("TEST PASSED\n");
+    else
+        printf("TEST FAILED\n");
 
     printf("\nAll tests passed: gainCard()\n");
+#endif
 
     return 0;
 }

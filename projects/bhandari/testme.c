@@ -1,3 +1,5 @@
+//Rishi Bhandarkar
+//Random Testing Quiz 2 - CS 362
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -5,31 +7,27 @@
 
 char inputChar()
 {
-	char c;
-    //ascii range 
-	int min = 32;
-	int max = 126;
-	
-	//random number in range
-	c = (rand() % (max - min)) + min;
-	
-	//return char 
+    char c;
+    
+    //Choose random character between ASCII values 33 - 126
+    //Choose from any printable character   
+    c = (rand() % 95) + 32;
+
     return c;
 }
 
 char *inputString()
 {
+    char *s = malloc(6*sizeof(char));;
 
-	static char array[6];//static char array 0,1,2,3,4,5, spot 5 for '\0' 0-4 for 'reset'
-	int asciiRange = 26;//lowercase range 
-	char currentChar;//
-	int i;
-	for(i = 0; i < 5; i++){
-		currentChar = ((rand() % asciiRange) + 97);//adding 97 for lowercase letter range. 
-		array[i] = currentChar;
-	}
-	array[5] = '\0';
-    return array;
+    //Fill 5 character string with random lowercase letters	
+    for(int i = 0; i < 5; i++){
+	s[i] = 'a' + (rand() % 26);
+    }
+    //End every string with null terminator
+    s[5] = '\0';
+
+    return s;
 }
 
 void testme()
@@ -43,6 +41,7 @@ void testme()
     tcCount++;
     c = inputChar();
     s = inputString();
+
     printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
 
     if (c == '[' && state == 0) state = 1;

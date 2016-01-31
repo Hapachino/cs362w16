@@ -6,9 +6,9 @@ Assignment 3: coverage1.c
 
 Summary of coverage for all tests:
 File 'dominion.c'
-Lines executed:35.51% of 583
-Branches executed:37.89% of 417
-Taken at least once:33.09% of 417
+Lines executed:36.54% of 583
+Branches executed:38.37% of 417
+Taken at least once:34.05% of 417
 Calls executed:22.00% of 100
 
 unittest1:

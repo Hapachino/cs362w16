@@ -5,31 +5,37 @@
 
 char inputChar()
 {
-	char c;
-    //ascii range 
-	int min = 32;
-	int max = 126;
-	
-	//random number in range
-	c = (rand() % (max - min)) + min;
-	
-	//return char 
-    return c;
+    // TODO: rewrite this function
+    char character = rand() % 94 + 32;        // Generate a character between ' ' and '}'.
+    return character;
 }
 
 char *inputString()
 {
+    // TODO: rewrite this function
+    static char testCharacters[] = { 'r', 'e', 's', 'e', 't' };   // limit domain for some tests.
+    static char input[6];
+    int randomnessFactor = rand() % 10;
+    char randomChar;
+    int i;
+    int testIndex;
 
-	static char array[6];//static char array 0,1,2,3,4,5, spot 5 for '\0' 0-4 for 'reset'
-	int asciiRange = 26;//lowercase range 
-	char currentChar;//
-	int i;
-	for(i = 0; i < 5; i++){
-		currentChar = ((rand() % asciiRange) + 97);//adding 97 for lowercase letter range. 
-		array[i] = currentChar;
-	}
-	array[5] = '\0';
-    return array;
+    if(randomnessFactor % 9 == 0) {           // All characters a-z
+      for(i = 0; i < 5; i++) {
+        randomChar = ((rand() % 26) + 97);
+        input[i] = randomChar;
+      }
+      input[randomnessFactor] = '\0';
+
+    } else {                                  // Only pull characters from limited domain.
+      for(i = 0; i < 5; i++) {
+        testIndex = rand() % 6;
+        input[i] = testCharacters[testIndex];
+      }
+      input[5] = '\0';
+    }
+
+    return input;
 }
 
 void testme()

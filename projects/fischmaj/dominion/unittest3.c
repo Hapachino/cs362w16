@@ -1,14 +1,13 @@
 /***************************************************************************
- ** unittest1.c ( test of updateCoins() function) 
+ ** unittest1.c ( test of getCost() function) 
  ** Jeremy Fischman
  ** 
- ** This program is a unit test of the updateCoins function.  It tests that the
+ ** This program is a unit test of the getCost function.  It tests that the
  ** function complies with the following business rules: 
  **
- ** 1. The function accepts 1 player and a game state, and a bonus
+ ** 1. The function accepts an integer representing a card
  **
- ** 2. updateCoins should update the coin state by to 1 for each copper, 
- **    2 for silver, 3 for gold, and then the bonus should be added. 
+ ** 2. getCost should return the correct integer cost of the card.
  **
  ** 3. The other features of the state of the game should all be unchanged. 
  **
@@ -33,7 +32,7 @@
 int compareGameState(struct gameState *old, struct gameState *new, 
 		     int *diffArray, int length);
 
-int checkUpdateCoins(int player, struct gameState *pre); 
+int checkGetCost(int player, struct gameState *pre); 
 
 
 
@@ -75,7 +74,7 @@ int main(){
     printf("\nTest run %i:", n);
 
     
-    checkUpdateCoins(p, &pre);
+    checkGetCost(p, &pre);
   
  }
 
@@ -186,15 +185,15 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 
 
-int checkUpdateCoins(int player, struct gameState *pre){
+int checkGetCost(int player, struct gameState *pre){
 
   int testFail = 0; 
-  int programTally = 0;
-  int myTally = 0;
-
-  /* use a random bonus -- I choose max of 100, higher than the 
-     highest likely bonus number */
-  int randomBonus = floor(Random()*100);
+  int randomInt = 0; 
+  int randomCard = 0;
+  int programCost = 0;
+  int myCost = 0;
+  int costArray[CARDTYPES]={0,2,5,8,0,3,6,6,5,4,4,5,4,4,3,4,3,5,3,
+			    5,3,4,2,5,4,4,4};
 
   /* create a copy of the input gameState */
   struct gameState *post = malloc(sizeof(struct gameState));
@@ -204,53 +203,35 @@ int checkUpdateCoins(int player, struct gameState *pre){
   int *differences = malloc(sizeof(int)*MEMBERS);
   memset(differences, 0, (sizeof(int)*MEMBERS));
 
-  /* create an array to track the number of each cardtype in a deck */
-  int *cardListPre = malloc(sizeof(int)*CARDTYPES);
-  memset(cardListPre, 0, (sizeof(int)*CARDTYPES));
 
+  /* For each random game state, I'll run 1000 tests of getCost*/
+  for (int i = 0; i < 1000; i++){
 
+    randomInt = floor(Random()* MAX_HAND);
+    randomCard = pre->hand[player][randomInt];
 
+    /* Business Rule #1: The function an integer representing the card */
+    programCost = getCost(randomCard); 
+  
+    /* 2. getCost should return the appropriate integer cost for each card*/
+    myCost = costArray[randomCard];
 
-  /* Business Rule #1: The function accepts a player, a game state & bonus */
-  updateCoins(player, post, randomBonus); 
-
-  /* 2. updateCoins should return an integer equal to 1 for each copper, 
-     2 for silver, 3 for gold, and then the bonus should be added. */
-    for (int i = 0; i < pre->handCount[player]; i++){
-        if (pre->hand[player][i]==copper){
-            myTally += 1;
-        } else if (pre->hand[player][i]==silver) {
-            myTally += 2;
-        } else if (pre->hand[player][i]==gold) {
-            myTally += 3;
-        }
+    if(programCost != myCost){
+      printf("updateCoins fails business rule #2: incorrect cost returned.\n");
+      printf("%d == %d\n", myCost, programCost);
     }
-    
-    myTally += randomBonus;
-  programTally = post->coins; 
-
-  if(programTally != myTally){
-    printf("updateCoins fails business rule #2: incorrect coin count.\n");
-    printf("%d == %d, b=%d\n", myTally, programTally, randomBonus);
   }
+
+
+  /* After 1000 tests of getCost, I'll make sure game state is unchanged. */
+  /*3. The other features of the state of the game should all be unchanged. */
 
   compareGameState(pre, post, differences, MEMBERS); 
 
-
-  /* Business rule #2: Should result in the same number of total cards in the
-     player's deck following shuffling. */
-  if (differences[DECKCOUNTMEMBER]) {
-    printf("shuffle() fails business rule #2: # of cards in deck changed"); 
-    testFail = 1; 
-  }
-
-
-
-  /*5. The other features of the state of the game should all be unchanged. */
   for (int i =0; i < MEMBERS; i++){
     if ((differences[i]) && (i != 8)){
       testFail =1; 
-      printf("updateCoins fails business rule #5:");
+      printf("updateCoins fails business rule #3:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
     }
   }

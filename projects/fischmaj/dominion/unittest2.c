@@ -204,11 +204,6 @@ int checkUpdateCoins(int player, struct gameState *pre){
   int *differences = malloc(sizeof(int)*MEMBERS);
   memset(differences, 0, (sizeof(int)*MEMBERS));
 
-  /* create an array to track the number of each cardtype in a deck */
-  int *cardListPre = malloc(sizeof(int)*CARDTYPES);
-  memset(cardListPre, 0, (sizeof(int)*CARDTYPES));
-
-
 
 
   /* Business Rule #1: The function accepts a player, a game state & bonus */
@@ -227,30 +222,22 @@ int checkUpdateCoins(int player, struct gameState *pre){
     }
     
     myTally += randomBonus;
-  programTally = post->coins; 
+    programTally = post->coins; 
 
-  if(programTally != myTally){
-    printf("updateCoins fails business rule #2: incorrect coin count.\n");
-    printf("%d == %d, b=%d\n", myTally, programTally, randomBonus);
-  }
+    if(programTally != myTally){
+      printf("updateCoins fails business rule #2: incorrect coin count.\n");
+      printf("%d == %d, b=%d\n", myTally, programTally, randomBonus);
+    }
+
+
+  /*3. The other features of the state of the game should all be unchanged. */
 
   compareGameState(pre, post, differences, MEMBERS); 
 
-
-  /* Business rule #2: Should result in the same number of total cards in the
-     player's deck following shuffling. */
-  if (differences[DECKCOUNTMEMBER]) {
-    printf("shuffle() fails business rule #2: # of cards in deck changed"); 
-    testFail = 1; 
-  }
-
-
-
-  /*5. The other features of the state of the game should all be unchanged. */
   for (int i =0; i < MEMBERS; i++){
     if ((differences[i]) && (i != 8)){
       testFail =1; 
-      printf("updateCoins fails business rule #5:");
+      printf("updateCoins fails business rule #3:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
     }
   }

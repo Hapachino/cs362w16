@@ -20,10 +20,9 @@ int main() {
     srand(3);
     int numPlayer = 2;
     int maxBonus = 10;
-    int p, r, HAND_COUNT;
+    int p, r, handCount;
     int bonus;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
+    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
     struct gameState G;
     int MAX_HAND_COUNT = 5;// starting values
     int changeIndex = 4;
@@ -61,7 +60,7 @@ int main() {
             }
         }
 
-        for (HAND_COUNT = 0; HAND_COUNT <= MAX_HAND_COUNT; HAND_COUNT++)
+        for (handCount = 0; handCount <= MAX_HAND_COUNT; handCount++)
         {
 #if (NOISY_TEST == 1)
             bonus = rand() % maxBonus;//seeding random number for bonus
@@ -69,7 +68,7 @@ int main() {
 #endif
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
             r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-            G.HAND_COUNT[p] = 5;                 // set the number of cards on hand
+            G.handCount[p] = 5;                 // set the number of cards on hand
             if (first) {
                 memcpy(G.hand[p], coppers, sizeof(int) * copperCount); // set all the cards to copper
                 first = false;
@@ -119,7 +118,7 @@ int main() {
             }
         }
 
-        for (HAND_COUNT = 0; HAND_COUNT <= MAX_HAND_COUNT; HAND_COUNT++)
+        for (handCount = 0; handCount <= MAX_HAND_COUNT; handCount++)
         {
 #if (NOISY_TEST == 1)
             // random number for bonus
@@ -129,7 +128,7 @@ int main() {
 #endif
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
             r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-            G.HAND_COUNT[p] = 5;                 // set the number of cards on hand
+            G.handCount[p] = 5;                 // set the number of cards on hand
             if (first) {
                 memcpy(G.hand[p], coppers, sizeof(int) * copperCount); // set all the cards to copper
                 first = false;

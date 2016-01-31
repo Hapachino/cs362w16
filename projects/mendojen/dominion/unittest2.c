@@ -1,8 +1,8 @@
 /* -----------------------------------------------------------------------
- * Demonstration of how to write unit tests for dominion-base
- * Include the following lines in your makefile:
+ *  Business requirements
+ *  1) Correctly sums up the treasure cards
  *
- * updateCoins9: unittest2.c dominion.o rngs.o
+ * updateCoins: unittest2.c dominion.o rngs.o
  *      gcc -o unit2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
  *
  * -----------------------------------------------------------------------
@@ -92,72 +92,114 @@ int main() {
 #endif
 	memcpy(G.hand[p], mixCards1,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
-	assert(G.coins==7);
 #if (NOISY_TEST == 1)
-	printf("G.coins= %d, expected= 7\n", G.coins);
+	printf("G.coins= %d, expected= 7", G.coins);
+	if (G.coins==7)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 	
 	printf("Testing updateCoins with 3 copper, 1 silver, and 1 gold treasure cards.\n");
 #endif
 	memcpy(G.hand[p], mixCards2,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
-	assert(G.coins==8);
 #if (NOISY_TEST == 1)
-	printf("G.coins= %d, expected= 8\n", G.coins);
-
+	printf("G.coins= %d, expected= 8", G.coins);
+	if (G.coins==8)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 	printf("Testing updateCoins with 1 copper, 2 silver, and 2 gold treasure cards.\n");
 #endif
 	memcpy(G.hand[p], mixCards3,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
-	assert(G.coins==11);
 #if (NOISY_TEST == 1)
-	printf("G.coins= %d, expected= 11\n", G.coins);
- 
+	printf("G.coins= %d, expected= 11", G.coins);
+ 	if (G.coins==11)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 	
 	printf("Testing updateCoins with 3 silver and 2 gold treasure cards.\n");
 #endif
 	memcpy(G.hand[p], mixCards4,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
-	assert(G.coins==12);
 #if (NOISY_TEST == 1)
-	printf("G.coins= %d, expected= 12\n", G.coins);
-  
+	printf("G.coins= %d, expected= 12", G.coins);
+ 	if (G.coins==12)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}  
 
 	printf("Testing updateCoins with 1 copper, 1 silver, and 3 gold treasure cards.\n");
 #endif
 	memcpy(G.hand[p], mixCards5,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
-	assert(G.coins==12);
 #if (NOISY_TEST == 1)
-	printf("G.coins= %d, expected= 12\n", G.coins);
-
+	printf("G.coins= %d, expected= 12", G.coins);
+ 	if (G.coins==12)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 	
 	printf("Testing updateCoins with 2 copper, 1 silver, and 2 gold treasure cards.\n");
 #endif
 	memcpy(G.hand[p], mixCards6,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
-	assert(G.coins==10);
 #if (NOISY_TEST == 1)
-	printf("G.coins= %d, expected= 10\n", G.coins);
-
+	printf("G.coins= %d, expected= 10", G.coins);
+ 	if (G.coins==10)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 	
 	printf("Testing updateCoins with 2 silver and 3 gold treasure cards.\n");
 #endif
 	memcpy(G.hand[p], mixCards7,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
-	assert(G.coins==13);
 #if (NOISY_TEST == 1)
-	printf("G.coins= %d, expected= 13\n", G.coins);
-
+	printf("G.coins= %d, expected= 13", G.coins);
+ 	if (G.coins==13)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 	
 	printf("Testing updateCoins with 1 copper and 4 gold treasure cards.\n");
 #endif
 	memcpy(G.hand[p], mixCards8,sizeof(int) * handCount );
 	updateCoins(p, &G, 0);
-	assert(G.coins==13);
 #if (NOISY_TEST == 1)
-	printf("G.coins= %d, expected= 13\n", G.coins);
+	printf("G.coins= %d, expected= 13", G.coins);
+ 	if (G.coins==13)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
 #endif	
-printf("All tests passed!\n");
+	printf("Tests Completed!\n");
 
     return 0;
 }

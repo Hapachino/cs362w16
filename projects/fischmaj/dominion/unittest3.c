@@ -33,8 +33,6 @@
 int compareGameState(struct gameState *old, struct gameState *new, 
 		     int *diffArray, int length);
 
-int countCards(int *deck, int *cardCount);
-
 int checkUpdateCoins(int player, struct gameState *pre); 
 
 
@@ -186,23 +184,6 @@ int compareGameState(struct gameState *old, struct gameState *new,
   return 0; 
 }
 
-
-
-
-/* This function counts the cards in a card deck and records number of each */
-/* type of card in an array */
-int countCards(int *deck, int *cardCount){
-
-  int i; 
- 
-  for (i= 0; i < MAX_DECK; i++){
-
-    /* for each card in the deck or hand, increment the count of that */
-    /* card type-- relies on the fact that card type is an ENUM */
-    cardCount[deck[i]] += 1;
-  }
-  return 0;
-} 
 
 
 int checkUpdateCoins(int player, struct gameState *pre){

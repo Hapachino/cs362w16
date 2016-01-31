@@ -20,7 +20,7 @@
 
 
 int main() {
-    int a, result;
+    int a, result, index, i;
     int seed = 1000;
     int numPlayer = 2;
     int r;
@@ -32,36 +32,45 @@ int main() {
   
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-	G.coins=10;
-	
+	G.coins=1000;
+	printf("Testing when numBuys=0\n");	
 	G.numBuys=0;
-	result=buyCard(k[3],&G);
-#if (NOISY_TEST == 1)
-	printf("Testing when numBuys=0\n");
-	printf("Player is unable to buy a card");
-	if (result==-1)
+	for (i=0;i<50;i++)
 	{
-		printf("....PASS\n");
-	}
-	else{
-		printf("....FAIL\n");
-	}
+		index=rand() % 10;
+		result=buyCard(k[index],&G);
+#if (NOISY_TEST == 1)
+		printf("Player is unable to buy a card");
+		if (result==-1)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
 #endif
+	}
+
 	G.numBuys=100;
 #if (NOISY_TEST == 1)
 	printf("Testing when there are enough buys. \n");
 #endif
-	result=buyCard(k[3],&G);
-#if (NOISY_TEST == 1)
-	printf("Player is able to buy a card");
-	if (result==0)
+	for (i=0;i<10;i++)
 	{
-		printf("....PASS\n");
-	}
-	else{
-		printf("....FAIL\n");
-	}
+		index=rand() % 10;
+		result=buyCard(k[index],&G);
+#if (NOISY_TEST == 1)
+		printf("Player is able to buy a card");
+		if (result==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
 #endif
+	}
+
 	
 	G.supplyCount[gardens]=0;
 #if (NOISY_TEST == 1)
@@ -90,12 +99,11 @@ int main() {
 	G.supplyCount[village]=5;
 	G.supplyCount[baron]=5;
 	G.supplyCount[great_hall]=5;
-	
+#if (NOISY_TEST == 1)	
+	printf("Testing when supply count of desired card is not 0\n ");
+#endif
 	for (a=0;a<10;a++)
 	{
-#if (NOISY_TEST == 1)
-		printf("Testing when supply count of desired card is not 0\n ");
-#endif
 		result=buyCard(k[a],&G);
 #if (NOISY_TEST == 1)
 		printf("Player is able to buy a card");
@@ -106,14 +114,12 @@ int main() {
 		else{
 			printf("....FAIL\n");
 		}
-#endif
 	}
+	printf("Testing when there is not enough coins to purchase card \n ");
+#endif
 	for (a=0;a<10;a++)
 	{
 		G.coins=1;
-#if (NOISY_TEST == 1)
-		printf("Testing when there is not enough coins to purchase card \n ");
-#endif
 		result=buyCard(k[a],&G);
 #if (NOISY_TEST == 1)
 		printf("Player is unable to buy a card");

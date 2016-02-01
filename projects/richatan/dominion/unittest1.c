@@ -47,7 +47,7 @@ int main () {
 		printf("PASS when deckCount = 0\n");
 	} else {
 		printf("FAIL when deckCount = 0\n");
-		printf("  Return value: %d, Expected: %d\n", result, 0);
+		printf("  Return value: %d, Expected: %d\n", result, -1);
 	}
 	
 
@@ -197,11 +197,40 @@ int main () {
 	if (checkDiscards(pre, g) < 0){
 		printf("FAIL when deckCount > 1\n");
 		printf("  Discards changed after shuffle\n");
+		//Print expected and actual discards for each player
+		for (i = 0; i < NUM_PLAYERS; i++){
+			printf("    Discard pile for player %d:\n", i);
+			printf("      Count: %d, Expected: %d\n", g->discardCount[i], pre->discardCount[i]);
+			if (g->discardCount[i] > 0){
+				printf("      Actual Cards: ");
+				for (j = 0; j < g->discardCount[i]; j++){
+					printf("%d ", g->discard[i][j]);
+				}
+				printf("\n      Expected Cards: ");
+				for (j = 0; j < pre->discardCount[i]; j++){
+					printf("%d ", pre->discard[i][j]);
+				}
+				printf("\n");
+			}
+		}
 		failed = 1;
 	}
 	if (checkPlayed(pre, g) < 0){
 		printf("FAIL when deckCount > 1\n");
 		printf("  Played cards changed after shuffle\n");
+		//Print expected and actual discards for each player
+		printf("    Played count: %d, Expected: %d\n", g->playedCardCount, pre->playedCardCount);
+		if (g->playedCardCount > 0){
+			printf("    Actual Cards: ");
+			for (i = 0; i < g->playedCardCount; i++){
+				printf("%d ", g->playedCards[i]);
+			}
+			printf("\n    Expected Cards: ");
+			for (i = 0; i < pre->playedCardCount; i++){
+				printf("%d ", pre->playedCards[i]);
+			}
+			printf("\n");
+		}
 		failed = 1;
 	}
 	//Check deck unchanged for other players
@@ -212,13 +241,13 @@ int main () {
 		}
 		if (pre->deckCount[i] != g->deckCount[i]){
 			printf("FAIL when deckCount > 1\n");
-			printf("  Other player's deckCounts changed after shuffle\n");
+			printf("  Player %d's deckCount: %d, Expected: %d\n", i, g->deckCount[i], pre->deckCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->deckCount[i]; j++){
 				if (pre->deck[i][j] != g->deck[i][j]){
 					printf("FAIL when deckCount > 1\n");
-					printf("  Other player's decks changed after shuffle\n");
+					printf("  Player %d's deck[%d]: %d, Expected: %d\n", i, j, g->deck[i][j], pre->deck[i][j]);
 					failed = 1;
 				}
 			}
@@ -227,7 +256,7 @@ int main () {
 	//Check current player's deck is same size
 	if (pre->deckCount[whoseTurn(g)] != g->deckCount[whoseTurn(g)]){
 		printf("FAIL when deckCount > 1\n");
-		printf("  Current player's deckCount changed after shuffle\n");
+		printf("  Current player's deckCount: %d, Expected: %d\n", g->deckCount[whoseTurn(g)], pre->deckCount[whoseTurn(g)]);
 		failed = 1;
 	}
 	//Check current player's deck contains same cards as before
@@ -237,7 +266,7 @@ int main () {
 	for (i = 0; i < treasure_map; i++){
 		if (cardsBefore[i] != cardsAfter[i]){
 			printf("FAIL when deckCount > 1\n");
-			printf("  Cards in current player's deck changed after shuffle\n");
+			printf("  Count for card %d in deck: %d, Expected: %d\n", i, cardsAfter[i], cardsBefore[i]);
 			failed = 1;
 			break;
 		}

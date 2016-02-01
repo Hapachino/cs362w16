@@ -25,8 +25,9 @@
 
 int compare(const void* a, const void* b);
 
-// This function differs from the original initializeGame() in dominion.c
-// in that it does not call shuffle() and does not draw cards for first player
+// This function differs from the original initializeGame() in dominion.c in
+// that it does not call shuffle() and does not draw cards for first player and
+// has different initial cards in each deck for easier debugging
 int initializeState(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
 {
     printf("Beginning initializing state.\n");
@@ -125,9 +126,10 @@ int initializeState(int numPlayers, int kingdomCards[10], int randomSeed, struct
     ////////////////////////
     //supply intilization complete
 
-    //set player decks
+    // Set player decks:
     for (i = 0; i < numPlayers; i++)
     {
+        /*
         state->deckCount[i] = 0;
         for (j = 0; j < 3; j++)
         {
@@ -139,6 +141,18 @@ int initializeState(int numPlayers, int kingdomCards[10], int randomSeed, struct
             state->deck[i][j] = copper;
             state->deckCount[i]++;		
         }
+        */
+        state->deck[i][0] = estate;
+        state->deck[i][1] = copper;
+        state->deck[i][2] = silver;
+        state->deck[i][3] = gold;
+        state->deck[i][4] = adventurer;
+        state->deck[i][5] = council_room;
+        state->deck[i][6] = feast;
+        state->deck[i][7] = gardens;
+        state->deck[i][8] = mine;
+        state->deck[i][9] = remodel;
+        state->deckCount[i] = 10;
     }
     
     // Initialize hand sizes to zero
@@ -189,65 +203,70 @@ int main() {
 
     printf ("Testing shuffle():\n");
 
-    for (player = 0; player < numPlayers; player++)
+    player = 0;
+    printf("Shuffling Player %d:\n", player);
+
+    if (shuffle(player, state) < 0)
     {
-        printf("Player %d:\n", player);
+        printf("\tERROR: shuffe() failed.\n");
+        return -1;
+    }
+    
+    // FUNCTION TO RETURN WHAT CHANGED IN STATE: STATECOMPARE(*STATE, *ORIGINALSTATE)
 
-        if (shuffle(player, state) < 0)
+    // Check first that each player's deck count is unchanged)
+    int p;
+    for (p = 0; p < numPlayers; p++)
+    {
+        if (state->handCount[p] != originalState->handCount[p])
         {
-            printf("\tERROR: shuffe() failed.\n");
+            printf("\tERROR: handCount not the same\n");
             return -1;
         }
-        
-        // FUNCTION TO RETURN WHAT CHANGED IN STATE: STATECOMPARE(*STATE, *ORIGINALSTATE)
+    }
 
-        // Check first that each player's deck count is unchanged)
-        int p;
-        for (p = 0; p < numPlayers; p++)
+    // Check order of cards for each player 
+    for (p = 0; p < numPlayers; p++)
+    {
+        printf("Checking order of player %d's deck...\n", p);
+
+        i = 0;
+        while ( (i < state->deckCount[p]) &&
+                (state->deck[p][i] == originalState->deck[p][i]) )
         {
-            if (state->handCount[p] != originalState->handCount[p])
-            {
-                printf("\tERROR: handCount not the same at player%d\n", p);
-                return -1;
-            }
+            printf("\tshuffled card %d: %d\n", i, state->deck[p][i]);
+            printf("\toriginal card %d: %d\n", i, originalState->deck[p][i]);
+            i++;
         }
-
-        // Check order of cards for each player 
-        for (p = 0; p < numPlayers; p++)
-        {
-            i = 0;
-            while ( (i < state->deckCount[p]) &&
-                    (state->deck[p][i] == originalState->deck[p][i]) )
-            {
-                printf("\tshuffled card %d: %d\n", i, state->deck[p][i]);
-                printf("\toriginal card %d: %d\n", i, originalState->deck[p][i]);
-                i++;
-            }
-            
-            // Check if order of cards in shuffled deck is the same
-            if (p == player && i >= state->deckCount[p])
-            {
-                printf("Error: Order of shuffled deck is the same.\n");
-                return -1;
-            }
-
-            // Check if order of cards in unshuffled deck is the same
-            if (p != player && i < state->deckCount[p])
-            {
-                printf("Error: Order of non-shuffled deck is different.\n");
-                return -1;
-            }
-        }
+        printf("\n");
         
-        // Check that shuffled deck has same set of cards
-        qsort((void*)(state->deck[0]), state->deckCount[player], sizeof(int), compare);
-        qsort((void*)(originalState->deck[0]), state->deckCount[player], sizeof(int), compare);
-
-        if (memcmp(state, originalState, sizeof(struct gameState)) != 0)
+        // Check if order of cards in shuffled deck is the same
+        if (p == player && i >= state->deckCount[p])
         {
-            printf("\tERROR: memcmp failed.\n");
+            printf("ERROR: Order of shuffled deck is the same.\n");
             return -1;
         }
+        else if (p == player && i < state->deckCount[p])
+        {
+            printf("Player %d's is different! Great success!\n", player);
+        }
+
+        // Check if order of cards in unshuffled deck is the same
+        if (p != player && i < state->deckCount[p])
+        {
+            printf("ERROR: Order of non-shuffled deck is different.\n");
+            return -1;
+        }
+    }
+    
+    // Check that shuffled deck has same set of cards
+    qsort((void*)(state->deck[0]), state->deckCount[player], sizeof(int), compare);
+    qsort((void*)(originalState->deck[0]), state->deckCount[player], sizeof(int), compare);
+
+    if (memcmp(state, originalState, sizeof(struct gameState)) != 0)
+    {
+        printf("\tERROR: memcmp failed.\n");
+        return -1;
     }
 
     printf("All tests passed!\n");

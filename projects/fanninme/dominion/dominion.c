@@ -358,7 +358,7 @@ int endTurn(struct gameState *state) {
     state->hand[currentPlayer][i] = -1;//Set card to -1
   }
   state->handCount[currentPlayer] = 0;//Reset hand count
-    
+
   //Code for determining the player
   if (currentPlayer < (state->numPlayers - 1)){ 
     state->whoseTurn = currentPlayer + 1;//Still safe to increment
@@ -380,7 +380,6 @@ int endTurn(struct gameState *state) {
   for (k = 0; k < 5; k++){
     drawCard(state->whoseTurn, state);//Draw a card
   }
-
   //Update money
   updateCoins(state->whoseTurn, state , 0);
 
@@ -400,6 +399,7 @@ int isGameOver(struct gameState *state) {
 
   //if three supply pile are at 0, the game ends
   j = 0;
+  //TODO removed magic number  25=10 kingdom cards + 3 coin types+ 2 providence 
   for (i = 0; i < 25; i++){
       if (state->supplyCount[i] == 0){
 	    j++;

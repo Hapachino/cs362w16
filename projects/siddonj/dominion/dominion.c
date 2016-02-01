@@ -34,9 +34,7 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
   return k;
 }
 
-int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
-		   struct gameState *state) {
-
+int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) {
   int i;
   int j;
   int it;
@@ -45,25 +43,21 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   PutSeed((long)randomSeed);
 
   //check number of players
-  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
-    {
-      return -1;
-    }
+  if (numPlayers > MAX_PLAYERS || numPlayers < 2) {
+    return -1;
+  }
 
   //set number of players
   state->numPlayers = numPlayers;
 
   //check selected kingdom cards are different
-  for (i = 0; i < 10; i++)
-    {
-      for (j = 0; j < 10; j++)
-        {
-	  if (j != i && kingdomCards[j] == kingdomCards[i])
-	    {
-	      return -1;
+  for (i = 0; i < 10; i++) {
+    for (j = 0; j < 10; j++) {
+	    if (j != i && kingdomCards[j] == kingdomCards[i]) {
+         return -1;
 	    }
-        }
     }
+  }
 
 
   //initialize supply
@@ -104,33 +98,29 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 
   //set number of Kingdom cards
   for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
-    {
-      for (j = 0; j < 10; j++)           		//loop chosen cards
-	{
-	  if (kingdomCards[j] == i)
-	    {
+  {
+    for (j = 0; j < 10; j++)           		//loop chosen cards
+	  {
+      if (kingdomCards[j] == i) {
 	      //check if card is a 'Victory' Kingdom card
-	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
-		{
-		  if (numPlayers == 2){
-		    state->supplyCount[i] = 8;
-		  }
-		  else{ state->supplyCount[i] = 12; }
-		}
+	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens) {
+          if (numPlayers == 2) {
+		        state->supplyCount[i] = 8;
+		      }
+		      else { state->supplyCount[i] = 12; }
+		    }
 	      else
-		{
-		  state->supplyCount[i] = 10;
-		}
-	      break;
+		    {
+		      state->supplyCount[i] = 10;
+		    }
+          break;
 	    }
-	  else    //card is not in the set choosen for the game
+	    else    //card is not in the set choosen for the game
 	    {
 	      state->supplyCount[i] = -1;
 	    }
-	}
-
     }
-
+  }
   ////////////////////////
   //supply intilization complete
 
@@ -522,26 +512,26 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
   return 0;
 }
 
-int drawCard(int player, struct gameState *state)
-{	int count;
+int drawCard(int player, struct gameState *state) {
+  int count;
   int deckCounter;
-  if (state->deckCount[player] <= 0){//Deck is empty
 
+  if (state->deckCount[player] <= 0) { //Deck is empty
     //Step 1 Shuffle the discard pile back into a deck
     int i;
     //Move discard to deck
-    for (i = 0; i < state->discardCount[player];i++){
+    for (i = 0; i < state->discardCount[player]; i++) {
       state->deck[player][i] = state->discard[player][i];
       state->discard[player][i] = -1;
     }
 
     state->deckCount[player] = state->discardCount[player];
-    state->discardCount[player] = 0;//Reset discard
+    state->discardCount[player] = 0;  //Reset discard
 
     //Shufffle the deck
     shuffle(player, state);//Shuffle the deck up and make it so that we can draw
 
-    if (DEBUG){//Debug statements
+    if (DEBUG) {//Debug statements
       printf("Deck count now: %d\n", state->deckCount[player]);
     }
 
@@ -562,9 +552,9 @@ int drawCard(int player, struct gameState *state)
     state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
     state->deckCount[player]--;
     state->handCount[player]++;//Increment hand count
-  }
+  }  // End condition, deck empty
 
-  else{
+  else {
     int count = state->handCount[player];//Get current hand count for player
     int deckCounter;
     if (DEBUG){//Debug statements
@@ -1250,25 +1240,18 @@ int updateCoins(int player, struct gameState *state, int bonus)
   state->coins = 0;
 
   //add coins for each Treasure card in player's hand
-  for (i = 0; i < state->handCount[player]; i++)
-    {
-      if (state->hand[player][i] == copper)
-	{
-	  state->coins += 1;
-	}
-      else if (state->hand[player][i] == silver)
-	{
-	  state->coins += 2;
-	}
-      else if (state->hand[player][i] == gold)
-	{
-	  state->coins += 3;
-	}
+  for (i = 0; i < state->handCount[player]; i++) {
+    if (state->hand[player][i] == copper) {
+	    state->coins += 1;
+    } else if (state->hand[player][i] == silver) {
+	    state->coins += 2;
+	  } else if (state->hand[player][i] == gold) {
+      state->coins += 3;
     }
+  }
 
   //add bonus
   state->coins += bonus;
-
   return 0;
 }
 

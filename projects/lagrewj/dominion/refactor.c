@@ -14,29 +14,15 @@ Documented Changes:
 
 Smithy:
 new function: playSmithy
-Notes: Changed from 3 cards drawn to only 2. 
+Notes: Card not set to discard pile when discardCard() called. 
 
 adventurer:
 new function: playAdventurer
-Notes: commented out z++ from else statement in first while loop so that z will not increment, thus in the second while loop not all cards drawn will be discarded
+Notes: The last card in tempHand not put in discard pile. 
 
-remodel:
-new function: playRemodel
-Notes: Changed last parameter in function from 0 to 1. In turn, this sets the trash flag to put the card in the trash pile instead 
-	   of the discard pile, thus removing it from play. 
-	   
-	  //discard card from hand
-      discardCard(handPos, currentPlayer, state, 1);
+playFeast:
+Notes: For loop stops one less than hand count. 
 
-village:
-new function: playVillage
-Notes: Changed number of actions village card gives from 2 to 1. 
-	  //+2 Actions
-	  state->numActions = state->numActions + 1;
-	  
-great_hall:
-new function: playGreat_Hall
-Notes: Opposite of village bug, new great hall increases actions by 2 instead of 1. 
-	  //+1 Actions
-	  state->numActions + 2;
+playCouncil_Room:
+Notes: draws one extra card due to tweak of for loop. 
 */

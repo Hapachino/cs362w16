@@ -4,20 +4,20 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
 #include <stdlib.h>
 
 #define DEBUG 0
-#define NOISY_TEST 1
+#define NOISY_TEST 0
+// set NOISY_TEST to 0 to remove printfs from output
 
-//code leveraged betterCard function heavily.
-//Unit test for playCard function
-//Preconditions:
-//function accepts int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
-//game state :
-
+/*code leveraged betterCard function and testUpdateCoins functions heavily.
+Unit test for playCard function
+Preconditions:
+function accepts int handPos, int choice1, int choice2, int choice3, struct gameState *state) */
 
 //oracle makes sure returns valid 
 int unitTest(struct gameState *post){
@@ -27,6 +27,7 @@ int unitTest(struct gameState *post){
     int success;
     struct gameState pre;
     memcpy(&pre,post,sizeof(struct gameState));
+
     //create an array to hold four integer inputs
     int input[4];
     //randomly generate 4 ints
@@ -36,18 +37,25 @@ int unitTest(struct gameState *post){
 
     //call function
     success=playCard(input[0],input[1],input[2],input[3], post);
+
     //memcmp game state size
     assert (memcmp(&pre,post, sizeof(struct gameState))==0);
+
+    //assert (success==0);
     if (success == -1){
+        #if (NOISY_TEST == 1)
         printf ("Error in playCard function bad exit status.\n");
-        exit(1);
+        #endif
+        return 1;
     }
 
     //specific function check 
     //confirm that actions is one less
     if (pre.numActions != post->numActions+1){
+        #if (NOISY_TEST == 1)
         printf("Error action count was not decrimented");
-        exit(2);
+        #endif    
+        return 2;
     }
     return 0;
 }
@@ -55,10 +63,10 @@ int unitTest(struct gameState *post){
 
 int main () {
   //define variables  
-  int i, n, r, p, deckCount, discardCount, handCount;
-  //define a array of cards
-  int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+  int i, n, p;
+  int error, errorA, errorB;
+  errorB=0;
+  errorA=0; 
   //define a gamestate
   struct gameState G;
 
@@ -78,32 +86,23 @@ int main () {
     G.deckCount[p] = floor(Random() * MAX_DECK);
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
-    //call function with test input
-    unitTest(&G);
-  }
-  printf ("ALL Random TESTS OK\n");
 
-  //fixed tests
-  printf ("SIMPLE FIXED TESTS.\n");
-  for (p = 0; p < 2; p++) {
-    for (deckCount = 0; deckCount < 5; deckCount++) {
-      for (discardCount = 0; discardCount < 5; discardCount++) {
-	    for (handCount = 0; handCount < 5; handCount++) {
-	        memset(&G, 23, sizeof(struct gameState)); 
-	        r = initializeGame(2, k, 1, &G);
-	        G.deckCount[p] = deckCount;
-	        memset(G.deck[p], 0, sizeof(int) * deckCount);
-	        G.discardCount[p] = discardCount;
-	        memset(G.discard[p], 0, sizeof(int) * discardCount);
-	        G.handCount[p] = handCount;
-	        memset(G.hand[p], 0, sizeof(int) * handCount);
-	        //run unit test.
-            unitTest(&G);
-	        }
+    //call function with test input
+    error=unitTest(&G);
+
+    if (error > 0){
+        if(error == 1){
+            errorA++;
+        }else if(error > 1){
+            errorB++;
         }
     }
   }
-  printf ("ALL TESTS OK\n");
+  printf ("ALL Random TESTS Complete\n");
+  printf ("Errors type 1: %d ",errorA);
+  printf ("Error in playCard function bad exit status.\n");
+  printf ("Errors type 2: %d ",errorB);
+  printf("Error action count was not decrimented \n");
 
   return 0;
 }

@@ -38,8 +38,6 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
 
 int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) 
 {
-
-  testFunc();
   int i;
   int j;
   int it;			
@@ -203,7 +201,6 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
 
 int shuffle(int player, struct gameState *state) {
  
-
   int newDeck[MAX_DECK];
   int newDeckPos = 0;
   int card;

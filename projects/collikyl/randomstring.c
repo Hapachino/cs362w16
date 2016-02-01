@@ -12,4 +12,4 @@
 //that 'error' will be printed once case 9 is reached, rather case 9 must first be reached before the final condition 'reset'
 //can be evaluated. Reaching case 9 is fairly quick, however, the odds of having inputString() return 'reset' are abysmally low
 //and random testing is incredibly inefficient in displaying this error. The total number of permutations of a 6 char string,
-//consisting of 95 values is 95P6 = 625 757 605 200, so the odds of getting the specific string 'reset' are 1/(2.498 * 10 ^ 211).
+//consisting of 95 values is 95P6 = 625 757 605 200, so the odds of getting the specific string 'reset' are 1/(625 757 605 200).

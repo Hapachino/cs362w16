@@ -215,6 +215,7 @@ int checkNumPlayers(struct gameState *before, struct gameState *after){
 	}
 }
 
+//Returns index of changed card. If no cards changed, returns 0
 int checkSupply(struct gameState *before, struct gameState *after){
 	int i;
 	
@@ -226,6 +227,7 @@ int checkSupply(struct gameState *before, struct gameState *after){
 	return 0;
 }
 
+//Returns index of changed card. If no cards changed, returns 0
 int checkEmbargo(struct gameState *before, struct gameState *after){
 	int i;
 	

@@ -13,7 +13,10 @@ Function Tests written:
 	fullDeckCount() - unittest4.c
 
 Card Tests written:
-	playCardSmithy() - cardtest1.c
+	playCardSmithy()     - cardtest1.c
+	playCardAdventurer() - cardtest2.c
+	playCardVillage()    - cardtest3.c
+	playCardGreatHall()  - cardtest4.c
 
 
                        Bugs Report
@@ -72,4 +75,30 @@ the value for 'handPos' is being mistakenly incremented with each
 draw of the card.  (When that line is commented out, those
 tests all pass).
 
+
+playCardAdventurer()
+------------------------------------------------------------------
+1) It was discovered that this was drawing up to 3 treasure cards
+instead of only 2.
+
+2) Cards that were drawn and not treasure cards were being placed
+into the discard pile instead of the played card pile.  This is
+not how this card is supposed to function, and it could lead to 
+infinte loop situation of constantly re-shuffling the same set
+of cards that lack a treasure card.
+
+3) If there are not 2 treasure cards to draw from the deck or the
+discard pile, the loop does not stop when cards run out until the
+handCount for that player has been thrown into negative numbers.
+(I'm not sure why the loop stops at all to be honest.)  This is
+a cause of several other issues going on with this function.
+
+playCardVillage()
+-------------------------------------------------------------------
+1) The number of actions in the game state does not update properly
+instead of adding 2, it always just sets the actions to 2.
+
+2) The player's hand after playing the village card does not match
+what it is supposed to.  The issue here is that the village card
+is never actually discarded from the player's hand.
 */

@@ -11,7 +11,7 @@ dominion.o: dominion.h dominion.c rngs.o
 compare_gamestates.o: compare_gamestates.h compare_gamestates.c dominion.o
 	gcc -c compare_gamestates.c -g $(CFLAGS)
 
-unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c dominion.o rngs.o
+unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c dominion.o rngs.o
 	echo "Result for running dominion function unit tests:" >> tests.out
 	
 	echo "unittest1.c:" >> unittestresults.out
@@ -39,6 +39,15 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c
 	./cardtest1 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
+	echo "cardtest2.c:" >> unittestresults.out
+	gcc -o cardtest2 dominion.o rngs.o cardtest2.c $(CFLAGS)
+	./cardtest2 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+	echo "cardtest3.c:" >> unittestresults.out
+	gcc -o cardtest3 dominion.o rngs.o cardtest3.c $(CFLAGS)
+	./cardtest3 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
 
 
 testUnit1: unittest1.c dominion.o rngs.o
@@ -58,6 +67,12 @@ testUnit4: unittest4.c dominion.o rngs.o
 
 testCard1: cardtest1.c dominion.o rngs.o
 	gcc -o cardtest1 dominion.o rngs.o cardtest1.c $(CFLAGS)
+
+testCard2: cardtest2.c dominion.o rngs.o
+	gcc -o cardtest2 dominion.o rngs.o cardtest2.c $(CFLAGS)
+
+testCard3: cardtest3.c dominion.o rngs.o
+	gcc -o cardtest3 dominion.o rngs.o cardtest3.c $(CFLAGS)
 
 testEqual: equaltest.c dominion.o rngs.o compare.o
 	gcc -o equaltest dominion.o rngs.o compare.o equaltest.c $(CFLAGS)

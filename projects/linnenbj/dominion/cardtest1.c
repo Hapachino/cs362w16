@@ -160,95 +160,96 @@ int main() {
         printf("\b\b]\n");
 
 #endif
-    //Check for proper card counts
-    if(game.handCount[0] == numHand + 2)
-        testHandCounts++;
-    else if(numDeck + numDiscard < 3 && game.handCount[0] == numHand + numDeck + numDiscard -1)
-        testHandCounts++;
-    else
-    {
-        #if (NOISY_TEST == 1)
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        #endif
-    }
-    //Check for deck card counts
-    if(numDeck < 3) //did we have to shuffle
-    {
-        if(game.deckCount[0] == numDeck + numDiscard - 3)
-            testDeckCounts++;
-        else if(numDeck + numDiscard < 3 && game.deckCount[0] == 0)
-            testDeckCounts++;
-        else
-        {
-           #if (NOISY_TEST == 1)
-           printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-           #endif
-        }
-    }
-    else if(game.deckCount[0] == numDeck -3)
-            testDeckCounts++;
-    else
-        {
-           #if (NOISY_TEST == 1)
-           printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-           #endif
-        }
-
-
-    //Check for played card counts
-    if(game.playedCardCount == 1)
-            testPlayedCounts++;
-    else
-    {
-        #if (NOISY_TEST == 1)
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nPLAYED COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        #endif
-    }
-
-    //check for played card accuracy
-    if(game.playedCards[game.playedCardCount-1] == smithy)
-        testPlayedCards++;
-    else
-    {
-        #if (NOISY_TEST == 1)
-        printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nPLAYED CARD LIST FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-        #endif
-    }
-
-    //check for deck & hand card accuracy
-    currentTest = 1;
-    if(numDeck >= 3)  //no shuffle
-    {
-
-        for(i = 0; i < numDeck - 3; i++)
-        {
-            if(game.deck[0][i] != tempDeck[i])
-                currentTest = 0;
-        }
-
-
-        if((game.hand[0][numHand-1] != tempDeck[numDeck-3]) &&
-           (game.hand[0][numHand] != tempDeck[numDeck-1]) &&
-           (game.hand[0][numHand+1] != tempDeck[numDeck-2]))
-           {
-               currentTest = 0;
-           }
-
-
-        if(currentTest == 1)
-            testHandCards++;
+        //Check for proper card counts
+        if(game.handCount[0] == numHand + 2)
+            testHandCounts++;
+        else if(numDeck + numDiscard < 3 && game.handCount[0] == numHand + numDeck + numDiscard -1)
+            testHandCounts++;
         else
         {
             #if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND & DECK CARD LIST FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
             #endif
         }
-    }
-    else
-    {
-        testHandCards++;
+        //Check for deck card counts
+        if(numDeck < 3) //did we have to shuffle
+        {
+            if(game.deckCount[0] == numDeck + numDiscard - 3)
+                testDeckCounts++;
+            else if(numDeck + numDiscard < 3 && game.deckCount[0] == 0)
+                testDeckCounts++;
+            else
+            {
+               #if (NOISY_TEST == 1)
+               printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+               #endif
+            }
+        }
+        else if(game.deckCount[0] == numDeck -3)
+                testDeckCounts++;
+        else
+            {
+               #if (NOISY_TEST == 1)
+               printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+               #endif
+            }
 
-    }
+
+        //Check for played card counts
+        if(game.playedCardCount == 1)
+                testPlayedCounts++;
+        else
+        {
+            #if (NOISY_TEST == 1)
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nPLAYED COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            #endif
+        }
+
+        //check for played card accuracy
+        if(game.playedCards[game.playedCardCount-1] == smithy)
+            testPlayedCards++;
+        else
+        {
+            #if (NOISY_TEST == 1)
+            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nPLAYED CARD LIST FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+            #endif
+        }
+
+        //check for deck & hand card accuracy
+        currentTest = 1;
+        if(numDeck >= 3)  //no shuffle
+        {
+
+            for(i = 0; i < numDeck - 3; i++)
+            {
+                if(game.deck[0][i] != tempDeck[i])
+                    currentTest = 0;
+            }
+
+
+            if((game.hand[0][numHand-1] != tempDeck[numDeck-3]) &&
+               (game.hand[0][numHand] != tempDeck[numDeck-1]) &&
+               (game.hand[0][numHand+1] != tempDeck[numDeck-2]))
+               {
+                   currentTest = 0;
+               }
+
+
+            if(currentTest == 1)
+                testHandCards++;
+            else
+            {
+                #if (NOISY_TEST == 1)
+                printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND & DECK CARD LIST FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
+                #endif
+            }
+        }
+        else
+        {
+            testHandCards++;
+
+        }
+
 
     }
 
@@ -275,6 +276,7 @@ int main() {
         printf("\tALL HAND & DECK LIST TESTS PASSED\n");
     else
         printf("\tThere were %d hand & deck  list test failures.\n", tests - testHandCards);
+
 
     return 0;
 }

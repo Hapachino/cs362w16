@@ -1,6 +1,11 @@
 /*
  * Unit test for Great Hall Card
  *
+ * Business Rules:
+ *  1.	Current player should receive exactly 1 card
+ *	2.	Current player gains 1 action
+ *	3.	No state change should occur
+ *
  * cardTest4: cardTest4.c dominion.o rngs.o
  *      gcc -o cardTest4 -g cardTest4.c dominion.o rngs.o $(FLAGS)
  *

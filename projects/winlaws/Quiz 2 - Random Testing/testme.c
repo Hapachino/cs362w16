@@ -5,23 +5,26 @@
 
 char inputChar()
 {
-    //Gets a random ASCII character
-    char c = (rand() % (127-32)) + 32;
-    return c;
+  //Gets a random ASCII character in range [32, 126]
+  char c = (rand() % (127 - 32)) + 32;
+  return c;
 }
 
 char *inputString()
 {     
   int length = 6;
   char* s = malloc(length);
-
   int i;
+      
+  //Generates a random string of length 6
+  //(5 characters with a null terminator)
   for(i = 0; i < length - 1; i++)
   {
+    //Gets a random ASCII character in range [97-122]
     s[i] = (rand() % (123-97)) + 97;
   }
   s[i] = '\0';      
-  
+    
   return s;
 }
 
@@ -38,6 +41,7 @@ void testme()
     c = inputChar();
     s = inputString();
     
+    //prints status of every millionth iteration
     if(tcCount % 1000000 == 0)
       printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
 
@@ -55,6 +59,7 @@ void testme()
        && s[4] == 't' && s[5] == '\0'
        && state == 9)
     {
+      //prints status of iteration that executes error message
       printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
       printf("error \n");
       free(s);

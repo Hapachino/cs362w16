@@ -29,7 +29,7 @@ random values that are capable of printing the error message as described below.
 	---------------------------------------------------------------------------
 	char inputChar()
 	{
-	 	//Gets a random ASCII character
+	 	//Gets a random ASCII character in range [32, 126]
 	    char c = (rand() % (127 - 32)) + 32;
 	    return c;
 	}
@@ -48,10 +48,13 @@ random values that are capable of printing the error message as described below.
 	{   
 	    int length = 6;
   		char* s = malloc(length);
-
   		int i;
+ 		
+ 		//Generates a random string of length 6
+ 		//(5 characters with a null terminator)
  		for(i = 0; i < length - 1; i++)
  		{
+    		//Gets a random ASCII character in range [97-122]
     		s[i] = (rand() % (123-97)) + 97;
   		}
   		s[i] = '\0';      
@@ -105,20 +108,20 @@ iterations, varies according to random probability. Mathmatically speaking the
 odds of "reset" being returned are 1:(26^5 - 1) or 1:11,881,375. In my testing 
 of the above code, my results were as follows: 
 
-								 Test 	 Iteration
-								------------------
-								Run 1:	   516,553
-								Run 2: 	 8,913,037
-								Run 3: 	    20,314
-								Run 4: 	 2,431,339
-								Run 5: 	19,153,481
-								Run 6: 	 5,502,191
-								Run 7:	 2,916,448
-								Run 8:	 9,979,118
-								Run 9:	 1,467,336
-								Run 10:  4,130,911
-								------------------
-								AVG:	 5,451,418
+			 Test 	 Iteration
+			------------------
+			Run 1:	   516,553
+			Run 2: 	 8,913,037
+			Run 3: 	    20,314
+			Run 4: 	 2,431,339
+			Run 5: 	19,153,481
+			Run 6: 	 5,502,191
+			Run 7:	 2,916,448
+			Run 8:	 9,979,118
+			Run 9:	 1,467,336
+			Run 10:  4,130,911
+			------------------
+			AVG:	 5,451,418
 
 -------------------------------------------------------------------------------
 **Special Note on testMe()**

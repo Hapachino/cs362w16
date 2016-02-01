@@ -1,7 +1,0 @@
-/*
-Smithy card:
-  if played 
-
-
-
-*/

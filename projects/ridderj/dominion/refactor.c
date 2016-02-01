@@ -59,7 +59,7 @@ Changed Code with Bug:
    two players, everything will seem fine, but 3 players and up
    will alter the amount of actions.
 
-   state->numActions = state->numActions + MAX_PLAYERS;
+   state->numActions = state->numActions + state->numPlayers;
    
 
    

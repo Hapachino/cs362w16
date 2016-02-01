@@ -696,7 +696,7 @@ int villageCardFunc(struct gameState *state, int handPos)
    drawCard(currentPlayer, state);
       
    //+2 Actions
-   state->numActions = state->numActions + MAX_PLAYERS;
+   state->numActions = state->numActions + state->numPlayers;
       
    //discard played card from hand
    discardCard(handPos, currentPlayer, state, 0);
@@ -970,7 +970,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case village:
     
       villageCardFunc(state, handPos);
-		 
+		 return 0;
     case baron:
       state->numBuys++;//Increase buys by 1!
       if (choice1 > 0){//Boolean true or going to discard an estate
@@ -1086,7 +1086,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case steward:
       stewardCardFunc(choice1, choice2, choice3, state ,handPos);
-
+      return 0;
 		
     case tribute:
       if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1){
@@ -1208,7 +1208,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case cutpurse:
     
       cutpurseCardFunc(state, handPos);
-      
+      return 0;
 
 		
     case embargo: 

@@ -3,16 +3,30 @@
 #include <stdlib.h>
 #include <time.h>
 
+// randomly generate character from relevant set
 char inputChar()
 {
-    // TODO: rewrite this function
-    return ' ';
+    const char* set = "[({ ax})]";
+    int i = rand() % strlen(set);
+    return set[i];
 }
 
+// randomly shuffle the error inducing string
 char *inputString()
 {
-    // TODO: rewrite this function
-    return "";
+    char* s1 = "reset";
+    char* s2 = malloc(sizeof(char) * strlen(s1));
+    strcpy(s2, s1);
+
+    int length = strlen(s2);
+    for (int i = length - 1; i > 0; i--)
+    {
+        int j = rand() % (i + 1);
+        char temp = s2[i];
+        s2[i] = s2[j];
+        s2[j] = temp;
+    }
+    return s2;
 }
 
 void testme()
@@ -45,6 +59,7 @@ void testme()
       printf("error ");
       exit(200);
     }
+  free(s);
   }
 }
 

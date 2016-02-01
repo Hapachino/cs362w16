@@ -18,6 +18,30 @@ badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
 testBuyCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
+getCost: unittest1.c dominion.o rngs.o
+	gcc -o unit1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+
+updateCoins: unittest2.c dominion.o rngs.o
+	gcc -o unit2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
+
+isGameOver: unittest3.c dominion.o rngs.o
+	gcc -o unit3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
+
+buyCard: unittest4.c dominion.o rngs.o
+	gcc -o unit4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
+
+testVillage: cardtest1.c dominion.o rngs.o
+	gcc -o card1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+	
+testSalvager: cardtest2.c dominion.o rngs.o
+	gcc -o card2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+	
+testSmithy: cardtest3.c dominion.o rngs.o
+	gcc -o card3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+	
+testAdventurer: cardtest4.c dominion.o rngs.o
+	gcc -o card4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
@@ -34,6 +58,26 @@ player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
+
+test: getCost updateCoins isGameOver buyCard testVillage testAdventurer testSalvager testSmithy
+
+runtest: 
+	./unit1 >> unittestresults.out
+	./unit2 >> unittestresults.out
+	./unit3 >> unittestresults.out
+	./unit4 >> unittestresults.out
+	./card1 >> unittestresults.out
+	./card2 >> unittestresults.out
+	./card3	>> unittestresults.out
+	./card4 >> unittestresults.out
+
+unittestresults.out: 
+	make clean
+	rm -f unittestresults.out
+	make test	
+	make runtest
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

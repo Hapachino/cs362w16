@@ -5,13 +5,9 @@
 
 char inputChar()
 {
-  int n = (rand() % 95) + 32; /* Ints 32 through 127 are ASCII chars */
-  if(n > 64 && n < 91)
-    {                        
-      n += 32;                /* Make lower case if capital letter */
-    }
+  int n = (rand() % 25) + 97; /* Ints 97 through 122 are ASCII chars */
 
-  char c = n;                 /* convert ascii value to char */
+  char c = n;                 /* Convert ascii value to char */
   return c;
 }
 
@@ -22,7 +18,7 @@ char *inputString()
 
     for (i = 0; i < 5; i++)
       {
-        string[i] = (rand() % 25) + 97;   /* Lower case letters only */
+        string[i] = (rand() % 25) + 97;  /* Lower case letters only */
       }
     string[5] = '\0';                    /* Terminate with null */ 
     return string;

@@ -1,10 +1,10 @@
-/* Test for playAdventurer
+/* Test for playCouncilRoom
  * Requirements
- * 1. Current player adds 2 treasure cards to hand
- * 2. 2 treasure cards come from own deck
- * 3. 0-n amount of cards are drawn until 2 treasure cards have been revealed
- * 4. The non-treasure cards that were drawn are discarded
- * 5. No state change should occur for other players
+ * 1. Current player receives 4 card
+ * 2. 4 cards comes from players own pile
+ * 3. Current player recieves extra buy
+ * 4. Each other player receives 1 additional card
+ * 5. Additional cards come from each players own pile
  * 6. No state change should occur to the victory/kingdom card piles
  */
 
@@ -16,16 +16,15 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTCARD "adventurer"
+#define TESTCARD "council_room"
 
 int main() {
   int i;
-  int card;
   int cardTypes = 27;
-  int newCards = 2;
+  int newCards = 4;
+  int otherPlayerNewCards = 1;
   int discarded = 1;
-  int gameTreasureCount = 4;
-  int testGameTreasureCount = 0;
+  int extraBuys = 1;
 
   int handPos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
   int seed = 1000;
@@ -39,38 +38,25 @@ int main() {
   initializeGame(numPlayers, k, seed, &G);
 
   printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
-  //Setting players hand to adventurer, copper, silver, gold, copper
-  G.hand[thisPlayer][0] = 7;
-  G.hand[thisPlayer][1] = 4;
-  G.hand[thisPlayer][2] = 5;
-  G.hand[thisPlayer][3] = 6;
-  G.hand[thisPlayer][4] = 4;
 
   // copy the game state to a test case
   memcpy(&testG, &G, sizeof(struct gameState));
 
-  cardEffect(adventurer, choice1, choice2, choice3, &testG, handPos, &bonus);
+  cardEffect(council_room, choice1, choice2, choice3, &testG, handPos, &bonus);
 
   printf("--- Current Player ---\n");
   printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
   assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] + newCards - discarded);
   printf("deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards);
   assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer] - newCards);
-
-  for (i = 0; i < testG.handCount[thisPlayer]; i++) {
-    card = testG.hand[thisPlayer][i];
-    if (card == 4 || card == 5 || card == 6) {
-      testGameTreasureCount++;
-    }
-  }
-  printf("treasure count = %d, expected = %d\n", testGameTreasureCount, gameTreasureCount + newCards);
-  assert(testGameTreasureCount == gameTreasureCount + newCards);
+  printf("buys = %d, expected = %d\n", testG.numBuys, G.numBuys + extraBuys);
+  assert(testG.numBuys == G.numBuys + extraBuys);
 
   printf("--- Other Player ---\n");
-  printf("hand count = %d, expected = %d\n", testG.handCount[otherPlayer], G.handCount[otherPlayer]);
-  assert(testG.handCount[otherPlayer] == G.handCount[otherPlayer]);
-  printf("deck count = %d, expected = %d\n", testG.deckCount[otherPlayer], G.deckCount[otherPlayer]);
-  assert(testG.deckCount[otherPlayer] == G.deckCount[otherPlayer]);
+  printf("hand count = %d, expected = %d\n", testG.handCount[otherPlayer], G.handCount[otherPlayer] + otherPlayerNewCards);
+  assert(testG.handCount[otherPlayer] == G.handCount[otherPlayer] + otherPlayerNewCards);
+  printf("deck count = %d, expected = %d\n", testG.deckCount[otherPlayer], G.deckCount[otherPlayer] - otherPlayerNewCards);
+  assert(testG.deckCount[otherPlayer] == G.deckCount[otherPlayer] - otherPlayerNewCards);
 
   printf("--- Kingdom/Victory Pile ---\n");
   for (i = 0; i < cardTypes; i++) {

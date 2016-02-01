@@ -50,7 +50,7 @@ This test uncovered multiple bugs with the playSmithy() method.
 - The player who played smithy hand size increased by 3 instead of 2
 - The player who played smithy deck size decreases by 4 instead of 3
 - The player who played smithy action count didn't decrease
-- The smithy card doesnt correctly got into the played pile, instead it goes directly to discard
+- The smithy card doesnt correctly go into the played pile, instead it goes directly to discard
 
 cardtest2.c
 Tested: playAdventurer();

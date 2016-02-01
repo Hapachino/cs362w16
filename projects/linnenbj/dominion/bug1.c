@@ -101,4 +101,15 @@ instead of adding 2, it always just sets the actions to 2.
 2) The player's hand after playing the village card does not match
 what it is supposed to.  The issue here is that the village card
 is never actually discarded from the player's hand.
+
+playCardGreatHall()
+-------------------------------------------------------------------
+1) Every test failed when testing for correct action counts. Looking
+at the implementation, the function does not ever actually increase
+the actions by 1 as the card is supposed to do.
+
+2) Every test failed the played count test.  The reason for this is
+that when the great hall card is discarded, the trashflag is set to
+1 instead of 0.  This trashes the card instead of putting it in the
+player's played card pile.
 */

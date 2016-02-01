@@ -75,7 +75,7 @@ int main () {
 	//Check game state is unchanged
 	if (checkGameState(pre, g) < 0){
 		printf("FAIL when deckCount = 1\n");
-		printf("  gameState changed after shuffle\n");
+		printf("  gameState changed\n");
 		failed = 1;
 	} 
 	//Final check
@@ -87,11 +87,12 @@ int main () {
 	//---Test deckCount > 1
 	/*---Expected results: 
 	     - Game and turn settings are unchanged
-		 - Other player's cards (hand, deck, discard, played) are unchanged
-		 - Current player's hand, discard and played are unchanged
-		 - Deck Count is unchanged
-		 - Deck contains same cards as before shuffle
-		 - Deck cards are in different order than before shuffle
+		 - Other player's cards (hand, deck, discard) are unchanged
+		 - Current player's hand and discard are unchanged
+		 - Played cards are unchanged
+		 - Current player's deck Count is unchanged
+		 - Current player's deck contains same cards as before shuffle
+		 - Current player's deck cards are in different order than before shuffle
 	*/
 	//Create clean game
 	if (initializeGame(NUM_PLAYERS, selectedCards, seed, g) == -1){
@@ -105,7 +106,7 @@ int main () {
 	}		
 	//Save current state
 	memcpy(pre, g, sizeof(struct gameState));
-	//Initialize cards arrays
+	//Initialize card count arrays
 	for (i = 0; i < treasure_map; i++){
 		cardsAfter[i] = 0;
 		cardsBefore[i] = 0;
@@ -174,7 +175,8 @@ int main () {
 	//Check all hand, discard, play cards unchanged
 	if (checkHands(pre, g) < 0){
 		printf("FAIL when deckCount > 1\n");
-		printf("  Failure: hands changed after shuffle\n");
+		printf("  Hands changed after shuffle\n");
+		//Print expected and actual hand for each player
 		for (i = 0; i < NUM_PLAYERS; i++){
 			printf("    Hand for player %d:\n", i);
 			printf("      Count: %d, Expected: %d\n", g->handCount[i], pre->handCount[i]);
@@ -194,12 +196,12 @@ int main () {
 	}
 	if (checkDiscards(pre, g) < 0){
 		printf("FAIL when deckCount > 1\n");
-		printf("\tFailure: discards changed after shuffle\n");
+		printf("  Discards changed after shuffle\n");
 		failed = 1;
 	}
 	if (checkPlayed(pre, g) < 0){
 		printf("FAIL when deckCount > 1\n");
-		printf("\tFailure: played cards changed after shuffle\n");
+		printf("  Played cards changed after shuffle\n");
 		failed = 1;
 	}
 	//Check deck unchanged for other players
@@ -210,13 +212,13 @@ int main () {
 		}
 		if (pre->deckCount[i] != g->deckCount[i]){
 			printf("FAIL when deckCount > 1\n");
-			printf("\tFailure: other's deckCounts changed after shuffle\n");
+			printf("  Other player's deckCounts changed after shuffle\n");
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->deckCount[i]; j++){
 				if (pre->deck[i][j] != g->deck[i][j]){
 					printf("FAIL when deckCount > 1\n");
-					printf("\tFailure: other's decks changed after shuffle\n");
+					printf("  Other player's decks changed after shuffle\n");
 					failed = 1;
 				}
 			}
@@ -225,7 +227,7 @@ int main () {
 	//Check current player's deck is same size
 	if (pre->deckCount[whoseTurn(g)] != g->deckCount[whoseTurn(g)]){
 		printf("FAIL when deckCount > 1\n");
-		printf("\tFailure: player's deckCount changed after shuffle\n");
+		printf("  Current player's deckCount changed after shuffle\n");
 		failed = 1;
 	}
 	//Check current player's deck contains same cards as before
@@ -235,7 +237,7 @@ int main () {
 	for (i = 0; i < treasure_map; i++){
 		if (cardsBefore[i] != cardsAfter[i]){
 			printf("FAIL when deckCount > 1\n");
-			printf("\tFailure: cards in player's deck changed after shuffle\n");
+			printf("  Cards in current player's deck changed after shuffle\n");
 			failed = 1;
 			break;
 		}
@@ -251,7 +253,7 @@ int main () {
 		}
 		if (!changed){
 			printf("FAIL when deckCount > 1\n");
-			printf("\tFailure: cards in player's deck not shuffled\n");
+			printf("  Cards in current player's deck not shuffled\n");
 			failed = 1;
 		}
 	}

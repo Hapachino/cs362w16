@@ -1,6 +1,10 @@
 Statement, branch, boundary
 
 Total coverage of dominion.c: 36.22%
+Lines executed:36.54% of 583
+Branches executed:32.94% of 419
+Taken at least once:26.25% of 419
+Calls executed:25.00% of 96
 
 -- UNIT TESTS --
 

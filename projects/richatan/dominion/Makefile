@@ -38,6 +38,14 @@ unittestresults.out: unittest1.c testHelpers.o dominion.o rngs.o
 	echo "unittest1.c:" >> unittestresult.out
 	gcc -o unittest1 unittest1.c test_helpers.o dominion.o rngs.o $(CFLAGS)
 	./unittest1 >> unittestresult.out
+	
+	echo "unittest2.c:" >> unittestresult.out
+	gcc -o unittest2 unittest2.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./unittest2 >> unittestresult.out
+	
+	echo -e "\nResults for Card Unit Tests:" >> unittestresult.out
+	
+	echo -e "\nCode Coverage:" >> unittestresult.out
 	gcov ./dominion.c >> unittestresult.out
 
 player: player.c interface.o

@@ -96,6 +96,13 @@ void testPlaySmithy() {
   }
   printf("expects Player 1's 'hand' size to increase by a total of '2', 'hand' increased by: %d\n", handSizeIncrease);
 
+  if(state->deckCount[state->whoseTurn] == testGame->deckCount[testGame->whoseTurn]+3) {    // Smithy draws 3 cards so deck should decrease by 3.
+    printf(PLAYSMITHY_PASS);
+  } else {
+    printf(PLAYSMITHY_FAIL);
+  }
+  printf("expects Player 1's 'deck' size to decrease by a total of '3', 'deck' decreased by: %d\n", state->deckCount[state->whoseTurn]-testGame->deckCount[testGame->whoseTurn]);
+
   if(actionDecrease == 1) {    // Action reduced by 1 the same.
     printf(PLAYSMITHY_PASS);
   } else {

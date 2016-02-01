@@ -27,6 +27,7 @@ void testDrawCard() {
 
   initializeGame(numPlayers, kingdomCards, randomSeed, state);
 
+  // Player whose turn.
   // Start Test
   // Check one card is added to hand when drawCard() is called.
   memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
@@ -61,36 +62,6 @@ void testDrawCard() {
   }
   cardVariation = testGame->discardCount[player] - state->discardCount[player];
   printf("expected 'discard' count to stay the same after drawing card, got increase of: %d.\n", cardVariation);
-
-
-  // Check and make sure other players card counts didn't change.
-  for(i = 1; i < testGame->numPlayers; i++) {         // Don't start at player 1 since we already tested them.
-    if (state->discardCount[i] != testGame->discardCount[i]) {   // Discard count.
-      printf(DRAWCARD_FAIL);
-    } else {
-      printf(DRAWCARD_PASS);
-    }
-    cardVariation = testGame->discardCount[player] - state->discardCount[player];
-    printf("expected Player %d's discard count to stay the same after 'Player 1' draws a card, got change of: %d.\n", i+1, cardVariation);
-
-
-    if (state->deckCount[i] != testGame->deckCount[i]) {   // Deck count.
-      printf(DRAWCARD_FAIL);
-    } else {
-      printf(DRAWCARD_PASS);
-    }
-    cardVariation = testGame->deckCount[player] - state->deckCount[player];
-    printf("expected Player %d's deck count to stay the same after 'Player 1' draws a card, got change of: %d.\n", i+1, cardVariation);
-
-    if (state->handCount[i] != testGame->handCount[i]) {   // Hand count.
-      printf(DRAWCARD_FAIL);
-    } else {
-      printf(DRAWCARD_PASS);
-    }
-    cardVariation = testGame->handCount[player] - state->handCount[player];
-    printf("expected Player %d's hand count to stay the same after 'Player 1' draws a card, got change of: %d.\n", i+1, cardVariation);
-
-  }
 
 
   // Test drawing a card with no cards in deck.
@@ -131,6 +102,38 @@ void testDrawCard() {
     printf(DRAWCARD_PASS);
   }
   printf("expected 'discard' total to equal 0 after drawing a card with no cards in deck, got : %d.\n", testGame->discardCount[player]);
+
+
+  // Other Players
+  // Check and make sure other players card counts didn't change.
+  for(i = 1; i < testGame->numPlayers; i++) {         // Don't start at player 1 since we already tested them.
+    if (state->discardCount[i] != testGame->discardCount[i]) {   // Discard count.
+      printf(DRAWCARD_FAIL);
+    } else {
+      printf(DRAWCARD_PASS);
+    }
+    cardVariation = testGame->discardCount[i] - state->discardCount[i];
+    printf("expected Player %d's discard count to stay the same after 'Player 1' draws a card, got change of: %d.\n", i+1, cardVariation);
+
+
+    if (state->deckCount[i] != testGame->deckCount[i]) {   // Deck count.
+      printf(DRAWCARD_FAIL);
+    } else {
+      printf(DRAWCARD_PASS);
+    }
+    cardVariation = testGame->deckCount[i] - state->deckCount[i];
+    printf("expected Player %d's deck count to stay the same after 'Player 1' draws a card, got change of: %d.\n", i+1, cardVariation);
+
+    if (state->handCount[i] != testGame->handCount[i]) {   // Hand count.
+      printf(DRAWCARD_FAIL);
+    } else {
+      printf(DRAWCARD_PASS);
+    }
+    cardVariation = testGame->handCount[i] - state->handCount[i];
+    printf("expected Player %d's hand count to stay the same after 'Player 1' draws a card, got change of: %d.\n", i+1, cardVariation);
+
+  }
+
 
   // Clean memory.
   free(state);

@@ -1,0 +1,712 @@
+File 'dominion.c'
+Lines executed:33.16% of 573
+dominion.c:creating 'dominion.c.gcov'
+
+File 'unitTest1.c'
+Lines executed:100.00% of 33
+unitTest1.c:creating 'unitTest1.c.gcov'
+
+        -:    0:Source:unitTest1.c
+        -:    0:Graph:unitTest1.gcno
+        -:    0:Data:unitTest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for updateCoins function
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	For each copper card, add 1 coin
+        -:    6: *	2.	For each silver card, add 2 coins
+        -:    7: *	3.	For each gold card, add 3 coins
+        -:    8: *	4.	Add the bonus to the coin count
+        -:    9: *
+        -:   10: * unitTest1: unitTest1.c dominion.o rngs.o
+        -:   11: *      gcc -o unitTest1 -g unitTest1.c dominion.o rngs.o $(FLAGS)
+        -:   12: *
+        -:   13: */
+        -:   14:
+        -:   15:#include "dominion.h"
+        -:   16:#include "dominion_helpers.h"
+        -:   17:#include <string.h>
+        -:   18:#include <stdio.h>
+        -:   19:#include <assert.h>
+        -:   20:#include "rngs.h"
+        -:   21:
+        -:   22://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   23:#define NOISY_TEST 1
+        -:   24:
+        1:   25:int main() {
+        -:   26:    int i, p, new_game;
+        1:   27:    int seed = 1000;
+        1:   28:    int numPlayer = 2;
+        1:   29:    int maxBonus = 5;
+        -:   30:    int bonus;
+        -:   31:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   32:                 remodel, smithy, village, baron, great_hall};
+        -:   33:    struct gameState G;
+        -:   34:    int handCount;
+        1:   35:    int maxHandCount = 5;
+        -:   36:    int copper_coins[MAX_HAND];
+        -:   37:    int silver_coins[MAX_HAND];
+        -:   38:    int gold_coins[MAX_HAND];
+        -:   39:
+      501:   40:    for(i = 0; i < MAX_HAND; ++i) {
+      500:   41:        copper_coins[i] = copper;
+      500:   42:        silver_coins[i] = silver;
+      500:   43:        gold_coins[i] = gold;
+        -:   44:    }
+        -:   45:
+        1:   46:    printf("TESTING updateCoins()\n");
+        3:   47:    for(p = 0; p < numPlayer; ++p) {
+       10:   48:        for(handCount = 1; handCount < maxHandCount; ++handCount) {
+       48:   49:            for(bonus = 0; bonus < maxBonus; ++bonus) {
+        -:   50:                //clear the game state
+       40:   51:                memset(&G, 23, sizeof(struct gameState));
+        -:   52:                //initialize a new game
+       40:   53:                new_game = initializeGame(numPlayer, k, seed, &G);
+        -:   54:                //set number of cards on hand
+        -:   55:                //will loop through for every 5 hands
+       40:   56:                G.handCount[p] = handCount;
+        -:   57:
+        -:   58:                //set all cards to copper
+       40:   59:                memcpy(G.hand[p], copper_coins, sizeof(int) * handCount);
+       40:   60:                updateCoins(p, &G, bonus);
+        -:   61:#if (NOISY_TEST == 1)
+       40:   62:                printf("----------------------\nCOPPER\n");
+       40:   63:                printf("Coins before bonus + bonus coins = Total (%d + %d = %d) - Expected coins = %d\n",
+        -:   64:                       G.coins - bonus, bonus, G.coins, handCount * 1 + bonus);
+        -:   65:#endif
+        -:   66:
+        -:   67:                //set all cards to silver
+       40:   68:                memcpy(G.hand[p], silver_coins, sizeof(int) * handCount);
+       40:   69:                updateCoins(p, &G, bonus);
+        -:   70:#if (NOISY_TEST == 1)
+       40:   71:                printf("SILVER\n");
+       40:   72:                printf("Coins before bonus + bonus coins = Total (%d + %d = %d) - Expected coins = %d\n",
+       40:   73:                       G.coins - bonus, bonus, G.coins, handCount * 2 + bonus);
+        -:   74:#endif
+        -:   75:
+        -:   76:                //set all cards to gold
+       40:   77:                memcpy(G.hand[p], gold_coins, sizeof(int) * handCount);
+       40:   78:                updateCoins(p, &G, bonus);
+        -:   79:#if (NOISY_TEST == 1)
+       40:   80:                printf("GOLD\n");
+       40:   81:                printf("Coins before bonus + bonus coins = Total (%d + %d = %d) - Expected coins = %d\n",
+       40:   82:                       G.coins - bonus, bonus, G.coins, handCount * 3 + bonus);
+        -:   83:#endif
+        -:   84:
+        -:   85:            }
+        -:   86:        }
+        -:   87:    }
+        -:   88:
+        1:   89:    printf("\nAll tests passed: updateCoins()\n");
+        -:   90:
+        1:   91:    return 0;
+        -:   92:}
+File 'unitTest2.c'
+Lines executed:100.00% of 23
+unitTest2.c:creating 'unitTest2.c.gcov'
+
+        -:    0:Source:unitTest2.c
+        -:    0:Graph:unitTest2.gcno
+        -:    0:Data:unitTest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for isGameOver function
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	if the stack of province cards is empty, game is over
+        -:    6: *	2.	if three supply piles are empty, the game is over
+        -:    7: *	3.	if neither of these are true, the game continues
+        -:    8: *
+        -:    9: * unitTest2: unitTest2.c dominion.o rngs.o
+        -:   10: *      gcc -o unitTest2 -g unitTest2.c dominion.o rngs.o $(FLAGS)
+        -:   11: *
+        -:   12: */
+        -:   13:
+        -:   14:#include "dominion.h"
+        -:   15:#include "dominion_helpers.h"
+        -:   16:#include <string.h>
+        -:   17:#include <stdio.h>
+        -:   18:#include <assert.h>
+        -:   19:#include "rngs.h"
+        -:   20:
+        -:   21://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   22:#define NOISY_TEST 1
+        -:   23:
+        1:   24:int main() {
+        -:   25:    int i, p, new_game, isOver;
+        1:   26:    int seed = 1000;
+        1:   27:    int numPlayer = 1;
+        -:   28:    int copper_coins, silver_coins, gold_coins;
+        -:   29:    int province_count;
+        -:   30:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   31:                 remodel, smithy, village, baron, great_hall};
+        -:   32:    struct gameState G;
+        -:   33:
+        1:   34:    printf("TESTING isGameOver()\n");
+        2:   35:    for(p = 0; p < numPlayer; ++p) {
+        -:   36:        //tests if three supply piles are empty
+        6:   37:        for(copper_coins = 0; copper_coins < 5; ++copper_coins) {
+       30:   38:            for(silver_coins = 0; silver_coins < 5; ++silver_coins) {
+      150:   39:                for(gold_coins = 0; gold_coins < 5; ++gold_coins) {
+      750:   40:                    for(province_count = 0; province_count < 5; ++province_count) {
+        -:   41:                        //clear the game state
+      625:   42:                        memset(&G, 23, sizeof(struct gameState));
+        -:   43:                        //initialize a new game
+      625:   44:                        new_game = initializeGame(numPlayer, k, seed, &G);
+        -:   45:                        //set game state
+      625:   46:                        G.supplyCount[province] = province_count;
+      625:   47:                        G.supplyCount[copper] = copper_coins;
+      625:   48:                        G.supplyCount[silver] = silver_coins;
+      625:   49:                        G.supplyCount[gold] = gold_coins;
+        -:   50:
+        -:   51:                        //test if game is over
+      625:   52:                        isOver = isGameOver(&G);
+        -:   53:#if (NOISY_TEST == 1)
+      625:   54:                        printf("----------------------\nProvince = %d, Copper coins = %d, Silver coins = %d, Gold coins = %d\n",
+        -:   55:                               province_count, copper_coins, silver_coins, gold_coins);
+      625:   56:                        if(isOver)
+      129:   57:                            printf("Game over = YES\n");
+        -:   58:                        else
+      496:   59:                            printf("Game over = NO\n");
+        -:   60:#endif
+        -:   61:                    }
+        -:   62:                }
+        -:   63:            }
+        -:   64:        }
+        -:   65:    }
+        -:   66:
+        1:   67:    printf("\nAll tests passed: isGameOver()\n");
+        -:   68:
+        1:   69:    return 0;
+        -:   70:}
+File 'unitTest3.c'
+Lines executed:84.21% of 19
+unitTest3.c:creating 'unitTest3.c.gcov'
+
+        -:    0:Source:unitTest3.c
+        -:    0:Graph:unitTest3.gcno
+        -:    0:Data:unitTest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for getCost function
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	Each card should return its correct cost
+        -:    6: *	2.	Invalid card should return -1
+        -:    7: *
+        -:    8: * unitTest3: unitTest3.c dominion.o rngs.o
+        -:    9: *      gcc -o unitTest3 -g unitTest3.c dominion.o rngs.o $(FLAGS)
+        -:   10: *
+        -:   11: */
+        -:   12:
+        -:   13:#include "dominion.h"
+        -:   14:#include "dominion_helpers.h"
+        -:   15:#include <string.h>
+        -:   16:#include <stdio.h>
+        -:   17:#include <assert.h>
+        -:   18:#include "rngs.h"
+        -:   19:
+        -:   20://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   21:#define NOISY_TEST 1
+        -:   22:
+        1:   23:int main() {
+        -:   24:    int i, cost;
+        1:   25:    int isCorrect = 0;
+        -:   26:    int card_cost[27] = {0, 2, 5, 8, 0, 3, 6, 6, 5, 4, 4, 5, 4, 4,
+        1:   27:                         3, 4, 3, 5, 3, 5, 3, 4, 2, 5, 4, 4, 4};
+        -:   28:
+        1:   29:    printf("TESTING getCost()\n");
+        1:   30:    printf("TESTING all available cards:\n");
+        -:   31:    //test each available card
+       28:   32:    for(i = 0; i < 27; ++i) {
+       27:   33:        cost = getCost(i);
+       27:   34:        if(cost != card_cost[i])
+    #####:   35:            isCorrect = -1;
+        -:   36:    }
+        -:   37:#if (NOISY_TEST == 1)
+        1:   38:    if(isCorrect != -1)
+        1:   39:        printf("TEST PASSED\n");
+        -:   40:    else
+    #####:   41:        printf("TEST FAILED\n");
+        -:   42:
+        -:   43:    //test a card which does not exist
+        1:   44:    printf("TESTING non-existent card:\n");
+        1:   45:    cost = getCost(35);
+        1:   46:    if(cost == -1)
+        1:   47:        printf("TEST PASSED\n");
+        -:   48:    else
+    #####:   49:        printf("TEST FAILED\n");
+        -:   50:#endif
+        -:   51:
+        1:   52:    printf("\nAll tests passed: getCost()\n");
+        -:   53:
+        1:   54:    return 0;
+        -:   55:}
+File 'unitTest4.c'
+Lines executed:88.37% of 43
+unitTest4.c:creating 'unitTest4.c.gcov'
+
+        -:    0:Source:unitTest4.c
+        -:    0:Graph:unitTest4.gcno
+        -:    0:Data:unitTest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for gainCard function
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	If supply pile is empty or a card is invalid, dont let user gain a card
+        -:    6: *	2.	With a toFlag = 0, add a card to discard
+        -:    7: *	3.	With a toFlag = 1, add a card to the deck
+        -:    8: *	4.	With a toFlag = 2, add a card to the hand
+        -:    9: *  5.  Supply count must be decremented.
+        -:   10: *  6.  Victory card and Kingdom card piles should not be changed
+        -:   11: *
+        -:   12: * unitTest4: unitTest4.c dominion.o rngs.o
+        -:   13: *      gcc -o unitTest4 -g unitTest4.c dominion.o rngs.o $(FLAGS)
+        -:   14: *
+        -:   15: */
+        -:   16:
+        -:   17:#include "dominion.h"
+        -:   18:#include "dominion_helpers.h"
+        -:   19:#include <string.h>
+        -:   20:#include <stdio.h>
+        -:   21:#include <assert.h>
+        -:   22:#include "rngs.h"
+        -:   23:
+        -:   24://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   25:#define NOISY_TEST 1
+        -:   26:
+        1:   27:int main() {
+        -:   28:    int i, p, new_game, toFlag, supplyPos, result;
+        1:   29:    int seed = 1000;
+        1:   30:    int numPlayer = 1;
+        -:   31:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   32:                 remodel, smithy, village, baron, great_hall};
+        -:   33:    struct gameState G;
+        -:   34:
+        1:   35:    p = 0;
+        -:   36:
+        1:   37:    printf("TESTING gainCard()\n");
+        -:   38:
+        1:   39:    G.deckCount[p] = 30;
+        1:   40:    G.discardCount[p] = 20;
+        1:   41:    G.handCount[p] = 7;
+        1:   42:    G.discard[p][G.discardCount[p]] = 75;
+        1:   43:    supplyPos = 4;
+        -:   44:#if (NOISY_TEST == 1)
+        1:   45:    printf("TESTING toFlag = 0\n");
+        -:   46:#endif
+        1:   47:    G.supplyCount[4] = 5;
+        -:   48:    struct gameState toFlag_0;
+        1:   49:    memcpy(&toFlag_0, &G, sizeof(struct gameState));
+        -:   50:
+        1:   51:    result = gainCard(supplyPos, &G, 0, p);
+        -:   52:#if (NOISY_TEST == 1)
+        1:   53:    if((toFlag_0.discardCount[p] + 1 == G.discardCount[p]))
+        1:   54:        printf("TEST PASSED\n");
+        -:   55:    else
+    #####:   56:        printf("TEST FAILED\n");
+        -:   57:#endif
+        -:   58:#if (NOISY_TEST == 1)
+        1:   59:    printf("TESTING toFlag = 1\n");
+        -:   60:#endif
+        1:   61:    G.supplyCount[4] = 5;
+        -:   62:    struct gameState toFlag_1;
+        1:   63:    memcpy(&toFlag_1, &G, sizeof(struct gameState));
+        -:   64:
+        1:   65:    result = gainCard(supplyPos, &G, 1, p);
+        -:   66:#if (NOISY_TEST == 1)
+        1:   67:    if((toFlag_1.deckCount[p] + 1 == G.deckCount[p]))
+        1:   68:        printf("TEST PASSED\n");
+        -:   69:    else
+    #####:   70:        printf("TEST FAILED\n");
+        -:   71:#endif
+        -:   72:#if (NOISY_TEST == 1)
+        1:   73:    printf("TESTING toFlag = 2\n");
+        -:   74:#endif
+        1:   75:    G.supplyCount[4] = 5;
+        -:   76:    struct gameState toFlag_2;
+        1:   77:    memcpy(&toFlag_2, &G, sizeof(struct gameState));
+        -:   78:
+        1:   79:    result = gainCard(supplyPos, &G, 2, p);
+        -:   80:#if (NOISY_TEST == 1)
+        1:   81:    if((toFlag_2.handCount[p] + 1 == G.handCount[p]))
+        1:   82:        printf("TEST PASSED\n");
+        -:   83:    else
+    #####:   84:        printf("TEST FAILED\n");
+        -:   85:#endif
+        -:   86:
+        -:   87:    //check if supply pile is empty (0) or card is not used in game (-1)
+        -:   88:#if (NOISY_TEST == 1)
+        1:   89:    printf("TESTING empty pile or invalid card\n");
+        1:   90:    result = gainCard(-1, &G, -1, p);
+        1:   91:    if(result == -1) {
+        1:   92:        printf("TEST PASSED: Card not in pile or card does not exist\n");
+        -:   93:    }
+        -:   94:    else {
+    #####:   95:        printf("TEST FAILED\n");
+        -:   96:    }
+        -:   97:#endif
+        -:   98:#if (NOISY_TEST == 1)
+        1:   99:    printf("TESTING supplyCount\n");
+        -:  100:    //check if supply count has been decremented
+        1:  101:    if(toFlag_2.supplyCount[supplyPos] - 1 == G.supplyCount[supplyPos])
+        1:  102:        printf("TEST PASSED\n");
+        -:  103:    else
+    #####:  104:        printf("TEST FAILED\n");
+        -:  105:
+        1:  106:    printf("\nAll tests passed: gainCard()\n");
+        -:  107:#endif
+        -:  108:
+        1:  109:    return 0;
+        -:  110:}
+        -:  111:
+        -:  112:
+File 'cardTest1.c'
+Lines executed:87.18% of 39
+cardTest1.c:creating 'cardTest1.c.gcov'
+
+        -:    0:Source:cardTest1.c
+        -:    0:Graph:cardTest1.gcno
+        -:    0:Data:cardTest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for Smithy Card
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	Current player should receive exactly 3 cards
+        -:    6: *	2.	3 cards should come from his own pile
+        -:    7: *	3.	No state change should occur
+        -:    8: *	4.	Current card should be discarded
+        -:    9: *
+        -:   10: * cardTest1: cardTest1.c dominion.o rngs.o
+        -:   11: *      gcc -o cardTest1 -g cardTest1.c dominion.o rngs.o $(FLAGS)
+        -:   12: *
+        -:   13: */
+        -:   14:
+        -:   15:#include "dominion.h"
+        -:   16:#include "dominion_helpers.h"
+        -:   17:#include <string.h>
+        -:   18:#include <stdio.h>
+        -:   19:#include <assert.h>
+        -:   20:#include "rngs.h"
+        -:   21:
+        -:   22://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   23:#define NOISY_TEST 1
+        -:   24:
+        1:   25:int main() {
+        1:   26:    int i = 0, p = 0;
+        1:   27:    int handPos = 0;
+        1:   28:    int seed = 1000;
+        1:   29:    int numPlayer = 2;
+        -:   30:    int new_game;
+        -:   31:    int hand_count, deck_count, player_turn, smithy_count;
+        -:   32:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   33:                 remodel, smithy, village, baron, great_hall};
+        -:   34:    struct gameState G;
+        -:   35:
+        1:   36:    printf("TESTING Smithy Card\n");
+        -:   37:
+        -:   38:    //clear the game state
+        1:   39:    memset(&G, 23, sizeof(struct gameState));
+        -:   40:    //initialize a new game
+        1:   41:    new_game = initializeGame(numPlayer, k, seed, &G);
+        -:   42:
+        1:   43:    hand_count = G.handCount[p];
+        1:   44:    deck_count = G.deckCount[p];
+        1:   45:    player_turn = G.whoseTurn;
+        1:   46:    smithy_count = G.supplyCount[smithy];
+        1:   47:    int estate_count = G.supplyCount[estate];
+        1:   48:    int duchy_count = G.supplyCount[duchy];
+        1:   49:    int province_count = G.supplyCount[province];
+        1:   50:    int great_hall_count = G.supplyCount[great_hall];
+        1:   51:    int gardens_count = G.supplyCount[gardens];
+        -:   52:
+        -:   53:    //play smithy card
+        1:   54:    playSmithy(&G, handPos);
+        -:   55:#if (NOISY_TEST == 1)
+        -:   56:    //hand should have +2 cards
+        1:   57:    if(G.handCount[p] == hand_count + 2)
+        1:   58:        printf("TEST PASSED\n");
+        -:   59:    else
+    #####:   60:        printf("TEST FAILED\n");
+        -:   61:    //deck should have -3 cards
+        1:   62:    if(G.deckCount[p] == deck_count - 3)
+        1:   63:        printf("TEST PASSED\n");
+        -:   64:    else
+    #####:   65:        printf("TEST FAILED\n");
+        -:   66:    //player's turn should not change
+        1:   67:    if(G.whoseTurn == player_turn)
+        1:   68:        printf("TEST PASSED\n");
+        -:   69:    else
+    #####:   70:        printf("TEST FAILED\n");
+        -:   71:    //victory cards should be unchanged
+        2:   72:    if(G.supplyCount[estate] == estate_count && G.supplyCount[duchy] == duchy_count && G.supplyCount[province] == province_count)
+        1:   73:        printf("TEST PASSED\n");
+        -:   74:    else
+    #####:   75:        printf("TEST FAILED\n");
+        -:   76:    //kingdom cards should be unchanged
+        2:   77:    if(G.supplyCount[great_hall] == great_hall_count && G.supplyCount[gardens] == gardens_count)
+        1:   78:        printf("TEST PASSED\n");
+        -:   79:    else
+    #####:   80:        printf("TEST FAILED\n");
+        -:   81:#endif
+        -:   82:
+        1:   83:    hand_count = G.handCount[p];
+        1:   84:    deck_count = G.deckCount[p];
+        1:   85:    player_turn = G.whoseTurn;
+        -:   86:
+        1:   87:    printf("\nAll tests passed: Smithy Card\n");
+        -:   88:
+        1:   89:    return 0;
+        -:   90:}
+File 'cardTest2.c'
+Lines executed:88.89% of 27
+cardTest2.c:creating 'cardTest2.c.gcov'
+
+        -:    0:Source:cardTest2.c
+        -:    0:Graph:cardTest2.gcno
+        -:    0:Data:cardTest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for Adventure Card
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	Current player should receive exactly 2 cards
+        -:    6: *	2.	2 cards should come from his own pile
+        -:    7: *	3.	No state change should occur
+        -:    8: *
+        -:    9: * cardTest2: cardTest2.c dominion.o rngs.o
+        -:   10: *      gcc -o cardTest2 -g cardTest2.c dominion.o rngs.o $(FLAGS)
+        -:   11: *
+        -:   12: */
+        -:   13:
+        -:   14:#include "dominion.h"
+        -:   15:#include "dominion_helpers.h"
+        -:   16:#include <string.h>
+        -:   17:#include <stdio.h>
+        -:   18:#include <assert.h>
+        -:   19:#include "rngs.h"
+        -:   20:
+        -:   21://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   22:#define NOISY_TEST 1
+        -:   23:
+        1:   24:int main() {
+        1:   25:    int i = 0, p = 0;
+        1:   26:    int handPos = 0;
+        1:   27:    int seed = 1000;
+        1:   28:    int numPlayer = 2;
+        -:   29:    int new_game;
+        -:   30:    int hand_count, deck_count, player_turn, smithy_count;
+        -:   31:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   32:                 remodel, smithy, village, baron, great_hall};
+        -:   33:    struct gameState G;
+        -:   34:
+        1:   35:    printf("TESTING Adventurer Card\n");
+        -:   36:    //clear the game state
+        1:   37:    memset(&G, 23, sizeof(struct gameState));
+        -:   38:    //initialize a new game
+        1:   39:    new_game = initializeGame(numPlayer, k, seed, &G);
+        -:   40:
+        1:   41:    hand_count = G.handCount[p];
+        1:   42:    deck_count = G.deckCount[p];
+        1:   43:    player_turn = G.whoseTurn;
+        -:   44:
+        -:   45:    //play adventurer card
+        1:   46:    playAdventurer(&G);
+        -:   47:
+        -:   48:#if (NOISY_TEST == 1)
+        -:   49:    //hand should have +1 cards
+        1:   50:    if(G.handCount[p] == hand_count + 2)
+        1:   51:        printf("TEST PASSED\n");
+        -:   52:    else
+    #####:   53:        printf("TEST FAILED\n");
+        -:   54:    //deck should have -2 cards
+        1:   55:    if(G.deckCount[p] == deck_count - 2)
+        1:   56:        printf("TEST PASSED\n");
+        -:   57:    else
+    #####:   58:        printf("TEST FAILED\n");
+        -:   59:    //player's turn should not change
+        1:   60:    if(G.whoseTurn == player_turn)
+        1:   61:        printf("TEST PASSED\n");
+        -:   62:    else
+    #####:   63:        printf("TEST FAILED\n");
+        -:   64:#endif
+        -:   65:
+        1:   66:    hand_count = G.handCount[p];
+        1:   67:    deck_count = G.deckCount[p];
+        1:   68:    player_turn = G.whoseTurn;
+        -:   69:
+        1:   70:    printf("\nAll tests passed: Adventurer Card\n");
+        -:   71:
+        1:   72:    return 0;
+        -:   73:}
+File 'cardTest3.c'
+Lines executed:88.89% of 27
+cardTest3.c:creating 'cardTest3.c.gcov'
+
+        -:    0:Source:cardTest3.c
+        -:    0:Graph:cardTest3.gcno
+        -:    0:Data:cardTest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for Village Card
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	Current player's hand count should not change
+        -:    6: *	2.	Current player gains 2 actions
+        -:    7: *	3.	No state change should occur
+        -:    8: *
+        -:    9: * cardTest3: cardTest3.c dominion.o rngs.o
+        -:   10: *      gcc -o cardTest3 -g cardTest3.c dominion.o rngs.o $(FLAGS)
+        -:   11: *
+        -:   12: */
+        -:   13:
+        -:   14:#include "dominion.h"
+        -:   15:#include "dominion_helpers.h"
+        -:   16:#include <string.h>
+        -:   17:#include <stdio.h>
+        -:   18:#include <assert.h>
+        -:   19:#include "rngs.h"
+        -:   20:
+        -:   21://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   22:#define NOISY_TEST 1
+        -:   23:
+        1:   24:int main() {
+        1:   25:    int i = 0, p = 0;
+        1:   26:    int handPos = 0;
+        1:   27:    int seed = 1000;
+        1:   28:    int numPlayer = 2;
+        -:   29:    int new_game;
+        -:   30:    int hand_count, action_count, player_turn;
+        -:   31:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   32:                 remodel, smithy, village, baron, great_hall};
+        -:   33:    struct gameState G;
+        -:   34:
+        1:   35:    printf("TESTING Village Card\n");
+        -:   36:    //clear the game state
+        1:   37:    memset(&G, 23, sizeof(struct gameState));
+        -:   38:    //initialize a new game
+        1:   39:    new_game = initializeGame(numPlayer, k, seed, &G);
+        -:   40:
+        1:   41:    hand_count = G.handCount[p];
+        1:   42:    action_count = G.numActions;
+        1:   43:    player_turn = G.whoseTurn;
+        -:   44:
+        -:   45:    //play village card
+        1:   46:    playVillage(&G, handPos);
+        -:   47:#if (NOISY_TEST == 1)
+        -:   48:    //hand should have +0 cards
+        1:   49:    if(G.handCount[p] == hand_count)
+        1:   50:        printf("TEST PASSED\n");
+        -:   51:    else
+    #####:   52:        printf("TEST FAILED\n");
+        -:   53:    //player should have +2 action cards
+        1:   54:    if(G.numActions == action_count + 2)
+        1:   55:        printf("TEST PASSED\n");
+        -:   56:    else
+    #####:   57:        printf("TEST FAILED\n");
+        -:   58:    //player's turn should not change
+        1:   59:    if(G.whoseTurn == player_turn)
+        1:   60:        printf("TEST PASSED\n");
+        -:   61:    else
+    #####:   62:        printf("TEST FAILED\n");
+        -:   63:#endif
+        -:   64:
+        1:   65:    hand_count = G.handCount[p];
+        1:   66:    action_count = G.numActions;
+        1:   67:    player_turn = G.whoseTurn;
+        -:   68:
+        1:   69:    printf("\nAll tests passed: Village Card\n");
+        -:   70:
+        1:   71:    return 0;
+        -:   72:}
+File 'cardTest4.c'
+Lines executed:88.89% of 27
+cardTest4.c:creating 'cardTest4.c.gcov'
+
+        -:    0:Source:cardTest4.c
+        -:    0:Graph:cardTest4.gcno
+        -:    0:Data:cardTest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for Great Hall Card
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	Current player should receive exactly 1 card
+        -:    6: *	2.	Current player gains 1 action
+        -:    7: *	3.	No state change should occur
+        -:    8: *
+        -:    9: * cardTest4: cardTest4.c dominion.o rngs.o
+        -:   10: *      gcc -o cardTest4 -g cardTest4.c dominion.o rngs.o $(FLAGS)
+        -:   11: *
+        -:   12: */
+        -:   13:
+        -:   14:#include "dominion.h"
+        -:   15:#include "dominion_helpers.h"
+        -:   16:#include <string.h>
+        -:   17:#include <stdio.h>
+        -:   18:#include <assert.h>
+        -:   19:#include "rngs.h"
+        -:   20:
+        -:   21://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   22:#define NOISY_TEST 1
+        -:   23:
+        1:   24:int main() {
+        1:   25:    int i = 0, p = 0;
+        1:   26:    int handPos = 0;
+        1:   27:    int seed = 1000;
+        1:   28:    int numPlayer = 2;
+        -:   29:    int new_game;
+        -:   30:    int hand_count, action_count, player_turn;
+        -:   31:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   32:                 remodel, smithy, village, baron, great_hall};
+        -:   33:    struct gameState G;
+        -:   34:
+        1:   35:    printf("TESTING Great Hall Card\n");
+        -:   36:    //clear the game state
+        1:   37:    memset(&G, 23, sizeof(struct gameState));
+        -:   38:    //initialize a new game
+        1:   39:    new_game = initializeGame(numPlayer, k, seed, &G);
+        -:   40:
+        1:   41:    hand_count = G.handCount[p];
+        1:   42:    action_count = G.numActions;
+        1:   43:    player_turn = G.whoseTurn;
+        -:   44:
+        -:   45:    //play village card
+        1:   46:    playGreatHall(&G, handPos, p);
+        -:   47:#if (NOISY_TEST == 1)
+        -:   48:    //hand should have +1 cards
+        1:   49:    if(G.handCount[p] == hand_count)
+        1:   50:        printf("TEST PASSED\n");
+        -:   51:    else
+    #####:   52:        printf("TEST FAILED\n");
+        -:   53:    //player should have +1 action cards
+        1:   54:    if(G.numActions == action_count + 1)
+        1:   55:        printf("TEST PASSED\n");
+        -:   56:    else
+    #####:   57:        printf("TEST FAILED\n");
+        -:   58:    //player's turn should not change
+        1:   59:    if(G.whoseTurn == player_turn)
+        1:   60:        printf("TEST PASSED\n");
+        -:   61:    else
+    #####:   62:        printf("TEST FAILED\n");
+        -:   63:#endif
+        -:   64:
+        1:   65:    hand_count = G.handCount[p];
+        1:   66:    action_count = G.numActions;
+        1:   67:    player_turn = G.whoseTurn;
+        -:   68:
+        1:   69:    printf("\nAll tests passed: Great Hall Card\n");
+        -:   70:
+        1:   71:    return 0;
+        -:   72:}

@@ -52,22 +52,6 @@ runtests:
 	gcov -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-CT3: cardtest3.c dominion.o rngs.o
-	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
-
-CT3R:
-	./cardtest3 >> unittestresult.out
-	gcov -b dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
-
-CT2: cardtest2.c dominion.o rngs.o
-	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
-
-CT2R:
-	./cardtest2 >> unittestresult.out
-	gcov -b dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
-
 testDrawCards: testDrawCard
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out

@@ -139,7 +139,7 @@ int checkCounts(struct gameState *pre, struct gameState *post, int p, int victor
 
   // check hand count
   int failedTests = 0;
-  if(pre->handCount[p]+2 != post->handCount[p]) {
+  if(pre->handCount[p]+3 != post->handCount[p]) {
      printf("FAIL: Handcount mismatch\n");
      failedTests++;
    }

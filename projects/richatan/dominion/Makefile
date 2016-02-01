@@ -33,20 +33,20 @@ runtests: testDrawCard
 	cat dominion.c.gcov >> unittestresult.out
 
 unittestresults.out: unittest1.c testHelpers.o dominion.o rngs.o
-	echo "Results for Function Unit Tests:" > unittestresult.out
+	echo "Results for Function Unit Tests:" > unittestresults.out
 	
-	echo "unittest1.c:" >> unittestresult.out
+	echo "unittest1.c:" >> unittestresults.out
 	gcc -o unittest1 unittest1.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./unittest1 >> unittestresult.out
+	./unittest1 >> unittestresults.out
 	
-	echo "unittest2.c:" >> unittestresult.out
+	echo "unittest2.c:" >> unittestresults.out
 	gcc -o unittest2 unittest2.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./unittest2 >> unittestresult.out
+	./unittest2 >> unittestresults.out
 	
-	echo -e "\nResults for Card Unit Tests:" >> unittestresult.out
+	echo -e "\nResults for Card Unit Tests:" >> unittestresults.out
 	
-	echo -e "\nCode Coverage:" >> unittestresult.out
-	gcov ./dominion.c >> unittestresult.out
+	echo -e "\nCode Coverage:" >> unittestresults.out
+	gcov ./dominion.c >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

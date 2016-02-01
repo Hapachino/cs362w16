@@ -21,11 +21,11 @@ char *inputString()
 {
 
 	static char array[6];//static char array 0,1,2,3,4,5, spot 5 for '\0' 0-4 for 'reset'
-	int asciiRange = 26;//lowercase range 
-	char currentChar;//
+	int lowercase = 26;//ascii lowercase range 
+	char currentChar;//char
 	int i;
 	for(i = 0; i < 5; i++){
-		currentChar = ((rand() % asciiRange) + 97);//adding 97 for lowercase letter range. 
+		currentChar = ((rand() % lowercase) + 97);//adding 97 for lowercase letter range. 
 		array[i] = currentChar;
 	}
 	array[5] = '\0';

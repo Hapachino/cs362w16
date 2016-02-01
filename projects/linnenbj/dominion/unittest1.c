@@ -1,6 +1,10 @@
 /* -----------------------------------------------------------------------
- * isGameOver() Unit Testing file
- * Author: James Linnenburger - Oregon State CS362 Spring 2016
+ *isGameOver() Unit Testing file
+ *Author: James Linnenburger - Oregon State CS362 Spring 2016
+ *
+ *testUnit1: unittest1.c dominion.o rngs.o
+ *	gcc -0 unittest1 dominion.o rngs.o unittest1.c $(CFLAGS)
+ *
  *
  * -----------------------------------------------------------------------
  */
@@ -12,10 +16,6 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "rngs.h"
-
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_GREEN   "\x1b[32m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
 
 
 

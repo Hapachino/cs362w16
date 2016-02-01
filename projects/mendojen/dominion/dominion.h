@@ -102,6 +102,8 @@ int playCard(int handPos, int choice1, int choice2, int choice3,
 int buyCard(int supplyPos, struct gameState *state);
 /* Buy card with supply index supplyPos */
 
+int gainCard(int supplyPos, struct gameState *state, int toFlag, int player); 
+
 int numHandCards(struct gameState *state);
 /* How many cards current player has in hand */
 

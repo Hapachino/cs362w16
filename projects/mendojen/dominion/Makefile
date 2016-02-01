@@ -61,5 +61,23 @@ all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 test: getCost updateCoins isGameOver buyCard testVillage testAdventurer testSalvager testSmithy
 
+runtest: 
+	./unit1 >> unittestresults.out
+	./unit2 >> unittestresults.out
+	./unit3 >> unittestresults.out
+	./unit4 >> unittestresults.out
+	./card1 >> unittestresults.out
+	./card2 >> unittestresults.out
+	./card3	>> unittestresults.out
+	./card4 >> unittestresults.out
+
+unittestresults.out: 
+	make clean
+	rm -f unittestresults.out
+	make test	
+	make runtest
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

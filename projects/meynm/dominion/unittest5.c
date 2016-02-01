@@ -30,6 +30,8 @@ int main()
 
 	testCount = 0;
 
+	fprintf( stdout, "\nTesting buyCard()\n\n" );
+
 	for (i = 0; i <= treasure_map; i++)					// which card
 	{
 		for (j = 2; j < MAX_PLAYERS; j++)				// how many players
@@ -54,10 +56,10 @@ int main()
 	fprintf( stdout, "%d tests run.\n", testCount );
 	if (failureCount)
 	{
-		fprintf( stdout, "%d Problems found.\n", failureCount );
+		fprintf( stdout, "%d Problems found.\n\n", failureCount );
 	} else
 	{
-		fprintf( stdout, "All tests passed.\n" );
+		fprintf( stdout, "All tests passed.\n\n" );
 	}
 	return 0;
 }
@@ -75,8 +77,9 @@ int main()
 int testBuyCard( int numPlayers, int whichPlayer, int playerBuys, int playerMoney, int cardToBuy )
 {
 	int i, found = 0, result, expectedResult, failFlag = 0, failCount = 0, maxBuys;
-	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute,
-			smithy };
+	int k[10] = {
+			adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy
+	};
 	struct gameState pre, post;
 
 	// if cardToBuy is a k-card and is not in our initial set of k-cards, make
@@ -92,21 +95,13 @@ int testBuyCard( int numPlayers, int whichPlayer, int playerBuys, int playerMone
 			}
 		}
 		if (!found)
-		{
 			k[0] = cardToBuy;
-		}
 	}
-
 	initializeGame( numPlayers, k, SEED, &pre );
 	pre.coins = playerMoney;
 	pre.whoseTurn = whichPlayer;
 	pre.numBuys = playerBuys;
 	memcpy( &post, &pre, sizeof(struct gameState) );
-
-	if (playerBuys < 1 || getCost( cardToBuy ) > playerMoney)
-		expectedResult = -1;
-	else
-		expectedResult = 0;
 
 	// try to buy all the cards of type cardToBuy, and then one more!
 	maxBuys = 1 + post.supplyCount[cardToBuy];
@@ -119,20 +114,33 @@ int testBuyCard( int numPlayers, int whichPlayer, int playerBuys, int playerMone
 
 		result = buyCard( cardToBuy, &post );
 		testCount++;
-
 		if (result != expectedResult)
 			failFlag = 1;
 
-		if (result == 0)
+		if (result == 0)	// if buy was successful, check postconditions
 		{
 			// update our own variables
 			playerMoney -= getCost( cardToBuy );
 			--playerBuys;
 
 			// check whether postconditions have been met
+			if (post.coins != playerMoney)
+				failFlag = 1;
+			if (post.numBuys != playerBuys)
+				failFlag = 1;
+			if (post.supplyCount[cardToBuy] != pre.supplyCount[cardToBuy] - 1)
+				failFlag = 1;
 			if (post.discardCount[whichPlayer] != 1 + pre.discardCount[whichPlayer])
 				failFlag = 1;
-			if (post.discard[whichPlayer][post.discardCount[whichPlayer]] != cardToBuy)
+			else
+			{
+				if (post.discard[whichPlayer][post.discardCount[whichPlayer] - 1] != cardToBuy)
+					failFlag = 1;
+			}
+		}
+		else	// if buy unsuccessful, check to make sure nothing was changed
+		{
+			if (memcmp( &pre, &post, sizeof(struct gameState) ) != 0)
 				failFlag = 1;
 		}
 
@@ -143,7 +151,6 @@ int testBuyCard( int numPlayers, int whichPlayer, int playerBuys, int playerMone
 					whichPlayer, numPlayers, cardToBuy, playerMoney, playerBuys );
 			failCount++;
 		}
-
 		memcpy( &pre, &post, sizeof(struct gameState) );
 		failFlag = 0;
 	}

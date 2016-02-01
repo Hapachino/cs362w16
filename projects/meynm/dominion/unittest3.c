@@ -47,6 +47,7 @@ int testGainCard( int numPlayers, int numRuns )
 	struct gameState pre, post;
 	const int r = treasure_map - adventurer;
 
+	// play with random set of kingdom cards
 	for(i = 0; i < 10;)
 	{
 		card = rand() % r + adventurer;

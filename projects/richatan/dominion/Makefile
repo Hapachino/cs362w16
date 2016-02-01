@@ -42,6 +42,10 @@ unittestresults.out: unittest1.c testHelpers.o dominion.o rngs.o
 	echo "unittest2.c:" >> unittestresults.out
 	gcc -o unittest2 unittest2.c test_helpers.o dominion.o rngs.o $(CFLAGS)
 	./unittest2 >> unittestresults.out
+
+	echo "unittest3.c:" >> unittestresults.out
+	gcc -o unittest3 unittest3.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./unittest3 >> unittestresults.out
 	
 	echo -e "\nResults for Card Unit Tests:" >> unittestresults.out
 	

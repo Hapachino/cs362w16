@@ -73,14 +73,12 @@ runAllTests:
 	./cardtest3
 	./cardtest4
 
-coverage:
-	gcov -f -b dominion.c
-
-unittestresults.out:
-	make buildAllTests
-	make runAllTests >> unittestresult.out
-	echo "Coverage starts below:" >> unittestresult.out
-	make coverage >> unittestresult.out
+unittestresults.out: buildAllTests
+	cat /dev/null > unittestresults.out
+	make runAllTests >> unittestresults.out
+	echo "Coverage starts below:" >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

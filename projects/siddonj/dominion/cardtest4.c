@@ -150,6 +150,41 @@ void testPlayVillage() {
   printf("expects other player's 'discard' size to not increase, other player's 'discard' pile increased by: %d\n", otherDiscardIncrease);
 
 
+
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+
+  // Set player 1's first card in hand to be copper card.
+  testGame->hand[testGame->whoseTurn][0] = copper;
+
+  playVillage(testGame, testGame->whoseTurn, 0);         // First card is copper, not village;
+
+  if(state->numActions == testGame->numActions) {    // Players actions shouldn't update.
+    printf(PLAYVILLAGE_PASS);
+  } else {
+    printf(PLAYVILLAGE_FAIL);
+  }
+  printf("expects player's 'actions' to not increase when they select a card to play that isn't a village, actions increased by: %d\n", testGame->numActions-state->numActions);
+
+
+  memcpy(testGame, state, sizeof(struct gameState));                    // Setup clean test game.
+  // Clear deck
+  testGame->discard[testGame->whoseTurn][0] = testGame->hand[testGame->whoseTurn][0];
+  testGame->discardCount[testGame->whoseTurn] = 1;
+  testGame->deckCount[testGame->whoseTurn] = 0;
+
+  testGame->hand[testGame->whoseTurn][0] = village;
+
+  playVillage(testGame, testGame->whoseTurn, 0);         // First card is copper, not village;
+
+  if(state->discardCount[state->whoseTurn] == testGame->discardCount[testGame->whoseTurn]) {    // Players actions shouldn't update.
+    printf(PLAYVILLAGE_PASS);
+  } else {
+    printf(PLAYVILLAGE_FAIL);
+  }
+  printf("expects player's 'discard' to contain 0 cards when they play a village with not cards in deck and 1 card in discard, discard pile is: %d\n", testGame->discardCount[testGame->whoseTurn]);
+
+
+
   // Free memory
   free(state);
   state = 0;

@@ -1,16 +1,10 @@
 /* -----------------------------------------------------------------------
- * Test village card
+ * Test council room card
  * Need to verify:
- *   - if player gains 1 card
-        - + 1 to hand
-        - - 1 from deck
- *   - if the player gains 2 actions
-        - compare action number pre and post function call
-     - if the player's played card is discarded from hand
-        - check +1 to discard pile
-        - match played card to discard card
-
- *   - No state change should occur for other players.
+ *   - if player gains 4 cards
+ *   - if player gains + 1 buy
+ *   - if the player2 draws a card
+ *   - state change should occur for other players.
  *   - No state change should occur to the victory card piles and kingdom card piles
  *
  * --------------------------------------------------------------------
@@ -38,8 +32,9 @@
  int unitTest(int handPos, struct gameState *post, int p);
 
 int main() {
-   int p, r, p2,
+   int i, p, p2, r,
        seed, numPlayer,
+       kingdomCount, victoryCount,
        handPos;
 
    seed = 1000;
@@ -58,13 +53,14 @@ int main() {
    r = initializeGame(numPlayer, k, seed, &G);
 
 
-   printf ("TESTING Village Card:\n\n");
+   printf ("TESTING Council Room Card:\n\n");
 
    // stacking deck with copper (card 4)
    stackDeck(&G, p, 0, G.deckCount[p], copper);
 
    // stacking hand with silver (card 5)
    stackHand(&G, p, 0, G.handCount[p], silver);
+
 
    G.discardCount[p] = 2;
    G.discard[p][0] = copper;
@@ -80,11 +76,11 @@ return 0;
 }
 
 /* Test 1
-     - Draw copper card from deck -pass
-     - Gain two actions -pass
-     - Discard card - fail
-     - Verify player 2 state hasn't changed -pass
-     - No state change should occur to the victory card piles and kingdom card piles -pass
+     - Player gains 4 cards (net gain of 3)
+     - Player gains + 1 buy
+     - Player 2 draws card
+     - Verify player 2 state has changed
+     - No state change should occur to the victory card piles and kingdom card piles
 */
 
 int unitTest(int handPos, struct gameState *post, int p) {
@@ -95,8 +91,7 @@ int unitTest(int handPos, struct gameState *post, int p) {
   int r, j, victoryCount, victoryCount2, kingdomCount, kingdomCount2;
 
   // run fucntion
-  playVillage(handPos, post);
-  // cardEffect(village, 0, 0, 0, post, handPos, 0);
+  playCouncil_room(handPos, post);
 
   // count victory cards post function call
   victoryCount = getVictoryCount(&pre);
@@ -112,8 +107,8 @@ int unitTest(int handPos, struct gameState *post, int p) {
     failedTests++;
   }
 // card should be a silver because of our stacked deck/hand
- if(post->hand[p][4] != copper) {
-   printf("FAIL: added card isn't copper. Actual: %d\n", post->hand[p][4]);
+ if(post->hand[p][6] != copper) {
+   printf("FAIL: added card isn't copper. Actual: %d\n", post->hand[p][6]);
    failedTests++;
  }
 
@@ -150,31 +145,32 @@ int checkCounts(struct gameState *pre, struct gameState *post, int p, int victor
   int failedTests = 0;
 
   // check number of actions
-  if(pre->numActions + 2 != post->numActions) {
+  if(pre->numActions != post->numActions) {
     printf("FAIL: action count mismatch\n");
     failedTests++;
   }
 
   // check hand count
-  // we gain a card then discard a card so net gain is 0
-  if(pre->handCount[p] != post->handCount[p]) {
-     printf("FAIL: Handcount mismatch\n");
+  // we gain 4 card then discard a card so net gain is 3
+  if(pre->handCount[p] + 3 != post->handCount[p]) {
+     printf("FAIL: Handcount mismatch\n", pre->handCount[p] + 4, post->handCount[p]);
+     printf("Expected: %d,   Actual:  %d \n");
      failedTests++;
    }
 
   // check played count
-  if(pre->playedCardCount+1 != post->playedCardCount) {
+  if(pre->playedCardCount + 1 != post->playedCardCount) {
      printf("FAIL: Played card amount mismatch\n");
      failedTests++;
   }
 
   // check deck count
-  if(pre->deckCount[p]-1 != post->deckCount[p]) {
+  if(pre->deckCount[p] - 4 != post->deckCount[p]) {
     printf("FAIL: deck count mismatch\n");
     failedTests++;
   }
   // check discard count
-  if(pre->discardCount[p]+1 != post->discardCount[p]) {
+  if(pre->discardCount[p] != post->discardCount[p]) {
     printf("FAIL: discard count mismatch\n");
     printf("Expected: %d   Actual:  %d\n", pre->discardCount[p]+1,post->discardCount[p] );
 
@@ -232,6 +228,7 @@ int printDeck(struct gameState *post, int p, char *n) {
       printf("Index   %d      Card:   %d  \n", i, post->deck[p][i]);
   }
   return 0;
+
 }
 
 int printCounts(struct gameState *post, int p) {
@@ -241,6 +238,7 @@ int printCounts(struct gameState *post, int p) {
      printf("   Deck Count: %d \n", post->deckCount[p]);
      printf("   Discard Count: %d \n\n", post->discardCount[p]);
      return 0;
+
 }
 
 
@@ -253,6 +251,7 @@ int passOrFail(int r) {
     printf("TEST: FAIL\n");
   }
   return 0;
+
 }
 
 
@@ -262,7 +261,7 @@ int checkPlayer2(struct gameState *pre, struct gameState *post, int p, int victo
 
   // check hand count
   int failedTests = 0;
-  if(pre->handCount[p] != post->handCount[p]) {
+  if(pre->handCount[p] + 1 != post->handCount[p]) {
      printf("FAIL: Handcount mismatch\n");
      failedTests++;
    }
@@ -277,7 +276,7 @@ int checkPlayer2(struct gameState *pre, struct gameState *post, int p, int victo
   }
 
   // check deck count
-  if(pre->deckCount[p] != post->deckCount[p] ) {
+  if(pre->deckCount[p] - 1 != post->deckCount[p] ) {
     printf("FAIL: deck count mismatch\n");
     failedTests++;
   }

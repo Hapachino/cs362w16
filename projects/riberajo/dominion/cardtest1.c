@@ -35,7 +35,7 @@
  int unitTest(int handPos, struct gameState *post, int p, int victoryCount, int kingdomCount, int k[]);
 
 int main() {
-   int i, p, p2, r,
+   int p, r, p2,
        seed, numPlayer,
        kingdomCount, victoryCount,
        handPos;
@@ -67,7 +67,7 @@ int main() {
 
    // count all victory cards
    victoryCount = getVictoryCount(&G);
-
+   kingdomCount = getKingdomCount(&G);
  // run test
   r = unitTest(handPos, &G, p, victoryCount, kingdomCount, k);
 
@@ -84,7 +84,7 @@ int unitTest(int handPos, struct gameState *post, int p, int victoryCount, int k
   memcpy(&pre, post, sizeof(struct gameState));
   int failedTests = 0;
   int p2 = 1; // player 2
-  int r, i, victoryCount2, kingdomCount2;
+  int r, j, victoryCount2, kingdomCount2;
 
   // run fucntion
   playSmithy(handPos, post);
@@ -94,7 +94,6 @@ int unitTest(int handPos, struct gameState *post, int p, int victoryCount, int k
 
   // count all kingdom cards post function call
   kingdomCount2 = getKingdomCount(post);
-  kingdomCount  = getKingdomCount(&pre);
 
   r =  checkCounts(&pre, post, 0, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
 
@@ -102,14 +101,14 @@ int unitTest(int handPos, struct gameState *post, int p, int victoryCount, int k
     failedTests++;
   }
 // card should be a silver because of our stacked deck/hand
- if(pre.hand[p][0] != 5) {
-   printf("FAIL: added card isn't silver\n");
+ if(post->hand[p][5] != copper) {
+   printf("FAIL: added card isn't copper\n");
    failedTests++;
  }
 
  // check player 2 state
  printf("Checking Player %d: \n", p2+1);
- int j =  checkPlayer2(&pre, post, p2, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
+ j =  checkPlayer2(&pre, post, p2, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
 
  if(j > 0 ) {
    failedTests++;
@@ -220,6 +219,7 @@ int printCounts(struct gameState *post, int p) {
      printf("   Played Count: %d \n", post->playedCardCount);
      printf("   Deck Count: %d \n", post->deckCount[p]);
      printf("   Discard Count: %d \n\n", post->discardCount[p]);
+     return 0;
 }
 
 
@@ -231,6 +231,7 @@ int passOrFail(int r) {
   else {
     printf("TEST: FAIL\n");
   }
+  return 0;
 }
 
 
@@ -246,7 +247,7 @@ int checkPlayer2(struct gameState *pre, struct gameState *post, int p, int victo
    }
 
   // check played count
-  if(pre->playedCardCount != post->playedCardCount) {
+  if(pre->playedCardCount + 1 != post->playedCardCount) {
      printf("FAIL: Played card amount mismatch\n");
      printf("Expected %d    Actual %d \n", pre->playedCardCount, post->playedCardCount);
 

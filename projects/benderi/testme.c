@@ -1,3 +1,8 @@
+/* Name:    Ian Bender
+ * Course:  CS362
+ * Project: Random Testing Quiz 2
+ */
+
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -14,15 +19,15 @@ char inputChar()
 
 char *inputString()
 {
-    // TODO: rewrite this function
     int i;
     char *randStr = (char*)malloc(sizeof(char) * 6);
     assert(randStr != 0);
     for (i = 0; i < 5; i++)
     {
-        //random char in range 'e' through 't'
-        //randStr[i] = 'e' + (random() % 16);
-        randStr[i] = 'a' + (random() % 26);
+        //random letter in range 'e' through 't'
+        randStr[i] = 'e' + (random() % 16);
+        //random lowercase letter
+        //randStr[i] = 'a' + (random() % 26);
     }
     //always append null char to string
     randStr[5] = '\0';

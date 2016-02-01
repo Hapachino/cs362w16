@@ -1,6 +1,8 @@
 Janel Buckingham
 CS 362 Winter 2016
-Assignment 2
+Assignment 3
+
+I did not add new bugs this week, so all below was previously documented for assignment2
 
 Added 5 new functions to dominion.h/dominion.c:
 int playAdventurer(int currentPlayer, struct gameState *state);

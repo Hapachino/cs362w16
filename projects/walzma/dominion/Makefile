@@ -29,11 +29,29 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+
+unittestresults.out: dominion.h rngs.h dominion_helpers.h dominion.o rngs.o unittest1.c unittest2.c unittest3.c unittest4.c
+#	gcc -o unittest1 unittest1.c dominion.o rngs.o -g $(CFLAGS)
+#	./unittest1
+#	./unittest1 >> unittestresults.out
+#	gcov dominion.c >> unittestresults.out
+#	gcc -o unittest2 unittest2.c dominion.o rngs.o -g $(CFLAGS)
+#	./unittest2
+#	./unittest2 >> unittestresults.out
+#	gcov dominion.c >> unittestresults.out
+#	gcc -o unittest3 unittest3.c dominion.o rngs.o -g $(CFLAGS)
+#	./unittest3
+#	./unittest3 >> unittestresults.out
+#	gcov dominion.c >> unittestresults.out
+#	gcc -o unittest4 unittest4.c dominion.o rngs.o -g $(CFLAGS)
+#	./unittest4
+#	./unittest4 >> unittestresults.out
+#	gcov dominion.c >> unittestresults.out
+
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittestresults.out

@@ -5,8 +5,14 @@
 
 char inputChar()
 {
-  int n = (rand() % 25) + 97; /* Ints 97 through 122 are ASCII chars */
-
+   int n = (rand() % 95) + 32; /* Ints 32 through 127 are ASCII chars */
+   if(n > 64 && n < 91)
+     {                        
+       n += 32;                /* Make lower case if capital letter */
+     }
+   /* Could optimize getting rid of a few chars not in the state machine,
+      but chose to leave this domain of testing in case to cover other
+      versions of the character set, like < or > instead of ( and ). */
   char c = n;                 /* Convert ascii value to char */
   return c;
 }

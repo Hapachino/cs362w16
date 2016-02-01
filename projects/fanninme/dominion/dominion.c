@@ -101,7 +101,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   state->supplyCount[gold] = 30;
 
   //set number of Kingdom cards
-  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+  for (i = adventurer; i <= treasure_map; i++)   //loop all cards
     {
       for (j = 0; j < 10; j++)           		//loop chosen cards
 	{
@@ -194,6 +194,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   return 0;
 }
 
+/***----shuffle cards ---***/
 int shuffle(int player, struct gameState *state) {
  
 
@@ -224,6 +225,7 @@ int shuffle(int player, struct gameState *state) {
   return 0;
 }
 
+//***---- Play Card ----***//
 int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
 {	
   int card;
@@ -265,6 +267,7 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
   return 0;
 }
 
+/***---- Buy Card ----***/
 int buyCard(int supplyPos, struct gameState *state) {
   int who;
   if (DEBUG){
@@ -272,7 +275,6 @@ int buyCard(int supplyPos, struct gameState *state) {
   }
 
   // I don't know what to do about the phase thing.
-
   who = state->whoseTurn;
 
   if (state->numBuys < 1){
@@ -317,6 +319,7 @@ int supplyCount(int card, struct gameState *state) {
   return state->supplyCount[card];
 }
 
+/***--- full deck count ---***/
 int fullDeckCount(int player, int card, struct gameState *state) {
   int i;
   int count = 0;
@@ -343,6 +346,7 @@ int whoseTurn(struct gameState *state) {
   return state->whoseTurn;
 }
 
+//***--- End Turn ---***//
 int endTurn(struct gameState *state) {
   int k;
   int i;
@@ -354,7 +358,7 @@ int endTurn(struct gameState *state) {
     state->hand[currentPlayer][i] = -1;//Set card to -1
   }
   state->handCount[currentPlayer] = 0;//Reset hand count
-    
+
   //Code for determining the player
   if (currentPlayer < (state->numPlayers - 1)){ 
     state->whoseTurn = currentPlayer + 1;//Still safe to increment
@@ -376,13 +380,13 @@ int endTurn(struct gameState *state) {
   for (k = 0; k < 5; k++){
     drawCard(state->whoseTurn, state);//Draw a card
   }
-
   //Update money
   updateCoins(state->whoseTurn, state , 0);
 
   return 0;
 }
 
+/***---- is Game Over ----***/
 int isGameOver(struct gameState *state) {
   int i;
   int j;
@@ -395,13 +399,12 @@ int isGameOver(struct gameState *state) {
 
   //if three supply pile are at 0, the game ends
   j = 0;
-  for (i = 0; i < 25; i++)
-    {
-      if (state->supplyCount[i] == 0)
-	{
-	  j++;
-	}
-    }
+  //TODO removed magic number  25=10 kingdom cards + 3 coin types+ 2 providence 
+  for (i = 0; i < 25; i++){
+      if (state->supplyCount[i] == 0){
+	    j++;
+	  }
+  }
   if ( j >= 3)
     {
       return 1;
@@ -410,6 +413,7 @@ int isGameOver(struct gameState *state) {
   return 0;
 }
 
+/***---- score for ----***/
 int scoreFor (int player, struct gameState *state) {
 
   int i;
@@ -449,7 +453,7 @@ int scoreFor (int player, struct gameState *state) {
 
   return score;
 }
-
+/***--- get winners  ---***/
 int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
   int i;	
   int j;
@@ -472,7 +476,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
 
   //find highest score
   j = 0;
-  for (i = 0; i < MAX_PLAYERS; i++)
+ for (i = 0; i < MAX_PLAYERS; i++)
     {
       if (players[i] > players[j])
 	{
@@ -517,7 +521,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
 
   return 0;
 }
-
+/***---- draw card ----***/
 int drawCard(int player, struct gameState *state)
 {	int count;
   int deckCounter;
@@ -576,6 +580,7 @@ int drawCard(int player, struct gameState *state)
   return 0;
 }
 
+/***---- get cost ----***/
 int getCost(int cardNumber)
 {
   switch( cardNumber ) 
@@ -640,6 +645,8 @@ int getCost(int cardNumber)
 }
 //****--- Card Functions ---****//
 //------------Adventurer-----------------//
+//draw cards until two treasure cards are revealed (a silver, copper or gold)
+// discard non treasure cards drawn
 void adventurerCard(int currentPlayer, struct gameState *state){
     int cardDrawn;
     int drawntreasure=0;
@@ -737,6 +744,7 @@ void smithyCard(int currentPlayer,struct gameState *state,int handPos){
 		
 }		
 /*------------------------Village-------------------------------*/
+//plus 1 card plus 2 actions
 void villageCard(int currentPlayer,struct gameState *state,int handPos){
     //+1 Card
     drawCard(currentPlayer, state);

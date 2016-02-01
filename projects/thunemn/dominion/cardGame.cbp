@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="cardGame" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/cardGame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/cardGame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="badTestDrawCard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="betterTestDrawCard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="documentation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dominion.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dominion.h" />
+		<Unit filename="dominion_helpers.h" />
+		<Unit filename="interface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="interface.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="playdom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="player.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="refactor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rngs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rngs.h" />
+		<Unit filename="rt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="supplyTest.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="testBuyCard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="testDrawCard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="testInit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="testShuffle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="unitTest1.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="unitTest2.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="unitTest3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="unitTest4.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

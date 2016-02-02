@@ -73,6 +73,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
   if (numPlayers == 2)
     {
       state->supplyCount[curse] = 10;
+      
     }
   else if (numPlayers == 3)
     {

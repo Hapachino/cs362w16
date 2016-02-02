@@ -1,0 +1,92 @@
+        -:    0:Source:cardtest4.c
+        -:    0:Graph:cardtest4.gcno
+        -:    0:Data:cardtest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/********************
+        -:    2:* Author: Philip Jones
+        -:    3:* Term: Winter 2016
+        -:    4:* Description: Checks the Great Hall card.
+        -:    5:********************/
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <assert.h>
+        -:   11:#include <stdlib.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <math.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:#define NOISY_TEST 1
+        -:   17:
+     2000:   18:int testGreatHall(int card, int player, int position, struct gameState *after)
+        -:   19:{
+        -:   20:	int i, actions, count;
+        -:   21:	
+        -:   22:	struct gameState before;
+     2000:   23:	memcpy(&before, after, sizeof(struct gameState));
+        -:   24:
+     2000:   25:	actions = after->numActions;
+     2000:   26:	count = after->handCount[player];
+     2000:   27:	i = cardEffect(card, 0, 0, 0, after, position, 0);
+        -:   28:
+     2000:   29:	drawCard(player, &before);
+     2000:   30:	before.numActions = before.numActions + 1;
+        -:   31:
+     2000:   32:	discardCard(position, player, &before, 0);
+        -:   33:
+     2000:   34:	if (i != 0)
+        -:   35:	{
+    #####:   36:		printf("The Great Hall card didn't work properly. \n");
+        -:   37:	}
+        -:   38://	assert(i == 0);
+        -:   39:
+     2000:   40:	if (after->handCount[player] != count)
+        -:   41:	{
+    #####:   42:		printf("The Great Hall card didn't work properly. \n");
+        -:   43:	}
+        -:   44://	assert(after->handCount[player] == count);
+        -:   45:
+     2000:   46:	if (after->numActions == (actions + 1))
+        -:   47:	{
+     2000:   48:		printf("The Great Hall card didn't work properly. \n");
+        -:   49:	}
+        -:   50://	assert(after->numActions == (actions + 1));
+        -:   51:
+     2000:   52:	return 0;
+        -:   53:}
+        -:   54:
+        1:   55:int main()
+        -:   56:{
+        -:   57:	int i, j, p, position;
+        -:   58:	struct gameState state;
+        -:   59:
+        1:   60:	SelectStream(2);
+        1:   61:	PutSeed(3);
+        -:   62:
+     2001:   63:	for (i = 0; i < 2000; i++)
+        -:   64:	{
+ 52602000:   65:		for (j = 0; j < sizeof(struct gameState); j++)
+        -:   66:		{
+ 52600000:   67:			((char*)&state)[j] = floor(Random() * 256);
+        -:   68:		}
+        -:   69:
+     2000:   70:		state.numPlayers = 2 + floor(Random() * (MAX_PLAYERS - 1));
+     2000:   71:		p = floor(Random() * state.numPlayers);
+     2000:   72:		state.whoseTurn = p;
+        -:   73:
+     2000:   74:		state.deckCount[p] = floor(Random() * MAX_DECK);
+     2000:   75:		state.discardCount[p] = floor(Random() * MAX_DECK);
+     2000:   76:		state.handCount[p] = floor(Random() * MAX_HAND);
+     2000:   77:		state.playedCardCount = floor(Random() * MAX_DECK);
+        -:   78:
+     2000:   79:		position = floor(Random() * state.handCount[p]);
+        -:   80:		
+     2000:   81:		testGreatHall(great_hall, p, position, &state);
+        -:   82:	}
+        -:   83:
+        1:   84:	printf("No errors found in tests of Great Hall Card \n");
+        -:   85:
+        1:   86:	return 0;
+        -:   87:}

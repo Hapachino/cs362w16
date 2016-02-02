@@ -14,37 +14,6 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 
-void discardCardTest(int totalHandCount, int handPos, int player, int trashFlag);
-
-int main(int argc, char *argv[]){
-    // Discarding from the front, middle, and end of the hand should work.
-    // Start with the case where there is only one card in the hand.
-    discardCardTest(1, 0, 0, 0);
-    discardCardTest(1, 1, 0, 0);
-    discardCardTest(1, 0, 1, 0);
-    discardCardTest(1, 0, 0, 1);
-
-    // Now do cases where there are 3 cards in the hand and we want to remove the first
-    discardCardTest(3, 0, 0, 0);
-    discardCardTest(3, 0, 1, 0);
-    discardCardTest(3, 0, 0, 1);
-
-    // Now do cases where there are 3 cards in the hand and we want to remove the middle
-    discardCardTest(3, 1, 0, 0);
-    discardCardTest(3, 1, 0, 1);
-    discardCardTest(3, 1, 1, 0);
-    discardCardTest(3, 1, 0, 1);
-
-    // Now do cases where there are 3 cards in the hand and we want to remove the last
-    discardCardTest(3, 2, 0, 0);
-    discardCardTest(3, 2, 0, 1);
-    discardCardTest(3, 2, 1, 0);
-    discardCardTest(3, 2, 0, 1);
-
-    printf("\tunittest3: PASS\r\n");
-    return 0;
-}
-
 void discardCardTest(int totalHandCount, int handPos, int player, int trashFlag){
     struct gameState state;
 
@@ -95,3 +64,33 @@ void discardCardTest(int totalHandCount, int handPos, int player, int trashFlag)
     // No other player's hand should be affected.
     assert(state.handCount[player + 1] == 0);
 }
+
+int main(int argc, char *argv[]){
+    // Discarding from the front, middle, and end of the hand should work.
+    // Start with the case where there is only one card in the hand.
+    discardCardTest(1, 0, 0, 0);
+    discardCardTest(1, 1, 0, 0);
+    discardCardTest(1, 0, 1, 0);
+    discardCardTest(1, 0, 0, 1);
+
+    // Now do cases where there are 3 cards in the hand and we want to remove the first
+    discardCardTest(3, 0, 0, 0);
+    discardCardTest(3, 0, 1, 0);
+    discardCardTest(3, 0, 0, 1);
+
+    // Now do cases where there are 3 cards in the hand and we want to remove the middle
+    discardCardTest(3, 1, 0, 0);
+    discardCardTest(3, 1, 0, 1);
+    discardCardTest(3, 1, 1, 0);
+    discardCardTest(3, 1, 0, 1);
+
+    // Now do cases where there are 3 cards in the hand and we want to remove the last
+    discardCardTest(3, 2, 0, 0);
+    discardCardTest(3, 2, 0, 1);
+    discardCardTest(3, 2, 1, 0);
+    discardCardTest(3, 2, 0, 1);
+
+    printf("\tunittest3: PASS\r\n");
+    return 0;
+}
+

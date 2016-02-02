@@ -1,0 +1,100 @@
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/********************
+        -:    2:* Author: Philip Jones
+        -:    3:* Term: Winter 2016
+        -:    4:* Description: Checks the shuffle() function.
+        -:    5:********************/
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <assert.h>
+        -:   11:#include <stdlib.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <math.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:// set NOISY_TEST to 0 to remove printfs from output
+        -:   17:#define NOISY_TEST 1
+        -:   18:
+  3493870:   19:int compareShuffles(const void* x, const void* y) {
+  3493870:   20:	if (*(int*) x > *(int*) y)
+  1749926:   21:		return 1;
+        -:   22:
+  1743944:   23:	if (*(int*) x < *(int*) y)
+   774770:   24:		return -1;
+        -:   25:
+   969174:   26:	return 0;
+        -:   27:}
+        -:   28:
+     2000:   29:int testShuffle(int player, struct gameState *after)
+        -:   30:{
+        -:   31:	int i, j;
+        -:   32:	struct gameState before;
+     2000:   33:	memcpy(&before, after, sizeof(struct gameState));
+        -:   34:
+     2000:   35:	i = shuffle(player, after);
+     2000:   36:	j = 0;
+        -:   37:
+     2000:   38:	if (before.deckCount[player] < 1)
+        -:   39:	{
+        4:   40:		j = -1;
+        -:   41:	}
+     2000:   42:	qsort((void*)(before.deck[player]), before.deckCount[player], sizeof(int), compareShuffles);
+     2000:   43:	if (i != j)
+        -:   44:	{
+    #####:   45:		printf("The shuffle didn't work too well. \n");
+    #####:   46:		return -1;
+        -:   47:	}
+        -:   48:
+     2000:   49:	if (i == -1 && before.deck[player] == after->deck[player])
+        -:   50:	{
+    #####:   51:		printf("The shuffle didn't work too well. \n");
+    #####:   52:		return -1;
+        -:   53:	}
+        -:   54:
+     2000:   55:	return 0;
+        -:   56:}
+        -:   57:
+        1:   58:int main()
+        -:   59:{
+        -:   60:	int i, j, p;
+        -:   61:	struct gameState state;
+        -:   62:
+        1:   63:	SelectStream(2);
+        1:   64:	PutSeed(3);
+        -:   65:
+     2001:   66:	for (i = 0; i < 2000; i++)
+        -:   67:	{
+ 52602000:   68:		for (j = 0; j < sizeof(struct gameState); j++)
+        -:   69:		{
+ 52600000:   70:			((char*)&state)[j] = floor(Random() * 256);
+        -:   71:		}
+        -:   72:
+     2000:   73:		state.numPlayers = 2 + floor(Random() * (MAX_PLAYERS - 2));
+     2000:   74:		state.whoseTurn = floor(Random() * state.numPlayers);
+     2000:   75:		p = state.whoseTurn;
+        -:   76:
+     2000:   77:		state.deckCount[p] = floor(Random() * MAX_DECK);
+     2000:   78:		state.discardCount[p] = floor(Random() * MAX_DECK);
+     2000:   79:		state.handCount[p] = floor(Random() * MAX_HAND);
+        -:   80:
+  1002000:   81:		for (j = 0; j < MAX_HAND; j++)
+        -:   82:		{
+  1000000:   83:			state.hand[p][j] = floor(Random() * 26);
+  1000000:   84:			state.deck[p][j] = floor(Random() * 26);
+  1000000:   85:			state.discard[p][j] = floor(Random() * 26);
+        -:   86:		}
+        -:   87:
+     2000:   88:		if (testShuffle(p, &state) != 0)
+        -:   89:		{
+    #####:   90:			break;
+        -:   91:		}
+        -:   92:	}
+        1:   93:	printf("No errors encountered in 2000 tests of shuffle(). \n");
+        1:   94:	return 0;
+        -:   95:}

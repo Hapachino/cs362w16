@@ -38,8 +38,6 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
 
 int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) 
 {
-
-  testFunc();
   int i;
   int j;
   int it;			
@@ -75,6 +73,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
   if (numPlayers == 2)
     {
       state->supplyCount[curse] = 10;
+      
     }
   else if (numPlayers == 3)
     {

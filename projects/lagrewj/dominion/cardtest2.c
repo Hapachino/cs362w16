@@ -26,7 +26,7 @@
 #include "rngs.h"
 #include <math.h>
 
-#define TESTdrawnCard "Adventurer"
+#define TESTCARD "Adventurer"
 
 int testAdventurer(struct gameState *after)
 {
@@ -92,25 +92,28 @@ int testAdventurer(struct gameState *after)
 	return 0;
 }
 
+//main function for starting the 250 tests
 int main()
 {
-	int p = 0;
-	struct gameState G;
+	int p = 0;//testing player 0
+	struct gameState G;//creating new game state
 	int numTests = 250; //250 tests
 	int k, m, j, n, i;
 	
-	for (i = 0; i < sizeof(struct gameState); i++) { //from the lessons, random gameState
+	for (i = 0; i < sizeof(struct gameState); i++) { //random game state 
 		((char*)&G)[i] = floor(Random() * 256);
 	}
+	//generates random tests
+	printf("STARTING RANDOM TESTS.\n");
 	
-	G.whoseTurn = p;
+	G.whoseTurn = p;//setting whoseTurn to 0
 	SelectStream(2);
 	PutSeed(3);
-	printf("----------------- Testing card: %s ----------------\n", TESTdrawnCard);
+	printf("----------------- Testing card: %s ----------------\n", TESTCARD);
 	
 	for(k = 0; k < numTests; k++)
 	{
-		//fill in random cards
+		//filling in random cards based on lecture 11 and 12 Random Testing 
 		G.handCount[p] = floor(Random() * MAX_HAND)+1;//need at least one adventurer in our hand
 		G.deckCount[p] = floor(Random() * MAX_DECK);
 		G.discardCount[p] = floor(Random() * MAX_DECK);
@@ -129,7 +132,7 @@ int main()
 			G.deck[p][n] = floor(Random() * treasure_map) + 1;
 		}
 		
-		testAdventurer(&G);
+		testAdventurer(&G);//run tests 
 		
 	}
 	

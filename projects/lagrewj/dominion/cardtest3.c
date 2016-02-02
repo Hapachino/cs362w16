@@ -69,6 +69,9 @@ int main()
 	int handPos;
 	int i, j, k, m, n, q;
 	
+	//generates random tests
+	printf("STARTING RANDOM TESTS.\n");
+	
 	SelectStream(2);
 	PutSeed(3);
 	printf("Testing playVillage() cardtest3.\n");
@@ -80,7 +83,7 @@ int main()
 		}
 		G.whoseTurn = p;
 		G.numActions = 1;
-		//fill in random cards
+		//filling in random cards based on lecture 11 and 12 Random Testing 
 		G.handCount[p] = floor(Random() * MAX_HAND)+1;//need at least one village in our hand
 		G.deckCount[p] = floor(Random() * MAX_DECK);
 		G.discardCount[p] = floor(Random() * MAX_DECK);

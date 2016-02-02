@@ -1,5 +1,5 @@
 CFLAGS = -Wall -fpic -coverage -lm
-DOMINIONOBJECTS = rngs.o dominion.o
+DOMINIONOBJECTS = rngs.o dominion.o interface.o
 UNITTESTFILES = unittest1.c unittest2.c unittest3.c unittest4.c
 CARDTESTFILES = cardtest1.c cardtest2.c cardtest3.c cardtest4.c
 EXECUTABLES = unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
@@ -17,8 +17,11 @@ unittestresults.out: $(DOMINIONOBJECTS) unitTests cardTests
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c  $(CFLAGS)
 
-dominion.o: dominion.h dominion.c rngs.o
+dominion.o: dominion.h dominion.c dominion_helpers.h rngs.o
 	gcc -c dominion.c  $(CFLAGS)
+
+interface.o: interface.h interface.c
+	gcc -c interface.c $(CFLAGS)
 
 unitTests: $(TESTFILES) $(DOMINIONOBJECTS)
 	gcc -o unittest1 unittest1.c $(DOMINIONOBJECTS) $(CFLAGS)

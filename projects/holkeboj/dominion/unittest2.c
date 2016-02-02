@@ -29,7 +29,7 @@ int main() {
 
     int testResult, testsRun = 0, testsPassed = 0;
     int hand_size = 5;
-    int player_count = 2
+    int player_count = 2;
     int player, bonus;
     
     struct gameState cleanGame;

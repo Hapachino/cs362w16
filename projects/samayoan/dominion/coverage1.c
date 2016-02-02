@@ -13,9 +13,9 @@ Calls executed:30.53% of 95
 Creating 'dominion.c.gcov'
 
 Considering I only created four unit tests and four card tests, I'd say my statement coverage (lines executed)
-percentange is probably pretty decent. I think I could have gotten closer to 50% if I'd varied the players'
+percentage is probably pretty decent. I think I could have gotten closer to 50% if I'd varied the players'
 hands a bit more, such as by having cases where they had no treasure cards, or just one card, etc... Doing so 
-would have also increased the branch coverage because diffirent paths would have been taken in the code to account
+would have also increased the branch coverage because different paths would have been taken in the code to account
 for different hands and scenarios. Over all though, I think the amount of tests was low and even with varied hands 
 we shouldn't expect anywhere near 100% coverage without creating a lot more tests.
 
@@ -40,5 +40,38 @@ Functions
 My 'cutpurseEffect' and 'adventurerEffect' tests could have been improved a bit. As I mentioned earlier, I think these especially
 would benefit from varied hands. Other than that I think the only real improvement would be to have more test cases for functions and 
 cards.
+
+In the cutpurseEffect method the only section I see with no branch coverage is line 720:
+
+    #####:  720:		      for (k = 0; k < state->handCount[i]; k++)
+branch  0 never executed
+branch  1 never executed
+
+The only way to reach that section of code would be if the Copper card were at the end of the hand, or if there were no 
+Copper card at all. So that would have definitely benefited from more varied hands.
+
+The only section of the adventurerEffect method that is not hit is shown below:
+
+    8:  683:        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+        8:  684:          drawntreasure++;
+        -:  685:        else{
+    #####:  686:          temphand[z]=cardDrawn;
+        -:  687:          //this should just remove the top card (the most recently drawn one).
+    #####:  688:          state->handCount[currentPlayer]--;
+    #####:  689:          z++;
+        -:  690:        }
+        -:  691:      }
+
+
+That section of could could have been hit if I forced the drawn card to be a some Treasure card.
+I was relying too much on initializeGame to set my cards in this card test. I did, however, forge the hands in some of my
+other card tests. The adventurer card test just happens to be one that really would have benefited from that, and unfortunately I did
+not forge hands here.
 
 */

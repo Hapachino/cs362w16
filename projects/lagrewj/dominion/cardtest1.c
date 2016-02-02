@@ -89,13 +89,15 @@ int testSmithy(struct gameState *after, int handPos) //test smithy function
 int main()
 {
 	int p = 0;
-	struct gameState G;
+	struct gameState G;//generates game state G filled with random bytes
 	int handPos;
 	int i, j, k, m, n, q;//initializing int 
 	
 	for (i = 0; i < sizeof(struct gameState); i++) {//random gameState
 		((char*)&G)[i] = floor(Random() * 256);
 	}
+	//generates random tests
+	printf("STARTING RANDOM TESTS.\n");
 	
 	SelectStream(2);
 	PutSeed(3);

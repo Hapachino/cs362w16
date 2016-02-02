@@ -88,8 +88,9 @@ int main()
 	int numPlayers;
 	int maxPlayers = 5;
 	int i, j, m, n, q, r, s;
-/* 	int k[10] = {adventurer, council_room, feast, gardens, mine
-		   , remodel, smithy, village, baron, great_hall}; */
+	
+	//generates random tests
+	printf("STARTING RANDOM TESTS.\n");
 	
 	SelectStream(2);
 	PutSeed(3);
@@ -104,10 +105,11 @@ int main()
 				for (i = 0; i < sizeof(struct gameState); i++) { //from the lessons, random gameState
 					((char*)&G)[i] = floor(Random() * 256);
 				}
-				//initializeGame(numPlayers, k, 1, &G);
+				
 				G.whoseTurn = p;
 				G.numPlayers = numPlayers;
 				
+				//filling in random cards based on lecture 11 and 12 Random Testing 
 				//give cards to all players
 				for(j = 0; j < numPlayers; j++)
 				{

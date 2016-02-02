@@ -165,6 +165,30 @@ int main() {
 	if (memcmp(&state, &stateOriginal, sizeof(struct gameState)) != 0)
 		validationCheck = 0;
 	printTestResult(validationCheck, -999, -999);
+	
+	/**************************************************************************
+	 * TEST CONDITION 4 - Player has zero buys remaining.
+	 *************************************************************************/
+	// PERFORMING OPERATIONS TO MEET TEST CONDITION
+	stateOriginal.supplyCount[remodel] = 10;
+	stateOriginal.numBuys = 0;
+	memcpy(&state, &stateOriginal, sizeof(struct gameState));
+	testCard = remodel;
+	buyCard(testCard, &state);
+
+	// DISPLAY
+	printf("***************************************************************************\n");
+	printf("* TESTING FUNCTION: buyCard\n");
+	printf("* CONDITION: Player has zero buys remaining.\n");
+	printf("***************************************************************************\n");
+	printf("\n  EXECUTING: buyCard(remodel, &state)\n\n");
+	printf("  TEST: Game state should not change at all...\n");
+
+	// TEST: Game state should not change at all
+	validationCheck = 1;
+	if (memcmp(&state, &stateOriginal, sizeof(struct gameState)) != 0)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
 
 	return 0;
 }

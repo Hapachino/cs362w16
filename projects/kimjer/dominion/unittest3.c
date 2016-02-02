@@ -279,11 +279,11 @@ int test4(int seed)
 }
 
 int test5(int seed) {
-	int i;
+	int i,j;
 	int *k = getUniqueCards();
 	int numPlayers ;
-	struct gameState G;
-	struct gameState Gcpy;
+	struct gameState *G;
+	struct gameState *Gcpy;
 	G = newGame();
 	Gcpy = newGame();
 	numPlayers = 2;
@@ -308,7 +308,9 @@ int test5(int seed) {
 	{
 		for (j = 0; j < 10; j++)
 		{
-			ASSERT2(Gcpy->deck[i][j], G->deck[i][j], "when initializing player decks")
+			printf("G: %d, copy: %d\n", G->deck[i][j],Gcpy->deck[i][j]);
+
+			ASSERT2(Gcpy->deck[i][j], G->deck[i][j], "when initializing player decks");
 		}
 	}
 	return 0;
@@ -357,7 +359,7 @@ int main() {
 	test4(seed);
 
 
-
+	test5(seed);
 
 	printf("\nEND OF UNIT TEST 3 - INITIALIZEGAME\n");
 	printf("---------------------------------------------------\n");

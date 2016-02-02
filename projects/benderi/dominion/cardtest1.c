@@ -30,6 +30,7 @@ int main()
         printf("ERROR - Game initialization failed.\n");
     memcpy(&testG, &G, sizeof(struct gameState));
 
+    //give Smithy card to player
     printf("TESTING - SMITHY CARD\n");
     testG.hand[thisPlayer][testG.handCount[thisPlayer]] = smithy;
     testG.handCount[thisPlayer]++;
@@ -44,6 +45,20 @@ int main()
         printf("SUCCESS - Player gained 3 new cards, discarded 1.\n");
     else
         printf("ERROR - Player did not gain/discard correct # of cards.\n");
+
+    //test game state to verify same number of Victory cards
+    if (G.supplyCount[estate] == testG.supplyCount[estate])
+       printf("SUCCESS - Count of estate cards unchanged.\n");
+    else
+       printf("ERROR - Count of estate cards has changed.\n");
+    if (G.supplyCount[duchy] == testG.supplyCount[duchy])
+       printf("SUCCESS - Count of duchy cards unchanged.\n");
+    else
+       printf("ERROR - Count of duchy cards has changed.\n");
+    if (G.supplyCount[province] == testG.supplyCount[province])
+       printf("SUCCESS - Count of province cards unchanged.\n");
+    else
+       printf("ERROR - Count of province cards has changed.\n");
 
     printf("TEST COMPLETE\n");
 

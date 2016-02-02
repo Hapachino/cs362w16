@@ -1,4 +1,8 @@
 /*
+*	Author: 	Martin Stryffeler
+*	Filename:	unittest1.c
+*	Date:		2/2/2016
+*
 *	updateCoins() unit testing
 *	Initializes a gamestate, then tests update coins with a hand full of each
 *	treasure type and a range of bonuses for each player. 

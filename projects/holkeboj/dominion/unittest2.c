@@ -29,7 +29,8 @@ int main() {
 
     int testResult, testsRun = 0, testsPassed = 0;
     int hand_size = 5;
-    int player_count = 2;
+    int player_count = 2
+    int player, bonus;
     
     struct gameState cleanGame;
     struct gameState testGame;  // Passed to function to test
@@ -50,8 +51,8 @@ int main() {
     }
     
     initializeGame(2, k, 500, &cleanGame);
-    for (int player = 0; player < player_count; player++) {
-        for (int bonus = 0; bonus <= 10; bonus++) {
+    for (player = 0; player < player_count; player++) {
+        for (bonus = 0; bonus <= 10; bonus++) {
             printf("------ Testing Player %d, Bonus %d\n", player + 1, bonus);
 
             printf("---- Case: All coppers ---\n");

@@ -29,11 +29,11 @@ int main() {
                 feast, remodel, baron, great_hall, steward, tribute, ambassador,
                 outpost, salvager, treasure_map};
     int other_costs[18] = {0,2,5,8,0,3,6,5,4,4,4,3,3,5,3,5,4,4};
-    int testsRun = 0, testsPassed = 0;
+    int testsRun = 0, testsPassed = 0, i;
     struct gameState testGame;
     struct gameState cleanGame;
 
-    for (int i = 0; i < 18; i++) {
+    for (i = 0; i < 18; i++) {
         initializeGame(2, k, 500, &cleanGame);
         memcpy(&testGame, &cleanGame, sizeof(struct gameState));
         if (i < 10) {

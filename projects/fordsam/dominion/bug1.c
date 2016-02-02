@@ -27,7 +27,7 @@ As mentioned in an earlier assignment, updateCoins() resets state.coins whenever
 
 cardtest1: playAdventurer()
 ---------------------------
-playAdventurer() cannot handle the case where there are no treasure cards available to the player (in the discard pile or deck).  In this scenario, the function can get into a bad state and cause the program to crash as a result.
+playAdventurer() doesn't seem to properly handle the case where there are no treasure cards available to the player (in the discard pile or deck).  In this scenario, the function can get into a bad state and cause the program to crash but this behavior might be platform-dependent.  That is, this test will crash on Mac OS X (10.11) but it will properly execute on the Flip servers (Redhat Linux).  cardtest1 is set up so that the related tests will execute if the function doesn't crash when it's executed in a child process (i.e. it should be safe to run the test in the parent process).
 
 playAdventurer() doesn't move the played card to the playedCards array.  Specifically, the card seems to be removed from the player's hand but it isn't added to the playedCards array.
 

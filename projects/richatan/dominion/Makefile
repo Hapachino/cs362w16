@@ -53,6 +53,18 @@ unittestresults.out: unittest1.c testHelpers.o dominion.o rngs.o
 	
 	echo -e "\nResults for Card Unit Tests:" >> unittestresults.out
 	
+	echo "cardtest1.c:" >> unittestresults.out
+	gcc -o cardtest1 cardtest1.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./cardtest1 >> unittestresults.out
+
+	echo "cardtest2.c:" >> unittestresults.out
+	gcc -o cardtest2 cardtest2.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./cardtest2 >> unittestresults.out
+
+	echo "cardtest3.c:" >> unittestresults.out
+	gcc -o cardtest3 cardtest3.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./cardtest3 >> unittestresults.out
+	
 	echo -e "\nCode Coverage:" >> unittestresults.out
 	gcov ./dominion.c >> unittestresults.out
 
@@ -62,4 +74,4 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest*.exe *.gcov *.gcda *.gcno *.so *.out
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest*.exe cardtest*.exe *.gcov *.gcda *.gcno *.so *.out

@@ -25,12 +25,12 @@ int main() {
     printf("---------- Testing Card: %s --------------\n", TESTCARD);
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
            sea_hag, tribute, smithy};    
-    int testsRun = 0, testsPassed = 0, otherPlayer;
+    int testsRun = 0, testsPassed = 0, otherPlayer, player, handPos;
     struct gameState testGame;
     struct gameState cleanGame;
     
-    for (int player = 0; player < 2; player++) {
-        for (int handPos = 0; handPos < 5; handPos++) {
+    for (player = 0; player < 2; player++) {
+        for (handPos = 0; handPos < 5; handPos++) {
             printf("---- Testing Player %d Hand Position %d ----\n", player, handPos);
             initializeGame(2, k, 500, &cleanGame);
             memcpy(&testGame, &cleanGame, sizeof(struct gameState));

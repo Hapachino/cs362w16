@@ -18,7 +18,9 @@ The first set of tests were based on asserting successful
 conditions. Under successful conditions, it is expected that the card will be
 removed from the supply deck and placed in the current player's discard deck.
 It is also expected that the cost of the card will be decremented from the
-player's coins. Each of these tests passed successfully.
+player's coins. To test this I made a copy of the game state, called the
+function, and compared the new results to a copy of the original gamestate.
+Each of these tests passed successfully.
 
 The second condition tested is in the case that the player does not 
 currently have enough coins to purchase the card. If the card costs more than
@@ -43,7 +45,25 @@ Return Type: int
 
 Description:
 
+numHandCards takes a pointer to a struct gameState as an argument and returns
+the number of cards currently in the player's hand.
+
 Test Findings:
+
+The condition for the first test assessed the value of the number of cards
+in each player's hand. Cards are delt at the beginning of a new turn,
+therefore only the first player has cards in the hand pile after
+initialization. There are five cards delt, so the active player should
+initially have 5 cards while the non-starting player should have zero cards.
+Tests were conducted by initializing the game state, calling the numHandCards
+with the gameState and comparing it to five. In the case of the alternate player,
+I set the whoseTurn value to 1, and ran the function again. The results of these
+tests were 5 and 0 respectively, therefore these tests passed successfully.
+
+The secondary test checked the player's hand cards and ensured that the five
+cards placed in the player's hand pile were active cards for the game. In
+order to do this, I checked each of the cards to ensure they are not set to -1,
+indicating the card is inactive during this iteration of the game.
 
 --------------------------- NON CARD - UNIT TEST 3 ---------------------------
 Name: gainCard

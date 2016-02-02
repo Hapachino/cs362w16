@@ -24,12 +24,12 @@ int main() {
 
    cardEffect(village, 0, 0, 0, &G, 0, 0);
 
-   printf("Cards in Hand:  %d, Cards Excted: %d\n",
+   printf("Cards in Hand:  %d, Cards Expected: %d\n",
             G.handCount[p1], storeG.handCount[p1]+1);
    printf("Cards in Deck: %d, cards Expected: %d\n",
            G.deckCount[p1], storeG.deckCount[p1]-1);
    printf("Number of Actions:  %d, Number Expected: %d\n",
             G.numActions, storeG.numActions+2);
-
+  printf("\n\n\n");
    return 0;
 }

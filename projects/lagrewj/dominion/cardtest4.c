@@ -2,21 +2,27 @@
  *cardtest4.c
  *test playCouncil_Room()
  *Notes:
- *Adventurer is an action card that draws cards from the player's deck until 2 treasure cards are drawn.
+ *Council Room is an Action card from the Base set. It is a terminal card draw, meaning it 
+ *provides +Cards but no +Action. It is also an interactive card but not an attack, 
+ *the huge benefit to you is counterbalanced by a pretty nice benefit to your opponent,
+ *making them draw a card. It is extremely good when paired with a handsize attack such as Militia!
  */
  /*
- * Basic Requirements of Adventurer:
- * 1. Current player should receive a total of 2 treasure cards.
- * 2. If drawn card is not a treasure card, then discard and pick a new card.
+ * Basic Requirements of Council_Room:
+ * 1. Current player should receive a total of 4 cards from the deck. 
+ * 2. Current player's buys should increase by 1. 
  * 3. No state change should occur for other players.
  * 4. No state change should occur to the victory drawnCard piles and kingdom card piles.
+ * 5. Current player should be the same before and after the test.
+ * 6. Number of actions should stay the same before and after the test. 
+ * 7. Number of coins should stay the same before and after the test. 
  */
 
 /*
  * Include the following lines in your makefile:
  *
- * cardtest2: cardtest2.c dominion.o rngs.o
- *      gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+ * cardtest2: cardtest4.c dominion.o rngs.o
+ *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
  */
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -28,7 +34,7 @@
 
 #define MAX_HAND_TEST 200
 #define MAX_DECK_TEST 200
-#define TESTCARD "Adventurer"
+#define TESTCARD "Council_Room"
 
 int testPlayCouncil_Room(struct gameState *after, int handPos)
 {
@@ -150,6 +156,6 @@ int main()
 		}
 	}
 	
-	printf("PLAY COUNCIL_ROOM TESTS FINISHED.\n\n");
+	printf("Play Council_Room testing has concluded.\n\n");
 	return 0;
 }

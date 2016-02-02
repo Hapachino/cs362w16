@@ -2,10 +2,10 @@
  *cardtest3.c
  *test playVillage()
  *Notes:
- *Adventurer is an action card that draws cards from the player's deck until 2 treasure cards are drawn.
+ *Village is an action card that draws cards from the player's deck until 2 treasure cards are drawn.
  */
  /*
- * Basic Requirements of Adventurer:
+ * Basic Requirements of Village:
  * 1. Current player should receive a total of 2 treasure cards.
  * 2. If drawn card is not a treasure card, then discard and pick a new card.
  * 3. No state change should occur for other players.
@@ -15,8 +15,8 @@
 /*
  * Include the following lines in your makefile:
  *
- * cardtest2: cardtest2.c dominion.o rngs.o
- *      gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+ * cardtest2: cardtest3.c dominion.o rngs.o
+ *      gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
  */
 #include "dominion.h"
 #include "dominion_helpers.h"

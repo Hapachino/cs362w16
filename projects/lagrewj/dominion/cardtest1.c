@@ -106,7 +106,7 @@ int main()
 	
 	for(k = 0; k < 250; k++) //250 number of tests
 	{
-		
+		//from lecture 11 
 		G.handCount[p] = floor(Random() * MAX_HAND)+1;//fill random hand with one smithy
 		
 		G.deckCount[p] = floor(Random() * MAX_DECK);//fill random deck

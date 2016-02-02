@@ -10,6 +10,7 @@
  * 2. If drawn card is not a treasure card, then discard and pick a new card.
  * 3. No state change should occur for other players.
  * 4. No state change should occur to the victory drawnCard piles and kingdom card piles.
+ * 5. Player is the same when checking before and after treasure counts. 
  */
 
 /*
@@ -46,7 +47,7 @@ int testAdventurer(struct gameState *after)
 	//if deck counts not different by 2 then error msg 
 	if(afterTotal != beforeTotal) 
 	{
-		printf("ERROR: Total difference! Should be 2 less than before total. Before: %d After: %d\n", beforeTotal, afterTotal);
+		printf("ERROR: Total card count difference! Should be 2 less than before total. Before: %d After: %d\n", beforeTotal, afterTotal);
 	}
 	//checking hand state
 	 before.handCount[p] =  before.handCount[p]+2;//hand count should be different by 2
@@ -72,22 +73,22 @@ int testAdventurer(struct gameState *after)
 		if (drawnCard == copper || drawnCard == silver || drawnCard == gold)
 			afterTreasure++;
 	}
-	
+	//testing if after treasure count is greater after 
 	if(!(afterTreasure > beforeTreasure))
-		printf("ERROR: Not enough treasure cards added to hand. before: %d after: %d\n", beforeTreasure, afterTreasure);
-	//still current player?
-	if(before.whoseTurn != after->whoseTurn)
-		printf("ERROR: Current player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
-	
-	//check coins
-	if(before.coins != after->coins)
-		printf("ERROR: Number of coins changed from %i to %i", before.coins, after->coins);
-	//check number of buys
+		printf("ERROR: Not enough treasure cards added to hand. Before: %d After: %d\n", beforeTreasure, afterTreasure);
+	//Testing State Changes:
+		//checking that buys didn't change
 	if(before.numBuys != after->numBuys)
-		printf("ERROR: Number of buys has changed from %i, to %i", before.numBuys, after->numBuys);
-	//check number of actions
+		printf("ERROR: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
+	//Ensuring that before and after player is the same using whoseTurn
+	if(before.whoseTurn != after->whoseTurn)
+		printf("ERROR: Player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
+		//checking the number of actions stayed the same
 	if(before.numActions != after->numActions)
-		printf("ERROR: Number of actions has changed from %i to %i", before.numActions, after->numActions);
+		printf("ERROR: Actions has changed from %i to %i", before.numActions, after->numActions);
+	//checking that number of coins didn't change 
+	if(before.coins != after->coins)
+		printf("ERROR: Coins changed from %i to %i", before.coins, after->coins);
 	
 	return 0;
 }
@@ -115,8 +116,8 @@ int main()
 	{
 		//filling in random cards based on lecture 11 and 12 Random Testing 
 		G.handCount[p] = floor(Random() * MAX_HAND)+1;//need at least one adventurer in our hand
-		G.deckCount[p] = floor(Random() * MAX_DECK);
-		G.discardCount[p] = floor(Random() * MAX_DECK);
+		G.deckCount[p] = floor(Random() * MAX_DECK);//from lecture 11 to generate random deck 
+		G.discardCount[p] = floor(Random() * MAX_DECK);//from lecture 11 to generate random discard 
 		for(m = 0; m < G.handCount[p]; m++)
 		{
 			G.hand[p][m] = floor(Random() * treasure_map) + 1;

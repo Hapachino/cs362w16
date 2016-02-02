@@ -3,28 +3,29 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <math.h>
 #include "rngs.h"
 
-#define TESTFUNCTION updateCoins
+#define Random rand
 
 int checkUpdateCoins (int p, struct gameState *post, int bon) {
     struct gameState pre;
     memcpy (&pre, post, sizeof(struct gameState));
 
-    int r = updateCoins (p, *post, bon);
+    int r = updateCoins (p, post, bon);
 
     //update coin count to indicate bonus coins
-    post->coins = bon;
-
-    for ( i = 0; i < 5; i++)) {
-        if ( playersHand[p][i] == "copper"){
-            post->coins += 1;
+    pre->coins = bon;
+    int i;
+    for ( i = 0; i < 5; i++ ) {
+        if ( pre.hand[p][i] == copper ){
+            pre.coins += 1;
         }
-        else if ( playersHand[p][i] == "silver"){
-            post->coins += 2;
+        else if ( pre.hand[p][i] == silver ){
+            pre.coins += 2;
         }
-        else if ( playersHand[p][i] == "gold") {
-            post->coins += 3;
+        else if ( pre.hand[p][i] == gold ) {
+            pre.coins += 3;
         }
     }
 
@@ -64,64 +65,32 @@ int updateCoins(int player, struct gameState *state, int bonus)
 }
 
 int main () {
-    int bon;
-    //no coin cards
-    int playersHand0[5] = {none, none, none, none, none};
-    //some coins, some not
-    int playersHand1[5] = {none, none, copper, silver, silver};
-    int playersHand2[5] = {none, copper, none, gold, silver};
-    int playersHand3[5] = {gold, none, gold, silver, silver};
-    //all coins
-    int playersHand4[5] = {copper, copper, silver, silver, silver};
-    int playersHand5[5] = {copper, coopper, silver, gold, silver};
-    int playersHand6[5] = {silver, gold, copper, silver, gold};
-    // all copper
-    int playersHand7[5] = {copper, copper, copper, copper, copper};
-    //all silver
-    int playersHand8[5] = {silver, silver, silver, silver, silver};
-    //all gold
-    int playersHand9[5] = {gold, gold, gold, gold, gold};
-
+    int x;
     struct gameState G;
+    //test 1000 times
+    for (x=0; x < 1000; x++){
+        //0 to 15 bonus coins
+        int bon = floor(Random() * 16);
+        int cardinhand = floor(Random() * 4);
 
-    int p = 2;
-
-    for (i = 0; i < 9; i++) {
-        if ( i == 0 ) {
-            G.hand[p][5] = playersHand0;
+        int p = floor(Random() * 2);
+        int i;
+        for (i = 0; i < 5; i++) {
+            //not a treasure card
+            if (cardinhand == 0){
+                    G.hand[p][i] = 0;
+            }
+            else if (cardinhand == 1){
+                G.hand[p][i] = copper;
+            }
+            else if (cardinhand == 2){
+                G.hand[p][i] = silver;
+            }
+            else if (cardinhand == 3){
+                G.hand[p][i] = gold;
+            }
         }
-        else if ( i == 1 ) {
-            G.hand[p][5] = playersHand1;
-        }
-        else if ( i == 2 ) {
-            G.hand[p][5] = playersHand2;
-        }
-        else if ( i == 3 ) {
-            G.hand[2][5] = playersHand0;
-        }
-        else if ( i == 4 ) {
-            G.hand[2][5] = playersHand0;
-        }
-        else if ( i == 5 ) {
-            G.hand[2][5] = playersHand0;
-        }
-        else if ( i == 6 ) {
-            G.hand[2][5] = playersHand0;
-        }
-        else if ( i == 7 ) {
-            G.hand[2][5] = playersHand0;
-        }
-        else if ( i == 8 ) {
-            G.hand[2][5] = playersHand0;
-        }
-        else if ( i == 0) ( i == 0 ) {
-            G.hand[2][5] = playersHand9;
-        }
-    }
-    //bonus is 0 to 15
-    for ( i = 0; i <= 15; i++ ){
-        bon = i;
         checkUpdateCoins(p, &G, bon);
     }
-
+    return 0;
 }

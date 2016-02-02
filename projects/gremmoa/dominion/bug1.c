@@ -12,3 +12,10 @@
  * hand count = 7, expected = 6
  * Assertion failed: (testG.handCount[thisPlayer] == G.handCount[thisPlayer] + newCards - discarded)
  *
+ * Bug #3 Encoutered: Other players did not receive an extra card during
+ * playCouncilRoom do the loop not resetting after going executing logic for
+ * giving current player 4 cards
+ * Error Messages
+ * --- Other Player ---
+ * hand count = 0, expected = 1
+ * Assertion failed: (testG.handCount[otherPlayer] == G.handCount[otherPlayer] + otherPlayerNewCards), function main, file cardtest4.c, line 57.

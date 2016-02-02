@@ -1,7 +1,23 @@
 /*Jonathan Lagrew
+ *cardtest4.c
  *test playCouncil_Room()
+ *Notes:
+ *Adventurer is an action card that draws cards from the player's deck until 2 treasure cards are drawn.
  */
- 
+ /*
+ * Basic Requirements of Adventurer:
+ * 1. Current player should receive a total of 2 treasure cards.
+ * 2. If drawn card is not a treasure card, then discard and pick a new card.
+ * 3. No state change should occur for other players.
+ * 4. No state change should occur to the victory drawnCard piles and kingdom card piles.
+ */
+
+/*
+ * Include the following lines in your makefile:
+ *
+ * cardtest2: cardtest2.c dominion.o rngs.o
+ *      gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+ */
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>

@@ -1,8 +1,12 @@
 /* Author:      Ian Bender
  * Course:      CS362
  * Due Date:    2/3/2016
- * Description: Unit test for drawCard() function.
+ * Description: Unit test for isGameOver() function.
+ * Business Requirements
+ *      - game is over when province stack is at 0
+ *      - game is over when any 3 supply stacks are at 0
  */
+
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -16,34 +20,50 @@ int main()
     int i, j;
     int outcome;
     int seed = 1000;
-    int numPlayers = 2;
-    int thisPlayer = 0;
     struct gameState G, testG;
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                     remodel, smithy, village, baron, great_hall};
 
     //initialize game state
-    outcome = initializeGame(numPlayers, k, seed, &G);
+    outcome = initializeGame(MAX_PLAYERS, k, seed, &G);
+    if (outcome == -1)
+        printf("ERROR - Game initialization failed.\n");
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    /*
-    printf("----------Shuffling Deck------------\n");
-    for (i = 0; i < G.deckCount[thisPlayer]; i++)
-    {
-        printf("%d ", G.deck[thisPlayer][i]);
-    }
-    printf("\n");
-    printf("Player 1 - Deck Count: %d\n", G.deckCount[thisPlayer]);
 
-    shuffle(thisPlayer, &testG);
-    printf("Player 1 - Shuffled Count: %d\n", testG.deckCount[thisPlayer]); 
+    printf("TESTING FOR GAME OVER\n");
+    //supply of province > 0, game continues
+    printf("supplyCount[province] = %d\n", G.supplyCount[province]);
+    if (isGameOver(&G))
+        printf("ERROR - game over but should continue.\n");
+    else
+        printf("SUCCESS - Game continues.\n");
 
-    for (i = 0; i < testG.deckCount[thisPlayer]; i++)
+    //supply of province = 0, game over 
+    G.supplyCount[province] = 0;
+    printf("supplyCount[province] = %d\n", G.supplyCount[province]);
+    if (isGameOver(&G))
+        printf("SUCCESS - Game over.\n");
+    else
+        printf("ERROR - game continues but should be over.\n");
+
+    //reset supply count of province
+    G.supplyCount[province] = 12;
+    for (i = 0; i < 3; i++)
     {
-        printf("%d ", testG.deck[thisPlayer][i]);
+        //set supply pile to 0
+        G.supplyCount[i] = 0;
+        printf("%d piles now have 0 cards.\n", i + 1);
+        //if three supply piles are at 0, game is over
+        if (isGameOver(&G) && i == 2)
+            printf("SUCCESS - Game over.\n");
+        else if (isGameOver(&G) && i < 2)
+            printf("ERROR - game over but should continue.\n");
+        else
+            printf("SUCCESS - Game continues.\n");
     }
-    printf("\n");
-    */
+
+    printf("TEST COMPLETE\n");
 
     return 0;
 }

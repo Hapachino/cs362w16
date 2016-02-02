@@ -33,6 +33,8 @@ int main() {
 
   // copy the game state to a test case
   memcpy(&testG, &G, sizeof(struct gameState));
+
+  printf("*** TEST 1:  Test Treasure Cards w/ no bonus ***\n");
   //Setting players hand to adventurer, copper, silver, gold, copper (7 coins)
   testG.hand[thisPlayer][0] = 7;
   testG.hand[thisPlayer][1] = 4;
@@ -41,7 +43,6 @@ int main() {
   testG.hand[thisPlayer][4] = 4;
   updateCoins(thisPlayer, &testG, bonus);
 
-  printf("*** TEST 1:  Test Treasure Cards w/ no bonus ***");
   printf("--- Current Player ---\n");
   printf("coin count = %d, expected = %d\n", testG.coins, 7);
   assert(testG.coins == 7);
@@ -56,7 +57,7 @@ int main() {
   printf("deck count = %d, expected = %d\n", testG.deckCount[otherPlayer], G.deckCount[otherPlayer]);
   assert(testG.deckCount[otherPlayer] == G.deckCount[otherPlayer]);
 
-  printf("*** TEST 2:  Test Treasure Cards w/ bonus ***");
+  printf("*** TEST 2:  Test Treasure Cards w/ bonus ***\n");
   //Setting players hand to gold x 5 (15 coins)
   testG.hand[thisPlayer][0] = 6;
   testG.hand[thisPlayer][1] = 6;
@@ -79,7 +80,7 @@ int main() {
   printf("deck count = %d, expected = %d\n", testG.deckCount[otherPlayer], G.deckCount[otherPlayer]);
   assert(testG.deckCount[otherPlayer] == G.deckCount[otherPlayer]);
 
-  printf("*** TEST 3:  Test No Treasure Cards w/ bonus ***");
+  printf("*** TEST 3:  Test No Treasure Cards w/ bonus ***\n");
   //Setting players hand to gold x 5 (15 coins)
   testG.hand[thisPlayer][0] = 0;
   testG.hand[thisPlayer][1] = 0;

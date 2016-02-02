@@ -31,8 +31,6 @@ Checking order of player 1's deck...
 	shuffled card 9: 12
 	original card 9: 12
 
-Somethin's different here at df.flags[13]
-Somethin's different here at df.flags[15]
 All tests passed!
 File 'dominion.c'
 Lines executed:3.42% of 584

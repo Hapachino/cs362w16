@@ -42,10 +42,11 @@ int main () {
 	- Other player's cards (hand, deck, discard) are unchanged
 	- Played card count increased by 1
 	- Adventurer card added to played pile (in last position)
+	- Adventurer card removed from hand
 	- Current player's deck count decreased by 2 treasures + extras
 	- Other cards in player's deck unchanged
 	- Current player's discard count increased by extras
-	- Current player's hand count increased by 2
+	- Current player's hand count increased by 1 (+2 treasures, -1 adventurer)
 	- Cards added to player's hand are treasure
 	- Cards added to player's discard are extras
 	- No bonus coins
@@ -218,10 +219,10 @@ int main () {
 			failed = 1;		
 		}	
 	}
-	//Check 2 treasure cards added to hand
-	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 2){
+	//Check 2 treasure cards added to hand, adventurer removed
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 1){
 		printf("FAIL when 2 treasures in deck\n");
-		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 2);
+		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 1);
 		failed = 1;		
 	}
 	if ( (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] != TREASURE) && (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2] != TREASURE) ){
@@ -261,10 +262,11 @@ int main () {
 	- Other player's cards (hand, deck, discard) are unchanged
 	- Played card count increased by 1
 	- Adventurer card added to played pile (in last position)
+	- Adventurer card removed from hand
 	- Current player's deck count decreased by 1 treasure + extras
 	- Current player's discard count increased by extras, decreased by 1 treasure
-	- Current player's hand count increased by 2
-	- Cards added to player's hand are treasure
+	- Current player's hand count increased by 1 (+2 treasures, -1 adventurer)
+ 	- Cards added to player's hand are treasure
 	- Cards added to player's discard are extras
 	- No bonus coins
 
@@ -437,10 +439,10 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 		printf("  Current player's deck count: %d, Expected: %d\n", g->deckCount[whoseTurn(g)], pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 1);
 		failed = 1;		
 	}
-	//Check 2 treasure cards added to hand
-	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 2){
+	//Check 2 treasure cards added to hand, adventurer removed
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 1){
 		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 2);
+		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 1);
 		failed = 1;		
 	}
 	if ( (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] != TREASURE) && (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2] != TREASURE) ){
@@ -481,10 +483,11 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 	- Other player's cards (hand, deck, discard) are unchanged
 	- Played card count increased by 1
 	- Adventurer card added to played pile (in last position)
+	- Adventurer removed from hand
 	- Current player's deck count decreased by 1 treasure + extras
 	- Other cards in player's deck unchanged
 	- Current player's discard count increased by extras
-	- Current player's hand count increased by 1
+	- Current player's hand count is unchanged (+1 treasure, -1 adventurer)
 	- Card added to player's hand is treasure
 	- Cards added to player's discard are extras
 	- No bonus coins
@@ -665,10 +668,10 @@ While loop does not have exit condition for case when only 1 treasure exists.
 			failed = 1;		
 		}	
 	}
-	//Check 1 treasure card added to hand
-	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 1){
+	//Check 1 treasure card added to hand, adventurer removed
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)]){
 		printf("FAIL when 1 treasure in deck\n");
-		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 1);
+		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)]);
 		failed = 1;		
 	}
 	if (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] != TREASURE){

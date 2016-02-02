@@ -40,8 +40,9 @@ int main () {
 	- Other player's hands and discards are unchanged
 	- Played card count increased by 1
 	- Baron card added to played pile (in last position)
+	- Baron card removed from hand
 	- Supply is unchanged
-	- Current player's hand count is decreased by 1
+	- Current player's hand count is decreased by 2 (-1 estate, -1 baron)
 	- All other cards in player's hand remain (all EXTRA_CARD)
 	- Current player's discard count is increased by 1
 	- Last card in current player's discard = estate
@@ -131,6 +132,45 @@ int main () {
 		}
 		failed = 1;
 	}
+	//Check discard and hand unchanged for other players
+	for (i = 0; i < g->numPlayers; i++){
+		//skip if current player
+		if (i == whoseTurn(g)){
+			continue;
+		}
+		if (pre->discardCount[i] != g->discardCount[i]){
+			printf("FAIL when choice1=1 + estate in hand\n");
+			printf("  Player %d's discardCount: %d, Expected: %d\n", i, g->discardCount[i], pre->discardCount[i]);
+			failed = 1;
+		} else {   //check each card
+			for (j = 0; j < g->discardCount[i]; j++){
+				if (pre->discard[i][j] != g->discard[i][j]){
+					printf("FAIL when choice1=1 + estate in hand\n");
+					printf("  Player %d's discard[%d]: %d, Expected: %d\n", i, j, g->discard[i][j], pre->discard[i][j]);
+					failed = 1;
+				}
+			}
+		}
+	}
+	for (i = 0; i < g->numPlayers; i++){
+		//skip if current player
+		if (i == whoseTurn(g)){
+			continue;
+		}
+		if (pre->handCount[i] != g->handCount[i]){
+			printf("FAIL when choice1=1 + estate in hand\n");
+			printf("  Player %d's handCount: %d, Expected: %d\n", i, g->handCount[i], pre->handCount[i]);
+			failed = 1;
+		} else {   //check each card
+			for (j = 0; j < g->handCount[i]; j++){
+				if (pre->hand[i][j] != g->hand[i][j]){
+					printf("FAIL when choice1=1 + estate in hand\n");
+					printf("  Player %d's hand[%d]: %d, Expected: %d\n", i, j, g->hand[i][j], pre->hand[i][j]);
+					failed = 1;
+				}
+			}
+		}
+	}
 	//Check baron added to played pile
 	if (g->playedCardCount != pre->playedCardCount + 1){
 		printf("FAIL when choice1=1 + estate in hand\n");
@@ -148,10 +188,10 @@ int main () {
 		printf("  Supply count for card %d: %d, Expected: %d\n", result, g->supplyCount[result], pre->supplyCount[result]);
 		failed = 1;
 	}
-	//Check estate card removed from player's hand; other cards unchanged
-	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] - 1){
+	//Check estate and baron cards removed from player's hand; other cards unchanged (all EXTRA_CARD)
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] - 2){
 		printf("FAIL when choice1=1 + estate in hand\n");
-		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] - 1);
+		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] - 2);
 		failed = 1;
 	}
 	for (i = 0; i < g->handCount[whoseTurn(g)]; i++){
@@ -199,13 +239,16 @@ int main () {
 //---Test baron with discard = true (choice1=1) but no estate in hand
 /*---Expected result: 
 	- Game and turn settings are unchanged
-	- All player's decks and hands are unchanged
-	- Other player's discards are unchanged
+	- All player's decks are unchanged
+	- Other player's discards and hands are unchanged
 	- Played card count increased by 1
 	- Baron card added to played pile (in last position)
+	- Baron card removed from hand
 	- SupplyCount for estate is decreased by 1
 	- Current player's discard count is increased by 1
 	- Last card in current player's discard = estate
+	- Current player's hand count is decreased by 1 (-1 baron)
+	- Other cards in current player's hand unchanged
 	- numBuys increased by 1
 	- coins is unchanged
 */
@@ -291,27 +334,44 @@ int main () {
 		}
 		failed = 1;
 	}
-	//Check all player's hand unchanged
-	if (checkHands(pre, g) < 0){
-		printf("FAIL when choice1=1 + NO estate in hand\n");
-		printf("  Hands changed after baron\n");
-		//Print expected and actual decks for each player
-		for (i = 0; i < NUM_PLAYERS; i++){
-			printf("    Hand for player %d:\n", i);
-			printf("      Count: %d, Expected: %d\n", g->handCount[i], pre->handCount[i]);
-			if (g->handCount[i] > 0){
-				printf("      Actual Cards: ");
-				for (j = 0; j < g->handCount[i]; j++){
-					printf("%d ", g->hand[i][j]);
+	//Check discard and hand unchanged for other players
+	for (i = 0; i < g->numPlayers; i++){
+		//skip if current player
+		if (i == whoseTurn(g)){
+			continue;
+		}
+		if (pre->discardCount[i] != g->discardCount[i]){
+			printf("FAIL when choice1=1 + NO estate in hand\n");
+			printf("  Player %d's discardCount: %d, Expected: %d\n", i, g->discardCount[i], pre->discardCount[i]);
+			failed = 1;
+		} else {   //check each card
+			for (j = 0; j < g->discardCount[i]; j++){
+				if (pre->discard[i][j] != g->discard[i][j]){
+					printf("FAIL when choice1=1 + NO estate in hand\n");
+					printf("  Player %d's discard[%d]: %d, Expected: %d\n", i, j, g->discard[i][j], pre->discard[i][j]);
+					failed = 1;
 				}
-				printf("\n      Expected Cards: ");
-				for (j = 0; j < pre->handCount[i]; j++){
-					printf("%d ", pre->hand[i][j]);
-				}
-				printf("\n");
 			}
 		}
-		failed = 1;
+	}
+	for (i = 0; i < g->numPlayers; i++){
+		//skip if current player
+		if (i == whoseTurn(g)){
+			continue;
+		}
+		if (pre->handCount[i] != g->handCount[i]){
+			printf("FAIL when choice1=1 + NO estate in hand\n");
+			printf("  Player %d's handCount: %d, Expected: %d\n", i, g->handCount[i], pre->handCount[i]);
+			failed = 1;
+		} else {   //check each card
+			for (j = 0; j < g->handCount[i]; j++){
+				if (pre->hand[i][j] != g->hand[i][j]){
+					printf("FAIL when choice1=1 + NO estate in hand\n");
+					printf("  Player %d's hand[%d]: %d, Expected: %d\n", i, j, g->hand[i][j], pre->hand[i][j]);
+					failed = 1;
+				}
+			}
+		}
 	}
 	//Check baron added to played pile
 	if (g->playedCardCount != pre->playedCardCount + 1){
@@ -350,6 +410,19 @@ int main () {
 		printf("  Card added to current player's discard: %d, Expected: %d\n", g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - 1], estate);
 		failed = 1;
 	}
+	//Check baron card removed from player's hand; other cards unchanged (all EXTRA_CARD)
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] - 1){
+		printf("FAIL when choice1=1 + NO estate in hand\n");
+		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] - 1);
+		failed = 1;
+	}
+	for (i = 0; i < g->handCount[whoseTurn(g)]; i++){
+		if (g->hand[whoseTurn(g)][i] != EXTRA_CARD){
+			printf("FAIL when choice1=1 + NO estate in hand\n");
+			printf("  Current player's hand[%d]: %d, Expected: %d\n", i, g->hand[whoseTurn(g)][i], EXTRA_CARD);
+			failed = 1;
+		}
+	}
 	//Check numBuys increased by 1
 	if (g->numBuys != pre->numBuys + 1){
 		printf("FAIL when choice1=1 + NO estate in hand\n");
@@ -377,13 +450,16 @@ int main () {
 //---Test baron with discard = false
 /*---Expected result: 
 	- Game and turn settings are unchanged
-	- All player's decks and hands are unchanged
-	- Other player's discards are unchanged
+	- All player's decks are unchanged
+	- Other player's discards and hands are unchanged
 	- Played card count increased by 1
 	- Baron card added to played pile (in last position)
+	- Baron card removed from hand
 	- SupplyCount for estate is decreased by 1
 	- Current player's discard count is increased by 1
 	- Last card in current player's discard = estate
+	- Current player's hand count is decreased by 1 (-1 baron)
+	- Other cards in current player's hand unchanged
 	- numBuys increased by 1
 	- coins is unchanged
 */
@@ -469,27 +545,44 @@ int main () {
 		}
 		failed = 1;
 	}
-	//Check all player's hand unchanged
-	if (checkHands(pre, g) < 0){
-		printf("FAIL when choice1=0\n");
-		printf("  Hands changed after baron\n");
-		//Print expected and actual decks for each player
-		for (i = 0; i < NUM_PLAYERS; i++){
-			printf("    Hand for player %d:\n", i);
-			printf("      Count: %d, Expected: %d\n", g->handCount[i], pre->handCount[i]);
-			if (g->handCount[i] > 0){
-				printf("      Actual Cards: ");
-				for (j = 0; j < g->handCount[i]; j++){
-					printf("%d ", g->hand[i][j]);
+	//Check discard and hand unchanged for other players
+	for (i = 0; i < g->numPlayers; i++){
+		//skip if current player
+		if (i == whoseTurn(g)){
+			continue;
+		}
+		if (pre->discardCount[i] != g->discardCount[i]){
+			printf("FAIL when choice1=0\n");
+			printf("  Player %d's discardCount: %d, Expected: %d\n", i, g->discardCount[i], pre->discardCount[i]);
+			failed = 1;
+		} else {   //check each card
+			for (j = 0; j < g->discardCount[i]; j++){
+				if (pre->discard[i][j] != g->discard[i][j]){
+					printf("FAIL when choice1=0\n");
+					printf("  Player %d's discard[%d]: %d, Expected: %d\n", i, j, g->discard[i][j], pre->discard[i][j]);
+					failed = 1;
 				}
-				printf("\n      Expected Cards: ");
-				for (j = 0; j < pre->handCount[i]; j++){
-					printf("%d ", pre->hand[i][j]);
-				}
-				printf("\n");
 			}
 		}
-		failed = 1;
+	}
+	for (i = 0; i < g->numPlayers; i++){
+		//skip if current player
+		if (i == whoseTurn(g)){
+			continue;
+		}
+		if (pre->handCount[i] != g->handCount[i]){
+			printf("FAIL when choice1=0\n");
+			printf("  Player %d's handCount: %d, Expected: %d\n", i, g->handCount[i], pre->handCount[i]);
+			failed = 1;
+		} else {   //check each card
+			for (j = 0; j < g->handCount[i]; j++){
+				if (pre->hand[i][j] != g->hand[i][j]){
+					printf("FAIL when choice1=0\n");
+					printf("  Player %d's hand[%d]: %d, Expected: %d\n", i, j, g->hand[i][j], pre->hand[i][j]);
+					failed = 1;
+				}
+			}
+		}
 	}
 	//Check baron added to played pile
 	if (g->playedCardCount != pre->playedCardCount + 1){
@@ -527,6 +620,19 @@ int main () {
 		printf("FAIL when choice1=0\n");
 		printf("  Card added to current player's discard: %d, Expected: %d\n", g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - 1], estate);
 		failed = 1;
+	}
+	//Check baron card removed from player's hand; other cards unchanged (all EXTRA_CARD)
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] - 1){
+		printf("FAIL when choice1=0\n");
+		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] - 1);
+		failed = 1;
+	}
+	for (i = 0; i < g->handCount[whoseTurn(g)]; i++){
+		if (g->hand[whoseTurn(g)][i] != EXTRA_CARD){
+			printf("FAIL when choice1=0\n");
+			printf("  Current player's hand[%d]: %d, Expected: %d\n", i, g->hand[whoseTurn(g)][i], EXTRA_CARD);
+			failed = 1;
+		}
 	}
 	//Check numBuys increased by 1
 	if (g->numBuys != pre->numBuys + 1){

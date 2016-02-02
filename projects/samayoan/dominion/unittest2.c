@@ -16,31 +16,6 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 
-void gainCardTest(int card, int toFlag, int player, struct gameState *state);
-
-int main(int argc, char *argv[]){
-    struct gameState state;
-    int kingdoms[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-           sea_hag, tribute, smithy};
-
-    initializeGame(MAX_PLAYERS, kingdoms, 3, &state);
-
-    // Preconditions: toFlag and player variables must both be 0, 1, or 2
-    int i = 0;
-    int k = 0;
-    int totalCardTypes = 28;
-
-    // Test for each card type
-    for (; k < totalCardTypes; k++){
-        for (; i <= 2; i++){
-            gainCardTest(k, i, i, &state);
-        }
-    }
-
-    printf("\tunittest2: PASS\r\n");
-    return 0;
-}
-
 void gainCardTest(int card, int toFlag, int player, struct gameState *state){
 
     // toFlag = 0 : add to discard
@@ -116,3 +91,27 @@ void gainCardTest(int card, int toFlag, int player, struct gameState *state){
     // The card should come from the supply.
     assert(state->supplyCount[card] == origSupplyCount - 1);
 }
+
+int main(int argc, char *argv[]){
+    struct gameState state;
+    int kingdoms[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+           sea_hag, tribute, smithy};
+
+    initializeGame(MAX_PLAYERS, kingdoms, 3, &state);
+
+    // Preconditions: toFlag and player variables must both be 0, 1, or 2
+    int i = 0;
+    int k = 0;
+    int totalCardTypes = 28;
+
+    // Test for each card type
+    for (; k < totalCardTypes; k++){
+        for (; i <= 2; i++){
+            gainCardTest(k, i, i, &state);
+        }
+    }
+
+    printf("\tunittest2: PASS\r\n");
+    return 0;
+}
+

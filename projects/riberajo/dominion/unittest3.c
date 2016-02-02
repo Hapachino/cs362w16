@@ -62,7 +62,10 @@ int unitTest(int p, int score, struct gameState *post) {
     printf("SUCCESS ->> pre hand,deck,discard counts  EQUAL post function call\n");
   #endif
   /*error is in either gardens card or fullDeckCount() */
-  assert(r == score);
+  if(r != score) {
+    printf("FAIL TEST: Scores did not compute correctly\n");
+  }
+//  assert(r == score);
 }
 
 int main() {
@@ -278,7 +281,6 @@ int main() {
 
   }
 
-    printf("All tests passed!\n");
 
     return 0;
 }

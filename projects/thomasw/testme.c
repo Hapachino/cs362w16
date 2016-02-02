@@ -1,18 +1,28 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<time.h>
 
 char inputChar()
 {
-    // TODO: rewrite this function
-    return ' ';
+  	//We want to randomly produce values within the range of ascii characters from parentheses on
+	int asciiVal = rand() % (127 - 32);
+	asciiVal += 32;
+	return asciiVal;
 }
 
-char *inputString()
+char *inputString() 
 {
-    // TODO: rewrite this function
-    return "";
+	static char str[6];
+	char n;
+	int i = 0;
+ 	int asciiVal = 26;
+	for (i; i < 5; ++i){
+		n = ((rand() % asciiVal) + 97); // contains only alphabet letters in lower case
+		str[i] = n;
+	}
+	str[5] = '\0';
+	return str;
 }
 
 void testme()
@@ -26,7 +36,8 @@ void testme()
     tcCount++;
     c = inputChar();
     s = inputString();
-    printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
+    
+    printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);	
 
     if (c == '[' && state == 0) state = 1;
     if (c == '(' && state == 1) state = 2;
@@ -42,12 +53,11 @@ void testme()
        && s[4] == 't' && s[5] == '\0'
        && state == 9)
     {
-      printf("error ");
+      printf("error:\n");
       exit(200);
     }
   }
 }
-
 
 int main(int argc, char *argv[])
 {

@@ -1,5 +1,11 @@
 /* -----------------------------------------------------------------------
  * Testing gainCard()
+ Basic requirements of gainCard()
+   1)Fail if card is not in supplyCount()
+   2)Add card to players deck - check if deck has been updated.
+   3)Add card to players hand - check if hand has been updated.
+   4)Add card to players discard - check if discard has been updated.
+   5)Was supplyCount decressed in size.
  * -----------------------------------------------------------------------
  */
 
@@ -14,35 +20,14 @@
 
 int main() {
     int i;
-    int j;
     int returnValue;
-    //Used to print out correct name of card being tested in printf statement.
-    const char* cardNames[] =
-    {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
-      "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
-     "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map" };
-    
-    int nameCards[MAX_HAND][MAX_HAND];
-    int testAllCards;
-    int deckCards;
-    int handCards;
-    int discardCards;
     int seed = 1000;
     int numPlayer = 2;
-    int p, r;
-    int pointCards[6] = {0,1,2,3,16,10}; //Used to orginize point cards used
-    int pointValue[6] = {-1,1,3,6,1,0}; //Used to orginize the point values that go with pointcards
-    int score; //keeps return number for fullDeckCount(p, allCards, &G)
+    int r;
      int k[10] = {adventurer, council_room, feast, gardens, mine
                 , remodel, smithy, village, baron, great_hall};
     struct gameState G;
-    int totalCards = 5;
-    //Make Array called nameCards, that holds decks full of same card name
-    for (i = 0; i < MAX_HAND; i++) {
-       for (j = 0; j < MAX_HAND; j++) {
-      nameCards[i][j] = i;
-       }
-    }
+
     
     
     

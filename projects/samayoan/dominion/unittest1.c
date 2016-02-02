@@ -14,36 +14,6 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 
-void updateCoinsTest(int player, int totalGold, int totalSilver, int totalCopper, int bonus);
-
-int main(int argc, char *argv[]){
-    // Preconditions: Player must be 4 or less, bonus can be any int
-    int maxPlayers = MAX_PLAYERS;
-
-    // First test the case when there are no treasures at all and no bonus,
-    // then try with combos of one (first arg doesn't count)
-    updateCoinsTest(1, 0, 0, 0, 0);
-    updateCoinsTest(1, 0, 0, 0, 1);
-    updateCoinsTest(1, 0, 0, 1, 0);
-    updateCoinsTest(1, 0, 1, 0, 0);
-    updateCoinsTest(1, 1, 0, 0, 0);
-    updateCoinsTest(1, 0, 0, 1, 1);
-    updateCoinsTest(1, 0, 1, 0, 1);
-    updateCoinsTest(1, 1, 0, 0, 1);
-    updateCoinsTest(1, 1, 1, 1, 1);
-
-    // Test using various other variables.
-    // In a game, the bonus will never be negative, but
-    // lets test just to verify it won't throw an unhandled error
-    updateCoinsTest(2, 12, 14, 31, 11);
-    updateCoinsTest(2, 12, 14, 31, -11);
-    updateCoinsTest(1, 56, 999, 35, -16);
-    updateCoinsTest(0, 0, 44, 8, 999);
-
-    printf("\tunittest1: PASS\r\n");
-    return 0;
-}
-
 void updateCoinsTest(int player, int totalGold, int totalSilver, int totalCopper, int bonus)
 {
     struct gameState state;
@@ -74,3 +44,32 @@ void updateCoinsTest(int player, int totalGold, int totalSilver, int totalCopper
     for (; k < totalCopper + totalSilver + totalGold; k++)
         assert(state.hand[player][k] == copper);
 }
+
+int main(int argc, char *argv[]){
+    // Preconditions: Player must be 4 or less, bonus can be any int
+    int maxPlayers = MAX_PLAYERS;
+
+    // First test the case when there are no treasures at all and no bonus,
+    // then try with combos of one (first arg doesn't count)
+    updateCoinsTest(1, 0, 0, 0, 0);
+    updateCoinsTest(1, 0, 0, 0, 1);
+    updateCoinsTest(1, 0, 0, 1, 0);
+    updateCoinsTest(1, 0, 1, 0, 0);
+    updateCoinsTest(1, 1, 0, 0, 0);
+    updateCoinsTest(1, 0, 0, 1, 1);
+    updateCoinsTest(1, 0, 1, 0, 1);
+    updateCoinsTest(1, 1, 0, 0, 1);
+    updateCoinsTest(1, 1, 1, 1, 1);
+
+    // Test using various other variables.
+    // In a game, the bonus will never be negative, but
+    // lets test just to verify it won't throw an unhandled error
+    updateCoinsTest(2, 12, 14, 31, 11);
+    updateCoinsTest(2, 12, 14, 31, -11);
+    updateCoinsTest(1, 56, 999, 35, -16);
+    updateCoinsTest(0, 0, 44, 8, 999);
+
+    printf("\tunittest1: PASS\r\n");
+    return 0;
+}
+

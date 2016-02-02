@@ -29,6 +29,16 @@ int testplayVillage(struct gameState *post, int handPos)
 	{
 		printf("ERROR: number of actions should match. Pre: %d, Post: %d\n", pre.numActions, post->numActions);
 	}
+	//still current player?
+	if(pre.whoseTurn != post->whoseTurn)
+		printf("ERROR: Current player has changed from %i to %i", pre.whoseTurn, post->whoseTurn);
+	
+	//check coins
+	if(pre.coins != post->coins)
+		printf("ERROR: Number of coins changed from %i to %i", pre.coins, post->coins);
+	//check number of buys
+	if(pre.numBuys != post->numBuys)
+		printf("ERROR: Number of buys has changed from %i, to %i", pre.numBuys, post->numBuys);
 	
 	return 0;
 }

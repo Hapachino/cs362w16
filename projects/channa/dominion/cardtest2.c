@@ -25,7 +25,6 @@ int main() {
                , remodel, smithy, village, sea_hag, embargo};
 
     struct gameState G, testG;
-    int temphand[MAX_HAND];
     int count;
 
     // Default

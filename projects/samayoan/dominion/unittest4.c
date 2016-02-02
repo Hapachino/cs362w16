@@ -14,7 +14,64 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 
-void scoreForTest(int expectedScore, int handCards[10], int discardCards[10], int deckCards[10]);
+void scoreForTest(int expectedScore, int handCards[10], int discardCards[10], int deckCards[10]){
+    // The real purpose of this method is to add up scores of various cards.
+    // So it doesn't really matter what player it is. We'll just use the first player.
+
+    // Setup: Add cards to player's hand, discard, and deck
+    struct gameState state;
+    state.handCount[0] = 0;
+    state.discardCount[0] = 0;
+    state.deckCount[0] = 0;
+
+    int i = 0;
+    while (handCards[i] > -2 && i < 10){
+        state.handCount[0] = i + 1;
+        state.hand[0][i] = handCards[i];
+        i++;
+    }
+
+    i = 0;
+    while (discardCards[i] > -2 && i < 10){
+        state.discardCount[0] = i + 1;
+        state.discard[0][i] = discardCards[i];
+        i++;
+    }
+
+    i = 0;
+    while (deckCards[i] > -2 && i < 10){
+        state.deckCount[0] = i + 1;
+        state.deck[0][i] = deckCards[i];
+        i++;
+    }
+
+    // Perform calculation and assert it is correct
+    int calculatedScore = scoreFor(0, &state);
+    if(calculatedScore != expectedScore)
+    {
+        int test = 9;
+        printf("FAIL: Player's score was not calculated correctly with %d cards in hand, %d in discard, and %d in deck.\r\n", state.handCount[0], state.discardCount[0], state.deckCount[0]);
+    }
+
+    // The player's hand/piles should not be change in any way
+    i = 0;
+    while (handCards[i] > -2 && i < 10){
+        assert(state.hand[0][i] == handCards[i]);
+        i++;
+    }
+
+    i = 0;
+    while (discardCards[i] > -2 && i < 10){
+        assert(state.discard[0][i] == discardCards[i]);
+        i++;
+    }
+
+    i = 0;
+    while (deckCards[i] > -2 && i < 10){
+        assert(state.deck[0][i] == deckCards[i]);
+        i++;
+    }
+}
 
 int main(int argc, char *argv[]){
     int empty = -2;
@@ -56,61 +113,3 @@ int main(int argc, char *argv[]){
     return 0;
 }
 
-void scoreForTest(int expectedScore, int handCards[10], int discardCards[10], int deckCards[10]){
-    // The real purpose of this method is to add up scores of various cards.
-    // So it doesn't really matter what player it is. We'll just use the first player.
-
-    // Setup: Add cards to player's hand, discard, and deck
-    struct gameState state;
-    state.handCount[0] = 0;
-    state.discardCount[0] = 0;
-    state.deckCount[0] = 0;
-
-    int i = 0;
-    while (handCards[i] > -2 && i < 10){
-        state.handCount[0] = i + 1;
-        state.hand[0][i] = handCards[i];
-        i++;
-    }
-
-    i = 0;
-    while (discardCards[i] > -2 && i < 10){
-        state.discardCount[0] = i + 1;
-        state.discard[0][i] = discardCards[i];
-        i++;
-    }
-
-    i = 0;
-    while (deckCards[i] > -2 && i < 10){
-        state.deckCount[0] = i + 1;
-        state.deck[0][i] = deckCards[i];
-        i++;
-    }
-
-    // Perform calculation and assert it is correct
-    int calculatedScore = scoreFor(0, &state);
-    if(calculatedScore != expectedScore)
-    {
-        int test = 9;
-        printf("FAIL: Player's score was not calculated correctly.\r\n");
-    }
-
-    // The player's hand/piles should not be change in any way
-    i = 0;
-    while (handCards[i] > -2 && i < 10){
-        assert(state.hand[0][i] == handCards[i]);
-        i++;
-    }
-
-    i = 0;
-    while (discardCards[i] > -2 && i < 10){
-        assert(state.discard[0][i] == discardCards[i]);
-        i++;
-    }
-
-    i = 0;
-    while (deckCards[i] > -2 && i < 10){
-        assert(state.deck[0][i] == deckCards[i]);
-        i++;
-    }
-}

@@ -17,7 +17,7 @@
 
 int main() {
     int i;
-    int seed = 1000;
+    int seed = rand() % 1000;
     int numPlayer = 2;
     int maxBonus = 10;
     int p, r, handCount;
@@ -39,7 +39,7 @@ int main() {
         golds[i] = gold;
     }
 
-    printf ("TESTING updateCoins():\n");
+    printf ("<< TESTING unittest1 - updateCoins() >>\n");
     for (p = 0; p < numPlayer; p++)
     {
         for (handCount = 1; handCount <= maxHandCount; handCount++)

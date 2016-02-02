@@ -25,18 +25,31 @@ int main() {
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
            sea_hag, tribute, smithy};
     int costs[10] = {6,4,2,3,5,5,4,4,5,4};
+    int other_cards[18] = {curse, estate, duchy, province, copper, silver, gold, council_room,
+                feast, remodel, baron, great_hall, steward, tribute, ambassador,
+                outpost, salvager, treasure_map};
+    int other_costs[18] = {0,2,5,8,0,3,6,5,4,4,4,3,3,5,3,5,4,4};
     int testsRun = 0, testsPassed = 0;
     struct gameState testGame;
     struct gameState cleanGame;
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 18; i++) {
         initializeGame(2, k, 500, &cleanGame);
         memcpy(&testGame, &cleanGame, sizeof(struct gameState));
-        if (costs[i] == getCost(k[i])) {
-            printf("Card %d cost is correct. Test Failed.\n", k[i]);
-            testsPassed++;
+        if (i < 10) {
+            if (costs[i] == getCost(k[i])) {
+                printf("Kingdom Card %d cost is correct. Test Passed.\n", k[i]);
+                testsPassed++;
+            } else {
+                printf("Kingdom Card %d cost is incorrect. Test Failed.\n", k[i]);
+            }
+            testsRun++;
+        }
+        if (other_costs[i] == getCost(other_cards[i])) {
+            printf("Other Card %d cost is correct. Test Passed.\n", other_cards[i]);
+            testsPassed++;            
         } else {
-            printf("Card %d cost is incorrect. Test Failed.\n", k[i]);
+            printf("Other Card %d cost is incorrect. Test Failed.\n", other_cards[i]);
         }
         testsRun++;
         printf("Was game state affected?\n");

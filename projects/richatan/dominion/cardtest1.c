@@ -39,9 +39,10 @@ int main () {
 	- Current player's discard is unchanged
 	- Played card count increased by 1
 	- Smithy card added to played pile (in last position)
+	- Smithy card removed from hand
 	- Last 3 cards of current player's deck moved to hand
 	- Current player's deckCount is decreased by 3
-	- Current player's handCount is increased by 3
+	- Current player's handCount is increased by 2 (+3 new cards, -1 smithy)
 	- No bonus coins
 */
 	//Setup card options
@@ -192,10 +193,10 @@ int main () {
 		printf("  Last played card: %d, Expected: %d\n", g->playedCards[g->playedCardCount - 1], TEST_CARD);
 		failed = 1;		
 	}
-	//Check 3 cards add to hand
-	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 3){
-		printf("FAIL added 3 cards\n");
-		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 3);
+	//Check 3 cards added to hand and smithy removed
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 2){
+		printf("FAIL added 3 cards, removed smithy\n");
+		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 2);
 		failed = 1;		
 	}
 	//Check 3 cards removed from deck

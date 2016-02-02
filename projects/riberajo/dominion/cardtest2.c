@@ -49,7 +49,7 @@
 
 int main() {
    // initialize variables
-   int i, p, p2, r,
+   int p, p2, r,
        seed, numPlayer,
        kingdomCount, victoryCount,
        handPos;
@@ -146,7 +146,7 @@ int unitTest1(int handPos, struct gameState *post, int p, int victoryCount, int 
 
   // variables for post test
   int failedTests = 0;
-  int victoryCount2, kingdomCount2;
+  int j, victoryCount2, kingdomCount2;
 
   // run fucntion
   playAdventurer(post);
@@ -164,7 +164,7 @@ int unitTest1(int handPos, struct gameState *post, int p, int victoryCount, int 
      failedTests++;
    }
 
-   int j =  checkPlayer2(&pre, post, 1, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
+   j =  checkPlayer2(&pre, post, 1, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
 
    if(j > 0 ) {
      failedTests++;

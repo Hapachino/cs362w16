@@ -18,9 +18,9 @@
 #define INVALID_CARD remodel
  
 int main () {
-	int i, j;				//loop controls
-	int result;				//return value for function calls
-	int failed, changed;	//flags for tests
+	int i, j;			//loop controls
+	int result;			//return value for function calls
+	int failed;			//flags for tests
 	
 	struct gameState *g = malloc(sizeof(struct gameState));		//working game state
 	struct gameState *pre = malloc(sizeof(struct gameState));	//reference game state; stored before functions run
@@ -38,14 +38,27 @@ int main () {
 	}
 	//Change supplyCount for test card to 0
 	g->supplyCount[TEST_CARD] = 0;
+	//Save current state
+	memcpy(pre, g, sizeof(struct gameState));
 	//Attempt to gain card
 	result = gainCard(TEST_CARD, g, 0, whoseTurn(g));
-	if (result == -1){
-		printf("PASS when supplyCount = 0\n");
-	} else {
+	failed = 0;
+	if (result != -1){
 		printf("FAIL when supplyCount = 0\n");
 		printf("  Return value: %d, Expected: %d\n", result, -1);
+		failed = 1;
 	}
+	//Check game state is unchanged
+	if (checkGameState(pre, g) < 0){
+		printf("FAIL when supplyCount = 0\n");
+		printf("  gameState changed\n");
+		failed = 1;
+	} 
+	//Final check
+	if (!failed){
+		printf("PASS when supplyCount = 0\n");
+	}
+	
 	
 	
 //---Test invalid card (card not included in game; supplyCount = -1)
@@ -55,13 +68,25 @@ int main () {
 		printf("Could not initialize game. Testing aborted.\n");
 		return -1;
 	}
+	//Save current state
+	memcpy(pre, g, sizeof(struct gameState));
 	//Attempt to gain invalid card
 	result = gainCard(INVALID_CARD, g, 0, whoseTurn(g));
-	if (result == -1){
-		printf("PASS invalid card check\n");
-	} else {
+	failed = 0;
+	if (result != -1){
 		printf("FAIL invalid card check\n");
 		printf("  Return value: %d, Expected: %d\n", result, -1);
+		failed = 1;
+	}
+	//Check game state is unchanged
+	if (checkGameState(pre, g) < 0){
+		printf("FAIL invalid card check\n");
+		printf("  gameState changed\n");
+		failed = 1;
+	} 
+	//Final check
+	if (!failed){
+		printf("PASS invalid card check\n");
 	}
 	
 	
@@ -72,14 +97,27 @@ int main () {
 		printf("Could not initialize game. Testing aborted.\n");
 		return -1;
 	}
+	//Save current state
+	memcpy(pre, g, sizeof(struct gameState));
 	//Attempt to gain card with invalid parameter
 	result = gainCard(TEST_CARD, g, 4, whoseTurn(g));
-	if (result == -1){
-		printf("PASS invalid toFlag\n");
-	} else {
+	failed = 0;
+	if (result != -1){
 		printf("FAIL invalid toFlag\n");
 		printf("  Return value: %d, Expected: %d\n", result, -1);
+		failed = 1;
 	}	
+	//Check game state is unchanged
+	if (checkGameState(pre, g) < 0){
+		printf("FAIL invalid toFlag\n");
+		printf("  gameState changed\n");
+		failed = 1;
+	} 
+	//Final check
+	if (!failed){
+		printf("PASS invalid toFlag\n");
+	}
+	
 	
 	
 //---Test toFlag = 0

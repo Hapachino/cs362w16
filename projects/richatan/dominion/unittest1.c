@@ -41,14 +41,26 @@ int main () {
 	while (g->deckCount[whoseTurn(g)] > 0){
 		drawCard(whoseTurn(g), g);
 	}	
+	//Save current state
+	memcpy(pre, g, sizeof(struct gameState));
 	//Attempt to shuffle
 	result = shuffle(whoseTurn(g), g);
-	if (result == -1){
-		printf("PASS when deckCount = 0\n");
-	} else {
+	failed = 0;
+	if (result != -1){
 		printf("FAIL when deckCount = 0\n");
 		printf("  Return value: %d, Expected: %d\n", result, -1);
+		failed = 1;
 	}
+	//Check game state is unchanged
+	if (checkGameState(pre, g) < 0){
+		printf("FAIL when deckCount = 0\n");
+		printf("  gameState changed\n");
+		failed = 1;
+	} 
+	//Final check
+	if (!failed){
+		printf("PASS when deckCount = 0\n");
+	}	
 	
 
 	//---Test deckCount = 1

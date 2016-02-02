@@ -13,12 +13,8 @@
 	bugs added: 
 	1. Changed while(drawntreasures < 2) to (drawntreasures <=2)
 	   so that the card will draw up to 3 treasures.
-	
-	2. Changed the cardDrawn assignment so that it will always be
-	   assigned the first card in the player's hand instead of the last
-	   card.
 	   
-	3. Cards from the temporary hand go directly to the discard pile instead
+	2. Cards from the temporary hand go directly to the discard pile instead
 	   of going to the played card pile.
 
 	Smithy Card:

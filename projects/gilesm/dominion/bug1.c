@@ -60,7 +60,7 @@ Test Findings:
 
 
 --------------------------- NON CARD - UNIT TEST 4 ---------------------------
-Name: updateCoints
+Name: updateCoins
 Parameters:
 	- int player
 	- struct gameState *state

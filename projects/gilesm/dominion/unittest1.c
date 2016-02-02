@@ -1,3 +1,12 @@
+/******************************************************************************
+ * Author: Mark Giles
+ * Description: Unit tests for the buyCard function in dominion.c. This file
+ *   utilizes the function buyCard and dominion supporting files to execute
+ *   the function and check for error conditions.
+ * File Name: unittest1.c
+ * Date Created: 1/31/2016
+ *****************************************************************************/
+
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>

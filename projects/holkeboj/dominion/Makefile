@@ -78,7 +78,7 @@ unittestresults.out: buildAllTests
 	make runAllTests >> unittestresults.out
 	echo "Coverage starts below:" >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
+	#cat dominion.c.gcov >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

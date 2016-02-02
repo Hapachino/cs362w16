@@ -73,7 +73,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
   if (numPlayers == 2)
     {
       state->supplyCount[curse] = 10;
-      
+
     }
   else if (numPlayers == 3)
     {
@@ -140,19 +140,19 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
 
   //set player decks
   for (i = 0; i < numPlayers; i++)
-    {
-      state->deckCount[i] = 0;
-      for (j = 0; j < 3; j++)
-	{
-	  state->deck[i][j] = estate;
-	  state->deckCount[i]++;
-	}
-      for (j = 3; j < 10; j++)
-	{
-	  state->deck[i][j] = copper;
-	  state->deckCount[i]++;		
-	}
-    }
+  {
+    state->deckCount[i] = 0;
+    for (j = 0; j < 3; j++)
+  	{
+  	  state->deck[i][j] = estate;
+  	  state->deckCount[i]++;
+  	}
+    for (j = 3; j < 10; j++)
+  	{
+  	  state->deck[i][j] = copper;
+  	  state->deckCount[i]++;		
+  	}
+  }
   //shuffle player decks
   for (i = 0; i < numPlayers; i++)
     {

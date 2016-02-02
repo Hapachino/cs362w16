@@ -64,6 +64,10 @@ unittestresults.out: unittest1.c testHelpers.o dominion.o rngs.o
 	echo "cardtest3.c:" >> unittestresults.out
 	gcc -o cardtest3 cardtest3.c test_helpers.o dominion.o rngs.o $(CFLAGS)
 	./cardtest3 >> unittestresults.out
+
+	echo "cardtest4.c:" >> unittestresults.out
+	gcc -o cardtest4 cardtest4.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./cardtest4 >> unittestresults.out
 	
 	echo -e "\nCode Coverage:" >> unittestresults.out
 	gcov ./dominion.c >> unittestresults.out

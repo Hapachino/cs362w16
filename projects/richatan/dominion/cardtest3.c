@@ -39,9 +39,10 @@ int main () {
 	- All player's discard is unchanged
 	- Played card count increased by 1
 	- Council_room card added to played pile (in last position)
+	- Council_room removed from hand
 	- Last 4 cards of current player's deck moved to hand
 	- Current player's deckCount is decreased by 4
-	- Current player's handCount is increased by 4
+	- Current player's handCount is increased by 3 (+4 cards, -1 council_room)
 	- Last 1 card of all other player's deck moved to hand
 	- Other player's deckCount is decreased by 1
 	- Other player's handCount is increased by 1
@@ -153,10 +154,10 @@ int main () {
 		printf("  Last played card: %d, Expected: %d\n", g->playedCards[g->playedCardCount - 1], TEST_CARD);
 		failed = 1;		
 	}
-	//Check 4 cards add to current player's hand
-	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 4){
+	//Check 4 cards add to current player's hand, council_room removed
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 3){
 		printf("FAIL added 4 cards\n");
-		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 4);
+		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 3);
 		failed = 1;		
 	}
 	//Check 3 cards removed from current player's deck

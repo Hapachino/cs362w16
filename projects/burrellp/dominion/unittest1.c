@@ -71,7 +71,7 @@ int main() {
                 if (drawCard(i, gs1) == -1)
                 {
                     printf("Error in call to drawCard().\n");
-                    return -1;
+                    //return -1;
                 }
                 else
                 {

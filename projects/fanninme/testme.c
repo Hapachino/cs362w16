@@ -11,7 +11,7 @@
 //
 char inputChar()
 {
-    char randomletter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz[({})] "[rand () % 59];
+    char randomletter = "abcdefghijklmnopqrstuvwxyz[({})] "[rand () % 33];
 
     return randomletter;
 }
@@ -19,15 +19,14 @@ char inputChar()
 char *inputString()
 {
     char myChar;
-    char *myString;
-    int myStringSize=6;//Not this could be altered so that inputstring accepts a string size arg
+    int myStringSize=6;//Note this could be altered so that inputstring accepts a string size arg
+    char *myString = malloc(myStringSize + 1);
 
     for(int i=0; i<myStringSize-1; i++){
-        myChar = inputChar();
+        myChar = "abcdefghijklmnopqrstuvwxyz"[rand () % 26];
         myString[i]=myChar;
     }
     myString[6]='\0';//null termination of string
-    // TODO: rewrite this function
     return myString;
 }
 
@@ -37,13 +36,11 @@ void testme()
   char *s;
   char c;
   int state = 0;
-    printf("Input\n");
 
   while (1)
   {
     tcCount++;
     c = inputChar();//call input char
-    printf("Input\n");
     s = inputString();//call input string
     printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
 
@@ -68,12 +65,9 @@ void testme()
 }
 
 
-//int main(int argc, char *argv[])
-int main()
+int main(int argc, char *argv[])
 {
-    printf("Input\n");
-
-    //srand(time(NULL));
-    //testme();
+    srand(time(NULL));
+    testme();
     return 0;
 }

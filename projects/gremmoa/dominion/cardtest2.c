@@ -4,8 +4,8 @@
  * 2. 2 treasure cards come from own deck
  * 3. 0-n amount of cards are drawn until 2 treasure cards have been revealed
  * 4. The non-treasure cards that were drawn are discarded
- * 3. No state change should occur for other players
- * 4. No state change should occur to the victory/kingdom card piles
+ * 5. No state change should occur for other players
+ * 6. No state change should occur to the victory/kingdom card piles
  */
 
 #include "dominion.h"

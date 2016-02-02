@@ -2,12 +2,13 @@
  *cardtest3.c
  *test playVillage()
  *Notes:
- *Village is an action card that draws cards from the player's deck until 2 treasure cards are drawn.
+ *Village is an Action card from the Base set. Village gives you +1 card from the deck and +2 actions, 
+ *allowing you to play more than one terminal action each turn.
  */
  /*
  * Basic Requirements of Village:
- * 1. Current player should receive a total of 2 treasure cards.
- * 2. If drawn card is not a treasure card, then discard and pick a new card.
+ * 1. Current player should receive a total of 1 cards from the deck.
+ * 2. Current player should receive plus 2 actions. 
  * 3. No state change should occur for other players.
  * 4. No state change should occur to the victory drawnCard piles and kingdom card piles.
  */

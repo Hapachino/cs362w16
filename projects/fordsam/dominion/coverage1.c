@@ -60,6 +60,6 @@ Currently, the functions that are completely untested include:
 Summary
 -------
 
-Altogether, this amounts to 26.88% lines executed (of 651), 25.42% branches executed (of 417), and 19.18% "taken at least once" (of 417).
+Altogether, this amounts to 26.88% lines executed (of 651), 25.42% branches executed (of 417), and 19.18% "taken at least once" (of 417).  [I compiled these percentages locally and they may vary in other environments.]
 
 With future improvements in mind, it would definitely be good to test the initializeGame() function since it's used in every game and is relatively long (78 lines); even executing it one time will add 10% coverage.  initializeGame() was used in the example tests to set up the gameState but I thought it would be better not to trust it (since it's untested at this point).  Instead, I initialized gameState structs to 0 ({0}) and set all the variables myself so that there would be no mystery about the game state.  It's much easier to reason about the game state in this case because a member value will normally be 0 unless I changed it myself or it was changed by a function-under-test.

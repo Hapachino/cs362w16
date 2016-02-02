@@ -4,7 +4,7 @@
  Patrick Burrell
  CS 362 - Winter 2016
  Assignment 3
- Test for: Smithy (playAdventurer() function)
+ Test for: Adventurer (playAdventurer() function)
  
  */
 
@@ -21,7 +21,6 @@
     Reveal cards from your deck until you reveal two treasure cards
     Add two treasure cards to hand
     Discard other revealed cards
- 
  */
 
 /*
@@ -283,7 +282,7 @@ int main()
     outpostPlayed and outpostTurn remain the same
     whoseTurn stays the same
     phase stays the same
-    numActions stays the same
+    numActions decreased by 1
     numBuys stays the same
     playedCardCount increases by 1
  ************************************************************************************/

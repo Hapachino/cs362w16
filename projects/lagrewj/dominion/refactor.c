@@ -24,5 +24,5 @@ playFeast:
 Notes: For loop stops one less than hand count. 
 
 playCouncil_Room:
-Notes: draws one extra card due to tweak of for loop. 
+Notes: draws one extra card now because of minor change to the for loop. 
 */

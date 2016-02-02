@@ -1,7 +1,25 @@
 /*Jonathan Lagrew
+ *cardtest1.c
  *test playSmithy()
+ *Notes:
+ *Smithy should draw 3 cards from player's own discard pile
+ *and add them to player's own hand. 
  */
- 
+ /*
+ * Basic Requirements of Smithy:
+ * 1. Current player should receive exact 3 cards.
+ * 2. 3 cards should come from his own pile.
+ * 3. No state change should occur for other players.
+ * 4. No state change should occur to the victory card piles and kingdom card piles.
+ */
+
+/*
+ * Include the following lines in your makefile:
+ *
+ * cardtest1: cardtest1.c dominion.o rngs.o
+ *      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+ */
+
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -10,90 +28,92 @@
 #include "rngs.h"
 #include <math.h>
 
-int testSmithy(struct gameState *post, int handPos)
+#define TESTCARD "smithy"
+
+int testSmithy(struct gameState *after, int handPos) //test smithy function
 {
-	int i;
-	int p = post->whoseTurn;
-	struct gameState pre;
-	memcpy(&pre, post, sizeof(struct gameState));
+	int p = after->whoseTurn;//initialize whoseTurn stored as p 
+	struct gameState before;//before card played 
+	memcpy(&before, after, sizeof(struct gameState));
 	
-	playSmithy(post, handPos);
-	
-	pre.handCount[p] = pre.handCount[p] + 2; //net gain after discarding smithy
-	pre.playedCardCount++; //a smithy was played
-	
+	printf("Checking status before player buy...\n");
+	playSmithy(after, handPos);//play smithy with after game state and current hand position
+	before.handCount[p] = before.handCount[p] + 2; //plus 2 additional after smithy goes to discard
+	before.playedCardCount++; //inc card count after smithy played
 	//check if the discard pile was shuffled into the deck
-	if(pre.deckCount[p] < 3)
+	//checking no state changes
+	if(before.deckCount[p] < 3) //checking if discard pile shuffled 
 	{
-		pre.deckCount[p] = pre.deckCount[p] + pre.discardCount[p] - 3;
+		before.deckCount[p] = before.deckCount[p] + before.discardCount[p] - 3;//if less than 3, deck plus discard minus 3
 	}
 	else
 	{
-		pre.deckCount[p] = pre.deckCount[p] - 3; //after drawing 3 cards
+		before.deckCount[p] = before.deckCount[p] - 3; //then draws 3 cards
+	}
+	if(after->handCount[p] != before.handCount[p])
+	{
+		printf("ERROR: handCount is incorrect. Expected: %d Actual: %d\n", before.handCount[p], after->handCount[p]);
+	}
+	if(after->deckCount[p] != before.deckCount[p])
+	{
+		printf("ERROR: deckCount is incorrect. Expected: %d Actual: %d\n", before.deckCount[p], after->deckCount[p]);
+	}
+	if(before.playedCardCount != after->playedCardCount)
+	{
+		printf("ERROR: playedCardCount is incorrect. Expected: %d Actual: %d\n", before.playedCardCount, after->playedCardCount);
+	}
+	int i;
+	for(i = 0; i < treasure_map; i++)//checking supply counts before and after buy
+	{
+		if(before.supplyCount[i] != after->supplyCount[i])
+			printf("ERROR: Supply counts changed. before: %i, after: %i", before.supplyCount[i], after->supplyCount[i]);
 	}
 	
-	if(post->handCount[p] != pre.handCount[p])
-	{
-		printf("ERROR: handCount is incorrect. Expected: %d Actual: %d\n", pre.handCount[p], post->handCount[p]);
-	}
-	if(post->deckCount[p] != pre.deckCount[p])
-	{
-		printf("ERROR: deckCount is incorrect. Expected: %d Actual: %d\n", pre.deckCount[p], post->deckCount[p]);
-	}
-	if(pre.playedCardCount != post->playedCardCount)
-	{
-		printf("ERROR: playedCardCount is incorrect. Expected: %d Actual: %d\n", pre.playedCardCount, post->playedCardCount);
-	}
-	
-	//check supply counts
-	for(i = 0; i < treasure_map; i++)
-	{
-		if(pre.supplyCount[i] != post->supplyCount[i])
-			printf("ERROR: Supply counts for card#%i are different. Pre: %i, Post: %i", i, pre.supplyCount[i], post->supplyCount[i]);
-	}
-	
-	//still current player?
-	if(pre.whoseTurn != post->whoseTurn)
-		printf("ERROR: Current player has changed from %i to %i", pre.whoseTurn, post->whoseTurn);
+	if(before.whoseTurn != after->whoseTurn)//if whoseTurn changed then different player
+		printf("ERROR: Different player from %i to %i", before.whoseTurn, after->whoseTurn);
 	
 	//check coins
-	if(pre.coins != post->coins)
-		printf("ERROR: Number of coins changed from %i to %i", pre.coins, post->coins);
+	if(before.coins != after->coins)
+		printf("ERROR: Number of coins changed from %i to %i", before.coins, after->coins);
 	//check number of buys
-	if(pre.numBuys != post->numBuys)
-		printf("ERROR: Number of buys has changed from %i, to %i", pre.numBuys, post->numBuys);
+	if(before.numBuys != after->numBuys)
+		printf("ERROR: Number of buys has changed from %i, to %i", before.numBuys, after->numBuys);
 	//check number of actions
-	if(pre.numActions != post->numActions)
-		printf("ERROR: Number of actions has changed from %i to %i", pre.numActions, post->numActions);
+	if(before.numActions != after->numActions)
+		printf("ERROR: Number of actions has changed from %i to %i", before.numActions, after->numActions);
 	
 	return 0;
 }
 
+//main function for testing played card 
 int main()
 {
 	int p = 0;
 	struct gameState G;
 	int handPos;
-	int i, j, k, m, n, q;
+	int i, j, k, m, n, q;//initializing int 
 	
-	for (i = 0; i < sizeof(struct gameState); i++) { //from the lessons, random gameState
+	for (i = 0; i < sizeof(struct gameState); i++) {//random gameState
 		((char*)&G)[i] = floor(Random() * 256);
 	}
 	
 	SelectStream(2);
 	PutSeed(3);
-	printf("Testing playSmithy() cardtest1.\n");
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
+	G.whoseTurn = p;//gameState G's player's turn stored in value p
 	
-	G.whoseTurn = p;
-	for(k = 0; k < 500; k++)
+	for(k = 0; k < 250; k++) //250 number of tests
 	{
-		//fill in random cards
-		G.handCount[p] = floor(Random() * MAX_HAND)+1;//need at least one smithy in our hand
-		G.deckCount[p] = floor(Random() * MAX_DECK);
-		G.discardCount[p] = floor(Random() * MAX_DECK);
-		G.playedCardCount = floor(Random() * MAX_DECK);
-		//printf("handCount: %d, deckCount: %d, discardCount: %d.\n", G.handCount[p], G.deckCount[p], G.discardCount[p]);
 		
+		G.handCount[p] = floor(Random() * MAX_HAND)+1;//fill random hand with one smithy
+		
+		G.deckCount[p] = floor(Random() * MAX_DECK);//fill random deck
+		
+		G.discardCount[p] = floor(Random() * MAX_DECK);//fill random discard pile
+		
+		G.playedCardCount = floor(Random() * MAX_DECK);//fill random played card pile
+		
+		 
 		for(m = 0; m < G.handCount[p]; m++)
 		{
 			G.hand[p][m] = floor(Random() * treasure_map) + 1;
@@ -112,14 +132,12 @@ int main()
 		{
 			G.playedCards[q] = floor(Random() * treasure_map) + 1;
 		}
-		
-		//place smithy in a random pos
-		handPos = floor(Random() * G.handCount[p]);
-		G.hand[p][handPos] = smithy;
-		
-		testSmithy(&G, handPos);
+		handPos = floor(Random() * G.handCount[p]);//putting smithy in random hand position
+		G.hand[p][handPos] = smithy;//play smithy
+		testSmithy(&G, handPos);//running test smithy function 
 	}
 	
-	printf("PLAYSMITHY TESTS FINISHED.\n\n");
+	printf("Play Smithy Tests are concluded.\n\n");
+	
 	return 0;
 }

@@ -12,52 +12,53 @@
 
 #define MAX_HAND_TEST 200
 #define MAX_DECK_TEST 200
+#define TESTCARD "Adventurer"
 
-int testPlayCouncil_Room(struct gameState *post, int handPos)
+int testPlayCouncil_Room(struct gameState *after, int handPos)
 {
 	int i;
-	int p = post->whoseTurn;
-	struct gameState pre;
-	memcpy(&pre, post, sizeof(struct gameState));
+	int p = after->whoseTurn;
+	struct gameState before;
+	memcpy(&before, after, sizeof(struct gameState));
 	
-	playCouncil_Room(post, handPos);
+	playCouncil_Room(after, handPos);
 	
 	//drawing 4 cards and discard council_room. Net gain = 3;
-	pre.handCount[p] = pre.handCount[p] + 3;
-	if(pre.handCount[p] != post->handCount[p])
+	before.handCount[p] = before.handCount[p] + 3;
+	if(before.handCount[p] != after->handCount[p])
 	{
-		printf("ERROR 1: current player %d should have net gain of 3 cards in hand! Pre count: %d Post count: %d\n", p, pre.handCount[p], post->handCount[p]);
+		printf("ERROR 1: current player %d should have net gain of 3 cards in hand! before count: %d after count: %d\n", p, before.handCount[p], after->handCount[p]);
 	}
 	//numBuys is incremented by 1
-	pre.numBuys++;
-	if(pre.numBuys != post->numBuys)
+	before.numBuys++;
+	if(before.numBuys != after->numBuys)
 	{
-		printf("ERROR 2: player did not get another Buy point. Pre numBuys: %d, Post numBuys: %d.\n", pre.numBuys, post->numBuys);
+		printf("ERROR 2: player did not get another Buy point. before numBuys: %d, after numBuys: %d.\n", before.numBuys, after->numBuys);
 	}
 	//every other player should have an extra card in their deck
-	for(i = 0; i < pre.numPlayers; i ++)
+	for(i = 0; i < before.numPlayers; i ++)
 	{
 		if(i != p)
 		{
-			pre.handCount[i]++;
+			before.handCount[i]++;
 			
-			if(pre.handCount[i] != post->handCount[i])
+			if(before.handCount[i] != after->handCount[i])
 			{
-				printf("ERROR 3: player %d did not recieve a card! Pre count: %d Post count: %d\n", i, pre.handCount[i], post->handCount[i]);
+				printf("ERROR 3: player %d did not recieve a card! before count: %d after count: %d\n", i, before.handCount[i], after->handCount[i]);
 			}
 		}
 	}
 
 	//still current player?
-	if(pre.whoseTurn != post->whoseTurn)
-		printf("ERROR: Current player has changed from %i to %i", pre.whoseTurn, post->whoseTurn);
+	if(before.whoseTurn != after->whoseTurn)
+		printf("ERROR: Current player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
 	
 	//check coins
-	if(pre.coins != post->coins)
-		printf("ERROR: Number of coins changed from %i to %i", pre.coins, post->coins);
+	if(before.coins != after->coins)
+		printf("ERROR: Number of coins changed from %i to %i", before.coins, after->coins);
 	//check number of actions
-	if(pre.numActions != post->numActions)
-		printf("ERROR: Number of actions has changed from %i to %i", pre.numActions, post->numActions);
+	if(before.numActions != after->numActions)
+		printf("ERROR: Number of actions has changed from %i to %i", before.numActions, after->numActions);
 	
 	return 0;
 }

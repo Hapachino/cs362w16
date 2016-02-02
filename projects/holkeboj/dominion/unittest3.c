@@ -29,7 +29,7 @@ int main() {
     int testResult, testsRun = 0, testsPassed = 0;
     
     int max_hand_count = 5;
-    int trashFlag;
+    int trashFlag, handCount, player;
     int otherPlayer;
     
     struct gameState testGame;
@@ -39,8 +39,8 @@ int main() {
     printf("---------- Testing Function: %s --------------\n", TESTFUNCTION);
     
     for (trashFlag = 0; trashFlag < 2; trashFlag++) {
-        for (int handCount = 0; handCount < 5; handCount++) {
-            for (int player = 0; player < 2; player++) {
+        for (handCount = 0; handCount < 5; handCount++) {
+            for (player = 0; player < 2; player++) {
                 printf("---- Testing Player %d, Trash Flag %d, Hand Count %d\n",player,trashFlag,handCount);
                 initializeGame(2, k, 500, &cleanGame);
                 memcpy(&testGame, &cleanGame, sizeof(struct gameState));

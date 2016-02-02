@@ -38,6 +38,6 @@ int main() {
 
    printf("Number of Buys:  %d, Number Expected: %d\n",
             G.numBuys, storeG.numBuys+1);
-
+  printf("\n\n\n");
    return 0;
 }

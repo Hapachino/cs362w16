@@ -1,8 +1,4 @@
 /*
-*	Author: 	Martin Stryffeler
-*	Filename:	unittest2.c
-*	Date:		2/2/2016
-*
 *	scoreFor() function unit testing
 *	Initializes a gamestate, then tests scoreFor() with a hand, a deck,
 *	and a discard pile full of each score affecting card.

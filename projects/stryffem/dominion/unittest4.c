@@ -1,8 +1,4 @@
 /*
-*	Author: 	Martin Stryffeler
-*	Filename:	unittest4.c
-*	Date:		2/2/2016
-*
 *	gainCard() function unit testing
 *	Initializes a gamestate, then tests gainCard with varying game states,
 *	chosen cards, and destinations(toFlag).

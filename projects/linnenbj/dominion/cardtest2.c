@@ -12,26 +12,30 @@
  *
  * -----------------------------------------------------------------------
  */
-
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <assert.h>
 #include "rngs.h"
-
-#include <stdio.h>
-#include <time.h>
-#include "rngs.h"
+#include <stdlib.h>
 
 
-
+#define TESTCARD "adventurer"
+/* qsort int comparison function */
+int int_cmp(const void *a, const void *b)
+{
+    const int *ia = (const int *)a; // casting pointer types
+    const int *ib = (const int *)b;
+    return *ia  - *ib;
+	/* integer comparison: returns negative if b > a
+	and positive if a > b */
+}
 
 //Determine if two gameStates are identical or not: Return 1 if identical, 0 if not
-int statesAreEqual(struct gameState *g1, struct gameState *g2)
+int statesAreEqual(struct gameState *g1, struct gameState *g2, int arraychecks)
 {
-    int i;
+    int i, j;
 
     if(g1->numPlayers != g2->numPlayers) return 0;
     for(i = 0; i < treasure_map+1; i++)
@@ -42,350 +46,505 @@ int statesAreEqual(struct gameState *g1, struct gameState *g2)
     if(g1->outpostTurn != g2->outpostTurn) return 0;
     if(g1->whoseTurn != g2->whoseTurn) return 0;
     if(g1->phase != g2->phase) return 0;
-    if(g1->numActions != g2->numActions) return 01;
+    if(g1->numActions != g2->numActions) return 0;
     if(g1->coins != g2->coins) return 0;
     if(g1->numBuys != g2->numBuys) return 0;
-    /*   for(i = 0; i < MAX_PLAYERS; i++)
-       {
-           if(g1->handCount[i] != g2->handCount[i]) return 0;
-           if(g1->deckCount[i] != g2->deckCount[i]) return 0;
-           if(g1->discardCount[i] != g2->discardCount[i]) return 0;
+    if(g1->playedCardCount != g2->playedCardCount) return 0;
 
-           for(j = 0; j < MAX_HAND; j++)
-               if(g1->hand[i][j] != g2->hand[i][j]) return 0;
+    qsort ((void*)(g1->deck[0]), g1->deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g1->hand[0]), g1->handCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g1->discard[0]), g1->discardCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g1->playedCards), g1->playedCardCount, sizeof(int), int_cmp);
+    qsort ((void*)(g2->deck[0]), g2->deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g2->hand[0]), g2->handCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g2->discard[0]), g2->discardCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g2->playedCards), g2->playedCardCount, sizeof(int), int_cmp);
 
-           for(j = 0; j < MAX_DECK; j++)
-               if(g1->deck[i][j] != g2->deck[i][j]) return 0;
-       }
 
-       for(i = 0; i < MAX_DECK; i++)
-           if(g1->playedCards[i] != g2->playedCards[i]) return 0;
 
-       if(g1->playedCardCount != g2->playedCardCount) return 0;
-    */
-    return 1;
+
+    for(i = 0; i < g1->numPlayers; i++)
+    {
+        if(g1->handCount[i] != g2->handCount[i]) return 0;
+        if(g1->deckCount[i] != g2->deckCount[i]) return 0;
+        if(g1->discardCount[i] != g2->discardCount[i]) return 0;
+
+        if(arraychecks == 1)
+        {
+            for(j = 0; j < g1->discardCount[i]; j++)
+            {
+                if(g1->discard[i][j] != g2->discard[i][j]) return 0;
+            }
+
+            for(j = 0; j < g1->handCount[i]; j++)
+            {
+                if(g1->hand[i][j] != g2->hand[i][j]) return 0;
+            }
+
+            for(j = 0; j < g1->deckCount[i]; j++)
+            {
+                if(g1->deck[i][j] != g2->deck[i][j]) return 0;
+            }
+            for(i = 0; i < g1->playedCardCount; i++)
+            {
+                if(g1->playedCards[i] != g2->playedCards[i]) return 0;
+            }
+        }
+    }
+        return 1;
 }
 
 
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 0
+int transform_ints_to_string(int const* data, int data_length,
+                             char* output, int output_length)
+{
+  // if not enough space was available, returns -1
+  // otherwise returns the number of characters written to
+  // output, not counting the additional null character
+
+  // precondition: non-null pointers
+  assert(data);
+  assert(output);
+  // precondition: valid data length
+  assert(data_length >= 0);
+  // precondition: output has room for null
+  assert(output_length >= 1);
+
+  int written = 0;
+  for (; data_length; data_length--) {
+    int length = snprintf(output, output_length, "%d, ", *data++);
+    if (length >= output_length) {
+      // not enough space
+      return -1;
+    }
+    written += length;
+    output += length;
+    output_length -= length;
+  }
+  return written;
+}
+void printArray(int const* d, int len, char* str)
+{
+    char buf[200] = "";
+    printf("%s: ", str);
+    if(len <= 0)
+    {
+        printf("[ ]\n");
+        return;
+    }
+    else
+    {
+        transform_ints_to_string(d, len, buf, sizeof buf);
+        printf("[%s\b\b]\n", buf);
+    }
+}
+
+int handCoins(struct gameState *g, int player)
+{
+    int i;
+    int coins = 0;
+    for(i = 0; i < g->handCount[player]; i++)
+    {
+        if(g->hand[player][i] == copper || g->hand[player][i] == silver || g->hand[player][i] == gold)
+        {
+            coins++;
+        }
+    }
+    return coins;
+}
+
+
+
+
 int main()
 {
-    int i, j;
-    int numcards, temp, numHand, numDeck, numDiscard;
-    int testHandCounts = 0, testPlayedCounts = 0, testDeckCounts = 0, testStateCounts = 0;
-    int testHandCards = 0, testPlayedCards = 0;
-    int adventLoc, currentTest;
-    int tLoc1, tLoc2, tType1, tType2, numDraws, tcount=0;
-    int tests = 100;  // number of times to run test
-    int seed = 500;
-    srand(seed);
-    struct gameState game, test;
-    int tempCards[15];
-    int tempDeck[MAX_DECK];
-    int tempHand[MAX_HAND];
+    int coinsInHand = 0;
+    int handpos = 0, bonus = 0;
+    int seed = 1800;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
 
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+    shuffle(thisPlayer, &G);
 
-    printf ("TESTING playCardAdventurer():\n");
-    for(j=0; j < tests; j++)
+	printf("*** Testing Card: %s \n", TESTCARD);
+
+	// ----------- TEST 1: At least 2 treasure cards in player's deck --------------
+	printf("-------------------------------------------------------------\n");
+	printf("TEST 1: At least 2 treasure cards in player's deck\n");
+    printf("-------------------------------------------------------------\n");
+	handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = adventurer;           //assign the smithy card to the end of the hand
+
+	memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+
+	cardEffect(adventurer, 0, 0, 0, &testG, handpos, &bonus);   //Play the card
+
+	//determine if hand/deck is correct
+
+	coinsInHand = handCoins(&G, thisPlayer); //how many coins are in player's hand
+	int coinCount = coinsInHand;
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Starting hand");
+	printArray(G.deck[thisPlayer], G.deckCount[thisPlayer], "Starting deck");
+	printArray(G.discard[thisPlayer], G.discardCount[thisPlayer], "Starting discard");
+    printf("# coin cards: %d\n", coinsInHand);
+	discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+
+    //mimic the act of the adventurer card on game G
+    while(coinCount < coinsInHand + 2 && (G.deckCount[thisPlayer] + G.discardCount[thisPlayer] != 0))
     {
-        currentTest = 1;
-        numHand = 0;
-        numDeck = 0;
-        numDiscard = -1;
-        //set the deck to a random # of cards between 5 and 15
-        numcards = (int)(rand() % 10 + 5);
-
-        //load a temporary set of cards randomly picked
-        for(i = 0; i < 15; i++)
-        {
-            tempCards[i] = -1;
-        }
-
-        for(i = 0; i < numcards; i++)
-        {
-            temp = rand() % 10;
-            tempCards[i] = temp;
-        }
-
-        //decide how many cards to have in hand/deck/discard
-        //make sure the hand has at least 1 card in it (for smithy)
-        while(numDeck == 0)
-            numDeck = rand() % numcards;
-        //while(numDiscard < 0)
-        //numDiscard = rand() % (numcards - (numDeck));
-        while(numHand == 0)
-            numHand = rand() % (numcards - numDeck +1);
-
-        //create temporary deck, hand, discard
-        for(i=0; i < numDeck; i++)
-            tempDeck[i] = tempCards[i];
-        for(i=numDeck; i < numDeck + numHand; i++)
-            tempHand[i-numDeck] = tempCards[i];
-        // for(i=numHand+numDeck; i < numcards; i++)
-        //     tempDiscard[i-(numHand+numDeck)] = tempCards[i];
-
-        //make sure adventurer card is in player's hand
-        adventLoc = (int) (rand() % numHand);
-        tempHand[adventLoc] = adventurer;
-
-
-        //determine where 2 treasure cards are in deck
-        tLoc1 = -1;
-        tLoc2 = -1;
-        tcount = 0;
-        for(i = numDeck-1; i >= 0; i--)
-        {
-            if(tempDeck[i] == copper)
-            {
-                if(tLoc1 == -1)
-                {
-                    tLoc1 = i;
-                    tType1 = copper;
-                    tcount++;
-                }
-                else
-                {
-                    tLoc2 = i;
-                    tType2 = copper;
-                    i = -1;
-                    tcount++;
-                }
-            }
-            else if(tempDeck[i] == silver)
-            {
-                if(tLoc1 == -1)
-                {
-                    tLoc1 = i;
-                    tType1 = silver;
-                    tcount++;
-                }
-                else
-                {
-                    tLoc2 = i;
-                    tType2 = silver;
-                    i = -1;
-                    tcount++;
-                }
-            }
-            else if(tempDeck[i] == gold)
-            {
-                if(tLoc1 == -1)
-                {
-                    tLoc1 = i;
-                    tcount++;
-                    tType1 = gold;
-                }
-                else
-                {
-                    tLoc2 = i;
-                    tType2 = gold;
-                    i = -1;
-                    tcount++;
-                }
-            }
-        }
-
-        //how many draws are going to be required:
-        if(tLoc2 != -1)
-        {
-            numDraws = numDeck - tLoc2;
-        }
+        drawCard(thisPlayer, &G);
+        if(handCoins(&G, thisPlayer) > coinCount)
+            coinCount++;
         else
-        {
-            numDraws = numDeck;
-        }
-
-
-#if (NOISY_TEST == 1)
-        printf("TEST# %d:   ", j);
-        printf("%d\t%d\t%d\t%d\n", numcards, numDeck, numDiscard, numHand);
-        printf("temp: %d [", numcards);
-        for(i = 0; i < 20; i++)
-            printf("%d, ", tempCards[i]);
-        printf("\b\b]\n");
-
-        printf("hand:  %d [", numHand);
-        for(i = 0; i < numHand; i++)
-            printf("%d, ", tempHand[i]);
-        printf("\b\b]\n");
-
-        printf("deck: %d [", numDeck);
-        for(i = 0; i < numDeck; i++)
-            printf("%d, ", tempDeck[i]);
-        printf("\b\b]\n");
-        /*
-                printf("discard: [");
-                for(i = 0; i < numDiscard; i++)
-                    printf("%d, ", tempDiscard[i]);
-                printf("\b\b]\n");
-        */
-        printf("tLoc1: %d\t\ttType: %d\n", tLoc1, tType1);
-        printf("tLoc2: %d\t\ttType: %d\n", tLoc2, tType1);
-        printf("draws needed: %d\n", numDraws);
-#endif
-
-        //populate the gamestate with the player's relevant deck, hand, and discard information
-        memset(&game, 0, sizeof(struct gameState));          // clear the game state
-        memcpy(game.hand[0], tempHand, sizeof(int) * numHand);
-        memcpy(game.deck[0], tempDeck, sizeof(int) * numDeck);
-
-        game.handCount[0] = numHand;
-        game.deckCount[0] = numDeck;
-        game.discardCount[0] = 0;
-        game.playedCardCount = 0;
-        for(i=0; i < MAX_DECK; i++)
-        {
-            game.playedCards[i] = -1;
-        }
-        memcpy(&test, &game, sizeof(struct gameState));     //establish a cloned game state
-
-
-        playCardAdventurer(&game, 0, adventLoc);
-
-
-#if (NOISY_TEST == 1)
-        printf("\nAFTER PLAYED ADVENTURER\n");
-        printf("temp: %d [", numcards);
-        for(i = 0; i < 20; i++)
-            printf("%d, ", tempCards[i]);
-        printf("\b\b]\n");
-
-        printf("hand:  %d \t[", game.handCount[0]);
-        for(i = 0; i < game.handCount[0]; i++)
-            printf("%d, ", game.hand[0][i]);
-        printf("\b\b]\n");
-
-        printf("deck:  %d \t[", game.deckCount[0]);
-        for(i = 0; i < game.deckCount[0]; i++)
-            printf("%d, ", game.deck[0][i]);
-        printf("\b\b]\n");
-
-        printf("discard: [");
-        for(i = 0; i < game.discardCount[0]; i++)
-            printf("%d, ", game.discard[0][i]);
-        printf("\b\b]\n");
-
-
-        //Check for proper card counts
-        printf("handcount: %d\ttcount: %d\tnumHand + tcount -1: %d\n",game.handCount[0], tcount,numHand + tcount - 1);
-#endif
-        if(game.handCount[0] == numHand + tcount - 1)
-            testHandCounts++;
-        else
-        {
-#if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-        }
-
-        //Check for proper cards in hand
-        //take discard of adventurer into consideration
-        tempHand[adventLoc] = tempHand[numHand-1];
-        if(tcount == 0)
-            tempHand[numHand-1]=-1;
-        else
-        {
-            tempHand[numHand-1] = tType1;
-            if(tcount == 2)
-                tempHand[numHand] = tType2;
-        }
-
-        currentTest = 1;
-        for(i=0; i <= numHand; i++)
-        {
-#if (NOISY_TEST == 1)
-            printf("tempHand[i]: %d\tgame.hand[0][i]: %d\n", tempHand[i], game.hand[0][i]);
-#endif
-            if(tempHand[i] != game.hand[0][i])
-                currentTest = 0;
-        }
-
-        if(currentTest == 1)
-            testHandCards++;
-        else
-        {
-#if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND CARD LIST FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-        }
-
-        //Check for deck card counts
-        if(tLoc2 > -1) //did we find 2 treasures
-        {
-
-            if(game.deckCount[0] == tLoc2)
-                testDeckCounts++;
-            else
-            {
-#if (NOISY_TEST == 1)
-                printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-            }
-        }
-        else if(game.deckCount[0] == 0)
-            testDeckCounts++;
-        else
-        {
-#if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-        }
-
-#if (NOISY_TEST == 1)
-        //Check for played card counts
-        printf("playedCardCount: %d \tnumDeck: %d\n", game.playedCardCount, numDeck);
-#endif
-        if(tLoc1 == -1 && game.playedCardCount == numDeck)
-            testPlayedCounts++;
-        else if(tLoc2 == -1 && game.playedCardCount == numDeck-1)
-            testPlayedCounts++;
-        else if(game.playedCardCount == (numDeck - tLoc2 - 1))
-            testPlayedCounts++;
-        else
-        {
-#if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nPLAYED COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-        }
-
-        //check for rest of game state to remain unchanged
-        if(statesAreEqual(&game, &test) == 1)
-            testStateCounts++;
-        else
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nSTATE CHANGE FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-
+            discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
     }
-    printf("CardCountTests (%d total tests):\n", tests);
-    if(testHandCounts == tests)
-        printf("\tALL HAND COUNT TESTS PASSED\n");
+
+
+
+    printf("After adventurer card has been played:\n");
+	printf("\t   Cards in hand: %d [%d expected]\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
+	printf("\t   Cards in deck: %d [%d expected]\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
+	printf("\tCards in discard: %d [%d expected]\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer]);
+	printf("\t    Played cards: %d [%d expected]\n", testG.playedCardCount, G.playedCardCount);
+
+    printArray(testG.hand[thisPlayer], testG.handCount[thisPlayer], "Player's hand");
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Expected hand");
+	printArray(testG.deck[thisPlayer], testG.deckCount[thisPlayer], "Player's deck");
+	printArray(G.deck[thisPlayer], G.deckCount[thisPlayer], "Expected deck");
+	printArray(testG.discard[thisPlayer], testG.discardCount[thisPlayer], "Player's discard");
+	printArray(G.discard[thisPlayer], G.discardCount[thisPlayer], "Expected discard");
+
+
+	printf("\tGamestates equal: %d\n", statesAreEqual(&G, &testG, 1));
+	if(statesAreEqual(&G, &testG, 1) != 1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 1 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***\n");
+        printf("-------------------------------------------------------------\n");
+    }
     else
-        printf("\tThere were %d hand count test failures.\n", tests - testHandCounts);
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 1 STATUS:  PASSED!\n");
+        printf("-------------------------------------------------------------\n\n");
+    }
 
-    if(testDeckCounts == tests)
-        printf("\tALL DECK COUNT TESTS PASSED\n");
+	// ----------- TEST 2: Force a Shuffle to get to treasure cards --------------
+	printf("-------------------------------------------------------------\n");
+	printf("TEST 2: Force a shuffle\n");
+    printf("-------------------------------------------------------------\n");
+
+    // initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = adventurer;           //assign the smithy card to the end of the hand
+
+    //move enough cards from the deck into discard so deckCount = 0
+	int count = 0;
+	while(G.deckCount[thisPlayer] > 0)
+    {
+        G.discard[thisPlayer][count] = G.deck[thisPlayer][G.deckCount[thisPlayer]-1];
+        G.deckCount[thisPlayer]--;
+        G.discardCount[thisPlayer]++;
+        count++;
+    }
+
+
+	memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+
+	cardEffect(adventurer, 0, 0, 0, &testG, handpos, &bonus);   //Play the card
+
+	//determine if hand/deck is correct
+
+	coinsInHand = handCoins(&G, thisPlayer); //how many coins are in player's hand
+	coinCount = coinsInHand;
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Starting hand");
+	printArray(G.deck[thisPlayer], G.deckCount[thisPlayer], "Starting deck");
+	printArray(G.discard[thisPlayer], G.discardCount[thisPlayer], "Starting discard");
+    printf("# coin cards: %d\n", coinsInHand);
+	discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+
+    //mimic the act of the adventurer card on game G
+    while(coinCount < coinsInHand + 2 && (G.deckCount[thisPlayer] + G.discardCount[thisPlayer] != 0))
+    {
+        drawCard(thisPlayer, &G);
+        if(handCoins(&G, thisPlayer) > coinCount)
+            coinCount++;
+        else
+            discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+    }
+
+
+
+    printf("After adventurer card has been played:\n");
+	printf("\t   Cards in hand: %d [%d expected]\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
+	printf("\t   Cards in deck: %d [%d expected]\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
+	printf("\tCards in discard: %d [%d expected]\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer]);
+	printf("\t    Played cards: %d [%d expected]\n", testG.playedCardCount, G.playedCardCount);
+
+    printArray(testG.hand[thisPlayer], testG.handCount[thisPlayer], "Player's hand");
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Expected hand");
+	printArray(testG.deck[thisPlayer], testG.deckCount[thisPlayer], "Player's deck");
+	printf("Due to shuffle, there is no Expected deck.\n");
+	printArray(testG.discard[thisPlayer], testG.discardCount[thisPlayer], "Player's discard");
+	printf("Due to shuffle, there is no Expected discard.\n");
+
+	printf("\tGamestates equal: %d (0 can be ok with shuffle)\n", statesAreEqual(&G, &testG, 1));
+	if(statesAreEqual(&G, &testG, 0) != 1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 2 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***\n");
+        printf("-------------------------------------------------------------\n");
+    }
     else
-        printf("\tThere were %d deck count test failures.\n", tests - testDeckCounts);
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 2 STATUS:  PASSED!\n");
+        printf("-------------------------------------------------------------\n\n");
+    }
 
-    if(testPlayedCounts == tests)
-        printf("\tALL PLAYED COUNT TESTS PASSED\n");
+
+	// ----------- TEST 3: Only 1 treasure left in deck/discard --------------
+	printf("-------------------------------------------------------------\n");
+	printf("TEST 3: Only 1 treasure available\n");
+    printf("-------------------------------------------------------------\n");
+
+    // initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = adventurer;           //assign the smithy card to the end of the hand
+
+    //deck has 3 coppers as initialized
+    coinCount = 3;
+    count = 0;
+    while(coinCount > 1)
+    {
+        if(G.deck[thisPlayer][count] == 4)
+        {
+            coinCount--;
+            G.deck[thisPlayer][count] = 1;
+        }
+        count++;
+    }
+
+	memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+
+	cardEffect(adventurer, 0, 0, 0, &testG, handpos, &bonus);   //Play the card
+
+	//determine if hand/deck is correct
+
+	coinsInHand = handCoins(&G, thisPlayer); //how many coins are in player's hand
+	coinCount = coinsInHand;
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Starting hand");
+	printArray(G.deck[thisPlayer], G.deckCount[thisPlayer], "Starting deck");
+	printArray(G.discard[thisPlayer], G.discardCount[thisPlayer], "Starting discard");
+    printf("# coin cards: %d\n", coinsInHand);
+	discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+
+    //mimic the act of the adventurer card on game G
+    while(coinCount < coinsInHand + 2 && (G.deckCount[thisPlayer] + G.discardCount[thisPlayer] != 0))
+    {
+        drawCard(thisPlayer, &G);
+        if(handCoins(&G, thisPlayer) > coinCount)
+            coinCount++;
+        else
+            discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+    }
+
+
+
+    printf("After adventurer card has been played:\n");
+	printf("\t   Cards in hand: %d [%d expected]\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
+	printf("\t   Cards in deck: %d [%d expected]\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
+	printf("\tCards in discard: %d [%d expected]\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer]);
+	printf("\t    Played cards: %d [%d expected]\n", testG.playedCardCount, G.playedCardCount);
+
+    printArray(testG.hand[thisPlayer], testG.handCount[thisPlayer], "Player's hand");
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Expected hand");
+	printArray(testG.deck[thisPlayer], testG.deckCount[thisPlayer], "Player's deck");
+	printArray(G.deck[thisPlayer], G.deckCount[thisPlayer], "Expected deck");
+	printArray(testG.discard[thisPlayer], testG.discardCount[thisPlayer], "Player's discard");
+	printArray(G.discard[thisPlayer], G.discardCount[thisPlayer], "Expected discard");
+
+	printf("\tGamestates equal: %d (0 can be ok with shuffle)\n", statesAreEqual(&G, &testG, 1));
+	if(statesAreEqual(&G, &testG, 0) != 1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 3 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***\n");
+        printf("-------------------------------------------------------------\n");
+    }
     else
-        printf("\tThere were %d played count test failures.\n", tests - testPlayedCounts);
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 3 STATUS:  PASSED!\n");
+        printf("-------------------------------------------------------------\n\n");
+    }
 
-    printf("ListAccuracyTests (%d total tests):\n", tests);
-    if(testHandCards == tests)
-        printf("\tALL HAND LIST TESTS PASSED\n");
+
+	// ----------- TEST 4: 0 treasures left in deck/discard --------------
+	printf("-------------------------------------------------------------\n");
+	printf("TEST 4: 0 treasures available\n");
+    printf("-------------------------------------------------------------\n");
+
+    // initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = adventurer;           //assign the smithy card to the end of the hand
+
+    //deck has 3 coppers as initialized
+    coinCount = 3;
+    count = 0;
+    while(coinCount > 0)
+    {
+        if(G.deck[thisPlayer][count] == 4)
+        {
+            coinCount--;
+            G.deck[thisPlayer][count] = 1;
+        }
+        count++;
+    }
+
+	memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+
+	cardEffect(adventurer, 0, 0, 0, &testG, handpos, &bonus);   //Play the card
+
+	//determine if hand/deck is correct
+
+	coinsInHand = handCoins(&G, thisPlayer); //how many coins are in player's hand
+	coinCount = coinsInHand;
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Starting hand");
+	printArray(G.deck[thisPlayer], G.deckCount[thisPlayer], "Starting deck");
+	printArray(G.discard[thisPlayer], G.discardCount[thisPlayer], "Starting discard");
+    printf("# coin cards: %d\n", coinsInHand);
+	discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+
+    //mimic the act of the adventurer card on game G
+    while(coinCount < coinsInHand + 2 && (G.deckCount[thisPlayer] + G.discardCount[thisPlayer] != 0))
+    {
+        drawCard(thisPlayer, &G);
+        if(handCoins(&G, thisPlayer) > coinCount)
+            coinCount++;
+        else
+            discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+    }
+
+
+
+    printf("After adventurer card has been played:\n");
+	printf("\t   Cards in hand: %d [%d expected]\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
+	printf("\t   Cards in deck: %d [%d expected]\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
+	printf("\tCards in discard: %d [%d expected]\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer]);
+	printf("\t    Played cards: %d [%d expected]\n", testG.playedCardCount, G.playedCardCount);
+
+    printArray(testG.hand[thisPlayer], testG.handCount[thisPlayer], "Player's hand");
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Expected hand");
+	printArray(testG.deck[thisPlayer], testG.deckCount[thisPlayer], "Player's deck");
+	printArray(G.deck[thisPlayer], G.deckCount[thisPlayer], "Expected deck");
+	printArray(testG.discard[thisPlayer], testG.discardCount[thisPlayer], "Player's discard");
+	printArray(G.discard[thisPlayer], G.discardCount[thisPlayer], "Expected discard");
+
+	printf("\tGamestates equal: %d (0 can be ok with shuffle)\n", statesAreEqual(&G, &testG, 1));
+	if(statesAreEqual(&G, &testG, 0) != 1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 4 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***\n");
+        printf("-------------------------------------------------------------\n");
+    }
     else
-        printf("\tThere were %d hand list test failures.\n", tests - testHandCards);
-
-    printf("State Change Tests (%d total tests):\n", tests);
-       if(testStateCounts == tests)
-           printf("\tALL STATE CHANGE TESTS PASSED\n");
-       else
-           printf("\tThere were %d state change test failures.\n", tests - testPlayedCards);
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 4 STATUS:  PASSED!\n");
+        printf("-------------------------------------------------------------\n\n");
+    }
 
 
+	// ----------- TEST 5: silvers and golds --------------
+	printf("-------------------------------------------------------------\n");
+	printf("TEST 5: silver and gold\n");
+    printf("-------------------------------------------------------------\n");
+
+    // initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = adventurer;           //assign the smithy card to the end of the hand
+
+    //deck has 3 coppers as initialized -- set deck to 2 silver and 1 gold
+    coinCount = 3;
+    count = 0;
+    while(coinCount > 0)
+    {
+        if(G.deck[thisPlayer][count] == 4)
+        {
+            coinCount--;
+            if(coinCount == 1)
+                G.deck[thisPlayer][count] = 6;  //assign it a gold
+            else
+                G.deck[thisPlayer][count] = 5;  //assign it a silver
+        }
+        count++;
+    }
+
+	memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+
+	cardEffect(adventurer, 0, 0, 0, &testG, handpos, &bonus);   //Play the card
+
+	//determine if hand/deck is correct
+
+	coinsInHand = handCoins(&G, thisPlayer); //how many coins are in player's hand
+	coinCount = coinsInHand;
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Starting hand");
+	printArray(G.deck[thisPlayer], G.deckCount[thisPlayer], "Starting deck");
+	printArray(G.discard[thisPlayer], G.discardCount[thisPlayer], "Starting discard");
+    printf("# coin cards: %d\n", coinsInHand);
+	discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+
+    //mimic the act of the adventurer card on game G
+    while(coinCount < coinsInHand + 2 && (G.deckCount[thisPlayer] + G.discardCount[thisPlayer] != 0))
+    {
+        drawCard(thisPlayer, &G);
+        if(handCoins(&G, thisPlayer) > coinCount)
+            coinCount++;
+        else
+            discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+    }
+
+
+
+    printf("After adventurer card has been played:\n");
+	printf("\t   Cards in hand: %d [%d expected]\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
+	printf("\t   Cards in deck: %d [%d expected]\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
+	printf("\tCards in discard: %d [%d expected]\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer]);
+	printf("\t    Played cards: %d [%d expected]\n", testG.playedCardCount, G.playedCardCount);
+
+    printArray(testG.hand[thisPlayer], testG.handCount[thisPlayer], "Player's hand");
+	printArray(G.hand[thisPlayer], G.handCount[thisPlayer], "Expected hand");
+	printArray(testG.deck[thisPlayer], testG.deckCount[thisPlayer], "Player's deck");
+	printArray(G.deck[thisPlayer], G.deckCount[thisPlayer], "Expected deck");
+	printArray(testG.discard[thisPlayer], testG.discardCount[thisPlayer], "Player's discard");
+	printArray(G.discard[thisPlayer], G.discardCount[thisPlayer], "Expected discard");
+
+	printf("\tGamestates equal: %d (0 can be ok with shuffle)\n", statesAreEqual(&G, &testG, 1));
+	if(statesAreEqual(&G, &testG, 0) != 1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 5 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***\n");
+        printf("-------------------------------------------------------------\n");
+    }
+    else
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 5 STATUS:  PASSED!\n");
+        printf("-------------------------------------------------------------\n\n");
+    }
+
+        printf("\n >>>>> Testing complete %s <<<<<\n\n", TESTCARD);
 
     return 0;
 }
+

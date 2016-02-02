@@ -13,14 +13,14 @@ char inputChar()
 char *inputString()
 {
     // TODO: rewrite this function
-    char str[5] = "rest";
-    char tempStr[6];
+    char str[14] = "rest"; // searching for these values to produce an error
+    static char tempStr[6];
     
-    for (int i = 0; i < sizeof(str); i++) {
-        int j = rand() % 5; // generates a random number within characters of array
+    for (int i = 0; i < 5; i++) {
+        int j = rand() % 15; // generates a random number within characters of array
         tempStr[i] = str[j]; // order doesn't matter, as long as tempStr contains 'r,e,s,t,\0'
     }
-    tempStr[sizeof(str)] = '\0';
+    tempStr[sizeof(str)] = '\0'; // append last index of tempStr with null terminating char
     return tempStr;
 }
 
@@ -35,7 +35,7 @@ void testme()
         tcCount++;
         c = inputChar();
         s = inputString();
-        //printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
+        printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
         
         if (c == '[' && state == 0) state = 1;
         if (c == '(' && state == 1) state = 2;

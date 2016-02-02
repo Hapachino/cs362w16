@@ -16,7 +16,6 @@ int main() {
   int bonusCoins = 3;
   int pCoins = 0;
   int p1 = 0;
-  int p2 = 1;
   int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
                council_room, village, mine, tribute, ambassador};
 
@@ -38,6 +37,6 @@ int main() {
   updateCoins(p1, &G, bonusCoins);
 
   printf("Coins after update (should be %d): %d\n", pCoins+3, G.coins);
-
+  printf("\n\n\n");
   return 0;
 }

@@ -30,7 +30,7 @@ int main() {
     int testResult, testsRun = 0, testsPassed = 0;
     int hand_size = 5;
     int player_count = 2;
-    int player, bonus;
+    int player, bonus, i;
     
     struct gameState cleanGame;
     struct gameState testGame;  // Passed to function to test
@@ -41,7 +41,7 @@ int main() {
         hand4[hand_size], hand5[hand_size], hand6[hand_size];
     
     // generate test hands
-    for (int i = 0; i < 5; i++) {
+    for (i = 0; i < 5; i++) {
         hand1[i] = copper;
         hand2[i] = silver;
         hand3[i] = gold;

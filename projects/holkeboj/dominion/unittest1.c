@@ -115,7 +115,7 @@ int main() {
     testsRun++;
     
     printf("---- Case: Two supply piles are at 0");
-    printf("---- Expecting: 0");
+    printf("---- Expecting: 0\n");
     memcpy(&testGame,&cleanGame,sizeof(struct gameState));
     testGame.supplyCount[0] = 0;
     testGame.supplyCount[1] = 0;
@@ -134,7 +134,7 @@ int main() {
     testsRun++;
     
     printf("---- Case: All supply piles are at 0");
-    printf("---- Expecting: 1");
+    printf("---- Expecting: 1\n");
     memcpy(&testGame,&cleanGame,sizeof(struct gameState));
     for (i = 0; i < 25; i++) {
         testGame.supplyCount[i] = 0;
@@ -154,7 +154,7 @@ int main() {
     testsRun++;
 
     printf("---- Case: No supply piles are at 0");
-    printf("---- Expecting: 0");
+    printf("---- Expecting: 0\n");
     memcpy(&testGame,&cleanGame,sizeof(struct gameState));
     for (i = 0; i < 25; i++) {
         testGame.supplyCount[i] = 1;
@@ -172,8 +172,9 @@ int main() {
         printf("Test Failed.\n\n");
     }
     testsRun++;
+    printf("---------- %d Passed ---- %d Failed ------\n", testsPassed, (testsRun - testsPassed));
     
-    
-    printf("---------- Testing %s Function Complete ------\n", TESTFUNCTION);
+    printf("---------- Testing %s Function Complete ------\n\n", TESTFUNCTION);
+
     return 0;
 }

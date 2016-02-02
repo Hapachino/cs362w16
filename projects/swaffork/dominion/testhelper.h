@@ -1,9 +1,11 @@
 #ifndef _TESTHELPER_
 #define TESTHELPER
 
+#include "dominion.h"
+
 struct StateDiff
 {
-    enum Fields
+    enum
     {
         NUM_PLAYERS = 0,
         SUPPLY_COUNT,
@@ -24,11 +26,11 @@ struct StateDiff
         PLAYED_CARDS,
         PLAYED_CARD_COUNT,
         NUM_FIELDS
-    };
+    } Fields;
 
     int flags[NUM_FIELDS];
 };
 
-int* stateDiff(struct gameState* state1, struct gameState* state2);
+struct StateDiff compareStates(struct gameState* state1, struct gameState* state2);
 
 #endif

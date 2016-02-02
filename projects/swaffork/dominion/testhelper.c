@@ -6,7 +6,7 @@
 
 struct StateDiff compareStates(struct gameState* state1, struct gameState* state2)
 {
-    struct stateDiff sd;
+    struct StateDiff sd;
     int i;
     int j;
     // initialize all flags to true

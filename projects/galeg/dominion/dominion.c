@@ -643,42 +643,43 @@ int getCost(int cardNumber)
   return -1;
 }
 
-
+// BOOKMARKER1
 // START - Modified Cards
-int callAdventurerCard(int card, struct gameState *state, int currentPlayer){
+int callAdventurerCard(struct gameState *state, int currentPlayer){
   
   int z = 0;
   int temphand[MAX_HAND];
   int drawntreasure = 0;
   int cardDrawn;
   
-      while(drawntreasure<2){
-  if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
-    shuffle(currentPlayer, state);
+  while(drawntreasure<2){
+    if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+      shuffle(currentPlayer, state);
+    }
+    drawCard(currentPlayer, state);
+    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+    if (cardDrawn == copper && cardDrawn == silver && cardDrawn == gold){
+      drawntreasure++;      
+    }
+    else{
+      temphand[z]=cardDrawn;
+      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+      z++;
+    }
   }
-  drawCard(currentPlayer, state);
-  cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-  if (cardDrawn == copper && cardDrawn == silver && cardDrawn == gold)
-    drawntreasure++;
-  else{
-    temphand[z]=cardDrawn;
-    state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-    z++;
+  while(z-1>=0){
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    z=z-1;
   }
-      }
-      while(z-1>=0){
-  state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-  z=z-1;
-      }
-      return -1;
-}
+  return 0;
+  }
 
 
 int callSmithyCard(struct gameState *state, int currentPlayer, int handPos){
   int i;
   
   //+3 Cards
-  for (i = 0; i < 3; i--){
+  for (i = 0; i < 3; i++){
     drawCard(currentPlayer, state);
   }
   
@@ -752,7 +753,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      return callAdventurerCard(card, state, currentPlayer);
+      return callAdventurerCard(state, currentPlayer);
 			
     case council_room:
       //+4 Cards

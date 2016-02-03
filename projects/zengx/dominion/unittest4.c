@@ -51,7 +51,7 @@ if province is 0 but supply no 0
 //if province == 0; 
 static char * test_hasprovince()
 {
-
+	printf("========== test has province ============\n");
 	printf("when  1 province with no supply 0\n");
 	int i = 0;
 	for (i = 0; i < 25; i++)
@@ -119,7 +119,7 @@ static char * test_hasprovince()
 
 static char * test_noprovince()
 {
-
+	printf("========== test has no province ============\n");
 	printf("when no province with no supply 0\n");
 	int i = 0;
 	for (i = 0; i < 25; i++)
@@ -181,7 +181,7 @@ static char * test_noprovince()
 
 
 static char * all_tests() {
-	printf("=============test isGameOver =========");
+	printf("=============test isGameOver =========\n");
 	mu_run_test(test_noprovince);
 	mu_run_test(test_hasprovince);
 

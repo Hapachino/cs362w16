@@ -42,6 +42,7 @@ check after updateCoin no hand card change.
 //if bouns == 0; 
 static char * test_treasureCard_coinNum()
 {
+	printf("========== test treasureCard coinNum ==============\n");
 	// All gold
 	int i = 0;
 	for (; i < 5; i++)
@@ -115,6 +116,7 @@ static char * test_treasureCard_coinNum()
 // if bounus add
 static char * test_bounus()
 {
+	printf("========== test bounus ==============\n");
 	printf("add bounus from -100 to 100");
 	int bounus = 0;
 	int i = 0;
@@ -136,6 +138,7 @@ static char * test_bounus()
 // if checkhand card
 static char * test_handcard()
 {
+	printf("========== test handcard ==============\n");
 	memcpy(&testG, &G, sizeof(struct gameState));
 	int currentPlayer = whoseTurn(&G);
 	updateCoins(currentPlayer, &testG, 0);
@@ -155,7 +158,7 @@ static char * test_handcard()
 
 
 static char * all_tests() {
-	printf("=============test update coin =========");
+	printf("=============test update coin =========\n");
 	mu_run_test(test_treasureCard_coinNum);
 	mu_run_test(test_bounus);
 	mu_run_test(test_handcard);

@@ -50,12 +50,13 @@ int main() {
         hand6[i] = (i % 2 == 0) ? gold : copper;
     }
     
-    initializeGame(2, k, 500, &cleanGame);
+
     for (player = 0; player < player_count; player++) {
         otherPlayer = (player == 1) ? 0 : 1;
         for (bonus = 0; bonus <= 10; bonus++) {
             printf("------ Testing Player %d, Bonus %d\n", player + 1, bonus);
-
+            initializeGame(2, k, 500, &cleanGame);
+            cleanGame.whoseTurn = player;
             printf("---- Case: All coppers ---\n");
             printf("---- Expecting: %d coins ----\n", 5 + bonus);
             memcpy(&testGame,&cleanGame,sizeof(struct gameState));

@@ -1,0 +1,139 @@
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * Test is for adventurer()
+        -:    3: *
+        -:    4: * cardtest2
+        -:    5: * -----------------------------------------------------------------------
+        -:    6: */
+        -:    7:
+        -:    8:#include "dominion.h"
+        -:    9:#include "dominion_helpers.h"
+        -:   10:#include <string.h>
+        -:   11:#include <stdio.h>
+        -:   12:#include <assert.h>
+        -:   13:#include "rngs.h"
+        -:   14:#include <stdlib.h>
+        -:   15:
+        -:   16:#define TESTCARD "adventurer"
+        -:   17:
+        1:   18:int main() {
+        -:   19:   
+        -:   20:    int i;
+        1:   21:    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+        1:   22:    int seed = 1000;
+        1:   23:    int numPlayers = 2;
+        1:   24:    int player1 = 0;
+        1:   25:    int player2 = 1;
+        -:   26:	struct gameState G, testG;
+        -:   27:	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        1:   28:			sea_hag, tribute, smithy, council_room};
+        -:   29:
+        -:   30:	
+        1:   31:	initializeGame(numPlayers, k, seed, &G);
+        -:   32:
+        1:   33:	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
+        -:   34:
+        -:   35:	
+        1:   36:	printf("TEST 1: choice1 = 0 = Reveal 2 treasure cards\n");
+        -:   37:
+        -:   38:	// copy the game state to a test case
+        1:   39:	memcpy(&testG, &G, sizeof(struct gameState));
+        -:   40:	
+        1:   41:	cardEffect(adventurer, choice1, choice2, choice3, &testG, handpos, &bonus);
+        -:   42:
+        -:   43:
+        1:   44:	printf("Player 1 hand count = %d, expected = %d\n", testG.handCount[player1], G.handCount[player1] + 2 - 1);
+        -:   45:
+        -:   46:
+        1:   47:	printf("Player 1 deck count = %d, expected = %d\n", testG.deckCount[player1], G.deckCount[player1] - (testG.discardCount[player1] + 2));
+        -:   48:	
+        1:   49:	printf("Player 1 discard count = %d, expected = %d\n", testG.discardCount[player1], G.discardCount[player1] + 1);
+        1:   50:	int coinCardsTest = 0;
+     8001:   51:	for(i=0; i < sizeof(testG.hand); i++){
+     8000:   52:		if(testG.hand[player1][i] == gold || testG.hand[player1][i] == silver || testG.hand[player1][i] == copper){
+       38:   53:			coinCardsTest++;
+        -:   54:		}
+        -:   55:	}
+        1:   56:	int coinCardsG = 0;
+     8001:   57:	for(i=0; i < sizeof(G.hand); i++){
+     8000:   58:		if(G.hand[player1][i] == gold || G.hand[player1][i] == silver || G.hand[player1][i] == copper){
+       36:   59:			coinCardsG++;
+        -:   60:		}
+        -:   61:	}
+        -:   62:
+        1:   63:	printf("Player 1 hand Treasure count = %d, expected = %d\n", coinCardsTest, coinCardsG + 2);
+        -:   64:
+        -:   65:
+        -:   66:	//for player 2
+        1:   67:	printf("Player 2 hand count = %d, expected = %d\n", testG.handCount[player2], G.handCount[player2]);
+        1:   68:	printf("Player 2 deck count = %d, expected = %d\n", testG.deckCount[player2], G.deckCount[player2]);
+        -:   69:	
+        -:   70:
+        -:   71:	//HandCount
+        1:   72:	if(testG.handCount[player1] == G.handCount[player1] + 2 - 1){
+    #####:   73:		printf("\n >>>>>> Success: Handcount of current player is correct!!!");
+        -:   74:	}
+        -:   75:	else{
+        1:   76:		printf("\n >>>>>> Fail: Handcount of current player is incorrect!!!");
+        -:   77:	}
+        -:   78:	//Deck Count, might be plus 2
+        1:   79:	if(testG.deckCount[player1] == G.deckCount[player1] - (testG.discardCount[player1] + 1)){
+    #####:   80:		printf("\n >>>>>> Success: Deck count of current player is correct!!!");
+        -:   81:	}
+        -:   82:	else{
+        1:   83:		printf("\n >>>>>> Fail: Deck count of current player is incorrect!!!");
+        -:   84:	}
+        -:   85:
+        -:   86:	//Discard count
+        1:   87:	if(testG.discardCount[player1] >= G.discardCount[player1] + 1){
+    #####:   88:		printf("\n >>>>>> Success: Discard count of current player is correct!!!");
+        -:   89:	}
+        -:   90:	else{
+        1:   91:		printf("\n >>>>>> Fail: Discard count of current player is incorrect!!!");
+        -:   92:	}
+        -:   93:	//Coin Count
+        1:   94:	if(testG.coins > G.coins){
+    #####:   95:		printf("\n >>>>>> Success: Coin count of player1 is correct!!!");
+        -:   96:	}
+        -:   97:	else{
+        1:   98:		printf("\n >>>>>> Fail: Coin count of player1 is incorrect!!!");
+        -:   99:	}
+        -:  100:	
+        1:  101:	if(coinCardsTest == coinCardsG + 2){
+        1:  102:		printf("\n >>>>>> Success: Treasure Handcount of player1 is correct!!!");
+        -:  103:	}
+        -:  104:	else{
+    #####:  105:		printf("\n >>>>>> Fail: Treasure Handcount of player1 is incorrect!!!");
+        -:  106:	}
+        -:  107:	//Player 2 Hand Count
+        1:  108:	if(testG.handCount[player2] == G.handCount[player2]){
+        1:  109:		printf("\n >>>>>> Success: Handcount of player2 is correct!!!");
+        -:  110:	}
+        -:  111:	else{
+    #####:  112:		printf("\n >>>>>> Fail: Handcount of player2 is incorrect!!!");
+        -:  113:	}
+        -:  114:	//Player 2 Deck Count
+        1:  115:	if(testG.deckCount[player2] == G.deckCount[player2]){
+        1:  116:		printf("\n >>>>>> Success: Deck count of player2 is correct!!!");
+        -:  117:	}
+        -:  118:	else{
+    #####:  119:		printf("\n >>>>>> Fail: Deck count of player2 is incorrect!!!");
+        -:  120:	}
+        -:  121:	//Discard Count
+        1:  122:	if(testG.discardCount[player2] == G.discardCount[player2]){
+        1:  123:		printf("\n >>>>>> Success: Discard count of player2 is correct!!!");
+        -:  124:	}
+        -:  125:	else{
+    #####:  126:		printf("\n >>>>>> Fail: Discard count of player2 is incorrect!!!");
+        -:  127:	}
+        -:  128:	
+        -:  129:
+        1:  130:	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
+        -:  131:
+        -:  132:
+        1:  133:	return 0;
+        -:  134:}

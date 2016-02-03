@@ -188,4 +188,7 @@ That said, my isolated tests in themselves may not reveal as many bugs as I'd li
 entire process of playing Dominion. I test isolated scenarios where the game state might become unplayable or bugged
 before it even gets to the tested functions in real play. As is though, my tests do reveal isolated logic errors
 or improper game state changes by executing these functions alone.
+
+As for the functions I do not cover, I believe I will be able to cover this in a more comprehensive test of dominion,
+by testing the entire process of a game instead of isolated instances/circumstances of the game state. 
  */

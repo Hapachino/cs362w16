@@ -23,9 +23,7 @@ function greatHallCard called 4 returned 100% blocks executed 100%
 
 
 On one hand, this amount of coverage seems to be expected from a test suite which only tests 8 small functions.
-However, it could likely have been increased somewhat by a better choice of functions to test. An adequate test for
-initializeGame(), for example, would have been much more time-consuming but would have greatly increased the amount
-of coverage.
+However, it could likely have been increased somewhat by a better choice of functions to test.
 
 In addition to functions covered by the test suite, functions used by those functions received varying degrees of coverage.
 All of my functions tested by unit and card tests reached 100% coverage - which is to be expected considering that

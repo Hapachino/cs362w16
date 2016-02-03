@@ -19,7 +19,7 @@ Preconditions:
 function accepts (int supplyPos, struct gameState *state, int toFlag, int currentPlayer) */
 
 int main() {
-	printf("-------------Unit Test #2: Testing gainCard() function-------------\n\n");
+	printf("\n-------------Unit Test #2: Testing gainCard() function-------------\n\n");
 
 	//initialize variables for unit test
 	int i, j, k, numPlayers, randomSeed, supplyPos, currentPlayer, toFlag;
@@ -210,6 +210,6 @@ int main() {
 	
 	
 	
-	printf("\n\n-------------Unit Test #2 Complete -------------\n");
+	printf("\n\n-------------Unit Test #2 Complete -------------\n\n\n");
 	return 0;
 }

@@ -13,7 +13,8 @@ I made changes to the following code:
 
 I introduced the following bugs into my code refactor:
      adventurerCard()'s check for treasure cards now ignores copper. I removed it from the conditional statement. Treasure drawn
-          will only increase when the player draws silver and gold now.
+          will only increase when the player draws silver and gold now. <<<-- This consistently created segfaults, so I had to change it to get the code
+          to run. I now removed the z++ increment so that cards are no longer discarded properly.
      smithyCard()'s for loop now counts to 4, so the player draws 4 cards instead of 3.
      councilRoomCard() repeats state->numBuys++ in 2 locations. It should only happen once.
      villageCard() now only adds 1 action instead of 2:     state->numActions = state->numActions + 1;          

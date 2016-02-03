@@ -2,6 +2,10 @@
  * Course:      CS362
  * Due Date:    2/3/2016
  * Description: Unit test for endTurn() function.
+ * Business Requirements
+ *      - End current player turn
+ *      - Advance to next player
+ *      - Do not advance if game is over
  */
 
 #include "dominion.h"
@@ -16,34 +20,33 @@ int main()
     int i, j;
     int outcome;
     int seed = 1000;
-    int numPlayers = 2;
-    int thisPlayer = 0;
     struct gameState G, testG;
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                     remodel, smithy, village, baron, great_hall};
 
     //initialize game state
-    outcome = initializeGame(numPlayers, k, seed, &G);
+    outcome = initializeGame(MAX_PLAYERS, k, seed, &G);
+    if (outcome == -1)
+        printf("ERROR - Game initialization failed.\n");
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    /*
-    printf("----------Shuffling Deck------------\n");
-    for (i = 0; i < G.deckCount[thisPlayer]; i++)
+    printf("TESTING - ENDING TURNS\n");
+    //multiple tests to verify last player turn loops back to first player
+    for (i = 0; i < 3; i++)
     {
-        printf("%d ", G.deck[thisPlayer][i]);
+        for (j = 0; j < MAX_PLAYERS; j++)
+        {
+            // test that current player is who we expect
+            if (whoseTurn(&G) != j)
+                printf("ERROR - Current player: %d, Expected player: %d\n",
+                        whoseTurn(&G), j);
+            else
+                printf("SUCCESS - Current player: %d, Expected player: %d\n",
+                        whoseTurn(&G), j);
+            endTurn(&G);    //end current player turn
+        }
     }
-    printf("\n");
-    printf("Player 1 - Deck Count: %d\n", G.deckCount[thisPlayer]);
-
-    shuffle(thisPlayer, &testG);
-    printf("Player 1 - Shuffled Count: %d\n", testG.deckCount[thisPlayer]); 
-
-    for (i = 0; i < testG.deckCount[thisPlayer]; i++)
-    {
-        printf("%d ", testG.deck[thisPlayer][i]);
-    }
-    printf("\n");
-    */
+    printf("TEST COMPLETE\n");
 
     return 0;
 }

@@ -35,7 +35,7 @@ int main()
 
     int i, pass = 0, fail = 0;
 
-    printf ("TESTING getCost():\n");
+    printf ("\nTESTING getCost():\n");
 
     //test all possible card costs and an out of range value
     for(i = 0; i < 28; i++)
@@ -44,25 +44,25 @@ int main()
         {
             pass++;
             #if (NOISY_TEST == 1)
-            printf("Card: %s Passed.\n", cardNames[i]);
+            printf("\tCard: %s Passed.\n", cardNames[i]);
             #endif
         }
         else if(getCost(i) == -1 && (i < 0 || i > 26)) //was an invalid input sent? should return -1
         {
             pass++;
             #if (NOISY_TEST == 1)
-            printf("Not a Card: Passed.\n");
+            printf("\tNot a Card: Passed.\n");
             #endif
         }
         else
         {
             #if (NOISY_TEST == 1)
             fail++;
-            printf("Card: %s failed.\n", cardNames[i]);
+            printf("\tCard: %s failed.\n", cardNames[i]);
             #endif
         }
     }
 
-    printf("Test results: [%d fails]  [%d/28 passes]\n", fail, pass);
+    printf("Test results: [%d fails]  [%d/28 passes]\n          >>>>> Testing getCost() Complete <<<<<\n\n", fail, pass);
     return 0;
 }

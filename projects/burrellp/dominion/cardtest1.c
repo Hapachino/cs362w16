@@ -17,6 +17,12 @@
 #include "rngs.h"
 
 /*
+ smithy effect(s):
+    Draw three cards
+ */
+
+
+/*
  Items to test:
     Player who plays smithy has 2 more cards in hand (3 drawn - 1 discarded (smithy))
     Player who plays smithy has 3 fewer cards in deck
@@ -71,7 +77,8 @@ int main()
                 
         }
     }
-
+    if (passed != -1)
+        printf("PASS all tests for playSmithy().\n");
     
     
     return 0;
@@ -237,7 +244,7 @@ int testSmithy(struct gameState *pre, struct gameState *post, int player)
         printf("FAIL. numBuys changed.\n");
         returnValue = -1;
     }
-    //playedCardCount should be unchanged
+    //playedCardCount should increase by 1
     if (post->playedCardCount != pre->playedCardCount + 1)
     {
         printf("FAIL. playedCardCount changed.\n");

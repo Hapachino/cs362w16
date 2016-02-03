@@ -29,16 +29,17 @@ int main () {
 	
 	int players[MAX_PLAYERS];	//array for getWinners()
 
-	printf("---Testing getWinners()---\n");
 	
 //---Test all scores = 0
 /*---Expected result: 
 	- All players are winners
 	- No changes to gameState
 */
+	printf("*** Testing all scores = 0 ***\n");
+	printf("Errors: ");
 	//Create clean game
 	if (initializeGame(NUM_PLAYERS, selectedCards, seed, g) == -1){
-		printf("Could not initialize game. Testing aborted.\n");
+		printf("\nCould not initialize game. Testing aborted.");
 		return -1;
 	}
 	//Clear all players cards
@@ -61,28 +62,29 @@ int main () {
 	result = getWinners(players, g);
 	failed = 0;
 	if (result != 0){
-		printf("FAIL when all scores = 0\n");
-		printf("  Return value: %d, Expected: %d\n", result, 0);
+		printf("\nReturn value: %d, Expected: %d", result, 0);
 		failed = 1;
 	}
 	//Check game state is unchanged
 	if (checkGameState(pre, g) < 0){
-		printf("FAIL when all scores = 0\n");
-		printf("  gameState changed\n");
+		printf("\ngameState changed");
 		failed = 1;
 	} 
 	//Check all players are winners
 	for (i = 0; i < g->numPlayers; i++){
 		if (players[i] != 1){
-			printf("FAIL when all scores = 0\n");
-			printf("  Player %d win value: %d, Expected: %d\n", i, players[i], 1);
+			printf("\nPlayer %d win value: %d, Expected: %d", i, players[i], 1);
 			failed = 1;	
 		}
 	}
 	//Final check
-	if (!failed){
-		printf("PASS when all scores = 0\n");
+	if (failed){
+		printf("\nResult: FAIL\n\n");
+	} else {
+		printf("none");
+		printf("\nResult: PASS\n\n");
 	}
+
 
 //---Test one winner
 /*---Expected result: 
@@ -90,9 +92,11 @@ int main () {
 	- All other player's win value = 0
 	- No changes to gameState
 */
+	printf("*** Testing 1 winner ***\n");
+	printf("Errors: ");
 	//Create clean game
 	if (initializeGame(NUM_PLAYERS, selectedCards, seed, g) == -1){
-		printf("Could not initialize game. Testing aborted.\n");
+		printf("\nCould not initialize game. Testing aborted.\n");
 		return -1;
 	}
 	//Clear all players cards
@@ -118,34 +122,34 @@ int main () {
 	result = getWinners(players, g);
 	failed = 0;
 	if (result != 0){
-		printf("FAIL for 1 winner\n");
-		printf("  Return value: %d, Expected: %d\n", result, 0);
+		printf("\nReturn value: %d, Expected: %d", result, 0);
 		failed = 1;
 	}
 	//Check game state is unchanged
 	if (checkGameState(pre, g) < 0){
-		printf("FAIL for 1 winner\n");
-		printf("  gameState changed\n");
+		printf("\ngameState changed");
 		failed = 1;
 	} 
 	//Check player 0 wins
 	if (players[0] != 1){
-		printf("FAIL for 1 winner\n");
-		printf("  Player %d win value: %d, Expected: %d\n", i, players[i], 1);
+		printf("\nPlayer %d win value: %d, Expected: %d", i, players[i], 1);
 		failed = 1;	
 	}
 	//Check players 1-3 lose
 	for (i = 1; i < g->numPlayers; i++){
 		if (players[i] != 0){
-			printf("FAIL for 1 winner\n");
-			printf("  Player %d win value: %d, Expected: %d\n", i, players[i], 0);
+			printf("\nPlayer %d win value: %d, Expected: %d", i, players[i], 0);
 			failed = 1;	
 		}
 	}
 	//Final check
-	if (!failed){
-		printf("PASS for 1 winner\n");
+	if (failed){
+		printf("\nResult: FAIL\n\n");
+	} else {
+		printf("none");
+		printf("\nResult: PASS\n\n");
 	}
+
 
 //---Test two winners
 /*---Expected result: 
@@ -153,9 +157,11 @@ int main () {
 	- All other player's win value = 0
 	- No changes to gameState
 */
+	printf("*** Testing 2 winners ***\n");
+	printf("Errors: ");
 	//Create clean game
 	if (initializeGame(NUM_PLAYERS, selectedCards, seed, g) == -1){
-		printf("Could not initialize game. Testing aborted.\n");
+		printf("\nCould not initialize game. Testing aborted.\n");
 		return -1;
 	}
 	//Clear all players cards
@@ -183,45 +189,47 @@ int main () {
 	result = getWinners(players, g);
 	failed = 0;
 	if (result != 0){
-		printf("FAIL for 2 winners\n");
-		printf("  Return value: %d, Expected: %d\n", result, 0);
+		printf("\nReturn value: %d, Expected: %d", result, 0);
 		failed = 1;
 	}
 	//Check game state is unchanged
 	if (checkGameState(pre, g) < 0){
-		printf("FAIL for 2 winners\n");
-		printf("  gameState changed\n");
+		printf("\ngameState changed");
 		failed = 1;
 	} 
 	//Check players 0-1 win
 	for (i = 0; i <= 1; i++){
 		if (players[i] != 1){
-			printf("FAIL for 2 winners\n");
-			printf("  Player %d win value: %d, Expected: %d\n", i, players[i], 1);
+			printf("\nPlayer %d win value: %d, Expected: %d", i, players[i], 1);
 			failed = 1;	
 		}
 	}
 	//Check players 2-3 lose
 	for (i = 2; i < g->numPlayers; i++){
 		if (players[i] != 0){
-			printf("FAIL for 2 winners\n");
-			printf("  Player %d win value: %d, Expected: %d\n", i, players[i], 0);
+			printf("\nPlayer %d win value: %d, Expected: %d", i, players[i], 0);
 			failed = 1;	
 		}
 	}
 	//Final check
-	if (!failed){
-		printf("PASS for 2 winners\n");
+	if (failed){
+		printf("\nResult: FAIL\n\n");
+	} else {
+		printf("none");
+		printf("\nResult: PASS\n\n");
 	}
+
 	
 //---Test all winners
 /*---Expected result: 
 	- All player's win value = 1
 	- No changes to gameState
 */
+	printf("*** Testing all winners ***\n");
+	printf("Errors: ");
 	//Create clean game
 	if (initializeGame(NUM_PLAYERS, selectedCards, seed, g) == -1){
-		printf("Could not initialize game. Testing aborted.\n");
+		printf("\nCould not initialize game. Testing aborted.\n");
 		return -1;
 	}
 	//Clear all players cards
@@ -244,28 +252,29 @@ int main () {
 	result = getWinners(players, g);
 	failed = 0;
 	if (result != 0){
-		printf("FAIL for all winners\n");
-		printf("  Return value: %d, Expected: %d\n", result, 0);
+		printf("\nReturn value: %d, Expected: %d", result, 0);
 		failed = 1;
 	}
 	//Check game state is unchanged
 	if (checkGameState(pre, g) < 0){
-		printf("FAIL for all winners\n");
-		printf("  gameState changed\n");
+		printf("\ngameState changed");
 		failed = 1;
 	} 
 	//Check all players win
 	for (i = 0; i < g->numPlayers; i++){
 		if (players[i] != 1){
-			printf("FAIL for all winners\n");
-			printf("  Player %d win value: %d, Expected: %d\n", i, players[i], 1);
+			printf("\nPlayer %d win value: %d, Expected: %d", i, players[i], 1);
 			failed = 1;	
 		}
 	}
 	//Final check
-	if (!failed){
-		printf("PASS for all winners\n");
+	if (failed){
+		printf("\nResult: FAIL\n");
+	} else {
+		printf("none");
+		printf("\nResult: PASS\n");
 	}
+
 	
 	return 0;
 }

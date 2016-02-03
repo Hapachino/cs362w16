@@ -6,7 +6,7 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTCARD ""
+#define TESTCARD "council_room"
 
 int main() {
   int numPlayers = 2;
@@ -19,9 +19,25 @@ int main() {
 
    initializeGame(numPlayers, kcards, seed, &G);
 
-   printf("********Testing %s***********\n", TESTMETHOD);
+   printf("********Testing %s***********\n", TESTCARD);
 
    memcpy(&storeG, &G, sizeof(struct gameState));
 
+   cardEffect(council_room, 0, 0, 0, &G, 0, 0);
+
+   printf("Player 1 Cards in Hand:  %d, Cards Expected: %d\n",
+            G.handCount[p1], storeG.handCount[p1]+4);
+   printf("Cards in Deck: %d, cards Expected: %d\n",
+           G.deckCount[p1], storeG.deckCount[p1]-4);
+
+   printf("Player 2 Cards in Hand:  %d, Cards Expected: %d\n",
+            G.handCount[p2], storeG.handCount[p2]+1);
+   printf("Cards in Deck: %d, cards Expected: %d\n",
+           G.deckCount[p2], storeG.deckCount[p2]-1);
+
+
+   printf("Number of Buys:  %d, Number Expected: %d\n",
+            G.numBuys, storeG.numBuys+1);
+  printf("\n\n\n");
    return 0;
 }

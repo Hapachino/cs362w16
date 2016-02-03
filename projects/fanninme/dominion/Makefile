@@ -37,42 +37,42 @@ unittestresults.out: dominion.h rngs.h dominion_helpers.h dominion.o rngs.o unit
 	gcc -o unitTest1 unitTest1.c dominion.o rngs.o -g $(CFLAGS)
 	./unitTest1
 	gcov dominion.c >> unitTestResults.out
-	cat unitTest1.c.gcov >> unitTestResults.out
+	cat dominion.c.gcov >> unitTestResults.out
 	#unit test2
 	gcc -o unitTest2 unitTest2.c dominion.o rngs.o -g $(CFLAGS)
 	./unitTest2
 	gcov dominion.c >> unitTestResults.out
-	cat unitTest2.c.gcov >> unitTestResults.out
+	cat dominion.c.gcov >> unitTestResults.out
 	#test3
 	gcc -o unitTest3 unitTest3.c dominion.o rngs.o -g $(CFLAGS)
 	./unitTest3
 	gcov dominion.c >> unitTestResults.out
-	cat unitTest3.c.gcov >> unitTestResults.out
+	cat dominion.c.gcov >> unitTestResults.out
 	#test4
 	gcc -o unitTest4 unitTest4.c dominion.o rngs.o -g $(CFLAGS)
 	./unitTest4
 	gcov dominion.c >> unitTestResults.out
-	cat unitTest4.c.gcov >> unitTestResults.out
+	cat dominion.c.gcov >> unitTestResults.out
 	#card 1
 	gcc -o cardTest1 cardTest1.c dominion.o rngs.o -g $(CFLAGS)
 	./cardTest1
 	gcov dominion.c >> unitTestResults.out
-	cat cardTest1.c.gcov >> unitTestResults.out
+	cat dominion.c.gcov >> unitTestResults.out
 	#card 2
 	gcc -o cardTest2 cardTest2.c dominion.o rngs.o -g $(CFLAGS)
 	./cardTest2
 	gcov dominion.c >> unitTestResults.out
-	cat cardTest2.c.gcov >> unitTestResults.out
+	cat dominion.c.gcov >> unitTestResults.out
 	#card 3
 	gcc -o cardTest3 cardTest3.c dominion.o rngs.o -g $(CFLAGS)
 	./cardTest3
 	gcov dominion.c >> unitTestResults.out
-	cat cardTest3.c.gcov >> unitTestResults.out
+	cat dominion.c.gcov >> unitTestResults.out
 	#card 4
 	gcc -o cardTest4 cardTest4.c dominion.o rngs.o -g $(CFLAGS)
 	./cardTest4
 	gcov dominion.c >> unitTestResults.out
-	cat cardTest4.c.gcov >> unitTestResults.out
+	cat dominion.c.gcov >> unitTestResults.out
 
 
 

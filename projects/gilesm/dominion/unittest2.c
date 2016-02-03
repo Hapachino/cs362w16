@@ -50,7 +50,7 @@ int main() {
 		validationCheck = 0;
 	printTestResult(validationCheck, -999, -999);
 	
-	// TEST: Initial number of hand cards for non-starting  player should be 0
+	// TEST: Initial number of hand cards for non-starting player should be 0
 	printf("  TEST: Initial number of hand cards for non-starting player should be 0...\n");
 	validationCheck = 1;
 	if (state.handCount[state.whoseTurn + 1] != 0)

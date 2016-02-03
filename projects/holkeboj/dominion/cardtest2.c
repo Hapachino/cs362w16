@@ -24,7 +24,7 @@ Business logic to be tested:
 int main() {
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
            sea_hag, tribute, smithy};    
-    int testsRun = 0, testsPassed = 0, i, preTreasureCount = 0, postTreasureCount = 0, otherPlayer, player, handPos;
+    int testsRun = 0, testsPassed = 0, i, preTreasureCount = 0, postTreasureCount = 0, otherPlayer, player;
     struct gameState testGame;
     struct gameState cleanGame;
 
@@ -48,7 +48,7 @@ int main() {
                 postTreasureCount++;   
             }
         }        
-        printf("Top Card: %d\n", testGame.hand[player][testGame.handCount[player]]);
+
         printf("---- Did player %d receive two cards ?\n", player);
         if (testGame.handCount[player] == cleanGame.handCount[player] + 1) {
             printf("Passed.\n");

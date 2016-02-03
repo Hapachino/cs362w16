@@ -17,6 +17,9 @@
 
 /* hand# means index of a card in current active player's hand */
 
+
+
+
 enum CARD
   {curse = 0,
    estate,
@@ -55,24 +58,24 @@ enum CARD
   };
 
 struct gameState {
-  int numPlayers; //number of players
+  int numPlayers; //number of players 2
   int supplyCount[treasure_map+1];  //this is the amount of a specific type of card given a specific number.
   int embargoTokens[treasure_map+1];
   int outpostPlayed;
   int outpostTurn;
-  int whoseTurn;
-  int phase;
+  int whoseTurn; // 0 or 1
+  int phase; //0 - 2
   int numActions; /* Starts at 1 each turn */
   int coins; /* Use as you see fit! */
-  int numBuys; /* Starts at 1 each turn */
-  int hand[MAX_PLAYERS][MAX_HAND];
+  int numBuys; /* Starts at 1 each turn between 1 and 2*/
+  int hand[MAX_PLAYERS][MAX_HAND]; 
   int handCount[MAX_PLAYERS];
   int deck[MAX_PLAYERS][MAX_DECK];
   int deckCount[MAX_PLAYERS];
   int discard[MAX_PLAYERS][MAX_DECK];
   int discardCount[MAX_PLAYERS];
   int playedCards[MAX_DECK];
-  int playedCardCount;
+  int playedCardCount; 
 };
 
 /* All functions return -1 on failure, and DO NOT CHANGE GAME STATE;
@@ -87,7 +90,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 		   struct gameState *state);
 /* Responsible for initializing all supplies, and shuffling deck and
    drawing starting hands for all players.  Check that 10 cards selected
-   are in fact (different) kingdom cards, and that numPlayers is valid. 
+   are in fact (different) kingdom cards, and that numPlayers is valid.
 
 Cards not in game should initialize supply position to -1 */
 

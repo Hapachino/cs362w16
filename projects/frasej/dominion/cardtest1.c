@@ -1,3 +1,5 @@
+//Jennifer Frase
+//CS 362 A3
 //test smithy
 //add exactly three cards from the top of the current players deck
 //no other gamestate changes
@@ -23,16 +25,23 @@ int main(){
 
 
     printf ("TESTING smithy card:\n");
-    memcpy(&pre, &G, sizeof(struct gameState));
+    memcpy(&pre, &G, sizeof(struct gameState)); //copy G into pre as a saved reference of G
+
+    //loop through each player to make sure no player has it's own bugs
     for(p = 0; p < MAX_PLAYERS; p++){
         pre.whoseTurn = p;
         pre.handCount[p] = 1;
         pre.hand[p][0] = smithy;
-        memcpy(&G, &pre, sizeof(struct gameState));
+        memcpy(&G, &pre, sizeof(struct gameState)); //make sure G is the original state
+
         r = cardEffect(smithy, 0, 0, 0, &G, 0, &bonus);
         assert(r == 0);
+
+        //loop through all the players to make sure the smithy is only effecting player p
         for(i = 0; i < MAX_PLAYERS; i++){
-            if(i == p){
+            if(i == p){//test player p specific tests
+
+                //test that 3 cards are taken from the deck and no other changes occurred to it.
                 if(G.deckCount[p] != pre.deckCount[p] - 3){
                     if(DEBUG)
                         printf("TEST FAILED: smithy did not take 3 cards from the deck for player %d\n", p);
@@ -46,12 +55,14 @@ int main(){
                     }
                 }
 
+                //test that the hand now has the three new cards and 1 less smithy card
                 if(G.handCount[p] != pre.handCount[p] + 2){
                     if(DEBUG)
                         printf("TEST FAILED: smithy did not add 3 cards from the deck for player %d\n", p);
                     pass = 0;
                 }
 
+                //test that the discard has the smithy card and no other changes to it have occurred
                 if(G.discardCount[p] != pre.discardCount[p] + 1){
                     if(DEBUG)
                         printf("TEST FAILED: smithy did not discard a card from the hand for player %d\n", p);
@@ -70,7 +81,8 @@ int main(){
                     pass = 0;
                 }
             }
-            else{
+            else{ //check that nothing happened to the other players
+                //check the deck
                 if(G.deckCount[i] != pre.deckCount[i]){
                     if(DEBUG)
                         printf("TEST FAILED: player %d's smithy altered the deck of player %d\n", p, i);
@@ -84,7 +96,7 @@ int main(){
                     }
                 }
 
-
+                //check the hand
                 if(G.handCount[i] != pre.handCount[i]){
                     if(DEBUG)
                         printf("TEST FAILED: player %d's smithy altered the hand of player %d\n", p, i);
@@ -98,7 +110,7 @@ int main(){
                     }
                 }
 
-
+                //check the discard
                 if(G.discardCount[i] != pre.discardCount[i]){
                     if(DEBUG)
                         printf("TEST FAILED: player %d's smithy altered the discard of player %d\n", p, i);

@@ -24,7 +24,11 @@
 
 int main () {
     srand(time(NULL));
-   
+    int failCount1 = 0;
+    int failCount2 = 0;
+    int failCount3 = 0;
+    int failCount4 = 0;
+    int failCount5 = 0;
     printf("Testing playAdventurer().\n");
     
     struct gameState g;
@@ -41,7 +45,7 @@ int main () {
     for (p = 0; p < players; p++) {
         int y;
         // How many times we want to run the test per player
-        for (y = 0; y < 10000; y++) {
+        for (y = 0; y < 5000; y++) {
             // Create gamestate, and then copy to pre state
             memset(&g, 0, sizeof(struct gameState));
             r = initializeGame(players, k, ((rand() % 1000) + 1), &g);
@@ -156,33 +160,58 @@ int main () {
                         // do nothing because this isn't the other players
                     } else {
                         printf("Player %d - Expect: %d, %d, %d, Results: %d, %d, %d", i, pre.handCount[i], pre.deckCount[i], pre.discardCount[i], g.handCount[i], g.deckCount[i], g.discardCount[i]); 
-                        assert(pre.handCount[i] == g.handCount[i]);
-                        assert(pre.deckCount[i] == g.deckCount[i]);
-                        assert(pre.discardCount[i] == g.discardCount[i]);
+                        if(pre.handCount[i] != g.handCount[i] || pre.deckCount[i] != g.deckCount[i] || pre.discardCount[i] != g.discardCount[i]) {
+                            printf(" FAIL \n");
+                            failCount1++;
+                        } else {
+                            printf(" - PASS\n");
+                        }
                     }
                 }
-                printf(" - PASS\n");
                 
                 // TEST2: Ensure current player received up to 2 treasure cards
                 printf("Test 2 - Current player gets up to 2 treasure cards - ");
                 printf("Player %d - Starting Treasure: %d, Expected Treasure: %d, Function Treasure: %d", p, originalHandTreasureCount, oracleHandTreasureCount, treasuresFromPlaySmithy);
                 // Ensure oracle did not provide more than 2 treasures
-                assert(oracleHandTreasureCount - 2 <= originalHandTreasureCount);
+                if(oracleHandTreasureCount - 2 > originalHandTreasureCount) {
+                    printf(" FAIL \n");
+                    failCount2++;
+                } else {
+                    printf(" - PASS\n");
+                }
                 // Ensure game did not award more than 2 treasures
-                assert(treasuresFromPlaySmithy - 2 <= originalHandTreasureCount);
+                if(treasuresFromPlaySmithy - 2 > originalHandTreasureCount) {
+                    printf(" FAIL \n");
+                    failCount3++;
+                } else {
+                    printf(" - PASS\n");
+                }
                 // Ensure game and oracle match
-                assert(oracleHandTreasureCount == treasuresFromPlaySmithy);
-                printf(" - PASS\n");
+                if(oracleHandTreasureCount != treasuresFromPlaySmithy) {
+                    printf(" FAIL \n");
+                    failCount4++;
+                } else {
+                    printf(" - PASS\n");
+                }
                 
                 // TEST3: Ensure current player total cards total between the Oracle and the function
                 int tmpOracle = pre.handCount[p] + pre.deckCount[p] + pre.discardCount[p];
                 int tmpGame = g.handCount[p] + g.deckCount[p] + g.discardCount[p];
                 printf("Test 3 - Testing matching card counts - Expected: %d, Received %d", tmpOracle, tmpGame);
-                assert(tmpOracle == tmpGame);
-                printf(" - PASS\n");
+                if(tmpOracle != tmpGame) {
+                    printf(" FAIL \n");
+                    failCount5++;
+                } else {
+                    printf(" - PASS\n");
+                }
             }
         }
     }
-    printf("Finished all playAdventurer() tests succesfully!\n");
+    int totalFails = failCount1 + failCount2 + failCount3 + failCount4 + failCount5;
+    if (totalFails == 0) {
+        printf("Finished all playAdventurer() card tests succesfully!\n");
+    } else {
+        printf("Finished all playAdventurer() card tests.\nFAILS 1: %d, FAILS 2: %d, FAILS 3: %d, FAILS 4: %d, FAILS 5: %d\n", failCount1, failCount2, failCount3, failCount4, failCount5);
+    }
     return 0;
 }

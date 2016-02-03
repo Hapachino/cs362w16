@@ -1,3 +1,5 @@
+//Jennifer Frase
+//CS 362 A3
 /*test scoreFor
   needs to give appropriate scores for curse, estate, duchy, province, great
   hall, and gardens and no score for any other card in hand, discard, and deck
@@ -104,11 +106,13 @@ int main(){
                     else if(card == gardens)
                         score += cardCount/10 * cardCount;
 
+                    //check the score is correct
                     if(score != returnScore){
                         if(DEBUG)
                             printf("TEST FAILED: hand scoreFor %d card %ds returned is %d and should be %d\n", cardCount, card, returnScore, score);
                         pass =  0;
                     }
+                    //check that getting the score didn't effect the gamestate
                     if(memcmp(&pre, &G, sizeof(struct gameState)) != 0){
                         if(DEBUG)
                             printf("TEST FAILED: scoreFor for hand  for %d card %ds changed the gameState\n",cardCount, card);
@@ -166,11 +170,13 @@ int main(){
                     else if(card == gardens)
                         score += 50;
 
+                    //check the score is correct
                     if(score != returnScore){
                         if(DEBUG)
                             printf("TEST FAILED: discard score for %d card %d returned is %d and should be %d\n", G.discardCount[p], card, returnScore, score);
                         pass = 0;
                     }
+                    //check that getting the score didn't change the gamestate
                     if(memcmp(&pre, &G, sizeof(struct gameState)) != 0){
                         if(DEBUG)
                             printf("TEST FAILED: scoreFor for discard  for %d card %d changed the gameState\n", G.discardCount[p], card);
@@ -228,11 +234,13 @@ int main(){
                     else if(card == gardens)
                         score += 50;
 
+                    //check the score is correct
                     if(score != returnScore){
                         if(DEBUG)
                             printf("TEST FAILED: deck score  for %d card %d returned is %d and should be %d\n", G.deckCount[p], card, returnScore, score);
                         pass = 0;
                     }
+                    //check that the scoreFor didn't change the gamestate
                     if(memcmp(&pre, &G, sizeof(struct gameState)) != 0){
                         if(DEBUG)
                             printf("TEST FAILED: scoreFor for deck  for %d card %d changed the gameState\n", G.deckCount[p], card);

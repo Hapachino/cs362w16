@@ -27,6 +27,10 @@
 
 int main () {
     srand(time(NULL));
+    int failCount1 = 0;
+    int failCount2 = 0;
+    int failCount3 = 0;
+    int failCount4 = 0;
     struct gameState g;
     struct gameState pre;
     int i, r;
@@ -54,9 +58,15 @@ int main () {
             memcpy(&pre, &g, sizeof(struct gameState));
             int result = isGameOver(&g);
             printf("Expect: 1, Received: %d\n", result);
-            assert(result == 1);
+            if(result != 1) {
+                printf(" FAIL \n");
+                failCount1++;
+            }
             printf("Testing matching game states\n");
-            assert(memcmp(&pre, &g, sizeof(struct gameState)) == 0);
+            if(memcmp(&pre, &g, sizeof(struct gameState)) != 0) {
+                printf(" FAIL \n");
+                failCount2++;
+            }
         }
     }
     
@@ -93,7 +103,7 @@ int main () {
         g.supplyCount[arr[0]] = 0;
         g.supplyCount[arr[1]] = 0;
         g.supplyCount[arr[2]] = 0;
-        printf("%d %d %d", g.supplyCount[arr[0]], g.supplyCount[arr[1]]);
+        printf("%d %d %d", g.supplyCount[arr[0]], g.supplyCount[arr[1]], g.supplyCount[arr[2]]);
         
         // After cards are set up, copy game state over
         memcpy(&pre, &g, sizeof(struct gameState));
@@ -105,10 +115,22 @@ int main () {
             // Check if the game is over 
             int result = isGameOver(&g);
             printf("Expect: 1, Received: %d\n", result);
-            assert(result == 1);
+            if(result != 1){
+                printf(" FAIL \n");
+                failCount3++;
+            }
             printf("Testing matching game states\n");
-            assert(memcmp(&pre, &g, sizeof(struct gameState)) == 0);
+            if(memcmp(&pre, &g, sizeof(struct gameState)) != 0) {
+                printf(" FAIL \n");
+                failCount4++;
+            }
         }
+    }
+    int totalFails = failCount1 + failCount2 + failCount3 + failCount4;
+    if (totalFails == 0) {
+        printf("Finished all scoreFor() tests succesfully!\n");
+    } else {
+        printf("Finished all scoreFor() tests.\nFAILS 1: %d, FAILS 2: %d, FAILS 3: %d, FAILS 4: %d\n", failCount1, failCount2, failCount3, failCount4);
     }
     return 0;
 }

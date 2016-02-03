@@ -225,7 +225,6 @@ int shuffle(int player, struct gameState *state) {
     state->deck[player][i] = newDeck[i];
     state->deckCount[player]++;
   }
-
   return 0;
 }
 
@@ -1366,7 +1365,7 @@ int effectRemodel(struct gameState *state, struct infosStruct *infos)
 
 int effectSmithy(struct gameState *state, struct infosStruct *infos) 
 {
-  int i = infos->i;
+  int i;
   int currentPlayer= infos->currentPlayer;
   int handPos = infos->handPos;
 

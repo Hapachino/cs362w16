@@ -43,10 +43,12 @@ check other coins not change
 
 //if trashFlag is not on : trashflag == 0;
 static char * test_discardCard_notrash() {
+	printf("=============test discardCard not trash =============\n");
 	memcpy(&testG, &G, sizeof(struct gameState));
 	int currentPlayer = G.whoseTurn;
 	int countdiscard = 1;
-	for (int handPos = 0; handPos < 5; handPos++)
+	int handPos = 0;
+	for (; handPos < 5; handPos++)
 	{
 
 		discardCard(handPos, currentPlayer, &testG, 0);
@@ -67,10 +69,12 @@ static char * test_discardCard_notrash() {
 
 static char * test_discardCard_trash()
 {
+	printf("============ test discardCard trash ==============\n");
 	memcpy(&testG, &G, sizeof(struct gameState));
 	int currentPlayer = G.whoseTurn;
 	int countdiscard = 1;
-	for (int handPos = 0; handPos < testG.handCount[thisPlayer]; handPos++)
+	int handPos = 0;
+	for (; handPos < testG.handCount[thisPlayer]; handPos++)
 	{
 
 		discardCard(handPos, currentPlayer, &testG, 1);
@@ -103,14 +107,9 @@ int main(int argc, char **argv) {
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 
-	char *result = all_tests();
-	if (result != 0) {
-		printf("%s\n", result);
-	}
-	else {
-		printf("ALL TESTS PASSED\n");
-	}
+	all_tests();
+	
 	printf("Tests run: %d\n", tests_run);
 
-	return result != 0;
+	return 0;
 }

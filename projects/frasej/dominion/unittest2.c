@@ -1,3 +1,5 @@
+//Jennifer Frase
+//CS 362 A3
 //update coins needs to only give 1 for copper 2 for silver and 3 for gold
 //if there are no coins in a hand the return value should be 0 unless there is a bonus
 //update coins should only be effected by the current player's hand
@@ -24,6 +26,7 @@ int main(){
     int hand, bonus, card;
     int pass = 1;
 
+    //make a prehand for each type of treasure card
     for (i = 0; i < MAX_HAND; i++)
     {
         coppers[i] = copper;
@@ -92,6 +95,8 @@ int main(){
                                 printf("TEST FAILED: G.coins is %d and should be %d\n", G.coins, pre.coins);
                             pass = 0;
                         }
+
+                        //check that updateCoins didn't change anything besides gamestate.coins
                         if(memcmp(&pre, &G, sizeof(struct gameState)) != 0){
                             if(DEBUG)
                                 printf("TEST FAILED: updateCoins changed the gameState by more than just gameState.coins\n");

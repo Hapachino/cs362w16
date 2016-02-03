@@ -16,13 +16,12 @@
 //function accepts: current player, struct gameState *state, int choice 
 
 //oracle makes sure returns valid 
-int unitTest(int player, struct gameState *post){
+int unitTest(int player, struct gameState *post,int choice){
     srand(time(NULL));
 
     //define variables
     struct gameState pre;
     memcpy(&pre,post,sizeof(struct gameState));
-    int choice= rand();
     
     //call function
     feastCard(player,post,choice);
@@ -73,8 +72,9 @@ int main () {
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
     G.numPlayers = floor(Random()* MAX_PLAYERS);
-    //call function with test input
-    error=unitTest(G.numPlayers,&G);
+    int choice= floor(Random() *MAX_DECK); 
+   //call function with test input
+    error=unitTest(G.numPlayers,&G,choice);
 
     if (error > 0){
         if(error == 1){

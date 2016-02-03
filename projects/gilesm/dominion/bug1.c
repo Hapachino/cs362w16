@@ -146,9 +146,32 @@ Parameters:
 Return Type: int
 
 Description:
+The smithy card and smithyEffect function discards the smithy card from the
+player's hand and draws 3 cards to be added to the player's hand.
 
 Test Findings:
+The basic functionality of smithy is simple to test. The first condition is
+that the smithy card is removed from the player's hand and overall count is
+decremented by one. However, the function also adds three cards, so hand
+count detection must incorporate both the add and remove at the same time for
+a net gain of +2 cards. I made a copy of the game state before running the
+function and found that at the end the overall number of cards in the player's
+hand was not +2, therefore an error is identified in the overall exchange
+between the three drawcard functions or the discard function.
 
+Given that the hand count was 1 greater than expected after the smithy function
+call, I tested the top card on the pile to find that it was legitimately
+taken from the deck. This implies that a fourth card is drawn from the deck.
+
+I tested the supply counts for all cards, and none of them were checked. I did
+this by looping over each of the cards, comparing their values to the value of
+the backup copy, and found that they all remained the same, so this test
+passed successfully.
+
+I also checked the second player's decks to ensure that none of the cards were
+modified. These tests passed and were verified by using the help function that
+compares all cards in a deck to the same deck of the backup copy taken before
+the function call.
 
 ----------------------------- CARD - UNIT TEST 2 -----------------------------
 Name: adventurer
@@ -161,11 +184,30 @@ Parameters:
 Return Type: int
 
 Description:
+Adventurer allows the player to reveal the deck one card at a time until two
+treasure cards are shown. The non-treasure cards are placed into the player's
+discard deck and the treasure cards are added to the player's hand.
 
 Test Findings:
+The first test case assesses whether or not the non-treasure cards are added
+to the discard pile. In order to determine this, I cycle from the top of the
+deck to the bottom of the deck to determine how many cards must be added to the
+discard pile and what cards will be added. To test the condition, I compare
+the results of the game state modified by calling the function. In looking at
+the discard pile, it did successully contain the additional cards removed from
+the deck while looking for two adventure cards.
 
+The second test case checks the player's hand to determine if the two treasure
+cards are added to the player's hand. Looking at the top two positions of the
+player's hand, I identified that in fact were not the new adventure cards. During
+this phase I also check to see if the handCount for the modified game state is
+appropriately incremented by two and it is not.
 
-`----------------------------- CARD - UNIT TEST 3 -----------------------------
+In order to verify consistency, both the other player's deccks and the supply
+decks were compared to the original version to ensure nothing changed, and these
+tests passed as the decks remained unmodified.
+
+----------------------------- CARD - UNIT TEST 3 -----------------------------
 Name: village
 Parameters:
 	- int currentPlayer

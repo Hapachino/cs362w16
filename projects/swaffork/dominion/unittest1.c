@@ -40,6 +40,7 @@ int main() {
     if (initializeState(numPlayers, cards, seed, &state) != 0)
     {
         printf("Error: Could not initialize state.\n");
+        return -1;
     }
 
     // Preserve the original game state to compare result of shuffle()
@@ -55,8 +56,6 @@ int main() {
         printf("\tERROR: shuffe() failed.\n");
         return -1;
     }
-    
-    // FUNCTION TO RETURN WHAT CHANGED IN STATE: STATECOMPARE(*STATE, *ORIGINALSTATE)
 
     // Check first that each player's deck count is unchanged)
     int p;

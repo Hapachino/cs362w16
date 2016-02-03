@@ -1,39 +1,9 @@
 Beginning initializing state.
 Completed initializing state.
-Testing shuffle():
-Shuffling Player 0:
-Checking order of player 0's deck...
-	shuffled card 0: 1
-	original card 0: 1
-	shuffled card 1: 4
-	original card 1: 4
-
-Player 0's is different! Great success!
-Checking order of player 1's deck...
-	shuffled card 0: 1
-	original card 0: 1
-	shuffled card 1: 4
-	original card 1: 4
-	shuffled card 2: 5
-	original card 2: 5
-	shuffled card 3: 6
-	original card 3: 6
-	shuffled card 4: 7
-	original card 4: 7
-	shuffled card 5: 8
-	original card 5: 8
-	shuffled card 6: 9
-	original card 6: 9
-	shuffled card 7: 10
-	original card 7: 10
-	shuffled card 8: 11
-	original card 8: 11
-	shuffled card 9: 12
-	original card 9: 12
-
-All tests passed!
+Testing isGameOver():
+All tests passed.
 File 'dominion.c'
-Lines executed:3.42% of 584
+Lines executed:1.54% of 584
 dominion.c:creating 'dominion.c.gcov'
 
         -:    0:Source:dominion.c
@@ -48,11 +18,11 @@ dominion.c:creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-       50:    8:int compare(const void* a, const void* b) {
-       50:    9:    if (*(int*)a > *(int*)b)
-        9:   10:        return 1;
-       41:   11:    if (*(int*)a < *(int*)b)
-       41:   12:        return -1;
+    #####:    8:int compare(const void* a, const void* b) {
+    #####:    9:    if (*(int*)a > *(int*)b)
+    #####:   10:        return 1;
+    #####:   11:    if (*(int*)a < *(int*)b)
+    #####:   12:        return -1;
     #####:   13:    return 0;
         -:   14:}
         -:   15:
@@ -241,34 +211,34 @@ dominion.c:creating 'dominion.c.gcov'
     #####:  198:    return 0;
         -:  199:}
         -:  200:
-        1:  201:int shuffle(int player, struct gameState *state) {
+    #####:  201:int shuffle(int player, struct gameState *state) {
         -:  202:
         -:  203:
         -:  204:    int newDeck[MAX_DECK];
-        1:  205:    int newDeckPos = 0;
+    #####:  205:    int newDeckPos = 0;
         -:  206:    int card;
         -:  207:    int i;
         -:  208:
-        1:  209:    if (state->deckCount[player] < 1)
+    #####:  209:    if (state->deckCount[player] < 1)
     #####:  210:        return -1;
-        1:  211:    qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
+    #####:  211:    qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
         -:  212:    /* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
         -:  213:
-       12:  214:    while (state->deckCount[player] > 0) {
-       10:  215:        card = floor(Random() * state->deckCount[player]);
-       10:  216:        newDeck[newDeckPos] = state->deck[player][card];
-       10:  217:        newDeckPos++;
-       37:  218:        for (i = card; i < state->deckCount[player]-1; i++) {
-       27:  219:            state->deck[player][i] = state->deck[player][i+1];
+    #####:  214:    while (state->deckCount[player] > 0) {
+    #####:  215:        card = floor(Random() * state->deckCount[player]);
+    #####:  216:        newDeck[newDeckPos] = state->deck[player][card];
+    #####:  217:        newDeckPos++;
+    #####:  218:        for (i = card; i < state->deckCount[player]-1; i++) {
+    #####:  219:            state->deck[player][i] = state->deck[player][i+1];
         -:  220:        }
-       10:  221:        state->deckCount[player]--;
+    #####:  221:        state->deckCount[player]--;
         -:  222:    }
-       11:  223:    for (i = 0; i < newDeckPos; i++) {
-       10:  224:        state->deck[player][i] = newDeck[i];
-       10:  225:        state->deckCount[player]++;
+    #####:  223:    for (i = 0; i < newDeckPos; i++) {
+    #####:  224:        state->deck[player][i] = newDeck[i];
+    #####:  225:        state->deckCount[player]++;
         -:  226:    }
         -:  227:
-        1:  228:    return 0;
+    #####:  228:    return 0;
         -:  229:}
         -:  230:
     #####:  231:int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
@@ -430,28 +400,28 @@ dominion.c:creating 'dominion.c.gcov'
     #####:  387:    return 0;
         -:  388:}
         -:  389:
-    #####:  390:int isGameOver(struct gameState *state) {
+        2:  390:int isGameOver(struct gameState *state) {
         -:  391:    int i;
         -:  392:    int j;
         -:  393:
         -:  394:    //if stack of Province cards is empty, the game ends
-    #####:  395:    if (state->supplyCount[province] == 0)
+        2:  395:    if (state->supplyCount[province] == 0)
         -:  396:    {
-    #####:  397:        return 1;
+        1:  397:        return 1;
         -:  398:    }
         -:  399:
         -:  400:    //if three supply pile are at 0, the game ends
-    #####:  401:    j = 0;
-    #####:  402:    for (i = 0; i < 25; i++)
+        1:  401:    j = 0;
+       26:  402:    for (i = 0; i < 25; i++)
         -:  403:    {
-    #####:  404:        if (state->supplyCount[i] == 0)
+       25:  404:        if (state->supplyCount[i] == 0)
         -:  405:        {
-    #####:  406:            j++;
+        3:  406:            j++;
         -:  407:        }
         -:  408:    }
-    #####:  409:    if ( j >= 3)
+        1:  409:    if ( j >= 3)
         -:  410:    {
-    #####:  411:        return 1;
+        1:  411:        return 1;
         -:  412:    }
         -:  413:
     #####:  414:    return 0;

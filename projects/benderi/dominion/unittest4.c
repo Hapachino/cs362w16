@@ -2,7 +2,7 @@
  * Course:      CS362
  * Due Date:    2/3/2016
  * Description: Unit test for isGameOver() function.
- * Business Requirements
+ * Requirements
  *      - game is over when province stack is at 0
  *      - game is over when any 3 supply stacks are at 0
  */
@@ -24,14 +24,13 @@ int main()
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                     remodel, smithy, village, baron, great_hall};
 
+    printf("TESTING - isGameOver\n\n");
     //initialize game state
     outcome = initializeGame(MAX_PLAYERS, k, seed, &G);
     if (outcome == -1)
         printf("ERROR - Game initialization failed.\n");
     memcpy(&testG, &G, sizeof(struct gameState));
 
-
-    printf("TESTING FOR GAME OVER\n");
     //supply of province > 0, game continues
     printf("supplyCount[province] = %d\n", G.supplyCount[province]);
     if (isGameOver(&G))
@@ -63,7 +62,7 @@ int main()
             printf("SUCCESS - Game continues.\n");
     }
 
-    printf("TEST COMPLETE\n");
+    printf("TEST COMPLETE\n\n");
 
     return 0;
 }

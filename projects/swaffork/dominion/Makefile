@@ -24,21 +24,30 @@ testAll: dominion.o testSuite.c
 unittest1: unittest1.c dominion.o rngs.o testhelper.o
 	gcc -o unittest1 -g unittest1.c testhelper.o dominion.o rngs.o $(CFLAGS)
 
+unittest2: unittest2.c dominion.o rngs.o testhelper.o
+	gcc -o unittest2 -g unittest2.c testhelper.o dominion.o rngs.o $(CFLAGS)
+
+unittest3: unittest3.c dominion.o rngs.o testhelper.o
+	gcc -o unittest3 -g unittest3.c testhelper.o dominion.o rngs.o $(CFLAGS)
+
+unittest4: unittest4.c dominion.o rngs.o testhelper.o
+	gcc -o unittest4 -g unittest4.c testhelper.o dominion.o rngs.o $(CFLAGS)
+
 testhelper.o: testhelper.h testhelper.c
 	gcc -c testhelper.c -g $(CFLAGS)
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-runtests: unittest1
-	./unittest1 &> unittestresult.out
+runtests: unittest3
+	./unittest4 &> unittestresult.out
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player unittest1
+all: playdom player unittest4
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest2 unittest3 unittest4 *.gcov *.gcda *.gcno *.so

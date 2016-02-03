@@ -35,14 +35,16 @@ int main() {
         cleanGame.whoseTurn = player;
         memcpy(&testGame, &cleanGame, sizeof(struct gameState));
         for (i = 0; i < testGame.handCount[player]; i++) {
-            if (testGame.hand[player][i] == 4) {
+            if (testGame.hand[player][i] == copper || testGame.hand[player][i] == silver
+                || testGame.hand[player][i] == gold) {
                 preTreasureCount++;   
             }
         }
         cardEffect(adventurer,0,0,0,&testGame,0,0);
         otherPlayer = (player == 1) ? 0 : 1;
         for (i = 0; i < testGame.handCount[player]; i++) {
-            if (testGame.hand[player][i] == 4) {
+            if (testGame.hand[player][i] == copper || testGame.hand[player][i] == silver
+                || testGame.hand[player][i] == gold) {
                 postTreasureCount++;   
             }
         }        
@@ -66,7 +68,24 @@ int main() {
         }
         testsRun++;
         
+        printf("---- Did player %d discard a card?\n", player);
+        if (testGame.discardCount[player] == cleanGame.discardCount[player] + 1) {
+            printf("Test Passed.\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
+        
         // check for game state changes
+        printf("---- Was player %d's discard pile unaffected?\n", otherPlayer);
+        if (testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]) {
+            printf("Test Passed.\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
         printf("---- Did whoseTurn change?\n");
         if (testGame.whoseTurn == cleanGame.whoseTurn) {
             printf("No, it didn't change.  Test Passed.\n");
@@ -81,6 +100,46 @@ int main() {
             testsPassed++;
         } else {
             printf("Yes. Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did outpostPlayed change?\n");
+        if (testGame.outpostPlayed == cleanGame.outpostPlayed) {
+            printf("No. Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Yes. Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did outpostTurn change?\n");
+        if (testGame.outpostTurn == cleanGame.outpostTurn) {
+            printf("Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did phase change?\n");
+        if (testGame.phase == cleanGame.phase) {
+            printf("Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did the other player's deck change?\n");
+        if (testGame.deckCount[otherPlayer] == cleanGame.deckCount[otherPlayer]) {
+            printf("Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did played card count increment?\n");
+        if (testGame.playedCardCount == cleanGame.playedCardCount + 1) {
+            printf("Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
         }
         testsRun++;
     }

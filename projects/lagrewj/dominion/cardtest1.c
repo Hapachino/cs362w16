@@ -11,6 +11,8 @@
  * 2. 3 cards should come from his own pile.
  * 3. No state change should occur for other players.
  * 4. No state change should occur to the victory card piles and kingdom card piles.
+ * 5. No changes in coins, buys or actions
+ * 6. Ensure that it is still the same player's turn before and after card
  */
 
 /*
@@ -52,35 +54,35 @@ int testSmithy(struct gameState *after, int handPos) //test smithy function
 	}
 	if(after->handCount[p] != before.handCount[p])
 	{
-		printf("ERROR: handCount is incorrect. Expected: %d Actual: %d\n", before.handCount[p], after->handCount[p]);
+		printf("ERROR 1: handCount is incorrect. Expected: %d Actual: %d\n", before.handCount[p], after->handCount[p]);
 	}
 	if(after->deckCount[p] != before.deckCount[p])
 	{
-		printf("ERROR: deckCount is incorrect. Expected: %d Actual: %d\n", before.deckCount[p], after->deckCount[p]);
+		printf("ERROR 2: deckCount is incorrect. Expected: %d Actual: %d\n", before.deckCount[p], after->deckCount[p]);
 	}
 	if(before.playedCardCount != after->playedCardCount)
 	{
-		printf("ERROR: playedCardCount is incorrect. Expected: %d Actual: %d\n", before.playedCardCount, after->playedCardCount);
+		printf("ERROR 3: playedCardCount is incorrect. Expected: %d Actual: %d\n", before.playedCardCount, after->playedCardCount);
 	}
 	int i;
 	for(i = 0; i < treasure_map; i++)//checking supply counts before and after buy
 	{
 		if(before.supplyCount[i] != after->supplyCount[i])
-			printf("ERROR: Supply counts changed. before: %i, after: %i", before.supplyCount[i], after->supplyCount[i]);
+			printf("ERROR 4: Supply counts changed. before: %i, after: %i", before.supplyCount[i], after->supplyCount[i]);
 	}
 	
 	if(before.whoseTurn != after->whoseTurn)//if whoseTurn changed then different player
-		printf("ERROR: Different player from %i to %i", before.whoseTurn, after->whoseTurn);
+		printf("ERROR 5: Different player from %i to %i", before.whoseTurn, after->whoseTurn);
 	
 	//check coins
 	if(before.coins != after->coins)
-		printf("ERROR: Number of coins changed from %i to %i", before.coins, after->coins);
+		printf("ERROR 6: Number of coins changed from %i to %i", before.coins, after->coins);
 	//check number of buys
 	if(before.numBuys != after->numBuys)
-		printf("ERROR: Number of buys has changed from %i, to %i", before.numBuys, after->numBuys);
+		printf("ERROR 7: Number of buys has changed from %i, to %i", before.numBuys, after->numBuys);
 	//check number of actions
 	if(before.numActions != after->numActions)
-		printf("ERROR: Number of actions has changed from %i to %i", before.numActions, after->numActions);
+		printf("ERROR 8: Number of actions has changed from %i to %i", before.numActions, after->numActions);
 	
 	return 0;
 }
@@ -96,12 +98,12 @@ int main()
 	for (i = 0; i < sizeof(struct gameState); i++) {//random gameState
 		((char*)&G)[i] = floor(Random() * 256);
 	}
-	//generates random tests
-	printf("STARTING RANDOM TESTS.\n");
+	//starting random tests
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 	
 	SelectStream(2);
 	PutSeed(3);
-	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
+	
 	G.whoseTurn = p;//gameState G's player's turn stored in value p
 	
 	for(k = 0; k < 250; k++) //250 number of tests

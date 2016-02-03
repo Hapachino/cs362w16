@@ -24,6 +24,9 @@
 int main () {
     srand(time(NULL));
    
+    int failCount1 = 0;
+    int failCount2 = 0;
+    int failCount3 = 0;
     printf("Testing playSmithy().\n");
     
     struct gameState g;
@@ -93,32 +96,44 @@ int main () {
                 // TEST1: Ensure other players hands are not corrupt by comparing card counts before and after
                 printf("Test 1 - Other player card count - ");
                 for (i = 0; i < players; i++) {
-                    
                     if (i == p) {
                         // do nothing because this isn't the other players
                     } else {
                         printf("Player %d - Expect: %d, %d, %d, Results: %d, %d, %d", i, pre.handCount[i], pre.deckCount[i], pre.discardCount[i], g.handCount[i], g.deckCount[i], g.discardCount[i]); 
-                        assert(pre.handCount[i] == g.handCount[i]);
-                        assert(pre.deckCount[i] == g.deckCount[i]);
-                        assert(pre.discardCount[i] == g.discardCount[i]);
+                        if(pre.handCount[i] != g.handCount[i] || pre.deckCount[i] != g.deckCount[i] || pre.discardCount[i] != g.discardCount[i]) {
+                            printf(" FAIL \n");
+                            failCount1++;
+                        } else {
+                            printf(" - PASS\n");
+                        }
                     }
                 }
-                printf(" - PASS\n");
                 
                 // TEST2: Ensure player received 3 cards, and discard, deck, and hand are same size in all scenarios
                 printf("Test 2 - Current player gets 3 cards - ");
                 printf("Player %d - Expect: %d, %d, %d, Received: %d, %d, %d", p, pre.handCount[p], pre.deckCount[p], pre.discardCount[p], g.handCount[p], g.deckCount[p], g.discardCount[p]);
-                assert(pre.handCount[p] == g.handCount[p]);
-                assert(pre.deckCount[p] == g.deckCount[p]);
-                assert(pre.discardCount[p] == g.discardCount[p]);
-                printf(" - PASS\n");
+                if(pre.handCount[p] != g.handCount[p] || pre.deckCount[p] != g.deckCount[p] || pre.discardCount[p] != g.discardCount[p]) {
+                    printf(" FAIL \n");
+                    failCount2++;
+                } else {
+                    printf(" - PASS\n");
+                }
                 // TEST3: Ensure entire game state matches
                 printf("Test 3 - Testing matching game states\n");
-                assert(memcmp(&pre, &g, sizeof(struct gameState)) == 0);
-                printf(" - PASS\n");
+                if(memcmp(&pre, &g, sizeof(struct gameState)) != 0) {
+                    printf(" FAIL \n");
+                    failCount3++;
+                } else {
+                    printf(" - PASS\n");
+                }
             }
         }
     }
-    printf("Finished all playSmithy() tests succesfully!\n");
+    int totalFails = failCount1 + failCount2 + failCount3;
+    if (totalFails == 0) {
+        printf("Finished all smithy card tests succesfully!\n");
+    } else {
+        printf("Finished all smithy card tests.\nFAILS 1: %d, FAILS 2: %d, FAILS 3: %d\n", failCount1, failCount2, failCount3);
+    }
     return 0;
 }

@@ -39,7 +39,6 @@ int countDiscarded(int *c, int size) {
 		if(c[i] == copper || c[i] == silver || c[i] == gold)
 		{
 			tCount++;
-			printf("here\n");
 			if(tCount == 2)
 				break;
 		}
@@ -141,22 +140,15 @@ int main()
 
 	memcpy(&deckCopy, G.deck[0], sizeof(G.deck[0]));
 	int i;
-
-
 	int dCount = countDiscarded(deckCopy, 495);
 
-
 	dCount += G.discardCount[0];
-
-	printf("d %d\n", dCount);
 
 	hCount1 = G.handCount[0];
 	tCount1 = countTreasureCards(G.hand[0], G.handCount[0]);
 	tCountDeck1 = countTreasureCards(G.deck[0], G.deckCount[0]);
 
-
-	effectAdventure2(&G, &infos);
-
+	effectAdventure(&G, &infos);
 
 	//assert(dCount == G.discardCount[0]);
 	printf("d %d\n", G.discardCount[0]);
@@ -165,35 +157,12 @@ int main()
 	tCountDeck2 = countTreasureCards(G.deck[0], G.deckCount[0]);
 	printf("TEST: player's hand count is increased by 2\n");
 	assert(hCount1 + 2 == hCount2);
-	
+
 	printf("TEST: player's treasure card count is increased by 2\n");
 	assert(tCount1 + 2 == tCount2);
 
 	printf("TEST: player's treasure card count in deck is decreased by 2\n");
 	assert(tCountDeck1 - 2 == tCountDeck2);
 	
-	
+
 }
-
-
-
-// struct gameState {
-//   int numPlayers; //number of players
-//   int supplyCount[treasure_map+1];  
-//   int embargoTokens[treasure_map+1];
-//   int outpostPlayed;
-//   int outpostTurn;
-//   int whoseTurn;
-//   int phase;
-//   int numActions; /* Starts at 1 each turn */
-//   int coins; /* Use as you see fit! */
-//   int numBuys; /* Starts at 1 each turn */
-//   int hand[MAX_PLAYERS][MAX_HAND];
-//   int handCount[MAX_PLAYERS];
-//   int deck[MAX_PLAYERS][MAX_DECK];
-//   int deckCount[MAX_PLAYERS];
-//   int discard[MAX_PLAYERS][MAX_DECK];
-//   int discardCount[MAX_PLAYERS];
-//   int playedCards[MAX_DECK];
-//   int playedCardCount;
-// };

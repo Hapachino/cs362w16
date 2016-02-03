@@ -11,23 +11,38 @@
         -:    6:#include "rngs.h"
         -:    7:#include <time.h>
         -:    8:
+function main called 1 returned 100% blocks executed 87%
         1:    9:int main() {
         -:   10:
         1:   11:	printf("-------------------------------------\n");
+call    0 returned 100%
         1:   12:	printf("START of the unittest2 - KingdomCards\n");
+call    0 returned 100%
         1:   13:	printf("-------------------------------------\n");
+call    0 returned 100%
         -:   14:
         -:   15:	int i;
         1:   16:	int k1[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
         1:   17:	int *k2 = kingdomCards(adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall);
+call    0 returned 100%
         -:   18:
        11:   19:	for(i = 0; i < 10; i++) {
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
        10:   20:		int ret = compare(&k1[i], &	k2[i]);
+call    0 returned 100%
        10:   21:		if(ret != 0)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
     #####:   22:			printf("FAIL: return val should be 0, got %d\n", ret);
+call    0 never executed
        10:   23:		assert(ret == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
         -:   24:	}
         1:   25:	printf("PASS: kingdom cards allocated correctly\n");
+call    0 returned 100%
         -:   26:
         1:   27:	return 0;
         -:   28:}

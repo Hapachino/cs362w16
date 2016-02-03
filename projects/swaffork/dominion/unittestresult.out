@@ -1,10 +1,12 @@
 Beginning initializing state.
 Completed initializing state.
-Testing discardCard():
-All state changes as expected.
-All tests passed.
+Testing gainCard():
+	ERROR: card not gained into deck. dest = 1
+	New deck count: 1
+	Expected deck count: 11
+End of gainCard() test.
 File 'dominion.c'
-Lines executed:1.37% of 584
+Lines executed:2.40% of 584
 dominion.c:creating 'dominion.c.gcov'
 
         -:    0:Source:dominion.c
@@ -331,8 +333,8 @@ dominion.c:creating 'dominion.c.gcov'
     #####:  317:    return state->hand[currentPlayer][handPos];
         -:  318:}
         -:  319:
-    #####:  320:int supplyCount(int card, struct gameState *state) {
-    #####:  321:    return state->supplyCount[card];
+        3:  320:int supplyCount(int card, struct gameState *state) {
+        3:  321:    return state->supplyCount[card];
         -:  322:}
         -:  323:
     #####:  324:int fullDeckCount(int player, int card, struct gameState *state) {
@@ -1065,25 +1067,25 @@ dominion.c:creating 'dominion.c.gcov'
     #####: 1051:    return -1;
         -: 1052:}
         -: 1053:
-        1: 1054:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+    #####: 1054:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
         -: 1055:{
         -: 1056:
         -: 1057:    //if card is not trashed, added to Played pile 
-        1: 1058:    if (trashFlag < 1)
+    #####: 1058:    if (trashFlag < 1)
         -: 1059:    {
         -: 1060:        //add card to played pile
-        1: 1061:        state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-        1: 1062:        state->playedCardCount++;
+    #####: 1061:        state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+    #####: 1062:        state->playedCardCount++;
         -: 1063:    }
         -: 1064:
         -: 1065:    //set played card to -1
-        1: 1066:    state->hand[currentPlayer][handPos] = -1;
+    #####: 1066:    state->hand[currentPlayer][handPos] = -1;
         -: 1067:
         -: 1068:    //remove card from player's hand
-        1: 1069:    if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+    #####: 1069:    if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
         -: 1070:    {
         -: 1071:        //reduce number of cards in hand
-        1: 1072:        state->handCount[currentPlayer]--;
+    #####: 1072:        state->handCount[currentPlayer]--;
         -: 1073:    }
     #####: 1074:    else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
         -: 1075:    {
@@ -1100,15 +1102,15 @@ dominion.c:creating 'dominion.c.gcov'
     #####: 1086:        state->handCount[currentPlayer]--;
         -: 1087:    }
         -: 1088:
-        1: 1089:    return 0;
+    #####: 1089:    return 0;
         -: 1090:}
         -: 1091:
-    #####: 1092:int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
+        3: 1092:int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
         -: 1093:{
         -: 1094:    //Note: supplyPos is enum of choosen card
         -: 1095:
         -: 1096:    //check if supply pile is empty (0) or card is not used in game (-1)
-    #####: 1097:    if ( supplyCount(supplyPos, state) < 1 )
+        3: 1097:    if ( supplyCount(supplyPos, state) < 1 )
         -: 1098:    {
     #####: 1099:        return -1;
         -: 1100:    }
@@ -1118,26 +1120,26 @@ dominion.c:creating 'dominion.c.gcov'
         -: 1104:    // toFlag = 1 : add to deck
         -: 1105:    // toFlag = 2 : add to hand
         -: 1106:
-    #####: 1107:    if (toFlag == 1)
+        3: 1107:    if (toFlag == 1)
         -: 1108:    {
-    #####: 1109:        state->deck[ player ][ state->deckCount[player] ] = supplyPos;
-    #####: 1110:        state->deckCount[player]++;
+        1: 1109:        state->deck[ player ][ state->deckCount[player] ] = supplyPos;
+        1: 1110:        state->deckCount[player]++;
         -: 1111:    }
-    #####: 1112:    else if (toFlag == 2)
+        2: 1112:    else if (toFlag == 2)
         -: 1113:    {
-    #####: 1114:        state->hand[ player ][ state->handCount[player] ] = supplyPos;
-    #####: 1115:        state->handCount[player]++;
+        1: 1114:        state->hand[ player ][ state->handCount[player] ] = supplyPos;
+        1: 1115:        state->handCount[player]++;
         -: 1116:    }
         -: 1117:    else
         -: 1118:    {
-    #####: 1119:        state->discard[player][ state->discardCount[player] ] = supplyPos;
-    #####: 1120:        state->discardCount[player]++;
+        1: 1119:        state->discard[player][ state->discardCount[player] ] = supplyPos;
+        1: 1120:        state->discardCount[player]++;
         -: 1121:    }
         -: 1122:
         -: 1123:    //decrease number in supply pile
-    #####: 1124:    state->supplyCount[supplyPos]--;
+        3: 1124:    state->supplyCount[supplyPos]--;
         -: 1125:
-    #####: 1126:    return 0;
+        3: 1126:    return 0;
         -: 1127:}
         -: 1128:
     #####: 1129:int updateCoins(int player, struct gameState *state, int bonus)

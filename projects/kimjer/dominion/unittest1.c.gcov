@@ -1,0 +1,212 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <stdlib.h>
+        -:    6:#include <assert.h>
+        -:    7:#include "rngs.h"
+        -:    8:#include <time.h>
+        -:    9:
+function main called 1 returned 100% blocks executed 82%
+        1:   10:int main() {
+        -:   11:
+        1:   12:	printf("-------------------------------------\n");
+call    0 returned 100%
+        1:   13:	printf("START of the unittest1\n");
+call    0 returned 100%
+        1:   14:	printf("-------------------------------------\n");
+call    0 returned 100%
+        -:   15:	struct gameState G;
+        -:   16:	struct gameState G2;
+        -:   17:	int i, j;
+        1:   18:	int numPlayers = 2;
+        -:   19:	// Initialize G.
+        -:   20:	  //set number of Kingdom cards
+       26:   21:	for(i = 0; i < 25; i++) {
+branch  0 taken 96%
+branch  1 taken 4% (fallthrough)
+       25:   22:		G.supplyCount[i] = 1;
+        -:   23:	}
+        -:   24:	
+        1:   25:	G.supplyCount[province] = 10;
+        -:   26:
+        1:   27:	int ret = isGameOver(&G);
+call    0 returned 100%
+        1:   28:	if(ret == 0) 
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   29:	{
+        1:   30:		printf("PASS when all supply count is 1\n");
+call    0 returned 100%
+        -:   31:	}
+        -:   32:	else
+        -:   33:	{
+    #####:   34:		printf("FAIL when all supply count is 1\n");
+call    0 never executed
+        -:   35:	}
+        1:   36:	assert(ret == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   37:
+        -:   38:
+       26:   39:	for(i = 0; i < 25; i++) {
+branch  0 taken 96%
+branch  1 taken 4% (fallthrough)
+       25:   40:		G.supplyCount[i] = 0;
+        -:   41:
+       25:   42:		ret = isGameOver(&G);
+call    0 returned 100%
+        -:   43:		//assert(ret == 0);
+       25:   44:		if(i == province)
+branch  0 taken 4% (fallthrough)
+branch  1 taken 96%
+        -:   45:		{
+        1:   46:			if(ret == 0)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   47:				printf("FAIL: isGameOver should return 1 when province supply is 0; instead got %d\n", ret);
+call    0 never executed
+        1:   48:			assert(ret == 1);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   49:		}
+        -:   50:		else
+        -:   51:		{
+       24:   52:			if(ret == 1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   53:				printf("FAIL: isGameOver should return 0 when only 1 supply is 0; instead got %d\n", ret);
+call    0 never executed
+       24:   54:			assert(ret == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   55:		}
+       25:   56:		G.supplyCount[i] = 1;
+        -:   57:	}
+        1:   58:	printf("PASS when any one supply is set to 0\n");
+call    0 returned 100%
+        -:   59:
+        -:   60:
+        -:   61:	//random testing when any two supplies are 0
+        1:   62:	SelectStream(1);
+call    0 returned 100%
+        1:   63:	PutSeed((long)time(NULL));
+call    0 returned 100%
+call    1 returned 100%
+        -:   64:	
+    10001:   65:	for(i = 0; i < 10000; i++) 
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   66:	{
+        -:   67:		int r1, r2;
+    10000:   68:		r1 = floor(Random()*25);
+call    0 returned 100%
+        -:   69:		do
+    10442:   70:			r2 = floor(Random()*25);
+call    0 returned 100%
+    10442:   71:		while(r2 == r1);
+branch  0 taken 4%
+branch  1 taken 96% (fallthrough)
+        -:   72:
+    10000:   73:		G.supplyCount[r1] = 0;
+    10000:   74:		G.supplyCount[r2] = 0;
+    10000:   75:		ret = isGameOver(&G);
+call    0 returned 100%
+        -:   76:
+    10000:   77:		if(r2 == province || r1 == province)
+branch  0 taken 96% (fallthrough)
+branch  1 taken 4%
+branch  2 taken 4% (fallthrough)
+branch  3 taken 96%
+        -:   78:		{
+        -:   79:			//if province is 0, game should be over
+      786:   80:			if(ret == 0)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   81:				printf("FAIL: isGameOver should return 1 when province supply is 0; instead got %d\n", ret);
+call    0 never executed
+      786:   82:			assert(ret == 1);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   83:		}
+        -:   84:		else
+        -:   85:		{
+     9214:   86:			if(ret == 1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   87:				printf("FAIL: isGameOver should return 0 when only two supplies are 0; instead got %d\n", ret);
+call    0 never executed
+     9214:   88:			assert(ret == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   89:		}
+    10000:   90:		G.supplyCount[r1] = 1;
+    10000:   91:		G.supplyCount[r2] = 1;
+        -:   92:	}
+        1:   93:	printf("PASS when any two supplies are set to 0\n");
+call    0 returned 100%
+        -:   94:
+        -:   95:	//random testing when any three supplies are 0
+        -:   96:
+    10001:   97:	for(i = 0; i < 10000; i++) 
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   98:	{
+        -:   99:		int r1, r2, r3;
+    10000:  100:		r1 = floor(Random()*25);
+call    0 returned 100%
+        -:  101:		do
+    10436:  102:			r2 = floor(Random()*25);
+call    0 returned 100%
+    10436:  103:		while(r2 == r1);
+branch  0 taken 4%
+branch  1 taken 96% (fallthrough)
+        -:  104:
+        -:  105:		do
+    10845:  106:			r3 = floor(Random()*25);
+call    0 returned 100%
+    10845:  107:		while(r3 == r1 || r3 == r2 );
+branch  0 taken 4%
+branch  1 taken 96% (fallthrough)
+branch  2 taken 4%
+branch  3 taken 96% (fallthrough)
+        -:  108:
+        -:  109:
+    10000:  110:		G.supplyCount[r1] = 0;
+    10000:  111:		G.supplyCount[r2] = 0;
+    10000:  112:		G.supplyCount[r3] = 0;
+    10000:  113:		ret = isGameOver(&G);
+call    0 returned 100%
+        -:  114:
+        -:  115:		//if three supplies are 0 game should be over
+    10000:  116:		if(ret == 0)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:  117:			printf("FAIL: isGameOver should return 1 when province three supplies are 0; instead got %d\n", ret);
+call    0 never executed
+    10000:  118:		assert(ret == 1);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:  119:		
+    10000:  120:		G.supplyCount[r1] = 1;
+    10000:  121:		G.supplyCount[r2] = 1;
+    10000:  122:		G.supplyCount[r3] = 1;
+        -:  123:	}
+        -:  124:
+        1:  125:	printf("PASS when any three supplies are set to 0\n");
+call    0 returned 100%
+        1:  126:	printf("-------------------------------------\n");
+call    0 returned 100%
+        1:  127:	return 0;
+        -:  128:}

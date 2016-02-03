@@ -36,10 +36,12 @@ cardtest3: cardtest3.c dominion.o rngs.o
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
 
-rununittests: cardtest4
-	./cardtest4 &>  unittestresults.out
-	gcov dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
+rununittests: cardtest1 cardtest2 cardtest3 cardtest4
+	./cardtest1 &>  unittestresults.out
+	./cardtest2 >>  unittestresults.out
+	./cardtest3 >>  unittestresults.out
+	./cardtest4 >>  unittestresults.out
+	gcov -b -f dominion.c >> unittestresults.out
 
 runtests: testDrawCard
 	./testDrawCard &> unittestresult.out

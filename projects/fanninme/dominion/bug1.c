@@ -13,7 +13,7 @@ Errors type 2: 0 Error bad return value from function
 Errors type 3: 991 Error negative supply count 
 
 Bug:
-The supply count is some how getting decrimented below 0 (which should end the game).
+The supply count is some how getting decrimented below 0 (which should end the game). This could be addressed by checking inputs and any iterating loops which may affect the value of the supply count.
 
 3)Unit Test 3: full deck count
 Errors type 1: 0 Error in end turn function.
@@ -31,14 +31,11 @@ RANDOM TESTS.
 unitTest4: unitTest4.c:31: unitTest: Assertion `memcmp(&pre,post, sizeof(struct gameState))==0' failed.
 Aborted (core dumped)
 
-
+Bug:
 Segmentation fault (core dumped) occurs in dominion.c line 357, the current player value is 1817024117 which seems to indicate there maybe a flaw 
 in line 353 "int currentPlayer = whoseTurn(state);"
 I then altered the code to ensure that the whoseTurn variable was no larger than max players however the current player value after this change was still much larger than max players.
 
-
-Bug: The end of turn function segfaults ending the unitTest program early. 
-There is likely a out of bound memory access error in end of turn function however to catch it we would need to alter the source code.
 
 5) card unit test 1: Adventurer
 Bug:segfault
@@ -58,7 +55,7 @@ in line 353 "int currentPlayer = whoseTurn(state);"
 
 8)card unit test 4:Testing village Card.
 bug:segfault.
-The segfault is occuring in the discardCard function on line 357, the current player value is very high (in the hundreds of thousands) which seems to indicate there maybe a flaw 
+The segfault is occuring in the discardCard function on line 1259, the current player value is very high (in the hundreds of thousands) which seems to indicate there maybe a flaw 
 in line 353 "int currentPlayer = whoseTurn(state);"
 
 

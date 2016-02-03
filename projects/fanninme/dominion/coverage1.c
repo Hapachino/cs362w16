@@ -36,7 +36,7 @@ dominion.gcno:cannot open notes file
 
 implications:We know from the errors print out that the supply count is some how getting decrimented below 0 (which should end the game).
 
-3)unit test 4: full deck count
+3)unit test 3: full deck count
 dominion.gcno:cannot open notes file
 
 File 'unitTest4.c'

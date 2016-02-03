@@ -259,6 +259,7 @@ int main()
     if (testAdventurer(gs2, gs1, player, numDiscarded, coinIncrease) != -1)
         printf("PASS all tests for silver and copper split in shuffle scenario.\n");
 
+    return 0;
     
 }
 

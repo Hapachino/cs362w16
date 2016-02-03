@@ -44,11 +44,21 @@
  * playAdventurer
  * * no shuffle before we begin drawing, we could end up drawing from
  * an empty deck!
+ * NOTE 2/2/2016 - This bug doesn't seem to be caught by unit tests, because
+ * drawCard in itself also shuffles the cards in case we run out of deck cards.
  * playSmithy
  * * one-off error, for loop to draw 3 cards is i <= 3, should be i < 3
+ * NOTE 2/2/2016 - This bug doesn't appear to be caught from my unit tests, perhaps
+ * because there is a separate bug where it appears that cards played aren't discarded
+ * properly afterward.
  * playFeast
  * * does not set x = 0 when we finish buying one card
+ * NOTE 2/2/2016 - This bug reared its ugly head while testing, causing my unit tests
+ * to never terminate because it would be caught in an infinite loop because the card
+ * was too expensive to buy. I had to temporarily fix this with return -1 on errors to
+ * terminate out of my unit tests.
  * playCouncil_Room
  * * all players will draw a card, even when the current player that played
  * it should be excluded
+ * NOTE 2/2/2016 - I did not test this in my card unit tests.
  */

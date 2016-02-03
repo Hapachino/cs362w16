@@ -18,8 +18,9 @@
 
 int foundCardInHand(struct gameState *state, int player, int card){
     int found = 0;
+    int i;
     
-    for(int i = 0; i < state->handCount[player]; i++){
+    for(i = 0; i < state->handCount[player]; i++){
         if(state->hand[player][i] == card){
             found = 1;
             break;

@@ -16,7 +16,7 @@ unittestresults.out: $(DOMINIONOBJECTS) unitTests cardTests
 	cardtest2 >> unittestresults.out
 	cardtest3 >> unittestresults.out
 	cardtest4 >> unittestresults.out
-	gcov dominion.c >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out 
 
 rngs.o: rngs.h rngs.c

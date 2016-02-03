@@ -545,6 +545,7 @@ int drawCard(int player, struct gameState *state)
       printf("Deck count now: %d\n", state->deckCount[player]);
     }
     
+    
     state->discardCount[player] = 0;
 
     //Step 2 Draw Card
@@ -667,7 +668,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      play_adventurer(state, currentPlayer);
+      play_adventurer(state, currentPlayer,handPos);
       return 0;
 			
     case council_room:
@@ -763,7 +764,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-      play_smithy(state, currentPlayer);
+      play_smithy(state, currentPlayer,handPos);
       return 0;
 		
     case village:
@@ -1251,7 +1252,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
  *  - int currentPlayer: integer representing current player
  *  - int handPos: integer representing current position of card in the hand
  * ********************************************/
-void play_smithy(struct gameState *state, int currentPlayer){
+void play_smithy(struct gameState *state, int currentPlayer,int handPos){
   int i;
   for (i = 0; i < 3; i++)
   {
@@ -1266,7 +1267,7 @@ void play_smithy(struct gameState *state, int currentPlayer){
  * Output:
  * Description: Draw until 2 treasure cards are drawn. Discard all others drawn. 
  * ********************************************/
-void play_adventurer(struct gameState *state, int currentPlayer){
+void play_adventurer(struct gameState *state, int currentPlayer,int handPos){
   int drawntreasure = 0;
   int temphand[MAX_HAND];
   int z = 0;

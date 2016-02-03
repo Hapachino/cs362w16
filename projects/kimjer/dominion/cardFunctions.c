@@ -4,6 +4,6 @@
 #include "dominion.h"
 
 void testFunc() {
-	printf("THIS IS THE PRINTOUT FROM CARDFUNCTIONS");
+	printf("test");
 	return;
 }

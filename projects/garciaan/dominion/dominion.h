@@ -51,7 +51,8 @@ enum CARD
    outpost,
    salvager, /* choice1 = hand# to trash */
    sea_hag,
-   treasure_map
+   treasure_map,
+   last_card = treasure_map
   };
 
 struct gameState {
@@ -136,8 +137,8 @@ int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
 
-void play_smithy(struct gameState *state, int currentPlayer);
-void play_adventurer(struct gameState *state, int currentPlayer);
+void play_smithy(struct gameState *state, int currentPlayer, int handPos);
+void play_adventurer(struct gameState *state, int currentPlayer,int handPos);
 void play_village(struct gameState *state, int currentPlayer, int handPos);
 void play_great_hall(struct gameState *state, int currentPlayer, int handPos);
 void play_feast(struct gameState *state, int currentPlayer, int choice1);

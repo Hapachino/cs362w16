@@ -24,3 +24,9 @@ playMine() bug
 
 playRemodel() bug
 - Instead of discarding the card it trashes it instead
+
+scoreFor() bug
+- score not calculated correctly, might have bug in full deck count()
+
+playVillage() bug
+- not properly discarding card

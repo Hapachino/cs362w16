@@ -657,7 +657,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int temphand[MAX_HAND];// moved above the if statement
   int drawntreasure=0;
   int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
+//  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -667,7 +667,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-        adventurer_function(handPos, currentPlayer, *state);
+        adventurer_function(handPos, currentPlayer, state, temphand);
 /*
       while(drawntreasure<2){
 	    if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
@@ -831,7 +831,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-        smithy_function(handPos, currentPlayer, *state);
+        smithy_function(handPos, currentPlayer, state);
     /*
       //+3 Cards
       for (i = 0; i < 3; i++)
@@ -844,7 +844,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 	*/	
     case village:
-        village_function(handPos, currentPlayer, *state);
+        village_function(handPos, currentPlayer, state);
 /*
 
       //+1 Card
@@ -909,7 +909,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case great_hall:
-      greatHall_function(handPos, currentPlayer, *state);
+      greatHall_function(handPos, currentPlayer, state);
 
     /*
       //+1 Card
@@ -1166,7 +1166,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case outpost:
-        outpost_function(handPos, currentPlayer, *state);
+        outpost_function(handPos, currentPlayer, state);
 /*
       //set outpost flag
       state->outpostPlayed++;
@@ -1343,7 +1343,8 @@ int updateCoins(int player, struct gameState *state, int bonus)
 // Added functions by durhamch
 int smithy_function(int handPos, int currentPlayer, struct gameState *state)
 {
-    for(int i = 3; i >= 0; i--)
+    int i = 3;
+    for(i; i >= 0; i--)
     {
         drawCard(currentPlayer, state);
     }
@@ -1351,14 +1352,14 @@ int smithy_function(int handPos, int currentPlayer, struct gameState *state)
     return 0;
 }
 
-int adventurer_function(int handPos, int currentPlayer, struct gameState *state)
+int adventurer_function(int handPos, int currentPlayer, struct gameState *state, int *temphand)
 {
     int drawntreasure = 0;
     int z = 0;
     int cardDrawn = 0;
-    int temphand(MAX_HAND);
+//    int temphand(MAX_HAND);
     while(drawntreasure<=2){
-        if (state->deckCount[currentPlayer] <1)i
+        if (state->deckCount[currentPlayer] <1)
             shuffle(currentPlayer, state);
         
         drawCard(currentPlayer, state);
@@ -1389,7 +1390,7 @@ int village_function(int handPos, int currentPlayer, struct gameState *state)
     return 0;
 }
 
-int greatHall_function(int handPos, int curentPlayer, struct gameState *state)
+int greatHall_function(int handPos, int currentPlayer, struct gameState *state)
 {
     drawCard(currentPlayer, state);
     state->numActions += 2;

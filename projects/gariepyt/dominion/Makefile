@@ -29,6 +29,66 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.o rngs.o
+	gcc -o unittest1 unittest1.c dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest2 unittest2.c dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest3 unittest3.c dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest4 unittest4.c dominion.o rngs.o $(CFLAGS)
+
+	gcc -o cardtest1 cardtest1.c dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest2 cardtest2.c dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest3 cardtest3.c dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest4 cardtest4.c dominion.o rngs.o $(CFLAGS)
+
+	echo "Results for running dominion unit and card tests" >> unittestresults.out
+	
+	echo " " >> unittestresults.out
+
+	echo "Unit test 1" >> unittestresults.out
+	./unittest1 >> unittestresults.out
+	gcov unittest1.c >> unittestresults.out
+
+	echo " " >> unittestresults.out
+
+	echo "Unit test 2" >> unittestresults.out
+	./unittest2 >> unittestresults.out
+	gcov unittest2.c >> unittestresults.out
+
+	echo " " >> unittestresults.out
+
+	echo "Unit test 3" >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	gcov unittest3.c >> unittestresults.out
+
+	echo " " >> unittestresults.out
+
+	echo "Unit test 4" >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	gcov unittest4.c >> unittestresults.out
+
+	echo " " >> unittestresults.out
+
+	echo "Card test 1" >> unittestresults.out
+	./cardtest1 >> unittestresults.out
+	gcov cardtest1.c >> unittestresults.out
+
+	echo " " >> unittestresults.out
+
+	echo "Card test 2" >> unittestresults.out
+	./cardtest2 >> unittestresults.out
+	gcov cardtest2.c >> unittestresults.out
+
+	echo " " >> unittestresults.out
+
+	echo "Card test 3" >> unittestresults.out
+	./cardtest3 >> unittestresults.out
+	gcov cardtest3.c >> unittestresults.out
+
+	echo " " >> unittestresults.out
+
+	echo "Card test 4" >> unittestresults.out
+	./cardtest4 >> unittestresults.out
+	gcov cardtest4.c >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

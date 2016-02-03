@@ -101,7 +101,7 @@ int main()
 
 	// random tests
 	fprintf(stdout, "\nDoing random tests...\n");
-	for (i = 0; i < 100000; i++)
+	for (i = 0; i < 1000; i++)
 	{
 		numPlayers = rand() % ( MAX_PLAYERS - 2 ) + 2;
 		g = newGameState( numPlayers, SEED );

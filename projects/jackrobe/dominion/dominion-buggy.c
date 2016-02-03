@@ -796,6 +796,20 @@ int baronCard(struct gameState *state, int choice1){
 
 }
 
+int great_hallCard(struct gameState *state, int currentPlayer, int handPos){
+
+    //+1 Card
+    drawCard(currentPlayer, state);
+
+    //+1 Actions
+    state->numActions++;
+
+    //discard card from hand
+    discardCard(handPos, currentPlayer, state, 0);
+
+    return 0;
+}
+
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
     int i;
@@ -956,15 +970,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             baronCard(state, choice1);
 
         case great_hall:
-            //+1 Card
-            drawCard(currentPlayer, state);
-
-            //+1 Actions
-            state->numActions++;
-
-            //discard card from hand
-            discardCard(handPos, currentPlayer, state, 0);
-            return 0;
+            great_hallCard(state, currentPlayer, handPos);
 
         case minion:
             //+1 action

@@ -15,13 +15,33 @@ and Branches executed statistics indicates I hit a lot of branches but missed al
 I did find one thing that looked like a bug in the calculate score function for the garden card. One problem with unit testing though is that of course there could 
 be bugs in your unit tests so you definitely can't relly on thing 100%.
 
+As for gcov. I should have more throughly used the gcov command DURING the testing process and not at the end. Using it while authoring
+the unit test would have definitely helped me out making sure I at least attempting to test all of the logic.
+
+From the gcov file:
+I also got a 100% coverage on smithy - function smithyCard called 20 returned 100% blocks executed 100%
+
+I missed some things on the discard which was used by most of the functions I tested-    
+80: 1246:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+       80: 1246-block  0
+        -: 1247:{
+        -: 1248:	
+        -: 1249:  //if card is not trashed, added to Played pile 
+       80: 1250:  if (trashFlag < 1)
+       80: 1250-block  0
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+
+I missed some here because I didn't test this function: function updateCoins called 6 returned 100% blocks executed 82%
+
+
+
 Summary:
 Lines executed:41.46% of 562
 Branches executed:48.19% of 415
 Taken at least once:38.31% of 415
 Calls executed:31.31% of 99
-Creating 'dominion.c.gcov'
- 
+Creating 'dominion.c.gcov' 
 
 Functions:
 1. scoreFor()

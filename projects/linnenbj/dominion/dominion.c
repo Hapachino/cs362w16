@@ -1322,8 +1322,7 @@ int playCardAdventurer(struct gameState *state, int currentPlayer, int handPos)
         }
 
         drawCard(currentPlayer, state);
-        cardDrawn = state->hand[currentPlayer][0]; //top card of hand is most recently drawn card.
-
+        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]; //correct version.
 
         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
             drawntreasure++;

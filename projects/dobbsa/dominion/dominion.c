@@ -655,9 +655,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -667,7 +664,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      return adventurer(state, handPos, currentPlayer);
+      return _adventurer(state, handPos, currentPlayer);
 			
     case council_room:
       //+4 Cards
@@ -750,7 +747,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return -1;
 			
     case mine:
-      return mine(state, choice1, choice2, handPos, currentPlayer);
+      return _mine(state, choice1, choice2, handPos, currentPlayer);
 			
     case remodel:
       j = state->hand[currentPlayer][choice1];  //store card we will trash
@@ -779,10 +776,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-      smithy(state, handPos, currentPlayer);
+      _smithy(state, handPos, currentPlayer);
 		
     case village:
-      return village(state, handPos, currentPlayer);
+      return _village(state, handPos, currentPlayer);
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -1073,7 +1070,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 		
     case embargo: 
-      return embargo(state, handPos, choice1, choice2, currentPlayer);
+      return _embargo(state, handPos, choice1, choice2, currentPlayer);
     case outpost:
       //set outpost flag
       state->outpostPlayed++;
@@ -1248,10 +1245,12 @@ int updateCoins(int player, struct gameState *state, int bonus)
 }
 
 ////REFACTORED CARD FUNCTIONS////
-int adventurer(struct gameState *state, int handPos, int currentPlayer) {
+int _adventurer(struct gameState *state, int handPos, int currentPlayer) {
 
+    int cardDrawn;
+    int z = 0;
     int drawntreasure = 0;
-    int temphand[MAX_HAND]
+    int temphand[MAX_HAND];
 
     while(drawntreasure<2){
         if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
@@ -1274,7 +1273,8 @@ int adventurer(struct gameState *state, int handPos, int currentPlayer) {
 
 }
 
-int smithy(struct gameState *state, int handPos, int currentPlayer) {
+int _smithy(struct gameState *state, int handPos, int currentPlayer) {
+    int i;
     //+3 Cards
     for (i = 0; i < 3; i++) {
         drawCard(currentPlayer, state);
@@ -1287,8 +1287,9 @@ int smithy(struct gameState *state, int handPos, int currentPlayer) {
 
 
 
-int mine(struct gameState *state, int handPos, int choice1, int choice2, int currentPlayer) {
-    j = state->hand[currentPlayer][choice1];  //store card we will trash
+int _mine(struct gameState *state, int handPos, int choice1, int choice2, int currentPlayer) {
+    int i;
+    int j = state->hand[currentPlayer][choice1];  //store card we will trash
 
     if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold) {
         return -1;
@@ -1318,7 +1319,7 @@ int mine(struct gameState *state, int handPos, int choice1, int choice2, int cur
     return 0;
 }
 
-int village(struct gameState *state, int handPos, int currentPlayer) {
+int _village(struct gameState *state, int handPos, int currentPlayer) {
     //+1 Card
     drawCard(currentPlayer, state);
             
@@ -1330,7 +1331,7 @@ int village(struct gameState *state, int handPos, int currentPlayer) {
     return 0;
 }
 
-int embargo(struct gameState *state, int handPos, int choice1, int choice2, int currentPlayer) {
+int _embargo(struct gameState *state, int handPos, int choice1, int choice2, int currentPlayer) {
     //+2 Coins
     state->coins = 2;            
            

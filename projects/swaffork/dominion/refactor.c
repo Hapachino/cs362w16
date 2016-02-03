@@ -241,3 +241,4 @@ int playTribute(struct gameState *state)
 
     return 0;
 }
+

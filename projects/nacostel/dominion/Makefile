@@ -33,6 +33,42 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+cardtest1: rngs.o dominion.o
+	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+cardtest2: rngs.o dominion.o
+	gcc -o cardtest2 -g cardtest2.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+cardtest3: rngs.o dominion.o
+	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+cardtest4: rngs.o dominion.o
+	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+unittest1: rngs.o dominion.o
+	gcc -o unittest1 -g unittest1.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+unittest2: rngs.o dominion.o
+	gcc -o unittest2 -g unittest2.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+unittest3: rngs.o dominion.o
+	gcc -o unittest3 -g unittest3.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+unittest4: rngs.o dominion.o
+	gcc -o unittest4 -g unittest4.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4 all
+	./cardtest1 >> unittestresults.out
+	./cardtest2 >> unittestresults.out
+	./cardtest3 >> unittestresults.out
+	./cardtest4 >> unittestresults.out
+	./unittest1 >> unittestresults.out
+	./unittest2 >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:

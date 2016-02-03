@@ -1151,7 +1151,7 @@ int runAdventurer(int currentPlayer, struct gameState *state){
 	int drawntreasure = 0;
 	int cardDrawn;
   
-	while(drawntreasure<=2){
+	while(drawntreasure<2){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 			shuffle(currentPlayer, state);
 		}

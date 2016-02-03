@@ -19,3 +19,5 @@ fullDeckCount(): This function is straightup broken.  It actually checks the num
 	refactored it to just add the deck/hand/and discard Counts.
 	-note: this implementation is far from bulletproof, as it relies on the Count
 	 values to be accurate.
+
+buyCard(): bug where it would discard the card you just bought.  

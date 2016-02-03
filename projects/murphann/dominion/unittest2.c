@@ -25,7 +25,7 @@ int main() {
 
    endTurn(&G);
 
-   printf("Size of discards: %d  Excpected num of discards: %d\n",
+   printf("Size of discards: %d  Expected number of discards: %d\n",
            G.discardCount[p1],
            storeG.discardCount[p1] + storeG.handCount[p1]);
 
@@ -37,5 +37,6 @@ int main() {
   printf("New Player Hand: %d  Expected Player Hand: %d\n",
           G.handCount[p2], storeG.handCount[p2]+5);
 
+  printf("\n\n\n");
     return 0;
 }

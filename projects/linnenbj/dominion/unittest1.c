@@ -22,7 +22,7 @@
 //Determine if two gameStates are identical or not: Return 1 if identical, 0 if not
 int statesAreEqual(struct gameState *g1, struct gameState *g2)
 {
-    int i, j;
+    int i,j ;
 
     if(g1->numPlayers != g2->numPlayers) return 0;
     //for(i = 0; i < treasure_map+1; i++)
@@ -61,7 +61,7 @@ int statesAreEqual(struct gameState *g1, struct gameState *g2)
 #define NOISY_TEST 0
 int main()
 {
-    int i, j,k,m,  endgame = 0;
+    int i,k,m,  endgame = 0;
     int pass = 0, fail = 0;
     int seed = 500;
     srand(seed);
@@ -277,7 +277,7 @@ printf("Test results: [%d fails]  [%d passes]\n", fail, pass);
             }
         }
     }
-    printf("Test results: [%d fails]  [%d passes]\n", fail, pass);
+    printf("Test results: [%d fails]  [%d passes]\n          >>>>> Testing isGameOver() Complete <<<<<\n\n", fail, pass);
 
 
     return 0;

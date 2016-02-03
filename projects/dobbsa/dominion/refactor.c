@@ -1,4 +1,9 @@
 //Refactored card functions
+//Bugs introduced:
+// - adventurer card does not remove non-treasure cards from hand when adding them to "temp hand" for discarding
+// - mine arguments are given in the wrong order when called from cardEffect
+// - embargo card sets coins to 2 rather than adding 2
+// - "return" statement removed from call to line calling _smithy function in cardEffect. this is intended to cause fall-through to village.
 
 int adventurer(struct gameState *state, int handPos, int currentPlayer) {
 

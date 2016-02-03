@@ -1,10 +1,10 @@
 /* -----------------------------------------------------------------------
- * Testing updateCoins() method - using testUpdateCoins.c as the base code.
+ * Testing isGameOver() method - using testUpdateCoins.c as the base code.
  *
  * Include the following lines in your makefile:
  *
- * unittest1: unittest1.c dominion.o rngs.o
- *      gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+ * unittest1: unittest4.c dominion.o rngs.o
+ *      gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
 
@@ -16,31 +16,71 @@
 #include "rngs.h"
 
 int main() {
-    int i;
-    int seed = 1000;
-    int numPlayer = 2;
-    int maxBonus = 10;
-    int p, r, handCount;
-    int bonus;
+    int seed = rand() % 1000;
+    int numPlayers = 2;
+    int p, round;
+    int randPro, randSup;
     int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
-    struct gameState G;
-    int maxHandCount = 5;
+    struct gameState oldGame;
+	struct gameState newGame;
+    int maxHandCount = 10;
     int failCount = 0;
     int passCount = 0;
-    // arrays of all coppers, silvers, and golds
-    int coppers[MAX_HAND];
-    int silvers[MAX_HAND];
-    int golds[MAX_HAND];
-    for (i = 0; i < MAX_HAND; i++)
-    {
-        coppers[i] = copper;
-        silvers[i] = silver;
-        golds[i] = gold;
-    }
 
-    printf ("TESTING unittest4():\n");
+    printf ("<< TESTING unittest4 - isGameOver() >>\n");
+	
+	for(p = 0; p < maxHandCount; p++)
+	{
+		memset(&oldGame, 23, sizeof(struct gameState));         //clear the game state
+		memset(&newGame, 23, sizeof(struct gameState));         //clear the game state
+		initializeGame(numPlayers, k, seed, &newGame);
+		for(round = 0; round < 10; round++)
+		{
+			randPro = rand() % 2;
+			randSup = rand() % 26;
+			memcpy(&oldGame, &newGame, sizeof(struct gameState));
+			if(randPro == 1)
+			{
+				if(newGame.supplyCount[province] > 0)
+					newGame.supplyCount[province]--;
+			}		
+			if( newGame.supplyCount[randSup] > 0)
+			{
+				newGame.supplyCount[randSup]--;
+			}
 
+			if(isGameOver(&newGame) == 0)
+			{
+//				printf("Game is not over\n");
+//				printf("Old province count: %d Last supply: %d\n", oldGame.supplyCount[province], oldGame.supplyCount[randSup]);
+//				printf("New province count: %d Last supply: %d\n", newGame.supplyCount[province], newGame.supplyCount[randSup]);
+				if((newGame.supplyCount[province] < 1 && newGame.supplyCount[province] == oldGame.supplyCount[province] - 1) || (newGame.supplyCount[randSup] < 1 && newGame.supplyCount[randSup] == oldGame.supplyCount[randSup] - 1))
+				{
+					failCount++;
+				}
+				else
+				{
+					passCount++;
+				}
+			}
+			else
+			{
+//				printf("Game is over\n");	
+//				printf("Old province count: %d Last supply: %d\n", oldGame.supplyCount[province], oldGame.supplyCount[randSup]);
+//				printf("New province count: %d Last supply: %d\n", newGame.supplyCount[province], newGame.supplyCount[randSup]);
+				if((newGame.supplyCount[province] < 1 && newGame.supplyCount[province] == oldGame.supplyCount[province] - 1) || (newGame.supplyCount[randSup] < 1 && newGame.supplyCount[randSup] == oldGame.supplyCount[randSup] - 1))
+				{
+					passCount++;
+				}
+				else
+				{
+					failCount++;
+				}
+	
+			}		
+		}		
+	}
     printf("Number of cases passed: %d\n", passCount);
     printf("Number of cases failed: %d\n", failCount);
 

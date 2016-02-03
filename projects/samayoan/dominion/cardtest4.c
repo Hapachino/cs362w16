@@ -104,7 +104,6 @@ int main(int argc, char *argv[]){
     // copy the game state to a test case
     memcpy(&testState, &oldState, sizeof(struct gameState));
     cardEffectCutpurse(handPos, &testState);
-    printf("\n\nTest run 1\n");
     processResults(&testState, &oldState);
 
     return 0;

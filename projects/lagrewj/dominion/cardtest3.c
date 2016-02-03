@@ -1,7 +1,24 @@
 /*Jonathan Lagrew
+ *cardtest3.c
  *test playVillage()
+ *Notes:
+ *Village is an Action card from the Base set. Village gives you +1 card from the deck and +2 actions, 
+ *allowing you to play more than one terminal action each turn.
  */
- 
+ /*
+ * Basic Requirements of Village:
+ * 1. Current player should receive a total of 1 cards from the deck.
+ * 2. Current player should receive plus 2 actions. 
+ * 3. No state change should occur for other players.
+ * 4. No state change should occur to the victory drawnCard piles and kingdom card piles.
+ */
+
+/*
+ * Include the following lines in your makefile:
+ *
+ * cardtest3: cardtest3.c dominion.o rngs.o
+ *      gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+ */
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -10,46 +27,55 @@
 #include "rngs.h"
 #include <math.h>
 
-int testplayVillage(struct gameState *post, int handPos)
+#define TESTCARD "Village"
+
+int testplayVillage(struct gameState *after, int handPos)
 {
-	int p = post->whoseTurn;
-	struct gameState pre;
-	memcpy(&pre, post, sizeof(struct gameState));
+	int p = after->whoseTurn;//initialize whoseTurn stored as p 
+	struct gameState before;
+	memcpy(&before, after, sizeof(struct gameState));
 	
-	playVillage(post, handPos);
+	playVillage(after, handPos);//run playVillage function with after gameState
 	
-	//post hand should have same net hand count. Plus a draw card, minus a village card
-	if(pre.handCount[p] != post->handCount[p])
+	//testing hand count
+	//hand counts should be the same before and after card played which account for 
+	//gaining a card and subtracting a village
+	if(before.handCount[p] != after->handCount[p])
 	{
-		printf("ERROR: hand counts should match. Pre: %d, Post: %d\n", pre.handCount[p], post->handCount[p]);
+		printf("ERROR: Hand count difference! Before: %d After: %d\n", before.handCount[p], after->handCount[p]);
 	}
-	//numActions should be 2 more
-	pre.numActions = pre.numActions + 2;
-	if(pre.numActions != post->numActions)
+	//testing actions
+	//after actions will be plus 2 due to card effect 
+	before.numActions = before.numActions + 2;
+	if(before.numActions != after->numActions)
 	{
-		printf("ERROR: number of actions should match. Pre: %d, Post: %d\n", pre.numActions, post->numActions);
+		printf("ERROR: Actions has changed from %i to %i", before.numActions, after->numActions);
 	}
-	//still current player?
-	if(pre.whoseTurn != post->whoseTurn)
-		printf("ERROR: Current player has changed from %i to %i", pre.whoseTurn, post->whoseTurn);
+	//testing buys
+	if(before.numBuys != after->numBuys)
+		printf("ERROR: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
 	
-	//check coins
-	if(pre.coins != post->coins)
-		printf("ERROR: Number of coins changed from %i to %i", pre.coins, post->coins);
-	//check number of buys
-	if(pre.numBuys != post->numBuys)
-		printf("ERROR: Number of buys has changed from %i, to %i", pre.numBuys, post->numBuys);
+	//testing player
+	if(before.whoseTurn != after->whoseTurn)
+		printf("ERROR: Current player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
+	
+	//testing coins
+	if(before.coins != after->coins)
+		printf("ERROR: Coins changed from %i to %i", before.coins, after->coins);
+
 	
 	return 0;
 }
 
 int main()
 {
-	int p = 0;
-	int numTests = 500;
-	struct gameState G;
-	int handPos;
-	int i, j, k, m, n, q;
+	int p = 0;//testing player 0
+	int numTests = 250;//250 tests
+	struct gameState G;//creating gameState G
+	int handPos;//to track hand position
+	int i, j, k, m, n, q;//initialize ints for for loops
+	
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 	
 	SelectStream(2);
 	PutSeed(3);
@@ -62,7 +88,7 @@ int main()
 		}
 		G.whoseTurn = p;
 		G.numActions = 1;
-		//fill in random cards
+		//filling in random cards based on lecture 11 and 12 Random Testing 
 		G.handCount[p] = floor(Random() * MAX_HAND)+1;//need at least one village in our hand
 		G.deckCount[p] = floor(Random() * MAX_DECK);
 		G.discardCount[p] = floor(Random() * MAX_DECK);
@@ -95,6 +121,6 @@ int main()
 		
 	}
 	
-	printf("PLAYVILLAGE TESTS FINISHED.\n\n");
+	printf("Play Village testing concluded.\n\n");
 	return 0;
 }

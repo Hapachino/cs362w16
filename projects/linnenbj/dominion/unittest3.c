@@ -91,12 +91,10 @@ int main() {
         noCoins[i] = randCard;
     }
 
+    printf("\n---------------  TESTING updateCoins() ----------------\n\n");
+
     //Testing Part 1:  Test all Players with hands of all coppers, silvers
     //and golds with all possible bonus values.
-    #if (NOISY_TEST == 1)
-    printf("Testing: [coins][expected]\t[P#]\t[#C]\t[#S]\t[#G]\t[#B]\n");
-    printf("-------------------------------------------------------------------------\n");
-    #endif
 
 //TESTING ALL COPPERS IN HAND
     for(player = 0; player < numPlayers; player++)                  //loop through players
@@ -281,9 +279,8 @@ int main() {
     tests = 0;
     pass = 0;
     fail = 0;
-    pass = 0;
-    fail = 0;
 
+    printf("\n>>>>> Testing updateCoins() Complete <<<<<\n\n");
  return 0;
 }
 

@@ -33,7 +33,6 @@ int main () {
 	int choice1, choice2, choice3;	//choices for card effect
 	int coin_bonus;					//coins added by card
 	
-	printf("---Testing Card: adventurer---\n");
 	
 //---Test adventurer with 2 treasure cards in deck
 //---(all choices = -1, no bonus)
@@ -42,14 +41,17 @@ int main () {
 	- Other player's cards (hand, deck, discard) are unchanged
 	- Played card count increased by 1
 	- Adventurer card added to played pile (in last position)
+	- Adventurer card removed from hand
 	- Current player's deck count decreased by 2 treasures + extras
 	- Other cards in player's deck unchanged
 	- Current player's discard count increased by extras
-	- Current player's hand count increased by 2
+	- Current player's hand count increased by 1 (+2 treasures, -1 adventurer)
 	- Cards added to player's hand are treasure
 	- Cards added to player's discard are extras
 	- No bonus coins
 */
+	printf("*** Testing 2 treasure cards in deck ***\n");
+	printf("Errors: ");
 	//Setup card options
 	choice1 = -1;
 	choice2 = -1;
@@ -57,7 +59,7 @@ int main () {
 	coin_bonus = 0;
 	//Create clean game
 	if (initializeGame(NUM_PLAYERS, selectedCards, seed, g) == -1){
-		printf("Could not initialize game. Testing aborted.\n");
+		printf("\nCould not initialize game. Testing aborted.\n");
 		return -1;
 	}
 	//Set deck to 5 extras - 2 treasures - 5 extras
@@ -82,57 +84,47 @@ int main () {
 	result = cardEffect(TEST_CARD, choice1, choice2, choice3, g, TEST_POS, &coin_bonus);
 	failed = 0;
 	if (result != 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Return value: %d, Expected: %d\n", result, 0);
+		printf("\nReturn value: %d, Expected: %d", result, 0);
 		failed = 1;
 	}
 	//Check game/turn settings
 	if (checkNumPlayers(pre, g) < 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  NumPlayers: %d, Expected: %d\n", g->numPlayers, pre->numPlayers);
+		printf("\nNumPlayers: %d, Expected: %d", g->numPlayers, pre->numPlayers);
 		failed = 1;
 	}
 	result = checkSupply(pre, g);
 	if (result != 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Supply count for card %d: %d, Expected: %d\n", result, g->supplyCount[result], pre->supplyCount[result]);
+		printf("\nSupply count for card %d: %d, Expected: %d", result, g->supplyCount[result], pre->supplyCount[result]);
 		failed = 1;
 	}
 	result = checkEmbargo(pre, g);
 	if (result != 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Embargo for card %d: %d, Expected: %d\n", result, g->embargoTokens[result], pre->embargoTokens[result]);
+		printf("\nEmbargo for card %d: %d, Expected: %d", result, g->embargoTokens[result], pre->embargoTokens[result]);
 		failed = 1;
 	}
 	if (checkOutpost(pre, g) < 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  outpostPlayed: %d, Expected: %d\n", g->outpostPlayed, pre->outpostPlayed);
-		printf("  outpostTurn: %d, Expected: %d\n", g->outpostTurn, pre->outpostTurn);
+		printf("\noutpostPlayed: %d, Expected: %d", g->outpostPlayed, pre->outpostPlayed);
+		printf("\noutpostTurn: %d, Expected: %d", g->outpostTurn, pre->outpostTurn);
 		failed = 1;
 	}	
 	if (checkTurn(pre, g) < 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  whoseTurn: %d, Expected: %d\n", g->whoseTurn, pre->whoseTurn);
+		printf("\nwhoseTurn: %d, Expected: %d", g->whoseTurn, pre->whoseTurn);
 		failed = 1;
 	}
 	if (checkPhase(pre, g) < 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  phase: %d, Expected: %d\n", g->phase, pre->phase);
+		printf("\nphase: %d, Expected: %d", g->phase, pre->phase);
 		failed = 1;
 	}	
 	if (checkNumActions(pre, g) < 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  numActions: %d, Expected: %d\n", g->numActions, pre->numActions);
+		printf("\nnumActions: %d, Expected: %d", g->numActions, pre->numActions);
 		failed = 1;
 	}	
 	if (checkCoins(pre, g) < 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  coins: %d, Expected: %d\n", g->coins, pre->coins);
+		printf("\ncoins: %d, Expected: %d", g->coins, pre->coins);
 		failed = 1;
 	}
 	if (checkNumBuys(pre, g) < 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  numBuys: %d, Expected: %d\n", g->numBuys, pre->numBuys);
+		printf("\nnumBuys: %d, Expected: %d", g->numBuys, pre->numBuys);
 		failed = 1;
 	}
 	//Check discard unchanged for other players
@@ -142,14 +134,12 @@ int main () {
 			continue;
 		}
 		if (pre->discardCount[i] != g->discardCount[i]){
-			printf("FAIL when 2 treasures in deck\n");
-			printf("  Player %d's discardCount: %d, Expected: %d\n", i, g->discardCount[i], pre->discardCount[i]);
+			printf("\nPlayer %d's discardCount: %d, Expected: %d", i, g->discardCount[i], pre->discardCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->discardCount[i]; j++){
 				if (pre->discard[i][j] != g->discard[i][j]){
-					printf("FAIL when 2 treasures in deck\n");
-					printf("  Player %d's discard[%d]: %d, Expected: %d\n", i, j, g->discard[i][j], pre->discard[i][j]);
+					printf("\nPlayer %d's discard[%d]: %d, Expected: %d", i, j, g->discard[i][j], pre->discard[i][j]);
 					failed = 1;
 				}
 			}
@@ -162,14 +152,12 @@ int main () {
 			continue;
 		}
 		if (pre->deckCount[i] != g->deckCount[i]){
-			printf("FAIL when 2 treasures in deck\n");
-			printf("  Player %d's deckCount: %d, Expected: %d\n", i, g->deckCount[i], pre->deckCount[i]);
+			printf("\nPlayer %d's deckCount: %d, Expected: %d", i, g->deckCount[i], pre->deckCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->deckCount[i]; j++){
 				if (pre->deck[i][j] != g->deck[i][j]){
-					printf("FAIL when 2 treasures in deck\n");
-					printf("  Player %d's deck[%d]: %d, Expected: %d\n", i, j, g->deck[i][j], pre->deck[i][j]);
+					printf("\nPlayer %d's deck[%d]: %d, Expected: %d", i, j, g->deck[i][j], pre->deck[i][j]);
 					failed = 1;
 				}
 			}
@@ -182,14 +170,12 @@ int main () {
 			continue;
 		}
 		if (pre->handCount[i] != g->handCount[i]){
-			printf("FAIL when 2 treasures in deck\n");
-			printf("  Player %d's handCount: %d, Expected: %d\n", i, g->handCount[i], pre->handCount[i]);
+			printf("\nPlayer %d's handCount: %d, Expected: %d", i, g->handCount[i], pre->handCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->handCount[i]; j++){
 				if (pre->hand[i][j] != g->hand[i][j]){
-					printf("FAIL when 2 treasures in deck\n");
-					printf("  Player %d's hand[%d]: %d, Expected: %d\n", i, j, g->hand[i][j], pre->hand[i][j]);
+					printf("\nPlayer %d's hand[%d]: %d, Expected: %d", i, j, g->hand[i][j], pre->hand[i][j]);
 					failed = 1;
 				}
 			}
@@ -197,61 +183,55 @@ int main () {
 	}
 	//Check adventurer added to played pile
 	if (g->playedCardCount != pre->playedCardCount + 1){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Played card count: %d, Expected: %d\n", g->playedCardCount, pre->playedCardCount + 1);
+		printf("\nPlayed card count: %d, Expected: %d", g->playedCardCount, pre->playedCardCount + 1);
 		failed = 1;
 	} else if (g->playedCards[g->playedCardCount - 1] != TEST_CARD){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Last played card: %d, Expected: %d\n", g->playedCards[g->playedCardCount - 1], TEST_CARD);
+		printf("\nLast played card: %d, Expected: %d", g->playedCards[g->playedCardCount - 1], TEST_CARD);
 		failed = 1;		
 	}
 	//Check 2 treasures + extras removed from deck; other cards remain
 	if (g->deckCount[whoseTurn(g)] != pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 2){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Current player's deck count: %d, Expected: %d\n", g->deckCount[whoseTurn(g)], pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 2);
+		printf("\nCurrent player's deck count: %d, Expected: %d", g->deckCount[whoseTurn(g)], pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 2);
 		failed = 1;		
 	}
 	for (i = 0; i < g->deckCount[whoseTurn(g)]; i++){
 		if (g->deck[whoseTurn(g)][i] != EXTRA_CARD){
-			printf("FAIL when 2 treasures in deck\n");
-			printf("  Current player's deck[%d]: %d, Expected: %d\n", i, g->deck[whoseTurn(g)][i], EXTRA_CARD);
+			printf("\nCurrent player's deck[%d]: %d, Expected: %d", i, g->deck[whoseTurn(g)][i], EXTRA_CARD);
 			failed = 1;		
 		}	
 	}
-	//Check 2 treasure cards added to hand
-	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 2){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 2);
+	//Check 2 treasure cards added to hand, adventurer removed
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 1){
+		printf("\nCurrent player's hand count: %d, Expected: %d", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 1);
 		failed = 1;		
 	}
 	if ( (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] != TREASURE) && (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2] != TREASURE) ){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Current player's hand[%d]: %d, Expected: %d\n", g->handCount[whoseTurn(g)] - 1, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1], TREASURE);
-		printf("  Current player's hand[%d]: %d, Expected: %d\n", g->handCount[whoseTurn(g)] - 2, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2], TREASURE);
+		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 1, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1], TREASURE);
+		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 2, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2], TREASURE);
 		failed = 1;		
 	}
 	//Check extra cards added to discard
 	if (g->discardCount[whoseTurn(g)] != pre->discardCount[whoseTurn(g)] + EXTRA_COUNT){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Current player's discard count: %d, Expected: %d\n", g->discardCount[whoseTurn(g)], pre->discardCount[whoseTurn(g)] + EXTRA_COUNT);
+		printf("\nCurrent player's discard count: %d, Expected: %d", g->discardCount[whoseTurn(g)], pre->discardCount[whoseTurn(g)] + EXTRA_COUNT);
 		failed = 1;		
 	}
 	for (i = 1; i <= EXTRA_COUNT; i++){
 		if (g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - i] != EXTRA_CARD){
-			printf("FAIL when 2 treasures in deck\n");
-			printf("  Current player's discard[%d]: %d, Expected: %d\n", g->discardCount[whoseTurn(g)] - i, g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - i], EXTRA_CARD);
+			printf("\nCurrent player's discard[%d]: %d, Expected: %d", g->discardCount[whoseTurn(g)] - i, g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - i], EXTRA_CARD);
 			failed = 1;		
 		}
 	}
 	//Check no bonus coins added
 	if (coin_bonus != 0){
-		printf("FAIL when 2 treasures in deck\n");
-		printf("  Coin bonus after adventurer: %d, Expected: %d\n", coin_bonus, 0);
+		printf("\nCoin bonus after adventurer: %d, Expected: %d", coin_bonus, 0);
 		failed = 1;		
 	}	
 	//Final check
-	if (!failed){
-		printf("PASS when 2 treasures in deck\n");
+	if (failed){
+		printf("\nResult: FAIL\n\n");
+	} else {
+		printf("none");
+		printf("\nResult: PASS\n\n");
 	}
 
 //---Test adventurer with 1 treasure card in deck, 1 in discard
@@ -261,10 +241,11 @@ int main () {
 	- Other player's cards (hand, deck, discard) are unchanged
 	- Played card count increased by 1
 	- Adventurer card added to played pile (in last position)
+	- Adventurer card removed from hand
 	- Current player's deck count decreased by 1 treasure + extras
 	- Current player's discard count increased by extras, decreased by 1 treasure
-	- Current player's hand count increased by 2
-	- Cards added to player's hand are treasure
+	- Current player's hand count increased by 1 (+2 treasures, -1 adventurer)
+ 	- Cards added to player's hand are treasure
 	- Cards added to player's discard are extras
 	- No bonus coins
 
@@ -275,8 +256,10 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
 */
-	printf("FAIL when 1 treasure in deck, 1 in discard\n");
-	printf("  Test disabled because of infinite loop\n");
+	printf("*** Testing 1 treasure in deck + 1 in discard ***\n");
+	//printf("Errors: ");
+	printf("Test disabled because of infinite loop\n");
+	printf("Result: FAIL\n\n");
 	/*
 	//Setup card options
 	choice1 = -1;
@@ -285,7 +268,7 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 	coin_bonus = 0;
 	//Create clean game
 	if (initializeGame(NUM_PLAYERS, selectedCards, seed, g) == -1){
-		printf("Could not initialize game. Testing aborted.\n");
+		printf("\nCould not initialize game. Testing aborted.\n");
 		return -1;
 	}
 	//Set deck to 1 treasure - 5 extras
@@ -308,57 +291,47 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 	result = cardEffect(TEST_CARD, choice1, choice2, choice3, g, TEST_POS, &coin_bonus);
 	failed = 0;
 	if (result != 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Return value: %d, Expected: %d\n", result, 0);
+		printf("\nReturn value: %d, Expected: %d", result, 0);
 		failed = 1;
 	}
 	//Check game/turn settings
 	if (checkNumPlayers(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  NumPlayers: %d, Expected: %d\n", g->numPlayers, pre->numPlayers);
+		printf("\nNumPlayers: %d, Expected: %d", g->numPlayers, pre->numPlayers);
 		failed = 1;
 	}
 	result = checkSupply(pre, g);
 	if (result != 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Supply count for card %d: %d, Expected: %d\n", result, g->supplyCount[result], pre->supplyCount[result]);
+		printf("\nSupply count for card %d: %d, Expected: %d", result, g->supplyCount[result], pre->supplyCount[result]);
 		failed = 1;
 	}
 	result = checkEmbargo(pre, g);
 	if (result != 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Embargo for card %d: %d, Expected: %d\n", result, g->embargoTokens[result], pre->embargoTokens[result]);
+		printf("\nEmbargo for card %d: %d, Expected: %d", result, g->embargoTokens[result], pre->embargoTokens[result]);
 		failed = 1;
 	}
 	if (checkOutpost(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  outpostPlayed: %d, Expected: %d\n", g->outpostPlayed, pre->outpostPlayed);
-		printf("  outpostTurn: %d, Expected: %d\n", g->outpostTurn, pre->outpostTurn);
+		printf("\noutpostPlayed: %d, Expected: %d", g->outpostPlayed, pre->outpostPlayed);
+		printf("\noutpostTurn: %d, Expected: %d", g->outpostTurn, pre->outpostTurn);
 		failed = 1;
 	}	
 	if (checkTurn(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  whoseTurn: %d, Expected: %d\n", g->whoseTurn, pre->whoseTurn);
+		printf("\nwhoseTurn: %d, Expected: %d", g->whoseTurn, pre->whoseTurn);
 		failed = 1;
 	}
 	if (checkPhase(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  phase: %d, Expected: %d\n", g->phase, pre->phase);
+		printf("\nphase: %d, Expected: %d", g->phase, pre->phase);
 		failed = 1;
 	}	
 	if (checkNumActions(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  numActions: %d, Expected: %d\n", g->numActions, pre->numActions);
+		printf("\nnumActions: %d, Expected: %d", g->numActions, pre->numActions);
 		failed = 1;
 	}	
 	if (checkCoins(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  coins: %d, Expected: %d\n", g->coins, pre->coins);
+		printf("\ncoins: %d, Expected: %d", g->coins, pre->coins);
 		failed = 1;
 	}
 	if (checkNumBuys(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  numBuys: %d, Expected: %d\n", g->numBuys, pre->numBuys);
+		printf("\nnumBuys: %d, Expected: %d", g->numBuys, pre->numBuys);
 		failed = 1;
 	}
 	//Check discard unchanged for other players
@@ -368,14 +341,12 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 			continue;
 		}
 		if (pre->discardCount[i] != g->discardCount[i]){
-			printf("FAIL when 1 treasure in deck, 1 in discard\n");
-			printf("  Player %d's discardCount: %d, Expected: %d\n", i, g->discardCount[i], pre->discardCount[i]);
+			printf("\nPlayer %d's discardCount: %d, Expected: %d", i, g->discardCount[i], pre->discardCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->discardCount[i]; j++){
 				if (pre->discard[i][j] != g->discard[i][j]){
-					printf("FAIL when 1 treasure in deck, 1 in discard\n");
-					printf("  Player %d's discard[%d]: %d, Expected: %d\n", i, j, g->discard[i][j], pre->discard[i][j]);
+					printf("\nPlayer %d's discard[%d]: %d, Expected: %d", i, j, g->discard[i][j], pre->discard[i][j]);
 					failed = 1;
 				}
 			}
@@ -388,14 +359,12 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 			continue;
 		}
 		if (pre->deckCount[i] != g->deckCount[i]){
-			printf("FAIL when 1 treasure in deck, 1 in discard\n");
-			printf("  Player %d's deckCount: %d, Expected: %d\n", i, g->deckCount[i], pre->deckCount[i]);
+			printf("\nPlayer %d's deckCount: %d, Expected: %d", i, g->deckCount[i], pre->deckCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->deckCount[i]; j++){
 				if (pre->deck[i][j] != g->deck[i][j]){
-					printf("FAIL when 1 treasure in deck, 1 in discard\n");
-					printf("  Player %d's deck[%d]: %d, Expected: %d\n", i, j, g->deck[i][j], pre->deck[i][j]);
+					printf("\nPlayer %d's deck[%d]: %d, Expected: %d", i, j, g->deck[i][j], pre->deck[i][j]);
 					failed = 1;
 				}
 			}
@@ -408,14 +377,12 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 			continue;
 		}
 		if (pre->handCount[i] != g->handCount[i]){
-			printf("FAIL when 1 treasure in deck, 1 in discard\n");
-			printf("  Player %d's handCount: %d, Expected: %d\n", i, g->handCount[i], pre->handCount[i]);
+			printf("\nPlayer %d's handCount: %d, Expected: %d", i, g->handCount[i], pre->handCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->handCount[i]; j++){
 				if (pre->hand[i][j] != g->hand[i][j]){
-					printf("FAIL when 1 treasure in deck, 1 in discard\n");
-					printf("  Player %d's hand[%d]: %d, Expected: %d\n", i, j, g->hand[i][j], pre->hand[i][j]);
+					printf("\nPlayer %d's hand[%d]: %d, Expected: %d", i, j, g->hand[i][j], pre->hand[i][j]);
 					failed = 1;
 				}
 			}
@@ -423,54 +390,49 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 	}
 	//Check adventurer added to played pile
 	if (g->playedCardCount != pre->playedCardCount + 1){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Played card count: %d, Expected: %d\n", g->playedCardCount, pre->playedCardCount + 1);
+		printf("\nPlayed card count: %d, Expected: %d", g->playedCardCount, pre->playedCardCount + 1);
 		failed = 1;
 	} else if (g->playedCards[g->playedCardCount - 1] != TEST_CARD){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Last played card: %d, Expected: %d\n", g->playedCards[g->playedCardCount - 1], TEST_CARD);
+		printf("\nLast played card: %d, Expected: %d", g->playedCards[g->playedCardCount - 1], TEST_CARD);
 		failed = 1;		
 	}
 	//Check 1 treasure + extras removed from deck
 	if (g->deckCount[whoseTurn(g)] != pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 1){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Current player's deck count: %d, Expected: %d\n", g->deckCount[whoseTurn(g)], pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 1);
+		printf("\nCurrent player's deck count: %d, Expected: %d", g->deckCount[whoseTurn(g)], pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 1);
 		failed = 1;		
 	}
-	//Check 2 treasure cards added to hand
-	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 2){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 2);
+	//Check 2 treasure cards added to hand, adventurer removed
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 1){
+		printf("\nCurrent player's hand count: %d, Expected: %d", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 1);
 		failed = 1;		
 	}
 	if ( (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] != TREASURE) && (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2] != TREASURE) ){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Current player's hand[%d]: %d, Expected: %d\n", g->handCount[whoseTurn(g)] - 1, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1], TREASURE);
-		printf("  Current player's hand[%d]: %d, Expected: %d\n", g->handCount[whoseTurn(g)] - 2, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2], TREASURE);
+		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 1, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1], TREASURE);
+		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 2, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2], TREASURE);
 		failed = 1;		
 	}
 	//Check extra cards added to discard and treasure removed
 	if (g->discardCount[whoseTurn(g)] != pre->discardCount[whoseTurn(g)] + EXTRA_COUNT - 1){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Current player's discard count: %d, Expected: %d\n", g->discardCount[whoseTurn(g)], pre->discardCount[whoseTurn(g)] + EXTRA_COUNT - 1);
+		printf("\nCurrent player's discard count: %d, Expected: %d", g->discardCount[whoseTurn(g)], pre->discardCount[whoseTurn(g)] + EXTRA_COUNT - 1);
 		failed = 1;		
 	}
 	for (i = 1; i <= EXTRA_COUNT; i++){
 		if (g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - i] != EXTRA_CARD){
-			printf("FAIL when 1 treasure in deck, 1 in discard\n");
-			printf("  Current player's discard[%d]: %d, Expected: %d\n", g->discardCount[whoseTurn(g)] - i, g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - i], EXTRA_CARD);
+			printf("\nCurrent player's discard[%d]: %d, Expected: %d", g->discardCount[whoseTurn(g)] - i, g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - i], EXTRA_CARD);
 			failed = 1;		
 		}
 	}
 	//Check no bonus coins added
 	if (coin_bonus != 0){
-		printf("FAIL when 1 treasure in deck, 1 in discard\n");
-		printf("  Coin bonus after adventurer: %d, Expected: %d\n", coin_bonus, 0);
+		printf("\nCoin bonus after adventurer: %d, Expected: %d", coin_bonus, 0);
 		failed = 1;		
 	}	
 	//Final check
-	if (!failed){
-		printf("PASS when 1 treasure in deck, 1 in discard\n");
+	if (failed){
+		printf("\nResult: FAIL\n\n");
+	} else {
+		printf("none");
+		printf("\nResult: PASS\n\n");
 	}
 	*/
 
@@ -481,10 +443,11 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 	- Other player's cards (hand, deck, discard) are unchanged
 	- Played card count increased by 1
 	- Adventurer card added to played pile (in last position)
+	- Adventurer removed from hand
 	- Current player's deck count decreased by 1 treasure + extras
 	- Other cards in player's deck unchanged
 	- Current player's discard count increased by extras
-	- Current player's hand count increased by 1
+	- Current player's hand count is unchanged (+1 treasure, -1 adventurer)
 	- Card added to player's hand is treasure
 	- Cards added to player's discard are extras
 	- No bonus coins
@@ -496,8 +459,10 @@ While loop does not have exit condition for case when only 1 treasure exists.
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
 */
-	printf("FAIL when 1 treasure in deck\n");
-	printf("  Test disabled because of infinite loop\n");
+	printf("*** Testing 1 treasure card in deck ***\n");
+	//printf("Errors: ");
+	printf("Test disabled because of infinite loop\n");
+	printf("Result: FAIL\n");
 	/*
 	//Setup card options
 	choice1 = -1;
@@ -506,7 +471,7 @@ While loop does not have exit condition for case when only 1 treasure exists.
 	coin_bonus = 0;
 	//Create clean game
 	if (initializeGame(NUM_PLAYERS, selectedCards, seed, g) == -1){
-		printf("Could not initialize game. Testing aborted.\n");
+		printf("\nCould not initialize game. Testing aborted.\n");
 		return -1;
 	}
 	//Set deck to 5 extras - 1 treasure - 5 extras
@@ -529,57 +494,47 @@ While loop does not have exit condition for case when only 1 treasure exists.
 	result = cardEffect(TEST_CARD, choice1, choice2, choice3, g, TEST_POS, &coin_bonus);
 	failed = 0;
 	if (result != 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Return value: %d, Expected: %d\n", result, 0);
+		printf("\nReturn value: %d, Expected: %d", result, 0);
 		failed = 1;
 	}
 	//Check game/turn settings
 	if (checkNumPlayers(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  NumPlayers: %d, Expected: %d\n", g->numPlayers, pre->numPlayers);
+		printf("\nNumPlayers: %d, Expected: %d", g->numPlayers, pre->numPlayers);
 		failed = 1;
 	}
 	result = checkSupply(pre, g);
 	if (result != 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Supply count for card %d: %d, Expected: %d\n", result, g->supplyCount[result], pre->supplyCount[result]);
+		printf("\nSupply count for card %d: %d, Expected: %d", result, g->supplyCount[result], pre->supplyCount[result]);
 		failed = 1;
 	}
 	result = checkEmbargo(pre, g);
 	if (result != 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Embargo for card %d: %d, Expected: %d\n", result, g->embargoTokens[result], pre->embargoTokens[result]);
+		printf("\nEmbargo for card %d: %d, Expected: %d", result, g->embargoTokens[result], pre->embargoTokens[result]);
 		failed = 1;
 	}
 	if (checkOutpost(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  outpostPlayed: %d, Expected: %d\n", g->outpostPlayed, pre->outpostPlayed);
-		printf("  outpostTurn: %d, Expected: %d\n", g->outpostTurn, pre->outpostTurn);
+		printf("\noutpostPlayed: %d, Expected: %d", g->outpostPlayed, pre->outpostPlayed);
+		printf("\noutpostTurn: %d, Expected: %d", g->outpostTurn, pre->outpostTurn);
 		failed = 1;
 	}	
 	if (checkTurn(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  whoseTurn: %d, Expected: %d\n", g->whoseTurn, pre->whoseTurn);
+		printf("\nwhoseTurn: %d, Expected: %d", g->whoseTurn, pre->whoseTurn);
 		failed = 1;
 	}
 	if (checkPhase(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  phase: %d, Expected: %d\n", g->phase, pre->phase);
+		printf("\nphase: %d, Expected: %d", g->phase, pre->phase);
 		failed = 1;
 	}	
 	if (checkNumActions(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  numActions: %d, Expected: %d\n", g->numActions, pre->numActions);
+		printf("\nnumActions: %d, Expected: %d", g->numActions, pre->numActions);
 		failed = 1;
 	}	
 	if (checkCoins(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  coins: %d, Expected: %d\n", g->coins, pre->coins);
+		printf("\ncoins: %d, Expected: %d", g->coins, pre->coins);
 		failed = 1;
 	}
 	if (checkNumBuys(pre, g) < 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  numBuys: %d, Expected: %d\n", g->numBuys, pre->numBuys);
+		printf("\nnumBuys: %d, Expected: %d", g->numBuys, pre->numBuys);
 		failed = 1;
 	}
 	//Check discard unchanged for other players
@@ -589,14 +544,12 @@ While loop does not have exit condition for case when only 1 treasure exists.
 			continue;
 		}
 		if (pre->discardCount[i] != g->discardCount[i]){
-			printf("FAIL when 1 treasure in deck\n");
-			printf("  Player %d's discardCount: %d, Expected: %d\n", i, g->discardCount[i], pre->discardCount[i]);
+			printf("\nPlayer %d's discardCount: %d, Expected: %d", i, g->discardCount[i], pre->discardCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->discardCount[i]; j++){
 				if (pre->discard[i][j] != g->discard[i][j]){
-					printf("FAIL when 1 treasure in deck\n");
-					printf("  Player %d's discard[%d]: %d, Expected: %d\n", i, j, g->discard[i][j], pre->discard[i][j]);
+					printf("\nPlayer %d's discard[%d]: %d, Expected: %d", i, j, g->discard[i][j], pre->discard[i][j]);
 					failed = 1;
 				}
 			}
@@ -609,14 +562,12 @@ While loop does not have exit condition for case when only 1 treasure exists.
 			continue;
 		}
 		if (pre->deckCount[i] != g->deckCount[i]){
-			printf("FAIL when 1 treasure in deck\n");
-			printf("  Player %d's deckCount: %d, Expected: %d\n", i, g->deckCount[i], pre->deckCount[i]);
+			printf("\nPlayer %d's deckCount: %d, Expected: %d", i, g->deckCount[i], pre->deckCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->deckCount[i]; j++){
 				if (pre->deck[i][j] != g->deck[i][j]){
-					printf("FAIL when 1 treasure in deck\n");
-					printf("  Player %d's deck[%d]: %d, Expected: %d\n", i, j, g->deck[i][j], pre->deck[i][j]);
+					printf("\nPlayer %d's deck[%d]: %d, Expected: %d", i, j, g->deck[i][j], pre->deck[i][j]);
 					failed = 1;
 				}
 			}
@@ -629,14 +580,12 @@ While loop does not have exit condition for case when only 1 treasure exists.
 			continue;
 		}
 		if (pre->handCount[i] != g->handCount[i]){
-			printf("FAIL when 1 treasure in deck\n");
-			printf("  Player %d's handCount: %d, Expected: %d\n", i, g->handCount[i], pre->handCount[i]);
+			printf("\nPlayer %d's handCount: %d, Expected: %d", i, g->handCount[i], pre->handCount[i]);
 			failed = 1;
 		} else {   //check each card
 			for (j = 0; j < g->handCount[i]; j++){
 				if (pre->hand[i][j] != g->hand[i][j]){
-					printf("FAIL when 1 treasure in deck\n");
-					printf("  Player %d's hand[%d]: %d, Expected: %d\n", i, j, g->hand[i][j], pre->hand[i][j]);
+					printf("\nPlayer %d's hand[%d]: %d, Expected: %d", i, j, g->hand[i][j], pre->hand[i][j]);
 					failed = 1;
 				}
 			}
@@ -644,60 +593,54 @@ While loop does not have exit condition for case when only 1 treasure exists.
 	}
 	//Check adventurer added to played pile
 	if (g->playedCardCount != pre->playedCardCount + 1){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Played card count: %d, Expected: %d\n", g->playedCardCount, pre->playedCardCount + 1);
+		printf("\nPlayed card count: %d, Expected: %d", g->playedCardCount, pre->playedCardCount + 1);
 		failed = 1;
 	} else if (g->playedCards[g->playedCardCount - 1] != TEST_CARD){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Last played card: %d, Expected: %d\n", g->playedCards[g->playedCardCount - 1], TEST_CARD);
+		printf("\nLast played card: %d, Expected: %d", g->playedCards[g->playedCardCount - 1], TEST_CARD);
 		failed = 1;		
 	}
 	//Check 1 treasure + extras removed from deck; other cards remain
 	if (g->deckCount[whoseTurn(g)] != pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 1){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Current player's deck count: %d, Expected: %d\n", g->deckCount[whoseTurn(g)], pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 1);
+		printf("\nCurrent player's deck count: %d, Expected: %d", g->deckCount[whoseTurn(g)], pre->deckCount[whoseTurn(g)] - EXTRA_COUNT - 1);
 		failed = 1;		
 	}
 	for (i = 0; i < g->deckCount[whoseTurn(g)]; i++){
 		if (g->deck[whoseTurn(g)][i] != EXTRA_CARD){
-			printf("FAIL when 1 treasure in deck\n");
-			printf("  Current player's deck[%d]: %d, Expected: %d\n", i, g->deck[whoseTurn(g)][i], EXTRA_CARD);
+			printf("\nCurrent player's deck[%d]: %d, Expected: %d", i, g->deck[whoseTurn(g)][i], EXTRA_CARD);
 			failed = 1;		
 		}	
 	}
-	//Check 1 treasure card added to hand
-	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 1){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Current player's hand count: %d, Expected: %d\n", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 1);
+	//Check 1 treasure card added to hand, adventurer removed
+	if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)]){
+		printf("\nCurrent player's hand count: %d, Expected: %d", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)]);
 		failed = 1;		
 	}
 	if (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] != TREASURE){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Current player's hand[%d]: %d, Expected: %d\n", g->handCount[whoseTurn(g)] - 1, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1], TREASURE);
+		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 1, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1], TREASURE);
 		failed = 1;		
 	}
 	//Check extra cards added to discard
 	if (g->discardCount[whoseTurn(g)] != pre->discardCount[whoseTurn(g)] + EXTRA_COUNT){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Current player's discard count: %d, Expected: %d\n", g->discardCount[whoseTurn(g)], pre->discardCount[whoseTurn(g)] + EXTRA_COUNT);
+		printf("\nCurrent player's discard count: %d, Expected: %d", g->discardCount[whoseTurn(g)], pre->discardCount[whoseTurn(g)] + EXTRA_COUNT);
 		failed = 1;		
 	}
 	for (i = 1; i <= EXTRA_COUNT; i++){
 		if (g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - i] != EXTRA_CARD){
-			printf("FAIL when 1 treasure in deck\n");
-			printf("  Current player's discard[%d]: %d, Expected: %d\n", g->discardCount[whoseTurn(g)] - i, g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - i], EXTRA_CARD);
+			printf("\nCurrent player's discard[%d]: %d, Expected: %d", g->discardCount[whoseTurn(g)] - i, g->discard[whoseTurn(g)][g->discardCount[whoseTurn(g)] - i], EXTRA_CARD);
 			failed = 1;		
 		}
 	}
 	//Check no bonus coins added
 	if (coin_bonus != 0){
-		printf("FAIL when 1 treasure in deck\n");
-		printf("  Coin bonus after adventurer: %d, Expected: %d\n", coin_bonus, 0);
+		printf("\nCoin bonus after adventurer: %d, Expected: %d", coin_bonus, 0);
 		failed = 1;		
 	}	
 	//Final check
-	if (!failed){
-		printf("PASS when 1 treasure in deck\n");
+	if (failed){
+		printf("\nResult: FAIL\n");
+	} else {
+		printf("none");
+		printf("\nResult: PASS\n");
 	}
 	*/
 

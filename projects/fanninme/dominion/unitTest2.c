@@ -82,7 +82,7 @@ int main () {
     G.deckCount[p] = floor(Random() * MAX_DECK);
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
-
+    G.supplyCount = floor(Random()*MAX_DECK);
     //call function with test input
     error=unitTest(&G);
 

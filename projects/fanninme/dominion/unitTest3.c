@@ -59,6 +59,30 @@ int unitTest(struct gameState *post){
         #endif
         return 2;
     }
+
+    if(post->outpostPlayed != 0){
+		#if (NOISY_TEST ==1)
+    	printf("current player not correctly updated, outposts played greater than 0");
+		#endif
+    }
+    if(post->phase != 0){
+    	#if (NOISY_TEST ==1)
+    	printf("phase correctly updated");
+		#endif
+    }
+
+    if(post->numActions != 1){
+    	#if (NOISY_TEST ==1)
+    	printf("current player not correctly updated, outposts played greater than 0");
+		#endif
+    }
+
+    if(post->numBuys != 1){
+    	#if (NOISY_TEST ==1)
+    	printf("current player not correctly updated, outposts played greater than 0");
+		#endif
+    }
+
     return 0;
 }
 

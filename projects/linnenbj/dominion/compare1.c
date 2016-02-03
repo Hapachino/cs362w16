@@ -170,50 +170,51 @@ Branches executed:100.00% of 12
 Taken at least once:100.00% of 12
 No calls
 
- 1000:  349:int fullDeckCount(int player, int card, struct gameState *state)
-	-:  350:{
-	-:  351:    int i;
- 1000:  352:    int count = 0;
-	-:  353:
-10273:  354:    for (i = 0; i < state->deckCount[player]; i++)
- 1000:  354-block  0
- 9273:  354-block  1
-10273:  354-block  2
-	-:  355:    {
- 9273:  356:        if (state->deck[player][i] == card) count++;
- 9273:  356-block  0
- 1632:  356-block  1
-	-:  357:    }
-	-:  358:
- 5968:  359:    for (i = 0; i < state->handCount[player]; i++)
- 1000:  359-block  0
- 4968:  359-block  1
- 5968:  359-block  2
-	-:  360:    {
- 4968:  361:        if (state->hand[player][i] == card) count++;
- 4968:  361-block  0
-  930:  361-block  1
-	-:  362:    }
-	-:  363:
- 6759:  364:    for (i = 0; i < state->discardCount[player]; i++)
- 1000:  364-block  0
- 5759:  364-block  1
- 6759:  364-block  2
-	-:  365:    {
- 5759:  366:        if (state->discard[player][i] == card) count++;
- 5759:  366-block  0
- 1021:  366-block  1
-	-:  367:    }
-	-:  368:
- 1000:  369:    return count;
- 1000:  369-block  0
-	-:  370:}
+function fullDeckCount called 8 returned 100% blocks executed 100%
+        8:  349:int fullDeckCount(int player, int card, struct gameState *state)
+        -:  350:{
+        -:  351:    int i;
+        8:  352:    int count = 0;
+        -:  353:
+       51:  354:    for (i = 0; i < state->deckCount[player]; i++)
+branch  0 taken 43
+branch  1 taken 8 (fallthrough)
+        -:  355:    {
+       43:  356:        if (state->deck[player][i] == card) count++;
+branch  0 taken 7 (fallthrough)
+branch  1 taken 36
+        -:  357:    }
+        -:  358:
+       48:  359:    for (i = 0; i < state->handCount[player]; i++)
+branch  0 taken 40
+branch  1 taken 8 (fallthrough)
+        -:  360:    {
+       40:  361:        if (state->hand[player][i] == card) count++;
+branch  0 taken 4 (fallthrough)
+branch  1 taken 36
+        -:  362:    }
+        -:  363:
+       17:  364:    for (i = 0; i < state->discardCount[player]; i++)
+branch  0 taken 9
+branch  1 taken 8 (fallthrough)
+        -:  365:    {
+        9:  366:        if (state->discard[player][i] == card) count++;
+branch  0 taken 8 (fallthrough)
+branch  1 taken 1
+        -:  367:    }
+        -:  368:
+        8:  369:    return count;
+        -:  370:}
+
 
 Anaylsis:
 Complete coverage on all lines, braches & blocks in fullDeckCount().
-This was another reasonably straight forward function to test for, and with
-the high number of tests, I again feel confident that this function has
-been fully 'vetted'.
+This was a reasonably straight forward function to test for, I picked
+a variety of different cases to test and made sure that not only was
+the function fullDeckCount() returning the correct value, but I was
+checking to make sure that it did not alter the gamestate in any way.
+There is room for improvement on my test here as I only tested checking
+for 1 particular card.
 --------------------------------------------------------------------------
 
 cardtest1: smithy

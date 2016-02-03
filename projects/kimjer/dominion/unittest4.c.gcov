@@ -20,7 +20,7 @@ function main called 1 returned 100% blocks executed 73%
         -:   14:	struct gameState G;
         -:   15:
         1:   16:	int seed = 1000;
-        -:   17:	int t1, t2, t3, t4;
+        -:   17:	int t1;
         1:   18:	int numPlayers = 4;
         1:   19:	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
         1:   20:	initializeGame(numPlayers, k, seed, &G);

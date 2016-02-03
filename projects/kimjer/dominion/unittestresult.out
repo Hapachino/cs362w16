@@ -73,10 +73,17 @@ Taken at least once:50.00% of 8
 Calls executed:55.56% of 9
 Creating 'unittest4.c.gcov'
 
+File 'villagetest.c'
+Lines executed:100.00% of 86
+Branches executed:100.00% of 24
+Taken at least once:62.50% of 24
+Calls executed:70.97% of 31
+Creating 'villagetest.c.gcov'
+
 File 'dominion.c'
-Lines executed:27.89% of 588
+Lines executed:29.25% of 588
 Branches executed:21.58% of 417
-Taken at least once:19.18% of 417
-Calls executed:12.50% of 96
+Taken at least once:19.42% of 417
+Calls executed:14.58% of 96
 Creating 'dominion.c.gcov'
 

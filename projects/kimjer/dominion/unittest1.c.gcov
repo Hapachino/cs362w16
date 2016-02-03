@@ -110,9 +110,9 @@ branch  1 taken 1% (fallthrough)
     10000:   68:		r1 = floor(Random()*25);
 call    0 returned 100%
         -:   69:		do
-    10421:   70:			r2 = floor(Random()*25);
+    10442:   70:			r2 = floor(Random()*25);
 call    0 returned 100%
-    10421:   71:		while(r2 == r1);
+    10442:   71:		while(r2 == r1);
 branch  0 taken 4%
 branch  1 taken 96% (fallthrough)
         -:   72:
@@ -128,24 +128,24 @@ branch  2 taken 4% (fallthrough)
 branch  3 taken 96%
         -:   78:		{
         -:   79:			//if province is 0, game should be over
-      812:   80:			if(ret == 0)
+      786:   80:			if(ret == 0)
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
     #####:   81:				printf("FAIL: isGameOver should return 1 when province supply is 0; instead got %d\n", ret);
 call    0 never executed
-      812:   82:			assert(ret == 1);
+      786:   82:			assert(ret == 1);
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
 call    2 never executed
         -:   83:		}
         -:   84:		else
         -:   85:		{
-     9188:   86:			if(ret == 1)
+     9214:   86:			if(ret == 1)
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
     #####:   87:				printf("FAIL: isGameOver should return 0 when only two supplies are 0; instead got %d\n", ret);
 call    0 never executed
-     9188:   88:			assert(ret == 0);
+     9214:   88:			assert(ret == 0);
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
 call    2 never executed
@@ -166,16 +166,16 @@ branch  1 taken 1% (fallthrough)
     10000:  100:		r1 = floor(Random()*25);
 call    0 returned 100%
         -:  101:		do
-    10400:  102:			r2 = floor(Random()*25);
+    10436:  102:			r2 = floor(Random()*25);
 call    0 returned 100%
-    10400:  103:		while(r2 == r1);
+    10436:  103:		while(r2 == r1);
 branch  0 taken 4%
 branch  1 taken 96% (fallthrough)
         -:  104:
         -:  105:		do
-    10850:  106:			r3 = floor(Random()*25);
+    10845:  106:			r3 = floor(Random()*25);
 call    0 returned 100%
-    10850:  107:		while(r3 == r1 || r3 == r2 );
+    10845:  107:		while(r3 == r1 || r3 == r2 );
 branch  0 taken 4%
 branch  1 taken 96% (fallthrough)
 branch  2 taken 4%

@@ -45,29 +45,35 @@ smithytest: dominion.o rngs.o cardFunctions.o smithytest.c
 adventurertest: dominion.o rngs.o cardFunctions.o adventurertest.c
 	gcc -o adventurertest adventurertest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 
+counciltest: dominion.o rngs.o cardFunctions.o counciltest.c
+	gcc -o counciltest counciltest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+
+villagetest: dominion.o rngs.o cardFunctions.o villagetest.c
+	gcc -o villagetest villagetest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+
 unittests: smithytest adventurertest unittest2
 	gcc -o smithytest smithytest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 	./smithytest &> unittestresult.out
 	gcov -b smithytest.c >> unittestresult.out	
-	# cat smithytest.c.gcov >> unittestresult.out
+	cat smithytest.c.gcov >> unittestresult.out
 
 	gcc -o unittest2 unittest2.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 	./unittest2 >> unittestresult.out
 	gcov -b unittest2.c >> unittestresult.out	
-	# cat unittest2.c.gcov >> unittestresult.out
-	# cat unittest2.c.gcov >> coverage.c
+	cat unittest2.c.gcov >> unittestresult.out
+	cat unittest2.c.gcov >> coverage.c
 
 	gcc -o unittest1 unittest1.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 	./unittest1 >> unittestresult.out
 	gcov -b unittest1.c >> unittestresult.out	
-	# cat unittest1.c.gcov >> unittestresult.out
-	# cat unittest1.c.gcov >> coverage.c
+	cat unittest1.c.gcov >> unittestresult.out
+	cat unittest1.c.gcov >> coverage.c
 
 	gcc -o unittest3 unittest3.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 	./unittest3 >> unittestresult.out
 	gcov -b unittest3.c >> unittestresult.out	
-	# cat unittest3.c.gcov >> unittestresult.out
-	# cat unittest3.c.gcov >> coverage.c
+	cat unittest3.c.gcov >> unittestresult.out
+	cat unittest3.c.gcov >> coverage.c
 
 	# gcc -o adventurertest adventurertest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 	# ./adventurertest >> unittestresult.out
@@ -78,9 +84,17 @@ unittests: smithytest adventurertest unittest2
 	gcc -o unittest4 unittest4.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 	./unittest4 >> unittestresult.out
 	gcov -b unittest4.c >> unittestresult.out
+	cat unittest4.c.gcov >> unittestresult.out
+	cat unittest4.c.gcov >> coverage.c
+
+	gcc -o villagetest villagetest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./villagetest >> unittestresult.out
+	gcov -b villagetest.c >> unittestresult.out
+	cat villagetest.c.gcov >> unittestresult.out
+	cat villagetest.c.gcov >> coverage.c
 
 	gcov -b dominion.c >> unittestresult.out	
-	#cat dominion.c.gcov >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out

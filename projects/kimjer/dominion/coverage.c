@@ -26,14 +26,28 @@
 // Calls executed:79.38% of 97
 // Creating 'unittest3.c.gcov'
 
+// File 'unittest4.c'
+// Lines executed:100.00% of 20
+// Branches executed:100.00% of 8
+// Taken at least once:50.00% of 8
+// Calls executed:55.56% of 9
+// Creating 'unittest4.c.gcov'
+
+// File 'villagetest.c'
+// Lines executed:100.00% of 86
+// Branches executed:100.00% of 24
+// Taken at least once:62.50% of 24
+// Calls executed:70.97% of 31
+// Creating 'villagetest.c.gcov'
+
 // File 'dominion.c'
-// Lines executed:24.15% of 588
-// Branches executed:20.14% of 417
-// Taken at least once:17.51% of 417
-// Calls executed:9.38% of 96
+// Lines executed:29.25% of 588
+// Branches executed:21.58% of 417
+// Taken at least once:19.42% of 417
+// Calls executed:14.58% of 96
 // Creating 'dominion.c.gcov'
 
 
 // My unit tests were not as thorough as I expected, which leads to the low coverage in dominion.c. Unittests1 and unittsts2 seem to be okay, but unittest3, where initializeGame() was tested was missing a few things. I could not finish the test because I could not get it to compile with gcov properly and so I had to comment out some of the subtests. The reason for this I was not able to ascertain exactly but it was narrowed down to the part where I was testing the initialization of the supply count according the types of cards in the deck. 
 
-// I left 3 tests remaining and this also gives rise to the coverage number. The smithycard seemed to be low because I some of the business cases were untested for. For example, the status of the victory card piles and the kingdom cards. The adventurer card would not compile with gcov for some reason although the tests runs fine initially. 
+// I left 2 tests remaining and this also gives rise to the coverage number. The smithycard seemed to be low because I some of the business cases were untested for. For example, the status of the victory card piles and the kingdom cards. The adventurer card would not compile with gcov for some reason although the tests runs fine initially. 

@@ -4,3 +4,5 @@ The bug that was introduced was inside discardCard(...). The curly brackets surr
 
 ---------------------------------------------------------------------------
 One bug was found in smithycard. The handCount does not increment correctly. It increments by only 2, should be 3;
+
+One bug in village card - players hand does not increment by one card

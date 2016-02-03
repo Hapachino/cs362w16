@@ -1,5 +1,5 @@
 #make smithytest
-make unittest4
+make villagetest
 RET=$?
 make clean
 if [ $RET -eq 0 ]
@@ -13,7 +13,7 @@ then
 	echo ""
 	# ./smithytest
 	# rm smithytest
-	./unittest4
-	rm unittest4
+	./villagetest
+	rm villagetest
 
 fi

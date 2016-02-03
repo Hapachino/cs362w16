@@ -1,3 +1,5 @@
+//Jennifer Frase
+//CS 362 A3
 //tests getCost
 //nonexistent cards should return -1
 //existent cards need to return the right value

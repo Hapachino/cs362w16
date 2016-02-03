@@ -1,3 +1,6 @@
+Jennifer Frase
+CS 362 A3
+
 The dominion.c code coverage says that I only covered about 41.77% of the code. Considering
 that I was focusing only on 4 functions and 4 cards, this is not very suprising to me.
 

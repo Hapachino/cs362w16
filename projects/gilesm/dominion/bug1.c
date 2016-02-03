@@ -184,11 +184,30 @@ Parameters:
 Return Type: int
 
 Description:
+Adventurer allows the player to reveal the deck one card at a time until two
+treasure cards are shown. The non-treasure cards are placed into the player's
+discard deck and the treasure cards are added to the player's hand.
 
 Test Findings:
+The first test case assesses whether or not the non-treasure cards are added
+to the discard pile. In order to determine this, I cycle from the top of the
+deck to the bottom of the deck to determine how many cards must be added to the
+discard pile and what cards will be added. To test the condition, I compare
+the results of the game state modified by calling the function. In looking at
+the discard pile, it did successully contain the additional cards removed from
+the deck while looking for two adventure cards.
 
+The second test case checks the player's hand to determine if the two treasure
+cards are added to the player's hand. Looking at the top two positions of the
+player's hand, I identified that in fact were not the new adventure cards. During
+this phase I also check to see if the handCount for the modified game state is
+appropriately incremented by two and it is not.
 
-`----------------------------- CARD - UNIT TEST 3 -----------------------------
+In order to verify consistency, both the other player's deccks and the supply
+decks were compared to the original version to ensure nothing changed, and these
+tests passed as the decks remained unmodified.
+
+----------------------------- CARD - UNIT TEST 3 -----------------------------
 Name: village
 Parameters:
 	- int currentPlayer

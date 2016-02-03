@@ -1,0 +1,1065 @@
+File 'unittest1.c'
+Lines executed:100.00% of 32
+Branches executed:100.00% of 14
+Taken at least once:78.57% of 14
+Calls executed:76.92% of 13
+unittest1.c:creating 'unittest1.c.gcov'
+
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * test UpdateCoins()
+        -:    3: *
+        -:    4: * unittest1: unittest1.c dominion.o rngs.o
+        -:    5: *      gcc -o unittest1 unittest1.c dominion.o rngs.o
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+function main called 1 returned 100% blocks executed 90%
+        1:   16:int main() {
+        -:   17:    int i;
+        1:   18:    int seed = 1000;
+        1:   19:    int numPlayer = 2;
+        1:   20:    int maxBonus = 10;
+        -:   21:    int p, handCount;
+        -:   22:    int bonus;
+        1:   23:    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+        -:   24:    struct gameState G;
+        1:   25:    int maxHandCount = 5;
+        -:   26:    // arrays of all coppers, silvers, and golds
+        -:   27:    int coppers[MAX_HAND];
+        -:   28:    int silvers[MAX_HAND];
+        -:   29:    int golds[MAX_HAND];
+      501:   30:    for (i = 0; i < MAX_HAND; i++) {
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+      500:   31:        coppers[i] = copper;
+      500:   32:        silvers[i] = silver;
+      500:   33:        golds[i] = gold;
+        -:   34:    }
+        -:   35:
+        1:   36:    printf ("TESTING updateCoins():\n");
+call    0 returned 100%
+        3:   37:    for (p = 0; p < numPlayer; p++) {
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+       12:   38:        for (handCount = 1; handCount <= maxHandCount; handCount++)  {
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
+      120:   39:            for (bonus = 0; bonus <= maxBonus; bonus++) {
+branch  0 taken 92%
+branch  1 taken 8% (fallthrough)
+      110:   40:				printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
+call    0 returned 100%
+        -:   41:				
+      110:   42:                memset(&G, 23, sizeof(struct gameState));   // clear the game state
+      110:   43:                initializeGame(numPlayer, k, seed, &G); // initialize a new game
+call    0 returned 100%
+        -:   44:
+      110:   45:                G.handCount[p] = handCount;                 // set the number of cards on hand
+      110:   46:                memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
+      110:   47:                updateCoins(p, &G, bonus);
+call    0 returned 100%
+      110:   48:				printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
+call    0 returned 100%
+      110:   49:				assert(G.coins == handCount * 1 + bonus); // check if the number of coins is correct
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   50:
+      110:   51:                memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silver
+      110:   52:                updateCoins(p, &G, bonus);
+call    0 returned 100%
+      110:   53:				printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
+call    0 returned 100%
+      110:   54:                assert(G.coins == handCount * 2 + bonus); // check if the number of coins is correct
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   55:
+      110:   56:                memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
+      110:   57:                updateCoins(p, &G, bonus);
+call    0 returned 100%
+      110:   58:				printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
+call    0 returned 100%
+      110:   59:                assert(G.coins == handCount * 3 + bonus); // check if the number of coins is correct
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   60:            }
+        -:   61:        }
+        -:   62:    }
+        -:   63:
+        1:   64:    printf("All tests passed!\n");
+call    0 returned 100%
+        -:   65:
+        1:   66:    return 0;
+        -:   67:}
+File 'unittest2.c'
+Lines executed:73.33% of 15
+Branches executed:80.00% of 10
+Taken at least once:40.00% of 10
+Calls executed:33.33% of 9
+unittest2.c:creating 'unittest2.c.gcov'
+
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * test Shuffle()
+        -:    3: *
+        -:    4: * unittest2: unittest2.c dominion.o rngs.o
+        -:    5: *      gcc -o unittest2 unittest2.c dominion.o rngs.o
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:int compare(const void *a, const void *b);
+        -:   17:
+function main called 1 returned 100% blocks executed 53%
+        1:   18:int main() {
+        -:   19:	struct gameState G1, G2;
+        1:   20:	memcpy(&G2, &G1, sizeof(struct gameState)); // make G1 and G2 identical
+        -:   21:
+        -:   22:    // shuffle both games
+        1:   23:    int val = shuffle(0, &G1);
+call    0 returned 100%
+        1:   24:    shuffle(0, &G2);
+call    0 returned 100%
+        -:   25:
+        -:   26:    // sort the deck of both games
+        1:   27:    if (G1.deckCount[0] > 0) {
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   28:    	assert(val != -1);
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+    #####:   29:    	qsort((void*)(G1.deck[0]), G1.deckCount[0], sizeof(int), compare);
+call    0 never executed
+    #####:   30:    	qsort((void*)(G2.deck[0]), G2.deckCount[0], sizeof(int), compare);
+call    0 never executed
+        -:   31:    }
+        -:   32:    else
+        1:   33:    	assert(val == -1);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   34:
+        -:   35:    // should be the same each other
+        1:   36:    int result = memcmp(&G1, &G2, sizeof(struct gameState));
+        1:   37:    assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   38:    
+        1:   39:    if (result == 0) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   40:    	printf("Shuffle test passed!\n");
+call    0 returned 100%
+        -:   41:    }
+        -:   42:    else {
+    #####:   43:    	printf("Shuffle test failed!\n");
+call    0 never executed
+        -:   44:    }
+        -:   45:
+        1:   46:    return 0;
+        -:   47:}
+File 'unittest3.c'
+Lines executed:74.07% of 27
+Branches executed:100.00% of 8
+Taken at least once:50.00% of 8
+Calls executed:62.50% of 8
+unittest3.c:creating 'unittest3.c.gcov'
+
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * test DrawCard()
+        -:    3: *
+        -:    4: * unittest3: unittest3.c dominion.o rngs.o
+        -:    5: *      gcc -o unittest3 unittest3.c dominion.o rngs.o
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:
+function checkDrawCard called 1 returned 100% blocks executed 67%
+        1:   17:int checkDrawCard(int p, struct gameState *G) {
+        -:   18:	struct gameState G2;
+        1:   19:	memcpy (&G2, G, sizeof(struct gameState));
+        -:   20:
+        1:   21:	int r = drawCard(p, G);
+call    0 returned 100%
+        -:   22:
+        1:   23:	if (G2.deckCount[p] > 0) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   24:		G2.handCount[p]++;
+        1:   25:		G2.hand[p][G2.handCount[p]-1] = G2.deck[p][G2.deckCount[p]-1]; // add card to the hand
+        1:   26:		G2.deckCount[p]--;
+        -:   27:	}
+        -:   28:	else {
+    #####:   29:		memcpy(G2.deck[p], G->deck[p], sizeof(int)*G2.discardCount[p]);
+    #####:   30:		memcpy(G2.discard[p], G->discard[p], sizeof(int)*G2.discardCount[p]);
+        -:   31:
+    #####:   32:		G2.hand[p][G->handCount[p]-1] = G->hand[p][G->handCount[p]-1];
+    #####:   33:		G2.handCount[p]++;
+    #####:   34:		G2.deckCount[p] = G2.discardCount[p]-1;
+    #####:   35:		G2.discardCount[p] = 0;
+        -:   36:	}
+        -:   37:
+        1:   38:	assert(r == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   39:
+        1:   40:	int result = memcmp(&G2, G, sizeof(struct gameState));
+        1:   41:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   42:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   43:		printf("Draw card test passed!\n");
+call    0 returned 100%
+        -:   44:	else
+    #####:   45:		printf("Draw card test failed!\n");
+call    0 never executed
+        -:   46:
+        1:   47:  return 0;
+        -:   48:}
+        -:   49:
+function main called 1 returned 100% blocks executed 100%
+        1:   50:int main() {
+        1:   51:	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+        -:   52:
+        -:   53:	struct gameState G;
+        -:   54:
+        1:   55:	printf ("Testing drawCard.\n");
+call    0 returned 100%
+        -:   56:
+        1:   57:	memset(&G, 23, sizeof(struct gameState));
+        1:   58:	initializeGame(2, k, 1000, &G);
+call    0 returned 100%
+        1:   59:	checkDrawCard(0, &G);
+call    0 returned 100%
+        -:   60:
+        1:   61:	return 0;
+        -:   62:}
+File 'unittest4.c'
+Lines executed:100.00% of 42
+Branches executed:100.00% of 16
+Taken at least once:62.50% of 16
+Calls executed:70.00% of 20
+unittest4.c:creating 'unittest4.c.gcov'
+
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * test GainCard()
+        -:    3: *
+        -:    4: * unittest4: unittest4.c dominion.o rngs.o
+        -:    5: *      gcc -o unittest4 unittest4.c dominion.o rngs.o
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:// set NOISY_TEST to 0 to remove prints from output
+        -:   17:#define NOISY_TEST 1
+        -:   18:
+function main called 1 returned 100% blocks executed 82%
+        1:   19:int main() {
+        1:   20:    int seed = 1000;
+        1:   21:    int numPlayer = 2;
+        -:   22:    int p;
+        1:   23:	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+        -:   24:    
+        -:   25:    struct gameState G;
+        -:   26:    
+        -:   27:	int flagcnt;
+        -:   28:	int supplypos;
+        -:   29:	int deckcnt, handcnt, discardcnt, supplycnt;
+        -:   30:
+        1:   31:    printf ("TESTING gainCard():\n");
+call    0 returned 100%
+        3:   32:    for (p = 0; p < numPlayer; p++) {
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+       56:   33:        for (supplypos = 0; supplypos < treasure_map+1; supplypos++)  {
+branch  0 taken 96%
+branch  1 taken 4% (fallthrough)
+        -:   34:			#if (NOISY_TEST == 1)
+       54:   35:				printf("Test player %d with %d supply pos.\n", p, supplypos);
+call    0 returned 100%
+        -:   36:			#endif
+        -:   37:
+       54:   38:            memset(&G, 23, sizeof(struct gameState));   // clear the game state
+       54:   39:            initializeGame(numPlayer, k, seed, &G); // initialize a new game
+call    0 returned 100%
+        -:   40:				
+       54:   41:			deckcnt = 50, handcnt = 5, discardcnt = 0, supplycnt = 100;
+        -:   42:
+       54:   43:            G.deckCount[p] = deckcnt;
+       54:   44:			G.handCount[p] = handcnt;
+       54:   45:			G.discardCount[p] = discardcnt;
+       54:   46:			G.supplyCount[supplypos] = supplycnt;
+        -:   47:
+        -:   48:			// toFlag = 0 : add to discard
+       54:   49:			flagcnt = 0;
+       54:   50:			discardcnt++;
+       54:   51:			supplycnt--;
+        -:   52:
+       54:   53:			gainCard(supplypos, &G, flagcnt, p);
+call    0 returned 100%
+        -:   54:
+        -:   55:			#if (NOISY_TEST == 1)
+       54:   56:				printf("G.discard count = %d, expected = %d\n", G.discardCount[p], discardcnt);
+call    0 returned 100%
+       54:   57:				printf("G.supply count = %d, expected = %d\n", G.supplyCount[supplypos], supplycnt);
+call    0 returned 100%
+        -:   58:			#endif
+       54:   59:			assert(G.discardCount[p] == discardcnt);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+       54:   60:			assert(G.supplyCount[supplypos] == supplycnt);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   61:
+        -:   62:
+        -:   63:			// toFlag = 1 : add to deck
+       54:   64:			flagcnt = 1;
+       54:   65:			deckcnt++;
+       54:   66:			supplycnt--;
+        -:   67:
+       54:   68:			gainCard(supplypos, &G, flagcnt, p);
+call    0 returned 100%
+        -:   69:
+        -:   70:			#if (NOISY_TEST == 1)
+       54:   71:				printf("G.deck count = %d, expected = %d\n", G.deckCount[p], deckcnt);
+call    0 returned 100%
+       54:   72:				printf("G.supply count = %d, expected = %d\n", G.supplyCount[supplypos], supplycnt);
+call    0 returned 100%
+        -:   73:			#endif
+       54:   74:			assert(G.deckCount[p] == deckcnt);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+       54:   75:			assert(G.supplyCount[supplypos] == supplycnt);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   76:
+        -:   77:
+        -:   78:			// toFlag = 2 : add to hand
+       54:   79:			flagcnt = 2;
+       54:   80:			handcnt++;
+       54:   81:			supplycnt--;
+        -:   82:
+       54:   83:			gainCard(supplypos, &G, flagcnt, p);
+call    0 returned 100%
+        -:   84:
+        -:   85:			#if (NOISY_TEST == 1)
+       54:   86:				printf("G.hand count = %d, expected = %d\n", G.handCount[p], handcnt);
+call    0 returned 100%
+       54:   87:				printf("G.supply count = %d, expected = %d\n", G.supplyCount[supplypos], supplycnt);
+call    0 returned 100%
+        -:   88:			#endif
+       54:   89:			assert(G.handCount[p] == handcnt);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+       54:   90:			assert(G.supplyCount[supplypos] == supplycnt);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   91:               
+       54:   92:			puts("");
+call    0 returned 100%
+        -:   93:        }
+        -:   94:    }
+        -:   95:
+        1:   96:    printf("All tests passed!\n");
+call    0 returned 100%
+        -:   97:
+        1:   98:    return 0;
+        -:   99:}
+File 'cardtest1.c'
+Lines executed:80.00% of 45
+Branches executed:100.00% of 18
+Taken at least once:55.56% of 18
+Calls executed:65.00% of 20
+cardtest1.c:creating 'cardtest1.c.gcov'
+
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * test Smithy Card
+        -:    3: *
+        -:    4: * cardtest1: cardtest1.c dominion.o rngs.o
+        -:    5: *      gcc -o cardtest1 cardtest1.c dominion.o rngs.o
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:#include <stdlib.h>
+        -:   16:#include <time.h>
+        -:   17:
+function checkDrawCard called 3 returned 100% blocks executed 67%
+        3:   18:int checkDrawCard(int p, struct gameState *G) {
+        -:   19:	struct gameState G2;
+        3:   20:	memcpy (&G2, G, sizeof(struct gameState));
+        -:   21:
+        3:   22:	int r = drawCard(p, G);
+call    0 returned 100%
+        -:   23:
+        3:   24:	if (G2.deckCount[p] > 0) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        3:   25:		G2.handCount[p]++;
+        3:   26:		G2.hand[p][G2.handCount[p]-1] = G2.deck[p][G2.deckCount[p]-1]; // add card to the hand
+        3:   27:		G2.deckCount[p]--;
+        -:   28:	}
+        -:   29:	else {
+    #####:   30:		memcpy(G2.deck[p], G->deck[p], sizeof(int)*G2.discardCount[p]);
+    #####:   31:		memcpy(G2.discard[p], G->discard[p], sizeof(int)*G2.discardCount[p]);
+        -:   32:
+    #####:   33:		G2.hand[p][G->handCount[p]-1] = G->hand[p][G->handCount[p]-1];
+    #####:   34:		G2.handCount[p]++;
+    #####:   35:		G2.deckCount[p] = G2.discardCount[p]-1;
+    #####:   36:		G2.discardCount[p] = 0;
+        -:   37:	}
+        -:   38:
+        3:   39:	assert(r == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   40:
+        3:   41:	int result = memcmp(&G2, G, sizeof(struct gameState));
+        3:   42:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        3:   43:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        3:   44:		printf("Draw card test passed!\n");
+call    0 returned 100%
+        -:   45:	else
+    #####:   46:		printf("Draw card test failed!\n");
+call    0 never executed
+        -:   47:
+        3:   48:	return 0;
+        -:   49:}
+        -:   50:
+function main called 1 returned 100% blocks executed 83%
+        1:   51:int main() {
+        1:   52:	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+        -:   53:
+        -:   54:	struct gameState G, G2;
+        -:   55:
+        1:   56:	printf ("[Smithy card] Testing drawCard three times.\n");
+call    0 returned 100%
+        -:   57:
+        1:   58:	memset(&G, 23, sizeof(struct gameState));
+        1:   59:	initializeGame(2, k, 1000, &G);
+call    0 returned 100%
+        -:   60:
+        1:   61:	memcpy (&G2, &G, sizeof(struct gameState));
+        -:   62:
+        1:   63:	int i = 0;
+        4:   64:	for (; i<3; i++) {
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
+        3:   65:		checkDrawCard(0, &G2);
+call    0 returned 100%
+        3:   66:		drawCard(0, &G);
+call    0 returned 100%
+        -:   67:	}
+        -:   68:
+        1:   69:	int result = memcmp(&G2, &G, sizeof(struct gameState));
+        1:   70:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   71:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   72:		printf("Drawing card three times test passed!\n");
+call    0 returned 100%
+        -:   73:	else
+    #####:   74:		printf("Drawing card three times test failed!\n");
+call    0 never executed
+        -:   75:
+        -:   76:
+        -:   77:	// discard card
+        1:   78:	srand(time(NULL));
+call    0 returned 100%
+call    1 returned 100%
+        1:   79:	int r = rand() % 10;
+call    0 returned 100%
+        -:   80:
+        1:   81:	discardCard(r, 0, &G, 0);
+call    0 returned 100%
+        1:   82:	discardCard(r, 0, &G2, 0);
+call    0 returned 100%
+        -:   83:
+        1:   84:	result = memcmp(&G2, &G, sizeof(struct gameState));
+        1:   85:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   86:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   87:		printf("Discard card test passed!\n");
+call    0 returned 100%
+        -:   88:	else
+    #####:   89:		printf("Discard card test failed!\n");
+call    0 never executed
+        -:   90:
+        1:   91:	return 0;
+        -:   92:}
+File 'cardtest2.c'
+Lines executed:53.52% of 71
+Branches executed:55.56% of 36
+Taken at least once:33.33% of 36
+Calls executed:43.75% of 16
+cardtest2.c:creating 'cardtest2.c.gcov'
+
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * test Adventurer Card
+        -:    3: *
+        -:    4: * cardtest2: cardtest2.c dominion.o rngs.o
+        -:    5: *      gcc -o cardtest2 cardtest2.c dominion.o rngs.o
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:#include <stdlib.h>
+        -:   16:#include <time.h>
+        -:   17:
+function checkDrawCard called 0 returned 0% blocks executed 0%
+    #####:   18:int checkDrawCard(int p, struct gameState *G) {
+        -:   19:	struct gameState G2;
+    #####:   20:	memcpy (&G2, G, sizeof(struct gameState));
+        -:   21:
+    #####:   22:	int r = drawCard(p, G);
+call    0 never executed
+        -:   23:
+    #####:   24:	if (G2.deckCount[p] > 0) {
+branch  0 never executed
+branch  1 never executed
+    #####:   25:		G2.handCount[p]++;
+    #####:   26:		G2.hand[p][G2.handCount[p]-1] = G2.deck[p][G2.deckCount[p]-1]; // add card to the hand
+    #####:   27:		G2.deckCount[p]--;
+        -:   28:	}
+        -:   29:	else {
+    #####:   30:		memcpy(G2.deck[p], G->deck[p], sizeof(int)*G2.discardCount[p]);
+    #####:   31:		memcpy(G2.discard[p], G->discard[p], sizeof(int)*G2.discardCount[p]);
+        -:   32:
+    #####:   33:		G2.hand[p][G->handCount[p]-1] = G->hand[p][G->handCount[p]-1];
+    #####:   34:		G2.handCount[p]++;
+    #####:   35:		G2.deckCount[p] = G2.discardCount[p]-1;
+    #####:   36:		G2.discardCount[p] = 0;
+        -:   37:	}
+        -:   38:
+    #####:   39:	assert(r == 0);
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+        -:   40:
+    #####:   41:	int result = memcmp(&G2, G, sizeof(struct gameState));
+    #####:   42:	assert(result == 0);
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+    #####:   43:	if (result == 0)
+branch  0 never executed
+branch  1 never executed
+    #####:   44:		printf("Draw card test passed!\n");
+call    0 never executed
+        -:   45:	else
+    #####:   46:		printf("Draw card test failed!\n");
+call    0 never executed
+        -:   47:
+    #####:   48:	return 0;
+        -:   49:}
+        -:   50:
+function main called 1 returned 100% blocks executed 67%
+        1:   51:int main() {
+        1:   52:	srand(time(NULL));
+call    0 returned 100%
+call    1 returned 100%
+        -:   53:
+        1:   54:	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+        -:   55:
+        -:   56:	struct gameState G, G2;
+        -:   57:
+        1:   58:	memset(&G, 23, sizeof(struct gameState));
+        1:   59:	initializeGame(2, k, 1000, &G);
+call    0 returned 100%
+        1:   60:	memcpy (&G2, &G, sizeof(struct gameState));
+        -:   61:
+        1:   62:	int drawntreasure = 0, currentPlayer = 0, cardDrawn;
+        -:   63:	int temphand[MAX_HAND]; // moved above the if statement
+        1:   64:	int z = 0;// this is the counter for the temp hand
+        -:   65:
+        1:   66:	int discardcnt = rand() % 100;
+call    0 returned 100%
+        -:   67:	//printf("discardcnt: %d\n", discardcnt);
+        1:   68:	G.discardCount[currentPlayer] = discardcnt;
+        -:   69:
+        1:   70:	int handcnt = rand() % 10 + 1;
+call    0 returned 100%
+        -:   71:	//printf("handcnt: %d\n", handcnt);
+        1:   72:	G.handCount[currentPlayer] = handcnt;
+        -:   73:
+        4:   74:	while (drawntreasure < 2) {
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        2:   75:		if (G.deckCount[currentPlayer] < 1) { //if the deck is empty we need to shuffle discard and add to deck
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   76:			shuffle(currentPlayer, &G);
+call    0 never executed
+        -:   77:		}
+        -:   78:
+        2:   79:		drawCard(currentPlayer, &G);
+call    0 returned 100%
+        -:   80:
+        2:   81:		cardDrawn = G.hand[currentPlayer][G.handCount[currentPlayer] - 1]; //top card of hand is most recently drawn card.
+        -:   82:
+        4:   83:		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+        2:   84:			drawntreasure++;
+        -:   85:		else {
+    #####:   86:			temphand[z] = cardDrawn;
+    #####:   87:			G.handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+    #####:   88:			z++;
+        -:   89:		}
+        -:   90:	}
+        -:   91:
+        2:   92:	while (z >= 1) {
+branch  0 taken 0%
+branch  1 taken 100% (fallthrough)
+    #####:   93:		G.discard[currentPlayer][G.discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
+    #####:   94:		z--;
+        -:   95:	}
+        -:   96:
+        -:   97:
+        1:   98:	G2.discardCount[currentPlayer] = discardcnt;
+        1:   99:	G2.handCount[currentPlayer] = handcnt;
+        1:  100:	drawntreasure = 0;
+        -:  101:
+        4:  102:	while (drawntreasure < 2) {
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        2:  103:		if (G2.deckCount[currentPlayer] < 1) { //if the deck is empty we need to shuffle discard and add to deck
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:  104:			shuffle(currentPlayer, &G2);
+call    0 never executed
+        -:  105:		}
+        -:  106:
+        2:  107:		int deckCounter = G2.deckCount[currentPlayer];//Create holder for the deck count
+        2:  108:		int count = G2.handCount[currentPlayer];
+        2:  109:		G2.hand[currentPlayer][count] = G2.deck[currentPlayer][deckCounter - 1];//Add card to the hand
+        2:  110:		G2.deckCount[currentPlayer]--;
+        2:  111:		G2.handCount[currentPlayer]++;//Increment hand count
+        -:  112:
+        2:  113:		cardDrawn = G2.hand[currentPlayer][G2.handCount[currentPlayer] - 1]; //top card of hand is most recently drawn card.
+        -:  114:
+        4:  115:		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+        2:  116:			drawntreasure++;
+        -:  117:		else {
+    #####:  118:			temphand[z] = cardDrawn;
+    #####:  119:			G2.handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+    #####:  120:			z++;
+        -:  121:		}
+        -:  122:	}
+        2:  123:	while (z >= 1) {
+branch  0 taken 0%
+branch  1 taken 100% (fallthrough)
+    #####:  124:		G2.discard[currentPlayer][G2.discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
+    #####:  125:		z--;
+        -:  126:	}
+        -:  127:
+        1:  128:	int result = memcmp(&G2, &G, sizeof(struct gameState));
+        1:  129:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:  130:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:  131:		printf("Adventurer card test passed!\n");
+call    0 returned 100%
+        -:  132:	else
+    #####:  133:		printf("Adventurer card test failed!\n");
+call    0 never executed
+        -:  134:
+        1:  135:	return 0;
+        -:  136:}
+File 'cardtest3.c'
+Lines executed:80.00% of 45
+Branches executed:100.00% of 16
+Taken at least once:50.00% of 16
+Calls executed:65.00% of 20
+cardtest3.c:creating 'cardtest3.c.gcov'
+
+        -:    0:Source:cardtest3.c
+        -:    0:Graph:cardtest3.gcno
+        -:    0:Data:cardtest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * test Village Card
+        -:    3: *
+        -:    4: * cardtest3: cardtest3.c dominion.o rngs.o
+        -:    5: *      gcc -o cardtest3 cardtest3.c dominion.o rngs.o
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:#include <stdlib.h>
+        -:   16:#include <time.h>
+        -:   17:
+function checkDrawCard called 1 returned 100% blocks executed 67%
+        1:   18:int checkDrawCard(int p, struct gameState *G) {
+        -:   19:	struct gameState G2;
+        1:   20:	memcpy (&G2, G, sizeof(struct gameState));
+        -:   21:
+        1:   22:	int r = drawCard(p, G);
+call    0 returned 100%
+        -:   23:
+        1:   24:	if (G2.deckCount[p] > 0) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   25:		G2.handCount[p]++;
+        1:   26:		G2.hand[p][G2.handCount[p]-1] = G2.deck[p][G2.deckCount[p]-1]; // add card to the hand
+        1:   27:		G2.deckCount[p]--;
+        -:   28:	}
+        -:   29:	else {
+    #####:   30:		memcpy(G2.deck[p], G->deck[p], sizeof(int)*G2.discardCount[p]);
+    #####:   31:		memcpy(G2.discard[p], G->discard[p], sizeof(int)*G2.discardCount[p]);
+        -:   32:
+    #####:   33:		G2.hand[p][G->handCount[p]-1] = G->hand[p][G->handCount[p]-1];
+    #####:   34:		G2.handCount[p]++;
+    #####:   35:		G2.deckCount[p] = G2.discardCount[p]-1;
+    #####:   36:		G2.discardCount[p] = 0;
+        -:   37:	}
+        -:   38:
+        1:   39:	assert(r == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   40:
+        1:   41:	int result = memcmp(&G2, G, sizeof(struct gameState));
+        1:   42:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   43:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   44:		printf("Draw card test passed!\n");
+call    0 returned 100%
+        -:   45:	else
+    #####:   46:		printf("Draw card test failed!\n");
+call    0 never executed
+        -:   47:
+        1:   48:	return 0;
+        -:   49:}
+        -:   50:
+function main called 1 returned 100% blocks executed 80%
+        1:   51:int main() {
+        1:   52:	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+        -:   53:
+        -:   54:	struct gameState G, G2;
+        -:   55:
+        1:   56:	printf ("[Village card] Testing drawCard one time.\n");
+call    0 returned 100%
+        -:   57:
+        1:   58:	memset(&G, 23, sizeof(struct gameState));
+        1:   59:	initializeGame(2, k, 1000, &G);
+call    0 returned 100%
+        -:   60:
+        1:   61:	memcpy (&G2, &G, sizeof(struct gameState));
+        1:   62:	checkDrawCard(0, &G2);
+call    0 returned 100%
+        1:   63:	drawCard(0, &G);
+call    0 returned 100%
+        -:   64:
+        1:   65:	int result = memcmp(&G2, &G, sizeof(struct gameState));
+        1:   66:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   67:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   68:		printf("Drawing card three times test passed!\n");
+call    0 returned 100%
+        -:   69:	else
+    #####:   70:		printf("Drawing card three times test failed!\n");
+call    0 never executed
+        -:   71:
+        -:   72:
+        -:   73:	// +2 actions
+        1:   74:	G2.numActions += 2;
+        1:   75:	G.numActions += 2;
+        -:   76:
+        -:   77:
+        -:   78:	// discard played card from hand
+        1:   79:	srand(time(NULL));
+call    0 returned 100%
+call    1 returned 100%
+        1:   80:	int r = rand() % 10;
+call    0 returned 100%
+        -:   81:
+        1:   82:	discardCard(r, 0, &G, 0);
+call    0 returned 100%
+        1:   83:	discardCard(r, 0, &G2, 0);
+call    0 returned 100%
+        -:   84:
+        1:   85:	result = memcmp(&G2, &G, sizeof(struct gameState));
+        1:   86:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   87:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   88:		printf("Discard card test passed!\n");
+call    0 returned 100%
+        -:   89:	else
+    #####:   90:		printf("Discard card test failed!\n");
+call    0 never executed
+        -:   91:
+        1:   92:	return 0;
+        -:   93:}
+File 'cardtest4.c'
+Lines executed:82.61% of 46
+Branches executed:100.00% of 22
+Taken at least once:72.73% of 22
+Calls executed:73.68% of 19
+cardtest4.c:creating 'cardtest4.c.gcov'
+
+        -:    0:Source:cardtest4.c
+        -:    0:Graph:cardtest4.gcno
+        -:    0:Data:cardtest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * test Council Room Card
+        -:    3: *
+        -:    4: * cardtest1: cardtest4.c dominion.o rngs.o
+        -:    5: *      gcc -o cardtest4 cardtest4.c dominion.o rngs.o
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:#include <stdlib.h>
+        -:   16:#include <time.h>
+        -:   17:
+function checkDrawCard called 4 returned 100% blocks executed 67%
+        4:   18:int checkDrawCard(int p, struct gameState *G) {
+        -:   19:	struct gameState G2;
+        4:   20:	memcpy (&G2, G, sizeof(struct gameState));
+        -:   21:
+        4:   22:	int r = drawCard(p, G);
+call    0 returned 100%
+        -:   23:
+        4:   24:	if (G2.deckCount[p] > 0) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        4:   25:		G2.handCount[p]++;
+        4:   26:		G2.hand[p][G2.handCount[p]-1] = G2.deck[p][G2.deckCount[p]-1]; // add card to the hand
+        4:   27:		G2.deckCount[p]--;
+        -:   28:	}
+        -:   29:	else {
+    #####:   30:		memcpy(G2.deck[p], G->deck[p], sizeof(int)*G2.discardCount[p]);
+    #####:   31:		memcpy(G2.discard[p], G->discard[p], sizeof(int)*G2.discardCount[p]);
+        -:   32:
+    #####:   33:		G2.hand[p][G->handCount[p]-1] = G->hand[p][G->handCount[p]-1];
+    #####:   34:		G2.handCount[p]++;
+    #####:   35:		G2.deckCount[p] = G2.discardCount[p]-1;
+    #####:   36:		G2.discardCount[p] = 0;
+        -:   37:	}
+        -:   38:
+        4:   39:	assert(r == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   40:
+        4:   41:	int result = memcmp(&G2, G, sizeof(struct gameState));
+        4:   42:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        4:   43:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        4:   44:		printf("Draw card test passed!\n");
+call    0 returned 100%
+        -:   45:	else
+    #####:   46:		printf("Draw card test failed!\n");
+call    0 never executed
+        -:   47:
+        4:   48:	return 0;
+        -:   49:}
+        -:   50:
+        -:   51:
+function main called 1 returned 100% blocks executed 93%
+        1:   52:int main() {
+        1:   53:	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+        -:   54:
+        -:   55:	struct gameState G, G2;
+        -:   56:
+        1:   57:	printf ("[Council Room card] Testing drawCard four times.\n");
+call    0 returned 100%
+        -:   58:
+        1:   59:	memset(&G, 23, sizeof(struct gameState));
+        1:   60:	initializeGame(2, k, 1000, &G);
+call    0 returned 100%
+        1:   61:	memcpy (&G2, &G, sizeof(struct gameState));
+        -:   62:
+        1:   63:	int i = 0;
+        5:   64:	for (; i<4; i++) {
+branch  0 taken 80%
+branch  1 taken 20% (fallthrough)
+        4:   65:		checkDrawCard(0, &G2);
+call    0 returned 100%
+        4:   66:		drawCard(0, &G);
+call    0 returned 100%
+        -:   67:	}
+        -:   68:
+        -:   69:	// +1 buy
+        1:   70:	G2.numBuys++;
+        1:   71:	G.numBuys++;
+        -:   72:
+        -:   73:	// each other player draws a card
+        3:   74:	for (i = 0; i < G2.numPlayers; i++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        2:   75:		if (i != 0) drawCard(i, &G2);
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+call    2 returned 100%
+        -:   76:
+        3:   77:	for (i = 0; i < G.numPlayers; i++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        2:   78:		if (i != 0) drawCard(i, &G);
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+call    2 returned 100%
+        -:   79:
+        -:   80:	// put played card in played card pile
+        1:   81:	srand(time(NULL));
+call    0 returned 100%
+call    1 returned 100%
+        1:   82:	int r = rand() % 10;
+call    0 returned 100%
+        1:   83:	discardCard(r, 0, &G2, 0);
+call    0 returned 100%
+        1:   84:	discardCard(r, 0, &G, 0);
+call    0 returned 100%
+        -:   85:
+        -:   86:
+        1:   87:	int result = memcmp(&G2, &G, sizeof(struct gameState));
+        1:   88:	assert(result == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   89:	if (result == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   90:		printf("Council Room card test passed!\n");
+call    0 returned 100%
+        -:   91:	else
+    #####:   92:		printf("Council Room card test failed!\n");
+call    0 never executed
+        -:   93:
+        1:   94:	return 0;
+        -:   95:}

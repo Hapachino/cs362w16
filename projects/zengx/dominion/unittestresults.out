@@ -6,11 +6,11 @@ action before = 1, action after = 1
 Test case failed! Error message: -error: handCard number not correct
 Tests run: 1
 ======== test adventurer card ==========
-discardcountbefore = 0, discardcountafter =0
-hand count = 7, expected = 6
+discardcountbefore = 0, discardcountafter =1
+hand count = 7, expected = 7
 coins = 4, expected = 4
 action = 1, expected = 1
-Test case failed! Error message: -error: carddiscunt not correct
+Test case failed! Error message: -error: card discard not correct
 Tests run: 1
 ============ test village card ============
 hand count = 5, expected = 5
@@ -197,9 +197,9 @@ Taken at least once:100.00% of 2
 Calls executed:100.00% of 2
 
 Function 'playAdventurer'
-Lines executed:80.00% of 15
+Lines executed:93.33% of 15
 Branches executed:100.00% of 12
-Taken at least once:66.67% of 12
+Taken at least once:75.00% of 12
 Calls executed:50.00% of 2
 
 Function 'cardEffect'
@@ -231,9 +231,9 @@ No branches
 No calls
 
 File 'dominion.c'
-Lines executed:28.42% of 584
+Lines executed:28.77% of 584
 Branches executed:28.06% of 417
-Taken at least once:19.42% of 417
+Taken at least once:19.66% of 417
 Calls executed:24.21% of 95
 dominion.c:creating 'dominion.c.gcov'
 

@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include<stdio.h>
 #include "interface.h"
 
 #include "rngs.h"
@@ -171,84 +174,93 @@ void printDeck(int player, struct gameState *game) {
     printf("\n");
 }
 
+int get_value(int card, int cPlayer, struct gameState *state){
 
+    int val =0;
+    if (card == curse) { val =  - 1; };
+    if (card == estate) {  val =  1; };
+    if (card == duchy) {  val =  3; };
+    if (card == province) {  val =  6; };
+    if (card == great_hall) {  val =  1; };
+    if (card == gardens) {  val = ( fullDeckCount(cPlayer, 0, state) / 10 ); };
 
-int testGreatHall(struct gameState *state, int currentPlayer, int handPos ) {
+    return val;
+}
+
+int testscoreFor(int cPlayer, struct gameState *state ) {
 
     //set some beginning vars
-    int beginHandCount = state->handCount[currentPlayer];
-    int beginDeckCount = state->deckCount[currentPlayer];
-    int beginDiscardCount = state->discardCount[currentPlayer];
-    int beginActions = state->numActions;
-    int beginPlayedCount = state->playedCardCount;
+    int i,k;
     int status = 0;
+    int card[6] = {0,1,2,3,10,16};
 
-    assert(currentPlayer >= 0);
-    assert(beginHandCount > 0);
+   //todo set this up for random so that it tries all combos of cards
 
-    int i;
+   for (k=0; k < 6; k++){
 
-    //put greatHall in deck
-    state->hand[currentPlayer][0] = great_hall;
+       int sumScore = 0;
+       int score = 0;
 
-    //run great Hall
-    great_hallCard(state, currentPlayer, handPos);
+       int c1 = k;
+       int c2 = (k+1)%6;
+       int c3 = (k+2)%6;
 
-    printf("PERFORMING DRAW TEST-------------------------: \n");
+       int deckScore;
+       int handScore;
+       int disScore;
 
-    if (state->handCount[currentPlayer] != beginHandCount) {
-        status++;
-        printf("BeginHand Count was: %i \n", beginHandCount);
-        printf("Actual Hand Count was: %i \n", state->handCount[currentPlayer]);
-        printf("Hand Count should be: %i \n", beginHandCount);
-    } else if (state->deckCount[currentPlayer] != beginDeckCount - 1) {
-        status++;
-        printf("Begin DECK Count was: %i \n", beginDeckCount);
-        printf("Actual DECK Count was: %i \n", state->deckCount[currentPlayer]);
-        printf("Hand Count should be: %i \n", beginDeckCount - 1);
+       int maxHand = MAX_DECK;
+       int maxDeck= MAX_DECK-100;
+       int maxDis= MAX_DECK-200;
 
-    } else {
-        printf("PASSED \n");
-    }
+       //stack Deck
+       for(i=0; i < MAX_DECK; i++){
+           state->deck[cPlayer][i] = card[c1];
+       }
 
-    //Num actions should increase by one
-    printf("PERFORMING TEST on Actions-------------------------: \n");
-    if (state->numActions != beginActions + 1) {
-        status++;
-        printf("FAIL: Actions - discard count mismatch \n");
-        printf("BeginAction Count was: %i \n", beginActions);
-        printf("Actual Count was: %i \n", state->numActions);
-        printf(" should be same %i \n", beginActions + 1);
-    } else {
-        printf("PASSED \n");
-    }
-    printf("PERFORMING TEST on Discard-------------------------: \n");
-    //Test2
+       //stack hand
+       for(i=0; i < maxHand; i++){
+           state->hand[cPlayer][i] = card[c2];
+       }
 
-    //should add 1 to played cards pile,
+       //stack Discard
+       for(i=0; i < maxDis; i++){
+           state->discard[cPlayer][i] = card[c3];
 
-    if (state->playedCardCount != beginPlayedCount + 1) {
-        status++;
-        printf("FAIL: DISCARD - discard count mismatch \n");
+       }
+       state->handCount[cPlayer] = maxHand;
+       state->deckCount[cPlayer] = maxDeck;
+       state->discardCount[cPlayer] = maxDis;
+        //printDeck(cPlayer, state);
 
-        printf("Begin DiscardCount was:\t\t %i \n", beginDiscardCount);
-        printf("Actual Discard Count was:\t %i \n", state->discardCount[currentPlayer]);
-        printf("DiscardCount should be:\t\t %i \n", beginDiscardCount + 1);
 
-    }
-        //card should be of type great_hall
-    else if (state->playedCards[state->playedCardCount - 1] != great_hall) {
 
-        status++;
-        printf("FAIL: Wrong card in discard pile - discard count mismatch \n");
-        //printHand(currentPlayer, state);
-        //printDiscard(currentPlayer, state);
-        //printPlayed(currentPlayer, state);
-    } else {
-        printf("PASSED \n");
-    }
+        //num cards by the val by  discard, hand, and deck)
+       deckScore = get_value(c1, cPlayer, state);
+       handScore = get_value(c2, cPlayer, state);
+       disScore = get_value(c3, cPlayer, state);
+
+       sumScore = (maxDeck*deckScore + maxHand*handScore + maxDis*disScore);
+
+       score = scoreFor(cPlayer, state);
+
+       if(score != sumScore){
+           status ++;
+           char name[MAX_STRING_LENGTH];
+           cardNumToName(card[c1], name);
+           printf("Scenario: %-13s , ", name);
+           cardNumToName(card[c2], name);
+           printf("Scenario: %-13s , ", name);
+           cardNumToName(card[c3], name);
+           printf("Scenario: %-13s \n", name);
+           printf("Score is not correct scoreFor retuned: %i, but should have returned %i\n",score,sumScore);
+       }
+
+   }
+
     return status;
 }
+
 
 int main(int argc, char** argv) {
     struct gameState G;
@@ -266,17 +278,20 @@ int main(int argc, char** argv) {
 
     int numSmithies = 0;
     int numAdventurers = 0;
-    int currentPlayer = whoseTurn(&G);
+    srand(time(NULL));
+    //VIP Must start at player 0
+    int currentPlayer = 0;
 
+    printf ("\n\nTESTING scoreFor: ------------------ \n");
+    int testResult = testscoreFor( currentPlayer, &G );
 
-    printf ("\n\nTESTING Great Hall CARD: ------------------ \n");
-    int testResult = testGreatHall(&G, currentPlayer, 0);
     if( testResult == 0){
-        printf ("test GreatHall: OK\n");
+        printf ("test Score for: OK \n");
 
     }else{
         printf ("FAILED : %i tests\n", testResult );
     }
+
 
 return 0;
 }

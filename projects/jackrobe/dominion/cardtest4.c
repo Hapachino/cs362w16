@@ -173,80 +173,124 @@ void printDeck(int player, struct gameState *game) {
 
 
 
-int testGreatHall(struct gameState *state, int currentPlayer, int handPos ) {
+int testCouncilRoom(struct gameState *state, int cPlayer, int handPos ) {
 
     //set some beginning vars
-    int beginHandCount = state->handCount[currentPlayer];
-    int beginDeckCount = state->deckCount[currentPlayer];
-    int beginDiscardCount = state->discardCount[currentPlayer];
-    int beginActions = state->numActions;
-    int beginPlayedCount = state->playedCardCount;
+    struct gameState preState;
+    preState = *state;
+
     int status = 0;
-
-    assert(currentPlayer >= 0);
-    assert(beginHandCount > 0);
-
     int i;
 
-    //put greatHall in deck
-    state->hand[currentPlayer][0] = great_hall;
+    //some assumptions
+    printf("deckcount: %i \n", state->deckCount[cPlayer]);
+    assert(state->deckCount[cPlayer] > 4);
 
-    //run great Hall
-    great_hallCard(state, currentPlayer, handPos);
+    //run CouncilRoom
+    councilRoomCard(state, cPlayer, handPos);
 
-    printf("PERFORMING DRAW TEST-------------------------: \n");
-
-    if (state->handCount[currentPlayer] != beginHandCount) {
+    // check if hand is plus 3 (one is discarded)
+    if(state->handCount[cPlayer] != preState.handCount[cPlayer] +3){
         status++;
-        printf("BeginHand Count was: %i \n", beginHandCount);
-        printf("Actual Hand Count was: %i \n", state->handCount[currentPlayer]);
-        printf("Hand Count should be: %i \n", beginHandCount);
-    } else if (state->deckCount[currentPlayer] != beginDeckCount - 1) {
-        status++;
-        printf("Begin DECK Count was: %i \n", beginDeckCount);
-        printf("Actual DECK Count was: %i \n", state->deckCount[currentPlayer]);
-        printf("Hand Count should be: %i \n", beginDeckCount - 1);
-
-    } else {
-        printf("PASSED \n");
+        printf("Begin Hand Count was: %i \n",preState.handCount[cPlayer]);
+        printf("Actual Hand Count was: %i \n", state->handCount[cPlayer]);
+        printf("Hand Count should be: %i \n", preState.handCount[cPlayer] +3);
     }
 
-    //Num actions should increase by one
-    printf("PERFORMING TEST on Actions-------------------------: \n");
-    if (state->numActions != beginActions + 1) {
+    //make sure buys increases
+    if(state->numBuys != preState.numBuys +1){
         status++;
-        printf("FAIL: Actions - discard count mismatch \n");
-        printf("BeginAction Count was: %i \n", beginActions);
-        printf("Actual Count was: %i \n", state->numActions);
-        printf(" should be same %i \n", beginActions + 1);
-    } else {
-        printf("PASSED \n");
+        printf("Number of buys Failed: %i \n");
+        printf("NumBuys was: %i \n", state->numBuys);
+        printf("NumBuys should be: %i \n", preState.numBuys +1);
     }
-    printf("PERFORMING TEST on Discard-------------------------: \n");
-    //Test2
 
-    //should add 1 to played cards pile,
+    //make sure other players hand increased by one card
+    // Don't need to check cPlayer's count here if
+    //it were off it would have shown up in first test
+    for(i=0;i < state->numPlayers; i++){
 
-    if (state->playedCardCount != beginPlayedCount + 1) {
-        status++;
-        printf("FAIL: DISCARD - discard count mismatch \n");
+        if (i != cPlayer){
 
-        printf("Begin DiscardCount was:\t\t %i \n", beginDiscardCount);
-        printf("Actual Discard Count was:\t %i \n", state->discardCount[currentPlayer]);
-        printf("DiscardCount should be:\t\t %i \n", beginDiscardCount + 1);
+            if(state->handCount[i] != preState.handCount[i] +1){
+                status++;
+                printf("Other Player didn't draw Card:\n\n");
+                printf("Player %i 's Actual Hand Count was: %i \n",i, state->handCount[i]);
+                printf("Player %i 's Hand Count should be: %i \n",i, preState.handCount[i] +1);
+
+            }
+
+        }
 
     }
-        //card should be of type great_hall
-    else if (state->playedCards[state->playedCardCount - 1] != great_hall) {
 
-        status++;
-        printf("FAIL: Wrong card in discard pile - discard count mismatch \n");
-        //printHand(currentPlayer, state);
-        //printDiscard(currentPlayer, state);
-        //printPlayed(currentPlayer, state);
-    } else {
-        printf("PASSED \n");
-    }
+//    //Each other player draws a card
+//    for (i; i < state->numPlayers; i++)
+//    {
+//        if (i != currentPlayer)
+//        {
+//            drawCard(i, state);
+//        }
+//    }
+//
+//    //put played card in played card pile
+//    discardCard(handPos, currentPlayer, state, 0);
+//
+//    return 0;
+
+//    printf("PERFORMING DRAW TEST-------------------------: \n");
+//
+//    if (state->handCount[currentPlayer] != beginHandCount) {
+//        status++;
+//        printf("BeginHand Count was: %i \n", beginHandCount);
+//        printf("Actual Hand Count was: %i \n", state->handCount[currentPlayer]);
+//        printf("Hand Count should be: %i \n", beginHandCount);
+//    } else if (state->deckCount[currentPlayer] != beginDeckCount - 1) {
+//        status++;
+//        printf("Begin DECK Count was: %i \n", beginDeckCount);
+//        printf("Actual DECK Count was: %i \n", state->deckCount[currentPlayer]);
+//        printf("Hand Count should be: %i \n", beginDeckCount - 1);
+//
+//    } else {
+//        printf("PASSED \n");
+//    }
+//
+//    //Num actions should increase by one
+//    printf("PERFORMING TEST on Actions-------------------------: \n");
+//    if (state->numActions != beginActions + 1) {
+//        status++;
+//        printf("FAIL: Actions - discard count mismatch \n");
+//        printf("BeginAction Count was: %i \n", beginActions);
+//        printf("Actual Count was: %i \n", state->numActions);
+//        printf(" should be same %i \n", beginActions + 1);
+//    } else {
+//        printf("PASSED \n");
+//    }
+//    printf("PERFORMING TEST on Discard-------------------------: \n");
+//    //Test2
+//
+//    //should add 1 to played cards pile,
+//
+//    if (state->playedCardCount != beginPlayedCount + 1) {
+//        status++;
+//        printf("FAIL: DISCARD - discard count mismatch \n");
+//
+//        printf("Begin DiscardCount was:\t\t %i \n", beginDiscardCount);
+//        printf("Actual Discard Count was:\t %i \n", state->discardCount[currentPlayer]);
+//        printf("DiscardCount should be:\t\t %i \n", beginDiscardCount + 1);
+//
+//    }
+//        //card should be of type great_hall
+//    else if (state->playedCards[state->playedCardCount - 1] != great_hall) {
+//
+//        status++;
+//        printf("FAIL: Wrong card in discard pile - discard count mismatch \n");
+//        //printHand(currentPlayer, state);
+//        //printDiscard(currentPlayer, state);
+//        //printPlayed(currentPlayer, state);
+//    } else {
+//        printf("PASSED \n");
+//    }
     return status;
 }
 
@@ -266,13 +310,15 @@ int main(int argc, char** argv) {
 
     int numSmithies = 0;
     int numAdventurers = 0;
+
     int currentPlayer = whoseTurn(&G);
 
 
-    printf ("\n\nTESTING Great Hall CARD: ------------------ \n");
-    int testResult = testGreatHall(&G, currentPlayer, 0);
+    printf ("\n\nTESTING Council Room CARD: ------------------ \n");
+
+    int testResult = testCouncilRoom(&G, currentPlayer, 0);
     if( testResult == 0){
-        printf ("test GreatHall: OK\n");
+        printf ("test Council Room: OK\n");
 
     }else{
         printf ("FAILED : %i tests\n", testResult );

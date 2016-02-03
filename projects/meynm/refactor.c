@@ -2,6 +2,7 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 // code with BUGS DOCUMENTED
+
 // bug on line 15
 void playSmithy( int currentPlayer, struct gameState *state, int handPos )
 {
@@ -10,17 +11,16 @@ void playSmithy( int currentPlayer, struct gameState *state, int handPos )
 	{
 		drawCard( currentPlayer, state);
 	}
-
 	//discard card from hand
 	discardCard( currentPlayer, handPos, state, 1 ); // should be (handPos, currentPlayer, state, 0)
 	return;
 }
 
 // draw cards until 2 treasure cards have been drawn
-// bugs in line 23, 43, 44
+// bugs in line 23, 43 (fixed), 44 (fixed)
 void playAdventurer( int currentPlayer, struct gameState *state )
 {
-	int drawntreasure, cardDrawn, z;	// should be initialized to 0
+	int drawntreasure, cardDrawn, z = 0;	// should be initialized to 0
 	int temphand[MAX_HAND];
 	//keep drawing cards until 2 treasure cards are drawn
 	while ( drawntreasure < 2 )
@@ -40,8 +40,8 @@ void playAdventurer( int currentPlayer, struct gameState *state )
 		{
 			temphand[z] = cardDrawn;
 			//remove the top card
-			state->handCount[currentPlayer--];	// should be state->handCount[currentPlayer]--
-			//z needs to be incremented
+			state->handCount[currentPlayer]--;	// should be state->handCount[currentPlayer]--
+			z++;//z needs to be incremented
 		}
 	}
 	while ( z - 1 >= 0 )
@@ -64,13 +64,13 @@ int playMine( int currentPlayer, struct gameState *state, int handPos, int choic
 	{
 		return -1;
 	}
-
 	if (choice1 > treasure_map || choice1 < curse) // choice1 should be choice2
+	//if (choice2 > treasure_map || choice2 < curse)
 	{
 		return -1;
 	}
 
-	if (( getCost( state->hand[currentPlayer][choice1] ) + 3 ) > getCost( choice2 ))
+	if (( getCost( state->hand[currentPlayer][choice1] ) + 3 ) < getCost( choice2 )) // should be <
 	{
 		return -1;
 	}
@@ -85,7 +85,7 @@ int playMine( int currentPlayer, struct gameState *state, int handPos, int choic
 	{
 		if (state->hand[currentPlayer][i] == j)
 		{
-			discardCard( i, currentPlayer, state, 0 );
+			discardCard( i, currentPlayer, state, 1 );
 			break;
 		}
 	}
@@ -172,6 +172,7 @@ void playSteward(int currentPlayer, struct gameState *state, int handPos, int ch
 	{
 		//trash 2 cards in hand
 		discardCard( choice1, currentPlayer, state, 1 ); // choice1 should be choice2
+		//discardCard( choice2, currentPlayer, state, 1 ); // choice1 should be choice2
 		discardCard( choice3, currentPlayer, state, 1 );
 	}
 

@@ -83,6 +83,7 @@ unittestresults.out: unittest1.c testHelpers.o dominion.o rngs.o
 	echo -e "\t\tCode Coverage" >> unittestresults.out
 	echo "-------------------------------------------------" >> unittestresults.out
 	gcov ./dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

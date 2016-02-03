@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -fprofile-arcs -coverage -lm
+CFLAGS = -Wall -fpic -fprofile-arcs -ftest-coverage -lm
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -62,36 +62,39 @@ assignment3: Card1 Card2 Card3 Card4 Unit1 Unit2 Unit3 Unit4
 
 unittestresults.out:
 	make clean
-	rm -rf unittestresults.out
+	make all
 	make assignment3
 	
-	echo "cardtest1 -" >> unittestresults.out
-	./cardtest1 >> unittestresults.out
+	echo "cardtest1 -" >> unittestresultsrobust.out
+	./cardtest1 >> unittestresultsrobust.out
 	
-	echo "cardtest2 -" >> unittestresults.out
-	./cardtest2 >> unittestresults.out
+	echo "cardtest2 -" >> unittestresultsrobust.out
+	./cardtest2 >> unittestresultsrobust.out
 	
-	echo "cardtest3 -" >> unittestresults.out
-	./cardtest3 >> unittestresults.out
+	echo "cardtest3 -" >> unittestresultsrobust.out
+	./cardtest3 >> unittestresultsrobust.out
 	
-	echo "cardtest4 -" >> unittestresults.out
-	./cardtest4 >> unittestresults.out
+	echo "cardtest4 -" >> unittestresultsrobust.out
+	./cardtest4 >> unittestresultsrobust.out
 	
-	echo "unittest1 -" >> unittestresults.out
-	./unittest1 >> unittestresults.out
+	echo "unittest1 -" >> unittestresultsrobust.out
+	./unittest1 >> unittestresultsrobust.out
 	
-	echo "unittest2 -" >> unittestresults.out
-	./unittest2 >> unittestresults.out
+	echo "unittest2 -" >> unittestresultsrobust.out
+	./unittest2 >> unittestresultsrobust.out
 	
-	echo "unittest3 -" >> unittestresults.out
-	./unittest3 >> unittestresults.out
+	echo "unittest3 -" >> unittestresultsrobust.out
+	./unittest3 >> unittestresultsrobust.out
 	
-	echo "unittest4 -" >> unittestresults.out
-	./unittest4 >> unittestresults.out
+	echo "unittest4 -" >> unittestresultsrobust.out
+	./unittest4 >> unittestresultsrobust.out
 	
 	echo "all results -"
+	gcov -b dominion.c >> unittestresultsrobust.out
 	gcov -b dominion.c >> unittestresults.out
-	dominion.c.gcov >> unittestresults.out
+	chmod 777 dominion.c.gcov
+	cat dominion.c.gcov >> unittestresultsrobust.out
+	cat dominion.c.gcov >> unittestresults.out
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittestresults.out unittestresultsrobust.out

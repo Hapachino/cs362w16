@@ -25,7 +25,8 @@ int main () {
     srand(time(NULL));
    
     printf("Testing scoreFor().\n");
-    
+    int failCount1 = 0;
+    int failCount2 = 0;
     struct gameState g;
     struct gameState pre;
     /* Initialize basic game state information, and assign to new game */
@@ -128,13 +129,24 @@ int main () {
                 int funcResult = scoreFor(p, &g);
                 // Compare coin count
                 printf("Player %d - Expect: %d, Received: %d\n", p, oracleResult, funcResult);
-                assert(oracleResult == funcResult);
+                if(oracleResult != funcResult) {
+                    printf(" FAIL \n");
+                    failCount1++;
+                }
                 // Compare structs to ensure they remained the same
                 printf("Testing matching game states\n");
-                assert(memcmp(&pre, &g, sizeof(struct gameState)) == 0);
+                if(memcmp(&pre, &g, sizeof(struct gameState)) != 0) {
+                    printf(" FAIL \n");
+                    failCount2++;
+                }
             }
         }
     }
-    printf("Finished all scoreFor() tests succesfully!\n");
+    int totalFails = failCount1 + failCount2;
+    if (totalFails == 0) {
+        printf("Finished all scoreFor() tests succesfully!\n");
+    } else {
+        printf("Finished all scoreFor() tests.\nFAILS 1: %d, FAILS 2: %d\n", failCount1, failCount2);
+    }
     return 0;
 }

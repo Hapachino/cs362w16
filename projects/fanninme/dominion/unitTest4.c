@@ -12,58 +12,90 @@
 #define DEBUG 0
 #define NOISY_TEST 1
 
-//Unit test for full Deck Count function
-//Preconditions:
-//function accepts  int player, int card, struct gameState *state,
+//Unit test for endTurn function
+//function accepts struct gameState *state 
+
 //oracle makes sure returns valid 
-int unitTest(int player, struct gameState *post){
+int unitTest(struct gameState *post){
     srand(time(NULL));
 
     //define variables
     int success;
-    int card;
     struct gameState pre;
     memcpy(&pre,post,sizeof(struct gameState));
-    //randomly card int within size limits
-    card= rand()%10;
-    
-    //call function
-    success=fullDeckCount(player,card, post);
 
-    if (success > MAX_DECK){
-        #if (NOISY_TEST == 1)
-        printf ("Error in end turn function.\n");
+    //call function
+    success=endTurn(post);
+
+    //memcmp game state size
+    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
+
+
+    if( post->playedCardCount != 0){
+        #if(NOISY_TEST == 1)
+        printf("played card count is not 0 \n");
         #endif
-        return 1;
+    }
+
+    if(post->handCount[post->whoseTurn] == 0){
+        #if(NOISY_TEST == 1)
+        printf("Hand count was never increased!\n");
+        #endif
+    }
+
+    //check to see if whose turn it is has changed
+    if(post->numPlayers > 1){
+        if( post->whoseTurn != pre.whoseTurn ){
+            #if (NOISY_TEST == 1)
+            printf ("current players turn has not properly changed.\n");
+            #endif
+            return 1;
+        }
     }
 
     if (success == -1){
-       #if (NOISY_TEST == 1) 
-       printf ("Error in full deck function.\n");
+        #if (NOISY_TEST == 1)
+        printf ("Error in end turn function.\n");
         #endif
         return 2;
     }
-    //memcmp game state size
-    if (memcmp(&pre,post, sizeof(struct gameState))!=0);{
-        #if (NOISY_TEST == 1)
-        printf ("Memory size different.\n");
-        #endif
-        return 3;
+
+    if(post->outpostPlayed != 0){
+		#if (NOISY_TEST ==1)
+    	printf("current player not correctly updated, outposts played greater than 0");
+		#endif
     }
+    if(post->phase != 0){
+    	#if (NOISY_TEST ==1)
+    	printf("phase correctly updated");
+		#endif
+    }
+
+    if(post->numActions != 1){
+    	#if (NOISY_TEST ==1)
+    	printf("current player not correctly updated, outposts played greater than 0");
+		#endif
+    }
+
+    if(post->numBuys != 1){
+    	#if (NOISY_TEST ==1)
+    	printf("current player not correctly updated, outposts played greater than 0");
+		#endif
+    }
+
     return 0;
 }
 
 
 int main () {
   //define variables  
-  int i, n, r, p, error,errorA,errorB,errorC;
+  int i, n, r, p, error,errorA,errorB;
   errorA=0;
   errorB=0;
-  errorC=0;
   //define a gamestate
   struct gameState G;
 
-  printf ("Testing full deck count.\n");
+  printf ("Testing end turn function.\n");
 
   printf ("RANDOM TESTS.\n");
   //create random seed
@@ -79,29 +111,25 @@ int main () {
     G.deckCount[p] = floor(Random() * MAX_DECK);
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
+    G.numPlayers = floor(Random() * MAX_PLAYERS);
+    G.whoseTurn = floor(Random() * MAX_PLAYERS);
     //call function with test input
-    error=unitTest(p,&G);
+    error=unitTest(&G);
 
     if (error > 0){
         if(error == 1){
             errorA++;
-        }else if(error == 2){
+        }else if(error > 1){
             errorB++;
-        }else if(error == 3){
-            errorC++;
         }
     }
-
   }
 
-  printf ("ALL TESTS OK\n");
-  printf ("ALL Random TESTS Complete\n");
-  printf ("Errors type 1: %d ",errorA);
-  printf ("Error in end turn function.\n");
+  printf ("ALL TESTS complete\n");
+   printf ("Errors type 1: %d ",errorA);
+  printf ("Current player has not been changed at end of turn.\n");
   printf ("Errors type 2: %d ",errorB);
-  printf ("Error in full deck function.\n");
-  printf ("Errors type 3: %d ",errorC);
-  printf ("Memory size different.\n");
+  printf("function received bad input/found a error returned a 1 \n");
 
   return 0;
 }

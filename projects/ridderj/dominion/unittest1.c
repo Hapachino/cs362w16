@@ -1,5 +1,8 @@
 /* -----------------------------------------------------------------------
  * Testing fullDeckCount()
+ Basic requirements of fullDeckCount()
+   1)Count how many of one card are in all of
+      the decks.
  * -----------------------------------------------------------------------
  */
 

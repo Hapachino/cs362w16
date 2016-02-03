@@ -13,7 +13,6 @@ int main() {
   int seed = 1004;
   struct gameState G, storeG;
   int p1 = 0;
-  int p2 = 1;
   int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
                council_room, village, mine, tribute, ambassador};
 
@@ -30,6 +29,6 @@ int main() {
 
   printf("Expected Deck Size: %d  New Deck Size: %d\n",
           storeG.deckCount[p1]-1, G.deckCount[p1]);
-
+  printf("\n\n\n");
   return 0;
 }

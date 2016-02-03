@@ -47,13 +47,13 @@ int testAdventurer(struct gameState *after)
 	//if deck counts not different by 2 then error msg 
 	if(afterTotal != beforeTotal) 
 	{
-		printf("ERROR: Total card count difference! Should be 2 less than before total. Before: %d After: %d\n", beforeTotal, afterTotal);
+		printf("ERROR 1: Total card count difference! Should be 2 less than before total. Before: %d After: %d\n", beforeTotal, afterTotal);
 	}
 	//checking hand state
 	 before.handCount[p] =  before.handCount[p]+2;//hand count should be different by 2
 	if(after->handCount[p] != before.handCount[p])//before + 2 should equal after 
 	{
-		printf("ERROR: Hand count difference! Before: %d After: %d\n", before.handCount[p], after->handCount[p]);
+		printf("ERROR 2: Hand count difference! Before: %d After: %d\n", before.handCount[p], after->handCount[p]);
 	}
 	
 	//checking all treasure card types in hand are higher than before adventurer was played
@@ -75,20 +75,20 @@ int testAdventurer(struct gameState *after)
 	}
 	//testing if after treasure count is greater after 
 	if(!(afterTreasure > beforeTreasure))
-		printf("ERROR: Not enough treasure cards added to hand. Before: %d After: %d\n", beforeTreasure, afterTreasure);
+		printf("ERROR 3: Not enough treasure cards added to hand. Before: %d After: %d\n", beforeTreasure, afterTreasure);
 	//Testing State Changes:
 		//checking that buys didn't change
 	if(before.numBuys != after->numBuys)
-		printf("ERROR: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
+		printf("ERROR 4: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
 	//Ensuring that before and after player is the same using whoseTurn
 	if(before.whoseTurn != after->whoseTurn)
-		printf("ERROR: Player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
+		printf("ERROR 5: Player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
 		//checking the number of actions stayed the same
 	if(before.numActions != after->numActions)
 		printf("ERROR: Actions has changed from %i to %i", before.numActions, after->numActions);
 	//checking that number of coins didn't change 
 	if(before.coins != after->coins)
-		printf("ERROR: Coins changed from %i to %i", before.coins, after->coins);
+		printf("ERROR 6: Coins changed from %i to %i", before.coins, after->coins);
 	
 	return 0;
 }
@@ -105,8 +105,6 @@ int main()
 	for (i = 0; i < sizeof(struct gameState); i++) { 
 		((char*)&G)[i] = floor(Random() * 256);
 	}
-
-	printf("STARTING RANDOM TESTS.\n");
 	
 	G.whoseTurn = p;//setting whoseTurn to 0
 	SelectStream(2);

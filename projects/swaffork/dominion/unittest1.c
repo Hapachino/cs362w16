@@ -55,8 +55,6 @@ int main() {
         printf("\tERROR: shuffe() failed.\n");
         return -1;
     }
-    
-    // FUNCTION TO RETURN WHAT CHANGED IN STATE: STATECOMPARE(*STATE, *ORIGINALSTATE)
 
     // Check first that each player's deck count is unchanged)
     int p;

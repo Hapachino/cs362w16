@@ -30,7 +30,7 @@ int main() {
 	initializeGame(numPlayers, kingdomCards, randomSeed, &state);
 
 	/**************************************************************************
-	 * TEST CONDITION - Successful use of function gainCard
+	 * TEST CONDITION - Successful use of function
 	 *************************************************************************/
 	// PERFORMING OPERATIONS TO MEET TEST CONDITION
 	for (i = 0; i < 5; i++) {

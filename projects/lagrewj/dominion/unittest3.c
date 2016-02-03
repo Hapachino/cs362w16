@@ -28,7 +28,7 @@ int main() {
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
 #if (NOISY_TEST == 1)
-    printf("TESTING isGameOver():\n");
+    printf("\nTESTING isGameOver():\n");
 	printf("Game over = 1\n");
 #endif
 

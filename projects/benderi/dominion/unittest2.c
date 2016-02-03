@@ -2,7 +2,7 @@
  * Course:      CS362
  * Due Date:    2/3/2016
  * Description: Unit test for endTurn() function.
- * Business Requirements
+ * Requirements
  *      - End current player turn
  *      - Advance to next player
  *      - Do not advance if game is over
@@ -24,13 +24,13 @@ int main()
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                     remodel, smithy, village, baron, great_hall};
 
+    printf("TESTING - endTurn()\n");
     //initialize game state
     outcome = initializeGame(MAX_PLAYERS, k, seed, &G);
     if (outcome == -1)
         printf("ERROR - Game initialization failed.\n");
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    printf("TESTING - ENDING TURNS\n");
     //multiple tests to verify last player turn loops back to first player
     for (i = 0; i < 3; i++)
     {
@@ -46,7 +46,7 @@ int main()
             endTurn(&G);    //end current player turn
         }
     }
-    printf("TEST COMPLETE\n");
+    printf("TEST COMPLETE\n\n");
 
     return 0;
 }

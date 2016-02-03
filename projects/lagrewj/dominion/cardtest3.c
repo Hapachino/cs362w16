@@ -42,26 +42,26 @@ int testplayVillage(struct gameState *after, int handPos)
 	//gaining a card and subtracting a village
 	if(before.handCount[p] != after->handCount[p])
 	{
-		printf("ERROR: Hand count difference! Before: %d After: %d\n", before.handCount[p], after->handCount[p]);
+		printf("ERROR 1: Hand count difference! Before: %d After: %d\n", before.handCount[p], after->handCount[p]);
 	}
 	//testing actions
 	//after actions will be plus 2 due to card effect 
 	before.numActions = before.numActions + 2;
 	if(before.numActions != after->numActions)
 	{
-		printf("ERROR: Actions has changed from %i to %i", before.numActions, after->numActions);
+		printf("ERROR 2: Actions has changed from %i to %i", before.numActions, after->numActions);
 	}
 	//testing buys
 	if(before.numBuys != after->numBuys)
-		printf("ERROR: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
+		printf("ERROR 3: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
 	
 	//testing player
 	if(before.whoseTurn != after->whoseTurn)
-		printf("ERROR: Current player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
+		printf("ERROR 4: Current player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
 	
 	//testing coins
 	if(before.coins != after->coins)
-		printf("ERROR: Coins changed from %i to %i", before.coins, after->coins);
+		printf("ERROR 5: Coins changed from %i to %i", before.coins, after->coins);
 
 	
 	return 0;

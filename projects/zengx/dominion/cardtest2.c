@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <time.h> 
 
-#define TESTCARD "steward"
+#define TESTCARD "adventurer"
 
 int tests_run = 0;
 
@@ -39,13 +39,13 @@ int k[10] = { adventurer, embargo, village, minion, mine, cutpurse,
 sea_hag, tribute, smithy, council_room };
 
 
-/*for village test
+/*for adventurer test
 test if 1 card add to hand; this card be discard ; and deck card <= deckcard - 2
 if 2 action add to player
 check if other status not change: coins
 */
 static char * test_adventurer() {
-	
+	printf("======== test adventurer card ==========\n");	
 	memcpy(&testG, &G, sizeof(struct gameState));
 	cardEffect(adventurer, choice1, choice2, choice3, &testG, handpos, &bonus);
 	int lastone = testG.hand[testG.handCount[thisPlayer] - 1];
@@ -87,13 +87,7 @@ int main(int argc, char **argv) {
 	G.deck[thisPlayer][4] = 4;
 
 
-	char *result = all_tests();
-	if (result != 0) {
-		printf("%s\n", result);
-	}
-	else {
-		printf("ALL TESTS PASSED\n");
-	}
+	all_tests();
 	printf("Tests run: %d\n", tests_run);
 
 	return result != 0;

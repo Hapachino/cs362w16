@@ -143,11 +143,13 @@ int main()//main for generating random tests
 				for(q = 0; q < G.playedCardCount; q++)
 				{
 					G.playedCards[q] = floor(Random() * treasure_map) + 1;
-				}	
-				G.numBuys = 1; //not buying cards so any number will do
-				handPos = floor(Random() * G.handCount[p]);//place council_room in a random pos
+				}
+				//setting buys to 1 
+				G.numBuys = 1;
+				//puts card in random hand position
+				handPos = floor(Random() * G.handCount[p]);
 				G.hand[p][handPos] = council_room;
-				
+				//run test function
 				testPlayCouncil_Room(&G, handPos);
 				
 			}

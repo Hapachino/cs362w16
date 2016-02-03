@@ -2,8 +2,8 @@
  * Course:      CS362
  * Due Date:    2/3/2016
  * Description: Unit test for Smithy card.
- * Business Requirements
- *      - 
+ * Requirements
+ *      - player draws 3 new cards
  */
 
 #include "dominion.h"
@@ -24,6 +24,7 @@ int main()
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                     remodel, smithy, village, baron, great_hall};
 
+    printf("TESTING - SMITHY CARD\n");
     //initialize game state
     outcome = initializeGame(numPlayers, k, seed, &G);
     if (outcome == -1)
@@ -31,7 +32,6 @@ int main()
     memcpy(&testG, &G, sizeof(struct gameState));
 
     //give Smithy card to player
-    printf("TESTING - SMITHY CARD\n");
     testG.hand[thisPlayer][testG.handCount[thisPlayer]] = smithy;
     testG.handCount[thisPlayer]++;
     if (G.handCount[thisPlayer] + 1 == testG.handCount[thisPlayer])
@@ -60,7 +60,7 @@ int main()
     else
        printf("ERROR - Count of province cards has changed.\n");
 
-    printf("TEST COMPLETE\n");
+    printf("TEST COMPLETE\n\n");
 
     return 0;
 }

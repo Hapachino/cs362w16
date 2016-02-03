@@ -2,254 +2,6 @@ File 'smithytest.c'
 Lines executed:79.63% of 108
 Creating 'smithytest.c.gcov'
 
-        -:    0:Source:smithytest.c
-        -:    0:Graph:smithytest.gcno
-        -:    0:Data:smithytest.gcda
-        -:    0:Runs:1
-        -:    0:Programs:1
-        -:    1:#include "dominion.h"
-        -:    2:#include "dominion_helpers.h"
-        -:    3:#include "rngs.h"
-        -:    4:#include "cardFunctions.h"
-        -:    5:#include <stdio.h>
-        -:    6:#include <math.h>
-        -:    7:#include <stdlib.h>
-        -:    8:#include <assert.h>
-        -:    9:// 1. Current player should receive exact 3 cards.
-        -:   10:
-        -:   11:// 2. 3 cards should come from his own pile.
-        -:   12:
-        -:   13:// 3. No state change should occur for other players.
-        -:   14:
-        -:   15:// 4. No state change should occur to the victory card piles and kingdom card piles.
-        -:   16:
-        -:   17:int drawCard2(int player, struct gameState *state);
-        -:   18:
-        -:   19://random hand with smithy at the end
-        4:   20:int createRandomHand(int *k, int max) 
-        -:   21:{
-        -:   22:	int j;
-       20:   23:	for(j = 0; j < max-1; j++) 
-        -:   24:	{
-       16:   25:		k[j] = (rand()%15);
-        -:   26:	}
-        4:   27:	k[j] = smithy;
-        4:   28:}
-        -:   29:
-        -:   30://random hand with smithy at the end
-        4:   31:int createRandomDeck(int *k, int max) 
-        -:   32:{
-        -:   33:	int j;
-     1984:   34:	for(j = 0; j < max; j++) 
-        -:   35:	{
-     1980:   36:		k[j] = (rand()%15);
-        -:   37:	}
-        4:   38:}
-        -:   39:
-        4:   40:int setDiscardDeck(int *k, int max) {
-        -:   41:	int i;
-     2004:   42:	for(i = 0; i < max; i++)
-        -:   43:	{
-     2000:   44:		k[i] = -1;
-        -:   45:	}
-        4:   46:}
-        -:   47:
-        -:   48:
-        1:   49:int main() {
-        1:   50:	srand(time(NULL));
-        -:   51:	struct gameState G;
-        -:   52:
-        -:   53:	struct gameState Gcopy;
-        -:   54:	struct infosStruct infos;
-        1:   55:	int k[] = {5, 6, 7, 8, 9, 10, 11, 12, 13, 14};	
-        1:   56:	int numPlayers = 4;
-        -:   57:	int handCountBefore, handCountAfter;
-        -:   58:	int deckCountBefore, deckCountAfter;
-        1:   59:	int curPlayer, p1 = 0, p2 = 1, p3 = 2, p4 = 3;
-        -:   60:	int i;
-        1:   61:	G.numPlayers = numPlayers;
-        1:   62:	G.whoseTurn = 0;
-        1:   63:	infos.currentPlayer = 0;
-        1:   64:	infos.handPos = 4;
-        -:   65:
-        1:   66:	int handCount = 5;
-        1:   67:	int deckCount = MAX_DECK - handCount;
-        1:   68:	createRandomHand(G.hand[p1], handCount);
-        1:   69:	createRandomHand(G.hand[p2], handCount);
-        1:   70:	createRandomHand(G.hand[p3], handCount);
-        1:   71:	createRandomHand(G.hand[p4], handCount);
-        -:   72:
-        1:   73:	G.handCount[p1] = handCount;
-        1:   74:	G.handCount[p2] = handCount;	
-        1:   75:	G.handCount[p3] = handCount;	
-        1:   76:	G.handCount[p4] = handCount;
-        -:   77:
-        1:   78:	createRandomDeck(G.deck[p1], deckCount);
-        1:   79:	createRandomDeck(G.deck[p2], deckCount);
-        1:   80:	createRandomDeck(G.deck[p3], deckCount);
-        1:   81:	createRandomDeck(G.deck[p4], deckCount);
-        -:   82:
-        1:   83:	G.deckCount[p1] = deckCount;
-        1:   84:	G.deckCount[p2] = deckCount;	
-        1:   85:	G.deckCount[p3] = deckCount;	
-        1:   86:	G.deckCount[p4] = deckCount;
-        1:   87:	printf("handCount: %d\n", G.deckCount[p2]);
-        -:   88:
-        1:   89:	setDiscardDeck(G.discard[p1], MAX_DECK);
-        1:   90:	setDiscardDeck(G.discard[p2], MAX_DECK);
-        1:   91:	setDiscardDeck(G.discard[p3], MAX_DECK);
-        1:   92:	setDiscardDeck(G.discard[p4], MAX_DECK);
-        -:   93:
-        1:   94:	G.discardCount[p1] = 0;
-        1:   95:	G.discardCount[p2] = 0;	
-        1:   96:	G.discardCount[p3] = 0;	
-        1:   97:	G.discardCount[p4] = 0;
-        -:   98:
-        -:   99:
-        1:  100:  	memcpy (&Gcopy, &G, sizeof(G) );
-        1:  101:	curPlayer = p1;
-        1:  102:    int nextPlayer = 1;
-        1:  103:	printf("handCount: %d\n", G.handCount[0]);
-        -:  104:
-        -:  105:
-        -:  106:	//check handCount and deckCount of current player
-        1:  107:	handCountBefore = G.handCount[curPlayer];
-        1:  108:	deckCountBefore = G.deckCount[curPlayer];
-        -:  109:
-        1:  110:	printf("discard count %d\n", G.discardCount[0]);
-        1:  111:	effectSmithy(&G, &infos);
-        -:  112:
-        1:  113:    handCountAfter = G.handCount[curPlayer];
-        1:  114:    deckCountAfter = G.deckCount[curPlayer];
-        1:  115:    printf("%d, %d\n", handCountBefore, handCountAfter);
-        1:  116:    printf("%d, %d\n", deckCountBefore, deckCountAfter);
-        -:  117:
-        -:  118:
-        -:  119: //check state of other player(s)
-        -:  120:  //  printf("size: %d\n", G.deckCount[p1]);
-        -:  121:
-        1:  122:    assert((Gcopy.deckCount[p1]-3) == G.deckCount[p1]);
-        1:  123:    assert(Gcopy.deckCount[p2] == G.deckCount[p2]);
-        1:  124:    assert(Gcopy.deckCount[p3] == G.deckCount[p3]);
-        1:  125:    assert(Gcopy.deckCount[p4] == G.deckCount[p4]);
-        -:  126:
-        -:  127:
-        1:  128:    printf("TEST: current player deck is unchanged");
-        -:  129:    // for(i = 0; i < G.deckCount[p1]; i++)
-        -:  130:    // {
-        -:  131:    // 	assert(Gcopy.deck[p1][i] == G.deck[p1][i]);
-        -:  132:    // }
-        -:  133:
-        1:  134:    printf("TEST: player 2 deck is unchanged\n");
-      496:  135:    for(i = 0; i < G.deckCount[p2]; i++)
-        -:  136:    {
-      495:  137:    	assert(Gcopy.deck[p2][i] == G.deck[p2][i]);
-        -:  138:    }
-        1:  139:    printf("PASS");
-        -:  140:
-        1:  141:    printf("TEST: player 3 deck is unchanged\n");
-      496:  142:    for(i = 0; i < G.deckCount[p3]; i++)
-        -:  143:    {
-      495:  144:    	assert(Gcopy.deck[p3][i] == G.deck[p3][i]);
-        -:  145:    }
-        -:  146:
-        1:  147:    printf("TEST: player 4 deck is unchanged\n");
-      496:  148:    for(i = 0; i < G.deckCount[p4]; i++)
-        -:  149:    {
-      495:  150:    	assert(Gcopy.deck[p4][i] == G.deck[p4][i]);
-        -:  151:    }
-        -:  152:
-        -:  153:
-        -:  154:    // for(i = 0; i < G.handCount[p1]; i++)
-        -:  155:    // {
-        -:  156:    // 	assert(Gcopy.hand[p1][i] == G.hand[p1][i]);
-        -:  157:    // }
-        -:  158:
-        1:  159:    printf("TEST: player 2 hand is unchanged\n");
-        6:  160:    for(i = 0; i < G.handCount[p2]; i++)
-        -:  161:    {
-        5:  162:    	assert(Gcopy.hand[p2][i] == G.hand[p2][i]);
-        -:  163:    }
-        -:  164:
-        1:  165:    printf("TEST: player 3 hand is unchanged\n");
-        6:  166:    for(i = 0; i < G.handCount[p3]; i++)
-        -:  167:    {
-        5:  168:    	assert(Gcopy.hand[p3][i] == G.hand[p3][i]);
-        -:  169:    }
-        -:  170:
-        1:  171:    printf("TEST: player 4 hand is unchanged\n");
-        6:  172:    for(i = 0; i < G.handCount[p4]; i++)
-        -:  173:    {
-        5:  174:    	assert(Gcopy.hand[p4][i] == G.hand[p4][i]);
-        -:  175:    }
-        1:  176:	return 0;
-        -:  177:}
-        -:  178:
-        -:  179:
-        -:  180:
-        -:  181:
-    #####:  182:int drawCard2(int player, struct gameState *state)
-        -:  183:{	
-        -:  184:	int count;
-        -:  185:  int deckCounter;
-    #####:  186:  if (state->deckCount[player] <= 0)
-        -:  187:  {
-        -:  188: 	//Deck is empty
-        -:  189:    //Step 1 Shuffle the discard pile back into a deck
-        -:  190:    int i;
-        -:  191:    //Move discard to deck
-    #####:  192:    for (i = 0; i < state->discardCount[player];i++){
-    #####:  193:      state->deck[player][i] = state->discard[player][i];
-    #####:  194:      state->discard[player][i] = -1;
-        -:  195:    }
-        -:  196:
-    #####:  197:    state->deckCount[player] = state->discardCount[player];
-    #####:  198:    state->discardCount[player] = 0;//Reset discard
-        -:  199:
-        -:  200:    //Shufffle the deck
-    #####:  201:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
-        -:  202:   
-        -:  203:    if (DEBUG){//Debug statements
-        -:  204:      printf("Deck count now: %d\n", state->deckCount[player]);
-        -:  205:    }
-        -:  206:    
-    #####:  207:    state->discardCount[player] = 0;
-        -:  208:
-        -:  209:    //Step 2 Draw Card
-    #####:  210:    count = state->handCount[player];//Get current player's hand count
-        -:  211:    
-        -:  212:    if (DEBUG){//Debug statements
-        -:  213:      printf("Current hand count: %d\n", count);
-        -:  214:    }
-        -:  215:    
-    #####:  216:    deckCounter = state->deckCount[player];//Create a holder for the deck count
-        -:  217:
-    #####:  218:    if (deckCounter == 0)
-    #####:  219:      return -1;
-        -:  220:
-    #####:  221:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
-    #####:  222:    state->deckCount[player]--;
-    #####:  223:    state->handCount[player]++;//Increment hand count
-        -:  224:  }
-        -:  225: 
-        -:  226:  else
-        -:  227:  {
-    #####:  228:    int count = state->handCount[player];//Get current hand count for player
-        -:  229:    int deckCounter;
-        -:  230:    if (DEBUG){//Debug statements
-        -:  231:      printf("Current hand count: %d\n", count);
-        -:  232:    }
-        -:  233:
-    #####:  234:    deckCounter = state->deckCount[player];//Create holder for the deck count
-    #####:  235:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-    #####:  236:    state->deckCount[player]--;
-    #####:  237:    state->handCount[player]++;//Increment hand count
-        -:  238:  }
-        -:  239:
-    #####:  240:  return 0;
-        -:  241:}
-        -:  242:
-        -:  243:
 -------------------------------------
 START of the unittest2 - KingdomCards
 -------------------------------------
@@ -258,36 +10,51 @@ File 'unittest2.c'
 Lines executed:92.31% of 13
 Creating 'unittest2.c.gcov'
 
-        -:    0:Source:unittest2.c
-        -:    0:Graph:unittest2.gcno
-        -:    0:Data:unittest2.gcda
-        -:    0:Runs:1
-        -:    0:Programs:1
-        -:    1:#include "dominion.h"
-        -:    2:#include "dominion_helpers.h"
-        -:    3:#include <string.h>
-        -:    4:#include <stdio.h>
-        -:    5:#include <assert.h>
-        -:    6:#include "rngs.h"
-        -:    7:#include <time.h>
-        -:    8:
-        1:    9:int main() {
-        -:   10:
-        1:   11:	printf("-------------------------------------\n");
-        1:   12:	printf("START of the unittest2 - KingdomCards\n");
-        1:   13:	printf("-------------------------------------\n");
-        -:   14:
-        -:   15:	int i;
-        1:   16:	int k1[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
-        1:   17:	int *k2 = kingdomCards(adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall);
-        -:   18:
-       11:   19:	for(i = 0; i < 10; i++) {
-       10:   20:		int ret = compare(&k1[i], &	k2[i]);
-       10:   21:		if(ret != 0)
-    #####:   22:			printf("FAIL: return val should be 0, got %d\n", ret);
-       10:   23:		assert(ret == 0);
-        -:   24:	}
-        1:   25:	printf("PASS: kingdom cards allocated correctly\n");
-        -:   26:
-        1:   27:	return 0;
-        -:   28:}
+-------------------------------------
+START of the unittest1
+-------------------------------------
+PASS when all supply count is 1
+PASS when any one supply is set to 0
+PASS when any two supplies are set to 0
+PASS when any three supplies are set to 0
+-------------------------------------
+File 'unittest1.c'
+Lines executed:90.48% of 63
+Creating 'unittest1.c.gcov'
+
+-------------------------------------------------------
+START OF UNIT TEST 3 - INITIALIZEGAME
+
+TEST #1: Kingdom cards random testing
+	 should return 0 if unique; -1 if non-unique
+PASS
+------------------
+TEST #2: Number of players random testing
+	 should return 0 if 2 - 4; -1 otherwise
+PASS
+----------------------
+TEST #3a: Supply cards: 3 players
+	 curse = 10, estate|province|duchy = 8
+PASS
+------------------
+TEST #3b: Supply cards: 3 players
+	 curse = 20, estate|province|duchy = 12
+PASS
+------------------
+TEST #3c: Supply cards: 4 players
+	 curse = 30, estate|province|duchy = 12
+PASS
+------------------
+TEST #4: Kingdom cards correct values
+	 should return 8, 10, 12 depending on number of players; -1 for unselected card
+
+END OF UNIT TEST 3 - INITIALIZEGAME
+---------------------------------------------------
+File 'unittest3.c'
+Lines executed:69.08% of 207
+Creating 'unittest3.c.gcov'
+
+here
+here
+d 3
+d 7

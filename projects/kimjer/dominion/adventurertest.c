@@ -117,8 +117,6 @@ int createRandomDecksHands(struct gameState* G) {
 	G->discardCount[p4] = 0;
 }
 
-int effectAdventure2(struct gameState *state, struct infosStruct *infos);
-
 int main() 
 {
 
@@ -165,44 +163,19 @@ int main()
 	hCount2 = G.handCount[0];
 	tCount2 = countTreasureCards(G.hand[0], G.handCount[0]);
 	tCountDeck2 = countTreasureCards(G.deck[0], G.deckCount[0]);
+	printf("TEST: player's hand count is increased by 2\n");
 	assert(hCount1 + 2 == hCount2);
+	
+	printf("TEST: player's treasure card count is increased by 2\n");
 	assert(tCount1 + 2 == tCount2);
+
+	printf("TEST: player's treasure card count in deck is decreased by 2\n");
 	assert(tCountDeck1 - 2 == tCountDeck2);
 	
-
+	
 }
 
 
-int effectAdventure2(struct gameState *state, struct infosStruct *infos) {
-  int drawntreasure2 = infos->drawntreasure;
-  int currentPlayer = infos->currentPlayer;
-  int cardDrawn = infos->cardDrawn;
-  int *temphand = (infos->temphand);
-  int z = infos->z;
-  int handPos = infos->handPos;
-  int i = infos->i;
-
-  while(drawntreasure2<2) {
-    if (state->deckCount[currentPlayer] <1) {//if the deck is empty we need to shuffle discard and add to deck
-      shuffle(currentPlayer, state);
-    }
-    drawCard(currentPlayer, state);
-    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-      drawntreasure2++;
-    else{
-      temphand[z]=cardDrawn;
-      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-      z++;
-    }
-      }
-      while(z-1>=0){
-  state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-  z=z-1;
-      }
-      return 0;
-      
-}
 
 // struct gameState {
 //   int numPlayers; //number of players

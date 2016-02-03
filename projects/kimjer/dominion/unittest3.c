@@ -356,10 +356,10 @@ int main() {
 	//testing for correct kingdom card values
 	printf("TEST #4: Kingdom cards correct values\n");
 	printf("\t should return 8, 10, 12 depending on number of players; -1 for unselected card\n");
-	test4(seed);
+	//test4(seed);
 
 
-	test5(seed);
+	//test5(seed);
 
 	printf("\nEND OF UNIT TEST 3 - INITIALIZEGAME\n");
 	printf("---------------------------------------------------\n");

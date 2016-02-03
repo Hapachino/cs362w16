@@ -1,0 +1,372 @@
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <time.h>
+        -:    8:#include <stdlib.h>
+        -:    9:#define NUMCARDS 10
+        -:   10:#define NUMTRIALS 100000
+        -:   11:
+        4:   12:int* getUniqueCards() 
+        -:   13:{
+        4:   14:	return kingdomCards(5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
+        -:   15:}
+        -:   16:
+   200021:   17:void ASSERT2(int testVal, int assVal, char *s) 
+        -:   18:{	
+   200021:   19:	if(assVal != testVal) 
+        -:   20:	{
+    #####:   21:		printf("FAIL - %s\n", s);
+    #####:   22:		printf("ASSERTED value is %d; got %d", assVal, testVal);
+    #####:   23:		assert(assVal == testVal);
+    #####:   24:		exit(1);
+        -:   25:	}
+   200021:   26:}
+        -:   27:
+   100000:   28:int cardsAreUnique(int k[]) 
+        -:   29:{
+        -:   30:	int i, j;
+        -:   31:	//check selected kingdom cards are different (from dominion.c)
+   230363:   32:	for (i = 0; i < NUMCARDS; i++)
+        -:   33:	{
+  2039403:   34:		for (j = 0; j < NUMCARDS; j++)
+        -:   35:		{
+  1909040:   36:			if (j != i && k[j] == k[i])
+        -:   37:			{
+    98037:   38:				return -1;
+        -:   39:			}
+        -:   40:		}
+        -:   41:	}
+     1963:   42:	return 0;
+        -:   43:}
+        -:   44:
+    #####:   45:int cardsAreCorrectVals(int k[]) {
+        -:   46:	int i;
+    #####:   47:	for(i = 0; i < NUMCARDS; i++) 
+        -:   48:	{
+    #####:   49:		if(k[i] > treasure_map || k[i] < adventurer) {
+    #####:   50:			return -1;
+        -:   51:		}
+        -:   52:	}
+    #####:   53:	return 0;
+        -:   54:}
+        -:   55:
+        1:   56:int test1(int seed) 
+        -:   57:{
+        -:   58:	int i, j;
+        1:   59:	int *k = (int*)malloc(sizeof(int)*NUMCARDS);
+        -:   60:
+        1:   61:	int numPlayers = (rand()% 3) + 2;
+        1:   62:	int ret = -1;
+        -:   63:
+        1:   64:	struct gameState *G = newGame();
+        -:   65://	struct gameState *Gcpy = newGame();
+        -:   66:	//repeat until you get return val 0 in initializeGame, i.e. all kingdom cards are unique
+        -:   67:
+        1:   68:	printf("TEST #1: Kingdom cards random testing\n");
+        1:   69:	printf("\t should return 0 if unique; -1 if non-unique\n");
+   100001:   70:	for(i = 0; i < NUMTRIALS; i++)
+        -:   71:	{
+  1100000:   72:		for(j = 0; j < NUMCARDS; j++) {
+  1000000:   73:			k[j] = (rand()%15);
+        -:   74:		}
+   100000:   75:		ret = initializeGame(numPlayers, k, seed, G);
+   100000:   76:		int cret = cardsAreUnique(k);
+   100000:   77:		if(cret == 0) {
+     1963:   78:			ASSERT2(ret, 0, "FAIL when cards are unique");
+        -:   79:		}
+        -:   80:		else {
+    98037:   81:			ASSERT2(ret, -1, "FAIL when cards are non-unique");
+        -:   82:		}
+        -:   83:	}
+        -:   84:
+        1:   85:	printf("PASS\n");
+        1:   86:	printf("------------------\n");
+        1:   87:	free(G);
+        1:   88:	free(k);
+        1:   89:}
+        -:   90:
+        1:   91:int test2(int seed) {
+        1:   92:	struct gameState *G = newGame();
+        -:   93:	//struct gameState *Gcpy = newGame();
+        -:   94:	int i;
+        -:   95:	int numPlayers;
+        -:   96:	int ret;
+        1:   97:	int *k = getUniqueCards();
+        1:   98:	printf("TEST #2: Number of players random testing\n");
+        1:   99:	printf("\t should return 0 if 2 - 4; -1 otherwise\n");
+        -:  100:	//random testing for number of players
+   100001:  101:	for(i = 0; i < NUMTRIALS; i++) {
+   100000:  102:		numPlayers = rand();
+   100000:  103:		ret = initializeGame(numPlayers, k, seed, G);
+   100000:  104:		if((numPlayers == 1) || (numPlayers == 2) || (numPlayers == 3) || (numPlayers == 4))
+        -:  105:		{
+    #####:  106:			ASSERT2(ret, 0, "FAIL");
+        -:  107:		}
+        -:  108:		else
+        -:  109:		{
+   100000:  110:			ASSERT2(ret, -1, "FAIL");
+        -:  111:		}
+        -:  112:	}
+        1:  113:	printf("PASS\n");
+        1:  114:	printf("----------------------\n");
+        1:  115:	free(G);
+        1:  116:	free(k);
+        1:  117:}
+        -:  118:
+        1:  119:int test3a(int seed) {
+        -:  120:	int ret;
+        -:  121:	int numPlayers;
+        1:  122:	int curseCount, estateCount, duchyCount, provinceCount, copperCount, silverCount = 40, goldCount = 30;
+        1:  123:	struct gameState *G = newGame();
+        1:  124:	int *k = getUniqueCards();
+        -:  125:
+        -:  126:	//Test when players are 2
+        1:  127:	numPlayers = 2;
+        1:  128:	ret = initializeGame(numPlayers, k, seed, G);
+        1:  129:	curseCount = G->supplyCount[curse];
+        1:  130:	estateCount = G->supplyCount[estate];
+        1:  131:	duchyCount = G->supplyCount[duchy];
+        1:  132:	provinceCount = G->supplyCount[province];
+        1:  133:	copperCount = G->supplyCount[copper];
+        1:  134:	silverCount = G->supplyCount[silver];
+        1:  135:	goldCount = G->supplyCount[gold];
+        1:  136:	ASSERT2(curseCount, 10, "curseCount");
+        1:  137:	ASSERT2(estateCount, 8, "estateCount");
+        1:  138:	ASSERT2(duchyCount, 8, "duchyCount");
+        1:  139:	ASSERT2(provinceCount, 8, "provinceCount");
+        1:  140:	ASSERT2(copperCount, (60 - (7 * numPlayers)), "copperCount");
+        1:  141:	ASSERT2(silverCount, 40, "silverCount");
+        1:  142:	ASSERT2(goldCount, 30, "goldCount");
+        -:  143:
+        1:  144:	free(G);
+        1:  145:	free(k);
+        1:  146:}
+        -:  147:
+        1:  148:int test3b(int seed) {
+        -:  149:	int ret;
+        -:  150:	int numPlayers;
+        1:  151:	int curseCount, estateCount, duchyCount, provinceCount, copperCount, silverCount = 40, goldCount = 30;
+        1:  152:	struct gameState *G = newGame();
+        1:  153:	int *k = getUniqueCards();
+        -:  154:	//Test when players are 3
+        -:  155:
+        1:  156:	numPlayers = 3;
+        1:  157:	ret = initializeGame(numPlayers, k, seed, G);
+        1:  158:	curseCount = G->supplyCount[curse];
+        1:  159:	estateCount = G->supplyCount[estate];
+        1:  160:	duchyCount = G->supplyCount[duchy];
+        1:  161:	provinceCount = G->supplyCount[province];
+        1:  162:	copperCount = G->supplyCount[copper];
+        1:  163:	silverCount = G->supplyCount[silver];
+        1:  164:	goldCount = G->supplyCount[gold];
+        1:  165:	ASSERT2(curseCount, 20, "curseCount");
+        1:  166:	ASSERT2(estateCount, 12, "estateCount");
+        1:  167:	ASSERT2(duchyCount, 12, "duchyCount");
+        1:  168:	ASSERT2(provinceCount, 12, "provinceCount");
+        1:  169:	ASSERT2(copperCount, (60 - (7 * numPlayers)), "copperCount");
+        1:  170:	ASSERT2(silverCount, 40, "silverCount");
+        1:  171:	ASSERT2(goldCount, 30, "goldCount");
+        -:  172:
+        1:  173:	free(G);
+        1:  174:	free(k);
+        1:  175:}
+        -:  176:
+        1:  177:int test3c(int seed) {
+        -:  178:	int ret;
+        -:  179:	int numPlayers;
+        1:  180:	int curseCount, estateCount, duchyCount, provinceCount, copperCount, silverCount = 40, goldCount = 30;
+        1:  181:	struct gameState *G = newGame();
+        1:  182:	int *k = getUniqueCards();
+        -:  183:
+        -:  184:	//Test when players are 4
+        1:  185:	numPlayers = 4;
+        1:  186:	ret = initializeGame(numPlayers, k, seed, G);
+        1:  187:	curseCount = G->supplyCount[curse];
+        1:  188:	estateCount = G->supplyCount[estate];
+        1:  189:	duchyCount = G->supplyCount[duchy];
+        1:  190:	provinceCount = G->supplyCount[province];
+        1:  191:	copperCount = G->supplyCount[copper];
+        1:  192:	silverCount = G->supplyCount[silver];
+        1:  193:	goldCount = G->supplyCount[gold];
+        1:  194:	ASSERT2(curseCount, 30, "curseCount");
+        1:  195:	ASSERT2(estateCount, 12, "estateCount");
+        1:  196:	ASSERT2(duchyCount, 12, "duchyCount");
+        1:  197:	ASSERT2(provinceCount, 12, "provinceCount");
+        1:  198:	ASSERT2(copperCount, (60 - (7 * numPlayers)), "copperCount");
+        1:  199:	ASSERT2(silverCount, 40, "silverCount");
+        1:  200:	ASSERT2(goldCount, 30, "goldCount");
+        1:  201:	free(G);
+        1:  202:	free(k);
+        1:  203:}
+        -:  204:
+    #####:  205:int test4(int seed) 
+        -:  206:{
+        -:  207:	int i, j, t, x;
+    #####:  208:	int *k = (int*)malloc(sizeof(int)*NUMCARDS);
+    #####:  209:	int *supplyCount = (int*)malloc(sizeof(int)*NUMCARDS);
+    #####:  210:	int trialCount = 100;
+    #####:  211:	int numPlayers = (rand()% 3) + 2;
+    #####:  212:	int ret = -1;
+        -:  213:	int rand1;
+    #####:  214:	struct gameState *G = newGame();
+        -:  215:
+        -:  216:	//initialize supplyCount 
+    #####:  217:	for(i = 0; i < NUMCARDS; i++) 
+        -:  218:	{
+    #####:  219:		supplyCount[i] = -1;
+        -:  220:	}
+    #####:  221:	while(t < trialCount)
+        -:  222:	{
+    #####:  223:		for(j = 0; j < NUMCARDS; j++) {
+    #####:  224:			rand1 = (rand()%15);
+    #####:  225:			k[j] = rand1;
+        -:  226:		}
+        -:  227:
+    #####:  228:		for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+        -:  229:		{
+    #####:  230:			for (j = 0; j < NUMCARDS; j++)           		//loop chosen cards
+        -:  231:			{
+    #####:  232:				if (k[j] == i)
+        -:  233:				{
+        -:  234:					//check if card is a 'Victory' Kingdom card
+    #####:  235:					if (k[j] == great_hall || k[j] == gardens)
+        -:  236:					{
+    #####:  237:						if (numPlayers == 2)
+        -:  238:						{ 
+    #####:  239:							supplyCount[i] = 8; 
+        -:  240:						}
+        -:  241:						else
+        -:  242:						{
+    #####:  243:							supplyCount[i] = 12;
+        -:  244:						}
+        -:  245:					}
+        -:  246:					else
+        -:  247:					{
+    #####:  248:						supplyCount[i] = 10;
+        -:  249:					}
+    #####:  250:					break;
+        -:  251:				}
+        -:  252:			}
+        -:  253:		}
+    #####:  254:		ret = initializeGame(numPlayers, k, seed, G);
+    #####:  255:		int cret = cardsAreUnique(k);
+    #####:  256:		if(cret == 0) 
+        -:  257:		{
+    #####:  258:			t++;
+    #####:  259:			for(x = 0; x < NUMCARDS; x++) 
+        -:  260:			{
+    #####:  261:				if(supplyCount[x] == -1) 
+        -:  262:				{
+    #####:  263:					ASSERT2(k[x], -1, "when initializing supplyCount (-1)");				
+        -:  264:				}
+        -:  265:				else 
+        -:  266:				{
+    #####:  267:					ASSERT2(k[x], supplyCount[x], "when initializing supplyCount");
+        -:  268:				}
+        -:  269:			}
+        -:  270:		}
+        -:  271:	}
+        -:  272:
+        -:  273:
+    #####:  274:	printf("PASS\n");
+    #####:  275:	printf("------------------\n");
+    #####:  276:	free(G);
+    #####:  277:	free(k);
+    #####:  278:	return 0;
+        -:  279:}
+        -:  280:
+    #####:  281:int test5(int seed) {
+        -:  282:	int i,j;
+    #####:  283:	int *k = getUniqueCards();
+        -:  284:	int numPlayers ;
+        -:  285:	struct gameState *G;
+        -:  286:	struct gameState *Gcpy;
+    #####:  287:	G = newGame();
+    #####:  288:	Gcpy = newGame();
+    #####:  289:	numPlayers = 2;
+    #####:  290:	initializeGame(numPlayers, k, seed, Gcpy);
+        -:  291:	//set player decks
+    #####:  292:	for (i = 0; i < numPlayers; i++)
+        -:  293:	{
+    #####:  294:		G->deckCount[i] = 0;
+    #####:  295:		for (j = 0; j < 3; j++)
+        -:  296:		{
+    #####:  297:		  G->deck[i][j] = estate;
+    #####:  298:		  G->deckCount[i]++;
+        -:  299:		}
+    #####:  300:		for (j = 3; j < 10; j++)
+        -:  301:		{
+    #####:  302:		  G->deck[i][j] = copper;
+    #####:  303:		  G->deckCount[i]++;		
+        -:  304:		}
+        -:  305:	}
+        -:  306:
+    #####:  307:	for (i = 0; i < numPlayers; i++)
+        -:  308:	{
+    #####:  309:		for (j = 0; j < 10; j++)
+        -:  310:		{
+    #####:  311:			printf("G: %d, copy: %d\n", G->deck[i][j],Gcpy->deck[i][j]);
+        -:  312:
+    #####:  313:			ASSERT2(Gcpy->deck[i][j], G->deck[i][j], "when initializing player decks");
+        -:  314:		}
+        -:  315:	}
+    #####:  316:	return 0;
+        -:  317:}
+        -:  318:
+        1:  319:int main() {
+        1:  320:	srand(time(NULL));
+        1:  321:	int seed = rand() + 1;
+        -:  322:		//declaring the reusable variables
+        1:  323:	int *k = (int*)malloc(sizeof(int)*NUMCARDS);
+        -:  324:
+        1:  325:	printf("-------------------------------------------------------\n");
+        1:  326:	printf("START OF UNIT TEST 3 - INITIALIZEGAME\n\n");
+        -:  327:
+        -:  328:	//testing for unique kingdom cards
+        1:  329:	test1(seed);
+        -:  330:
+        -:  331:	//testing for number of players
+        1:  332:	test2(seed);
+        -:  333:
+        -:  334:	//testing for supply count
+        -:  335:	//when 2 players
+        1:  336:	printf("TEST #3a: Supply cards: 3 players\n");
+        1:  337:	printf("\t curse = 10, estate|province|duchy = 8\n");
+        1:  338:	test3a(seed);
+        1:  339:	printf("PASS\n");
+        1:  340:	printf("------------------\n");
+        -:  341:
+        -:  342:	//when 3 players
+        1:  343:	printf("TEST #3b: Supply cards: 3 players\n");
+        1:  344:	printf("\t curse = 20, estate|province|duchy = 12\n");
+        1:  345:	test3b(seed);
+        1:  346:	printf("PASS\n");
+        1:  347:	printf("------------------\n");
+        -:  348:
+        -:  349:	//when 4 players
+        1:  350:	printf("TEST #3c: Supply cards: 4 players\n");
+        1:  351:	printf("\t curse = 30, estate|province|duchy = 12\n");
+        1:  352:	test3c(seed);
+        1:  353:	printf("PASS\n");
+        1:  354:	printf("------------------\n");
+        -:  355:
+        -:  356:	//testing for correct kingdom card values
+        1:  357:	printf("TEST #4: Kingdom cards correct values\n");
+        1:  358:	printf("\t should return 8, 10, 12 depending on number of players; -1 for unselected card\n");
+        -:  359:	//test4(seed);
+        -:  360:
+        -:  361:
+        -:  362:	//test5(seed);
+        -:  363:
+        1:  364:	printf("\nEND OF UNIT TEST 3 - INITIALIZEGAME\n");
+        1:  365:	printf("---------------------------------------------------\n");
+        1:  366:	return 0;
+        -:  367:}

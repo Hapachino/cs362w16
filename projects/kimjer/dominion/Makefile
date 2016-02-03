@@ -42,16 +42,31 @@ smithytest: dominion.o rngs.o cardFunctions.o smithytest.c
 adventurertest: dominion.o rngs.o cardFunctions.o adventurertest.c
 	gcc -o adventurertest adventurertest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 
-unittests: smithytest unittest2
+unittests: smithytest adventurertest unittest2
 	gcc -o smithytest smithytest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 	./smithytest &> unittestresult.out
 	gcov smithytest.c >> unittestresult.out	
-	cat smithytest.c.gcov >> unittestresult.out
+	#cat smithytest.c.gcov >> unittestresult.out
 
-	gcc -o smithytest smithytest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	gcc -o unittest2 unittest2.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 	./unittest2 >> unittestresult.out
 	gcov unittest2.c >> unittestresult.out	
-	cat unittest2.c.gcov >> unittestresult.out
+	#cat unittest2.c.gcov >> unittestresult.out
+
+	gcc -o unittest1 unittest1.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./unittest1 >> unittestresult.out
+	gcov unittest1.c >> unittestresult.out	
+	#cat unittest1.c.gcov >> unittestresult.out
+
+	gcc -o unittest3 unittest3.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./unittest3 >> unittestresult.out
+	gcov unittest3.c >> unittestresult.out	
+	#cat unittest1.c.gcov >> unittestresult.out
+
+	gcc -o adventurertest adventurertest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./adventurertest >> unittestresult.out
+	gcov adventurertest.c >> unittestresult.out	
+	#cat unittest1.c.gcov >> unittestresult.out
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out

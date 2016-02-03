@@ -101,10 +101,11 @@ int main()
 	int numTests = 250; //250 tests
 	int k, m, j, n, i;
 	
-	for (i = 0; i < sizeof(struct gameState); i++) { //random game state 
+	//random game state
+	for (i = 0; i < sizeof(struct gameState); i++) { 
 		((char*)&G)[i] = floor(Random() * 256);
 	}
-	//generates random tests
+
 	printf("STARTING RANDOM TESTS.\n");
 	
 	G.whoseTurn = p;//setting whoseTurn to 0

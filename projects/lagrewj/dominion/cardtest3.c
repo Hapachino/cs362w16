@@ -27,7 +27,7 @@
 #include "rngs.h"
 #include <math.h>
 
-#define TESTCARD "Adventurer"
+#define TESTCARD "Village"
 
 int testplayVillage(struct gameState *after, int handPos)
 {
@@ -69,14 +69,13 @@ int testplayVillage(struct gameState *after, int handPos)
 
 int main()
 {
-	int p = 0;
-	int numTests = 500;
-	struct gameState G;
-	int handPos;
-	int i, j, k, m, n, q;
+	int p = 0;//testing player 0
+	int numTests = 250;//250 tests
+	struct gameState G;//creating gameState G
+	int handPos;//to track hand position
+	int i, j, k, m, n, q;//initialize ints for for loops
 	
-	//generates random tests
-	printf("STARTING RANDOM TESTS.\n");
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 	
 	SelectStream(2);
 	PutSeed(3);

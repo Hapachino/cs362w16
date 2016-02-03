@@ -31,9 +31,8 @@
 #include <assert.h>
 #include "rngs.h"
 #include <math.h>
-
-#define MAX_HAND_TEST 200
-#define MAX_DECK_TEST 200
+#define MAX_HAND_TEST 200//setting max hand test value to 200
+#define MAX_DECK_TEST 200//setting max deck test value to 200
 #define TESTCARD "Council_Room"
 
 int testPlayCouncil_Room(struct gameState *after, int handPos)
@@ -97,7 +96,7 @@ int main()
 	int i, j, m, n, q, r, s;
 	
 	//generates random tests
-	printf("STARTING RANDOM TESTS.\n");
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 	
 	SelectStream(2);
 	PutSeed(3);

@@ -24,25 +24,24 @@ Deck+Discard count failed. (expected=10, actual=19)
 state.playedCardCount failed. (expected=1, actual=0)
 Errors so far 7
 Running 5 Random Scenarios...
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,5
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 9
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,5
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 11
 state.handCount failed. (expected=7, actual=7) last 2 in hand = 7,5
 Deck+Discard count failed. (expected=10, actual=11)
 state.playedCardCount failed. (expected=1, actual=0)
-Errors so far 10
-state.handCount failed. (expected=7, actual=7) last 2 in hand = 7,5
-Deck+Discard count failed. (expected=10, actual=11)
-state.playedCardCount failed. (expected=1, actual=0)
-Errors so far 13
-state.handCount failed. (expected=7, actual=7) last 2 in hand = 7,4
-Deck+Discard count failed. (expected=10, actual=11)
+Errors so far 14
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 5,5
 state.playedCardCount failed. (expected=1, actual=0)
 Errors so far 16
-state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,4
+state.handCount failed. (expected=7, actual=7) last 2 in hand = 7,5
+Deck+Discard count failed. (expected=10, actual=11)
 state.playedCardCount failed. (expected=1, actual=0)
-Errors so far 18
-state.handCount failed. (expected=7, actual=8) last 2 in hand = 5,4
-state.playedCardCount failed. (expected=1, actual=0)
-Errors so far 20
-Tests Complete: adventurer_play() failed 20 tests.
+Errors so far 19
+Tests Complete: adventurer_play() failed 19 tests.
 
 |------------------------------------------|
   Running tests on council_room_play():

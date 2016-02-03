@@ -9,6 +9,42 @@ dominion.o: dominion.h dominion.c rngs.o
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 
+testadv: dominion.o rngs.o cardtest1.c
+	gcc -o testadv cardtest1.c -g dominion.o rngs.o $(CFLAGS)
+
+testcouncil: dominion.o rngs.o cardtest2.c
+	gcc -o testcouncil cardtest2.c -g dominion.o rngs.o $(CFLAGS)
+
+testsmithy: dominion.o rngs.o cardtest3.c
+	gcc -o testsmithy cardtest3.c -g dominion.o rngs.o $(CFLAGS)
+
+testvillage: dominion.o rngs.o cardtest4.c
+	gcc -o testvillage cardtest4.c -g dominion.o rngs.o $(CFLAGS)
+
+testbuy: dominion.o rngs.o unittest1.c
+	gcc -o testbuy unittest1.c -g dominion.o rngs.o $(CFLAGS)
+
+testdiscard: dominion.o rngs.o unittest2.c
+	gcc -o testdiscard unittest2.c -g dominion.o rngs.o $(CFLAGS)
+
+testgameover: dominion.o rngs.o unittest3.c
+	gcc -o testgameover unittest3.c -g dominion.o rngs.o $(CFLAGS)
+
+testscore: dominion.o rngs.o unittest4.c
+	gcc -o testscore unittest4.c -g dominion.o rngs.o $(CFLAGS)
+
+unittestresult.out: testadv testcouncil testsmithy testvillage testbuy testdiscard testgameover testscore
+	./testadv > unittestresult.out
+	./testcouncil >> unittestresult.out
+	./testsmithy >> unittestresult.out
+	./testvillage >> unittestresult.out
+	./testbuy >> unittestresult.out
+	./testdiscard >> unittestresult.out
+	./testgameover >> unittestresult.out
+	./testscore >> unittestresult.out
+	gcov dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
+
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 

@@ -38,16 +38,16 @@ int main() {
             smithy_card(handPos, player, &testGame);
             
             printf("---- Did player's hand count go up by 3?\n");
-            if (cleanGame.handCount[player] == testGame.handCount[player] - 3) {
+            if (cleanGame.handCount[player] == testGame.handCount[player] - 2) {
                 printf("Yes. Test Passed.\n");
                 testsPassed++;
             } else {
                 printf("No. Test Failed.\n");
+                printf("test: %d\tclean: %d\n", cleanGame.handCount[player],testGame.handCount[player]);
             }
             testsRun++;
             printf("---- Did other player's hand change?\n");
-            if (testGame.hand[otherPlayer] == cleanGame.hand[otherPlayer]
-                && testGame.handCount[otherPlayer] == cleanGame.handCount[otherPlayer]) {
+            if (testGame.handCount[otherPlayer] == cleanGame.handCount[otherPlayer]) {
                 printf("No. Test Passed.\n");
                 testsPassed++;
             } else {
@@ -76,7 +76,8 @@ int main() {
             
         }
     }
-    
+
+    printf("\n---- %d Passed ---- %d Failed ------\n", testsPassed, (testsRun - testsPassed));    
     printf("---------- Testing %s Card Complete ------\n", TESTCARD);
     return 0;
 }

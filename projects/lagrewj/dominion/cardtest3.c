@@ -16,7 +16,7 @@
 /*
  * Include the following lines in your makefile:
  *
- * cardtest2: cardtest3.c dominion.o rngs.o
+ * cardtest3: cardtest3.c dominion.o rngs.o
  *      gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
  */
 #include "dominion.h"
@@ -31,33 +31,38 @@
 
 int testplayVillage(struct gameState *after, int handPos)
 {
-	int p = after->whoseTurn;
+	int p = after->whoseTurn;//initialize whoseTurn stored as p 
 	struct gameState before;
 	memcpy(&before, after, sizeof(struct gameState));
 	
-	playVillage(after, handPos);
+	playVillage(after, handPos);//run playVillage function with after gameState
 	
-	//after hand should have same net hand count. Plus a draw card, minus a village card
+	//testing hand count
+	//hand counts should be the same before and after card played which account for 
+	//gaining a card and subtracting a village
 	if(before.handCount[p] != after->handCount[p])
 	{
-		printf("ERROR: hand counts should match. before: %d, after: %d\n", before.handCount[p], after->handCount[p]);
+		printf("ERROR: Hand count difference! Before: %d After: %d\n", before.handCount[p], after->handCount[p]);
 	}
-	//numActions should be 2 more
+	//testing actions
+	//after actions will be plus 2 due to card effect 
 	before.numActions = before.numActions + 2;
 	if(before.numActions != after->numActions)
 	{
-		printf("ERROR: number of actions should match. before: %d, after: %d\n", before.numActions, after->numActions);
+		printf("ERROR: Actions has changed from %i to %i", before.numActions, after->numActions);
 	}
-	//still current player?
+	//testing buys
+	if(before.numBuys != after->numBuys)
+		printf("ERROR: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
+	
+	//testing player
 	if(before.whoseTurn != after->whoseTurn)
 		printf("ERROR: Current player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
 	
-	//check coins
+	//testing coins
 	if(before.coins != after->coins)
-		printf("ERROR: Number of coins changed from %i to %i", before.coins, after->coins);
-	//check number of buys
-	if(before.numBuys != after->numBuys)
-		printf("ERROR: Number of buys has changed from %i, to %i", before.numBuys, after->numBuys);
+		printf("ERROR: Coins changed from %i to %i", before.coins, after->coins);
+
 	
 	return 0;
 }
@@ -117,6 +122,6 @@ int main()
 		
 	}
 	
-	printf("PLAYVILLAGE TESTS FINISHED.\n\n");
+	printf("Play Village testing concluded.\n\n");
 	return 0;
 }

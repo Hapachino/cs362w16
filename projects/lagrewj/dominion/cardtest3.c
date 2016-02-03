@@ -16,7 +16,7 @@
 /*
  * Include the following lines in your makefile:
  *
- * cardtest2: cardtest3.c dominion.o rngs.o
+ * cardtest3: cardtest3.c dominion.o rngs.o
  *      gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
  */
 #include "dominion.h"
@@ -27,55 +27,58 @@
 #include "rngs.h"
 #include <math.h>
 
-#define TESTCARD "Adventurer"
+#define TESTCARD "Village"
 
 int testplayVillage(struct gameState *after, int handPos)
 {
-	int p = after->whoseTurn;
+	int p = after->whoseTurn;//initialize whoseTurn stored as p 
 	struct gameState before;
 	memcpy(&before, after, sizeof(struct gameState));
 	
-	playVillage(after, handPos);
+	playVillage(after, handPos);//run playVillage function with after gameState
 	
-	//after hand should have same net hand count. Plus a draw card, minus a village card
+	//testing hand count
+	//hand counts should be the same before and after card played which account for 
+	//gaining a card and subtracting a village
 	if(before.handCount[p] != after->handCount[p])
 	{
-		printf("ERROR: hand counts should match. before: %d, after: %d\n", before.handCount[p], after->handCount[p]);
+		printf("ERROR: Hand count difference! Before: %d After: %d\n", before.handCount[p], after->handCount[p]);
 	}
-	//numActions should be 2 more
+	//testing actions
+	//after actions will be plus 2 due to card effect 
 	before.numActions = before.numActions + 2;
 	if(before.numActions != after->numActions)
 	{
-		printf("ERROR: number of actions should match. before: %d, after: %d\n", before.numActions, after->numActions);
+		printf("ERROR: Actions has changed from %i to %i", before.numActions, after->numActions);
 	}
-	//still current player?
+	//testing buys
+	if(before.numBuys != after->numBuys)
+		printf("ERROR: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
+	
+	//testing player
 	if(before.whoseTurn != after->whoseTurn)
 		printf("ERROR: Current player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
 	
-	//check coins
+	//testing coins
 	if(before.coins != after->coins)
-		printf("ERROR: Number of coins changed from %i to %i", before.coins, after->coins);
-	//check number of buys
-	if(before.numBuys != after->numBuys)
-		printf("ERROR: Number of buys has changed from %i, to %i", before.numBuys, after->numBuys);
+		printf("ERROR: Coins changed from %i to %i", before.coins, after->coins);
+
 	
 	return 0;
 }
 
 int main()
 {
-	int p = 0;
-	int numTests = 500;
-	struct gameState G;
-	int handPos;
-	int i, j, k, m, n, q;
+	int p = 0;//testing player 0
+	int numTests = 250;//250 tests
+	struct gameState G;//creating gameState G
+	int handPos;//to track hand position
+	int i, j, k, m, n, q;//initialize ints for for loops
 	
-	//generates random tests
-	printf("STARTING RANDOM TESTS.\n");
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 	
 	SelectStream(2);
 	PutSeed(3);
-	printf("Testing playVillage() cardtest3.\n");
 	
 	for(k = 0; k < numTests; k++)
 	{
@@ -84,12 +87,13 @@ int main()
 		}
 		G.whoseTurn = p;
 		G.numActions = 1;
-		//filling in random cards based on lecture 11 and 12 Random Testing 
-		G.handCount[p] = floor(Random() * MAX_HAND)+1;//need at least one village in our hand
-		G.deckCount[p] = floor(Random() * MAX_DECK);
-		G.discardCount[p] = floor(Random() * MAX_DECK);
-		G.playedCardCount = floor(Random() * MAX_DECK);
 		
+		//filling in random cards based on lecture 11 and 12 Random Testing 
+		G.playedCardCount = floor(Random() * MAX_DECK);//generate random played card count
+		G.handCount[p] = floor(Random() * MAX_HAND)+1;//+1 for village room in the hand
+		G.deckCount[p] = floor(Random() * MAX_DECK);//from lecture 11 to generate random deck 
+		G.discardCount[p] = floor(Random() * MAX_DECK);//from lecture 11 to generate random discard 
+
 		for(m = 0; m < G.handCount[p]; m++)
 		{
 			G.hand[p][m] = floor(Random() * treasure_map) + 1;
@@ -108,15 +112,14 @@ int main()
 		{
 			G.playedCards[q] = floor(Random() * treasure_map) + 1;
 		}
-		
-		//place village in a random pos
+		//putting village card in random hand position
 		handPos = floor(Random() * G.handCount[p]);
 		G.hand[p][handPos] = village;
-		
+		//run test above 
 		testplayVillage(&G, handPos);
 		
 	}
 	
-	printf("PLAYVILLAGE TESTS FINISHED.\n\n");
+	printf("Play Village testing concluded.\n\n");
 	return 0;
 }

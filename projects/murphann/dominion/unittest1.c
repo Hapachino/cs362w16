@@ -11,7 +11,6 @@
 int main() {
   int numPlayers = 2;
   int i = 0;
-  int discarded =0;
   int seed = 1004;
   struct gameState G, storeG;
   int thisPlayer = 0;
@@ -35,6 +34,8 @@ int main() {
   for (i = 0; i < G.deckCount[thisPlayer]; i++) {
     printf("%d\n", G.deck[thisPlayer][i]);
   }
+
+  printf("\n\n\n");
 
   return 0;
 }

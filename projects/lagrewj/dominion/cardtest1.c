@@ -96,12 +96,12 @@ int main()
 	for (i = 0; i < sizeof(struct gameState); i++) {//random gameState
 		((char*)&G)[i] = floor(Random() * 256);
 	}
-	//generates random tests
-	printf("STARTING RANDOM TESTS.\n");
+	//starting random tests
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 	
 	SelectStream(2);
 	PutSeed(3);
-	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
+	
 	G.whoseTurn = p;//gameState G's player's turn stored in value p
 	
 	for(k = 0; k < 250; k++) //250 number of tests

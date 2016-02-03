@@ -3,8 +3,7 @@
 #include "dominion.h"
 
 int isDiscardSame(struct gameState *state, struct gameState *stateOriginal, int player) {
-	int i = 0,
-		validationCheck = 1;
+	int i = 0;
 	for (i = 0; i < stateOriginal->discardCount[player]; i++) {
 		if (stateOriginal->discard[player][i] != state->discard[player][i])
 			return 0;
@@ -14,8 +13,7 @@ int isDiscardSame(struct gameState *state, struct gameState *stateOriginal, int 
 }
 
 int isHandSame(struct gameState *state, struct gameState *stateOriginal, int player) {
-	int i = 0,
-		validationCheck = 1;
+	int i = 0;
 	for (i = 0; i < stateOriginal->handCount[player]; i++) {
 		if (stateOriginal->hand[player][i] != state->hand[player][i])
 			return 0;
@@ -25,8 +23,7 @@ int isHandSame(struct gameState *state, struct gameState *stateOriginal, int pla
 }
 
 int isDeckSame(struct gameState *state, struct gameState *stateOriginal, int player) {
-	int i = 0,
-		validationCheck = 1;
+	int i = 0;
 	for (i = 0; i < stateOriginal->deckCount[player]; i++) {
 		if (stateOriginal->deck[player][i] != state->deck[player][i])
 			return 0;

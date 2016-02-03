@@ -1366,7 +1366,7 @@ int effectRemodel(struct gameState *state, struct infosStruct *infos)
 
 int effectSmithy(struct gameState *state, struct infosStruct *infos) 
 {
-  int i = infos->i;
+  int i;
   int currentPlayer= infos->currentPlayer;
   int handPos = infos->handPos;
 

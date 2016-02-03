@@ -1,5 +1,4 @@
-CFLAGS = -lm
-#-Wall -fpic -coverage -lm
+CFLAGS = -lm -Wall -fpic -coverage
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
 
@@ -27,19 +26,37 @@ testAll: dominion.o testSuite.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
+unittest1: dominion.o unittest1.c
+	gcc -o unittest1 unittest1.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./unittest1 &> unittestresult.out
+
+unittest2: dominion.o unittest2.c dominion.o rngs.o cardFunctions.o
+	gcc -o unittest2 unittest2.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	
+unittest3: dominion.o unittest3.c dominion.o rngs.o cardFunctions.o
+	gcc -o unittest3 unittest3.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+
+smithytest: dominion.o rngs.o cardFunctions.o smithytest.c
+	gcc -o smithytest smithytest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+
+adventurertest: dominion.o rngs.o cardFunctions.o adventurertest.c
+	gcc -o adventurertest adventurertest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+
+unittests: smithytest unittest2
+	gcc -o smithytest smithytest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./smithytest &> unittestresult.out
+	gcov smithytest.c >> unittestresult.out	
+	cat smithytest.c.gcov >> unittestresult.out
+
+	gcc -o smithytest smithytest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./unittest2 >> unittestresult.out
+	gcov unittest2.c >> unittestresult.out	
+	cat unittest2.c.gcov >> unittestresult.out
+
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
+	gcov dominion.c >> unittestresult.out	
 	cat dominion.c.gcov >> unittestresult.out
-
-unittest1: dominion.o unittest1.c 
-	gcc -o unittest1 unittest1.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
-
-unittest2: dominion.o unittest2.c 
-	gcc -o unittest2 unittest2.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
-
-unittest3: dominion.o unittest3.c 
-	gcc -o unittest3 unittest3.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o cardFunctions.o rngs.o interface.o

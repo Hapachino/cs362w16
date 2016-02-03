@@ -23,6 +23,7 @@ int main(){
         sea_hag, tribute, smithy, council_room};
     int numberOfPlayers = 2;
     int seed = 1000;
+    int i;
     
     // initialize game state and player cards
     initializeGame(numberOfPlayers, cards, seed, &originalGame);
@@ -44,7 +45,7 @@ int main(){
     
     printf("When there is at least 1 province card:\n");
     
-    for (int i = 0; i < 25; i++)
+    for(i = 0; i < 25; i++)
     {
         if(i != province){
             testGame.supplyCount[i] = 1; // non zero

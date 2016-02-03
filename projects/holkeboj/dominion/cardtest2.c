@@ -35,14 +35,16 @@ int main() {
         cleanGame.whoseTurn = player;
         memcpy(&testGame, &cleanGame, sizeof(struct gameState));
         for (i = 0; i < testGame.handCount[player]; i++) {
-            if (testGame.hand[player][i] == 4) {
+            if (testGame.hand[player][i] == copper || testGame.hand[player][i] == silver
+                || testGame.hand[player][i] == gold) {
                 preTreasureCount++;   
             }
         }
         cardEffect(adventurer,0,0,0,&testGame,0,0);
         otherPlayer = (player == 1) ? 0 : 1;
         for (i = 0; i < testGame.handCount[player]; i++) {
-            if (testGame.hand[player][i] == 4) {
+            if (testGame.hand[player][i] == copper || testGame.hand[player][i] == silver
+                || testGame.hand[player][i] == gold) {
                 postTreasureCount++;   
             }
         }        

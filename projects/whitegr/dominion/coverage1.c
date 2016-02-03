@@ -32,7 +32,11 @@ I missed some things on the discard which was used by most of the functions I te
 branch  0 taken 50% (fallthrough)
 branch  1 taken 50%
 
-I missed some here because I didn't test this function: function updateCoins called 6 returned 100% blocks executed 82%
+I missed some here because I didn't test this function: 
+function updateCoins called 6 returned 100% blocks executed 82%
+
+I didn't test this one at all but I used it a lot which show the dangers of this stuff:
+function shuffle called 20 returned 100% blocks executed 100%
 
 
 

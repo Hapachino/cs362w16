@@ -144,5 +144,4 @@ int playMine( int currentPlayer, struct gameState *state, int handPos, int choic
 void playBaron( int currentPlayer, struct gameState *state, int choice1);
 void playSteward(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2, int choice3);
 
-
 #endif

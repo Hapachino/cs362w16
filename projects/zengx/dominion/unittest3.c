@@ -43,7 +43,8 @@ check after updateCoin no hand card change.
 static char * test_treasureCard_coinNum()
 {
 	// All gold
-	for (int i = 0; i < 5; i++)
+	int i = 0;
+	for (; i < 5; i++)
 	{
 		G.hand[thisPlayer][i] = gold;
 	}
@@ -59,7 +60,8 @@ static char * test_treasureCard_coinNum()
 		printf("coin expected =%d\n", testG.coins);
 		mu_assert("-error: coin not correct", testG.coins == coinsAdd);
 		// All silver
-		for (int i = 0; i < 5; i++)
+		
+		for (i = 0; i < 5; i++)
 		{
 			G.hand[thisPlayer][i] = silver;
 		}
@@ -75,7 +77,7 @@ static char * test_treasureCard_coinNum()
 		printf("coin expected =%d\n", testG.coins);
 		mu_assert("-error: coin not correct", testG.coins == coinsAdd);
 		// All copper
-		for (int i = 0; i < 5; i++)
+		for (i = 0; i < 5; i++)
 		{
 			G.hand[thisPlayer][i] = copper;
 		}
@@ -91,7 +93,7 @@ static char * test_treasureCard_coinNum()
 		printf("coin expected =%d\n", testG.coins);
 		mu_assert("-error: coin not correct", testG.coins == coinsAdd);
 		// none
-		for (int i = 0; i < 5; i++)
+		for (i = 0; i < 5; i++)
 		{
 			G.hand[thisPlayer][i] = 0;
 		}
@@ -115,7 +117,8 @@ static char * test_bounus()
 {
 	printf("add bounus from -100 to 100");
 	int bounus = 0;
-	for (int i = 0; i < 5; i++)
+	int i = 0;
+	for (; i < 5; i++)
 	{
 		G.hand[thisPlayer][i] = 0;
 	}

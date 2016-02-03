@@ -1,3 +1,5 @@
+//Jennifer Frase
+//CS 362 A3
 //test gardens
 //gardens does nothing and should not change the gamestate
 //since gardens is a victory card but between adventurer and treasure_map should return -1
@@ -24,11 +26,14 @@ int main(){
     memcpy(&pre, &G, sizeof(struct gameState));
 
     printf ("TESTING gardens card:\n");
+    //loop through all players to check for any player specific bugs
     for(p = 0; p < MAX_PLAYERS; p++){
         pre.whoseTurn = p;
         G.whoseTurn = p;
         r = cardEffect(gardens, 0, 0, 0, &G, 0, &bonus);
-        assert(r == -1);
+        assert(r == -1); //gardens is not an action card so should not be able to be played
+
+        //check that the attempt to play gardens does not change the gamestate
         if(memcmp(&pre, &G, sizeof(struct gameState)) != 0){
             if(DEBUG)
                 printf("TEST FAILED: gardens changed the gameState for player %d\n", p);

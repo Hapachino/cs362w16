@@ -19,7 +19,6 @@ int main() {
 	struct gameState state,			// running instance of game
 					 stateOriginal;	// backup copy of game to detect changes
 	int i = 0,						// iteration variable for loop counting
-		j = 0,						// iteration variable for loop counting
 		numPlayers = 2,				// number of players in game
 		randomSeed = 10000,			// seed for random generation
 		validationCheck = 1,		// used to determine pass or fail
@@ -44,9 +43,10 @@ int main() {
 	printf("***************************************************************************\n");
 	printf("* TESTING FUNCTION: adventurerEffect\n");
 	printf("***************************************************************************\n");
-	printf("\n  EXECUTING: villageEffect(state.whoseTurn, -1, -1, temphand, &state)\n\n");
+	printf("\n  EXECUTING: adventurerEffect(state.whoseTurn, -1, -1, temphand, &state)\n\n");
 	
 	printf("  TEST: Non-treasure cards are successfully added to the discard pile\n\n");
+	adventurerEffect(state.whoseTurn, -1, -1, temphand, &state);
 	validationCheck = 1;
 	while (drawntreasure < 2) {
 		cardDrawn = stateOriginal.deck[state.whoseTurn][stateOriginal.deckCount[state.whoseTurn] - 1];

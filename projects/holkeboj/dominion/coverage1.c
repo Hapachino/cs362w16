@@ -10,16 +10,33 @@ File 'dominion.c'
 Lines executed:32.16% of 656
 Branches executed:35.70% of 423
 Taken at least once:27.42% of 423
-****
+
+**** DISCUSSION
 I wouldn't expect that testing four functions and four cards
 would get us anywhere close to 100% coverage.  Still,
-32% will be a baseline going forward.  I noticed that even after
+32% will be a baseline going forward.  
+
+I noticed that even after
 running only Unit Test 1, my line coverate was at 18%.
 This is probably due to the invoking of initializeGame()
 and other helper functions.  
+
 I should note that there are a lot of case statements for cards 
 that are not used the way the game is currently set up to be played.
 This will drive down the overall coverage percentage.
+
+The following functions were not covered at all by this test suite.
+These will require closer attention in a future test suite:
+    newGame()
+    kingdomCards()
+    playCard()
+    buyCard()
+    handCard()
+    supplyCount()
+    fullDeckCount()
+    scoreFor()
+    getWinners()
+    gainCard()
 
 
 *******************
@@ -29,7 +46,8 @@ Function 'isGameOver'
 Lines executed:100.00% of 12
 Branches executed:100.00% of 8
 Taken at least once:100.00% of 8
-****
+
+**** DISCUSSION
 For isGameOver() I was able to achieve 100% branch
 and statement coverage.  However the test could be improved
 by adding coverage for more boundary conditions (i.e.
@@ -42,9 +60,10 @@ Function 'updateCoins'
 Lines executed:100.00% of 14
 Branches executed:100.00% of 8
 Taken at least once:100.00% of 8
-****
+
+**** DISCUSSION
 This function is covered 100% by testing every possible permutation
-of player and bonus value on six test hands specifically designed
+of player and bonus value on six test hands designed
 to activate every branch.
 
 
@@ -55,9 +74,15 @@ Function 'discardCard'
 Lines executed:86.67% of 15
 Branches executed:100.00% of 6
 Taken at least once:83.33% of 6
-****
+
+**** DISCUSSION
 The branch that was missed here was when there's only one 
-card in the hand.
+card in the hand:
+        -: 1286:    {
+        -: 1287:      //reduce number of cards in hand
+    #####: 1288:      state->handCount[currentPlayer]--;
+    #####: 1289:    }
+This should be covered by an additional test case.
 
 *******************
 Unit Test 4: getCost()
@@ -66,7 +91,8 @@ Function 'getCost'
 Lines executed:96.67% of 30
 Branches executed:100.00% of 28
 Taken at least once:96.43% of 28
-****
+
+**** DISCUSSION
 It was easy to achieve full coverage for this function
 simply by testing every possible case switch value.
 The one line that wasn't executed was "return -1",
@@ -80,7 +106,8 @@ Function 'smithy_card'
 Lines executed:100.00% of 7
 Branches executed:100.00% of 4
 Taken at least once:100.00% of 4
-****
+
+**** DISCUSSION
 This card is 100% covered.  This is achieved
 by checking every possible player and hand position.
 Hand position was important because it caught my bug.
@@ -92,7 +119,8 @@ Function 'adventurer_card'
 Lines executed:52.38% of 21
 Branches executed:71.43% of 14
 Taken at least once:35.71% of 14
-****
+
+**** DISCUSSION
 Several conditions weren't reached in my test of Adventurer.  
 The empty deck causing shuffle was not covered.
 The (drawntreasure == 1) gate was also not reached, meaning the bug
@@ -134,11 +162,12 @@ branch  1 taken 50%
         4:  792:      discardCard(handPos, currentPlayer, state, 0);
         -:  793:			
         4:  794:      return 0;
-****
+        
+**** DISCUSSION
 Since council_room and great_hall are contained within a switch statement,
 I instead show the raw gcov output.
 For council room I have 100% branch and statement coverage.
-We can see each statement was executed at least 4 times.
+We can see by the numers on the left that each statement was executed at least 4 times.
 
 *******************
 Card Test 4: Great Hall
@@ -153,12 +182,10 @@ Card Test 4: Great Hall
         -:  955:      //discard card from hand
         4:  956:      discardCard(handPos, currentPlayer, state, 0);
         4:  957:      return 0;
-****
+        
+**** DISCUSSION
 For Great Hall I have 100% statement coverage.
 There are no branches so branch coverage is not relevant here.
-
-
-
 
 */
 

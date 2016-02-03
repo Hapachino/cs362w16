@@ -60,6 +60,7 @@ int main() {
             printf("Yes. Test Failed.\n");
         }
         testsRun++;
+
     }
 
     printf("\n---- %d Passed ---- %d Failed ------\n", testsPassed, (testsRun - testsPassed));    

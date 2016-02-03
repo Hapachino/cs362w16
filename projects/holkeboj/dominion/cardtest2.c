@@ -68,7 +68,24 @@ int main() {
         }
         testsRun++;
         
+        printf("---- Did player %d discard a card?\n", player);
+        if (testGame.discardCount[player] == cleanGame.discardCount[player] + 1) {
+            printf("Test Passed.\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
+        
         // check for game state changes
+        printf("---- Was player %d's discard pile unaffected?\n", otherPlayer);
+        if (testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]) {
+            printf("Test Passed.\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
         printf("---- Did whoseTurn change?\n");
         if (testGame.whoseTurn == cleanGame.whoseTurn) {
             printf("No, it didn't change.  Test Passed.\n");
@@ -83,6 +100,46 @@ int main() {
             testsPassed++;
         } else {
             printf("Yes. Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did outpostPlayed change?\n");
+        if (testGame.outpostPlayed == cleanGame.outpostPlayed) {
+            printf("No. Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Yes. Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did outpostTurn change?\n");
+        if (testGame.outpostTurn == cleanGame.outpostTurn) {
+            printf("Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did phase change?\n");
+        if (testGame.phase == cleanGame.phase) {
+            printf("Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did the other player's deck change?\n");
+        if (testGame.deckCount[otherPlayer] == cleanGame.deckCount[otherPlayer]) {
+            printf("Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
+        }
+        testsRun++;
+        printf("---- Did played card count increment?\n");
+        if (testGame.playedCardCount == cleanGame.playedCardCount + 1) {
+            printf("Test Passed\n");
+            testsPassed++;
+        } else {
+            printf("Test Failed.\n");
         }
         testsRun++;
     }

@@ -18,6 +18,8 @@ int main()
     int seed = 1000;
     int numPlayers = 2;
     int thisPlayer = 0;
+    int cardDrawn1, cardDrawn2;
+    int treasureCnt1 = 0, treasureCnt2 = 0;
     struct gameState G, testG;
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                     remodel, smithy, village, baron, great_hall};

@@ -19,7 +19,7 @@ Preconditions:
 function accepts (struct gameState *state) */
 
 int main() {
-	printf("-------------Unit Test #4: Testing isGameOver() function-------------\n\n");
+	printf("\n-------------Unit Test #4: Testing isGameOver() function-------------\n\n");
 
 	//initialize variables for unit test
 	int i, numPlayers, randomSeed;
@@ -258,6 +258,6 @@ int main() {
 		printf("Test case 10 successfully passed.\n");
 	}
 	
-	printf("\n\n-------------Unit Test #4 Complete -------------\n");
+	printf("\n\n-------------Unit Test #4 Complete -------------\n\n\n");
 	return 0;
 }

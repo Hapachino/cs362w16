@@ -268,12 +268,14 @@ int main(int argc, char** argv) {
     int numAdventurers = 0;
     int currentPlayer = whoseTurn(&G);
 
+
+    printf ("\n\nTESTING Great Hall CARD: ------------------ \n");
     int testResult = testGreatHall(&G, currentPlayer, 0);
     if( testResult == 0){
-        printf ("test GreatHall: OK");
+        printf ("test GreatHall: OK\n");
 
     }else{
-        printf ("FAILED : %i tests", testResult );
+        printf ("FAILED : %i tests\n", testResult );
     }
 
 return 0;

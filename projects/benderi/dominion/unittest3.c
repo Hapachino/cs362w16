@@ -1,7 +1,9 @@
 /* Author:      Ian Bender
  * Course:      CS362
  * Due Date:    2/3/2016
- * Description: Unit test for shuffle() function.
+ * Description: Unit test for getCost() function.
+ * Requirements
+ *      - Correct value of card is returned
  */
 
 #include "dominion.h"
@@ -16,34 +18,50 @@ int main()
     int i, j;
     int outcome;
     int seed = 1000;
-    int numPlayers = 2;
-    int thisPlayer = 0;
     struct gameState G, testG;
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                     remodel, smithy, village, baron, great_hall};
 
+    int cards[27] = {curse, estate, duchy, province,
+                     copper, silver, gold, adventurer, council_room,
+                     feast, gardens, mine, remodel, smithy, village,
+                     baron, great_hall, minion, steward, tribute,
+                     ambassador, cutpurse, embargo, outpost, 
+                     salvager, sea_hag, treasure_map};
+    int values[27] = {0, 2, 5, 8,
+                      0, 3, 6, 6, 5,
+                      4, 4, 5, 4, 4, 3,
+                      4, 3, 5, 3, 5, 
+                      3, 4, 2, 5,
+                      4, 4, 4};
+
+    printf("TESTING - getCost()\n");
     //initialize game state
-    outcome = initializeGame(numPlayers, k, seed, &G);
+    outcome = initializeGame(MAX_PLAYERS, k, seed, &G);
+    if (outcome == -1)
+        printf("ERROR - Game initialization failed.\n");
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    printf("----------Shuffling Deck------------\n");
-    for (i = 0; i < G.deckCount[thisPlayer]; i++)
-    {
-        printf("%d ", G.deck[thisPlayer][i]);
-    }
-    printf("\n");
-    printf("Player 1 - Deck Count: %d\n", G.deckCount[thisPlayer]);
 
-    testG.numBuys = 100;
-    buyCard(5, &testG);
-    shuffle(thisPlayer, &testG);
-    printf("Player 1 - Shuffled Count: %d\n", testG.deckCount[thisPlayer]); 
-
-    for (i = 0; i < testG.deckCount[thisPlayer]; i++)
+    //test each card against its expected value
+    for (i = 0; i < 27; i++)
     {
-        printf("%d ", testG.deck[thisPlayer][i]);
+        if (getCost(cards[i]) != values[i])
+            printf("ERROR - Returned cost: %d, Expected cost: %d\n",
+                    getCost(cards[i]), values[i]);
+        else
+            printf("SUCCESS - Returned cost: %d, Expected cost: %d\n",
+                    getCost(cards[i]), values[i]);
     }
-    printf("\n");
+
+    if (getCost(treasure_map + 1) != -1)
+        printf("ERROR - Returned cost: %d, Expected cost: -1\n",
+                getCost(treasure_map + 1));
+    else
+        printf("SUCCESS - Returned cost: %d, Expected cost: -1\n",
+                getCost(treasure_map + 1));
+
+    printf("TEST COMPLETE\n\n");
 
     return 0;
 }

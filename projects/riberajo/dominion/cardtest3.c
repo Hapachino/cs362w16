@@ -38,9 +38,8 @@
  int unitTest(int handPos, struct gameState *post, int p);
 
 int main() {
-   int i, p, p2, r,
+   int p, r, p2,
        seed, numPlayer,
-       kingdomCount, victoryCount,
        handPos;
 
    seed = 1000;
@@ -65,10 +64,7 @@ int main() {
    stackDeck(&G, p, 0, G.deckCount[p], copper);
 
    // stacking hand with silver (card 5)
-   stackHand(&G, p, 0, G.handCount[p]-1, silver);
-
-   // putting top card as a gold
-   stackHand(&G, p, G.handCount[p]-1, G.handCount[p], gold);
+   stackHand(&G, p, 0, G.handCount[p], silver);
 
    G.discardCount[p] = 2;
    G.discard[p][0] = copper;
@@ -96,7 +92,7 @@ int unitTest(int handPos, struct gameState *post, int p) {
   memcpy(&pre, post, sizeof(struct gameState));
   int failedTests = 0;
   int p2 = 1; // player 2
-  int r, i, victoryCount, victoryCount2, kingdomCount, kingdomCount2;
+  int r, j, victoryCount, victoryCount2, kingdomCount, kingdomCount2;
 
   // run fucntion
   playVillage(handPos, post);
@@ -116,14 +112,14 @@ int unitTest(int handPos, struct gameState *post, int p) {
     failedTests++;
   }
 // card should be a silver because of our stacked deck/hand
- if(pre.hand[p][4] != gold) {
-   printf("FAIL: added card isn't gold. Actual: %d\n", pre.hand[p][4]);
+ if(post->hand[p][4] != copper) {
+   printf("FAIL: added card isn't copper. Actual: %d\n", post->hand[p][4]);
    failedTests++;
  }
 
  // check player 2 state
  printf("Checking Player %d: \n", p2+1);
- int j =  checkPlayer2(&pre, post, p2, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
+ j =  checkPlayer2(&pre, post, p2, victoryCount, victoryCount2, kingdomCount, kingdomCount2);
 
  if(j > 0 ) {
    failedTests++;
@@ -235,6 +231,7 @@ int printDeck(struct gameState *post, int p, char *n) {
   for (i = 0; i < post->deckCount[p]; i++) {
       printf("Index   %d      Card:   %d  \n", i, post->deck[p][i]);
   }
+  return 0;
 }
 
 int printCounts(struct gameState *post, int p) {
@@ -243,6 +240,7 @@ int printCounts(struct gameState *post, int p) {
      printf("   Played Count: %d \n", post->playedCardCount);
      printf("   Deck Count: %d \n", post->deckCount[p]);
      printf("   Discard Count: %d \n\n", post->discardCount[p]);
+     return 0;
 }
 
 
@@ -254,6 +252,7 @@ int passOrFail(int r) {
   else {
     printf("TEST: FAIL\n");
   }
+  return 0;
 }
 
 

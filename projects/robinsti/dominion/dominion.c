@@ -19,7 +19,8 @@ struct gameState* newGame() {
 }
 
 int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
-		  int k8, int k9, int k10) {
+		  int k8, int k9, int k10) 
+{
   int* k = malloc(10 * sizeof(int));
   k[0] = k1;
   k[1] = k2;
@@ -35,7 +36,8 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
 }
 
 int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
-		   struct gameState *state) {
+		   struct gameState *state) 
+{
 
   int i;
   int j;
@@ -292,7 +294,7 @@ int playSmithy(int currentPlayer, struct gameState * state, int handPos) {
 }
 
 int playAdventurer(int currentPlayer, struct gameState * state, int drawntreasure, int temphand[], int cardDrawn) {
-  int z = -1;
+  int z = 0;
   while(drawntreasure<2) {
     if (state->deckCount[currentPlayer] <1) {//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
@@ -308,7 +310,7 @@ int playAdventurer(int currentPlayer, struct gameState * state, int drawntreasur
       z++;
     }
   }
-  
+  z--;
   while(z-1>=0) {
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
@@ -1312,7 +1314,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
 
 int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
 {
-  //Note: supplyPos is enum of choosen card
+  //Note: supplyPos is enum of chosen card
 	
   //check if supply pile is empty (0) or card is not used in game (-1)
   if ( supplyCount(supplyPos, state) < 1 )

@@ -1,5 +1,11 @@
 /* -----------------------------------------------------------------------
  * Testing scoreFor()
+ Basic requirements of fullDeckCount()
+   1)Return score for player by counting cards with values
+     across all card piles.
+   2)Only cards in deck pile return correct score.
+   3)Only cards in hand return correct score.
+   4)Only cards in discard pile return correct score.   
  * -----------------------------------------------------------------------
  */
 

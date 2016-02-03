@@ -13,15 +13,16 @@
 #include <string.h>
 
 #define MAX_FAILURES 1000
+#define SEED 1000
 
-int testShuffle( int numPlayers, int k[], int seed );
+int testShuffle( struct gameState *g, int numPlayers, int k[], int seed );
 
 int main()
 {
-	const int t = treasure_map + 1;
-	int i, j, s, numPlayers, card, used = 0;
+	int i, j, s, failCount = 0, numPlayers, card, used = 0;
 	int k[10] = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 	const int r = treasure_map - adventurer;
+	struct gameState g;
 
 	// use a random set of cards
 	for (i = 0; i < 10;)
@@ -45,29 +46,76 @@ int main()
 		}
 	}
 
+	fprintf( stdout, "\n**********\nunittest2\nTest shuffle with normal game, random players: \n" );
 	for (i = 0; i < 10; i++)
 	{
 		s = rand();
 		numPlayers = rand() % ( MAX_PLAYERS - 1 ) + 2;
-
 		fprintf( stdout, "shuffle test with %d players: ", numPlayers );
+		initializeGame( numPlayers, k, SEED, &g );
 
-		// test shuffle() with random # of players
-		if (testShuffle( numPlayers, k, s ) == 0)
-			fprintf( stdout, "PASS\n" );
+		// test shuffle()
+		if (testShuffle( &g, numPlayers, k, s ) == 0)
+			fprintf( stdout, "Pass\n" );
 		else
+		{
 			fprintf( stdout, "FAIL\n" );
+			failCount++;
+		}
 	}
+
+	// test with deckCount == 0
+	fprintf( stdout, "\nTest shuffle with deck counts of 0: \n" );
+	s = rand();
+	numPlayers = rand() % ( MAX_PLAYERS - 1 ) + 2;
+	fprintf( stdout, "shuffle test with %d players: ", numPlayers );
+	initializeGame( numPlayers, k, SEED, &g );
+	for (j = 0; j < numPlayers; j++)
+	{
+		g.deckCount[j] = 0;
+	}
+	if (testShuffle( &g, numPlayers, k, s ) == 0)
+		fprintf( stdout, "Pass\n" );
+	else
+	{
+		fprintf( stdout, "FAIL\n" );
+		failCount++;
+	}
+
+	// test with deckCount == 1
+	fprintf( stdout, "\nTest shuffle with deck counts of 1: \n" );
+	s = rand();
+	numPlayers = rand() % ( MAX_PLAYERS - 1 ) + 2;
+	fprintf( stdout, "shuffle test with %d players: ", numPlayers );
+	initializeGame( numPlayers, k, SEED, &g );
+	for (j = 0; j < numPlayers; j++)
+	{
+		g.deckCount[j] = 1;
+	}
+	if (testShuffle( &g, numPlayers, k, s ) == 0)
+		fprintf( stdout, "Pass\n" );
+	else
+	{
+		fprintf( stdout, "FAIL\n" );
+		failCount++;
+	}
+
+	if(failCount)
+		fprintf(stdout, "%d failures\n\n**********\n\n", failCount);
+	else
+		fprintf(stdout, "\nAll tests passed.\n\n**********\n\n");
+
 	return 0;
 }
 
-int testShuffle( int numPlayers, int k[], int seed )
+int testShuffle( struct gameState *g, int numPlayers, int k[], int seed )
 {
 	int i, j, result, expectedResult, same = 1, oneCard = 1;
 	struct gameState pre, post;
 
-	initializeGame( numPlayers, k, seed, &pre );
-	memcpy( &post, &pre, sizeof(struct gameState) );
+	//initializeGame( numPlayers, k, seed, &pre );
+	memcpy( &pre, g, sizeof(struct gameState) );
+	memcpy( &post, g, sizeof(struct gameState) );
 
 	// shuffle all decks in post state
 	for (i = 0; i < numPlayers; i++)
@@ -113,7 +161,7 @@ int testShuffle( int numPlayers, int k[], int seed )
 		qsort( (void*) ( &post.deck[i] ), post.deckCount[i], sizeof(int), compare );
 	}
 
-	// test if the cards are all there
+	// test if the cards are all still there
 	for (i = 0; i < numPlayers; i++)
 	{
 		for (j = 0; j < pre.deckCount[i]; j++)

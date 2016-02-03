@@ -30,7 +30,7 @@ int main()
 
 	testCount = 0;
 
-	fprintf( stdout, "\nTesting buyCard()\n\n" );
+	fprintf( stdout, "**********\nunittest1\n\nTesting buyCard()\n\n" );
 
 	for (i = 0; i <= treasure_map; i++)					// which card
 	{
@@ -56,10 +56,10 @@ int main()
 	fprintf( stdout, "%d tests run.\n", testCount );
 	if (failureCount)
 	{
-		fprintf( stdout, "%d Problems found.\n\n", failureCount );
+		fprintf( stdout, "%d Problems found.\n\n**********\n\n", failureCount );
 	} else
 	{
-		fprintf( stdout, "All tests passed.\n\n" );
+		fprintf( stdout, "All tests passed.\n\n**********\n\n" );
 	}
 	return 0;
 }

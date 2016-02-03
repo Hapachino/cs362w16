@@ -1,4 +1,8 @@
 /*
+*	Author: 	Martin Stryffeler
+*	Filename:	unittest3.c
+*	Date:		2/2/2016
+*
 *	isGameOver() function unit testing
 *	Initializes a gamestate, then tests isGameOver with varying game states
 *	with varying numbers and types of empty and near empty piles.
@@ -37,7 +41,7 @@ int main()
 	memset(&state, 23, sizeof(struct gameState));
 	initializeGame(numPlayer, k, seed, &state);
 
-	printf("\nnTESTING isGameOver():");
+	printf("\nTESTING isGameOver():");
 	//Test province 0/1 edge case
 	printf("\nTesting 1 province remaining.\n");
 	state.supplyCount[province] = 1;
@@ -67,7 +71,7 @@ int main()
 			
 		}
 	}
-	printf("PASS: No single non-province empty pile ends the game.\n", i);
+	printf("PASS: No single non-province empty pile ends the game.\n");
 
 	//Test two empty piles
 	printf("\nTesting two empty piles. (Skipping provinces)\n");

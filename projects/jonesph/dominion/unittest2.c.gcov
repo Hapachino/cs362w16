@@ -1,0 +1,80 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/********************
+        -:    2:* Author: Philip Jones
+        -:    3:* Term: Winter 2016
+        -:    4:* Description: Checks the isGameOver() function.
+        -:    5:********************/
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <assert.h>
+        -:   11:#include <stdlib.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <math.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:// set NOISY_TEST to 0 to remove printfs from output
+        -:   17:#define NOISY_TEST 1
+        -:   18:
+     2000:   19:void testGameOver(struct gameState *state) 
+        -:   20:{
+        -:   21:	int r, a, b, c;
+     2000:   22:	state->supplyCount[province] = 0;
+     2000:   23:	r = isGameOver(state);
+     2000:   24:	assert(r == 1);
+     2000:   25:	state->supplyCount[province] = 5;
+        -:   26:
+     4000:   27:	while (a == province) 
+        -:   28:	{
+    #####:   29:		a = floor(Random() * 25);
+        -:   30:	}
+     2000:   31:	state->supplyCount[a] = 0;
+     2000:   32:	b = floor(Random() * 25);
+     4197:   33:	while (b == a || b == province) 
+        -:   34:	{
+      197:   35:		b = floor(Random() * 25);
+        -:   36:	}
+     2000:   37:	state->supplyCount[b] = 0;
+     2000:   38:	c = floor(Random() * 25);
+     4274:   39:	while (c == a || c == b || c == province) 
+        -:   40:	{
+      274:   41:		c = floor(Random() * 25);
+        -:   42:	}
+     2000:   43:	state->supplyCount[c] = 0;
+     2000:   44:	r = isGameOver(state);
+     2000:   45:	assert(r == 1);
+        -:   46:
+    52000:   47:	for (a = 0; a < 25; a++) {
+    50000:   48:		state->supplyCount[a] = 1;
+        -:   49:	}
+     2000:   50:	r = isGameOver(state);
+     2000:   51:	assert(r == 0);
+     2000:   52:}
+        -:   53:
+        1:   54:int main() {
+        -:   55://	int k[10] = { adventurer, baron, council_room, feast, gardens, great_hall, mine, remodel, smithy, village};
+        -:   56:	struct gameState state;
+        -:   57:
+        1:   58:	SelectStream(2);
+        1:   59:	PutSeed(3);
+        -:   60:	int j, i, p;
+     2001:   61:	for (i = 0; i < 2000; i++) {
+ 52602000:   62:		for (j = 0; j < sizeof(struct gameState); j++) {
+ 52600000:   63:			((char*) &state)[j] = floor(Random() * 256);
+        -:   64:		}
+    10000:   65:		for (p = 0; p < MAX_PLAYERS; p++) {
+     8000:   66:			state.deckCount[p] = floor(Random() * MAX_DECK);
+     8000:   67:			state.discardCount[p] = floor(Random() * MAX_DECK);
+     8000:   68:			state.handCount[p] = floor(Random() * MAX_HAND);
+        -:   69:		}
+     2000:   70:		state.whoseTurn = floor(Random() * MAX_PLAYERS);
+     2000:   71:		testGameOver(&state);
+        -:   72:	}
+        1:   73:	printf("No errors encountered in 2000 tests of isGameOver(). \n");
+        1:   74:	return 0;
+        -:   75:}

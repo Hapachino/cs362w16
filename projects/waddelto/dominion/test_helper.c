@@ -78,7 +78,6 @@ void randomizeKingdomCards(int k[10])
 {
 
     int i, j, temp;
-    double dtemp;
 
     for (i = 0; i < 10; i++)
     {
@@ -109,7 +108,7 @@ void printGame(struct gameState control)
     printf("supplyCount:\n");
     for (i = 0; i <= treasure_map; i++){
         printf("\t\t%d", control.supplyCount[i]);
-        ((i%4) == 0) ? printf("\n") : printf("");
+        ((i%4) == 0) ? printf("\n") : printf(" ");
     }
     printf("\n");
 
@@ -151,7 +150,6 @@ void printGame(struct gameState control)
         printf("\n----------------------------------\n");
     }
 
-    printf("");
     printf("deckCount:\t\n");
     for (i = 0; i < control.numPlayers; i++){
         printf("\t\t%d", control.deckCount[i]);

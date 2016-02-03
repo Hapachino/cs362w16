@@ -860,14 +860,14 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
     case tribute:
       if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1){
-	if (state->deckCount[nextPlayer] > 0){
-	  tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
-	  state->deckCount[nextPlayer]--;
-	}
-	else if (state->discardCount[nextPlayer] > 0){
-	  tributeRevealedCards[0] = state->discard[nextPlayer][state->discardCount[nextPlayer]-1];
-	  state->discardCount[nextPlayer]--;
-	}
+      	if (state->deckCount[nextPlayer] > 0){
+      	  tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
+      	  state->deckCount[nextPlayer]--;
+	       }
+      	else if (state->discardCount[nextPlayer] > 0){
+      	  tributeRevealedCards[0] = state->discard[nextPlayer][state->discardCount[nextPlayer]-1];
+      	  state->discardCount[nextPlayer]--;
+      	}
 	else{
 	  //No Card to Reveal
 	  if (DEBUG){
@@ -1358,7 +1358,7 @@ int playSmithy(int handPos, struct gameState *state) {
   int i;
 
   //+2 Cards
-  for (i = 0; i < 2; i++)
+  for (i = 0; i < 3; i++)
   {
   drawCard(currentPlayer, state);
   }
@@ -1368,4 +1368,44 @@ int playSmithy(int handPos, struct gameState *state) {
   return 0;
 }
 
+int playVillage(int handPos, struct gameState *state) {
+  //+1 Card
+  int currentPlayer = whoseTurn(state);
+
+  drawCard(currentPlayer, state);
+
+  //+2 Actions
+  state->numActions = state->numActions + 2;
+
+  //discard played card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+
+return 0;
+}
 //end of dominion.c
+
+int playCouncil_room(int handPos, struct gameState *state) {
+  int i, currentPlayer;
+  currentPlayer = whoseTurn(&state);
+
+  //+4 Cards
+  for (i = 0; i < 4; i++) {
+  drawCard(currentPlayer, state);
+  }
+
+  //+1 Buy
+  state->numBuys++;
+
+  //Each other player draws a card
+  for (i = 0; i < state->numPlayers; i++) {
+    if ( i != currentPlayer ) {
+    drawCard(i, state);
+    }
+  }
+
+  //put played card in played card pile
+  discardCard(handPos, currentPlayer, state, 0);
+
+  return 0;
+
+}

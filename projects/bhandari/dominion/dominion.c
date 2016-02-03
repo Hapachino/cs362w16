@@ -667,17 +667,14 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-		//CALL ADVENTURER FUNCTION
 		playAdventurer(state);
 		return 0;
 			
     case council_room:
-		//CALL COUNCIL ROOM FUNCTION
 		playCouncil_Room(state, handPos);
 		return 0;
 			
     case feast:
-		//CALL FEAST FUNCTION
       	playFeast(state, choice1);
 		return 0;
 			
@@ -746,12 +743,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-		//CALL SMITHY FUNCTION
 		playSmithy(state, handPos);
 		return 0;
 		
     case village:
-		//CALL VILLAGE FUNCTION
 		playVillage(state, handPos);
 		return 0;
 		

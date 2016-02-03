@@ -16,62 +16,52 @@
 #define MAX_FAILURES 1000
 #define START_MONEY 10
 
-struct testInput
-{
+struct testInput {
 	int numPlayers, whichPlayer, playerBuys, playerMoney, cardToBuy;
 };
+
+int testCount;
 
 int testBuyCard( int numPlayers, int whichPlayer, int playerBuys, int playerMoney, int cardToBuy );
 
 int main()
 {
-	struct testInput * failureInputs = (struct testInput*)malloc(
-			MAX_FAILURES * sizeof(struct testInput)
-	);
-	int i, j, k, l, m, failureCount = 0;
+	int i, j, k, l, m, failuresThisTry = 0, failureCount = 0;
 
-	for(i = 0; i <= treasure_map; i++)					// which card
+	testCount = 0;
+
+	fprintf( stdout, "**********\nunittest1\n\nTesting buyCard()\n\n" );
+
+	for (i = 0; i <= treasure_map; i++)					// which card
 	{
-		printf("i = %d", i);
-		for(j = 2; j < MAX_PLAYERS; j++)				// how many players
+		for (j = 2; j < MAX_PLAYERS; j++)				// how many players
 		{
-			printf("j = %d", j);
-			for(k = 0; k < j; k++)						// which player
+			for (k = 0; k < j; k++)						// which player
 			{
-				for(l = 0; l <= 13; l++)				// how many buys to start with
+				for (l = 1; l <= 13; l++)				// how many buys to start with
 				{
-					for(m = 0; m < START_MONEY; m++)	// money to start with
+					for (m = 1; m < START_MONEY; m++)    // money to start with
 					{
-						if(testBuyCard(j, k, l, m, i) == -1) {
-							failureInputs[failureCount].numPlayers = j;
-							failureInputs[failureCount].whichPlayer = k;
-							failureInputs[failureCount].playerBuys = l;
-							failureInputs[failureCount].playerMoney = m;
-							failureInputs[failureCount].cardToBuy = i;
-							failureCount++;
+						failuresThisTry = testBuyCard( j, k, l, m, i );
+						if (failuresThisTry)
+						{
+							failureCount += failuresThisTry;
+							failuresThisTry = 0;
 						}
 					}
 				}
 			}
 		}
 	}
-	if(failureCount) {
-		fprintf(stdout, "Problems found for inputs:\n\n");
-	}
-	for(i = 0; i < failureCount; i++)
+	fprintf( stdout, "%d tests run.\n", testCount );
+	if (failureCount)
 	{
-		fprintf(stdout, "number of players:\t%d\nwhich player:\t%d\n# of buys:\t%d\nMoney:\t%d\nCard:\t%d\n",
-				failureInputs[failureCount].numPlayers,
-				failureInputs[failureCount].whichPlayer,
-				failureInputs[failureCount].playerBuys,
-				failureInputs[failureCount].playerMoney,
-				failureInputs[failureCount].cardToBuy
-		);
+		fprintf( stdout, "%d Problems found.\n\n**********\n\n", failureCount );
+	} else
+	{
+		fprintf( stdout, "All tests passed.\n\n**********\n\n" );
 	}
-	if(failureCount)
-		return 1;
-	else
-		return 0;
+	return 0;
 }
 
 /*
@@ -86,9 +76,10 @@ int main()
  */
 int testBuyCard( int numPlayers, int whichPlayer, int playerBuys, int playerMoney, int cardToBuy )
 {
-	int i, found = 0, result, expectedResult, allPass = 1;
-	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute,
-			smithy };
+	int i, found = 0, result, expectedResult, failFlag = 0, failCount = 0, maxBuys;
+	int k[10] = {
+			adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy
+	};
 	struct gameState pre, post;
 
 	// if cardToBuy is a k-card and is not in our initial set of k-cards, make
@@ -104,48 +95,64 @@ int testBuyCard( int numPlayers, int whichPlayer, int playerBuys, int playerMone
 			}
 		}
 		if (!found)
-		{
 			k[0] = cardToBuy;
-		}
 	}
-
 	initializeGame( numPlayers, k, SEED, &pre );
-	memcpy( &post, &pre, sizeof(struct gameState) );
 	pre.coins = playerMoney;
 	pre.whoseTurn = whichPlayer;
 	pre.numBuys = playerBuys;
+	memcpy( &post, &pre, sizeof(struct gameState) );
 
-	if (playerBuys < 1 || getCost( cardToBuy ) > playerMoney)
-		expectedResult = -1;
-	else
-		expectedResult = 0;
-
-	for (i = 0; i <= pre.supplyCount[cardToBuy]; i++)
+	// try to buy all the cards of type cardToBuy, and then one more!
+	maxBuys = 1 + post.supplyCount[cardToBuy];
+	for (i = 0; i <= maxBuys; i++)
 	{
-		if (playerBuys < 1 || getCost( cardToBuy ) > playerMoney || pre.supplyCount[cardToBuy] < 1)
+		if (playerBuys < 1 || getCost( cardToBuy ) > playerMoney || post.supplyCount[cardToBuy] < 1)
 			expectedResult = -1;
 		else
 			expectedResult = 0;
 
-		fprintf(stdout, "Player %d of %d attempts to buy Card #%d with %d coins and %d buys:\t",
-				whichPlayer, numPlayers, cardToBuy, playerMoney, playerBuys);
+		result = buyCard( cardToBuy, &post );
+		testCount++;
+		if (result != expectedResult)
+			failFlag = 1;
 
-		result = buyCard(cardToBuy, &pre);
-
-		if(result == expectedResult) {
-			fprintf(stdout, "CORRECT\n");
-		}
-		else {
-			fprintf(stdout, "INCORRECT\n");
-			allPass = 0;
-		}
-		if(result == 0) {
-			playerMoney -= getCost(cardToBuy);
+		if (result == 0)	// if buy was successful, check postconditions
+		{
+			// update our own variables
+			playerMoney -= getCost( cardToBuy );
 			--playerBuys;
+
+			// check whether postconditions have been met
+			if (post.coins != playerMoney)
+				failFlag = 1;
+			if (post.numBuys != playerBuys)
+				failFlag = 1;
+			if (post.supplyCount[cardToBuy] != pre.supplyCount[cardToBuy] - 1)
+				failFlag = 1;
+			if (post.discardCount[whichPlayer] != 1 + pre.discardCount[whichPlayer])
+				failFlag = 1;
+			else
+			{
+				if (post.discard[whichPlayer][post.discardCount[whichPlayer] - 1] != cardToBuy)
+					failFlag = 1;
+			}
 		}
+		else	// if buy unsuccessful, check to make sure nothing was changed
+		{
+			if (memcmp( &pre, &post, sizeof(struct gameState) ) != 0)
+				failFlag = 1;
+		}
+
+		if (failFlag)
+		{
+			fprintf( stdout,
+					"Player %d of %d attempts to buy Card #%d with %d coins and %d buys:\tFAIL\n",
+					whichPlayer, numPlayers, cardToBuy, playerMoney, playerBuys );
+			failCount++;
+		}
+		memcpy( &pre, &post, sizeof(struct gameState) );
+		failFlag = 0;
 	}
-	if(allPass)
-		return 0;
-	else
-		return -1;
+	return failCount;
 }

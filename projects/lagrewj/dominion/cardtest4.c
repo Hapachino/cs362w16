@@ -21,7 +21,7 @@
 /*
  * Include the following lines in your makefile:
  *
- * cardtest2: cardtest4.c dominion.o rngs.o
+ * cardtest4: cardtest4.c dominion.o rngs.o
  *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
  */
 #include "dominion.h"
@@ -38,8 +38,8 @@
 
 int testPlayCouncil_Room(struct gameState *after, int handPos)
 {
-	int i;
-	int p = after->whoseTurn;
+	
+	int p = after->whoseTurn;//initialize whoseTurn stored as p 
 	struct gameState before;
 	memcpy(&before, after, sizeof(struct gameState));
 	
@@ -58,6 +58,7 @@ int testPlayCouncil_Room(struct gameState *after, int handPos)
 		printf("ERROR 2: player did not get another Buy point. before numBuys: %d, after numBuys: %d.\n", before.numBuys, after->numBuys);
 	}
 	//every other player should have an extra card in their deck
+	int i;
 	for(i = 0; i < before.numPlayers; i ++)
 	{
 		if(i != p)

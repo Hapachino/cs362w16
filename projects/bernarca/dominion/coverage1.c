@@ -5,7 +5,7 @@ Branch coverage: 31.03%
 
 This is a reasonable amount of coverage since my tests invoke the functions they're testing directly
 without the surrounding operations. cardEffect, for instance, is never called, nor are any of the
-end-game functions, and more. So ~25% overall coverage is pretty good.
+end-game functions, and more. So ~1/3 overall coverage is pretty good.
 
 Of the cards tested, Smithy, Village, and Council Room each had 100% coverage, with Adventurer hitting
 93%.

@@ -1,0 +1,99 @@
+|------------------------------------------|
+  Running tests on smithy_play():
+|------------------------------------------|
+Running Scenario 1...
+state.playedCardCount failed. (expected=1, actual=0)
+Running Scenario 2...
+state.playedCardCount failed. (expected=1, actual=0)
+Tests Complete: smithy_play() failed 2 tests.
+
+|------------------------------------------|
+  Running tests on adventurer_play():
+|------------------------------------------|
+Running Scenario 1...
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,4
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 2
+Running Scenario 2...
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 5,5
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 4
+Running Scenario 3...
+state.handCount failed. (expected=7, actual=-1)
+Deck+Discard count failed. (expected=10, actual=19)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 7
+Running 5 Random Scenarios...
+state.handCount failed. (expected=7, actual=7) last 2 in hand = 7,5
+Deck+Discard count failed. (expected=10, actual=11)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 10
+state.handCount failed. (expected=7, actual=7) last 2 in hand = 7,5
+Deck+Discard count failed. (expected=10, actual=11)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 13
+state.handCount failed. (expected=7, actual=7) last 2 in hand = 7,4
+Deck+Discard count failed. (expected=10, actual=11)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 16
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,4
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 18
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 5,4
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 20
+Tests Complete: adventurer_play() failed 20 tests.
+
+|------------------------------------------|
+  Running tests on council_room_play():
+|------------------------------------------|
+Running Scenario 1...
+state.numActions failed. (expected=1, actual=2)
+state.numBuys failed. (expected=2, actual=1)
+Running Scenario 2...
+state.numActions failed. (expected=1, actual=2)
+state.numBuys failed. (expected=2, actual=1)
+Tests Complete: council_room_play() failed 4 tests.
+
+|------------------------------------------|
+  Running tests on village_play():
+|------------------------------------------|
+Running Scenario 1...
+state.numActions failed. (expected=3, actual=1)
+Running Scenario 2...
+state.numActions failed. (expected=3, actual=1)
+Tests Complete: village_play() failed 2 tests.
+
+|------------------------------------------|
+  Running tests on updateCoins():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on gainCard():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on shuffle():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on discardCard():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+File 'dominion.c'
+Lines executed:29.91% of 575
+Branches executed:24.82% of 411
+Taken at least once:22.63% of 411
+Calls executed:18.95% of 95
+dominion.c:creating 'dominion.c.gcov'
+

@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#define TEST "updateCoins"
+
 int main() {
     int i;
     int seed = 1000;
@@ -29,7 +31,7 @@ int main() {
         golds[i] = gold;
     }
 
-    printf ("TESTING updateCoins():\n");
+    printf ("TESTING %s():\n", TEST);
 
     for (p = 0; p < numPlayer; p++) {
         for (handCount = 1; handCount <= maxHandCount; handCount++) {

@@ -20,6 +20,7 @@ int main()
 {
 	int i, j, runReq = 1000, runCount = 0, failCount = 0;
 
+	fprintf( stdout, "\n**********\nunittest4\n\nTesting fullDeckCount():\n\n" );
 	for (i = 2; i <= MAX_PLAYERS; i++)
 	{
 		for (j = 0; j < 100; j++)
@@ -29,24 +30,25 @@ int main()
 		}
 	}
 
-	fprintf( stdout, "%d tests, %d failures\n", runCount, failCount );
+	fprintf( stdout, "%d tests, %d failures\n\n**********\n\n", runCount, failCount );
 	return 0;
 }
 
 int testFullDeckCount( int numPlayers, int whichPlayer, int runs )
 {
-	int i, j, pos, card, deck, hand, discard, runCount = 0, failCount = 0;
-	const int r = treasure_map - adventurer;
+	int i, j, pos, card, deck, hand, discard, failCount = 0;
 	struct gameState g;
 
 	for (i = 0; i < runs; i++)
 	{
 		memset( &g, -1, sizeof(struct gameState) );
+
+		// generate random card to search for, random size for each pile
 		card = rand() % ( 1 + treasure_map );
 		deck = rand() % 50;
 		hand = rand() % 50;
 		discard = rand() % 50;
-		j = 0;
+
 		for (j = 0; j < deck;)
 		{
 			pos = rand() % MAX_DECK;
@@ -96,6 +98,7 @@ int testFullDeckCount( int numPlayers, int whichPlayer, int runs )
 			fprintf( stdout, "card = %d, deck = %d, hand = %d, discard = %d: FAIL\n", card, deck,
 					hand, discard );
 			failCount++;
+			continue;
 		}
 	}
 	return failCount;

@@ -184,11 +184,30 @@ Parameters:
 Return Type: int
 
 Description:
+Adventurer allows the player to reveal the deck one card at a time until two
+treasure cards are shown. The non-treasure cards are placed into the player's
+discard deck and the treasure cards are added to the player's hand.
 
 Test Findings:
+The first test case assesses whether or not the non-treasure cards are added
+to the discard pile. In order to determine this, I cycle from the top of the
+deck to the bottom of the deck to determine how many cards must be added to the
+discard pile and what cards will be added. To test the condition, I compare
+the results of the game state modified by calling the function. In looking at
+the discard pile, it did successully contain the additional cards removed from
+the deck while looking for two adventure cards.
 
+The second test case checks the player's hand to determine if the two treasure
+cards are added to the player's hand. Looking at the top two positions of the
+player's hand, I identified that in fact were not the new adventure cards. During
+this phase I also check to see if the handCount for the modified game state is
+appropriately incremented by two and it is not.
 
-`----------------------------- CARD - UNIT TEST 3 -----------------------------
+In order to verify consistency, both the other player's deccks and the supply
+decks were compared to the original version to ensure nothing changed, and these
+tests passed as the decks remained unmodified.
+
+----------------------------- CARD - UNIT TEST 3 -----------------------------
 Name: village
 Parameters:
 	- int currentPlayer
@@ -199,9 +218,26 @@ Parameters:
 Return Type: int
 
 Description:
+Village adds one draw card, two actions, and discards the village card from
+the player's hand to the discard deck.
 
 Test Findings:
+Testing the total hand count for the player proved challenging since there are
+two operations of add/remove on cards that offset each other. The first test
+I conducted checked to see if the drawn card placed on top of the player's
+hand was the card on top of the original deck. This test passed and I was able
+to verify by comparing the backup copy of the game state deck to the modified
+game state player hand.
 
+The second test checks that two actions are added to the game state. This was
+compared directly by looking at the new game state's numActions attribute
+and comparing it to the original game state's numActions attribute. This test
+did not pass accordingly as the results were not 2 additional actions.
+
+The third test checked to ensure that the village card was removed from the
+player's hand and placed on the discard pile. This test passsed successfully
+verified by comparing the modified game state's discard pile as well as both
+versions of the game state's player  hand.
 
 ----------------------------- CARD - UNIT TEST 4 -----------------------------
 Name: remodel
@@ -214,7 +250,20 @@ Parameters:
 Return Type: int
 
 Description:
+Remodel allows you to trash a card from your hand and gain a card up to 2 coins
+more than the trashed card.
 
 Test Findings:
+The first condition for remodel is to check that the chosen trash card is removed
+from the player's hand if a valid call to the function is made. This test passed
+and verified by the comparison of attributes between game states.
 
+The second condition I tested was that the game state should not change if an
+invalid submission is made. This test is produced by attempting to trash a
+card and choose a card that is more than two in value compared to the trashed
+card. This test was successful and the game state did not change as the function
+exited with an error.
 
+The third condition checks to see if the new card is added to the player's deck.
+This was conducted successfully as well as checking to see if the trashed card
+was removed from the player's hand and placed in the discard pile.

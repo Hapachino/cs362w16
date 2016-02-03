@@ -40,6 +40,7 @@ int main() {
     if (initializeState(numPlayers, cards, seed, &state) != 0)
     {
         printf("Error: Could not initialize state.\n");
+        return -1;
     }
 
     // Preserve the original game state to compare result of shuffle()
@@ -112,6 +113,5 @@ int main() {
     }
 
     printf("All tests passed!\n");
-
     return 0;
 }

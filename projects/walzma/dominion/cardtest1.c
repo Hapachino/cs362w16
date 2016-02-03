@@ -1,5 +1,5 @@
 /*
-Unit Test for Smithy card
+Card Test for Smithy card
 */
 
 #include "dominion.h"
@@ -16,13 +16,14 @@ Unit Test for Smithy card
 
 
 int main() {
-	printf("-------------Card Test #1: Testing smithy card-------------\n\n");
+	printf("\n-------------Card Test #1: Testing smithy card-------------\n\n");
 
 	//initialize variables for card test
 	int i, numPlayers, handPos, randomSeed;
+	int choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 	int currentPlayer = 0, success = 0, error1 = 0, error2 = 0;
 	struct gameState pre, post;
-	int kCards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
+	int kCards[10] = {adventurer, remodel, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 	
 	//seed random number generator and create random values (within boundaries for numPlayers, handPos, and randomSeed
 	srand(time(NULL));
@@ -40,8 +41,8 @@ int main() {
 	post.hand[currentPlayer][handPos] = smithy;
 	memcpy(&pre, &post, sizeof(struct gameState));
 	//check smithyEffect
-	if (SmithyEffect(currentPlayer, handPos, &post) == 1) {
-		printf("Failed function: SmithyEffect threw an error state.\n");
+	if (cardEffect(smithy, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(smithy,...) threw an error state.\n");
 		success = -1;
 	}
 	//Check that currentPlayer handCount increased by 2 (+3 for drawn cards and -1 for playing smithy)
@@ -125,8 +126,8 @@ int main() {
 	//copy game state
 	memcpy(&pre, &post, sizeof(struct gameState));
 	//check smithyEffect
-	if (SmithyEffect(currentPlayer, handPos, &post) == 1) {
-		printf("Failed function: SmithyEffect threw an error state.\n");
+	if (cardEffect(smithy, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(smithy,...) threw an error state.\n");
 		success = -1;
 	}
 	//Check that currentPlayer handCount increased by 2 (+3 for drawn cards and -1 for playing smithy)
@@ -210,8 +211,8 @@ int main() {
 	//copy game state
 	memcpy(&pre, &post, sizeof(struct gameState));
 	//check smithyEffect
-	if (SmithyEffect(currentPlayer, handPos, &post) == 1) {
-		printf("Failed function: SmithyEffect threw an error state.\n");
+	if (cardEffect(smithy, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(smithy,...) threw an error state.\n");
 		success = -1;
 	}
 	//Check that currentPlayer handCount remained constant (only 1 card to draw and played smithy)
@@ -275,6 +276,6 @@ int main() {
 	}
 	
 	
-	printf("\n\n-------------Card Test #1 Complete -------------\n");
+	printf("\n\n-------------Card Test #1 Complete -------------\n\n\n");
 	return 0;
 }

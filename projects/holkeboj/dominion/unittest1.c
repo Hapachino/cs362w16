@@ -172,6 +172,8 @@ int main() {
         printf("Test Failed.\n\n");
     }
     testsRun++;
+    
+
     printf("\n---- %d Passed ---- %d Failed ------\n", testsPassed, (testsRun - testsPassed));
     
     printf("---------- Testing %s Function Complete ------\n\n", TESTFUNCTION);

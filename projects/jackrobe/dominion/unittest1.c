@@ -1,6 +1,6 @@
 //
 // Created by Robert on 1/26/2016.
-// the Smithy Test
+// the drawCard Test
 
 #include <stdio.h>
 #include <assert.h>
@@ -317,7 +317,7 @@ int checkNoChange(int cPlayer, struct gameState *state, struct gameState preStat
     }
 
 
-    // If counts failed we wont check this it'll crash
+    // If counts failed we wont check this or it'll crash
     if(status == 0) {
 //    //check hand
         for (i = 0; i < state->handCount[cPlayer]; i++) {
@@ -371,12 +371,13 @@ int main(int argc, char** argv) {
     //VIP Must start at player 0
     int currentPlayer = 0;
 
+    printf ("\n\nTESTING drawCard: ------------------ \n");
     int testResult = testDrawCard( currentPlayer, &G );
     if( testResult == 0){
         printf ("test drawCard: OK \n");
 
     }else{
-        printf ("FAILED : %i tests", testResult );
+        printf ("FAILED : %i tests\n", testResult );
     }
 
 

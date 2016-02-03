@@ -199,6 +199,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 }
 
 int shuffle(int player, struct gameState *state) {
+  //printf("deck was shuffled\n");
  
 
   int newDeck[MAX_DECK];
@@ -655,11 +656,12 @@ int smithyEffect(int currentPlayer, int handPos, struct gameState *state)
     return 0;
 }
 
-int adventurerEffect(int currentPlayer, struct gameState *state, int cardDrawn, int temphand[], int z, int drawntreasure)
+int adventurerEffect(int handPos, int currentPlayer, struct gameState *state, int cardDrawn, int temphand[], int z, int drawntreasure)
 {
      while(drawntreasure<2){
+      //printf("!!deck count = %d, drawntreasure = %d\n", state->deckCount[currentPlayer], drawntreasure);
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
-	  shuffle(currentPlayer, state);
+	  shuffle(currentPlayer, state); //bug - this if block serves no purpose
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
@@ -671,11 +673,17 @@ int adventurerEffect(int currentPlayer, struct gameState *state, int cardDrawn, 
 	  z++;
 	}
       }
-      while(z-1>=0){
+      //printf("temphand[1] = %d\n", temphand[1]);
+      while(z-1 >= 0){
 	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z]; // discard all cards in play that have been drawn
+
 	z=z-1;
       }
+      //bug - card not discarded. Below line of code needs to be added for this function to work correctly.
+      //discardCard(handPos, currentPlayer, state, 0);
       return 0;
+      
+
 }
 
 int villageEffect(int currentPlayer, int handPos, struct gameState *state)
@@ -762,7 +770,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-    	return adventurerEffect(currentPlayer, state, cardDrawn, temphand, z, drawntreasure);
+    	return adventurerEffect(handPos, currentPlayer, state, cardDrawn, temphand, z, drawntreasure);
     /*
       while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck

@@ -650,7 +650,7 @@ int smithy_card(int handPos, int currentPlayer, struct gameState *state) {
     int i;
     // +3 Cards
     for (i = 0; i < 3; i++) {
-        if (handPos != 2) {
+        if (handPos != 2) { // bug - this condition shouldn't be here
             drawCard(currentPlayer, state);
         }
     }
@@ -669,7 +669,7 @@ int adventurer_card(int handPos, int z, int temphand[], int drawntreasure, int c
         }
         drawCard(currentPlayer, state);
         if (drawntreasure == 1) {
-            // draw two extra cards.  Could potentiall result in drawing
+            // BUG: draw two extra cards if drawntreasure == 1.  Could potentiall result in drawing
             // more than two treasure cards.
             drawCard(currentPlayer, state);
             drawCard(currentPlayer, state);
@@ -694,6 +694,7 @@ int adventurer_card(int handPos, int z, int temphand[], int drawntreasure, int c
 int outpost_card(int handPos, int currentPlayer, struct gameState *state) {
     // set outpost flag
     state->outpostPlayed++;
+    
     state->handCount[currentPlayer]++;
     
     // discard card

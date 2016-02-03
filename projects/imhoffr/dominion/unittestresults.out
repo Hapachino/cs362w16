@@ -1,0 +1,122 @@
+----------------- Testing Function: isGameOver() ----------------
+TEST 1: Game is over when no provinces are left
+When there is at least 1 province card:
+TEST 2: Game continues when no supply pile is zero
+TEST 3: Game continues when 1 supply pile is zero
+TEST 4: Game continues when 2 supply piles are zero
+TEST 5: Game is over when 3 supply piles are zeroTEST 6: Game is over when 3 or more supply piles are zero
+
+ >>>>> SUCCESS: Testing complete isGameOver() <<<<<
+
+----------------- Testing Function: gainCard() ----------------
+TEST 1: No cards left in the pile
+TEST 2: Sending card to deck
+deck count = 6, expect = 6
+Last card in deck = 1, expect = 1
+supply count = 0, expect = 0
+TEST 3: Sending card to hand
+hand count = 6, expect = 6
+Last card in hand = 1, expect = 1
+supply count = 0, expect = 0
+TEST 4: Sending card to discard
+discard count = 1, expect = 1
+Last card in discard = 1, expect = 1
+supply count = 0, expect = 0
+
+ >>>>> SUCCESS: Testing complete gainCard() <<<<<
+
+----------------- Testing Function: updateCoins() ----------------
+Test 1: coins get reset - if no bonus and handCount
+coins = 0, expected = 0
+Test 2: empty hand, 5 bonus coins
+coins = 5, expected = 5
+Test 3: copper coin adds 1
+coins = 1, expected = 1
+Test 4: silver coin adds 2
+coins = 2, expected = 2
+Test 5: gold coin adds 3
+coins = 3, expected = 3
+TEST 6: add 1 copper, 2 silver, 1 gold, one bonus
+coins = 9, expected = 9
+
+ >>>>> SUCCESS: Testing complete updateCoins() <<<<<
+
+----------------- Testing Function: fullDeckCount() ----------------
+Test 1: Full deck count is zero when deck count, hand count, and discard count are all zero
+Full deck count = 0, expected 0
+TEST 2: Mix of cards, two of same card testing deckCount
+Full deck count = 2, expected = 2
+TEST 3: Mix of cards, two of same card testing handCount
+Full hand count = 2, expected = 2
+TEST 4: Mix of cards, two of same card testing discardCount
+Full hand count = 2, expected = 2
+
+ >>>>> SUCCESS: Testing complete fullDeckCount() <<<<<
+
+----------------- Testing Card: smithy ----------------
+Test 1: There are no cards in the deck
+Hand count = 0, expected = 0
+
+Test 2: one card in hand
+Hand count = 1, expected = 1
+Card in hand = 1, expected = 1
+
+Test 3: two cards in hand
+Hand count = 2, expected = 2
+Card in first position = 1, expected = 1
+Card in second position = 2, expected = 2
+
+Test 4: three cards in hand
+Hand count = 3, expected = 3
+Card 1 in hand = 1, expected = 1
+Card 2 in hand = 1, expected = 1
+Card 3 in hand = 1, expected = 1
+
+
+ >>>>> SUCCESS: Testing complete smithy <<<<<
+
+----------------- Testing Card: adventurer ----------------
+Test 1: drawn treasure = 1 when the treasure is copper
+Card 4 in hand = 1, expected = 1
+
+Test 2:drawn treasure = 1 when the treasure is silver
+Card 5 in hand = 1, expected = 1
+
+Test 2:drawn treasure = 1 when the treasure is gold
+Card 6 in hand = 1, expected = 1
+
+
+ >>>>> SUCCESS: Testing complete adventurer <<<<<
+
+----------------- Testing Card: village ----------------
+Test 1: draw one card from empty deck
+Hand Count = 0, expected = 0
+Number of Actions = 3, expected = 3
+
+Test 2: draw one card from non-empty deck
+Hand Count = 1, expected = 1
+Number of Actions = 3, expected = 3
+
+Test 3: number of actions increases by 1
+Card found in hand = 0, expected 0
+Number of Actions = 3, expected = 3
+
+
+ >>>>> SUCCESS: Testing complete village <<<<<
+
+----------------- Testing Card: great_hall ----------------
+Test 1: draw one card from empty deck
+Hand Count = 0, expected = 0
+Number of Actions = 2, expected = 2
+
+Test 2: draw one card from non-empty deck
+Hand Count = 1, expected = 1
+Number of Actions = 2, expected = 2
+
+Test 3: number of actions increases by 1
+Card found in hand = 0, expected 0
+Number of Actions = 2, expected = 2
+
+
+ >>>>> SUCCESS: Testing complete great_hall <<<<<
+

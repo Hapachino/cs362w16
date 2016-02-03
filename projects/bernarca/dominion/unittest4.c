@@ -8,8 +8,7 @@
 
 int main() {
   printf("testing getCost\n");
-  /*
-  assert(getCost(curse) == 0);
+  getCost(curse) == 0;
   assert(getCost(estate) == 2);
   assert(getCost(duchy) == 5);
   assert(getCost(province) == 8);
@@ -38,7 +37,6 @@ int main() {
   assert(getCost(treasure_map) == 4);
   //Not a real card
   assert(getCost(4357) == -1);
-  */
 
 
 	//printf("All tests passed.\n");

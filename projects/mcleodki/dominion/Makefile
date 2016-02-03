@@ -74,21 +74,30 @@ cardtests: cardtest1 cardtest2 cardtest3 cardtest4
 
 unittestresults.out: unittests cardtests
 	./unittest1 &> unittestresults.out
-	gcov -b unittest1 >>unittestresults.out
+	gcov dominion.c >>unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 	./unittest2 >> unittestresults.out
-	gcov -b unittest2 >>unittestresults.out
+	gcov dominion.c >>unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 	./unittest3 >> unittestresults.out
-	gcov -b unittest3 >>unittestresults.out
+	gcov dominion.c >>unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 	./unittest4 >> unittestresults.out
-	gcov -b unittest4 >>unittestresults.out
+	gcov dominion.c >>unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 	./cardtest1 >> unittestresults.out
-	gcov -b cardtest1 >>unittestresults.out
+	gcov dominion.c >>unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 	./cardtest2 >> unittestresults.out
-	gcov -b cardtest2 >>unittestresults.out
+	gcov dominion.c >>unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 	./cardtest3 >> unittestresults.out
-	gcov -b cardtest3 >>unittestresults.out
+	gcov dominion.c >>unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 	./cardtest4 >> unittestresults.out
-	gcov -b cardtest4 >>unittestresults.out
+	gcov dominion.c >>unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+
 
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4

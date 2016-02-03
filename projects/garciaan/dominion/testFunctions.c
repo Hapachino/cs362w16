@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include <assert.h>
+#include <signal.h>
+#include <unistd.h>
 
 /****************************************************
 * everything in the default init except does not draw 
@@ -34,7 +35,6 @@ int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed, struct ga
       }
     }
   }
-
 
   //initialize supply
   ///////////////////////////////
@@ -132,6 +132,8 @@ int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed, struct ga
 /***************************************************
 * resets all the card effect stuff from previous cards
 * and draws 5 cards
+* NOTE: THIS DOES NOT FOLLOW GAME RULES. TESTING ONLY
+* This function assumed to be used at the beginning of a player's turn
 ***************************************************/
 int initTurn(int player, struct gameState *state){
   int i = 0;
@@ -160,7 +162,7 @@ int initTurn(int player, struct gameState *state){
 ****************************************************/
 void createCompareStateArray(int *array,int default_num){
   int i;
-  for (i = 0; i < played_card_count; i++){
+  for (i = 0; i < last_tester; i++){
     array[i] = default_num;
   }
 }
@@ -172,10 +174,10 @@ void createCompareStateArray(int *array,int default_num){
 * 0 means not equal, 1 means either equal or not tested
 ****************************************************/
 void compareStates(struct gameState *state1, struct gameState *state2, int* test, int *results, int verbose){
-  int state_index[18]; //18 variables/arrays in struct gameState
+  int state_index[last_tester]; //18 variables/arrays in struct gameState + 1 for checking other player affected
   int i;
   int j;
-  for (i = 0; i < 18; i++){
+  for (i = 0; i < last_tester; i++){
     state_index[i] = 1;
   }
   if (verbose)
@@ -346,11 +348,81 @@ void compareStates(struct gameState *state1, struct gameState *state2, int* test
     }
   }
 
+  if (whoseTurn(state1) == whoseTurn(state2)){
+    for (i = 0; i < MAX_PLAYERS; i++){
+      if (i == whoseTurn(state1)){
+        continue;
+      }
+      if (checkOtherPlayer(state1,state2,i,verbose) == 0){
+        state_index[other_player] = 0;
+        if (verbose){
+          printf("- Other Player\n");
+        }
+        break;
+      }
+
+    }
+  }
+
   for (i = 0; i < played_card_count; i++){
     results[i] = state_index[i];
   }
 }
-
+/****************************************************
+* Very similar to compareStates, but checks if another player changed anything
+* Return 0 if other player changed, 1 if stayed the same
+****************************************************/
+int checkOtherPlayer(struct gameState *state1, struct gameState *state2, int player, int verbose){
+  int j;
+  int change = 0;
+  if (verbose)
+    printf("PLAYER %d WAS UNINTENTIONALLY AFFECTED IN: \n", player);
+  for (j = 0; j < MAX_HAND; j++){
+    if (state1->hand[player][j] != state2->hand[player][j]) {
+      change = 1;
+      if (verbose)
+        printf("- Player %d Hand\n",player);
+      break;
+    }
+  }
+  if (state1->handCount[player] != state2->handCount[player]){
+    change = 1;
+    if (verbose)
+      printf("- Player %d Hand Count\n", player);
+  }
+  for (j = 0; j < MAX_DECK; j++){
+    if (state1->deck[player][j] != state2->deck[player][j]){
+      change = 1;
+      if (verbose)
+        printf("- Player %d Deck\n", player);
+      break;
+    }
+  }
+  if (state1->deckCount[player] != state2->deckCount[player]){
+    change = 1;
+    if (verbose)
+      printf("- Player %d Deck Count\n", player);
+  }
+  for (j = 0; j < MAX_DECK; j++){
+    if (state1->discard[player][j] != state2->discard[player][j]){
+      change = 1;
+      if (verbose)
+        printf("- Player %d Discard Pile\n", player);
+      break;
+    }
+  }
+  if (state1->discardCount[player] != state2->discardCount[player]){
+    change = 1;
+    if (verbose)
+      printf("- Player %d Discard Pile Count\n", player);
+  }
+  if (change == 0){
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
 /****************************************************
 * returns 0 if not all 1s (equal), exluding excludes (marked
 * as zeros), the ones that should be different
@@ -393,9 +465,9 @@ int numDeck(int player, struct gameState *state){
 }
 
 /****************************************************
-* plays all treasures in hand
+* Returns sum of all treasures in hand
 ****************************************************/
-int playTreasures(int player, struct gameState *state){
+int countTreasures(int player, struct gameState *state){
   int i;
   int money = 0;
   while(i < numHandCards(state)){
@@ -429,7 +501,7 @@ int numDiscards(int player, struct gameState *state){
 int discardAll(int player, struct gameState *state){
   int i = 0;
   for (i = 0; i < numDeck(player,state); i++){
-    assert(!drawCard(player,state));
+    drawCard(player,state);
   }
   discardHand(player,state);
 
@@ -444,6 +516,7 @@ int discardHand(int player, struct gameState *state){
   for (i = 0; i < state->handCount[player]; i++){
     state->discard[player][state->discardCount[player]++] = state->hand[player][i];//Discard
     state->hand[player][i] = -1;//Set card to -1
+    state->discardCount[player]++;
   }
   state->handCount[player] = 0;//Reset hand count
   
@@ -458,7 +531,6 @@ int discardHand(int player, struct gameState *state){
 ****************************************************/
 int checkHand(int orig_hand_count, int offset, int player, struct gameState *state){
   if ((orig_hand_count + offset) != numHandCards(state)){
-    printf("\t- RESULT: FAIL\n\n");
     return -1;
   }
 
@@ -495,8 +567,122 @@ int checkDeck(int player, struct gameState *previousState, struct gameState *sta
   }
 
   if (deck_count_err){
-    printf("\t- RESULT: FAIL\n\n");
     return -1;
   }
   return 0;
+}
+
+/****************************************************
+* Raises the error flag if passed a false (0).
+* Error if flag is set to 1 
+****************************************************/
+void checkError(int pass){
+  if (pass == 0){
+    ERROR = 1;
+  }
+}
+
+/****************************************************
+* Resets the error flag (back to 0)
+****************************************************/
+void resetError(){
+  ERROR = 0;
+}
+
+/****************************************************
+* Checks for card removal from game, deck decrementing,
+* and accidental discarding. 
+****************************************************/
+void printResults(){
+  if (ERROR != 0){
+    printf("\t- RESULT: FAIL\n\n");
+  }
+  else {
+    printf("\t- RESULT: PASS\n\n");
+  }
+}
+
+/****************************************************
+* Prints the deck for the given player
+****************************************************/
+void printDeck(struct gameState *state, int player){
+  int i;
+  printf("\nNum Cards in Deck: %d\n",state->deckCount[player]);
+  for (i = 0; i < state->deckCount[player]; i++){
+    printf("CARD %d: %d\n",i+1,state->deck[player][i]);
+  }
+}
+
+/****************************************************
+* Prints the hand for the given player
+****************************************************/
+void printHand(struct gameState *state, int player){
+  int i;
+  printf("\nNum Cards in Hand: %d\n",state->handCount[player]);
+  for (i = 0; i < state->handCount[player]; i++){
+    printf("CARD %d: %d\n",i+1,state->hand[player][i]);
+  }
+}
+
+/****************************************************
+* Prints the discard pile for the given player
+****************************************************/
+void printDiscard(struct gameState *state, int player){
+  int i;
+  printf("\nNum Cards in Discard: %d\n",state->discardCount[player]);
+  for (i = 0; i < state->discardCount[player]; i++){
+    printf("CARD %d: %d\n",i+1,state->discard[player][i]);
+  }
+}
+
+/****************************************************
+* Returns 1 if array contains val, else 0
+****************************************************/
+int contains(int* array, int size, int val){
+  int i;
+  for (i = 0; i < size; i++){
+    if (array[i] == val){
+      return 1;
+    }
+  }
+
+  return 0;
+}
+/****************************************************
+* Sets all values in state->deck[player], 
+* state->hand[player], and state->discard[player] to -1 and
+* resets the counts. Also resets playedCardCount to 0
+****************************************************/
+void resetCards(struct gameState *state, int player){
+  int i;
+  for (i = 0; i < state->deckCount[MAX_DECK]; i++){
+    state->deck[player][i] = -1;
+  }
+  state->deckCount[player] = 0;
+  for (i = 0; i < state->discardCount[player]; i++){
+    state->discard[player][i] = -1;
+  }
+  state->discardCount[player] = 0;
+  for (i = 0; i < state->handCount[player]; i++){
+    state->hand[player][i] = -1;
+  }
+  state->handCount[player] = 0;
+
+  state->playedCardCount = 0;
+}
+/****************************************************
+* SIGNAL HANDLERS
+****************************************************/
+void timeout(int signum){
+  printf("\t- RESULT: FAIL - TIMEOUT - EXITING...\n\n");
+    printf(">>>>>>>>>>> FAILURE: Testing incomplete <<<<<<<<<<<\n\n");
+
+  exit(0);
+}
+
+void handle_segfault(int signum){
+  printf("\t- RESULT: FAIL - SEGFAULT - EXITING...\n\n");
+  printf(">>>>>>>>>>> FAILURE: Testing incomplete <<<<<<<<<<<\n\n");
+
+  exit(0);
 }

@@ -1,29 +1,55 @@
 CFLAGS = -Wall -w -fpic -coverage -lm
 
-unittestresults.out: unittest1.c unittest2.c dominion.c rngs.c
-	echo "Result for running tests" > tests.out
+unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.c rngs.c
+	
+	make unittest1
+	make unittest2
+	make unittest3
+	make unittest4
+	make cardtest1
+	make cardtest2
+	make cardtest3
+	make cardtest4
+	
+	echo "Running tests. This will take a minute..."
+	./unittest1 >> unittestresults.out		
+	./unittest2 >> unittestresults.out	
+	./unittest3 >> unittestresults.out
+	./unittest4 >> unittestresults.out	
+	./cardtest1 >> unittestresults.out
+	./cardtest2 >> unittestresults.out
+	./cardtest3 >> unittestresults.out
+	./cardtest4 >> unittestresults.out
+	
+	echo "\n\nCode Coverage\n" >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out	
+	cat dominion.c.gcov >> unittestresults.out
+	echo "-- See unittestresults.out for test pass/fail status --"
 
-	echo "unittest1.c:" >> tests.out
-	gcc -o unittest1 rngs.c dominion.c unittest1.c $(CFLAGS)
-	./unittest1 >> tests.out
-	gcov dominion.c >> tests.out
+unittest1: unittest1.c dominion.o rngs.o
+	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
 
-	echo "unittest2.c:" >> tests.out
-	gcc -o unittest2 rngs.c dominion.c unittest2.c $(CFLAGS)
-	./unittest2 >> tests.out
-	gcov dominion.c >> tests.out
+unittest2: unittest2.c dominion.o rngs.o
+	gcc -o unittest2 -g unittest2.c dominion.o rngs.o $(CFLAGS)
 
-	echo "unittest3.c:" >> tests.out
-	gcc -o unittest3 rngs.c dominion.c unittest3.c $(CFLAGS)
-	./unittest3 >> tests.out
-	gcov dominion.c >> tests.out
+unittest3: unittest3.c dominion.o rngs.o
+	gcc -o unittest3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
 
-	echo "unittest4.c:" >> tests.out
-	gcc -o unittest4 rngs.c dominion.c unittest4.c $(CFLAGS)
-	./unittest4 >> tests.out
-	gcov dominion.c >> tests.out
+unittest4: unittest4.c dominion.o rngs.o
+	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
 
-	echo "!!-- See tests.out for test pass/fail status --!!"
+cardtest1: cardtest1.c dominion.o rngs.o
+	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o $(CFLAGS)
+
+cardtest2: cardtest2.c dominion.o rngs.o
+	gcc -o cardtest2 -g cardtest2.c dominion.o rngs.o $(CFLAGS)
+
+cardtest3: cardtest3.c dominion.o rngs.o
+	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o $(CFLAGS)
+
+cardtest4: cardtest4.c dominion.o rngs.o
+	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
+	
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
 
@@ -50,7 +76,7 @@ interface.o: interface.h interface.c
 
 runtests: testDrawCard
 	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
+	gcov -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
 
@@ -60,4 +86,4 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *~ *.out

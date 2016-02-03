@@ -28,19 +28,31 @@ int unitTest(int player,struct gameState *post){
 
     //memcmp game state size
     if(memcmp(&pre,post, sizeof(struct gameState))!=0){
+        #if (NOISY_TEST == 1)
         printf("gameState memory is wrong");
-        exit(3);
+        #endif
+        return 1;
     }
     //card specific checks 
+    if(state->hand[player][state->handCount[currentPlayer]] < 0){
+        #if (NOISY_TEST==1)
+        printf("invalid handsize");
+        #endif
+    }
+    
     //player hand size should be 2 larger after gaining treasure
     if(post->handCount != pre.handCount +2){
+        #if (NOISY_TEST == 1)
         printf("Player did not receive 2 additional cards correctly");
-        exit(1);
+        #endif
+        return 2;
     }
     //player should have at least 2 more treasures
     if(post->coins < pre.coins +2){
+        #if (NOISY_TEST ==1)
         printf("player did not receive 2 additional coins");
-        exit(2);
+        #endif
+        return 3;
     }
 
     return 0;
@@ -49,10 +61,10 @@ int unitTest(int player,struct gameState *post){
 //section directly uses code from betterCardTest.c
 int main () {
   //define variables  
-  int i, n, r, p, deckCount, discardCount, handCount;
-  //define a array of cards
-  int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+  int i, n, r, p, error,errorA,errorB,errorC;
+  errorA =0;
+  errorB =0;
+  errorC =0;
   //define a gamestate
   struct gameState G;
 
@@ -72,32 +84,29 @@ int main () {
     G.deckCount[p] = floor(Random() * MAX_DECK);
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
+    G.numPlayers = floor(Random()* MAX_PLAYERS);
     //call function with test input
-    unitTest(p, &G);
+    error=unitTest(G.numPlayers,&G);
 
-  }
-  printf ("ALL TESTS OK\n");
-
-  //fixed tests
-  printf ("SIMPLE FIXED TESTS.\n");
-  for (p = 0; p < 2; p++) {
-    for (deckCount = 0; deckCount < 5; deckCount++) {
-      for (discardCount = 0; discardCount < 5; discardCount++) {
-	    for (handCount = 0; handCount < 5; handCount++) {
-	     memset(&G, 23, sizeof(struct gameState)); 
-	     r = initializeGame(2, k, 1, &G);
-	     G.deckCount[p] = deckCount;
-	     memset(G.deck[p], 0, sizeof(int) * deckCount);
-	     G.discardCount[p] = discardCount;
-	     memset(G.discard[p], 0, sizeof(int) * discardCount);
-	     G.handCount[p] = handCount;
-	     memset(G.hand[p], 0, sizeof(int) * handCount);
-	     //run unit test.
-        unitTest(p, &G);
-	    }
-      }
+    if (error > 0){
+        if(error == 1){
+            errorA++;
+        }else if(error == 2){
+            errorB++;
+        }else{
+            errorC++;
+        }
     }
   }
-  printf ("FIXED TESTS Complete.\n");  
+  printf ("ALL Random TESTS Complete\n");
+  printf ("Errors type 1: %d ",errorA);
+   printf("gameState memory is wrong");
+
+  printf ("Errors type 2: %d ",errorB);
+  printf("Player did not receive 2 additional cards correctly");
+
+  printf ("Errors type 3: %d ",errorC);
+  printf("player did not receive 2 additional coins");
+
   return 0;
 }

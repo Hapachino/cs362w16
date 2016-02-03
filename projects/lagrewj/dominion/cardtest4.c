@@ -1,335 +1,161 @@
-/* -----------------------------------------------------------------------
- * test remodel
- * 
+/*Jonathan Lagrew
+ *cardtest4.c
+ *test playCouncil_Room()
+ *Notes:
+ *Council Room is an Action card from the Base set. It is a terminal card draw, meaning it 
+ *provides +Cards but no +Action. It is also an interactive card but not an attack, 
+ *the huge benefit to you is counterbalanced by a pretty nice benefit to your opponent,
+ *making them draw a card. It is extremely good when paired with a handsize attack such as Militia!
+ */
+ /*
+ * Basic Requirements of Council_Room:
+ * 1. Current player should receive a total of 4 cards from the deck. 
+ * 2. Current player's buys should increase by 1. 
+ * 3. No state change should occur for other players.
+ * 4. No state change should occur to the victory drawnCard piles and kingdom card piles.
+ * 5. Current player should be the same before and after the test.
+ * 6. Number of actions should stay the same before and after the test. 
+ * 7. Number of coins should stay the same before and after the test. 
+ */
+
+/*
+ * Include the following lines in your makefile:
  *
  * cardtest4: cardtest4.c dominion.o rngs.o
  *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
  */
-
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <stdbool.h>
 #include "rngs.h"
+#include <math.h>
+#define MAX_HAND_TEST 200//setting max hand test value to 200
+#define MAX_DECK_TEST 200//setting max deck test value to 200
+#define TESTCARD "Council_Room"
 
-int remodelTrash(struct gameState *state, int p, int controlCard, int trashCard, int toTest[], int expected[]);
-int displayDeck(struct gameState *state, int p);
-
-int main() {
-    int i;
-    int seed = 1000;
-
-    int numPlayer = 2;
-    int p, r;
-    int k[10] = {adventurer, great_hall, cutpurse, gardens, mine
-               , remodel, smithy, village, sea_hag, embargo};
-
-    struct gameState G, testG;
-    // Card enum - Name        - Cost 
-    // 22        - embargo     - 2
-    // 14        - village     - 3
-    // 13        - smithy      - 4
-    // 11        - mine        - 5
-    //  7        - adventurer  - 6
-    // toTest[] is the list of cards we will try to gain
-    int toTest[] = {embargo, village, smithy, mine, adventurer};
-    // Keep track of which tests passed/failed
-    int passValues[10];
-
-    memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-
-    printf("----------------- Testing remodel\n");
-
-    // Copy the game state to a test case
-    memcpy(&testG, &G, sizeof(struct gameState));
-
-    // Start testing
-    p = 0;
-    printf("\n----------------- Test 1 (Cost 2): Trash embargo\n");
-
-    // choice1: 2, choice2: 2
-    // Expect: 0
-    // choice1: 2, choice2: 3
-    // Expect: 0
-    // choice1: 2, choice2: 4
-    // Expect: 0
-    // choice1: 2, choice2: 5
-    // Expect: -1
-    // choice1: 2, choice2: 6
-    // Expect: -1
-    int expected1[] = {0, 0, 0, -1, -1};
-
-    // remodelTrash parameters:
-    // 0 = game state
-    // 1 = player
-    // 2 = control card to fill the hand
-    // 3 = card to trash
-    // 4 = cards to gain
-    // 5 = expected return values:
-    // (0 if successfully trashed and gained; otherwise 1)
-    // remodelTrash(0, 1, 2, 3, 4, 5);
-
-    printf("CONTROL CARDS IN HAND ARE COPPERS:\n");
-    passValues[0] = remodelTrash(&testG, p, copper, embargo, toTest, expected1);
-    printf("\nCONTROL CARDS IN HAND ARE ESTATES:\n");
-    passValues[1] = remodelTrash(&testG, p, estate, embargo, toTest, expected1);
-    
-    p = 0;
-    printf("\n----------------- Test 2 (Cost 3): Trash village\n");
-
-    // Copy the game state to a test case
-    memcpy(&testG, &G, sizeof(struct gameState));
-
-    // choice1: 3, choice2: 2
-    // Expect: 0
-    // choice1: 3, choice2: 3
-    // Expect: 0
-    // choice1: 3, choice2: 4
-    // Expect: 0
-    // choice1: 3, choice2: 5
-    // Expect: 0
-    // choice1: 3, choice2: 6
-    // Expect: -1
-    int expected2[] = {0, 0, 0, 0, -1};
-
-    printf("CONTROL CARDS IN HAND ARE COPPERS:\n");
-    passValues[2] = remodelTrash(&testG, p, copper, village, toTest, expected2);
-    printf("\nCONTROL CARDS IN HAND ARE ESTATES:\n");
-    passValues[3] = remodelTrash(&testG, p, estate, village, toTest, expected2);
-
-    p = 0;
-    printf("\n----------------- Test 3 (Cost 4): Trash smithy\n");
-
-    // Copy the game state to a test case
-    memcpy(&testG, &G, sizeof(struct gameState));
-
-    // choice1: 4, choice2: 2
-    // Expect: 0
-    // choice1: 4, choice2: 3
-    // Expect: 0
-    // choice1: 4, choice2: 4
-    // Expect: 0
-    // choice1: 4, choice2: 5
-    // Expect: 0
-    // choice1: 4, choice2: 6
-    // Expect: 0
-    int expected3[] = {0, 0, 0, 0, 0};
-
-    printf("CONTROL CARDS IN HAND ARE COPPERS:\n");
-    passValues[4] = remodelTrash(&testG, p, copper, smithy, toTest, expected3);
-    printf("\nCONTROL CARDS IN HAND ARE ESTATES:\n");
-    passValues[5] = remodelTrash(&testG, p, estate, smithy, toTest, expected3);
-
-    p = 0;
-    printf("\n----------------- Test 4 (Cost 5): Trash mine\n");
-
-    // Copy the game state to a test case
-    memcpy(&testG, &G, sizeof(struct gameState));
-
-    // choice1: 5, choice2: 2
-    // Expect: 0
-    // choice1: 5, choice2: 3
-    // Expect: 0
-    // choice1: 5, choice2: 4
-    // Expect: 0
-    // choice1: 5, choice2: 5
-    // Expect: 0
-    // choice1: 5, choice2: 6
-    // Expect: 0
-    int expected4[] = {0, 0, 0, 0, 0};
-
-    printf("CONTROL CARDS IN HAND ARE COPPERS:\n");
-    passValues[6] = remodelTrash(&testG, p, copper, mine, toTest, expected4);
-    printf("\nCONTROL CARDS IN HAND ARE ESTATES:\n");
-    passValues[7] = remodelTrash(&testG, p, estate, mine, toTest, expected4);
-
-    p = 0;
-    printf("\n----------------- Test 5 (Cost 6): Trash adventurer\n");
-
-    // Copy the game state to a test case
-    memcpy(&testG, &G, sizeof(struct gameState));
-
-    // choice1: 5, choice2: 2
-    // Expect: 0
-    // choice1: 5, choice2: 3
-    // Expect: 0
-    // choice1: 5, choice2: 4
-    // Expect: 0
-    // choice1: 5, choice2: 5
-    // Expect: 0
-    // choice1: 5, choice2: 6
-    // Expect: 0
-    int expected5[] = {0, 0, 0, 0, 0};
-
-    printf("CONTROL CARDS IN HAND ARE COPPERS:\n");
-    passValues[8] = remodelTrash(&testG, p, copper, adventurer, toTest, expected5);
-    printf("\nCONTROL CARDS IN HAND ARE ESTATES:\n");
-    passValues[9] = remodelTrash(&testG, p, estate, adventurer, toTest, expected5);
-
-    // Check if any tests failed (returned -1)
-    for (i = 0; i < 10; i++) {
-        if (passValues[i] == -1) {
-            printf("Some test(s) failed!\n");
-            return 0;
-        }
-    }
-
-    // If all returned 0, then all tests passed
-    printf("All tests passed!\n");
-
-    return 0;
+int testPlayCouncil_Room(struct gameState *after, int handPos)
+{
+	
+	int p = after->whoseTurn;//initialize whoseTurn stored as p 
+	struct gameState before;
+	memcpy(&before, after, sizeof(struct gameState));
+	
+	playCouncil_Room(after, handPos);
+	
+	//drawing 4 cards and discard council_room. Net gain = 3;
+	before.handCount[p] = before.handCount[p] + 3;
+	if(before.handCount[p] != after->handCount[p])
+	{
+		printf("ERROR 1: Player %d didn't gain 3 cards in hand after card was played! Before count: %d After count: %d\n", p, before.handCount[p], after->handCount[p]);
+	}
+	//numBuys is incremented by 1
+	before.numBuys++;
+	if(before.numBuys != after->numBuys)
+	{
+		printf("ERROR 2: After card played, player did not get an additional buy. Before buys: %d, After buys: %d.\n", before.numBuys, after->numBuys);
+	}
+	//every other player should have an extra card in their deck
+	int i;
+	for(i = 0; i < before.numPlayers; i ++)
+	{
+		if(i != p)
+		{
+			before.handCount[i]++;
+			
+			if(before.handCount[i] != after->handCount[i])
+			{
+				printf("ERROR 3: Player %d didn't recieve a card! Before count: %d After count: %d\n", i, before.handCount[i], after->handCount[i]);
+			}
+		}
+	}
+	//testing buys
+	if(before.numBuys != after->numBuys)
+		printf("ERROR: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
+	
+	//testing player
+	if(before.whoseTurn != after->whoseTurn)
+		printf("ERROR: Current player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
+	
+	//testing coins
+	if(before.coins != after->coins)
+		printf("ERROR: Coins changed from %i to %i", before.coins, after->coins);
+	
+	return 0;
 }
 
-int remodelTrash(struct gameState *state, int p, int controlCard, int trashCard, int toTest[], int expected[]) {
-    int i, j, k;
-    int result;
-    int initialDiscard = 0;
-    int initialGained = 0;
-    int initialHand = 5;
-    int expectDiscard, expectGained, expectHand;
-    bool pass = true;
+int main()//main for generating random tests 
+{
+	int p;
+	int numTests = 250;//250 tests
+	struct gameState G;
+	int handPos;
+	int numPlayers;
+	int maxPlayers = 5;
+	int i, j, m, n, q, r, s;
+	
+	//generates random tests
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
+	
+	SelectStream(2);
+	PutSeed(3);
+	
+	for(s = 0; s < numTests; s++)
+	{
+		for(numPlayers = 2; numPlayers < maxPlayers; numPlayers++)
+		{
+			for(p = 0; p < numPlayers; p++)
+			{
+				for (i = 0; i < sizeof(struct gameState); i++) { //from the lessons, random gameState
+					((char*)&G)[i] = floor(Random() * 256);
+				}
+				
+				G.whoseTurn = p;
+				G.numPlayers = numPlayers;
+				
+				//filling in random cards based on lecture 11 and 12 Random Testing 
+				//give cards to all players
+				for(j = 0; j < numPlayers; j++)
+				{
+					//filling in random cards based on lecture 11 and 12 Random Testing 
+					G.handCount[j] = floor(Random() * MAX_HAND_TEST)+1;//need at least one council room in our hand
+					G.deckCount[j] = floor(Random() * MAX_DECK_TEST);//from lecture 11 to generate random deck 
+					G.discardCount[j] = floor(Random() * MAX_DECK_TEST);//from lecture 11 to generate random discard 
+					
+					for(m = 0; m < G.handCount[j]; m++)
+					{
+						G.hand[j][m] = floor(Random() * treasure_map) + 1;
+					}
+					
+					for(r = 0; r < G.discardCount[j]; r++)
+					{
+						G.discard[j][r] = floor(Random() * treasure_map) + 1;
+					}
 
-    // toTest[] has 5 elements
-    for (i = 0; i < 5; i++) {
-        // Reset hand to look like:
-        // remodel, trashCard, controlCard, controlCard, controlCard
-        state->handCount[p] = 5;
-
-        // Reset deck and discard pile
-        state->deckCount[p] = 0;
-        state->discardCount[p] = 0;
-
-        // Set all cards in hand to same control card
-        int control[MAX_HAND];
-        for (j = 0; j < MAX_HAND; j++)
-        {
-            control[j] = controlCard;
-        }
-
-        memcpy(state->hand[p], control, sizeof(int) * MAX_HAND);
-
-        // Put remodel in hand
-        state->hand[p][0] = remodel;
-
-        // Put card to trash in hand
-        state->hand[p][1] = trashCard;
-
-        // game state
-        // player
-        // card to trash: int choice1 = trashCard (testG.hand[p][1])
-        // card to gain : int choice2 = toTest[]
-        // remodel index: int handPos = 0 (testG.hand[p][0])
-        result = playRemodel(state, p, 1, toTest[i], 0);
-
-        printf("\nchoice1 cost: %d, choice2 cost: %d\n", getCost(trashCard), getCost(toTest[i]));
-        printf("Result: %d, Expected: %d\n", result, expected[i]);
-        if (result != expected[i]) {
-            printf("----------------- TEST FAILED!\n");
-            pass = false;
-        }
-
-        // Check for gained cards in discard pile
-        int gainedCount = 0;
-        // Card enum - Name        - Cost 
-        // 22        - embargo     - 2
-        // 14        - village     - 3
-        // 13        - smithy      - 4
-        // 11        - mine        - 5
-        //  7        - adventurer  - 6
-        for (k = 0; k < state->discardCount[p]; k++) {
-            if (state->discard[p][k] == 7 || state->discard[p][k] == 11 || state->discard[p][k] == 13
-                || state->discard[p][k] == 14 || state->discard[p][k] == 22) {
-                gainedCount++;
-            }
-        }
-
-        // Successful trash and gain
-        // discardCount should be 2 because gained a card and played remodel
-        // gainedCard should be 1
-        // handCount should be 3 (-2 because played remodel and trashed a card)
-        expectDiscard = initialDiscard + 2;
-        expectGained = initialGained + 1;
-        expectHand = initialHand - 2;
-
-        if (expected[i] == 0) {
-            printf("Discard count: %d, Expected: %d\n", state->discardCount[p], expectDiscard);
-            if (state->discardCount[p] != expectDiscard) {
-                printf("----------------- TEST FAILED!\n");
-                pass = false;
-            }
-            printf("Gained count: %d, Expected: %d\n", gainedCount, expectGained);
-            if (gainedCount != expectGained) {
-                printf("----------------- TEST FAILED!\n");
-                pass = false;
-            }
-            printf("Hand count: %d, Expected: %d\n", state->handCount[p], expectHand);
-            if (state->handCount[p] != expectHand) {
-                printf("----------------- TEST FAILED!\n");
-                pass = false;
-            }
-        }
-
-        // Unsuccessful - no trash/gain
-        // discardCount should be 0
-        // gainedCard should be 0
-        // handCount should be 5 (keep remodel and could not trash card to gain card)
-        expectDiscard = initialDiscard;
-        expectGained = initialGained;
-        expectHand = initialHand;
-
-        if (expected[i] == -1) {
-            printf("Discard count: %d, Expected: %d\n", state->discardCount[p], expectDiscard);
-            if (state->discardCount[p] != expectDiscard) {
-                printf("----------------- TEST FAILED!\n");
-                pass = false;
-            }
-            printf("Gained count: %d, Expected: %d\n", gainedCount, expectGained);
-            if (gainedCount != expectGained) {
-                printf("----------------- TEST FAILED!\n");
-                pass = false;
-            }
-            printf("Hand count: %d, Expected: %d\n", state->handCount[p], expectHand);
-            if (state->handCount[p] != expectHand) {
-                printf("----------------- TEST FAILED!\n");
-                pass = false;
-            }
-        }
-
-        // displayDeck(state, p);
-    }
-
-    if (pass) {
-        return 0;
-    }
-    else {
-        return -1;
-    }
-}
-
-int displayDeck(struct gameState *state, int p) {
-    int i;
-
-    printf("DECK COUNT\n");
-    for (i = 0; i < state->deckCount[p]; i++)
-    {
-        printf("Position %d, Card: %d\n", i, state->deck[p][i]);
-    }
-
-    printf("DISCARD COUNT\n");
-    for (i = 0; i < state->discardCount[p]; i++)
-    {
-        printf("Position %d, Card: %d\n", i, state->discard[p][i]);
-    }
-
-    printf("HAND COUNT\n");
-    for (i = 0; i < state->handCount[p]; i++)
-    {
-        printf("Position %d, Card: %d\n", i, state->hand[p][i]);
-    }
-
-    return 0;
+					for(n = 0; n < G.deckCount[j]; n++)
+					{
+						G.deck[j][n] = floor(Random() * treasure_map) + 1;
+					}
+				}
+				//only current player has played cards
+				G.playedCardCount = floor(Random() * MAX_DECK_TEST);
+				for(q = 0; q < G.playedCardCount; q++)
+				{
+					G.playedCards[q] = floor(Random() * treasure_map) + 1;
+				}
+				//setting buys to 1 
+				G.numBuys = 1;
+				//puts card in random hand position
+				handPos = floor(Random() * G.handCount[p]);
+				G.hand[p][handPos] = council_room;
+				//run test function
+				testPlayCouncil_Room(&G, handPos);
+				
+			}
+		}
+	}
+	
+	printf("Play Council_Room testing has concluded.\n\n");
+	return 0;
 }

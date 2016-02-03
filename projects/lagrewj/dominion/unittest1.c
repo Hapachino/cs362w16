@@ -1,10 +1,5 @@
-/* -----------------------------------------------------------------------
- * test updateCoins()
- * 
- *
- * unittest1: unittest1.c dominion.o rngs.o
- *      gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
+/*Jonathan Lagrew
+ *test updateCoins()
  */
 
 #include "dominion.h"
@@ -21,50 +16,42 @@
 
 int main() {
     int i;
-    int seed = 1000;
-    // set seed for random numbers
+    int seed = 1000;// seed for rand numbers
     srand(3);
-
     int numPlayer = 2;
     int maxBonus = 10;
     int p, r, handCount;
     int bonus;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
+    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
     struct gameState G;
-
-    int maxHandCount = 5;
+    int MAX_HAND_COUNT = 5;// starting values
     int changeIndex = 4;
     int copperCount = 5;
     int silverCount = 0;
     int goldCount = 0;
-
-    // bool to set coins of all one type before using changeIndex
-    bool first = true;
+    bool first = true; // set true for coin type 
     bool reset = true;
-    // expected value
-    int expected;
+    int expected; // expected value to compare result
 
     // arrays of all coppers, silvers, and golds
-    int coppers[maxHandCount];
-    int silvers[maxHandCount];
-    int golds[maxHandCount];
-    for (i = 0; i < maxHandCount; i++)
+    int coppers[MAX_HAND_COUNT]; 
+    int silvers[MAX_HAND_COUNT];
+    int golds[MAX_HAND_COUNT];
+    for (i = 0; i < MAX_HAND_COUNT; i++)
     {
         coppers[i] = copper;
         silvers[i] = silver;
         golds[i] = gold;
     }
 
+//testing coppers and silvers
 #if (NOISY_TEST == 1)
-    printf ("----------------- TESTING updateCoins() with coppers and silvers:\n");
+    printf ("TESTING updateCoins() first coppers and silvers:\n");
 #endif
-
     for (p = 0; p < numPlayer; p++)
     {
-        // reset counts and checks for next player
-        if (p != 0) {
-            if (reset) {
+        if (p != 0) { //checks for next player 
+            if (reset) { //resetting to starting counts
                 changeIndex = 4;
                 copperCount = 5;
                 silverCount = 0;
@@ -73,12 +60,10 @@ int main() {
             }
         }
 
-        for (handCount = 0; handCount <= maxHandCount; handCount++)
+        for (handCount = 0; handCount <= MAX_HAND_COUNT; handCount++)
         {
 #if (NOISY_TEST == 1)
-            // random number for bonus
-            bonus = rand() % maxBonus;
-
+            bonus = rand() % maxBonus;//seeding random number for bonus
             printf("\nTest player %d with %d copper(s), %d silver(s), and %d bonus.\n", p, copperCount, silverCount, bonus);
 #endif
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
@@ -91,17 +76,11 @@ int main() {
             else {
                 memcpy(G.hand[p], coppers, sizeof(int) * copperCount); // set some cards to copper
                 memcpy(G.hand[p]+changeIndex, silvers, sizeof(int) * silverCount); // set some cards to silver
-                // move changeIndex to gradually add more silvers
-                changeIndex--;
+                changeIndex--;//dec index to add more silver
             }
-
-            // printf("Change index = %d\n", changeIndex);
-
             expected = copperCount + (2 * silverCount) + bonus;
-
-            // Fewer coppers and more silvers
-            copperCount--;        
-            silverCount++;
+            copperCount--;//dec copper count        
+            silverCount++;//inc silver count
 
             updateCoins(p, &G, bonus);
 
@@ -112,7 +91,7 @@ int main() {
         }
     }
 
-    // reset values
+    // resetting back to starting values
     changeIndex = 4;
     copperCount = 5;
     silverCount = 0;
@@ -122,15 +101,15 @@ int main() {
     first = true;
     reset = true;
 
+//testing coppers and gold
 #if (NOISY_TEST == 1)
-    printf ("\n----------------- TESTING updateCoins() with coppers and golds:\n");
+    printf ("TESTING updateCoins() with coppers and golds:\n");
 #endif
 
     for (p = 0; p < numPlayer; p++)
     {
-        // reset counts and checks for next player
-        if (p != 0) {
-            if (reset) {
+        if (p != 0) { //check for next player
+            if (reset) { //reset to starting values
                 changeIndex = 4;
                 copperCount = 5;
                 goldCount = 0;
@@ -139,7 +118,7 @@ int main() {
             }
         }
 
-        for (handCount = 0; handCount <= maxHandCount; handCount++)
+        for (handCount = 0; handCount <= MAX_HAND_COUNT; handCount++)
         {
 #if (NOISY_TEST == 1)
             // random number for bonus
@@ -157,17 +136,11 @@ int main() {
             else {
                 memcpy(G.hand[p], coppers, sizeof(int) * copperCount); // set some cards to copper
                 memcpy(G.hand[p]+changeIndex, golds, sizeof(int) * goldCount); // set some cards to gold
-                // move changeIndex to gradually add more golds
-                changeIndex--;
+                changeIndex--;//dec changeIndex to add more gold
             }
-
-            // printf("Change index = %d\n", changeIndex);
-
             expected = copperCount + (3 * goldCount) + bonus;
-
-            // Fewer coppers and more golds
-            copperCount--;        
-            goldCount++;
+            copperCount--;//dec copper count       
+            goldCount++;//inc gold count
 
             updateCoins(p, &G, bonus);
 
@@ -177,8 +150,8 @@ int main() {
             assert(G.coins == expected); // check if the number of coins is correct
         }
     }
-
-    printf("\nAll tests passed!\n");
+	
+    printf("All tests passed!\n");
 
     return 0;
 }

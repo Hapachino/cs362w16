@@ -1,3 +1,15 @@
-make unittest2
+make unittest3
+
+RET=$?
 make clean
-./unittest2
+if [ $RET -eq 0 ]
+then
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	./unittest3
+fi

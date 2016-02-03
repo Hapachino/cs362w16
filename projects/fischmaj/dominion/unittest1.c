@@ -42,7 +42,7 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 int countCards(int *deck, int *cardCount);
 
-int checkShuffle(int player, struct gameState *pre); 
+int checkShuffle(int player, struct gameState *pre, FILE *filename); 
 
 
 
@@ -51,7 +51,9 @@ int checkShuffle(int player, struct gameState *pre);
 int main(){
 
   int n, i, j, p; 
- 
+
+  FILE *f= fopen("unittestresults.out", "w+");
+
   struct gameState *pre= malloc(sizeof(struct gameState));
 
 
@@ -59,10 +61,8 @@ int main(){
   PutSeed(3);
 
 
-  int k[10]= {adventurer, council_room, feast, gardens, mine, remodel, 
-	      smithy, village, baron, great_hall}; 
-
   printf("\n Running tests of shuffle():\n");
+  fprintf(f,"\n Running tests of shuffle():\n");
 
   for (n = 0; n < NUMTESTS; n ++){
     /* generate a random gamestate*/
@@ -81,13 +81,17 @@ int main(){
       }
     }
     printf("\nTest run %i:", n);
-    checkShuffle(p, pre);
+    checkShuffle(p, pre, f);
   
  }
 
  
-  printf("\nTesting shuffle() complete.  \n");
+  fprintf(f,"Testing shuffle() complete. \n");
+ 
+  printf("\nTesting shuffle() complete. \n");
+  printf("\nFailed Tests, if any, in unittestresults.out\n");
 
+  fclose(f);
   return 0;
 }
 
@@ -206,7 +210,7 @@ int countCards(int *deck, int *cardCount){
 } 
 
 
-int checkShuffle(int player, struct gameState *pre){
+int checkShuffle(int player, struct gameState *pre, FILE *f){
 
   int testFail = 0; 
 
@@ -236,7 +240,8 @@ int checkShuffle(int player, struct gameState *pre){
   /* Business rule #2: Should result in the same number of total cards in the
      player's deck following shuffling. */
   if (differences[DECKCOUNTMEMBER]) {
-    printf("shuffle() fails business rule #2: # of cards in deck changed"); 
+    printf("shuffle() fails business rule #2: deckCount changed");
+    fprintf(f, "shuffle() fails business rule #2: deckCount changed");
     testFail = 1; 
   }
 
@@ -248,6 +253,7 @@ int checkShuffle(int player, struct gameState *pre){
   for (int i = 0; i < CARDTYPES; i++){
     if (cardListPre[i] != cardListPost[i]){
       printf("\nshuffle() fails business rule #3: card types changed\n");
+      fprintf(f,"\nshuffle() fails business rule #3: card types changed\n");
       testFail = 1; 
       break;
     }
@@ -268,6 +274,8 @@ int checkShuffle(int player, struct gameState *pre){
     testFail =1; 
     printf("shuffle fails business rule #4: player's deck not changed\n");
     printf("or wrong player's deck changed.\n");
+    fprintf(f,"shuffle fails business rule #4: player's deck not changed\n");
+    fprintf(f,"or wrong player's deck changed.\n");
 
   }
 
@@ -277,7 +285,9 @@ int checkShuffle(int player, struct gameState *pre){
     if ((differences[i]) && (i != 12)){
       testFail =1; 
       printf("shuffle fails business rule #5:");
-      printf(" state param #%d fails\n with code %d", i, differences[i]); 
+      printf(" state param #%d fails with code %d\n", i, differences[i]); 
+      fprintf(f,"shuffle fails business rule #5:");
+      fprintf(f," state param #%d fails with code %d\n", i, differences[i]); 
     }
   }
   
@@ -289,5 +299,5 @@ int checkShuffle(int player, struct gameState *pre){
 
   free(post); 
   free(differences);
-  return 0;
+  return testFail;
 } 

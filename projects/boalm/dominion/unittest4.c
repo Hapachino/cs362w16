@@ -43,7 +43,45 @@ int main() {
     assert(testG.coins == 0);
     printf("buys remaining = %d, expected = %d\n", testG.numBuys, 0);
     assert(testG.numBuys == 0);
+    printf("last card is of type: %d, expected: %d\n", testG.hand[player1][testG.handCount[player1] - 1], silver);
+    assert(testG.hand[player1][testG.handCount[player1] - 1] == silver);
 
+    printf("Try to buy a silver with 2 coins, and 1 buy.\n");
+    memcpy(&testG, &G, sizeof(struct gameState));
+    testG.coins = 2;
+    testG.numBuys = 1;
+    result = buyCard(silver, &testG);
+    printf("buyCard() was successful = %d, expected = %d\n", result, -1);
+    assert(result == -1);
+    printf("coins remaining = %d, expected = %d\n", testG.coins, 2);
+    assert(testG.coins == 2);
+    printf("buys remaining = %d, expected = %d\n", testG.numBuys, 1);
+    assert(testG.numBuys == 1);
+
+    printf("Try to buy a silver with 3 coins, and 0 buys.\n");
+    memcpy(&testG, &G, sizeof(struct gameState));
+    testG.coins = 3;
+    testG.numBuys = 0;
+    result = buyCard(silver, &testG);
+    printf("buyCard() was successful = %d, expected = %d\n", result, -1);
+    assert(result == -1);
+    printf("coins remaining = %d, expected = %d\n", testG.coins, 3);
+    assert(testG.coins == 3);
+    printf("buys remaining = %d, expected = %d\n", testG.numBuys, 0);
+    assert(testG.numBuys == 0);
+
+    printf("Try to buy a silver with 3 coins, and 1 buy and no silvers left.\n");
+    memcpy(&testG, &G, sizeof(struct gameState));
+    testG.coins = 3;
+    testG.numBuys = 1;
+    testG.supplyCount[silver] = 0;
+    result = buyCard(silver, &testG);
+    printf("buyCard() was successful = %d, expected = %d\n", result, -1);
+    assert(result == -1);
+    printf("coins remaining = %d, expected = %d\n", testG.coins, 3);
+    assert(testG.coins == 3);
+    printf("buys remaining = %d, expected = %d\n", testG.numBuys, 1);
+    assert(testG.numBuys == 1);
 
     printf("\nAll tests passed!\n\n\n");
 

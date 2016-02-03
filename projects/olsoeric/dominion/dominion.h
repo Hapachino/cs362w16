@@ -146,7 +146,13 @@ void village_play(int currentPlayer, struct gameState *state, int handPos);
 void cutpurse_play(int currentPlayer, struct gameState *state, int handPos);
 /* Executes Cutpurse card action (+2 coins, -1 copper from each other player's hand)*/
 
-/*I believe this is leftover from some other student's work and should be deleted:
+/******NOTE: Added by Eric Olson in order to call functions from unittest(s) for assignment 3:******/
+int updateCoins(int player, struct gameState *state, int bonus);
+int gainCard(int supplyPos, struct gameState *state, int toFlag, int player);
+int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag);
+/******End of Added Function Definitions*************************************************************/
+
+/*I (Eric Olson) believe this is leftover from some other student's work and should be deleted:
 int playAdventurer(struct gameState *state);
 int playSmithy(struct gameState *state, int handPos);
 int playVillage(struct gameState *state, int handPos);

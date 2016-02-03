@@ -1,10 +1,9 @@
 Beginning initializing state.
 Completed initializing state.
-Testing discardCard():
-All state changes as expected.
+Testing isGameOver():
 All tests passed.
 File 'dominion.c'
-Lines executed:1.37% of 584
+Lines executed:1.54% of 584
 dominion.c:creating 'dominion.c.gcov'
 
         -:    0:Source:dominion.c
@@ -401,28 +400,28 @@ dominion.c:creating 'dominion.c.gcov'
     #####:  387:    return 0;
         -:  388:}
         -:  389:
-    #####:  390:int isGameOver(struct gameState *state) {
+        2:  390:int isGameOver(struct gameState *state) {
         -:  391:    int i;
         -:  392:    int j;
         -:  393:
         -:  394:    //if stack of Province cards is empty, the game ends
-    #####:  395:    if (state->supplyCount[province] == 0)
+        2:  395:    if (state->supplyCount[province] == 0)
         -:  396:    {
-    #####:  397:        return 1;
+        1:  397:        return 1;
         -:  398:    }
         -:  399:
         -:  400:    //if three supply pile are at 0, the game ends
-    #####:  401:    j = 0;
-    #####:  402:    for (i = 0; i < 25; i++)
+        1:  401:    j = 0;
+       26:  402:    for (i = 0; i < 25; i++)
         -:  403:    {
-    #####:  404:        if (state->supplyCount[i] == 0)
+       25:  404:        if (state->supplyCount[i] == 0)
         -:  405:        {
-    #####:  406:            j++;
+        3:  406:            j++;
         -:  407:        }
         -:  408:    }
-    #####:  409:    if ( j >= 3)
+        1:  409:    if ( j >= 3)
         -:  410:    {
-    #####:  411:        return 1;
+        1:  411:        return 1;
         -:  412:    }
         -:  413:
     #####:  414:    return 0;
@@ -1065,25 +1064,25 @@ dominion.c:creating 'dominion.c.gcov'
     #####: 1051:    return -1;
         -: 1052:}
         -: 1053:
-        1: 1054:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+    #####: 1054:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
         -: 1055:{
         -: 1056:
         -: 1057:    //if card is not trashed, added to Played pile 
-        1: 1058:    if (trashFlag < 1)
+    #####: 1058:    if (trashFlag < 1)
         -: 1059:    {
         -: 1060:        //add card to played pile
-        1: 1061:        state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-        1: 1062:        state->playedCardCount++;
+    #####: 1061:        state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+    #####: 1062:        state->playedCardCount++;
         -: 1063:    }
         -: 1064:
         -: 1065:    //set played card to -1
-        1: 1066:    state->hand[currentPlayer][handPos] = -1;
+    #####: 1066:    state->hand[currentPlayer][handPos] = -1;
         -: 1067:
         -: 1068:    //remove card from player's hand
-        1: 1069:    if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+    #####: 1069:    if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
         -: 1070:    {
         -: 1071:        //reduce number of cards in hand
-        1: 1072:        state->handCount[currentPlayer]--;
+    #####: 1072:        state->handCount[currentPlayer]--;
         -: 1073:    }
     #####: 1074:    else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
         -: 1075:    {
@@ -1100,7 +1099,7 @@ dominion.c:creating 'dominion.c.gcov'
     #####: 1086:        state->handCount[currentPlayer]--;
         -: 1087:    }
         -: 1088:
-        1: 1089:    return 0;
+    #####: 1089:    return 0;
         -: 1090:}
         -: 1091:
     #####: 1092:int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)

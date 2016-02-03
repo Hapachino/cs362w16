@@ -7,7 +7,7 @@
 *** Assignment 3
 *** Description: Unit test for: fullDeckCount()
 *** Business requirements:
-*** Note: I think that the inteded use of this function was to calcaulate the sum total of all cards in a player's deck, hand, and discard pile.
+*** Note: I think that the intended use of this function was to calcaulate the sum total of all cards in a player's deck, hand, and discard pile.
 ***       As it is now, it calculates the sum total of a specific card in the player's deck, hand, and discard pile.
 ***
 ***  1. Count how many cards of a specific card is in the player's hand.
@@ -36,7 +36,7 @@
 #include <assert.h>
 
 // set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+#define NOISY_TEST 0
 
 int main()
 {
@@ -56,6 +56,7 @@ int main()
      int maxCards = 10; //How many cards to test up to for deck, hand, and discard pile.
      int testResult;
    
+#if (NOISY_TEST == 1)
      const char* cards[] = //All 27 cards in game
      {
           "curse",
@@ -67,25 +68,26 @@ int main()
           "gold",
           "adventurer",
           "council_room",
-          "feast", 
+          "feast",
           "gardens",
-          "mine", 
-          "remodel", 
+          "mine",
+          "remodel",
           "smithy",
           "village",
-          "baron", 
+          "baron",
           "great_hall",
-          "minion", 
-          "steward", 
+          "minion",
+          "steward",
           "tribute",
-          "ambassador", 
+          "ambassador",
           "cutpurse",
           "embargo",
           "outpost",
-          "salvager", 
+          "salvager",
           "sea_hag",
           "treasure_map"
      };
+#endif
 
      int numTests = 0; //variable to keep track of how many tests have been run.
      int failedTests = 0;

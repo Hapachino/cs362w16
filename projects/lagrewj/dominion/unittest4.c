@@ -36,7 +36,7 @@ int main() {
     p = 0;
 
 #if (NOISY_TEST == 1)
-    printf("TESTING scoreFor():\n");
+    printf("\nTESTING scoreFor():\n");
     printf("\nTest 1 - Player %d:\n", p);
     printf("Putting in the discard pile:\n");
     printf("    5 duchy\n");

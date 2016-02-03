@@ -140,7 +140,7 @@ int playCouncil_Room(struct gameState *state, int handPos);
 int adventurerCard(struct gameState * state);
 int baronCard(struct gameState *state, int choice1);
 int smithyCard(struct gameState *state, int handPos);
-int councilRoomCard(struct gameState *state, int handPos);
+int councilRoomCard(struct gameState *state, int currentPlayer, int handPos);
 int villageCard(struct gameState *state, int handPos);
 int great_hallCard(struct gameState *state, int currentPlayer, int handPos);
 #endif

@@ -48,6 +48,11 @@ int checkOtherPlayer(struct gameState *state1, struct gameState *state2, int pla
 void checkError(int pass);
 void resetError();
 void printResults();
+void printDeck(struct gameState *state, int player);
+void printHand(struct gameState *state, int player);
+void printDiscard(struct gameState *state, int player);
+int contains(int* array, int size, int val);
+void resetCards(struct gameState *state, int player); 
 
 //signal handlers
 void timeout(int signum);

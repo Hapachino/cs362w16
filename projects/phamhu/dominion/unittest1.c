@@ -17,7 +17,7 @@
 
 int main() {
     int i;
-    int seed = 1000;
+    int seed = rand() % 1000;
     int numPlayer = 2;
     int maxBonus = 10;
     int p, r, handCount;
@@ -39,20 +39,20 @@ int main() {
         golds[i] = gold;
     }
 
-    printf ("TESTING updateCoins():\n");
+    printf ("<< TESTING unittest1 - updateCoins() >>\n");
     for (p = 0; p < numPlayer; p++)
     {
         for (handCount = 1; handCount <= maxHandCount; handCount++)
         {
             for (bonus = 0; bonus <= maxBonus; bonus++)
             {
-                printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
+//              printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
                 memset(&G, 23, sizeof(struct gameState));   // clear the game state
                 r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
                 G.handCount[p] = handCount;                 // set the number of cards on hand
                 memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
                 updateCoins(p, &G, bonus);
-                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
+//            	printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
 
                 if (G.coins == handCount * 1 + bonus) // check if the number of coins is correct
 		{
@@ -66,7 +66,7 @@ int main() {
 		}
                 memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silver
                 updateCoins(p, &G, bonus);
-                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
+//              printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
  
                	if (G.coins == handCount * 2 + bonus) // check if the number of coins is correct
 		{
@@ -81,7 +81,7 @@ int main() {
 
                 memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
                 updateCoins(p, &G, bonus);
-                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
+//              printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
                 if (G.coins == handCount * 3 + bonus) // check if the number of coins is correct
 		{
 //			printf("Gold coins passed\n");
@@ -96,8 +96,8 @@ int main() {
         }
     }
 
-    printf("Number of pass cases: %d\n", passCount);
-    printf("Number of fail cases: %d\n", failCount);
+    printf("Number of cases passed: %d\n", passCount);
+    printf("Number of cases failed: %d\n", failCount);
 
     return 0;
 }

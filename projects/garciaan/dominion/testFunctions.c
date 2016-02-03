@@ -36,7 +36,6 @@ int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed, struct ga
     }
   }
 
-
   //initialize supply
   ///////////////////////////////
 
@@ -517,6 +516,7 @@ int discardHand(int player, struct gameState *state){
   for (i = 0; i < state->handCount[player]; i++){
     state->discard[player][state->discardCount[player]++] = state->hand[player][i];//Discard
     state->hand[player][i] = -1;//Set card to -1
+    state->discardCount[player]++;
   }
   state->handCount[player] = 0;//Reset hand count
   
@@ -602,6 +602,74 @@ void printResults(){
   }
 }
 
+/****************************************************
+* Prints the deck for the given player
+****************************************************/
+void printDeck(struct gameState *state, int player){
+  int i;
+  printf("\nNum Cards in Deck: %d\n",state->deckCount[player]);
+  for (i = 0; i < state->deckCount[player]; i++){
+    printf("CARD %d: %d\n",i+1,state->deck[player][i]);
+  }
+}
+
+/****************************************************
+* Prints the hand for the given player
+****************************************************/
+void printHand(struct gameState *state, int player){
+  int i;
+  printf("\nNum Cards in Hand: %d\n",state->handCount[player]);
+  for (i = 0; i < state->handCount[player]; i++){
+    printf("CARD %d: %d\n",i+1,state->hand[player][i]);
+  }
+}
+
+/****************************************************
+* Prints the discard pile for the given player
+****************************************************/
+void printDiscard(struct gameState *state, int player){
+  int i;
+  printf("\nNum Cards in Discard: %d\n",state->discardCount[player]);
+  for (i = 0; i < state->discardCount[player]; i++){
+    printf("CARD %d: %d\n",i+1,state->discard[player][i]);
+  }
+}
+
+/****************************************************
+* Returns 1 if array contains val, else 0
+****************************************************/
+int contains(int* array, int size, int val){
+  int i;
+  for (i = 0; i < size; i++){
+    if (array[i] == val){
+      return 1;
+    }
+  }
+
+  return 0;
+}
+/****************************************************
+* Sets all values in state->deck[player], 
+* state->hand[player], and state->discard[player] to -1 and
+* resets the counts. Also resets playedCardCount to 0
+****************************************************/
+void resetCards(struct gameState *state, int player){
+  int i;
+  for (i = 0; i < state->deckCount[MAX_DECK]; i++){
+    state->deck[player][i] = -1;
+  }
+  state->deckCount[player] = 0;
+  for (i = 0; i < state->discardCount[player]; i++){
+    state->discard[player][i] = -1;
+  }
+  state->discardCount[player] = 0;
+  for (i = 0; i < state->handCount[player]; i++){
+    state->hand[player][i] = -1;
+  }
+  state->handCount[player] = 0;
+
+  state->playedCardCount = 0;
+}
 /****************************************************
 * SIGNAL HANDLERS
 ****************************************************/

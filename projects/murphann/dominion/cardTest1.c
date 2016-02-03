@@ -6,22 +6,29 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTCARD ""
+#define TESTCARD "smithy"
 
 int main() {
   int numPlayers = 2;
   int seed = 1004;
   struct gameState G, storeG;
   int p1 = 0;
-  int p2 = 1;
   int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
-               council_room, village, mine, tribute, ambassador};
+                    council_room, village, mine, tribute, ambassador};
+  initializeGame(numPlayers, kcards, seed, &G);
 
-   initializeGame(numPlayers, kcards, seed, &G);
+  printf("********Testing %s***********\n", TESTCARD);
 
-   printf("********Testing %s***********\n", TESTMETHOD);
+  memcpy(&storeG, &G, sizeof(struct gameState));
 
-   memcpy(&storeG, &G, sizeof(struct gameState));
+  cardEffect(smithy, 0, 0, 0, &G, 0, 0);
+  printf("Cards in Hand:  %d, Cards Expected: %d\n",
+           G.handCount[p1], storeG.handCount[p1]+3);
+  printf("Cards in Deck: %d, cards Expected: %d\n",
+          G.deckCount[p1], storeG.deckCount[p1]-3);
 
+  printf("End of %s test\n", TESTCARD);
+
+  printf("\n\n\n");
    return 0;
 }

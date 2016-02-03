@@ -1,3 +1,4 @@
+//Jennifer Frase
 /*test isGameOver
   game is over if province pile is empty or if 3 other piles are empty
   function should not effect the gamestate in any way*/
@@ -34,13 +35,14 @@ int main(){
             printf("TEST FAILED: isGameOver did not return true when no more provinces available\n");
         pass = 0;
     }
+    //check for no change in gamestate
     if(memcmp(&pre, &G, sizeof(struct gameState)) != 0){
         if(DEBUG)
             printf("TEST FAILED: isGameOver for checking provinces changed the gameState\n");
         pass = 0;
     }
 
-    //Test the first 3 cards
+    //Test the first 3 cards having no cards
     G.supplyCount[province] = 1;
     G.supplyCount[0] = 0;
     G.supplyCount[1] = 0;
@@ -48,17 +50,19 @@ int main(){
     memcpy(&pre, &G, sizeof(struct gameState));
     if(isGameOver(&G) != 1){
         if(DEBUG)
-                printf("TEST FAILED: isGameOver did not return true when first 3 card types were empty\n");
+                printf("TEST FAILED: isGameOver did not return true when first 3 \ncard types were empty\n");
         pass = 0;
     }
     if(memcmp(&pre, &G, sizeof(struct gameState)) != 0){
         if(DEBUG)
-                printf("TEST FAILED: isGameOver for checking first 3 empty piles changed the gameState\n");
+                printf("TEST FAILED: isGameOver for checking first 3 empty piles \nchanged the gameState\n");
         pass = 0;
     }
 
 
-    //Test all other cards
+    //Test all other cards (leaving the first two cards with no cards)
+    //allows makes it so that it is easier to tell what is wrong if
+    //something goes wrong
     last = province;
     G.supplyCount[2] = -1;
 
@@ -68,12 +72,12 @@ int main(){
         memcpy(&pre, &G, sizeof(struct gameState));
         if(isGameOver(&G) != 1){
             if(DEBUG)
-                printf("TEST FAILED: isGameOver did not return true when the %d card + 2 others were empty\n", last);
+                printf("TEST FAILED: isGameOver did not return true when the %d card + \n2 others were empty\n", last);
             pass = 0;
         }
         if(memcmp(&pre, &G, sizeof(struct gameState)) != 0){
             if(DEBUG)
-                printf("TEST FAILED: isGameOver for checking the %d card + 2 other empty piles changed the gameState\n", last);
+                printf("TEST FAILED: isGameOver for checking the %d card + 2 other empty \npiles changed the gameState\n", last);
             pass = 0;
         }
         G.supplyCount[last] = -1;

@@ -10,7 +10,6 @@ Business logic to be tested:
 * Card is removed from the player's hand
 
 
-
 **************************************************************/
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -43,6 +42,7 @@ int main() {
                 otherPlayer = (player == 1) ? 0 : 1;
                 printf("---- Testing Player %d, Trash Flag %d, Hand Count %d\n",player,trashFlag,handCount);
                 initializeGame(2, k, 500, &cleanGame);
+                cleanGame.whoseTurn = player;
                 memcpy(&testGame, &cleanGame, sizeof(struct gameState));
                 discardCard(handCount, player, &testGame, trashFlag);
                 

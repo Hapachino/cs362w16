@@ -110,10 +110,10 @@
  * void playSteward(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2, int choice3)
  * tested in cardtest4
  *
- * I had introduced a single bug in this function, which still managed to create 49,798 failures
- * out of 100,003 tests. It seems as though the reason it didn't cause more tests to fail is that
- * the bug is only in the section of the function that executes when the player has chosen to
- * throw 2 cards in the trash. Specifically, the bug is on line 174,
+ * I had introduced a single bug in this function, which still managed to create 490 failures out
+ * of  1003 tests. It seems as though the reason it didn't cause more tests to fail is that the bug
+ * is only in the section of the function that executes when the player has chosen to throw 2 cards
+ * in the trash. Specifically, the bug is on line 174,
  *
  	 	 discardCard( choice1, currentPlayer, state, 1 );
  *

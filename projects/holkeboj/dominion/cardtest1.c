@@ -33,9 +33,10 @@ int main() {
         for (handPos = 0; handPos < 5; handPos++) {
             printf("---- Testing Player %d Hand Position %d ----\n", player, handPos);
             initializeGame(2, k, 500, &cleanGame);
+            cleanGame.whoseTurn = player;
             memcpy(&testGame, &cleanGame, sizeof(struct gameState));
             otherPlayer = (player == 1) ? 0 : 1;
-            cardEffect(smithy,0,0,0,&testGame,0,0);
+            cardEffect(smithy,0,0,0,&testGame,handPos,0);
             
             printf("---- Did player's hand count go up by 3?\n");
             if (cleanGame.handCount[player] == testGame.handCount[player] - 2) {

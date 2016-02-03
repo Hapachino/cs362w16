@@ -51,6 +51,7 @@ int main()
     count = 0;
 
     int deckCounter = state.deckCount[player];
+    state.handCount[player] = count;
 
     if (deckCounter == 0)
     {
@@ -100,10 +101,28 @@ int main()
 
     printf("All state changes as expected.\n");
 
- /*  -playedCards contains the card that was discarded (df.flags[PLAYED_CARDS] == 1)
- *  -playedCardCount increased by 1 (df.flags[PLAYED_CARD_COUNT] == 1)
- *  -player's hand has decreased by 1 (df.flags[HAND] == df.flags[HAND_COUNT] == 1)
- *  -nothing else in gamestate has changed */
+    // playedCards contains the card that was discarded (df.flags[PLAYED_CARDS] == 1)
+    if (state.playedCards[0] != originalState.hand[player][0])
+    {
+        printf("\tERROR: incorrect card discarded.\n");
+        return -1;
+    } 
+     
+    // playedCardCount increased by 1 (df.flags[PLAYED_CARD_COUNT] == 1)
+    if (state.playedCardCount != originalState.playedCardCount + 1)
+    {
+        printf("\tERROR: playedCardCount is incorrect.\n");
+        return -1;
+    }
+    
+    // player's hand has decreased by 1 (df.flags[HAND] == df.flags[HAND_COUNT] == 1)
+    if (state.handCount[player] != (originalState.handCount[player] - 1))
+    {
+        printf("\tERROR: handCount is incorrect.\n");
+        printf("New hand count: %d\n", state.handCount[player]);
+        printf("Expected hand count: %d\n", originalState.handCount[player] - 1);
+        return -1;
+    }
 
     printf ("All tests passed.\n");
     return 0;

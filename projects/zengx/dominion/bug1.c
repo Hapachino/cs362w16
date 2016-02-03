@@ -76,6 +76,8 @@ BUG2: As I mentioned in 3.BUG4, if discard array and count tracking the discard(
 But it is not change here.
 
 6:unittest2.c for gainCard:
+BUG1: for int supplyPos if invalid number is passed in, ie, -1, it will hit exception
+BUG2: in the comments it said toFlag = 0 : add to discard, but in reality when any number other than 1 or 2 is passed it will get added to discard 
 
 7:unittest3.c for updateCoin
 No Bugs Found

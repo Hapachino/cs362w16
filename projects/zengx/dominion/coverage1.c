@@ -2,9 +2,9 @@
 
 Line coverage, branch coverage are as shown below
 File 'dominion.c'
-Lines executed:28.42% of 584
-Branches executed:28.06% of 417
-Taken at least once:19.42% of 417
+Lines executed:30.65% of 584
+Branches executed:29.98% of 417
+Taken at least once:21.82% of 417
 Calls executed:24.21% of 95
 dominion.c:creating 'dominion.c.gcov'
 
@@ -49,5 +49,20 @@ Branches executed:100.00% of 6
 Taken at least once:83.33% of 6
 No calls
 
+Function 'isGameOver'
+Lines executed:90.00% of 10
+Branches executed:100.00% of 8
+Taken at least once:87.50% of 8
+No calls
+
+Function 'updateCoins'
+Lines executed:100.00% of 11
+Branches executed:100.00% of 8
+Taken at least once:100.00% of 8
+No calls
+
+
 It's easy to see that we have 100% coverage for all cards except for Adventurer. After taking a look at gcov file I find out I didn't cover the case where deck is empty, this can be a future improvement
-For the functions discarCard I found I didn't test the case when there is only one card in hand
+For the functions 
+In discarCard I found I didn't test the case when there is only one card in hand
+In isGameOver I found I didn't test the case when province card is empty

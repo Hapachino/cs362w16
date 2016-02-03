@@ -1,0 +1,1422 @@
+---------------- Testing discardCard Function ----------------
+Discard to discard pile, for player 0, for hand size 1, from hand position 0
+Discarding card from last hand position
+Passed
+for hand size 2, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Discarding card from last hand position
+Passed
+for hand size 3, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Discarding card from last hand position
+Passed
+for hand size 4, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Filling discarded card's hole in hand
+Passed
+from hand position 3
+Discarding card from last hand position
+Passed
+for hand size 5, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Filling discarded card's hole in hand
+Passed
+from hand position 3
+Filling discarded card's hole in hand
+Passed
+from hand position 4
+Discarding card from last hand position
+Passed
+for player 1, for hand size 1, from hand position 0
+Discarding card from last hand position
+Passed
+for hand size 2, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Discarding card from last hand position
+Passed
+for hand size 3, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Discarding card from last hand position
+Passed
+for hand size 4, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Filling discarded card's hole in hand
+Passed
+from hand position 3
+Discarding card from last hand position
+Passed
+for hand size 5, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Filling discarded card's hole in hand
+Passed
+from hand position 3
+Filling discarded card's hole in hand
+Passed
+from hand position 4
+Discarding card from last hand position
+Passed
+Discard to trash, for player 0, for hand size 1, from hand position 0
+Discarding card from last hand position
+Passed
+for hand size 2, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Discarding card from last hand position
+Passed
+for hand size 3, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Discarding card from last hand position
+Passed
+for hand size 4, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Filling discarded card's hole in hand
+Passed
+from hand position 3
+Discarding card from last hand position
+Passed
+for hand size 5, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Filling discarded card's hole in hand
+Passed
+from hand position 3
+Filling discarded card's hole in hand
+Passed
+from hand position 4
+Discarding card from last hand position
+Passed
+for player 1, for hand size 1, from hand position 0
+Discarding card from last hand position
+Passed
+for hand size 2, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Discarding card from last hand position
+Passed
+for hand size 3, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Discarding card from last hand position
+Passed
+for hand size 4, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Filling discarded card's hole in hand
+Passed
+from hand position 3
+Discarding card from last hand position
+Passed
+for hand size 5, from hand position 0
+Filling discarded card's hole in hand
+Passed
+from hand position 1
+Filling discarded card's hole in hand
+Passed
+from hand position 2
+Filling discarded card's hole in hand
+Passed
+from hand position 3
+Filling discarded card's hole in hand
+Passed
+from hand position 4
+Discarding card from last hand position
+Passed
+
+UNIT TEST 1 PASSED.
+
+---------------- Testing gainCard Function ----------------
+---- Testing card 0 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 1 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 2 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 3 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 4 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 5 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 6 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 7 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 8 ----
+Card not in play
+Passed
+---- Testing card 9 ----
+Card not in play
+Passed
+---- Testing card 10 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 11 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 12 ----
+Card not in play
+Passed
+---- Testing card 13 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 14 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 15 ----
+Card not in play
+Passed
+---- Testing card 16 ----
+Card not in play
+Passed
+---- Testing card 17 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 18 ----
+Card not in play
+Passed
+---- Testing card 19 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 20 ----
+Card not in play
+Passed
+---- Testing card 21 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 22 ----
+Gain to discard, for player 0
+Passed
+for player 1
+Passed
+Gain to deck, for player 0
+Passed
+for player 1
+Passed
+Gain to hand, for player 0
+Passed
+for player 1
+Passed
+---- Testing card 23 ----
+Card not in play
+Passed
+---- Testing card 24 ----
+Card not in play
+Passed
+
+UNIT TEST 2 PASSED.
+
+---------------- Testing isGameOver Function ----------------
+Out of provinces: game end
+Passed
+Each card has a nonzero supply
+Passed
+Exactly 1 card has zero supply
+Passed
+Exactly 2 cards has zero supply
+Passed
+Exactly 3 cards has zero supply
+Passed
+
+UNIT TEST 3 PASSED.
+
+---------------- Testing buyCard Function ----------------
+---- Testing card 0 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 0 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 1 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 2 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 2 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 5 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 3 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 8 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 4 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 0 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 5 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 3 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 6 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 6 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 7 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 6 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 8 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 5 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 9 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 4 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 10 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 4 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 11 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 5 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 12 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 4 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 13 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 4 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 14 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 3 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 15 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 4 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 16 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 3 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 17 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 5 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 18 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 3 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 19 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 5 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 20 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 3 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 21 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 4 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 22 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 2 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 23 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 5 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+---- Testing card 24 ----
+Player has 0 buys
+Passed
+Player has 1 buys
+Passed
+Player has 2 buys
+Passed
+0 cards available to buy
+Passed
+1 cards available to buy
+Passed
+2 cards available to buy
+Passed
+Card costs 4 coins
+Player has 0 coins
+Passed
+Player has 1 coins
+Passed
+Player has 2 coins
+Passed
+Player has 3 coins
+Passed
+Player has 4 coins
+Passed
+Player has 5 coins
+Passed
+Player has 6 coins
+Passed
+Player has 7 coins
+Passed
+Player has 8 coins
+Passed
+
+UNIT TEST 4 PASSED.
+
+---------------- Testing Smithy Card ----------------
+Added 2 cards to their hand, expected 3
+Removed 3 cards from their deck, expected 3
+Added 2 cards to their hand, expected 3
+Removed 3 cards from their deck, expected 3
+Added 2 cards to their hand, expected 3
+Removed 3 cards from their deck, expected 3
+Added 2 cards to their hand, expected 3
+Removed 3 cards from their deck, expected 3
+Added 2 cards to their hand, expected 3
+Removed 3 cards from their deck, expected 3
+
+CARD TEST 1 FAILED.
+
+---------------- Testing Adventurer Card ----------------
+Player has 11 cards in total, expected 12
+Player has 13 cards in total, expected 14
+Player has 15 cards in total, expected 16
+Player has 17 cards in total, expected 18
+Player has 19 cards in total, expected 20
+Player has 21 cards in total, expected 22
+Player has 23 cards in total, expected 24
+Player has 25 cards in total, expected 26
+Player has 27 cards in total, expected 28
+Player has 9 cards in total, expected 10
+
+CARD TEST 2 FAILED.
+
+---------------- Testing Great Hall Card ----------------
+Player has 6 cards in hand, expected 5
+Player has 6 cards in hand, expected 5
+Player has 6 cards in hand, expected 5
+Player has 6 cards in hand, expected 5
+Player has 6 cards in hand, expected 5
+
+CARD TEST 3 FAILED.
+
+---------------- Testing Embargo Card ----------------
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+Player has 8 coins, expected 6
+
+CARD TEST 4 FAILED.
+
+File 'dominion.c'
+Lines executed:34.75% of 659
+Branches executed:33.25% of 421
+Taken at least once:28.74% of 421
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+Function 'compare'
+Lines executed:83.33% of 6
+
+Function 'newGame'
+Lines executed:0.00% of 2
+
+Function 'kingdomCards'
+Lines executed:0.00% of 12
+
+Function 'initializeGame'
+Lines executed:85.90% of 78
+
+Function 'shuffle'
+Lines executed:94.44% of 18
+
+Function 'playCard'
+Lines executed:0.00% of 14
+
+Function 'playSmithy'
+Lines executed:77.78% of 9
+
+Function 'playAdventurer'
+Lines executed:88.89% of 18
+
+Function 'playGreatHall'
+Lines executed:100.00% of 5
+
+Function 'playEmbargo'
+Lines executed:100.00% of 13
+
+Function 'playSteward'
+Lines executed:0.00% of 11
+
+Function 'buyCard'
+Lines executed:100.00% of 13
+
+Function 'numHandCards'
+Lines executed:0.00% of 1
+
+Function 'handCard'
+Lines executed:0.00% of 2
+
+Function 'supplyCount'
+Lines executed:100.00% of 1
+
+Function 'fullDeckCount'
+Lines executed:0.00% of 11
+
+Function 'whoseTurn'
+Lines executed:0.00% of 1
+
+Function 'endTurn'
+Lines executed:0.00% of 22
+
+Function 'isGameOver'
+Lines executed:100.00% of 12
+
+Function 'scoreFor'
+Lines executed:0.00% of 26
+
+Function 'getWinners'
+Lines executed:0.00% of 33
+
+Function 'drawCard'
+Lines executed:33.33% of 24
+
+Function 'getCost'
+Lines executed:90.00% of 30
+
+Function 'cardEffect'
+Lines executed:0.00% of 253
+
+Function 'discardCard'
+Lines executed:86.67% of 15
+
+Function 'gainCard'
+Lines executed:100.00% of 15
+
+Function 'updateCoins'
+Lines executed:71.43% of 14
+
+File 'dominion.c'
+Lines executed:34.75% of 659
+dominion.c:creating 'dominion.c.gcov'
+

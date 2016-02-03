@@ -142,4 +142,8 @@ int playGreatHall(int currentPlayer, struct gameState * state, int handPos);
 int playEmbargo(int currentPlayer, struct gameState * state, int choice1, int handPos);
 int playSteward(int currentPlayer, struct gameState * state, int choice1, int choice2, int choice3, int handPos);
 
+int test2();
+int test3();
+int test4();
+
 #endif

@@ -15,7 +15,7 @@ int checkUpdateCoins (int p, struct gameState *post, int bon) {
     int r = updateCoins (p, post, bon);
 
     //update coin count to indicate bonus coins
-    pre->coins = bon;
+    pre.coins = bon;
     int i;
     for ( i = 0; i < 5; i++ ) {
         if ( pre.hand[p][i] == copper ){
@@ -32,36 +32,6 @@ int checkUpdateCoins (int p, struct gameState *post, int bon) {
     assert (r == 0);
 
     assert(memcmp(&pre, post, sizeof(struct gameState)) == 0);
-}
-
-int updateCoins(int player, struct gameState *state, int bonus)
-{
-    int i;
-
-    //reset coin count
-    state->coins = 0;
-
-    //add coins for each Treasure card in player's hand
-    for (i = 0; i < state->handCount[player]; i++)
-    {
-        if (state->hand[player][i] == copper)
-        {
-            state->coins += 1;
-        }
-        else if (state->hand[player][i] == silver)
-        {
-            state->coins += 2;
-        }
-        else if (state->hand[player][i] == gold)
-        {
-            state->coins += 3;
-        }
-    }
-
-    //add bonus
-    state->coins += bonus;
-
-    return 0;
 }
 
 int main () {

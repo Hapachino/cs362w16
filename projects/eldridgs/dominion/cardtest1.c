@@ -27,20 +27,6 @@ int checkSmithy(struct gameState *post, int p, int j, int handP){
     assert(memcmp(&pre, post, sizeof(struct gameState)) == 0);
 }
 
-int pSmithy(struct gameState *state, int currentPlayer, int i, int handPos)
-{
-    //+3 Cards
-            for (i = 0; i < 3; i++)
-            {
-                drawCard(currentPlayer, state);
-                state->numBuys = 5;
-            }
-
-            //discard card from hand
-            discardCard(handPos, currentPlayer, state, 0);
-            return 0;
-}
-
 int main () {
     int x;
     int i;

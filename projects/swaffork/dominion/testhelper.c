@@ -294,7 +294,7 @@ struct StateDiff compareStates(struct gameState* state1, struct gameState* state
     
     for (i = 0; i < MAX_PLAYERS; i++)
     {
-        if (state1->deckCount[i] != state2->deckCount[j])
+        if (state1->deckCount[i] != state2->deckCount[i])
         {
             sd.flags[DECK_COUNT] = 1;
             break;
@@ -322,7 +322,7 @@ struct StateDiff compareStates(struct gameState* state1, struct gameState* state
     
     for (i = 0; i < MAX_PLAYERS; i++)
     {
-        if (state1->discardCount[i] != state2->discardCount[j])
+        if (state1->discardCount[i] != state2->discardCount[i])
         {
             sd.flags[DISCARD_COUNT] = 1;
             break;

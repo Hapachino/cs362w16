@@ -98,7 +98,7 @@ int main()
         }
     }
 
-    printf("All state changes as expected."\n);
+    printf("All state changes as expected.\n");
 
  /*  -playedCards contains the card that was discarded (df.flags[PLAYED_CARDS] == 1)
  *  -playedCardCount increased by 1 (df.flags[PLAYED_CARD_COUNT] == 1)

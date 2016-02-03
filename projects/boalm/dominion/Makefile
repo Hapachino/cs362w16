@@ -66,9 +66,21 @@ unittestresultstest.out: cardtest1.c testUpdateCoins.c dominion.o rngs.o
 	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
 	./cardtest4 >> unittestresultstest.out
 
-	echo "testUpdateCoins.c:" >> unittestresultstest.out
-	gcc -o testUpdateCoins -g testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
-	./testUpdateCoins >> unittestresultstest.out
+	echo "unittest1.c:" >> unittestresultstest.out
+	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
+	./unittest1 >> unittestresultstest.out
+
+	echo "unittest2.c:" >> unittestresultstest.out
+	gcc -o unittest2 -g unittest2.c dominion.o rngs.o $(CFLAGS)
+	./unittest2 >> unittestresultstest.out
+
+	echo "unittest3.c:" >> unittestresultstest.out
+	gcc -o unittest3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
+	./unittest3 >> unittestresultstest.out
+
+	echo "unittest4.c:" >> unittestresultstest.out
+	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
+	./unittest4 >> unittestresultstest.out
 	
 	gcov dominion.c >> unittestresultstest.out
 	cat dominion.c.gcov >> unittestresultstest.out

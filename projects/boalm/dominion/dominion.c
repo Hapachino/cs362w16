@@ -325,20 +325,23 @@ int fullDeckCount(int player, int card, struct gameState *state) {
   int i;
   int count = 0;
 
-  for (i = 0; i < state->deckCount[player]; i++)
-    {
-      if (state->deck[player][i] == card) count++;
-    }
+  // for (i = 0; i < state->deckCount[player]; i++)
+  //   {
+  //     if (state->deck[player][i] == card) count++;
+  //   }
 
-  for (i = 0; i < state->handCount[player]; i++)
-    {
-      if (state->hand[player][i] == card) count++;
-    }
+  // for (i = 0; i < state->handCount[player]; i++)
+  //   {
+  //     if (state->hand[player][i] == card) count++;
+  //   }
 
-  for (i = 0; i < state->discardCount[player]; i++)
-    {
-      if (state->discard[player][i] == card) count++;
-    }
+  // for (i = 0; i < state->discardCount[player]; i++)
+  //   {
+  //     if (state->discard[player][i] == card) count++;
+  //   }
+  count += state->deckCount[player];
+  count += state->discardCount[player];
+  count += state->handCount[player];
 
   return count;
 }
@@ -441,7 +444,7 @@ int scoreFor (int player, struct gameState *state) {
     }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };

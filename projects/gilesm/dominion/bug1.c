@@ -6,14 +6,12 @@ Parameters:
 Return Type: int
 
 Description:
-
 buyCard takes as parameters a specified card index and a pointer
 to a struct gameState. The function purchases the card for the specified
 player, decrementing the player's coins for the cost of the card, removes the
 card from the state's card supply, and adds it to the player's discard deck.
 
 Test Findings: 
-
 The first set of tests were based on asserting successful 
 conditions. Under successful conditions, it is expected that the card will be
 removed from the supply deck and placed in the current player's discard deck.
@@ -44,12 +42,10 @@ Parameters:
 Return Type: int
 
 Description:
-
 numHandCards takes a pointer to a struct gameState as an argument and returns
 the number of cards currently in the player's hand.
 
 Test Findings:
-
 The condition for the first test assessed the value of the number of cards
 in each player's hand. Cards are delt at the beginning of a new turn,
 therefore only the first player has cards in the hand pile after
@@ -74,10 +70,38 @@ Parameters:
 	- int player
 Return Type: int
 
-Description:
+Description: 
+gainCard takes a specified card to be added, a flag indicating which pile to
+add the card, and a player that will receive the card as parameters. As long
+as the supply is available, the card is then added to the specified pile.
 
 Test Findings:
+The toFlag option presents an opportunity to provide three different options
+to the function and compare the results to ensure the card was added to the
+correct pile. To do so, I passed similar values to the gainCard function, only
+changing the toFlag value. Using each value, I added a smithy card to the deck
+and compared two items for each iteration: (1) I checked to see if the deck
+count was incremented by one and (2) that the specified card was on top of the
+selected deck. Each of these tests passed.
 
+During the first set of conditions, I also checked to see if the supply count
+for smithy was decremented by one. I did this by comparing the supply count
+for smithy in the tested version against the supply count for smithy in the
+original version. All other supply positions were checked to ensure they 
+remain unchanged in the process.
+
+While continuing to use the same game state for testing purposes, I conducted
+the tests on a specified player, which means the other player should not have
+a change in any pile. These tests passed. To verify these, I used helper
+functions in testTools.c to verify that each of the card piles for player 2
+were the same in the original game state and the modified game state. Each of
+these tests passed successfully.
+
+Finally, the gainCard function should not add a card to the any pile if the
+supply value for the specified card is not at least 1. I reset the game state
+and set the supply value for the smithy card to 0. After running gainCard
+for smithy, it was identified that the entire game state did not change, and
+therefore the test passed.
 
 --------------------------- NON CARD - UNIT TEST 4 ---------------------------
 Name: updateCoins

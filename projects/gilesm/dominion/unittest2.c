@@ -16,13 +16,11 @@
 #include "testTools.c"
 
 int main() {
-	struct gameState state,			// running instance of game
-					 stateOriginal;	// backup copy of game to detect changes
+	struct gameState state;			// running instance of game
 	int i = 0,						// iteration variable for loop counting
 		numPlayers = 2,				// number of players in game
 		randomSeed = 10000,			// seed for random generation
-		validationCheck = 1,		// used to determine pass or fail
-		testCard = 0;				// determines test card for function call
+		validationCheck = 1;		// used to determine pass or fail
 	// initial array of kingdom cards
 	int kingdomCards[10] = {adventurer, gardens, village, minion, mine, cutpurse,
 							sea_hag, remodel, smithy};

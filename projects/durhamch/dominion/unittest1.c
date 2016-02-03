@@ -14,7 +14,7 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 
-int testGameOver()
+int testGameOver(struct gameState *G)
 {
     int empty_supplies = 0;
     int card = 0;
@@ -39,6 +39,7 @@ int testGameOver()
         if(empty_supplies > 2 && result != 1)
             printf("Error found: supplyCount[card] == 0 and isGameOver exits with 0."); 
     }
+    return 0;
 }
 
 void fillCards(struct gameState *G)
@@ -46,7 +47,7 @@ void fillCards(struct gameState *G)
     int i;
     for(i = 0; i < treasure_map; i++)
     {
-        G.supplyCount[i] = 5;
+        G->supplyCount[i] = 5;
     }
 }
 
@@ -65,7 +66,7 @@ int main()
     {
         for(i = 0; i < sizeof(struct gameState); i++)
         {
-            ((char*)&G[i] = floor(Random() * 256);
+            ((char*)&G)[i] = floor(Random() * 256);
         }
         G.supplyCount[province] = province_count;
 

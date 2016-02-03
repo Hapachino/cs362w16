@@ -2,7 +2,7 @@
  * Course:      CS362
  * Due Date:    2/3/2016
  * Description: Unit test for getCost() function.
- * Business Requirements
+ * Requirements
  *      - Correct value of card is returned
  */
 
@@ -35,6 +35,7 @@ int main()
                       3, 4, 2, 5,
                       4, 4, 4};
 
+    printf("TESTING - getCost()\n");
     //initialize game state
     outcome = initializeGame(MAX_PLAYERS, k, seed, &G);
     if (outcome == -1)
@@ -42,7 +43,6 @@ int main()
     memcpy(&testG, &G, sizeof(struct gameState));
 
 
-    printf("TESTING - GET CARD COSTS\n");
     //test each card against its expected value
     for (i = 0; i < 27; i++)
     {
@@ -61,7 +61,7 @@ int main()
         printf("SUCCESS - Returned cost: %d, Expected cost: -1\n",
                 getCost(treasure_map + 1));
 
-    printf("TEST COMPLETE\n");
+    printf("TEST COMPLETE\n\n");
 
     return 0;
 }

@@ -55,8 +55,8 @@ in line 353 "int currentPlayer = whoseTurn(state);"
 
 8)card unit test 4:Testing village Card.
 bug:segfault.
-The segfault is occuring in the discardCard function on line 1259, the current player value is very high (in the hundreds of thousands) which seems to indicate there maybe a flaw 
-in line 353 "int currentPlayer = whoseTurn(state);"
+The segfault is occuring in the discardCard function on line 1259, the current player value is very high (in the hundreds of thousands) and played card count is a negative number, either.
+just prior to calling the village card the whoseTurn field is very high (hundreds of thousands) and the played card count is negative. This indicates that it was a failure to initialize these value with "reasonable" values for the purposes for random testing.
 
 
 

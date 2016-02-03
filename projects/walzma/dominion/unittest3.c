@@ -180,6 +180,85 @@ int main() {
 	}
 	
 	
+	
+	
+	//Test Case 3: Deck is empty and discard pile is empty
+	printf("\nCASE 3: Deck is empty and discard pile is empty\n");
+	success = 0;
+	error1 = 0;
+	error2 = 0;
+	initializeGame(numPlayers, kCards, randomSeed, &post);
+	currentPlayer = 0;
+	
+	//change game states so that current player has an empty deck
+	//move deck to discard pile
+	for (i = 0; i < post.deckCount[currentPlayer]; i++) {
+		post.hand[currentPlayer][post.handCount[currentPlayer]+i] = post.deck[currentPlayer][i];
+		post.deck[currentPlayer][i] = -1;
+	}
+	//update deck and discard counts
+	post.handCount[currentPlayer] = post.handCount[currentPlayer] + post.deckCount[currentPlayer];
+	post.deckCount[currentPlayer] = 0;
+
+	//now that deck is empty, copy game state and then call drawCard
+	memcpy(&pre, &post, sizeof(struct gameState));
+	if (drawCard(currentPlayer, &post) != -1) {
+		printf("Failed function: drawCard did not return expected -1 in test case 3.\n");
+		success = -1;
+	}
+	else {
+		printf("Successfully returned -1 for test case 3.\n");
+	}
+	//check that current player did not add a card to their hand
+	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]) {
+		printf("Failed test case 3a: current player added a card to their hand even though no cards in deck and discard pile.\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 3a: current player's hand count did not change.\n");
+	}
+	//check that current player deck count equals 0
+	if (post.deckCount[currentPlayer] != 0) {
+		printf("Failed test case 3b: current player's deck count is not zero\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 3b: current player's deck count is zero.\n");
+	}
+	//check that current player discard count equals 0
+	if (post.discardCount[currentPlayer] != 0) {
+		printf("Failed test case 3c: current player's discard count is not zero\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 3c: current player's discard count is zero.\n");
+	}
+	//verify no other player's had their deck size or hand size modified
+	for (i = 1; i < numPlayers; i++) {
+		if (post.deckCount[i] != pre.deckCount[i]) {
+			error1 = -1;
+		}
+		if (post.handCount[i] != pre.handCount[i]) {
+			error2 = -1;
+		}
+	}
+	if (error1 == -1) {
+		printf("Failed test case 3d: at least one other player's deck count changed.\n");
+	}
+	else {
+		printf("No other player's deck count was affected.\n");
+	}
+	if (error2 == -1) {
+		printf("Failed test case 3e: at least one other player's hand count changed.\n");
+	}
+	else {
+		printf("No other player's hand count was affected.\n");
+	}
+	if (success == 0) {
+		printf("Test case 3 successfully passed.\n");
+	}
+	
+	
 	printf("\n\n-------------Unit Test #3 Complete -------------\n\n\n");
 	return 0;
 }

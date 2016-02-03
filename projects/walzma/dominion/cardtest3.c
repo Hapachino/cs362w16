@@ -1,5 +1,5 @@
 /*
-Unit Test for Adventurer card
+Card Test for Adventurer card
 */
 
 #include "dominion.h"
@@ -16,14 +16,14 @@ Unit Test for Adventurer card
 
 
 int main() {
-	printf("-------------Card Test #3: Testing adventurer card-------------\n\n");
+	printf("\n-------------Card Test #3: Testing adventurer card-------------\n\n");
 
 	//initialize variables for card test
 	int i, numPlayers, handPos, randomSeed;
 	int choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
 	int currentPlayer = 0, success = 0, error1 = 0, error2 = 0;
 	struct gameState pre, post;
-	int kCards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
+	int kCards[10] = {adventurer, remodel, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 	
 	//seed random number generator and create random values (within boundaries for numPlayers, handPos, and randomSeed
 	srand(time(NULL));
@@ -42,7 +42,7 @@ int main() {
 	memcpy(&pre, &post, sizeof(struct gameState));
 	//check AdventurerEffect
 	if (cardEffect(adventurer, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
-		printf("Failed function: AdventurerEffect threw an error state.\n");
+		printf("Failed function: cardEffect(adventurer,...) threw an error state.\n");
 		success = -1;
 	}
 	//Check that currentPlayer handCount increased by 1 (+2 for added coins, -1 for playing adventurer)
@@ -129,7 +129,7 @@ int main() {
 	memcpy(&pre, &post, sizeof(struct gameState));
 	//check AdventurerEffect
 	if (cardEffect(adventurer, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
-		printf("Failed function: AdventurerEffect threw an error state.\n");
+		printf("Failed function: cardEffect(adventurer,...) threw an error state.\n");
 		success = -1;
 	}
 	//Check that currentPlayer handCount remained the same (+1 for added coin, -1 for playing adventurer)
@@ -194,6 +194,6 @@ int main() {
 	
 	
 	
-	printf("\n\n-------------Card Test #2 Complete -------------\n");
+	printf("\n\n-------------Card Test #3 Complete -------------\n\n\n");
 	return 0;
 }

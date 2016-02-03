@@ -370,6 +370,6 @@ int main() {
 		printf("Test case 6 successfully passed.\n");
 	}
 
-	printf("\n\n-------------Unit Test #1 Complete -------------\n");
+	printf("\n\n-------------Unit Test #1 Complete -------------\n\n\n");
 	return 0;
 }

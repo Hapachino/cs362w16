@@ -10,20 +10,33 @@
  * of card a player currently has in their hand, deck and discard combined.
  * -----------------------------------------------------------------------
  */
-
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <assert.h>
 #include "rngs.h"
+#include <stdlib.h>
+// set NOISY_TEST to 0 to remove printfs from output
+#define NOISY_TEST 1
+//-----------------------------------
+
+
+#define TESTFUNCTION "fullDeckCount()"
+/* qsort int comparison function */
+int int_cmp(const void *a, const void *b)
+{
+    const int *ia = (const int *)a; // casting pointer types
+    const int *ib = (const int *)b;
+    return *ia  - *ib;
+	/* integer comparison: returns negative if b > a
+	and positive if a > b */
+}
 
 //Determine if two gameStates are identical or not: Return 1 if identical, 0 if not
-int statesAreEqual(struct gameState *g1, struct gameState *g2)
+int statesAreEqual(struct gameState *g1, struct gameState *g2, int arraychecks)
 {
     int i, j;
-
     if(g1->numPlayers != g2->numPlayers) return 0;
     for(i = 0; i < treasure_map+1; i++)
         if(g1->supplyCount[i] != g2->supplyCount[i]) return 0;
@@ -33,126 +46,227 @@ int statesAreEqual(struct gameState *g1, struct gameState *g2)
     if(g1->outpostTurn != g2->outpostTurn) return 0;
     if(g1->whoseTurn != g2->whoseTurn) return 0;
     if(g1->phase != g2->phase) return 0;
-    if(g1->numActions != g2->numActions) return 01;
+    if(g1->numActions != g2->numActions) return 0;
     if(g1->coins != g2->coins) return 0;
     if(g1->numBuys != g2->numBuys) return 0;
-    for(i = 0; i < MAX_PLAYERS; i++)
+    if(g1->playedCardCount != g2->playedCardCount) return 0;
+    qsort ((void*)(g1->deck[0]), g1->deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g1->hand[0]), g1->handCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g1->discard[0]), g1->discardCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g1->playedCards), g1->playedCardCount, sizeof(int), int_cmp);
+    qsort ((void*)(g2->deck[0]), g2->deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g2->hand[0]), g2->handCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g2->discard[0]), g2->discardCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g2->playedCards), g2->playedCardCount, sizeof(int), int_cmp);
+
+
+
+    for(i = 0; i < g1->numPlayers; i++)
     {
         if(g1->handCount[i] != g2->handCount[i]) return 0;
         if(g1->deckCount[i] != g2->deckCount[i]) return 0;
         if(g1->discardCount[i] != g2->discardCount[i]) return 0;
 
-        for(j = 0; j < MAX_HAND; j++)
-            if(g1->hand[i][j] != g2->hand[i][j]) return 0;
+        if(arraychecks == 1)
+        {
 
-        for(j = 0; j < MAX_DECK; j++)
-            if(g1->deck[i][j] != g2->deck[i][j]) return 0;
+            for(j = 0; j < g1->discardCount[i]; j++)
+            {
+                if(g1->discard[i][j] != g2->discard[i][j]) return 0;
+            }
+
+            for(j = 0; j < g1->handCount[i]; j++)
+            {
+                if(g1->hand[i][j] != g2->hand[i][j]) return 0;
+            }
+
+            for(j = 0; j < g1->deckCount[i]; j++)
+            {
+                if(g1->deck[i][j] != g2->deck[i][j]) return 0;
+            }
+            for(j = 0; j < g1->playedCardCount; j++)
+            {
+                if(g1->playedCards[j] != g2->playedCards[j]) return 0;
+            }
+
+        }
     }
-
-    for(i = 0; i < MAX_DECK; i++)
-        if(g1->playedCards[i] != g2->playedCards[i]) return 0;
-
-    if(g1->playedCardCount != g2->playedCardCount) return 0;
-
-    return 1;
+        return 1;
 }
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 0
-int main() {
-    int i, j, cardCount, card, numDeck, numHand, numDiscard, temp, result;
-    int pass = 0, fail = 0;
-    int tests = 1000;  // number of times to run test
-    int seed = 500;
-
-    srand(seed);
-    struct gameState game, test;
-    int tempCards[20];
-    int tempDeck[MAX_DECK];
-    int tempHand[MAX_HAND];
-    int tempDiscard[MAX_HAND];
-    printf ("TESTING fullDeckCount():\n");
-    for(j=0; j < tests; j++)
-    {
-
-        //pick a random card to search for
-        card = rand() % 27;
-
-        //pick a random # of those cards to be in player's possession and decide how many in each location
-        cardCount = (int)(rand() % 8);
-
-        //build a randomized deck of 20 cards with the correct # of cards to search for
-        for(i = 0; i < 20; i++)
-        {
-            tempCards[i] = -1;
-        }
-
-        for(i = 0; i < cardCount; i++)
-        {
-            do{
-                temp = rand() % 20;
-            }while (tempCards[temp] != -1);
-            tempCards[temp] = card;
-        }
 
 
-        for(i = 0; i < 20; i++)
-        {
-            do{
-                temp = rand() % 27;
-            }while(temp == card);
-            if(tempCards[i] == - 1)
-                tempCards[i] = temp;
-        }
+int transform_ints_to_string(int const* data, int data_length,
+                             char* output, int output_length)
+{
+  // if not enough space was available, returns -1
+  // otherwise returns the number of characters written to
+  // output, not counting the additional null character
 
+  // precondition: non-null pointers
+  assert(data);
+  assert(output);
+  // precondition: valid data length
+  assert(data_length >= 0);
+  // precondition: output has room for null
+  assert(output_length >= 1);
 
-        //decide how many cards to have in hand/deck/discard
-        numDeck = (int)(rand() % 20);
-        numHand = (int)(rand() % (20 - numDeck));
-        numDiscard = (int)(20 - (numDeck + numHand));
-
-
-        //create temporary deck, hand, discard
-        for(i=0; i < numDeck; i++)
-            tempDeck[i] = tempCards[i];
-        for(i=numDeck; i < numDeck + numHand; i++)
-            tempHand[i-numDeck] = tempCards[i];
-        for(i=numHand+numDeck; i < 20; i++)
-            tempDiscard[i-(numHand+numDeck)] = tempCards[i];
-
-         //populate the gamestate with the player's relevant deck, hand, and discard information
-         memset(&game, 0, sizeof(struct gameState));          // clear the game state
-         memcpy(game.hand[0], tempHand, sizeof(int) * numHand);
-         memcpy(game.deck[0], tempDeck, sizeof(int) * numDeck);
-         memcpy(game.discard[0], tempDiscard, sizeof(int) * numDiscard);
-         game.handCount[0] = numHand;
-         game.deckCount[0] = numDeck;
-         game.discardCount[0] = numDiscard;
-         memcpy(&test, &game, sizeof(struct gameState));     //establish a cloned game state
-
-         result = fullDeckCount(0, card, &game);
-         #if (NOISY_TEST == 1)
-         printf("Searching for card#%d: [fullDeckCount(): %d]\t[Expected: %d]\n", card, result, cardCount);
-         #endif
-         if(result == cardCount)
-         {
-             if(statesAreEqual(&game, &test) == 1)
-                pass++;
-             else{
-                fail++;
-                printf("states not equal failure.\n");
-             }
-         }
-         else
-         {
-             fail++;
-         }
+  int written = 0;
+  for (; data_length; data_length--) {
+    int length = snprintf(output, output_length, "%d, ", *data++);
+    if (length >= output_length) {
+      // not enough space
+      return -1;
     }
-    if(pass == tests)
-        printf("FullDeckCount() --- ALL TESTS PASSED\n");
+    written += length;
+    output += length;
+    output_length -= length;
+  }
+  return written;
+}
+void printArray(int const* d, int len, char* str)
+{
+    char buf[200] = "";
+    printf("%s: ", str);
+    if(len <= 0)
+    {
+        printf("[ ]\n");
+        return;
+    }
     else
-        printf("FullDeckCount() --- %d of %d tests failed.\n", fail, tests);
+    {
+        transform_ints_to_string(d, len, buf, sizeof buf);
+        printf("[%s\b\b]\n", buf);
+    }
+}
 
+int handCoins(struct gameState *g, int player)
+{
+    int i;
+    int coins = 0;
+    for(i = 0; i < g->handCount[player]; i++)
+    {
+        if(g->hand[player][i] == copper || g->hand[player][i] == silver || g->hand[player][i] == gold)
+        {
+            coins++;
+        }
+    }
+    return coins;
+}
+
+
+void validateTest(struct gameState *G,  struct gameState *testG, int player, int card, int expected)
+{
+    int result = fullDeckCount(player, card, testG);
+    if(result == expected && statesAreEqual(G, testG, 1))
+        printf("PASSED\n");
+    else
+        printf("FAILED\n");
+    return;
+}
+
+int main()
+{
+    int handpos = 0;
+    int seed = 500;
+    srand(seed);
+    int numPlayers = 2;
+    int thisPlayer = 0;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
+
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+
+	printf("\n*** Testing Function: %s \n", TESTFUNCTION);
+	printf("--------------------------------------------------------\n");
+	printf("TEST 1: 1 card in player's hand...............");
+
+	handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = village;           //assign the great_hall card to the end of the hand
+	memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+    validateTest(&G, &testG, thisPlayer, village, 1);
+
+
+	printf("TEST 2: 1 card in player's deck...............");
+	memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+    initializeGame(numPlayers, k, seed, &G);               //initialize a new game
+	G.deck[thisPlayer][rand() % G.deckCount[thisPlayer]] = village; //add card to deck
+    memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+    validateTest(&G, &testG, thisPlayer, village, 1);
+
+
+	printf("TEST 3: Only cards in player's discard........");
+	memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+    initializeGame(numPlayers, k, seed, &G);               //initialize a new game
+	G.discard[thisPlayer][0] = village;                  //add card to discard
+	G.discard[thisPlayer][1] = copper;                  //add a different card to discard
+	G.discard[thisPlayer][2] = village;                  //add card to discard
+	G.discardCount[thisPlayer] = 3;                      //set discard
+    memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+    validateTest(&G, &testG, thisPlayer, village, 2);
+
+	printf("TEST 4: None of the cards in hand/deck/disc...");
+	memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+    initializeGame(numPlayers, k, seed, &G);               //initialize a new game
+    memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+    validateTest(&G, &testG, thisPlayer, village, 0);
+
+	printf("TEST 5: multiple cards in hand and deck.......");
+	memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+    initializeGame(numPlayers, k, seed, &G);               //initialize a new game
+    G.deck[thisPlayer][rand() % G.deckCount[thisPlayer]] = village; //assign random deck card to village
+    G.deck[thisPlayer][G.deckCount[thisPlayer]] = village; //assign one to the end
+    G.deckCount[thisPlayer]++;
+    G.hand[thisPlayer][G.handCount[thisPlayer]-1] = village; //overwrite the last card in hand
+    memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+    validateTest(&G, &testG, thisPlayer, village, 3);
+
+	printf("TEST 5: multiple cards in hand and discard....");
+	memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+    initializeGame(numPlayers, k, seed, &G);               //initialize a new game
+    G.discard[thisPlayer][0] = village; //assign random deck card to village
+    G.discard[thisPlayer][1] = village; //assign one to the end
+    G.discardCount[thisPlayer]+=2;
+    G.hand[thisPlayer][rand() % G.handCount[thisPlayer]] = village; //overwrite the last card in hand
+    memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+    validateTest(&G, &testG, thisPlayer, village, 3);
+
+	printf("TEST 6: multiple cards in deck and discard....");
+	memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+    initializeGame(numPlayers, k, seed, &G);               //initialize a new game
+    G.discard[thisPlayer][0] = village; //assign random deck card to village
+    G.discard[thisPlayer][1] = village; //assign one to the end
+    G.discardCount[thisPlayer]+=2;
+    G.deck[thisPlayer][rand() % G.deckCount[thisPlayer]] = village; //overwrite the last card in hand
+    G.deck[thisPlayer][G.deckCount[thisPlayer]] = village; //assign one to the end
+    G.deckCount[thisPlayer]++;
+    memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+    validateTest(&G, &testG, thisPlayer, village, 4);
+
+	printf("TEST 7: Cards in hand, deck and discard.......");
+	memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+    initializeGame(numPlayers, k, seed, &G);               //initialize a new game
+    G.discard[thisPlayer][0] = village; //assign random deck card to village
+    G.discard[thisPlayer][1] = village; //assign one to the end
+    G.discardCount[thisPlayer]+=2;
+    G.deck[thisPlayer][rand() % G.deckCount[thisPlayer]] = village; //overwrite the last card in hand
+    G.deck[thisPlayer][G.deckCount[thisPlayer]] = village; //assign one to the end
+    G.deckCount[thisPlayer]++;
+    G.hand[thisPlayer][rand() % G.handCount[thisPlayer]] = village; //overwrite a card in the had
+    memcpy(&testG, &G, sizeof(struct gameState));      // copy the game state to a test case
+    validateTest(&G, &testG, thisPlayer, village, 5);
+    printf("--------------------------------------------------------\n");
+
+        printf("\n >>>>> Testing complete %s <<<<<\n\n", TESTFUNCTION);
     return 0;
 }
 

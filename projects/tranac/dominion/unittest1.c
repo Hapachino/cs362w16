@@ -33,7 +33,7 @@ int main() {
 		printf("curse card  PASS\n");
 	}
 	else{
-		printf("curs card  FAIL\n");
+		printf("curse card  FAIL\n");
 	}
 #endif
 	result = getCost(estate);

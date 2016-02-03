@@ -23,6 +23,7 @@ int main() {
   int numPlayers = 2;
   int thisPlayer = 0;
   int otherPlayer = 1;
+  int lastInHand;
   struct gameState G, testG;
   int k[10] = {adventurer, smithy, council_room, remodel, great_hall, mine,
       baron, feast, gardens, village};
@@ -33,11 +34,14 @@ int main() {
 
   printf("*** TEST 1:  Discard first card w/ full hand no trashFlag ***\n");
   memcpy(&testG, &G, sizeof(struct gameState));
+  lastInHand = testG.hand[thisPlayer][4];
   discardCard(0, thisPlayer, &testG, 0);
 
   printf("--- Current Player ---\n");
   printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] - cardsToDiscard);
   assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] - cardsToDiscard);
+  printf("replaced card = %d, expected = %d\n", testG.hand[thisPlayer][0], lastInHand);
+  assert(testG.hand[thisPlayer][0] == lastInHand);
   printf("deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
   assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer]);
 
@@ -78,6 +82,8 @@ int main() {
   printf("--- Current Player ---\n");
   printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] - cardsToDiscard);
   assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] - cardsToDiscard);
+  printf("replaced card = %d, expected = %d\n", testG.hand[thisPlayer][4], -1);
+  assert(testG.hand[thisPlayer][4] == -1);
   printf("deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
   assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer]);
 
@@ -98,11 +104,13 @@ int main() {
   testG.hand[thisPlayer][2] = -1;
   testG.hand[thisPlayer][3] = -1;
   testG.hand[thisPlayer][4] = -1;
-  discardCard(4, thisPlayer, &testG, 0);
+  discardCard(0, thisPlayer, &testG, 0);
 
   printf("--- Current Player ---\n");
   printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], 0);
   assert(testG.handCount[thisPlayer] == 0);
+  printf("replaced card = %d, expected = %d\n", testG.hand[thisPlayer][0], -1);
+  assert(testG.hand[thisPlayer][0] == -1);
   printf("deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
   assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer]);
 

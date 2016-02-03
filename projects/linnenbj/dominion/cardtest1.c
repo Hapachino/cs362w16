@@ -93,9 +93,9 @@ int statesAreEqual(struct gameState *g1, struct gameState *g2, int arraychecks)
             {
                 if(g1->deck[i][j] != g2->deck[i][j]) return 0;
             }
-            for(i = 0; i < g1->playedCardCount; i++)
+            for(j = 0; j < g1->playedCardCount; j++)
             {
-                if(g1->playedCards[i] != g2->playedCards[i]) return 0;
+                if(g1->playedCards[j] != g2->playedCards[j]) return 0;
             }
         }
     }

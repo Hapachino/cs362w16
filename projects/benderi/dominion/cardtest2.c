@@ -3,7 +3,7 @@
  * Due Date:    2/3/2016
  * Description: Unit test for Adventurer card.
  * Business Requirements
- *      - 
+ *      - draw cards until at least 2 treasure cards are drawn
  */
 
 #include "dominion.h"
@@ -26,13 +26,13 @@ int main()
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                     remodel, smithy, village, baron, great_hall};
 
+    printf("TESTING - ADVENTURER CARD\n");
     //initialize game state
     outcome = initializeGame(numPlayers, k, seed, &G);
     if (outcome == -1)
         printf("ERROR - Game initialization failed.\n");
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    printf("TESTING - ADVENTURER CARD\n");
     //give Adventurer card to player
     testG.hand[thisPlayer][testG.handCount[thisPlayer]] = adventurer;
     testG.handCount[thisPlayer]++;
@@ -70,7 +70,7 @@ int main()
     else
        printf("ERROR - No additional cards added to test hand.\n");
 
-    printf("TEST COMPLETE\n");
+    printf("TEST COMPLETE\n\n");
 
     return 0;
 

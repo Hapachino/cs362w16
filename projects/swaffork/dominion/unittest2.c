@@ -1,82 +1,110 @@
 /* -----------------------------------------------------------------------
- * Demonstration of how to write unit tests for dominion-base
- * Include the following lines in your makefile:
+ * discardCard()
  *
- * testUpdateCoins: testUpdateCoins.c dominion.o rngs.o
- *      gcc -o testUpdateCoins -g  testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
+ * The discardCard() function works as follows:
+ *  -add card to playedCards pile
+ *  -set the played card to -1
+ *  -decrement hand count
+ *  -if there are cards left in the player's hand, move last hard to empty
+ *  space left by discarded card
+ *
+ * Things to check:
+ *  -playedCards contains the card that was discarded (df.flags[PLAYED_CARDS] == 1)
+ *  -playedCardCount increased by 1 (df.flags[PLAYED_CARD_COUNT] == 1)
+ *  -player's hand has decreased by 1 (df.flags[HAND] == df.flags[HAND_COUNT] == 1)
+ *  -nothing else in gamestate has changed
  * -----------------------------------------------------------------------
  */
 
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
+#include "testhelper.h"
+#include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <assert.h>
-#include "rngs.h"
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+int compare(const void* a, const void* b);
 
-int main() {
+int main()
+{
     int i;
+    int count;
+    int player;
+    int flag;
     int seed = 1000;
-    int numPlayer = 2;
-    int maxBonus = 10;
-    int p, r, handCount;
-    int bonus;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
-    struct gameState G;
-    int maxHandCount = 5;
-    // arrays of all coppers, silvers, and golds
-    int coppers[MAX_HAND];
-    int silvers[MAX_HAND];
-    int golds[MAX_HAND];
-    for (i = 0; i < MAX_HAND; i++)
+    int numPlayers = 2;
+    int cards[10] = {adventurer, council_room, feast, gardens, mine,
+                     remodel, smithy, village, baron, great_hall};
+    struct gameState state;
+    struct gameState originalState;
+
+    // Initialize gameState
+    if (initializeState(numPlayers, cards, seed, &state) != 0)
     {
-        coppers[i] = copper;
-        silvers[i] = silver;
-        golds[i] = gold;
+        printf("Error: Could not initialize state.\n");
+        return -1;
     }
 
-    printf ("TESTING updateCoins():\n");
-    for (p = 0; p < numPlayer; p++)
+    // Put card into player's hand
+    player = 0;
+    count = 0;
+
+    int deckCounter = state.deckCount[player];
+
+    if (deckCounter == 0)
     {
-        for (handCount = 1; handCount <= maxHandCount; handCount++)
+        printf("ERROR: Could not draw card.\n");
+        return -1;
+    }
+
+    state.hand[player][count] = state.deck[player][deckCounter - 1];//Add card to hand
+    state.deckCount[player]--;
+    state.handCount[player]++;//Increment hand count
+
+    // Preserve the original game state to compare result of shuffle()
+    memcpy(&originalState, &state, sizeof(struct gameState));
+
+    printf ("Testing discardCard():\n");
+
+
+    if (discardCard(0, player, &state, 0) < 0)
+    {
+        printf("\tERROR: discardCard() failed.\n");
+        return -1;
+    }
+
+    struct StateDiff df = compareStates(&originalState, &state);
+    
+    for (i = 0; i < NUM_FIELDS; i++)
+    {
+        flag = df.flags[i];
+
+        if (flag == 1 && i != PLAYED_CARDS
+                      && i != PLAYED_CARD_COUNT
+                      && i != HAND
+                      && i != HAND_COUNT)
         {
-            for (bonus = 0; bonus <= maxBonus; bonus++)
-            {
-#if (NOISY_TEST == 1)
-                printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
-#endif
-                memset(&G, 23, sizeof(struct gameState));   // clear the game state
-                r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-                G.handCount[p] = handCount;                 // set the number of cards on hand
-                memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
-                updateCoins(p, &G, bonus);
-#if (NOISY_TEST == 1)
-                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
-#endif
-                assert(G.coins == handCount * 1 + bonus); // check if the number of coins is correct
-
-                memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silver
-                updateCoins(p, &G, bonus);
-#if (NOISY_TEST == 1)
-                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
-#endif
-                assert(G.coins == handCount * 2 + bonus); // check if the number of coins is correct
-
-                memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
-                updateCoins(p, &G, bonus);
-#if (NOISY_TEST == 1)
-                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
-#endif
-                assert(G.coins == handCount * 3 + bonus); // check if the number of coins is correct
-            }
+            printf("\tERROR: unexpected state change at df.flags[%d]\n", i);
+            return -1;
+        }
+        else if (flag == 0 && (i == PLAYED_CARDS
+                               || i == PLAYED_CARD_COUNT
+                               || i == HAND
+                               || i == HAND_COUNT))
+        {
+            printf("\tERROR: expected state change at df.flags[%d]\n", i);
+            return -1;
         }
     }
 
-    printf("All tests passed!\n");
+    printf("All state changes as expected.\n");
 
+ /*  -playedCards contains the card that was discarded (df.flags[PLAYED_CARDS] == 1)
+ *  -playedCardCount increased by 1 (df.flags[PLAYED_CARD_COUNT] == 1)
+ *  -player's hand has decreased by 1 (df.flags[HAND] == df.flags[HAND_COUNT] == 1)
+ *  -nothing else in gamestate has changed */
+
+    printf ("All tests passed.\n");
     return 0;
 }

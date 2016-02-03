@@ -26,6 +26,7 @@ int adventurerCard(int currentPlayer, struct gameState *state)
 	int cardDrawn;
 	int temphand[MAX_HAND];
 	int z = 0;	// this is the counter for the temp hand
+	int ret =0;
 
   	while(drawntreasure <= 2)
   	{
@@ -44,14 +45,16 @@ int adventurerCard(int currentPlayer, struct gameState *state)
 	  		z++;
 		}
     }
-      
+    
+	ret = z;
+	
     while(z-1>=0)
     {
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 		z=z-1;
     }
 
-    return 0;
+    return ret;
 }
 
 int council_roomCard ( int currentPlayer, int handPos,  struct gameState *state)

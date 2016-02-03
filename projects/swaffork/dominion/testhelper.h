@@ -8,24 +8,24 @@ struct StateDiff
     enum
     {
         NUM_PLAYERS = 0,
-        SUPPLY_COUNT,
-        EMBARGO_TOKENS,
-        OUTPOST_PLAYED,
-        OUTPOST_TURN,
-        WHOSE_TURN,
-        PHASE,
-        NUM_ACTIONS,
-        COINS,
-        NUM_BUYS,
-        HAND,
-        HAND_COUNT, 
-        DECK,
-        DECK_COUNT,
-        DISCARD,
-        DISCARD_COUNT,
-        PLAYED_CARDS,
-        PLAYED_CARD_COUNT,
-        NUM_FIELDS
+        SUPPLY_COUNT, // 1
+        EMBARGO_TOKENS, // 2
+        OUTPOST_PLAYED, // 3
+        OUTPOST_TURN, //4
+        WHOSE_TURN, // 5
+        PHASE, // 6
+        NUM_ACTIONS, // 7
+        COINS, // 8
+        NUM_BUYS, // 9
+        HAND, // 10
+        HAND_COUNT, // 11
+        DECK, // 12
+        DECK_COUNT, // 13
+        DISCARD, // 14
+        DISCARD_COUNT, // 15
+        PLAYED_CARDS, // 16
+        PLAYED_CARD_COUNT, // 17
+        NUM_FIELDS // 18
     } Fields;
 
     int flags[NUM_FIELDS];

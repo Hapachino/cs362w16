@@ -2,10 +2,10 @@
  * Course:      CS362
  * Due Date:    2/3/2016
  * Description: Unit test for numHandCards() function.
- * Business Requirements
+ * Requirements
  *      - initial hand has 5 cards
  *      - hand count is incremented after draw
- *      - hand count is decrememented after discard
+ *      - hand count is decremented after discard
  */
 
 #include "dominion.h"
@@ -26,13 +26,13 @@ int main()
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                     remodel, smithy, village, baron, great_hall};
 
+    printf("TESTING - numHandCards()\n");
     //initialize game state
     outcome = initializeGame(numPlayers, k, seed, &G);
     if (outcome == -1)
         printf("ERROR - Game initialization failed.\n");
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    printf("TESTING - DRAW CARDS\n");
     for (i = 0; i < numPlayers; i++)
     {
         printf("Player %d\n", i + 1);
@@ -68,7 +68,7 @@ int main()
         endTurn(&G);
     }
 
-    printf("TEST COMPLETE\n");
+    printf("TEST COMPLETE\n\n");
 
     return 0;
 }

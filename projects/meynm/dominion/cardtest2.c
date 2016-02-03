@@ -24,7 +24,7 @@ struct gameState* newGameState( int numPlayers, int seed );
 int main()
 {
 	struct gameState *g = 0;
-	int i, player, numPlayers, seed, testCount = 0, failCount = 0, handPos;
+	int i, player, numPlayers, seed, testCount = 0, failCount = 0;
 
 	fprintf( stdout, "\n**********\ncardtest2\n\nTesting Adventurer card:\n" );
 
@@ -39,7 +39,8 @@ int main()
 		if (testAdventurer( g, player ))
 		{
 			failCount++;
-			fprintf( stdout, "numPlayers=%d, seed=%d, player=%d: FAIL\n" );
+			fprintf( stdout, "numPlayers=%d, seed=%d, player=%d: FAIL\n", 
+					numPlayers, seed, player );
 		}
 		/*
 		else
@@ -160,8 +161,6 @@ int testAdventurer( struct gameState *pre, int player )
 
 		for (i = 0; i < postCardCount; i++)
 		{
-			int pr = preCards[i];
-			int po = postCards[i];
 			if (preCards[i] != postCards[i])
 				fail = 1;
 		}

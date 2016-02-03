@@ -62,6 +62,22 @@ runtests: cardtest1 cardtest2
 	./cardtest4 &>> unittestresult.out
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
+	gcov unittest1.c >> unittestresult.out
+	cat unittest1.c.gcov >> unittestresult.out
+	gcov unittest2.c >> unittestresult.out
+	cat unittest2.c.gcov >> unittestresult.out
+	gcov unittest3.c >> unittestresult.out
+	cat unittest3.c.gcov >> unittestresult.out
+	gcov unittest4.c >> unittestresult.out
+	cat unittest4.c.gcov >> unittestresult.out
+	gcov cardtest1.c >> unittestresult.out
+	cat cardtest1.c.gcov >> unittestresult.out
+	gcov cardtest2.c >> unittestresult.out
+	cat cardtest2.c.gcov >> unittestresult.out
+	gcov cardtest3.c >> unittestresult.out
+	cat cardtest3.c.gcov >> unittestresult.out
+	gcov cardtest4.c >> unittestresult.out
+	cat cardtest4.c.gcov >> unittestresult.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
@@ -69,4 +85,4 @@ player: player.c interface.o
 all: playdom player cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcov *.gcda *.gcno *.so

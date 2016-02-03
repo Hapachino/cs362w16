@@ -73,5 +73,5 @@ unittestresults.out: cardtest1.c testUpdateCoins.c dominion.o rngs.o
 	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
 	./unittest4 >> unittestresults.out
 	
-	gcov -f dominion.c >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out

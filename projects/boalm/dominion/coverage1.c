@@ -26,3 +26,12 @@ a bit of time thinking about how these functions work, it makes more sense to me
 when I see an untested line.  At this point when reading through and looking at untested lines though,
 it is mostly just cards, or functions that I did not test.
 
+I had 50.62 percent of branches executed and took 32.35% of them at least once.  This along with the
+fact that I only had 37.22 percent line coverage, indicates that there are large swaths of the program
+that I did not cover.  The branching, indicates that there are many decision tree branches that are untested.
+If I went down the path of covering all the functions, it would do quite a bit toward covering the branches.
+The hard part would be catching the little pieces of the cardEffect function.  
+
+If I had the freedom and time to look into making this program work, I would break it appart into many 
+smaller functions, and probably (more) separate files as well.  The fact that a function exists that's 
+200+ lines long is absurd.  It's almost impossible to test and can easily be broken into component parts.

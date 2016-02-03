@@ -79,7 +79,6 @@ int main()
 	
 	SelectStream(2);
 	PutSeed(3);
-	printf("Testing playVillage() cardtest3.\n");
 	
 	for(k = 0; k < numTests; k++)
 	{
@@ -88,12 +87,13 @@ int main()
 		}
 		G.whoseTurn = p;
 		G.numActions = 1;
-		//filling in random cards based on lecture 11 and 12 Random Testing 
-		G.handCount[p] = floor(Random() * MAX_HAND)+1;//need at least one village in our hand
-		G.deckCount[p] = floor(Random() * MAX_DECK);
-		G.discardCount[p] = floor(Random() * MAX_DECK);
-		G.playedCardCount = floor(Random() * MAX_DECK);
 		
+		//filling in random cards based on lecture 11 and 12 Random Testing 
+		G.playedCardCount = floor(Random() * MAX_DECK);//generate random played card count
+		G.handCount[p] = floor(Random() * MAX_HAND)+1;//+1 for village room in the hand
+		G.deckCount[p] = floor(Random() * MAX_DECK);//from lecture 11 to generate random deck 
+		G.discardCount[p] = floor(Random() * MAX_DECK);//from lecture 11 to generate random discard 
+
 		for(m = 0; m < G.handCount[p]; m++)
 		{
 			G.hand[p][m] = floor(Random() * treasure_map) + 1;
@@ -112,11 +112,10 @@ int main()
 		{
 			G.playedCards[q] = floor(Random() * treasure_map) + 1;
 		}
-		
-		//place village in a random pos
+		//putting village card in random hand position
 		handPos = floor(Random() * G.handCount[p]);
 		G.hand[p][handPos] = village;
-		
+		//run test above 
 		testplayVillage(&G, handPos);
 		
 	}

@@ -1,0 +1,8 @@
+/tmp/cclCRwY8.o: In function `main':
+cardtest4.c:(.text+0x108): undefined reference to `initializeGame'
+cardtest4.c:(.text+0x1a8): undefined reference to `cardEffect'
+cardtest4.c:(.text+0x35b): undefined reference to `initializeGame'
+cardtest4.c:(.text+0x3fb): undefined reference to `cardEffect'
+cardtest4.c:(.text+0x5a0): undefined reference to `initializeGame'
+cardtest4.c:(.text+0x74b): undefined reference to `cardEffect'
+collect2: ld returned 1 exit status

@@ -38,6 +38,8 @@ function updateCoins called 6 returned 100% blocks executed 82%
 I didn't test this one at all but I used it a lot which show the dangers of this stuff:
 function shuffle called 20 returned 100% blocks executed 100%
 
+There could also be bugs in something like function initialize game where I didn't test completely with my tests:
+initializeGame called 6 returned 100% blocks executed 88%
 
 
 Summary:

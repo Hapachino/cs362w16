@@ -1,6 +1,14 @@
 /*
  * Unit test for gainCard function
  *
+ * Business Rules:
+ *  1.	If supply pile is empty or a card is invalid, dont let user gain a card
+ *	2.	With a toFlag = 0, add a card to discard
+ *	3.	With a toFlag = 1, add a card to the deck
+ *	4.	With a toFlag = 2, add a card to the hand
+ *  5.  Supply count must be decremented.
+ *  6.  Victory card and Kingdom card piles should not be changed
+ *
  * unitTest4: unitTest4.c dominion.o rngs.o
  *      gcc -o unitTest4 -g unitTest4.c dominion.o rngs.o $(FLAGS)
  *

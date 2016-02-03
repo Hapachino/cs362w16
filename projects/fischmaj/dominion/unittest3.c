@@ -1,5 +1,5 @@
 /***************************************************************************
- ** unittest1.c ( test of getCost() function) 
+ ** unittest3.c ( test of getCost() function) 
  ** Jeremy Fischman
  ** 
  ** This program is a unit test of the getCost function.  It tests that the
@@ -32,7 +32,7 @@
 int compareGameState(struct gameState *old, struct gameState *new, 
 		     int *diffArray, int length);
 
-int checkGetCost(int player, struct gameState *pre); 
+int checkGetCost(int player, struct gameState *pre, FILE *f); 
 
 
 
@@ -41,6 +41,8 @@ int checkGetCost(int player, struct gameState *pre);
 int main(){
 
   int n, i, j, p; 
+  FILE *f= fopen("unittestresults.out", "a+");
+
  
   struct gameState pre;
 
@@ -49,10 +51,10 @@ int main(){
   PutSeed(3);
 
 
-  int k[10]= {adventurer, council_room, feast, gardens, mine, remodel, 
-	      smithy, village, baron, great_hall}; 
 
-  printf("\n Running tests of shuffle():\n");
+
+  printf("\n Running tests of getCost():\n");
+  fprintf(f,"\n Running tests of getCost():\n");
 
   for (n = 0; n < NUMTESTS; n ++){
     /* generate a random gamestate*/
@@ -74,12 +76,16 @@ int main(){
     printf("\nTest run %i:", n);
 
     
-    checkGetCost(p, &pre);
+    checkGetCost(p, &pre, f);
   
  }
 
  
-  printf("\nTesting shuffle() complete.  \n");
+  printf("\nTesting getCost() complete.  \n");
+  printf("Failed test results, if any, in unittestresults.out\n");
+
+  fprintf(f,"\nTesting getCost() complete.  \n");
+  fclose(f);
 
   return 0;
 }
@@ -185,7 +191,7 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 
 
-int checkGetCost(int player, struct gameState *pre){
+int checkGetCost(int player, struct gameState *pre, FILE *f){
 
   int testFail = 0; 
   int randomInt = 0; 
@@ -217,8 +223,12 @@ int checkGetCost(int player, struct gameState *pre){
     myCost = costArray[randomCard];
 
     if(programCost != myCost){
-      printf("updateCoins fails business rule #2: incorrect cost returned.\n");
+      printf("getCost fails business rule #2: incorrect cost returned.\n");
       printf("%d == %d\n", myCost, programCost);
+   
+      fprintf(f,"getCost fails business rule #2: incorrect cost returned.\n");
+      fprintf(f,"%d == %d\n", myCost, programCost);
+      testFail = 1; 
     }
   }
 
@@ -231,8 +241,10 @@ int checkGetCost(int player, struct gameState *pre){
   for (int i =0; i < MEMBERS; i++){
     if ((differences[i]) && (i != 8)){
       testFail =1; 
-      printf("updateCoins fails business rule #3:");
+      printf("getCost fails business rule #3:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
+      fprintf(f,"getCost fails business rule #3:");
+      fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     }
   }
   
@@ -244,5 +256,5 @@ int checkGetCost(int player, struct gameState *pre){
 
   free(post); 
   free(differences);
-  return 0;
+  return testFail;
 } 

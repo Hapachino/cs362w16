@@ -143,9 +143,11 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state);
 int playRemodel(int handPos, int choice1, int choice2, struct gameState *state);
 /*  Trash a card from your hand. Gain a card costing up to 2 coins more than
      the trashed card */
-
+// int playSmithy(int i, int currentPlayer, struct gameState *state, int handPos);
 int playSmithy(int handPos, struct gameState *state);
 /*  Gain 3 cards */
+
+int playCouncil_room(int handPos, struct gameState *state);
 
 
 #endif

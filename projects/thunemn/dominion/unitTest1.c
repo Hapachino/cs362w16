@@ -1,6 +1,12 @@
 /*
  * Unit test for updateCoins function
  *
+ * Business Rules:
+ *  1.	For each copper card, add 1 coin
+ *	2.	For each silver card, add 2 coins
+ *	3.	For each gold card, add 3 coins
+ *	4.	Add the bonus to the coin count
+ *
  * unitTest1: unitTest1.c dominion.o rngs.o
  *      gcc -o unitTest1 -g unitTest1.c dominion.o rngs.o $(FLAGS)
  *

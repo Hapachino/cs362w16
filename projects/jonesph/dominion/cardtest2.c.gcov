@@ -1,0 +1,120 @@
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/********************
+        -:    2:* Author: Philip Jones
+        -:    3:* Term: Winter 2016
+        -:    4:* Description: Checks the Adventurer card.
+        -:    5:********************/
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <assert.h>
+        -:   11:#include <stdlib.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <math.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:#define NOISY_TEST 1
+        -:   17:
+     2000:   18:int testAdventurerCard(int player, struct gameState *after)
+        -:   19:{
+        -:   20:	struct gameState before;
+     2000:   21:	memcpy(&before, after, sizeof(struct gameState));
+        -:   22:
+     2000:   23:	int initialHand = before.handCount[player];
+     2000:   24:	int treasures = 0;
+        -:   25:	int cards, i;
+        -:   26:	int temp[MAX_HAND];
+        -:   27:
+    40205:   28:	while (treasures < 2) 
+        -:   29:	{
+    36209:   30:		if (before.discardCount[player] == 0 && before.deckCount[player] == 0) 
+        -:   31:		{
+        4:   32:			printf("The Adventurer card didn't work properly. \n");
+        -:   33://			assert(checkVal == -1);
+        4:   34:			return 1;
+        -:   35:		}
+        -:   36:
+    36205:   37:		drawCard(player, &before);
+    36205:   38:		cards = before.hand[player][before.handCount[player] - 1];
+        -:   39:
+    40200:   40:		if (cards == copper || cards == silver || cards == gold) 
+        -:   41:		{
+     3995:   42:			treasures++;
+        -:   43:
+        -:   44:		}
+        -:   45:		else 
+        -:   46:		{
+    32210:   47:			temp[i] = cards;
+    32210:   48:			before.handCount[player]--;
+    32210:   49:			i++;
+        -:   50:		}
+        -:   51:	}
+        -:   52:
+        -:   53:
+    36152:   54:	while (i - 1 >= 0)
+        -:   55:	{
+    32160:   56:		before.discard[player][before.discardCount[player]++] = temp[i - 1];
+    32160:   57:		i--;
+        -:   58:	}
+        -:   59:
+     1996:   60:	if (memcmp(&before, after, sizeof(struct gameState)) != 0)
+        -:   61:	{
+     1996:   62:		printf("The Adventurer card didn't work properly. \n");
+        -:   63:	}
+        -:   64://	assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
+     1996:   65:	if (initialHand == after->handCount[player] - 2)	
+        -:   66:	{
+    #####:   67:		printf("The Adventurer card didn't work properly. \n");
+        -:   68:	}
+        -:   69://	assert(hand == after->handCount[player] - 2);
+     1996:   70:	return 0;
+        -:   71:}
+        -:   72:
+        1:   73:int main()
+        -:   74:{
+        -:   75:	int i, j, p;
+        -:   76:	struct gameState state;
+        -:   77:
+        1:   78:	SelectStream(2);
+        1:   79:	PutSeed(3);
+        -:   80:
+     2001:   81:	for (i = 0; i < 2000; i++)
+        -:   82:	{
+ 52602000:   83:		for (j = 0; j < sizeof(struct gameState); j++)
+        -:   84:		{
+ 52600000:   85:			((char*)&state)[j] = floor(Random() * 256);
+        -:   86:		}
+        -:   87:
+     2000:   88:		p = floor(Random() * 2);
+     2000:   89:		state.whoseTurn = p;
+        -:   90:
+     2000:   91:		state.deckCount[p] = floor(Random() * (MAX_DECK));
+   507368:   92:		for (j = 0; j < state.deckCount[p]; j++) 
+        -:   93:		{
+   505368:   94:			state.deck[p][j] = floor(Random() * (treasure_map + 1));
+        -:   95:		}
+        -:   96:
+     2000:   97:		state.handCount[p] = floor(Random() * (MAX_DECK - 4));
+   497208:   98:		for (j = 0; j < state.handCount[p]; j++) 
+        -:   99:		{
+   495208:  100:			state.hand[p][j] = floor(Random() * (treasure_map + 1));
+        -:  101:		}
+        -:  102:
+     2000:  103:		state.discardCount[p] = floor(Random() * (MAX_DECK));
+   489786:  104:		for (j = 0; j < state.discardCount[p]; j++) 
+        -:  105:		{
+   487786:  106:			state.discard[p][j] = floor(Random() * (treasure_map + 1));
+        -:  107:		}
+        -:  108:
+     2000:  109:		testAdventurerCard(p, &state);
+        -:  110:	}
+        -:  111:
+        1:  112:	printf("No errors found in tests of Adventurer Card \n");
+        -:  113:
+        1:  114:	return 0;
+        -:  115:}

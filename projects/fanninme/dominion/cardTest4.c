@@ -25,7 +25,7 @@ int unitTest(int player, struct gameState *post){
     int handPos= rand();
 
     //call function
-    smithyCard(player,post,handPos);
+    villageCard(player,post,handPos);
     //memcmp game state size
     if (memcmp(&pre,post, sizeof(struct gameState))!=0){
         #if (NOISY_TEST == 1)

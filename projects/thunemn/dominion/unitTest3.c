@@ -1,6 +1,10 @@
 /*
  * Unit test for getCost function
  *
+ * Business Rules:
+ *  1.	Each card should return its correct cost
+ *	2.	Invalid card should return -1
+ *
  * unitTest3: unitTest3.c dominion.o rngs.o
  *      gcc -o unitTest3 -g unitTest3.c dominion.o rngs.o $(FLAGS)
  *

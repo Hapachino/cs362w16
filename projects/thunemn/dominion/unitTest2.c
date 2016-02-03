@@ -1,6 +1,11 @@
 /*
  * Unit test for isGameOver function
  *
+ * Business Rules:
+ *  1.	if the stack of province cards is empty, game is over
+ *	2.	if three supply piles are empty, the game is over
+ *	3.	if neither of these are true, the game continues
+ *
  * unitTest2: unitTest2.c dominion.o rngs.o
  *      gcc -o unitTest2 -g unitTest2.c dominion.o rngs.o $(FLAGS)
  *

@@ -6,9 +6,9 @@ Assignment 3: coverage1.c
 
 Summary of coverage for all tests:
 File 'dominion.c'
-Lines executed:35.51% of 583
-Branches executed:37.89% of 417
-Taken at least once:33.09% of 417
+Lines executed:36.36% of 583
+Branches executed:38.37% of 417
+Taken at least once:33.81% of 417
 Calls executed:22.00% of 100
 
 unittest1:
@@ -19,12 +19,12 @@ unittest1:
 unittest2:
 
 	100% statement coverage of fullDeckCount().
-	branch coverage: function fullDeckCount called 20 returned 100% blocks executed 100%.
+	branch coverage: function fullDeckCount called 26 returned 100% blocks executed 100%.
 	
 unittest3:
 
 	100% statement coverage of isGameOver()
-	branch coverage: function isGameOver called 9 returned 100% blocks executed 100%
+	branch coverage: function isGameOver called 5 returned 100% blocks executed 100%
 
 unittest4:
 	
@@ -36,19 +36,19 @@ unittest4:
 	
 cardtest1:
 
-	function playSmithy called 500 returned 100% blocks executed 100%.
+	function playSmithy called 250 returned 100% blocks executed 100%.
 	
 cardtest2:
 
-	function playAdventurer called 500 returned 100% blocks executed 100%.
+	function playAdventurer called 250 returned 100% blocks executed 100%.
 	
 cardtest3:
 	
-	function playVillage called 500 returned 100% blocks executed 100%.
+	function playVillage called 250 returned 100% blocks executed 100%.
 
 cardtest4:
 
-	function playCouncil_Room called 5400 returned 100% blocks executed 100%.
+	function playCouncil_Room called 2250 returned 100% blocks executed 100%.
 
 After looking through the rest of the results, I've noticed some weak areas that will need to be improved later. discardCard() is only executed 75%.
 gainCard function is called 0, returned 0% and executed 0%. newGame function is the same as gainCard and can be improved for overall coverage. Initialize

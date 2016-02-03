@@ -32,14 +32,20 @@ Bug:
 We caught a bug where in the memory size of the game state is different than it was when it began. We should look at the ways in which the game state is altered by this function to determine what caused this.
 
 5) card unit test 1: Adventurer
-Bug:
+Bug:segfault
+cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];
+the card drawn is equal to a negative number which causes a segfault.
 
-6)card unit test 2:
-Bug:
+
+6)card unit test 2:Feast
+Bug:segfault
+When the supply count of a card is returned. That is because the choice1 is greater than the available choices
 
 7)card unit test 3: Testing smithy Card.
-bug:
+bug:segfault
+The segfault is occuring in the discardCard function
 
 8)card unit test 4:Testing village Card.
-bug:
+bug:segfault.
+The segfault is occuring in the discardCard function
 

@@ -1,5 +1,6 @@
 /*
 Jonathan Lagrew
+bug1.c
 CS 362 Winter 2016
 Assignement 3
 

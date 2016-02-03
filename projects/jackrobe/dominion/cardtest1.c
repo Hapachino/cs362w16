@@ -8,6 +8,7 @@
 #include "dominion.h"
 #include "rngs.h"
 
+
 int testSmithy(struct gameState *state ){
 
     //set some beginning vars
@@ -21,7 +22,7 @@ int testSmithy(struct gameState *state ){
     assert(handPos > 0);
 
     //stack the deck
-    for(i = 0; i > state->deckCount[currentPlayer]; i++ ){
+    for(i = 0; i < state->deckCount[currentPlayer]; i++ ){
 
         state->deck[currentPlayer][i] = gold;
     }
@@ -73,14 +74,17 @@ int main(int argc, char** argv) {
 
     int numSmithies = 0;
     int numAdventurers = 0;
-    int currentPlayer = whoseTurn(&G);
+    int currentPlayer = 0;
 
+
+    printf ("\n\nTESTING Smithy CARD: ------------------ \n");
     int testResult = testSmithy(&G);
+
     if( testResult == 0){
-        printf ("testSmithy: OK");
+        printf ("testSmithy: OK\n");
 
     }else{
-        printf ("%i FAIL", testResult);
+        printf ("FAILED : %i tests \n", testResult );
     }
 
 return 0;

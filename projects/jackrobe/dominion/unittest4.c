@@ -44,8 +44,6 @@ int testDiscardCard(int cPlayer, struct gameState *state, int trash ) {
 
     assert(state->handCount[cPlayer] > 0);
 
-
-
     //use the end card in the players deck
     discardCard(state->handCount[cPlayer]-1, cPlayer, state, trash);
 
@@ -102,45 +100,6 @@ int testDiscardCard(int cPlayer, struct gameState *state, int trash ) {
     }
 
 
-//    ///CHECK without LOOP
-//
-//        assert(state->handCount[cPlayer] >= 1);
-//
-//        alterState = *state; // capture the state
-//        discardCard(2, cPlayer, state, trash);
-//
-//
-//        //check card position is replaced correctly
-//        if(state->hand[cPlayer][2] != alterState.hand[cPlayer][ (alterState.handCount[cPlayer] - 1)]){
-//            status++;
-//            printf("Hand position replacement 2 Failed\n");
-//            printf("Hand position is: %i, but should have been %i\n\n",state->hand[cPlayer][2], alterState.hand[cPlayer][ (alterState.handCount[cPlayer] - 1)]);
-//
-//        }
-//
-//        //check that last card was changed to minus -1
-//        if(state->hand[cPlayer][state->handCount[cPlayer]+1] != -1){
-//            status++;
-//            printf("Hand with 2 not set to -1\n" );
-//            printf("Handpos is: %i, but should have been -1\n\n", state->hand[cPlayer][2]);
-//        }
-//
-//        //check hand count
-//        if(state->handCount[cPlayer] != alterState.handCount[cPlayer]-1){
-//            status++;
-//            printf("Hand Count %i Failed", 2 );
-//            printf("handCount is: %i, but should have been %i\n\n",state->handCount[cPlayer], alterState.handCount[cPlayer]-1);
-//
-//        }
-//
-//        if(trash == 0){
-//            tesTrash(cPlayer, state, alterState, status, 2);
-//        }
-
-
-
-//
-//
     //use the last card in the deck
     //set it to 0
     state->handCount[cPlayer] = 1;
@@ -153,7 +112,6 @@ int testDiscardCard(int cPlayer, struct gameState *state, int trash ) {
 
     }
 
-
     if(state->handCount[cPlayer] != 0){
 
         status++;
@@ -161,6 +119,7 @@ int testDiscardCard(int cPlayer, struct gameState *state, int trash ) {
         printf("handCount is: %i, but should have been 0\n",state->handCount[cPlayer]);
 
     };
+
     //reup the count because we never took car of position 1
     state->handCount[cPlayer] = 1;
     discardCard(1, cPlayer, state, 1); // get rid of last card

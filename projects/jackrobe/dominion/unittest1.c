@@ -1,6 +1,6 @@
 //
 // Created by Robert on 1/26/2016.
-// the Smithy Test
+// the drawCard Test
 
 #include <stdio.h>
 #include <assert.h>

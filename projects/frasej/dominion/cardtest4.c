@@ -1,3 +1,5 @@
+//Jennifer Frase
+//Cs 362 A3
 //test sea hag
 //replaces top card of the deck with curse card and discards that replaced top card
 //no other game state changes
@@ -24,22 +26,26 @@ int main(){
     memcpy(&pre, &G, sizeof(struct gameState));
 
     printf ("TESTING sea hag card:\n");
+
+    //loop through all players to check for player specific bugs
     for(i = 0; i < MAX_PLAYERS; i++){
         pre.whoseTurn = i;
         memcpy(&G, &pre, sizeof(struct gameState)); //reset G
         cardEffect(sea_hag, 0, 0, 0, &G, 0, &bonus);
+
+        //loop through all players to makes sure player i doesn't effect the rest of the players
         for(p = 0; p < MAX_PLAYERS; p++){
             if(p != i){ //test each player besides the current player
                 //test the deck to make sure the only change is the top card is now curse
                 if(G.deckCount[i] != pre.deckCount[i]){
                     if(DEBUG_CARD)
-                        printf("TEST FAILED: player %d's sea hag altered the deck of player %d beyond the top card\n", i, p);
+                        printf("TEST FAILED: player %d's sea hag altered the deck of player %d\n beyond the top card\n", i, p);
                     pass = 0;
                 }
                 for(s = 0; s < G.deckCount[i] - 1; s++){
                     if(G.deck[i][s] != pre.deck[i][s]){
                         if(DEBUG_CARD)
-                            printf("TEST FAILED: player %d's sea hag altered more than the top card of the deck of player %d\n", i, p);
+                            printf("TEST FAILED: player %d's sea hag altered more than the top card\n of the deck of player %d\n", i, p);
                         pass = 0;
                     }
                 }
@@ -84,6 +90,7 @@ int main(){
                 }
             }
             else{
+                //check that the deck is unchanged for player i
                 if(G.deckCount[i] != pre.deckCount[i]){
                     if(DEBUG_CARD)
                         printf("TEST FAILED: player %d's sea hag altered the deck of player %d\n", i, p);
@@ -97,13 +104,13 @@ int main(){
                     }
                 }
 
-                //test the discard to make sure the only change is that the decks top card was added to the discard pile
+                //test the discard to make sure the only change is that the sea hag was added
                 if(G.discardCount[i] != pre.discardCount[i] + 1){
                     if(DEBUG_CARD)
                         printf("TEST FAILED: player %d's sea hag didn't add exactly 1 card to the discard of player %d\n", i, p);
                     pass = 0;
                 }
-            /*    for(s = 0; s < pre.discardCount[i]; s++){
+                for(s = 0; s < pre.discardCount[i]; s++){
                     if(G.discard[i][s] != pre.discard[i][s]){
                         if(DEBUG_CARD)
                             printf("TEST FAILED: player %d's sea hag altered the discard of player %d\n", i, p);
@@ -121,7 +128,7 @@ int main(){
                     if(DEBUG_CARD)
                         printf("TEST FAILED: player %d's sea hag didn't get rid of the sea hag card in the hand\n", i);
                     pass = 0;
-                }*/
+                }
             }
         }
     }

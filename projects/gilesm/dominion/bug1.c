@@ -112,9 +112,30 @@ Parameters:
 Return Type: int
 
 Description:
+Update coins takes an index specifying a player, a game state, and an index
+specifying the number of bonus coins to add, and adds them to the coin 
+attribute for the game state.
 
 Test Findings:
+The primary options and branches for this function come from the types of
+cards in the player's hand. In order to test each branch, I tested a hand
+combination that included each of the type of treasure cards: copper, silver,
+and gold. Each of the resulting values passed the tests in this case.
 
+I tested the hand count aspect of the function by testing a valid coin value
+from a combination of cards then reducing the hand count by one. The
+function passed the test by including the same amount of coins in the 
+previous attempt minus the value of the card at the top of the hand.
+
+Another variable feature of the function is in the bonus attribute, and I
+tested a value in the bonus section in conjunction with treasure cards. The
+resulting value with the bonus attribute in play also passed.
+
+Each of these changes in card combinations uses accessor methodology to
+calculate the coins, which means that the card piles themselves should not
+change. I checked the values of each card pile after the completion of
+previous tests to ensure nothing was modified. These tests also passed
+successfully.
 
 ----------------------------- CARD - UNIT TEST 1 -----------------------------
 Name: smithy
@@ -144,7 +165,7 @@ Description:
 Test Findings:
 
 
------------------------------ CARD - UNIT TEST 3 -----------------------------
+`----------------------------- CARD - UNIT TEST 3 -----------------------------
 Name: village
 Parameters:
 	- int currentPlayer

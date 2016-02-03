@@ -1,7 +1,7 @@
 dominion.c coverage:
 
-Statement coverage: 28.11%
-Branch coverage: 24.34%
+Statement coverage: 33.45%
+Branch coverage: 31.03%
 
 This is a reasonable amount of coverage since my tests invoke the functions they're testing directly
 without the surrounding operations. cardEffect, for instance, is never called, nor are any of the

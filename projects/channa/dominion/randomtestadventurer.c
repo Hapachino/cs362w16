@@ -45,7 +45,7 @@ int main() {
     printf("----------------- Testing adventurer\n");
 
     // Number of runs
-    for (j = 1; j < 4; j++) {
+    for (j = 1; j < 101; j++) {
         // Copy the game state to a test case
         memcpy(&testG, &G, sizeof(struct gameState));
 
@@ -54,28 +54,21 @@ int main() {
         printf("----------------- Random Deck Test %d\n", j);
         printf("----------------- Initial counts\n");
 
-        // Reset deckCount and treasureCount
+        // Initialize deckCount and treasureCount
         testG.deckCount[p] = 0;
         treasureCount = 0;
 
-        // Make sure deck has at least 2 treasures
-        while (treasureCount < 2) {
-            // Reset deckCount and treasureCount
-            testG.deckCount[p] = 0;
-            treasureCount = 0;
+        // Create deck of 10 random cards
+        for (i = 0; i < 10; i++) {
+            index = floor(Random() * 10);
+            testG.deck[p][i] = cards[index];
+            testG.deckCount[p]++;
+        }
 
-            // Create deck of 10 random cards
-            for (i = 0; i < 10; i++) {
-                index = floor(Random() * 10);
-                testG.deck[p][i] = cards[index];
-                testG.deckCount[p]++;
-            }
-
-            // Check deck for number of treasures
-            for (i = 0; i < 10; i++) {
-                if (testG.deck[p][i] == copper || testG.deck[p][i] == silver || testG.deck[p][i] == gold) {
-                    treasureCount++;
-                }
+        // Check deck for number of treasures
+        for (i = 0; i < testG.deckCount[p]; i++) {
+            if (testG.deck[p][i] == copper || testG.deck[p][i] == silver || testG.deck[p][i] == gold) {
+                treasureCount++;
             }
         }
 
@@ -95,10 +88,17 @@ int main() {
         preHand = testG.handCount[p];
 
         // Calculate expected values
-        treasureDrawn = 0;
-        otherRevealed = 0;
-        i = testG.deckCount[p] - 1;
-        while (treasureDrawn < 2) {
+        // If no treasures in deck, then reveal all cards in deck
+        if (treasureCount == 0) {
+            treasureDrawn = 0;
+            otherRevealed = testG.deckCount[p];
+        }
+        // If 1 treasure in deck, reveal until drawn that treasure
+        else if (treasureCount == 1) {
+            treasureDrawn = 0;
+            otherRevealed = 0;
+            i = testG.deckCount[p] - 1;
+            while (treasureDrawn < 1) {
                 if (testG.deck[p][i] == copper || testG.deck[p][i] == silver || testG.deck[p][i] == gold) {
                     treasureDrawn++;
                     i--;
@@ -107,6 +107,23 @@ int main() {
                     otherRevealed++;
                     i--;
                 }
+            }
+        }
+        // If at least 2 treasures in deck
+        else {
+            treasureDrawn = 0;
+            otherRevealed = 0;
+            i = testG.deckCount[p] - 1;
+            while (treasureDrawn < 2) {
+                if (testG.deck[p][i] == copper || testG.deck[p][i] == silver || testG.deck[p][i] == gold) {
+                    treasureDrawn++;
+                    i--;
+                }
+                else {
+                    otherRevealed++;
+                    i--;
+                }
+            }
         }
 
         displayAll(&testG, p);

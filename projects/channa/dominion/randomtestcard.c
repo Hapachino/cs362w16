@@ -61,7 +61,8 @@ int main() {
 
         // Start testing
         p = 0;
-        printf("----------------- Test %d\n", j);
+        printf("----------------- Random Test %d\n", j);
+        printf("----------------- Initial counts\n");
 
         // Initialize card counts
         testG.deckCount[p] = 0;
@@ -97,9 +98,12 @@ int main() {
         preDiscard = testG.discardCount[p];
         preHand = testG.handCount[p];
 
+        displayAll(&testG, p);
+
         printf("trashCard: %d, trashIndex: %d\n", trashCard, trashIndex);
         printf("gainCard: %d, gainIndex: %d\n", gainCard, gainIndex);
-        displayAll(&testG, p);
+
+        printf("----------------- After playRemodel\n");
 
         // game state
         // player

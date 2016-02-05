@@ -80,7 +80,7 @@ runrandomtestadventurer: randomtestadventurer
 	cat dominion.c.gcov >> randomtestadventurer.out
 	gcov -b dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
-	./randomtestcard  >> randomtestadventurer.out
+	./randomtestadventurer  >> randomtestadventurer.out
 
 randomtestadventurer.out:
 	make clean; make randomtestadventurer; make runrandomtestadventurer;

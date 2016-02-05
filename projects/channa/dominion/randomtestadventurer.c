@@ -93,21 +93,11 @@ int main() {
             treasureDrawn = 0;
             otherRevealed = testG.deckCount[p];
         }
-        // If 1 treasure in deck, reveal until drawn that treasure
+        // If 1 treasure in deck,
+        // then reveal all cards in deck in an attempt to get 2 treasures
         else if (treasureCount == 1) {
-            treasureDrawn = 0;
-            otherRevealed = 0;
-            i = testG.deckCount[p] - 1;
-            while (treasureDrawn < 1) {
-                if (testG.deck[p][i] == copper || testG.deck[p][i] == silver || testG.deck[p][i] == gold) {
-                    treasureDrawn++;
-                    i--;
-                }
-                else {
-                    otherRevealed++;
-                    i--;
-                }
-            }
+            treasureDrawn = 1;
+            otherRevealed = testG.deckCount[p] - treasureDrawn;
         }
         // If at least 2 treasures in deck
         else {

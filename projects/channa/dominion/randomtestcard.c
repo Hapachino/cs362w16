@@ -55,7 +55,7 @@ int main() {
 
     printf("----------------- Testing remodel\n");
 
-    for (j = 1; j < 10; j++) {
+    for (j = 1; j < 101; j++) {
         // Copy the game state to a test case
         memcpy(&testG, &G, sizeof(struct gameState));
 
@@ -108,9 +108,9 @@ int main() {
         // game state
         // player
         // card to trash: int choice1 = trashIndex
-        // card to gain : int choice2 = gainIndex
+        // card to gain : int choice2 = gainCard
         // remodel index: int handPos = 0 (testG.hand[p][0])
-        result = playRemodel(&testG, p, trashIndex, gainIndex, 0);
+        result = playRemodel(&testG, p, trashIndex, gainCard, 0);
         expected = trashOK(trashCard, gainCard);
 
         displayAll(&testG, p);

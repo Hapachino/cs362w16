@@ -46,7 +46,7 @@ int main() {
     int trashCard, trashIndex;
     int gainCard, gainIndex;
     int preDeck, preDiscard, preHand;
-    int expectDiscard, expectHand;
+    int expectDeck, expectDiscard, expectHand;
     int result, expected;
     bool pass = true;
 
@@ -55,7 +55,7 @@ int main() {
 
     printf("----------------- Testing remodel\n");
 
-    for (j = 1; j < 4; j++) {
+    for (j = 1; j < 10; j++) {
         // Copy the game state to a test case
         memcpy(&testG, &G, sizeof(struct gameState));
 
@@ -119,12 +119,20 @@ int main() {
         }
 
         // Successful trash and gain
-        // discardCount should be 2 because gained a card and played remodel
-        // handCount should be 3 (-2 because played remodel and trashed a card)
+        // no change to deckCount
+        // discardCount should be + 2 because gained a card and played remodel
+        // handCount should be -2 because played remodel and trashed a card
+        expectDeck = preDeck;
         expectDiscard = preDiscard + 2;
         expectHand = preHand - 2;
 
         if (expected == 0) {
+            printf("Deck count: %d, Expected: %d\n", testG.deckCount[p], expectDeck);
+            if (testG.deckCount[p] != expectDeck) {
+                printf("----------------- TEST FAILED!\n");
+                pass = false;
+            }
+
             printf("Discard count: %d, Expected: %d\n", testG.discardCount[p], expectDiscard);
             if (testG.discardCount[p] != expectDiscard) {
                 printf("----------------- TEST FAILED!\n");
@@ -139,13 +147,20 @@ int main() {
         }
 
         // Unsuccessful - no trash/gain
-        // discardCount should be 0
-        // gainedCard should be 0
-        // handCount should be 5 (keep remodel and could not trash card to gain card)
+        // no change to deckCount
+        // no change to discardCount (could not gain card)
+        // no change to handCount (keep remodel and could not trash card)
+        expectDeck = preDeck;
         expectDiscard = preDiscard;
         expectHand = preHand;
 
         if (expected == -1) {
+            printf("Deck count: %d, Expected: %d\n", testG.deckCount[p], expectDeck);
+            if (testG.deckCount[p] != expectDeck) {
+                printf("----------------- TEST FAILED!\n");
+                pass = false;
+            }
+
             printf("Discard count: %d, Expected: %d\n", testG.discardCount[p], expectDiscard);
             if (testG.discardCount[p] != expectDiscard) {
                 printf("----------------- TEST FAILED!\n");
@@ -158,6 +173,13 @@ int main() {
                 pass = false;
             }
         }
+    }
+
+    if (pass) {
+        printf("\nAll tests passed!\n");
+    }
+    else {
+        printf("\nSome test(s) failed!\n");
     }
 
     return 0;

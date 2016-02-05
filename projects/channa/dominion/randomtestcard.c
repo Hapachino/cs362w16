@@ -61,7 +61,7 @@ int main() {
 
         // Start testing
         p = 0;
-        printf("----------------- Random Test %d\n", j);
+        printf("\n----------------- Random Test %d\n", j);
         printf("----------------- Initial counts\n");
 
         // Initialize card counts

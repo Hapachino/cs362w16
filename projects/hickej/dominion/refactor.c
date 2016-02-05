@@ -1,7 +1,7 @@
 Refactoring - Jonathon Hicke
 
 Council room card in cardEffect function now call playCouncil_Room.
-add a logic error 
+add a logic error
 if ( i != currentPlayer )
 to if ( i = currentPlayer )
 
@@ -10,7 +10,7 @@ bug added - move the return call to be inside the for loop.
 
 
 Adventurer card moved to playAdventurer
-while(drawntreasure <2) changed to while(drawn<=2)
+while(drawntreasure <2) changed to while(drawntreasure<=2)
 
 
 Villeage card moved  to playVillage

@@ -1,0 +1,1 @@
+"make unittestresults.out" to compile game and all tests, and generate test results and gcov report.

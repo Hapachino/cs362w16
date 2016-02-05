@@ -709,7 +709,7 @@ int playAdventurer(struct gameState *state, int currentPlayer, int drawnTreasure
       drawnTreasure++;
     else{
       temphand[z]=cardDrawn;
-      state->handCount[currentPlayer]; //this should just remove the top card (the most recently drawn one).
+      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
       z++;
     }
   }
@@ -819,7 +819,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
   int drawntreasure=0;
-  int cardDrawn;
+  int cardDrawn = 0;
   int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;

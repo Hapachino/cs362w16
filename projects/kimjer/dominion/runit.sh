@@ -1,3 +1,19 @@
+#make smithytest
+make villagetest
+RET=$?
 make clean
-make playdom
-./playdom 2
+if [ $RET -eq 0 ]
+then
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	# ./smithytest
+	# rm smithytest
+	./villagetest
+	rm villagetest
+
+fi

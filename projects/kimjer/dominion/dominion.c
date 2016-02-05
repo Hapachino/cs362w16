@@ -22,6 +22,7 @@ struct gameState* newGame() {
 int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
 		  int k8, int k9, int k10) {
   int* k = malloc(10 * sizeof(int));
+  
   k[0] = k1;
   k[1] = k2;
   k[2] = k3;
@@ -37,8 +38,6 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
 
 int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) 
 {
-
-  testFunc();
   int i;
   int j;
   int it;			
@@ -74,6 +73,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
   if (numPlayers == 2)
     {
       state->supplyCount[curse] = 10;
+
     }
   else if (numPlayers == 3)
     {
@@ -140,19 +140,19 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
 
   //set player decks
   for (i = 0; i < numPlayers; i++)
-    {
-      state->deckCount[i] = 0;
-      for (j = 0; j < 3; j++)
-	{
-	  state->deck[i][j] = estate;
-	  state->deckCount[i]++;
-	}
-      for (j = 3; j < 10; j++)
-	{
-	  state->deck[i][j] = copper;
-	  state->deckCount[i]++;		
-	}
-    }
+  {
+    state->deckCount[i] = 0;
+    for (j = 0; j < 3; j++)
+  	{
+  	  state->deck[i][j] = estate;
+  	  state->deckCount[i]++;
+  	}
+    for (j = 3; j < 10; j++)
+  	{
+  	  state->deck[i][j] = copper;
+  	  state->deckCount[i]++;		
+  	}
+  }
   //shuffle player decks
   for (i = 0; i < numPlayers; i++)
     {
@@ -202,7 +202,6 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
 
 int shuffle(int player, struct gameState *state) {
  
-
   int newDeck[MAX_DECK];
   int newDeckPos = 0;
   int card;
@@ -226,7 +225,6 @@ int shuffle(int player, struct gameState *state) {
     state->deck[player][i] = newDeck[i];
     state->deckCount[player]++;
   }
-
   return 0;
 }
 
@@ -1367,7 +1365,7 @@ int effectRemodel(struct gameState *state, struct infosStruct *infos)
 
 int effectSmithy(struct gameState *state, struct infosStruct *infos) 
 {
-  int i = infos->i;
+  int i;
   int currentPlayer= infos->currentPlayer;
   int handPos = infos->handPos;
 

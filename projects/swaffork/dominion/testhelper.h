@@ -33,5 +33,6 @@ struct StateDiff
 
 int initializeState(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state);
 struct StateDiff compareStates(struct gameState* state1, struct gameState* state2);
+int testHelperSetUpState(struct gameState* state);
 
 #endif

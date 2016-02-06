@@ -51,6 +51,9 @@ unittest4: unittest4.c dominion.o
 cardtest1: cardtest1.c dominion.o 
 	gcc -o cardtest1 cardtest1.c  dominion.o rngs.o  $(CFLAGS)
 
+cardtest2: cardtest2.c dominion.o 
+	gcc -o cardtest2 cardtest2.c  dominion.o rngs.o  $(CFLAGS)
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:

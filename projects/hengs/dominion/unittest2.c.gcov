@@ -1,0 +1,117 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * Test is for updateCoins()
+        -:    3: * unittest2
+        -:    4: * -----------------------------------------------------------------------
+        -:    5: */
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <stdio.h>
+        -:   11:#include <stdlib.h>
+        -:   12:#include "rngs.h"
+        -:   13:
+        -:   14:
+        -:   15:
+        1:   16:int main() {
+        -:   17:    int i;
+        1:   18:    int seed = 1000;
+        1:   19:    int numPlayer = 2;
+        1:   20:    int maxBonus = 10;
+        -:   21:    int p, r, handCount;
+        -:   22:    int bonus;
+        -:   23:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        1:   24:               , remodel, smithy, village, baron, great_hall};
+        -:   25:    struct gameState test;
+        1:   26:    int maxHandCount = 5;
+        -:   27:    
+        -:   28:    int coppers[MAX_HAND];
+        -:   29:    int silvers[MAX_HAND];
+        -:   30:    int golds[MAX_HAND];
+      501:   31:    for (i = 0; i < MAX_HAND; i++)
+        -:   32:    {
+      500:   33:        coppers[i] = copper;
+      500:   34:        silvers[i] = silver;
+      500:   35:        golds[i] = gold;
+        -:   36:    }
+        1:   37:    int v =2;
+        1:   38:    int w = 2;
+        1:   39:    printf ("-------TESTING updateCoins()--------\n");
+        3:   40:    for (p = 0; p < numPlayer; p++)
+        -:   41:    {
+        -:   42:                
+        2:   43:                bonus = rand()% maxBonus;
+        2:   44:                handCount = 5;
+        2:   45:                printf("Player #%d with %d treasure cards and %d bonus.\n", p, handCount, bonus);
+        -:   46:
+        2:   47:                memset(&test, 23, sizeof(struct gameState));   
+        2:   48:                initializeGame(numPlayer, k, seed, &test); 
+        2:   49:                test.handCount[p] = handCount;                 
+        2:   50:                memcpy(test.hand[p], coppers, sizeof(int) * handCount); 
+        2:   51:                updateCoins(p, &test, bonus);
+        -:   52:
+        2:   53:                printf("All Copper Coins = %d, expected = %d\n", test.coins, handCount * 1 + bonus);
+        -:   54:
+        2:   55:                if(test.coins == handCount * 1 + bonus){
+        2:   56:                    printf(">>>SUCCESS: Coins are equal!!!\n");
+        -:   57:                }
+        -:   58:                else{
+    #####:   59:                    printf(">>>FAIL: Coins are not equal!!!\n");
+        -:   60:                }
+        -:   61:
+        2:   62:                memcpy(test.hand[p], silvers, sizeof(int) * handCount); 
+        2:   63:                updateCoins(p, &test, bonus);
+        -:   64:
+        2:   65:                printf("All Silver Coins = %d, expected = %d\n", test.coins, handCount * 2 + bonus);
+        -:   66:
+        2:   67:                 if(test.coins == handCount * 2 + bonus){
+        2:   68:                    printf(">>>SUCCESS: Coins are equal!!!\n");
+        -:   69:                }
+        -:   70:                else{
+    #####:   71:                    printf(">>>FAIL: Coins are not equal!!!\n");
+        -:   72:                }
+        -:   73:                
+        -:   74:
+        2:   75:                memcpy(test.hand[p], golds, sizeof(int) * handCount); 
+        2:   76:                updateCoins(p, &test, bonus);
+        -:   77:
+        2:   78:                printf("All Gold Coins = %d, expected = %d\n", test.coins, handCount * 3 + bonus);
+        -:   79:
+        2:   80:                 if(test.coins == handCount * 3 + bonus){
+        2:   81:                    printf(">>>SUCCESS: Coins are equal!!!\n");
+        -:   82:                }
+        -:   83:                else{ 
+    #####:   84:                    printf(">>>FAIL: Coins are not equal!!!\n");
+        -:   85:                }
+        2:   86:                if(p==0){
+        1:   87:                printf("----Now Testing 5 Treasured Card, Mixed Coins: %d gold, 1 silver and %d copper\n", v, w);
+        1:   88:                bonus = rand()% maxBonus;
+        1:   89:                memset(&test, 23, sizeof(struct gameState));   
+        1:   90:                initializeGame(numPlayer, k, seed, &test);
+        1:   91:                memcpy(test.hand[p], golds, sizeof(int) * v);
+        1:   92:                memcpy(test.hand[p] + v, silvers, sizeof(int) * 1);
+        1:   93:                memcpy(test.hand[p] + v + 1, coppers, sizeof(int) * w);
+        -:   94:
+        1:   95:                updateCoins(p, &test, bonus);
+        -:   96:
+        1:   97:                printf("All Coins = %d, expected = %d\n", test.coins, (v*3)+2+(w*1)+bonus);
+        -:   98:
+        1:   99:                 if(test.coins == (v*3)+2+(w*1)+bonus){
+        1:  100:                    printf(">>>SUCCESS: Coins are equal!!!\n");
+        -:  101:                }
+        -:  102:                else{ 
+    #####:  103:                    printf(">>>FAIL: Coins are not equal!!!\n");
+        -:  104:                }
+        -:  105:
+        -:  106:            }
+        -:  107:             
+        -:  108:            }
+        -:  109:      
+        -:  110:
+        1:  111:    return 0;
+        -:  112:}

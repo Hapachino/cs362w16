@@ -1,0 +1,117 @@
+        -:    0:Source:unitTest4.c
+        -:    0:Graph:unitTest4.gcno
+        -:    0:Data:unitTest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for gainCard function
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	If supply pile is empty or a card is invalid, dont let user gain a card
+        -:    6: *	2.	With a toFlag = 0, add a card to discard
+        -:    7: *	3.	With a toFlag = 1, add a card to the deck
+        -:    8: *	4.	With a toFlag = 2, add a card to the hand
+        -:    9: *  5.  Supply count must be decremented.
+        -:   10: *  6.  Victory card and Kingdom card piles should not be changed
+        -:   11: *
+        -:   12: * unitTest4: unitTest4.c dominion.o rngs.o
+        -:   13: *      gcc -o unitTest4 -g unitTest4.c dominion.o rngs.o $(FLAGS)
+        -:   14: *
+        -:   15: */
+        -:   16:
+        -:   17:#include "dominion.h"
+        -:   18:#include "dominion_helpers.h"
+        -:   19:#include <string.h>
+        -:   20:#include <stdio.h>
+        -:   21:#include <assert.h>
+        -:   22:#include "rngs.h"
+        -:   23:
+        -:   24://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   25:#define NOISY_TEST 1
+        -:   26:
+        1:   27:int main() {
+        -:   28:    int i, p, new_game, toFlag, supplyPos, result;
+        1:   29:    int seed = 1000;
+        1:   30:    int numPlayer = 1;
+        -:   31:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   32:                 remodel, smithy, village, baron, great_hall};
+        -:   33:    struct gameState G;
+        -:   34:
+        1:   35:    p = 0;
+        -:   36:
+        1:   37:    printf("TESTING gainCard()\n");
+        -:   38:
+        1:   39:    G.deckCount[p] = 30;
+        1:   40:    G.discardCount[p] = 20;
+        1:   41:    G.handCount[p] = 7;
+        1:   42:    G.discard[p][G.discardCount[p]] = 75;
+        1:   43:    supplyPos = 4;
+        -:   44:#if (NOISY_TEST == 1)
+        1:   45:    printf("TESTING toFlag = 0\n");
+        -:   46:#endif
+        1:   47:    G.supplyCount[4] = 5;
+        -:   48:    struct gameState toFlag_0;
+        1:   49:    memcpy(&toFlag_0, &G, sizeof(struct gameState));
+        -:   50:
+        1:   51:    result = gainCard(supplyPos, &G, 0, p);
+        -:   52:#if (NOISY_TEST == 1)
+        1:   53:    if((toFlag_0.discardCount[p] + 1 == G.discardCount[p]))
+        1:   54:        printf("TEST PASSED\n");
+        -:   55:    else
+    #####:   56:        printf("TEST FAILED\n");
+        -:   57:#endif
+        -:   58:#if (NOISY_TEST == 1)
+        1:   59:    printf("TESTING toFlag = 1\n");
+        -:   60:#endif
+        1:   61:    G.supplyCount[4] = 5;
+        -:   62:    struct gameState toFlag_1;
+        1:   63:    memcpy(&toFlag_1, &G, sizeof(struct gameState));
+        -:   64:
+        1:   65:    result = gainCard(supplyPos, &G, 1, p);
+        -:   66:#if (NOISY_TEST == 1)
+        1:   67:    if((toFlag_1.deckCount[p] + 1 == G.deckCount[p]))
+        1:   68:        printf("TEST PASSED\n");
+        -:   69:    else
+    #####:   70:        printf("TEST FAILED\n");
+        -:   71:#endif
+        -:   72:#if (NOISY_TEST == 1)
+        1:   73:    printf("TESTING toFlag = 2\n");
+        -:   74:#endif
+        1:   75:    G.supplyCount[4] = 5;
+        -:   76:    struct gameState toFlag_2;
+        1:   77:    memcpy(&toFlag_2, &G, sizeof(struct gameState));
+        -:   78:
+        1:   79:    result = gainCard(supplyPos, &G, 2, p);
+        -:   80:#if (NOISY_TEST == 1)
+        1:   81:    if((toFlag_2.handCount[p] + 1 == G.handCount[p]))
+        1:   82:        printf("TEST PASSED\n");
+        -:   83:    else
+    #####:   84:        printf("TEST FAILED\n");
+        -:   85:#endif
+        -:   86:
+        -:   87:    //check if supply pile is empty (0) or card is not used in game (-1)
+        -:   88:#if (NOISY_TEST == 1)
+        1:   89:    printf("TESTING empty pile or invalid card\n");
+        1:   90:    result = gainCard(-1, &G, -1, p);
+        1:   91:    if(result == -1) {
+        1:   92:        printf("TEST PASSED: Card not in pile or card does not exist\n");
+        -:   93:    }
+        -:   94:    else {
+    #####:   95:        printf("TEST FAILED\n");
+        -:   96:    }
+        -:   97:#endif
+        -:   98:#if (NOISY_TEST == 1)
+        1:   99:    printf("TESTING supplyCount\n");
+        -:  100:    //check if supply count has been decremented
+        1:  101:    if(toFlag_2.supplyCount[supplyPos] - 1 == G.supplyCount[supplyPos])
+        1:  102:        printf("TEST PASSED\n");
+        -:  103:    else
+    #####:  104:        printf("TEST FAILED\n");
+        -:  105:
+        1:  106:    printf("\nAll tests passed: gainCard()\n");
+        -:  107:#endif
+        -:  108:
+        1:  109:    return 0;
+        -:  110:}
+        -:  111:
+        -:  112:

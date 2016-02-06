@@ -1,0 +1,286 @@
+
+
+DrawCard test
+
+
+Testing drawCard for deckCount > drawCount
+
+Testing deckCount
+Passed deckCount check
+
+Testing deck for prohibited alterations
+Passed deck check
+
+Testing drawn card to see if it came from top of deck
+Passed checkCard. Drew top card from deck
+
+
+		Passed three cases for deckCount > drawCount. Examining deckCount < drawCount (shuffle occurs)
+
+
+Testing deckCount
+Passed deckCount check
+
+Testing deck for prohibited alterations
+Passed deck check
+
+Testing drawn card to see if it came from top of deck
+Passed checkCard. Drew top card from deck
+
+Passed three cases for deckCount > drawCount. Examining deckCount < drawCount
+
+
+		Test Complete
+
+
+
+	Conducting gameOver test...
+
+
+
+Testing province end criterion
+Game ended when province = 0
+
+Testing supply count end criterion for curse estate duchy
+Passed! Game ended when three supply cards reached 0
+
+Testing supply count end criterion for curse estate silver
+Passed! Game ended when three supply cards reached 0
+
+Testing supply count end criterion for estate duchy silver
+Passed! Game ended when three supply cards reached 0
+
+Testing supply count end criterion for silver gold province
+Passed! Game ended when three supply cards reached 0
+
+Testing supply count end criterion for curse gold province
+Passed! Game ended when three supply cards reached 0
+
+Testing supply count end criterion for duchy gold province
+Passed! Game ended when three supply cards reached 0
+
+Testing supply count end criterion for estate gold province
+Passed! Game ended when three supply cards reached 0
+
+
+Update Coins test
+
+
+
+	Testing updateCoins for empty player hand
+
+Success! Total number of coins for player 0 is 0 and coin state is 0
+
+
+	Testing updateCoins without Bonus Coins
+
+Success! Total number of coins for player 0 is 24 and coin state is 24
+
+
+	Testing updateCoins with 500 Bonus Coins!!
+
+Success! Total number of coins for player 0 is 524 and coin state is 524
+
+
+	Testing updateCoins with 1000 Bonus Coins!!
+
+Success! Total number of coins for player 0 is 1024 and coin state is 1024
+
+
+	Testing updateCoins with 1500 Bonus Coins!!
+
+Success! Total number of coins for player 0 is 1524 and coin state is 1524
+
+
+	Testing updateCoins with negative 1500 Bonus Coins!!
+
+Success! Total number of coins for player 0 is -1476 and coin state is -1476
+
+
+	Coins update complete
+
+
+
+FullDeck test
+
+
+
+	Running FullDeck test
+
+fullDeckCount passed checking hand pile for card exclusive to hand pile.
+
+fullDeckCount passed checking deck pile for card exclusive to deck pile.
+
+fullDeckCount passed checking discard pile for card exclusive to discard pile.
+
+fullDeckCount passed checking all piles for card in all piles.
+
+fullDeckCount passed checking all piles for card with empty piles (there are 0 cards).
+
+fullDeckCount passed checking all piles for card with max count.
+
+
+	End of fullDeck Test
+
+
+
+Beginning Test for smithy...
+
+	Testing Draw Specifications
+Draw Test passed.
+
+	Testing Hand Specifications
+Hand Test passed
+
+	Testing Discard Specifications
+Discard test passed for player: 0
+Discard test passed for player: 1
+Discard Test passed.
+
+	Testing Supply Specifications
+Supply Test passed.
+
+	Testing Played Specifications
+Played Test passed.
+
+	Testing Utility
+Utility Test passed
+
+	Testing finished
+
+
+
+Beginning Test for adventurer...
+
+
+	Testing Draw Specifications
+Draw Test passed.
+
+	Testing Hand Specifications
+Hand Test passed
+
+	Testing Discard Specifications
+Discard test passed for player: 0
+Discard test passed for player: 1
+Discard Test passed.
+
+	Testing Supply Specifications
+Supply Test passed.
+
+	Testing Played Specifications
+PlayedCard val incorrect. Played wrong card!
+Played Test failed
+
+	Testing Utility
+Utility Test passed
+
+	Testing finished
+
+
+
+Beginning Test for council room...
+
+	Testing Draw Specifications
+Draw Test passed.
+
+	Testing Hand Specifications
+Hand Test passed
+
+	Testing Discard Specifications
+Discard test passed for player: 0
+Discard test passed for player: 1
+Discard Test passed.
+
+	Testing Supply Specifications
+Supply Test passed.
+
+	Testing Played Specifications
+Played Test passed.
+
+	Testing Utility
+Utility Test passed
+
+	Testing finished
+
+
+
+Beginning Test for Village...
+
+
+	Testing Draw Specifications
+Draw Test passed.
+
+	Testing Hand Specifications
+Hand Test passed
+
+	Testing Discard Specifications
+Discard Test passed.
+
+	Testing Supply Specifications
+Supply Test passed.
+
+	Testing Played Specifications
+Wrong card found in played pile.
+Played Test failed
+
+	Testing Utility
+Utility Test passed
+
+	Testing finished
+
+File 'unittest1.c'
+Lines executed:92.45% of 53
+Branches executed:100.00% of 12
+Taken at least once:66.67% of 12
+Calls executed:88.89% of 27
+unittest1.c:creating 'unittest1.c.gcov'
+
+File 'unittest2.c'
+Lines executed:77.27% of 88
+Branches executed:100.00% of 22
+Taken at least once:63.64% of 22
+Calls executed:84.62% of 52
+unittest2.c:creating 'unittest2.c.gcov'
+
+File 'unittest3.c'
+Lines executed:92.86% of 84
+Branches executed:100.00% of 28
+Taken at least once:78.57% of 28
+Calls executed:81.25% of 32
+unittest3.c:creating 'unittest3.c.gcov'
+
+File 'unittest4.c'
+Lines executed:100.00% of 65
+Branches executed:100.00% of 24
+Taken at least once:62.50% of 24
+Calls executed:82.86% of 35
+unittest4.c:creating 'unittest4.c.gcov'
+
+File 'cardtest1.c'
+Lines executed:65.87% of 208
+Branches executed:81.25% of 64
+Taken at least once:56.25% of 64
+Calls executed:45.07% of 71
+cardtest1.c:creating 'cardtest1.c.gcov'
+
+File 'cardtest2.c'
+Lines executed:66.35% of 211
+Branches executed:81.82% of 66
+Taken at least once:56.06% of 66
+Calls executed:45.83% of 72
+cardtest2.c:creating 'cardtest2.c.gcov'
+
+File 'cardtest3.c'
+Lines executed:66.03% of 209
+Branches executed:81.25% of 64
+Taken at least once:56.25% of 64
+Calls executed:45.07% of 71
+cardtest3.c:creating 'cardtest3.c.gcov'
+
+File 'cardtest4.c'
+Lines executed:65.24% of 210
+Branches executed:76.47% of 68
+Taken at least once:52.94% of 68
+Calls executed:45.71% of 70
+cardtest4.c:creating 'cardtest4.c.gcov'
+

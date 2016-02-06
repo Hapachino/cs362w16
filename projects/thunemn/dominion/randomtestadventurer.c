@@ -112,26 +112,3 @@
 
  	return 0;
 }
-
-/*
-hand_count = G.handCount[player];
-deck_count = G.deckCount[player];
-discard_count = G.discardCount[player];
-
-//deck is not correct
-if(((G.discardCount[player] - deck_count) - (hand_count - G.handCount[player])) != 0) {
-    printf("%d\n", ((G.discardCount[player] - deck_count) - (hand_count - G.handCount[player])));
-    printf("Adventure Card test (deckCount) FAILED for index: %d\n", i);
-    printf("deck_count = %d\n", deck_count);
-    printf("G.deckCount = %d\n", G.deckCount[player]);
-    isDeckCountPass = 0;
-}
-
-if(isDeckCountPass) {
-    printf("Adventure Card Test PASSED (deckCount)\n");
-}
-else {
-    printf("Adventure Card Test FAILED (deckCount)\n");
-    printf("%d\n", isDeckCountPass);
-}
-*/

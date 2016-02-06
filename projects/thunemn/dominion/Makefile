@@ -79,10 +79,16 @@ unittestresults.out:  dominion.h rngs.h dominion_helpers.h dominion.o rngs.o uni
 randomtestcard: dominion.h rngs.h dominion_helpers.h dominion.o rngs.o
 	gcc -o randomtestcard randomtestcard.c dominion.o rngs.o -g $(CFLAGS)
 	./randomtestcard
+	gcov dominion.c >> randomtestcard.out
+	gcov randomtestcard.c >> randomtestcard.out
+	cat randomtestcard.c.gcov >> randomtestcard.out
 
 randomtestadventurer: dominion.h rngs.h dominion_helpers.h dominion.o rngs.o
 	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o -g $(CFLAGS)
 	./randomtestadventurer
+	gcov dominion.c >> randomtestadventurer.out
+	gcov randomtestadventurer.c >> randomtestadventurer.out
+	cat randomtestadventurer.c.gcov >> randomtestadventurer.out
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 

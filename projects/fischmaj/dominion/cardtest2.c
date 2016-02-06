@@ -33,7 +33,7 @@
 #define MEMBERS 18     /* Number of member variables in a gameState (gS) */
 #define DECKCOUNTMEMBER 13  /* The deckCount is 14th member of gS, index 13*/
 #define CARDTYPES treasure_map+1  /* Number of different card types in game */
-#define NUMTESTS 2   /* Number of times to run the tests */
+#define NUMTESTS 100   /* Number of times to run the tests */
 
 
 /* function prototypes */
@@ -257,15 +257,14 @@ int checkAdventurer(struct gameState *pre, int player, FILE *f){
   /* 2. Should result in the cards drawn from the deck until 2 treasures are*/
   /*    found.*/
   while (treasureCount < 2){
-    tempHand[tempCount]= pre->deck[player][preDeckCounter-1];
+    tempHand[tempCount]= pre->deck[player][preDeckCounter -(tempCount+1)];
     if ( (tempHand[tempCount] == copper)
 	 || (tempHand[tempCount]== silver)
 	 || (tempHand[tempCount] == gold) ){
       treasureCount ++; 
     }
 
-    tempCount++; 
-    preDeckCounter--;
+    tempCount++;
   }
 
 

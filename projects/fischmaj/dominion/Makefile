@@ -62,8 +62,32 @@ cardtest4: cardtest4.c dominion.o
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
+
+unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 \
+cardtest2 cardtest3 cardtest4 
+	./unittest1
+	./unittest2
+	./unittest3
+	./unittest4
+	./cardtest1
+	./cardtest2
+	./cardtest3
+	./cardtest4
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+
+
+
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
 	rm -rf *.dSYM
 	rm badTestDrawCard
 	rm testDrawCard
+	rm cardtest1
+	rm cardtest2
+	rm cardtest3
+	rm cardtest4
+	rm unittest1
+	rm unittest2
+	rm unittest3
+	rm unittest4

@@ -47,7 +47,7 @@ int countCards(int *deck, int *cardCount);
 
 int checkGreatHall(struct gameState *pre, int player, int handPosition, 
 		   int rndChoice1, int rndChoice2, int rndChoice3,
-		   FILE *filename);
+		   FILE *f);
 
 
 int main(){
@@ -88,6 +88,12 @@ int main(){
 
     /* pick a random player */
     p=floor(Random()*2);
+    
+    /* set the game to his turn */
+    pre->whoseTurn = p;
+      
+    /* set the count of played cards to 0 */
+    pre->playedCardCount =0;
 
     /* then set his card counts, and fill his deck, discard, and hand */
     pre->deckCount[p]= randomDeckCount;
@@ -233,16 +239,12 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 int checkGreatHall(struct gameState *pre, int player, int handPosition, 
 		   int rndChoice1, int rndChoice2, int rndChoice3,
-		   FILE *filename){
+		   FILE *f){
 
   int testFail = 0; 
   int actionCount; 
   int nextCard = 0; 
-  int discardCard = 0; 
-
   int preDeckCounter = pre->deckCount[player];
-  int preHandCounter = pre->handCount[player];
-  int preDiscardCounter = pre->discardCount[player];
 
   int randomCoins= floor(Random()*256);  /* a random coin bonus to pass to
 					    cardEffect*/
@@ -257,15 +259,7 @@ int checkGreatHall(struct gameState *pre, int player, int handPosition,
   memset(differences, 0, (sizeof(int)*MEMBERS));
 
 
- /*
- ** 
- **
- **
- **
- ** 
- ** 7. The other features of the state of the game should all be unchanged. */
-
-
+ 
 
 
   /************************************************************************/
@@ -275,12 +269,12 @@ int checkGreatHall(struct gameState *pre, int player, int handPosition,
 
   /* run the function. */
   cardEffect(great_hall, rndChoice1, rndChoice2, rndChoice3, post,
-	     handPosition, randomCoins);   
-
+	     handPosition, &randomCoins);   
+   
 
   /* 1. Playing the great hall card should result in the next card on the 
         deck moving to the player's hand. */
-  nextCard= pre->deck[player][preDeckCounter];
+  nextCard= pre->deck[player][preDeckCounter -1];
   if (nextCard != post->hand[player][handPosition]){
     printf("Business rule #1 fails: next deck card not delivered to hand\n");
     fprintf(f,"Business rule #1 fails: next deck card not delivered to hand\n");
@@ -298,8 +292,8 @@ int checkGreatHall(struct gameState *pre, int player, int handPosition,
 
 
   /* 3. The great hall card should be discarded (it should appear on the top 
-        of the discard pile). */
-  if(post->discard[player][preDiscardCounter] != great_hall){
+        of the played Card pile). */
+  if(post->playedCards[0] != great_hall){
     printf("Business rule #3 fails: great hall impromperly discarded\n");
     fprintf(f,"Business rule #3 fails: great hall card improperly discarded\n");
     testFail=1;    
@@ -323,10 +317,10 @@ int checkGreatHall(struct gameState *pre, int player, int handPosition,
 
 
 
-  /* 6. The discardCount should increase 1.  */
-  if( (preDiscardCounter +1) != post->discardCount[player]){
-    printf("Business rule #5 fails: improper discardCount\n");
-    fprintf(f,"Business rule #5 fails: improper discardCount\n");
+  /* 6. The playedCardCount should increase 1.  */
+  if(post->playedCardCount != 1){
+    printf("Business rule #6 fails: improper playedCardCount\n");
+    fprintf(f,"Business rule #6 fails: improper playedCardCount\n");
     testFail=1;    
   }
 
@@ -335,35 +329,38 @@ int checkGreatHall(struct gameState *pre, int player, int handPosition,
   compareGameState(pre, post, differences, MEMBERS); 
   for (int i =0; i < MEMBERS; i++){
     /* First clause checks all of the members that shouldn't change at all */
-    if ( (differences[i]) && (i < 10) ){
+      if( (i == 7) ||(i ==16) ||(i==17) ){
+         /* parameter 7, 16, and 17 are supposed to change (numActions) */
+      }
+      else if ( (differences[i]) && (i < 10) && (i!=7)){
       testFail =1; 
-      printf("playAdventurer() fails business rule #7:");
+      printf("Great Hall Card fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      fprintf(f,"playAdventurer() fails business rule #7:");
+      fprintf(f,"Great Hall Card fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]);
 
       /* Next 4 clauses ensure only the chosen player's data has changed*/ 
     } else if ((differences[i] ==1) && (player !=0)){
       testFail =1; 
-      printf("playAdventurer() fails business rule #7:");
+      printf("Great Hall Card fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      fprintf(f,"playAdventurer() fails business rule #7:");
+      fprintf(f,"Great Hall Card fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     } else if ((differences[i] ==10) && (player !=1)){
       testFail =1; 
-      printf("playAdventurer() fails business rule #7:");
+      printf("Great Hall Card fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      fprintf(f,"playAdventurer() fails business rule #7:");
+      fprintf(f,"Great Hall Card fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     } else if ((differences[i] ==100) && (player !=2)){
       testFail =1; 
-      printf("playAdventurer() fails business rule #7:");
+      printf("Great Hall Card fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      fprintf(f,"playAdventurer() fails business rule #7:");
+      fprintf(f,"Great Hall Card fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     } else if ((differences[i] ==1000) && (player !=3)){
       testFail =1; 
-      printf("playAdventurer() fails business rule #7:");
+      printf("Great Hall Card fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
       fprintf(f,"Great Hall card fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 

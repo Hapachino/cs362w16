@@ -33,3 +33,10 @@ BUG 6- discovered by cardtest2:
 Found bug in playAdventurer: player deck count improperly decreased (i.e., an 
 improper number of cards, either too few or too many, were removed from the 
 player's deck).  This could also be caused by the same bug that causes BUG #5.
+
+BUG 7- discovered by cardtest3:
+Found bug during great hall card test: Suspect location is in discard().
+When the random position of the great hall card is the last card in the hand,
+the card gained into the hand from the great hall card is immediately discarded.
+The great hall card is overwritten, and the cards in the hand are faulty: (a -1
+instead of the next card in the deck). 

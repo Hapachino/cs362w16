@@ -1,5 +1,5 @@
 /***************************************************************************
- ** unittest4.c ( test of getCost() function) 
+ ** unittest4.c ( test of isGameOver() function) 
  ** Jeremy Fischman
  ** 
  ** This program is a unit test of the isGameOver function.  It tests that the

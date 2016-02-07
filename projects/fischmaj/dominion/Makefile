@@ -81,8 +81,6 @@ cardtest2 cardtest3 cardtest4
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
 	rm -rf *.dSYM
-	rm badTestDrawCard
-	rm testDrawCard
 	rm cardtest1
 	rm cardtest2
 	rm cardtest3
@@ -91,3 +89,5 @@ clean:
 	rm unittest2
 	rm unittest3
 	rm unittest4
+	rm badTestDrawCard
+	rm testDrawCard

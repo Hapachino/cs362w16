@@ -98,5 +98,5 @@
  * counted, or (effect choice 3) two fewer cards total.
  *
  * Over all, the final version of randomtestcard produced statement coverage in dominion.c of
- * 28.71% and branch coverage of 22.89%, with 20.44% of branches taken at least once.
+ * 28.46% and branch coverage of 22.89%, with 20.44% of branches taken at least once.
  */

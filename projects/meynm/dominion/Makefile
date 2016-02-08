@@ -85,8 +85,7 @@ randomtestcard.out: randomtestcard
 player: player.c interface.o refactor.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o refactor.o $(CFLAGS)
 
-all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard
-#all: playdom cardtest2 randomtestadventurer randomtestcard randomtestadventurer.out randomtestcard.out
+all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 unittestresult.out randomtestadventurer randomtestcard randomtestadventurer.out randomtestcard.out
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcda *.gcno *.so #*.gcov

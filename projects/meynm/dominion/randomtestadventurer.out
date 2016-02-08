@@ -1010,8 +1010,8 @@ numPlayers=3, player=2, deck count=10, hand count=5: FAIL
 **********
 
 File 'dominion.c'
-Lines executed:26.40% of 519
-Creating 'dominion.c.gcov'
+Lines executed:26.22% of 534
+dominion.c:creating 'dominion.c.gcov'
 
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
@@ -1025,13 +1025,13 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-  1481742:    8:int compare( const void* a, const void* b )
+  1480876:    8:int compare( const void* a, const void* b )
         -:    9:{
-  1481742:   10:	if (*(int*) a > *(int*) b)
-   672643:   11:		return 1;
-   809099:   12:	if (*(int*) a < *(int*) b)
-   305882:   13:		return -1;
-   503217:   14:	return 0;
+  1480876:   10:	if (*(int*) a > *(int*) b)
+   671242:   11:		return 1;
+   809634:   12:	if (*(int*) a < *(int*) b)
+   305720:   13:		return -1;
+   503914:   14:	return 0;
         -:   15:}
         -:   16:
     #####:   17:struct gameState* newGame()
@@ -1128,9 +1128,9 @@ Creating 'dominion.c.gcov'
    155000:  108:			if (kingdomCards[j] == i)
         -:  109:			{
         -:  110:				//check if card is a 'Victory' Kingdom card
-    10000:  111:				if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+    11070:  111:				if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
         -:  112:				{
-     2140:  113:					if (numPlayers == 2)
+     1070:  113:					if (numPlayers == 2)
         -:  114:					{
       351:  115:						state->supplyCount[i] = 8;
         -:  116:					} else
@@ -1236,9 +1236,9 @@ Creating 'dominion.c.gcov'
     31885:  216:		card = floor( Random() * state->deckCount[player] );
     31885:  217:		newDeck[newDeckPos] = state->deck[player][card];
     31885:  218:		newDeckPos++;
-   107301:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+   111141:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
         -:  220:		{
-    75416:  221:			state->deck[player][i] = state->deck[player][i + 1];
+    79256:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
     31885:  223:		state->deckCount[player]--;
         -:  224:	}
@@ -1296,7 +1296,7 @@ Creating 'dominion.c.gcov'
     #####:  276:int buyCard( int supplyPos, struct gameState *state )
         -:  277:{
         -:  278:	int who;
-        -:  279:	if (DEBUG)
+    #####:  279:	if (DEBUG)
         -:  280:	{
         -:  281:		printf( "Entering buyCard...\n" );
         -:  282:	}
@@ -1307,17 +1307,17 @@ Creating 'dominion.c.gcov'
         -:  287:
     #####:  288:	if (state->numBuys < 1)
         -:  289:	{
-        -:  290:		if (DEBUG)
+    #####:  290:		if (DEBUG)
         -:  291:			printf( "You do not have any buys left\n" );
     #####:  292:		return -1;
     #####:  293:	} else if (supplyCount( supplyPos, state ) < 1)
         -:  294:	{
-        -:  295:		if (DEBUG)
+    #####:  295:		if (DEBUG)
         -:  296:			printf( "There are not any of that type of card left\n" );
     #####:  297:		return -1;
     #####:  298:	} else if (state->coins < getCost( supplyPos ))
         -:  299:	{
-        -:  300:		if (DEBUG)
+    #####:  300:		if (DEBUG)
         -:  301:			printf( "You do not have enough money to buy that. You have %d coins.\n",
         -:  302:					state->coins );
     #####:  303:		return -1;
@@ -1329,7 +1329,7 @@ Creating 'dominion.c.gcov'
         -:  309:
     #####:  310:		state->coins = ( state->coins ) - ( getCost( supplyPos ) );
     #####:  311:		state->numBuys--;
-        -:  312:		if (DEBUG)
+    #####:  312:		if (DEBUG)
         -:  313:			printf( "You bought card number %d for %d coins. You now have %d buys and %d coins.\n",
         -:  314:					supplyPos, getCost( supplyPos ), state->numBuys, state->coins );
         -:  315:	}
@@ -1622,11 +1622,11 @@ Creating 'dominion.c.gcov'
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-    37567:  605:int drawCard( int player, struct gameState *state )
+    37572:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    37567:  609:	if (state->deckCount[player] <= 0)
+    37572:  609:	if (state->deckCount[player] <= 0)
         -:  610:	{    //Deck is empty
         -:  611:
         -:  612:		//Step 1 Shuffle the discard pile back into a deck
@@ -1644,7 +1644,7 @@ Creating 'dominion.c.gcov'
         -:  624:		//Shufffle the deck
       483:  625:		shuffle( player, state );    //Shuffle the deck up and make it so that we can draw
         -:  626:
-        -:  627:		if (DEBUG)
+      483:  627:		if (DEBUG)
         -:  628:		{    //Debug statements
         -:  629:			printf( "Deck count now: %d\n", state->deckCount[player] );
         -:  630:		}
@@ -1654,7 +1654,7 @@ Creating 'dominion.c.gcov'
         -:  634:		//Step 2 Draw Card
       483:  635:		count = state->handCount[player];    //Get current player's hand count
         -:  636:
-        -:  637:		if (DEBUG)
+      483:  637:		if (DEBUG)
         -:  638:		{    //Debug statements
         -:  639:			printf( "Current hand count: %d\n", count );
         -:  640:		}
@@ -1671,20 +1671,20 @@ Creating 'dominion.c.gcov'
         -:  651:
         -:  652:	else
         -:  653:	{
-    37084:  654:		int count = state->handCount[player];    //Get current hand count for player
+    37089:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
-        -:  656:		if (DEBUG)
+    37089:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    37084:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    37084:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    37084:  663:		state->deckCount[player]--;
-    37084:  664:		state->handCount[player]++;    //Increment hand count
+    37089:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    37089:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    37089:  663:		state->deckCount[player]--;
+    37089:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    37431:  667:	return 0;
+    37436:  667:	return 0;
         -:  668:}
         -:  669:
     #####:  670:int getCost( int cardNumber )
@@ -1848,10 +1848,10 @@ Creating 'dominion.c.gcov'
         -:  828:		{    //Buy one card
     #####:  829:			if (supplyCount( choice1, state ) <= 0)
         -:  830:			{
-        -:  831:				if (DEBUG)
+    #####:  831:				if (DEBUG)
         -:  832:					printf( "None of that card left, sorry!\n" );
         -:  833:
-        -:  834:				if (DEBUG)
+    #####:  834:				if (DEBUG)
         -:  835:				{
         -:  836:					printf( "Cards Left: %d\n", supplyCount( choice1, state ) );
         -:  837:				}
@@ -1859,14 +1859,14 @@ Creating 'dominion.c.gcov'
         -:  839:			{
     #####:  840:				printf( "That card is too expensive!\n" );
         -:  841:
-        -:  842:				if (DEBUG)
+    #####:  842:				if (DEBUG)
         -:  843:				{
         -:  844:					printf( "Coins: %d < %d\n", state->coins, getCost( choice1 ) );
         -:  845:				}
         -:  846:			} else
         -:  847:			{
         -:  848:
-        -:  849:				if (DEBUG)
+    #####:  849:				if (DEBUG)
         -:  850:				{
         -:  851:					printf( "Deck Count: %d\n",
         -:  852:							state->handCount[currentPlayer] + state->deckCount[currentPlayer]
@@ -1876,7 +1876,7 @@ Creating 'dominion.c.gcov'
     #####:  856:				gainCard( choice1, state, 0, currentPlayer );    //Gain the card
     #####:  857:				x = 0;    //No more buying cards
         -:  858:
-        -:  859:				if (DEBUG)
+    #####:  859:				if (DEBUG)
         -:  860:				{
         -:  861:					printf( "Deck Count: %d\n",
         -:  862:							state->handCount[currentPlayer] + state->deckCount[currentPlayer]
@@ -2151,12 +2151,12 @@ Creating 'dominion.c.gcov'
     #####: 1131:			} else if (state->discardCount[nextPlayer] > 0)
         -: 1132:			{
     #####: 1133:				tributeRevealedCards[0] = state->discard[nextPlayer][state->discardCount[nextPlayer]
-    #####: 1134:						- 1];
+        -: 1134:						- 1];
     #####: 1135:				state->discardCount[nextPlayer]--;
         -: 1136:			} else
         -: 1137:			{
         -: 1138:				//No Card to Reveal
-        -: 1139:				if (DEBUG)
+    #####: 1139:				if (DEBUG)
         -: 1140:				{
         -: 1141:					printf( "No cards to reveal\n" );
         -: 1142:				}
@@ -2239,7 +2239,7 @@ Creating 'dominion.c.gcov'
     #####: 1219:			return -1;
         -: 1220:		}
         -: 1221:
-        -: 1222:		if (DEBUG)
+    #####: 1222:		if (DEBUG)
         -: 1223:			printf( "Player %d reveals card number: %d\n", currentPlayer,
         -: 1224:					state->hand[currentPlayer][choice1] );
         -: 1225:
@@ -2291,7 +2291,7 @@ Creating 'dominion.c.gcov'
         -: 1271:					{
     #####: 1272:						for (k = 0; k < state->handCount[i]; k++)
         -: 1273:						{
-        -: 1274:							if (DEBUG)
+    #####: 1274:							if (DEBUG)
         -: 1275:								printf( "Player %d reveals card number %d\n", i,
         -: 1276:										state->hand[i][k] );
         -: 1277:						}
@@ -2487,11 +2487,11 @@ Creating 'dominion.c.gcov'
         -: 1467:	{
     25310: 1468:		if (state->hand[player][i] == copper)
         -: 1469:		{
-    12073: 1470:			state->coins += 1;
-    13237: 1471:		} else if (state->hand[player][i] == silver)
+    13012: 1470:			state->coins += 1;
+    12298: 1471:		} else if (state->hand[player][i] == silver)
         -: 1472:		{
       472: 1473:			state->coins += 2;
-    12765: 1474:		} else if (state->hand[player][i] == gold)
+    11826: 1474:		} else if (state->hand[player][i] == gold)
         -: 1475:		{
       436: 1476:			state->coins += 3;
         -: 1477:		}
@@ -2506,11 +2506,11 @@ Creating 'dominion.c.gcov'
         -: 1486://end of dominion.c
         -: 1487:
 File 'dominion.c'
-Lines executed:26.40% of 519
+Lines executed:26.22% of 534
 Branches executed:21.25% of 367
 Taken at least once:20.16% of 367
 Calls executed:15.07% of 73
-Creating 'dominion.c.gcov'
+dominion.c:creating 'dominion.c.gcov'
 
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
@@ -2524,18 +2524,18 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-function compare called 1481742 returned 100% blocks executed 100%
-  1481742:    8:int compare( const void* a, const void* b )
+function compare called 1480876 returned 100% blocks executed 100%
+  1480876:    8:int compare( const void* a, const void* b )
         -:    9:{
-  1481742:   10:	if (*(int*) a > *(int*) b)
+  1480876:   10:	if (*(int*) a > *(int*) b)
 branch  0 taken 45% (fallthrough)
 branch  1 taken 55%
-   672643:   11:		return 1;
-   809099:   12:	if (*(int*) a < *(int*) b)
+   671242:   11:		return 1;
+   809634:   12:	if (*(int*) a < *(int*) b)
 branch  0 taken 38% (fallthrough)
 branch  1 taken 62%
-   305882:   13:		return -1;
-   503217:   14:	return 0;
+   305720:   13:		return -1;
+   503914:   14:	return 0;
         -:   15:}
         -:   16:
 function newGame called 0 returned 0% blocks executed 0%
@@ -2661,13 +2661,13 @@ branch  0 taken 6% (fallthrough)
 branch  1 taken 94%
         -:  109:			{
         -:  110:				//check if card is a 'Victory' Kingdom card
-    10000:  111:				if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+    11070:  111:				if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
 branch  0 taken 95% (fallthrough)
 branch  1 taken 5%
 branch  2 taken 6% (fallthrough)
 branch  3 taken 94%
         -:  112:				{
-     2140:  113:					if (numPlayers == 2)
+     1070:  113:					if (numPlayers == 2)
 branch  0 taken 33% (fallthrough)
 branch  1 taken 67%
         -:  114:					{
@@ -2801,11 +2801,11 @@ branch  1 taken 10% (fallthrough)
 call    0 returned 100%
     31885:  217:		newDeck[newDeckPos] = state->deck[player][card];
     31885:  218:		newDeckPos++;
-   107301:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
-branch  0 taken 70%
-branch  1 taken 30% (fallthrough)
+   111141:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+branch  0 taken 71%
+branch  1 taken 29% (fallthrough)
         -:  220:		{
-    75416:  221:			state->deck[player][i] = state->deck[player][i + 1];
+    79256:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
     31885:  223:		state->deckCount[player]--;
         -:  224:	}
@@ -2880,7 +2880,7 @@ function buyCard called 0 returned 0% blocks executed 0%
     #####:  276:int buyCard( int supplyPos, struct gameState *state )
         -:  277:{
         -:  278:	int who;
-        -:  279:	if (DEBUG)
+    #####:  279:	if (DEBUG)
         -:  280:	{
         -:  281:		printf( "Entering buyCard...\n" );
         -:  282:	}
@@ -2893,7 +2893,7 @@ function buyCard called 0 returned 0% blocks executed 0%
 branch  0 never executed
 branch  1 never executed
         -:  289:	{
-        -:  290:		if (DEBUG)
+    #####:  290:		if (DEBUG)
         -:  291:			printf( "You do not have any buys left\n" );
     #####:  292:		return -1;
     #####:  293:	} else if (supplyCount( supplyPos, state ) < 1)
@@ -2901,7 +2901,7 @@ call    0 never executed
 branch  1 never executed
 branch  2 never executed
         -:  294:	{
-        -:  295:		if (DEBUG)
+    #####:  295:		if (DEBUG)
         -:  296:			printf( "There are not any of that type of card left\n" );
     #####:  297:		return -1;
     #####:  298:	} else if (state->coins < getCost( supplyPos ))
@@ -2909,7 +2909,7 @@ call    0 never executed
 branch  1 never executed
 branch  2 never executed
         -:  299:	{
-        -:  300:		if (DEBUG)
+    #####:  300:		if (DEBUG)
         -:  301:			printf( "You do not have enough money to buy that. You have %d coins.\n",
         -:  302:					state->coins );
     #####:  303:		return -1;
@@ -2923,7 +2923,7 @@ call    0 never executed
     #####:  310:		state->coins = ( state->coins ) - ( getCost( supplyPos ) );
 call    0 never executed
     #####:  311:		state->numBuys--;
-        -:  312:		if (DEBUG)
+    #####:  312:		if (DEBUG)
         -:  313:			printf( "You bought card number %d for %d coins. You now have %d buys and %d coins.\n",
         -:  314:					supplyPos, getCost( supplyPos ), state->numBuys, state->coins );
         -:  315:	}
@@ -3325,12 +3325,12 @@ branch  1 never executed
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-function drawCard called 37567 returned 100% blocks executed 100%
-    37567:  605:int drawCard( int player, struct gameState *state )
+function drawCard called 37572 returned 100% blocks executed 100%
+    37572:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    37567:  609:	if (state->deckCount[player] <= 0)
+    37572:  609:	if (state->deckCount[player] <= 0)
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
         -:  610:	{    //Deck is empty
@@ -3353,7 +3353,7 @@ branch  1 taken 22% (fallthrough)
       483:  625:		shuffle( player, state );    //Shuffle the deck up and make it so that we can draw
 call    0 returned 100%
         -:  626:
-        -:  627:		if (DEBUG)
+      483:  627:		if (DEBUG)
         -:  628:		{    //Debug statements
         -:  629:			printf( "Deck count now: %d\n", state->deckCount[player] );
         -:  630:		}
@@ -3363,7 +3363,7 @@ call    0 returned 100%
         -:  634:		//Step 2 Draw Card
       483:  635:		count = state->handCount[player];    //Get current player's hand count
         -:  636:
-        -:  637:		if (DEBUG)
+      483:  637:		if (DEBUG)
         -:  638:		{    //Debug statements
         -:  639:			printf( "Current hand count: %d\n", count );
         -:  640:		}
@@ -3382,20 +3382,20 @@ branch  1 taken 72%
         -:  651:
         -:  652:	else
         -:  653:	{
-    37084:  654:		int count = state->handCount[player];    //Get current hand count for player
+    37089:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
-        -:  656:		if (DEBUG)
+    37089:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    37084:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    37084:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    37084:  663:		state->deckCount[player]--;
-    37084:  664:		state->handCount[player]++;    //Increment hand count
+    37089:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    37089:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    37089:  663:		state->deckCount[player]--;
+    37089:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    37431:  667:	return 0;
+    37436:  667:	return 0;
         -:  668:}
         -:  669:
 function getCost called 0 returned 0% blocks executed 0%
@@ -3631,10 +3631,10 @@ call    0 never executed
 branch  1 never executed
 branch  2 never executed
         -:  830:			{
-        -:  831:				if (DEBUG)
+    #####:  831:				if (DEBUG)
         -:  832:					printf( "None of that card left, sorry!\n" );
         -:  833:
-        -:  834:				if (DEBUG)
+    #####:  834:				if (DEBUG)
         -:  835:				{
         -:  836:					printf( "Cards Left: %d\n", supplyCount( choice1, state ) );
         -:  837:				}
@@ -3646,14 +3646,14 @@ branch  2 never executed
     #####:  840:				printf( "That card is too expensive!\n" );
 call    0 never executed
         -:  841:
-        -:  842:				if (DEBUG)
+    #####:  842:				if (DEBUG)
         -:  843:				{
         -:  844:					printf( "Coins: %d < %d\n", state->coins, getCost( choice1 ) );
         -:  845:				}
         -:  846:			} else
         -:  847:			{
         -:  848:
-        -:  849:				if (DEBUG)
+    #####:  849:				if (DEBUG)
         -:  850:				{
         -:  851:					printf( "Deck Count: %d\n",
         -:  852:							state->handCount[currentPlayer] + state->deckCount[currentPlayer]
@@ -3664,7 +3664,7 @@ call    0 never executed
 call    0 never executed
     #####:  857:				x = 0;    //No more buying cards
         -:  858:
-        -:  859:				if (DEBUG)
+    #####:  859:				if (DEBUG)
         -:  860:				{
         -:  861:					printf( "Deck Count: %d\n",
         -:  862:							state->handCount[currentPlayer] + state->deckCount[currentPlayer]
@@ -3990,12 +3990,12 @@ branch  0 never executed
 branch  1 never executed
         -: 1132:			{
     #####: 1133:				tributeRevealedCards[0] = state->discard[nextPlayer][state->discardCount[nextPlayer]
-    #####: 1134:						- 1];
+        -: 1134:						- 1];
     #####: 1135:				state->discardCount[nextPlayer]--;
         -: 1136:			} else
         -: 1137:			{
         -: 1138:				//No Card to Reveal
-        -: 1139:				if (DEBUG)
+    #####: 1139:				if (DEBUG)
         -: 1140:				{
         -: 1141:					printf( "No cards to reveal\n" );
         -: 1142:				}
@@ -4047,9 +4047,9 @@ branch  0 never executed
 branch  1 never executed
 branch  2 never executed
 branch  3 never executed
+branch  4 never executed
+branch  5 never executed
     #####: 1178:					|| tributeRevealedCards[i] == gold)
-branch  0 never executed
-branch  1 never executed
         -: 1179:			{    //Treasure cards
     #####: 1180:				state->coins += 2;
         -: 1181:			}
@@ -4059,14 +4059,14 @@ branch  0 never executed
 branch  1 never executed
 branch  2 never executed
 branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
     #####: 1184:					|| tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens
-branch  0 never executed
-branch  1 never executed
-branch  2 never executed
-branch  3 never executed
     #####: 1185:					|| tributeRevealedCards[i] == great_hall)
-branch  0 never executed
-branch  1 never executed
         -: 1186:			{    //Victory Card Found
     #####: 1187:				drawCard( currentPlayer, state );
 call    0 never executed
@@ -4121,7 +4121,7 @@ branch  1 never executed
     #####: 1219:			return -1;
         -: 1220:		}
         -: 1221:
-        -: 1222:		if (DEBUG)
+    #####: 1222:		if (DEBUG)
         -: 1223:			printf( "Player %d reveals card number: %d\n", currentPlayer,
         -: 1224:					state->hand[currentPlayer][choice1] );
         -: 1225:
@@ -4200,7 +4200,7 @@ branch  1 never executed
 branch  0 never executed
 branch  1 never executed
         -: 1273:						{
-        -: 1274:							if (DEBUG)
+    #####: 1274:							if (DEBUG)
         -: 1275:								printf( "Player %d reveals card number %d\n", i,
         -: 1276:										state->hand[i][k] );
         -: 1277:						}
@@ -4441,18 +4441,18 @@ branch  0 taken 83%
 branch  1 taken 17% (fallthrough)
         -: 1467:	{
     25310: 1468:		if (state->hand[player][i] == copper)
-branch  0 taken 48% (fallthrough)
-branch  1 taken 52%
+branch  0 taken 51% (fallthrough)
+branch  1 taken 49%
         -: 1469:		{
-    12073: 1470:			state->coins += 1;
-    13237: 1471:		} else if (state->hand[player][i] == silver)
+    13012: 1470:			state->coins += 1;
+    12298: 1471:		} else if (state->hand[player][i] == silver)
 branch  0 taken 4% (fallthrough)
 branch  1 taken 96%
         -: 1472:		{
       472: 1473:			state->coins += 2;
-    12765: 1474:		} else if (state->hand[player][i] == gold)
-branch  0 taken 3% (fallthrough)
-branch  1 taken 97%
+    11826: 1474:		} else if (state->hand[player][i] == gold)
+branch  0 taken 4% (fallthrough)
+branch  1 taken 96%
         -: 1475:		{
       436: 1476:			state->coins += 3;
         -: 1477:		}

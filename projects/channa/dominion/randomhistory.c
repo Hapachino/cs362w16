@@ -89,8 +89,8 @@ randomtestcard:
 		Random Test 75
 			- choice1 cost: 2, choice2 cost: 5
 			- Result: 0, Expected: -1
-		Random Test 99
-			- choice1 cost: 2, choice2 cost: 6
+		Random Test 661
+			- choice1 cost: 2, choice2 cost: 5
 			- Result: -1, Expected: -1
 
 	Cost of gainCard = Cost of trashCard + 2:

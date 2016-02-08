@@ -45,6 +45,9 @@ randomtestadventurer:
 #####: 1277:    z=z-1;
 	-: 1278:  }
 
+	All branches are taken at least some percentage of the time except for the branch in which the above
+	while(z-1>=0) condition is satisfied.
+
 	Effort to check the correctness of the specification:
 
 	Examples of scenarios that the random testers cover:
@@ -74,9 +77,9 @@ randomtestcard:
 	a card was gained and remodel was played, and - 2 subtracted from the hand because a card was trashed and remodel
 	was played. If it is not possible, then there should be no changes to the deck, discard pile, and hand.
 
-	In terms of coverage, the gcov file shows 100% statement coverage of playRemodel() and "function playRemodel called 100
-	returned 100% blocks executed 100%". playRemodel is called many more times now because using a random tester generates
-	a larger number of different test cases.
+	In terms of coverage, the gcov file shows 100% statement coverage of playRemodel() and "function playRemodel called
+	1000 returned 100% blocks executed 100%". playRemodel is called many more times now because using a random tester
+	generates a larger number of different test cases.
 
 	Effort to check the correctness of the specification:
 

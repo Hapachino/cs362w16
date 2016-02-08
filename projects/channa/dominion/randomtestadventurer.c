@@ -45,7 +45,7 @@ int main() {
     printf("----------------- Testing adventurer\n");
 
     // Number of runs
-    for (j = 1; j < 101; j++) {
+    for (j = 1; j < 1001; j++) {
         // Copy the game state to a test case
         memcpy(&testG, &G, sizeof(struct gameState));
 

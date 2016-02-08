@@ -755,7 +755,10 @@ void villageCard(int currentPlayer,struct gameState *state,int handPos){
     //discard played card from hand
     discardCard(handPos, currentPlayer, state, 0);
 }
-/*-----------------------Baron----------------------------------*/
+/*-----------------------Baron----------------------------------*
+* +1 Buy, You may discard an Estate card. 
+* If you do, +4 coins. Otherwise, gain an Estate card.
+*/
 void baronCard(int currentPlayer,struct gameState *state,int choice1){
     state->numBuys++;//Increase buys by 1!
      

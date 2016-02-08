@@ -1,139 +1,1023 @@
-**********
-unittest1
-
-Testing buyCard()
-
-242073 tests run.
-All tests passed.
 
 **********
-
-
-**********
-unittest2
-Test shuffle with normal game, random players: 
-shuffle test with 3 players: Pass
-shuffle test with 4 players: Pass
-shuffle test with 2 players: Pass
-shuffle test with 4 players: Pass
-shuffle test with 3 players: Pass
-shuffle test with 3 players: Pass
-shuffle test with 2 players: Pass
-shuffle test with 2 players: Pass
-shuffle test with 2 players: Pass
-shuffle test with 3 players: Pass
-
-Test shuffle with deck counts of 0: 
-shuffle test with 3 players: Pass
-
-Test shuffle with deck counts of 1: 
-shuffle test with 2 players: Pass
-
-All tests passed.
-
-**********
-
-
-**********
-unittest3
-Testing gainCard():
-
-15000 tests run.
-
-All tests passed.
-
-**********
-
-
-**********
-unittest4
-
-Testing fullDeckCount():
-
-300000 tests, 0 failures
-
-**********
-
-
-**********
-cardtest1
-
-Testing Smithy card:
-Standard game with 2 players: Player 0 plays Smithy: FAIL
-Standard game with 4 players: Player 2 plays Smithy: FAIL
-Standard game with 3 players: Player 1 plays Smithy: FAIL
-game with 3 players, current player has to reshuffle: FAIL
-game with 4 players, current player has 2 total cards to draw: FAIL
-
-5 tests, 5 failures.
-
-**********
-
-
-**********
-cardtest2
+randomtestadventurer
 
 Testing Adventurer card:
+numPlayers=3, player=1, deck count=118, hand count=22: pass
+numPlayers=4, player=0, deck count=323, hand count=205: pass
+numPlayers=4, player=1, deck count=31, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: pass
+numPlayers=4, player=1, deck count=141, hand count=132: pass
+numPlayers=3, player=1, deck count=273, hand count=5: pass
+numPlayers=4, player=2, deck count=28, hand count=8: pass
+numPlayers=4, player=2, deck count=10, hand count=9: FAIL
+numPlayers=3, player=0, deck count=24, hand count=5: pass
+numPlayers=3, player=0, deck count=183, hand count=86: pass
+numPlayers=4, player=0, deck count=13, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=67, hand count=21: pass
+numPlayers=2, player=0, deck count=187, hand count=7: pass
+numPlayers=3, player=0, deck count=41, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=234, hand count=50: pass
+numPlayers=3, player=0, deck count=277, hand count=5: pass
+numPlayers=2, player=0, deck count=53, hand count=17: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=60, hand count=5: pass
+numPlayers=2, player=0, deck count=80, hand count=18: pass
+numPlayers=2, player=0, deck count=36, hand count=16: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=115, hand count=41: pass
+numPlayers=3, player=1, deck count=50, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=137, hand count=120: pass
+numPlayers=3, player=2, deck count=190, hand count=5: pass
+numPlayers=4, player=1, deck count=46, hand count=16: pass
+numPlayers=3, player=1, deck count=10, hand count=6: FAIL
+numPlayers=2, player=0, deck count=27, hand count=5: pass
+numPlayers=3, player=0, deck count=30, hand count=11: pass
+numPlayers=2, player=0, deck count=10, hand count=8: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=173, hand count=38: pass
+numPlayers=3, player=2, deck count=128, hand count=9: pass
+numPlayers=3, player=0, deck count=14, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=229, hand count=131: pass
+numPlayers=3, player=0, deck count=25, hand count=5: pass
+numPlayers=2, player=0, deck count=25, hand count=10: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=64, hand count=5: pass
+numPlayers=2, player=1, deck count=221, hand count=100: pass
+numPlayers=3, player=1, deck count=10, hand count=9: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=86, hand count=6: pass
+numPlayers=2, player=1, deck count=399, hand count=128: pass
+numPlayers=2, player=0, deck count=41, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=177, hand count=139: pass
+numPlayers=4, player=0, deck count=320, hand count=5: pass
+numPlayers=3, player=2, deck count=46, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=92, hand count=5: pass
+numPlayers=2, player=0, deck count=334, hand count=95: pass
+numPlayers=4, player=2, deck count=44, hand count=10: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=248, hand count=62: pass
+numPlayers=3, player=1, deck count=267, hand count=141: pass
+numPlayers=2, player=0, deck count=49, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=188, hand count=65: pass
+numPlayers=4, player=1, deck count=85, hand count=5: pass
+numPlayers=3, player=0, deck count=48, hand count=12: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=24, hand count=5: pass
+numPlayers=2, player=1, deck count=174, hand count=20: pass
+numPlayers=2, player=1, deck count=40, hand count=17: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=245, hand count=24: pass
+numPlayers=4, player=3, deck count=272, hand count=264: pass
+numPlayers=4, player=0, deck count=16, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=188, hand count=70: pass
+numPlayers=4, player=1, deck count=308, hand count=5: pass
+numPlayers=2, player=1, deck count=20, hand count=8: pass
+numPlayers=4, player=3, deck count=10, hand count=9: FAIL
+numPlayers=4, player=0, deck count=88, hand count=5: pass
+numPlayers=3, player=1, deck count=231, hand count=94: pass
+numPlayers=4, player=2, deck count=54, hand count=16: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=178, hand count=78: pass
+numPlayers=2, player=1, deck count=214, hand count=59: pass
+numPlayers=4, player=1, deck count=51, hand count=5: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=245, hand count=211: pass
+numPlayers=4, player=3, deck count=199, hand count=5: pass
+numPlayers=4, player=0, deck count=27, hand count=5: pass
+numPlayers=4, player=1, deck count=10, hand count=8: FAIL
+numPlayers=2, player=1, deck count=203, hand count=5: pass
+numPlayers=4, player=3, deck count=330, hand count=48: pass
+numPlayers=3, player=1, deck count=40, hand count=27: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=81, hand count=9: pass
+numPlayers=2, player=1, deck count=263, hand count=190: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=47, hand count=44: pass
+numPlayers=2, player=0, deck count=131, hand count=5: pass
+numPlayers=4, player=1, deck count=33, hand count=14: pass
+numPlayers=2, player=1, deck count=10, hand count=8: FAIL
+numPlayers=3, player=2, deck count=68, hand count=5: pass
+numPlayers=4, player=3, deck count=216, hand count=35: pass
+numPlayers=2, player=1, deck count=54, hand count=21: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=163, hand count=33: pass
+numPlayers=3, player=1, deck count=376, hand count=328: pass
+numPlayers=4, player=0, deck count=33, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=63, hand count=5: pass
+numPlayers=4, player=3, deck count=285, hand count=5: pass
+numPlayers=4, player=0, deck count=27, hand count=10: pass
+numPlayers=4, player=0, deck count=10, hand count=6: FAIL
+numPlayers=3, player=0, deck count=22, hand count=5: pass
+numPlayers=2, player=1, deck count=358, hand count=84: pass
+numPlayers=4, player=3, deck count=25, hand count=16: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=196, hand count=51: pass
+numPlayers=4, player=0, deck count=13, hand count=5: FAIL
+numPlayers=4, player=3, deck count=48, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=13, hand count=5: FAIL
+numPlayers=4, player=3, deck count=141, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=15, hand count=5: FAIL
+numPlayers=4, player=2, deck count=395, hand count=146: pass
+numPlayers=3, player=1, deck count=39, hand count=19: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=15, hand count=5: FAIL
+numPlayers=3, player=2, deck count=16, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=77, hand count=56: pass
+numPlayers=4, player=1, deck count=84, hand count=5: pass
+numPlayers=4, player=1, deck count=28, hand count=12: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=254, hand count=5: pass
+numPlayers=4, player=1, deck count=48, hand count=31: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=52, hand count=9: pass
+numPlayers=4, player=0, deck count=373, hand count=258: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=6: FAIL
+numPlayers=4, player=1, deck count=233, hand count=5: pass
+numPlayers=4, player=2, deck count=54, hand count=8: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=46, hand count=5: pass
+numPlayers=4, player=0, deck count=384, hand count=139: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=224, hand count=5: pass
+numPlayers=4, player=2, deck count=90, hand count=6: pass
+numPlayers=2, player=0, deck count=30, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=197, hand count=68: pass
+numPlayers=2, player=0, deck count=198, hand count=5: pass
+numPlayers=3, player=1, deck count=11, hand count=5: FAIL
+numPlayers=4, player=1, deck count=10, hand count=8: FAIL
+numPlayers=3, player=0, deck count=226, hand count=5: pass
+numPlayers=3, player=2, deck count=230, hand count=38: pass
+numPlayers=3, player=2, deck count=32, hand count=29: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=142, hand count=39: pass
+numPlayers=4, player=3, deck count=35, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=114, hand count=5: pass
+numPlayers=3, player=1, deck count=371, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=6: FAIL
+numPlayers=4, player=1, deck count=244, hand count=5: pass
+numPlayers=3, player=0, deck count=203, hand count=32: pass
+numPlayers=3, player=2, deck count=21, hand count=11: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=49, hand count=20: pass
+numPlayers=4, player=3, deck count=392, hand count=353: pass
+numPlayers=4, player=1, deck count=26, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=249, hand count=238: pass
+numPlayers=2, player=1, deck count=49, hand count=5: pass
+numPlayers=3, player=0, deck count=49, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=64, hand count=5: pass
+numPlayers=4, player=1, deck count=80, hand count=22: pass
+numPlayers=3, player=0, deck count=45, hand count=8: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=80, hand count=16: pass
+numPlayers=2, player=1, deck count=243, hand count=69: pass
+numPlayers=3, player=2, deck count=11, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=90, hand count=42: pass
+numPlayers=4, player=3, deck count=211, hand count=5: pass
+numPlayers=4, player=0, deck count=31, hand count=14: pass
+numPlayers=2, player=0, deck count=10, hand count=9: FAIL
+numPlayers=4, player=1, deck count=204, hand count=5: pass
+numPlayers=4, player=0, deck count=137, hand count=40: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=157, hand count=67: pass
+numPlayers=3, player=1, deck count=71, hand count=7: pass
+numPlayers=4, player=2, deck count=14, hand count=5: FAIL
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=106, hand count=21: pass
+numPlayers=4, player=2, deck count=48, hand count=5: pass
+numPlayers=3, player=0, deck count=43, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=216, hand count=5: pass
+numPlayers=2, player=1, deck count=365, hand count=24: pass
+numPlayers=3, player=0, deck count=48, hand count=30: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=226, hand count=48: pass
+numPlayers=3, player=2, deck count=77, hand count=11: pass
+numPlayers=3, player=2, deck count=28, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=162, hand count=55: pass
+numPlayers=4, player=0, deck count=141, hand count=5: pass
+numPlayers=3, player=2, deck count=51, hand count=17: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=107, hand count=5: pass
+numPlayers=2, player=0, deck count=259, hand count=50: pass
+numPlayers=4, player=2, deck count=19, hand count=15: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=44, hand count=19: pass
+numPlayers=4, player=3, deck count=113, hand count=103: pass
+numPlayers=4, player=2, deck count=16, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=186, hand count=80: pass
+numPlayers=4, player=0, deck count=397, hand count=5: pass
+numPlayers=4, player=0, deck count=21, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=107, hand count=5: pass
+numPlayers=4, player=2, deck count=114, hand count=24: pass
+numPlayers=4, player=2, deck count=22, hand count=20: FAIL
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=84, hand count=30: pass
+numPlayers=3, player=1, deck count=153, hand count=5: pass
+numPlayers=4, player=0, deck count=47, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=228, hand count=225: pass
+numPlayers=2, player=1, deck count=35, hand count=5: pass
+numPlayers=3, player=2, deck count=22, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=9: FAIL
+numPlayers=4, player=2, deck count=87, hand count=5: pass
+numPlayers=2, player=1, deck count=366, hand count=170: pass
+numPlayers=2, player=1, deck count=18, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=24, hand count=5: pass
+numPlayers=4, player=2, deck count=300, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=30, hand count=22: pass
+numPlayers=3, player=1, deck count=259, hand count=5: pass
+numPlayers=2, player=0, deck count=16, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=34, hand count=5: pass
+numPlayers=3, player=2, deck count=300, hand count=84: pass
+numPlayers=2, player=0, deck count=10, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=169, hand count=71: pass
+numPlayers=3, player=1, deck count=366, hand count=160: pass
+numPlayers=2, player=0, deck count=24, hand count=5: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=87, hand count=31: pass
+numPlayers=3, player=0, deck count=69, hand count=5: pass
+numPlayers=4, player=2, deck count=33, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=192, hand count=5: pass
+numPlayers=4, player=1, deck count=78, hand count=34: pass
+numPlayers=2, player=1, deck count=17, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=209, hand count=85: pass
+numPlayers=2, player=1, deck count=373, hand count=237: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=128, hand count=103: pass
+numPlayers=2, player=0, deck count=315, hand count=5: pass
+numPlayers=4, player=3, deck count=15, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=168, hand count=5: pass
+numPlayers=4, player=1, deck count=256, hand count=59: pass
+numPlayers=4, player=3, deck count=10, hand count=6: FAIL
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=146, hand count=40: pass
+numPlayers=3, player=2, deck count=156, hand count=39: pass
+numPlayers=3, player=2, deck count=21, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=74, hand count=44: pass
+numPlayers=2, player=0, deck count=56, hand count=5: pass
+numPlayers=2, player=0, deck count=34, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=114, hand count=5: pass
+numPlayers=2, player=0, deck count=202, hand count=47: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=162, hand count=21: pass
+numPlayers=4, player=3, deck count=136, hand count=23: pass
+numPlayers=2, player=0, deck count=41, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=121, hand count=20: pass
+numPlayers=2, player=1, deck count=254, hand count=5: pass
+numPlayers=3, player=0, deck count=33, hand count=13: pass
+numPlayers=2, player=1, deck count=10, hand count=9: FAIL
+numPlayers=2, player=0, deck count=112, hand count=5: pass
+numPlayers=3, player=2, deck count=288, hand count=58: pass
+numPlayers=3, player=2, deck count=35, hand count=29: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=247, hand count=38: pass
+numPlayers=3, player=1, deck count=386, hand count=18: pass
+numPlayers=4, player=2, deck count=22, hand count=5: FAIL
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=220, hand count=28: pass
+numPlayers=2, player=1, deck count=125, hand count=5: pass
+numPlayers=4, player=3, deck count=30, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=207, hand count=5: pass
+numPlayers=3, player=0, deck count=141, hand count=5: pass
+numPlayers=3, player=1, deck count=53, hand count=22: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=66, hand count=12: pass
+numPlayers=3, player=0, deck count=211, hand count=55: pass
+numPlayers=4, player=1, deck count=49, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=219, hand count=69: pass
+numPlayers=2, player=1, deck count=382, hand count=5: pass
+numPlayers=2, player=0, deck count=52, hand count=7: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=134, hand count=5: pass
+numPlayers=2, player=0, deck count=234, hand count=98: pass
+numPlayers=2, player=1, deck count=53, hand count=43: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=27, hand count=5: pass
+numPlayers=4, player=2, deck count=161, hand count=26: pass
+numPlayers=3, player=2, deck count=23, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=165, hand count=117: pass
+numPlayers=3, player=0, deck count=91, hand count=5: pass
+numPlayers=2, player=1, deck count=29, hand count=11: pass
+numPlayers=4, player=3, deck count=10, hand count=8: FAIL
+numPlayers=3, player=2, deck count=71, hand count=5: pass
+numPlayers=3, player=2, deck count=92, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=234, hand count=5: pass
+numPlayers=2, player=0, deck count=153, hand count=11: pass
+numPlayers=2, player=1, deck count=15, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=185, hand count=127: pass
+numPlayers=4, player=1, deck count=174, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=6: FAIL
+numPlayers=4, player=2, deck count=61, hand count=5: pass
+numPlayers=4, player=2, deck count=126, hand count=61: pass
+numPlayers=4, player=0, deck count=13, hand count=5: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=93, hand count=14: pass
+numPlayers=2, player=0, deck count=61, hand count=38: pass
+numPlayers=4, player=3, deck count=52, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=169, hand count=44: pass
+numPlayers=3, player=1, deck count=268, hand count=5: pass
+numPlayers=2, player=1, deck count=53, hand count=6: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=162, hand count=5: pass
+numPlayers=4, player=1, deck count=290, hand count=141: pass
+numPlayers=3, player=0, deck count=49, hand count=46: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=107, hand count=23: pass
+numPlayers=2, player=0, deck count=369, hand count=129: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=42, hand count=28: pass
+numPlayers=4, player=2, deck count=370, hand count=5: pass
+numPlayers=2, player=0, deck count=34, hand count=12: pass
+numPlayers=4, player=2, deck count=10, hand count=8: FAIL
+numPlayers=2, player=0, deck count=161, hand count=5: pass
+numPlayers=3, player=0, deck count=320, hand count=118: pass
+numPlayers=3, player=2, deck count=49, hand count=6: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=348, hand count=134: pass
+numPlayers=4, player=1, deck count=41, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=228, hand count=49: pass
+numPlayers=4, player=2, deck count=22, hand count=5: FAIL
+numPlayers=2, player=1, deck count=31, hand count=14: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=180, hand count=5: pass
+numPlayers=3, player=2, deck count=248, hand count=123: pass
+numPlayers=2, player=0, deck count=16, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=57, hand count=5: pass
+numPlayers=4, player=0, deck count=272, hand count=105: pass
+numPlayers=3, player=1, deck count=14, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=206, hand count=182: pass
+numPlayers=4, player=0, deck count=287, hand count=5: pass
+numPlayers=4, player=3, deck count=26, hand count=7: pass
+numPlayers=2, player=1, deck count=10, hand count=8: FAIL
+numPlayers=4, player=1, deck count=219, hand count=5: pass
+numPlayers=3, player=0, deck count=297, hand count=69: pass
+numPlayers=4, player=2, deck count=48, hand count=9: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=68, hand count=5: pass
+numPlayers=2, player=0, deck count=123, hand count=115: pass
+numPlayers=2, player=0, deck count=51, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=264, hand count=5: pass
+numPlayers=2, player=1, deck count=51, hand count=12: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=161, hand count=5: pass
+numPlayers=2, player=1, deck count=190, hand count=5: pass
+numPlayers=3, player=2, deck count=16, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=235, hand count=51: pass
+numPlayers=2, player=1, deck count=365, hand count=335: pass
+numPlayers=4, player=2, deck count=44, hand count=5: pass
+numPlayers=4, player=0, deck count=10, hand count=5: pass
+numPlayers=4, player=0, deck count=52, hand count=30: pass
+numPlayers=2, player=1, deck count=60, hand count=5: pass
+numPlayers=4, player=2, deck count=18, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=9: FAIL
+numPlayers=3, player=2, deck count=218, hand count=5: pass
+numPlayers=4, player=3, deck count=60, hand count=11: pass
+numPlayers=2, player=0, deck count=15, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=75, hand count=16: pass
+numPlayers=4, player=2, deck count=138, hand count=43: pass
+numPlayers=2, player=1, deck count=53, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=44, hand count=11: pass
+numPlayers=4, player=0, deck count=43, hand count=5: pass
+numPlayers=2, player=1, deck count=49, hand count=5: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=201, hand count=5: pass
+numPlayers=3, player=1, deck count=340, hand count=5: pass
+numPlayers=2, player=0, deck count=20, hand count=6: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=173, hand count=16: pass
+numPlayers=2, player=0, deck count=161, hand count=44: pass
+numPlayers=3, player=0, deck count=54, hand count=5: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=217, hand count=93: pass
+numPlayers=4, player=1, deck count=178, hand count=5: pass
+numPlayers=3, player=2, deck count=29, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=230, hand count=5: pass
+numPlayers=2, player=0, deck count=254, hand count=76: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=25, hand count=5: pass
+numPlayers=3, player=0, deck count=335, hand count=167: pass
+numPlayers=2, player=1, deck count=42, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=96, hand count=5: pass
+numPlayers=2, player=1, deck count=383, hand count=5: pass
+numPlayers=2, player=1, deck count=19, hand count=6: FAIL
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=194, hand count=5: pass
+numPlayers=4, player=1, deck count=45, hand count=19: pass
+numPlayers=2, player=0, deck count=47, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=126, hand count=12: pass
+numPlayers=4, player=3, deck count=327, hand count=89: pass
+numPlayers=3, player=1, deck count=33, hand count=5: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=150, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=161, hand count=5: pass
+numPlayers=2, player=1, deck count=38, hand count=7: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=30, hand count=10: pass
+numPlayers=2, player=0, deck count=196, hand count=169: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=16, hand count=7: pass
+numPlayers=3, player=1, deck count=357, hand count=5: pass
+numPlayers=2, player=1, deck count=21, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=189, hand count=5: pass
+numPlayers=2, player=0, deck count=387, hand count=159: pass
+numPlayers=3, player=0, deck count=17, hand count=13: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=228, hand count=19: pass
+numPlayers=2, player=1, deck count=361, hand count=328: pass
+numPlayers=2, player=0, deck count=12, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=91, hand count=61: pass
+numPlayers=3, player=0, deck count=126, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=10, hand count=6: pass
+numPlayers=3, player=0, deck count=132, hand count=5: pass
+numPlayers=4, player=2, deck count=304, hand count=115: pass
+numPlayers=4, player=1, deck count=27, hand count=11: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=43, hand count=14: pass
+numPlayers=4, player=3, deck count=135, hand count=90: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=58, hand count=10: pass
+numPlayers=2, player=0, deck count=191, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=10, hand count=8: FAIL
+numPlayers=3, player=1, deck count=214, hand count=5: pass
+numPlayers=4, player=2, deck count=326, hand count=118: pass
+numPlayers=2, player=0, deck count=29, hand count=5: pass
+numPlayers=4, player=0, deck count=10, hand count=5: pass
+numPlayers=4, player=3, deck count=132, hand count=5: pass
+numPlayers=3, player=0, deck count=379, hand count=362: pass
+numPlayers=2, player=1, deck count=17, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=240, hand count=229: pass
+numPlayers=3, player=1, deck count=85, hand count=5: pass
+numPlayers=2, player=1, deck count=47, hand count=21: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=28, hand count=5: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=41, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=244, hand count=5: pass
+numPlayers=3, player=0, deck count=141, hand count=12: pass
+numPlayers=3, player=0, deck count=31, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=39, hand count=5: pass
+numPlayers=4, player=0, deck count=204, hand count=5: pass
+numPlayers=2, player=1, deck count=16, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=119, hand count=5: pass
+numPlayers=3, player=1, deck count=107, hand count=29: pass
+numPlayers=3, player=2, deck count=47, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=238, hand count=15: pass
+numPlayers=3, player=2, deck count=129, hand count=46: pass
+numPlayers=4, player=2, deck count=24, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=68, hand count=40: pass
+numPlayers=2, player=0, deck count=60, hand count=5: pass
+numPlayers=2, player=1, deck count=52, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=213, hand count=5: pass
+numPlayers=2, player=0, deck count=365, hand count=19: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=126, hand count=24: pass
+numPlayers=2, player=0, deck count=338, hand count=188: pass
+numPlayers=2, player=1, deck count=28, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=238, hand count=69: pass
+numPlayers=2, player=1, deck count=70, hand count=5: pass
+numPlayers=4, player=3, deck count=40, hand count=13: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=69, hand count=5: pass
+numPlayers=2, player=1, deck count=343, hand count=5: pass
+numPlayers=4, player=1, deck count=11, hand count=8: FAIL
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=82, hand count=23: pass
+numPlayers=4, player=1, deck count=55, hand count=32: pass
+numPlayers=4, player=3, deck count=16, hand count=5: FAIL
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=96, hand count=8: pass
+numPlayers=4, player=3, deck count=183, hand count=5: pass
+numPlayers=2, player=1, deck count=21, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=35, hand count=5: pass
+numPlayers=3, player=1, deck count=353, hand count=161: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=65, hand count=5: pass
+numPlayers=3, player=1, deck count=108, hand count=27: pass
+numPlayers=3, player=0, deck count=33, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=142, hand count=139: pass
+numPlayers=4, player=2, deck count=49, hand count=5: pass
+numPlayers=2, player=0, deck count=49, hand count=22: pass
+numPlayers=4, player=2, deck count=10, hand count=7: FAIL
+numPlayers=4, player=0, deck count=116, hand count=5: pass
+numPlayers=3, player=0, deck count=356, hand count=167: pass
+numPlayers=4, player=0, deck count=44, hand count=26: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=212, hand count=11: pass
+numPlayers=2, player=1, deck count=288, hand count=140: pass
+numPlayers=2, player=0, deck count=23, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=223, hand count=124: pass
+numPlayers=2, player=0, deck count=241, hand count=5: pass
+numPlayers=2, player=1, deck count=17, hand count=6: FAIL
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=143, hand count=5: pass
+numPlayers=2, player=1, deck count=153, hand count=36: pass
+numPlayers=2, player=0, deck count=13, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=95, hand count=17: pass
+numPlayers=4, player=1, deck count=60, hand count=10: pass
+numPlayers=2, player=1, deck count=19, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=114, hand count=5: pass
+numPlayers=3, player=0, deck count=212, hand count=5: pass
+numPlayers=3, player=0, deck count=47, hand count=8: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=200, hand count=5: pass
+numPlayers=2, player=0, deck count=223, hand count=49: pass
+numPlayers=4, player=0, deck count=36, hand count=35: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=112, hand count=38: pass
+numPlayers=2, player=0, deck count=287, hand count=35: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=14, hand count=13: pass
+numPlayers=3, player=0, deck count=399, hand count=5: pass
+numPlayers=2, player=0, deck count=46, hand count=18: pass
+numPlayers=3, player=0, deck count=10, hand count=7: FAIL
+numPlayers=3, player=1, deck count=239, hand count=5: pass
+numPlayers=2, player=0, deck count=387, hand count=161: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=187, hand count=50: pass
+numPlayers=2, player=1, deck count=82, hand count=73: pass
+numPlayers=4, player=0, deck count=45, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=150, hand count=16: pass
+numPlayers=4, player=3, deck count=245, hand count=5: pass
+numPlayers=2, player=1, deck count=12, hand count=5: FAIL
+numPlayers=4, player=1, deck count=10, hand count=8: FAIL
+numPlayers=3, player=1, deck count=12, hand count=5: FAIL
+numPlayers=2, player=1, deck count=206, hand count=13: pass
+numPlayers=2, player=0, deck count=44, hand count=42: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=115, hand count=17: pass
+numPlayers=3, player=2, deck count=311, hand count=250: pass
+numPlayers=2, player=1, deck count=50, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=205, hand count=30: pass
+numPlayers=4, player=1, deck count=127, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=144, hand count=5: pass
+numPlayers=3, player=2, deck count=218, hand count=42: pass
+numPlayers=2, player=0, deck count=40, hand count=37: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=64, hand count=26: pass
+numPlayers=2, player=1, deck count=110, hand count=80: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=131, hand count=8: pass
+numPlayers=4, player=0, deck count=146, hand count=5: pass
+numPlayers=2, player=1, deck count=40, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=199, hand count=5: pass
+numPlayers=3, player=1, deck count=389, hand count=192: pass
+numPlayers=2, player=0, deck count=22, hand count=20: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=58, hand count=7: pass
+numPlayers=2, player=0, deck count=108, hand count=74: pass
+numPlayers=2, player=0, deck count=54, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=24, hand count=10: pass
+numPlayers=2, player=0, deck count=298, hand count=5: pass
+numPlayers=3, player=1, deck count=18, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=7: FAIL
+numPlayers=2, player=0, deck count=114, hand count=5: pass
+numPlayers=4, player=3, deck count=276, hand count=65: pass
+numPlayers=3, player=0, deck count=11, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=104, hand count=40: pass
+numPlayers=2, player=0, deck count=38, hand count=27: pass
+numPlayers=2, player=0, deck count=49, hand count=5: pass
+numPlayers=4, player=0, deck count=10, hand count=5: pass
+numPlayers=3, player=0, deck count=231, hand count=73: pass
+numPlayers=4, player=1, deck count=163, hand count=5: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=10, hand count=7: FAIL
+numPlayers=3, player=2, deck count=51, hand count=5: pass
+numPlayers=2, player=1, deck count=253, hand count=112: pass
+numPlayers=3, player=1, deck count=37, hand count=6: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=104, hand count=15: pass
+numPlayers=3, player=1, deck count=246, hand count=128: pass
+numPlayers=2, player=0, deck count=40, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=131, hand count=120: pass
+numPlayers=3, player=1, deck count=46, hand count=5: pass
+numPlayers=4, player=1, deck count=28, hand count=9: pass
+numPlayers=3, player=2, deck count=10, hand count=8: FAIL
+numPlayers=2, player=1, deck count=185, hand count=5: pass
+numPlayers=3, player=0, deck count=49, hand count=14: pass
+numPlayers=4, player=1, deck count=49, hand count=43: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=109, hand count=5: pass
+numPlayers=4, player=3, deck count=219, hand count=193: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=136, hand count=5: pass
+numPlayers=2, player=1, deck count=309, hand count=5: pass
+numPlayers=4, player=2, deck count=29, hand count=11: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=188, hand count=5: pass
+numPlayers=3, player=1, deck count=21, hand count=5: FAIL
+numPlayers=3, player=0, deck count=19, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=321, hand count=197: pass
+numPlayers=4, player=1, deck count=18, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=136, hand count=96: pass
+numPlayers=4, player=1, deck count=197, hand count=5: pass
+numPlayers=3, player=2, deck count=27, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=7: FAIL
+numPlayers=2, player=1, deck count=125, hand count=5: pass
+numPlayers=4, player=2, deck count=94, hand count=26: pass
+numPlayers=4, player=0, deck count=47, hand count=22: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=173, hand count=50: pass
+numPlayers=4, player=2, deck count=135, hand count=15: pass
+numPlayers=4, player=1, deck count=28, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=222, hand count=16: pass
+numPlayers=3, player=2, deck count=67, hand count=5: pass
+numPlayers=4, player=0, deck count=22, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=241, hand count=5: pass
+numPlayers=2, player=1, deck count=247, hand count=44: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=81, hand count=9: pass
+numPlayers=2, player=0, deck count=225, hand count=113: pass
+numPlayers=3, player=0, deck count=41, hand count=5: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=181, hand count=168: pass
+numPlayers=3, player=2, deck count=11, hand count=5: FAIL
+numPlayers=4, player=0, deck count=34, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=97, hand count=5: pass
+numPlayers=3, player=1, deck count=99, hand count=31: pass
+numPlayers=3, player=2, deck count=37, hand count=21: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=206, hand count=36: pass
+numPlayers=2, player=0, deck count=386, hand count=189: pass
+numPlayers=4, player=1, deck count=39, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=147, hand count=77: pass
+numPlayers=2, player=1, deck count=265, hand count=5: pass
+numPlayers=3, player=2, deck count=20, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=9: FAIL
+numPlayers=4, player=2, deck count=86, hand count=5: pass
+numPlayers=3, player=2, deck count=205, hand count=61: pass
+numPlayers=3, player=0, deck count=35, hand count=10: pass
+numPlayers=3, player=0, deck count=10, hand count=5: pass
+numPlayers=3, player=1, deck count=190, hand count=29: pass
+numPlayers=3, player=0, deck count=102, hand count=41: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=170, hand count=154: pass
+numPlayers=2, player=1, deck count=381, hand count=5: pass
+numPlayers=4, player=1, deck count=11, hand count=5: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=234, hand count=5: pass
+numPlayers=4, player=3, deck count=393, hand count=32: pass
+numPlayers=2, player=0, deck count=29, hand count=7: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=142, hand count=22: pass
+numPlayers=2, player=1, deck count=147, hand count=107: pass
+numPlayers=4, player=2, deck count=18, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=110, hand count=67: pass
+numPlayers=4, player=0, deck count=323, hand count=5: pass
+numPlayers=2, player=1, deck count=12, hand count=5: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=169, hand count=5: pass
+numPlayers=2, player=0, deck count=155, hand count=45: pass
+numPlayers=3, player=2, deck count=30, hand count=21: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=59, hand count=8: pass
+numPlayers=2, player=1, deck count=184, hand count=165: pass
+numPlayers=3, player=2, deck count=23, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=188, hand count=186: pass
+numPlayers=3, player=2, deck count=268, hand count=5: pass
+numPlayers=3, player=2, deck count=38, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=9: FAIL
+numPlayers=2, player=1, deck count=11, hand count=5: FAIL
+numPlayers=4, player=1, deck count=207, hand count=64: pass
+numPlayers=4, player=3, deck count=21, hand count=5: FAIL
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=192, hand count=26: pass
+numPlayers=3, player=2, deck count=169, hand count=118: pass
+numPlayers=4, player=2, deck count=12, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=96, hand count=83: pass
+numPlayers=4, player=3, deck count=251, hand count=5: pass
+numPlayers=3, player=1, deck count=42, hand count=18: pass
+numPlayers=2, player=0, deck count=10, hand count=8: FAIL
+numPlayers=2, player=0, deck count=109, hand count=5: pass
+numPlayers=4, player=1, deck count=231, hand count=16: pass
+numPlayers=2, player=0, deck count=17, hand count=5: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=175, hand count=84: pass
+numPlayers=2, player=1, deck count=385, hand count=275: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=232, hand count=100: pass
+numPlayers=2, player=1, deck count=229, hand count=5: pass
+numPlayers=4, player=0, deck count=32, hand count=6: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=163, hand count=5: pass
+numPlayers=2, player=1, deck count=334, hand count=124: pass
+numPlayers=2, player=1, deck count=31, hand count=6: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=94, hand count=46: pass
+numPlayers=4, player=1, deck count=118, hand count=36: pass
+numPlayers=2, player=0, deck count=50, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=97, hand count=5: pass
+numPlayers=4, player=3, deck count=57, hand count=5: pass
+numPlayers=3, player=2, deck count=24, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=167, hand count=5: pass
+numPlayers=2, player=0, deck count=286, hand count=21: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=17, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=8: FAIL
+numPlayers=4, player=3, deck count=173, hand count=5: pass
+numPlayers=2, player=1, deck count=11, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=75, hand count=5: pass
+numPlayers=4, player=1, deck count=53, hand count=5: pass
+numPlayers=2, player=1, deck count=47, hand count=41: pass
+numPlayers=3, player=0, deck count=10, hand count=5: pass
+numPlayers=3, player=0, deck count=46, hand count=22: pass
+numPlayers=4, player=0, deck count=200, hand count=102: pass
+numPlayers=4, player=3, deck count=33, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=167, hand count=69: pass
+numPlayers=2, player=1, deck count=329, hand count=5: pass
+numPlayers=2, player=0, deck count=30, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=69, hand count=5: pass
+numPlayers=3, player=0, deck count=189, hand count=15: pass
+numPlayers=2, player=1, deck count=19, hand count=10: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=243, hand count=86: pass
+numPlayers=4, player=2, deck count=11, hand count=10: FAIL
+numPlayers=4, player=3, deck count=19, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=42, hand count=34: pass
+numPlayers=2, player=0, deck count=158, hand count=5: pass
+numPlayers=2, player=0, deck count=24, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=122, hand count=5: pass
+numPlayers=2, player=1, deck count=125, hand count=58: pass
+numPlayers=2, player=1, deck count=29, hand count=7: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=0, deck count=237, hand count=58: pass
+numPlayers=4, player=1, deck count=134, hand count=56: pass
+numPlayers=3, player=0, deck count=27, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=146, hand count=18: pass
+numPlayers=4, player=0, deck count=111, hand count=5: pass
+numPlayers=3, player=2, deck count=11, hand count=5: FAIL
+numPlayers=2, player=1, deck count=10, hand count=9: FAIL
+numPlayers=4, player=2, deck count=57, hand count=5: pass
+numPlayers=3, player=0, deck count=369, hand count=67: pass
+numPlayers=3, player=2, deck count=39, hand count=5: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=201, hand count=75: pass
+numPlayers=2, player=1, deck count=167, hand count=75: pass
+numPlayers=2, player=0, deck count=19, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=104, hand count=95: pass
+numPlayers=3, player=1, deck count=324, hand count=5: pass
+numPlayers=4, player=0, deck count=50, hand count=16: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=272, hand count=60: pass
+numPlayers=3, player=2, deck count=27, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=43, hand count=13: pass
+numPlayers=4, player=2, deck count=17, hand count=5: FAIL
+numPlayers=4, player=2, deck count=46, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=10, hand count=7: FAIL
+numPlayers=4, player=0, deck count=123, hand count=5: pass
+numPlayers=3, player=1, deck count=23, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=7: FAIL
+numPlayers=4, player=0, deck count=92, hand count=5: pass
+numPlayers=2, player=0, deck count=124, hand count=18: pass
+numPlayers=3, player=1, deck count=29, hand count=6: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=340, hand count=118: pass
+numPlayers=4, player=2, deck count=37, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=117, hand count=16: pass
+numPlayers=3, player=1, deck count=133, hand count=5: pass
+numPlayers=2, player=1, deck count=21, hand count=5: FAIL
+numPlayers=4, player=2, deck count=10, hand count=7: FAIL
+numPlayers=2, player=1, deck count=74, hand count=5: pass
+numPlayers=4, player=3, deck count=273, hand count=125: pass
+numPlayers=4, player=3, deck count=41, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=154, hand count=49: pass
+numPlayers=3, player=2, deck count=332, hand count=32: pass
+numPlayers=3, player=0, deck count=22, hand count=5: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=149, hand count=76: pass
+numPlayers=3, player=1, deck count=289, hand count=5: pass
+numPlayers=2, player=0, deck count=41, hand count=16: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=132, hand count=5: pass
+numPlayers=2, player=0, deck count=179, hand count=51: pass
+numPlayers=4, player=1, deck count=46, hand count=17: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=2, deck count=188, hand count=62: pass
+numPlayers=4, player=3, deck count=331, hand count=201: pass
+numPlayers=4, player=3, deck count=46, hand count=5: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=52, hand count=40: pass
+numPlayers=2, player=1, deck count=278, hand count=5: pass
+numPlayers=2, player=0, deck count=40, hand count=15: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=41, hand count=5: pass
+numPlayers=4, player=3, deck count=354, hand count=75: pass
+numPlayers=3, player=0, deck count=28, hand count=15: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=219, hand count=107: pass
+numPlayers=4, player=1, deck count=340, hand count=37: pass
+numPlayers=3, player=1, deck count=28, hand count=5: pass
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=170, hand count=36: pass
+numPlayers=2, player=0, deck count=230, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=8: FAIL
+numPlayers=3, player=0, deck count=52, hand count=5: pass
+numPlayers=4, player=1, deck count=140, hand count=47: pass
+numPlayers=2, player=1, deck count=52, hand count=36: pass
+numPlayers=4, player=2, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=11, hand count=5: FAIL
+numPlayers=3, player=2, deck count=376, hand count=226: pass
+numPlayers=3, player=0, deck count=31, hand count=5: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=3, player=1, deck count=226, hand count=107: pass
+numPlayers=3, player=2, deck count=311, hand count=5: pass
+numPlayers=3, player=0, deck count=42, hand count=7: pass
+numPlayers=3, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=3, deck count=123, hand count=5: pass
+numPlayers=2, player=1, deck count=145, hand count=12: pass
+numPlayers=4, player=2, deck count=44, hand count=15: pass
+numPlayers=4, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=94, hand count=23: pass
+numPlayers=2, player=1, deck count=106, hand count=102: pass
+numPlayers=4, player=2, deck count=29, hand count=5: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=17, hand count=12: pass
+numPlayers=2, player=0, deck count=175, hand count=5: pass
+numPlayers=4, player=0, deck count=24, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=120, hand count=5: pass
+numPlayers=4, player=1, deck count=361, hand count=119: pass
+numPlayers=2, player=1, deck count=42, hand count=7: pass
+numPlayers=2, player=1, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=77, hand count=14: pass
+numPlayers=4, player=2, deck count=128, hand count=103: pass
+numPlayers=4, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=4, player=1, deck count=196, hand count=123: pass
+numPlayers=4, player=3, deck count=138, hand count=5: pass
+numPlayers=3, player=2, deck count=19, hand count=8: FAIL
+numPlayers=2, player=0, deck count=10, hand count=8: FAIL
+numPlayers=3, player=0, deck count=227, hand count=5: pass
+numPlayers=3, player=0, deck count=337, hand count=89: pass
+numPlayers=4, player=3, deck count=52, hand count=20: pass
+numPlayers=2, player=0, deck count=10, hand count=5: FAIL
+numPlayers=2, player=1, deck count=243, hand count=102: pass
+numPlayers=4, player=2, deck count=135, hand count=112: pass
+numPlayers=4, player=3, deck count=31, hand count=5: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=2, player=0, deck count=10, hand count=6: FAIL
+numPlayers=3, player=1, deck count=73, hand count=5: pass
+numPlayers=3, player=1, deck count=29, hand count=9: FAIL
+numPlayers=3, player=1, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=249, hand count=5: pass
+numPlayers=3, player=2, deck count=229, hand count=5: pass
+numPlayers=2, player=0, deck count=48, hand count=41: pass
+numPlayers=4, player=3, deck count=10, hand count=5: FAIL
+numPlayers=3, player=0, deck count=229, hand count=45: pass
+numPlayers=4, player=1, deck count=33, hand count=25: pass
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
+numPlayers=3, player=2, deck count=10, hand count=5: FAIL
 
-1000 tests, 0 failures.
 
-**********
-
-
-**********
-
-cardtest3
-
-Testing Mine card:
-2 players, player 1 exchanges copper in p.0 for silver. Mine in last pos: 
-	problem: postconditions not met:
-	parameters: player=1, handPos=5, trashPos=0, gainCard=5
-	FAIL
-
-4 players, player 3 exchanges copper in p.3 for treasure map. Mine in p.2: pass
-
-3 players, player 0 exchanges silver in p.4 for gold. Mine in p.0: 
-	problem: postconditions not met:
-	parameters: player=0, handPos=0, trashPos=4, gainCard=6
-	FAIL
-
-2 players, player 0 exchanges silver in p.9 for gold. Mine in p.0: 
-	problem: unexpected return value
-	parameters: player=0, handPos=0, trashPos=9, gainCard=6
-	FAIL
-
-4 players, player 2 exchanges copper in p.1 for gold. Mine in p.4: pass
-
-
-5 tests, 3 failures
-
-**********
-
-
-**********
-cardtest4
-
-Testing Steward card:
-
-Test 1: Player 3 chooses to draw 2 cards: pass
-Test 2: Player 0 chooses 2 coins: pass
-Test 3: Player 1 puts 2 cards in trash: pass
-
-Doing random tests...
-
-1003 tests, 0 failures.
+1000 tests, 347 failures.
 
 **********
 
 File 'dominion.c'
-Lines executed:42.20% of 519
+Lines executed:26.40% of 519
 Creating 'dominion.c.gcov'
 
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda
-        -:    0:Runs:8
-        -:    0:Programs:8
+        -:    0:Runs:1
+        -:    0:Programs:1
         -:    1:#include "dominion.h"
         -:    2:#include "dominion_helpers.h"
         -:    3:#include "rngs.h"
@@ -141,13 +1025,13 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-   779447:    8:int compare( const void* a, const void* b )
+  1481742:    8:int compare( const void* a, const void* b )
         -:    9:{
-   779447:   10:	if (*(int*) a > *(int*) b)
-    24676:   11:		return 1;
-   754771:   12:	if (*(int*) a < *(int*) b)
-   196079:   13:		return -1;
-   558692:   14:	return 0;
+  1481742:   10:	if (*(int*) a > *(int*) b)
+   672643:   11:		return 1;
+   809099:   12:	if (*(int*) a < *(int*) b)
+   305882:   13:		return -1;
+   503217:   14:	return 0;
         -:   15:}
         -:   16:
     #####:   17:struct gameState* newGame()
@@ -172,31 +1056,31 @@ Creating 'dominion.c.gcov'
     #####:   36:	return k;
         -:   37:}
         -:   38:
-    17823:   39:int initializeGame( int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state )
+     1000:   39:int initializeGame( int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state )
         -:   40:{
         -:   41:
         -:   42:	int i;
         -:   43:	int j;
         -:   44:	int it;
         -:   45:	//set up random number generator
-    17823:   46:	SelectStream( 1 );
-    17823:   47:	PutSeed( (long) randomSeed );
+     1000:   46:	SelectStream( 1 );
+     1000:   47:	PutSeed( (long) randomSeed );
         -:   48:
         -:   49:	//check number of players
-    17823:   50:	if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+     1000:   50:	if (numPlayers > MAX_PLAYERS || numPlayers < 2)
         -:   51:	{
     #####:   52:		return -1;
         -:   53:	}
         -:   54:
         -:   55:	//set number of players
-    17823:   56:	state->numPlayers = numPlayers;
+     1000:   56:	state->numPlayers = numPlayers;
         -:   57:
         -:   58:	//check selected kingdom cards are different
-   196053:   59:	for (i = 0; i < 10; i++)
+    11000:   59:	for (i = 0; i < 10; i++)
         -:   60:	{
-  1960530:   61:		for (j = 0; j < 10; j++)
+   110000:   61:		for (j = 0; j < 10; j++)
         -:   62:		{
-  1782300:   63:			if (j != i && kingdomCards[j] == kingdomCards[i])
+   100000:   63:			if (j != i && kingdomCards[j] == kingdomCards[i])
         -:   64:			{
     #####:   65:				return -1;
         -:   66:			}
@@ -207,60 +1091,60 @@ Creating 'dominion.c.gcov'
         -:   71:	///////////////////////////////
         -:   72:
         -:   73:	//set number of Curse cards
-    17823:   74:	if (numPlayers == 2)
+     1000:   74:	if (numPlayers == 2)
         -:   75:	{
-     7343:   76:		state->supplyCount[curse] = 10;
-    10480:   77:	} else if (numPlayers == 3)
+      331:   76:		state->supplyCount[curse] = 10;
+      669:   77:	} else if (numPlayers == 3)
         -:   78:	{
-    10470:   79:		state->supplyCount[curse] = 20;
+      323:   79:		state->supplyCount[curse] = 20;
         -:   80:	} else
         -:   81:	{
-       10:   82:		state->supplyCount[curse] = 30;
+      346:   82:		state->supplyCount[curse] = 30;
         -:   83:	}
         -:   84:
         -:   85:	//set number of Victory cards
-    17823:   86:	if (numPlayers == 2)
+     1000:   86:	if (numPlayers == 2)
         -:   87:	{
-     7343:   88:		state->supplyCount[estate] = 8;
-     7343:   89:		state->supplyCount[duchy] = 8;
-     7343:   90:		state->supplyCount[province] = 8;
+      331:   88:		state->supplyCount[estate] = 8;
+      331:   89:		state->supplyCount[duchy] = 8;
+      331:   90:		state->supplyCount[province] = 8;
         -:   91:	} else
         -:   92:	{
-    10480:   93:		state->supplyCount[estate] = 12;
-    10480:   94:		state->supplyCount[duchy] = 12;
-    10480:   95:		state->supplyCount[province] = 12;
+      669:   93:		state->supplyCount[estate] = 12;
+      669:   94:		state->supplyCount[duchy] = 12;
+      669:   95:		state->supplyCount[province] = 12;
         -:   96:	}
         -:   97:
         -:   98:	//set number of Treasure cards
-    17823:   99:	state->supplyCount[copper] = 60 - ( 7 * numPlayers );
-    17823:  100:	state->supplyCount[silver] = 40;
-    17823:  101:	state->supplyCount[gold] = 30;
+     1000:   99:	state->supplyCount[copper] = 60 - ( 7 * numPlayers );
+     1000:  100:	state->supplyCount[silver] = 40;
+     1000:  101:	state->supplyCount[gold] = 30;
         -:  102:
         -:  103:	//set number of Kingdom cards
-   374283:  104:	for (i = adventurer; i <= treasure_map; i++)    //loop all cards
+    21000:  104:	for (i = adventurer; i <= treasure_map; i++)    //loop all cards
         -:  105:	{
-  2940795:  106:		for (j = 0; j < 10; j++)    //loop chosen cards
+   165000:  106:		for (j = 0; j < 10; j++)    //loop chosen cards
         -:  107:		{
-  2762565:  108:			if (kingdomCards[j] == i)
+   155000:  108:			if (kingdomCards[j] == i)
         -:  109:			{
         -:  110:				//check if card is a 'Victory' Kingdom card
-   178230:  111:				if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+    10000:  111:				if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
         -:  112:				{
-    36982:  113:					if (numPlayers == 2)
+     2140:  113:					if (numPlayers == 2)
         -:  114:					{
-     7612:  115:						state->supplyCount[i] = 8;
+      351:  115:						state->supplyCount[i] = 8;
         -:  116:					} else
         -:  117:					{
-    10879:  118:						state->supplyCount[i] = 12;
+      719:  118:						state->supplyCount[i] = 12;
         -:  119:					}
         -:  120:				} else
         -:  121:				{
-   159739:  122:					state->supplyCount[i] = 10;
+     8930:  122:					state->supplyCount[i] = 10;
         -:  123:				}
-   178230:  124:				break;
+    10000:  124:				break;
         -:  125:			} else    //card is not in the set choosen for the game
         -:  126:			{
-  2584335:  127:				state->supplyCount[i] = -1;
+   145000:  127:				state->supplyCount[i] = -1;
         -:  128:			}
         -:  129:		}
         -:  130:
@@ -270,36 +1154,36 @@ Creating 'dominion.c.gcov'
         -:  134:	//supply intilization complete
         -:  135:
         -:  136:	//set player decks
-    63959:  137:	for (i = 0; i < numPlayers; i++)
+     4015:  137:	for (i = 0; i < numPlayers; i++)
         -:  138:	{
-    46136:  139:		state->deckCount[i] = 0;
-   184544:  140:		for (j = 0; j < 3; j++)
+     3015:  139:		state->deckCount[i] = 0;
+    12060:  140:		for (j = 0; j < 3; j++)
         -:  141:		{
-   138408:  142:			state->deck[i][j] = estate;
-   138408:  143:			state->deckCount[i]++;
+     9045:  142:			state->deck[i][j] = estate;
+     9045:  143:			state->deckCount[i]++;
         -:  144:		}
-   369088:  145:		for (j = 3; j < 10; j++)
+    24120:  145:		for (j = 3; j < 10; j++)
         -:  146:		{
-   322952:  147:			state->deck[i][j] = copper;
-   322952:  148:			state->deckCount[i]++;
+    21105:  147:			state->deck[i][j] = copper;
+    21105:  148:			state->deckCount[i]++;
         -:  149:		}
         -:  150:	}
         -:  151:
         -:  152:	//shuffle player decks
-    63959:  153:	for (i = 0; i < numPlayers; i++)
+     4015:  153:	for (i = 0; i < numPlayers; i++)
         -:  154:	{
-    46136:  155:		if (shuffle( i, state ) < 0)
+     3015:  155:		if (shuffle( i, state ) < 0)
         -:  156:		{
     #####:  157:			return -1;
         -:  158:		}
         -:  159:	}
         -:  160:
         -:  161:	//draw player hands
-    63959:  162:	for (i = 0; i < numPlayers; i++)
+     4015:  162:	for (i = 0; i < numPlayers; i++)
         -:  163:	{
         -:  164:		//initialize hand size to zero
-    46136:  165:		state->handCount[i] = 0;
-    46136:  166:		state->discardCount[i] = 0;
+     3015:  165:		state->handCount[i] = 0;
+     3015:  166:		state->discardCount[i] = 0;
         -:  167:		//draw 5 cards
         -:  168:		// for (j = 0; j < 5; j++)
         -:  169:		//	{
@@ -308,63 +1192,63 @@ Creating 'dominion.c.gcov'
         -:  172:	}
         -:  173:
         -:  174:	//set embargo tokens to 0 for all supply piles
-   499044:  175:	for (i = 0; i <= treasure_map; i++)
+    28000:  175:	for (i = 0; i <= treasure_map; i++)
         -:  176:	{
-   481221:  177:		state->embargoTokens[i] = 0;
+    27000:  177:		state->embargoTokens[i] = 0;
         -:  178:	}
         -:  179:
         -:  180:	//initialize first player's turn
-    17823:  181:	state->outpostPlayed = 0;
-    17823:  182:	state->phase = 0;
-    17823:  183:	state->numActions = 1;
-    17823:  184:	state->numBuys = 1;
-    17823:  185:	state->playedCardCount = 0;
-    17823:  186:	state->whoseTurn = 0;
-    17823:  187:	state->handCount[state->whoseTurn] = 0;
+     1000:  181:	state->outpostPlayed = 0;
+     1000:  182:	state->phase = 0;
+     1000:  183:	state->numActions = 1;
+     1000:  184:	state->numBuys = 1;
+     1000:  185:	state->playedCardCount = 0;
+     1000:  186:	state->whoseTurn = 0;
+     1000:  187:	state->handCount[state->whoseTurn] = 0;
         -:  188:	//int it; move to top
         -:  189:
         -:  190:	//Moved draw cards to here, only drawing at the start of a turn
-   106938:  191:	for (it = 0; it < 5; it++)
+     6000:  191:	for (it = 0; it < 5; it++)
         -:  192:	{
-    89115:  193:		drawCard( state->whoseTurn, state );
+     5000:  193:		drawCard( state->whoseTurn, state );
         -:  194:	}
         -:  195:
-    17823:  196:	updateCoins( state->whoseTurn, state, 0 );
+     1000:  196:	updateCoins( state->whoseTurn, state, 0 );
         -:  197:
-    17823:  198:	return 0;
+     1000:  198:	return 0;
         -:  199:}
         -:  200:
-    46172:  201:int shuffle( int player, struct gameState *state )
+     3981:  201:int shuffle( int player, struct gameState *state )
         -:  202:{
         -:  203:
         -:  204:	int newDeck[MAX_DECK];
-    46172:  205:	int newDeckPos = 0;
+     3981:  205:	int newDeckPos = 0;
         -:  206:	int card;
         -:  207:	int i;
         -:  208:
-    46172:  209:	if (state->deckCount[player] < 1)
-        4:  210:		return -1;
-    46168:  211:	qsort( (void*) ( state->deck[player] ), state->deckCount[player], sizeof(int), compare );
+     3981:  209:	if (state->deckCount[player] < 1)
+      619:  210:		return -1;
+     3362:  211:	qsort( (void*) ( state->deck[player] ), state->deckCount[player], sizeof(int), compare );
         -:  212:	/* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
         -:  213:
-   553934:  214:	while ( state->deckCount[player] > 0 )
+    38609:  214:	while ( state->deckCount[player] > 0 )
         -:  215:	{
-   461598:  216:		card = floor( Random() * state->deckCount[player] );
-   461598:  217:		newDeck[newDeckPos] = state->deck[player][card];
-   461598:  218:		newDeckPos++;
-  1614098:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+    31885:  216:		card = floor( Random() * state->deckCount[player] );
+    31885:  217:		newDeck[newDeckPos] = state->deck[player][card];
+    31885:  218:		newDeckPos++;
+   107301:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
         -:  220:		{
-  1152500:  221:			state->deck[player][i] = state->deck[player][i + 1];
+    75416:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
-   461598:  223:		state->deckCount[player]--;
+    31885:  223:		state->deckCount[player]--;
         -:  224:	}
-   507766:  225:	for (i = 0; i < newDeckPos; i++)
+    35247:  225:	for (i = 0; i < newDeckPos; i++)
         -:  226:	{
-   461598:  227:		state->deck[player][i] = newDeck[i];
-   461598:  228:		state->deckCount[player]++;
+    31885:  227:		state->deck[player][i] = newDeck[i];
+    31885:  228:		state->deckCount[player]++;
         -:  229:	}
         -:  230:
-    46168:  231:	return 0;
+     3362:  231:	return 0;
         -:  232:}
         -:  233:
     #####:  234:int playCard( int handPos, int choice1, int choice2, int choice3, struct gameState *state )
@@ -409,7 +1293,7 @@ Creating 'dominion.c.gcov'
         -:  273:}
         -:  274:
         -:  275:// apparently, supplyPos is the enum value of the card being bought
-   242073:  276:int buyCard( int supplyPos, struct gameState *state )
+    #####:  276:int buyCard( int supplyPos, struct gameState *state )
         -:  277:{
         -:  278:	int who;
         -:  279:	if (DEBUG)
@@ -419,32 +1303,32 @@ Creating 'dominion.c.gcov'
         -:  283:
         -:  284:	// I don't know what to do about the phase thing.
         -:  285:
-   242073:  286:	who = state->whoseTurn;
+    #####:  286:	who = state->whoseTurn;
         -:  287:
-   242073:  288:	if (state->numBuys < 1)
+    #####:  288:	if (state->numBuys < 1)
         -:  289:	{
         -:  290:		if (DEBUG)
         -:  291:			printf( "You do not have any buys left\n" );
-    41477:  292:		return -1;
-   200596:  293:	} else if (supplyCount( supplyPos, state ) < 1)
+    #####:  292:		return -1;
+    #####:  293:	} else if (supplyCount( supplyPos, state ) < 1)
         -:  294:	{
         -:  295:		if (DEBUG)
         -:  296:			printf( "There are not any of that type of card left\n" );
-      108:  297:		return -1;
-   200488:  298:	} else if (state->coins < getCost( supplyPos ))
+    #####:  297:		return -1;
+    #####:  298:	} else if (state->coins < getCost( supplyPos ))
         -:  299:	{
         -:  300:		if (DEBUG)
         -:  301:			printf( "You do not have enough money to buy that. You have %d coins.\n",
         -:  302:					state->coins );
-   179066:  303:		return -1;
+    #####:  303:		return -1;
         -:  304:	} else
         -:  305:	{
-    21422:  306:		state->phase = 1;
+    #####:  306:		state->phase = 1;
         -:  307:		//state->supplyCount[supplyPos]--;
-    21422:  308:		gainCard( supplyPos, state, 0, who );   //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
+    #####:  308:		gainCard( supplyPos, state, 0, who );   //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
         -:  309:
-    21422:  310:		state->coins = ( state->coins ) - ( getCost( supplyPos ) );
-    21422:  311:		state->numBuys--;
+    #####:  310:		state->coins = ( state->coins ) - ( getCost( supplyPos ) );
+    #####:  311:		state->numBuys--;
         -:  312:		if (DEBUG)
         -:  313:			printf( "You bought card number %d for %d coins. You now have %d buys and %d coins.\n",
         -:  314:					supplyPos, getCost( supplyPos ), state->numBuys, state->coins );
@@ -453,7 +1337,7 @@ Creating 'dominion.c.gcov'
         -:  317:	//state->discard[who][state->discardCount[who]] = supplyPos;
         -:  318:	//state->discardCount[who]++;
         -:  319:
-    21422:  320:	return 0;
+    #####:  320:	return 0;
         -:  321:}
         -:  322:
     #####:  323:int numHandCards( struct gameState *state )
@@ -467,85 +1351,85 @@ Creating 'dominion.c.gcov'
     #####:  331:	return state->hand[currentPlayer][handPos];
         -:  332:}
         -:  333:
-   237021:  334:int supplyCount( int card, struct gameState *state )
+    #####:  334:int supplyCount( int card, struct gameState *state )
         -:  335:{
-   237021:  336:	return state->supplyCount[card];
+    #####:  336:	return state->supplyCount[card];
         -:  337:}
         -:  338:
-   300000:  339:int fullDeckCount( int player, int card, struct gameState *state )
+    #####:  339:int fullDeckCount( int player, int card, struct gameState *state )
         -:  340:{
         -:  341:	int i;
-   300000:  342:	int count = 0;
+    #####:  342:	int count = 0;
         -:  343:
-136977455:  344:	for (i = 0; i < state->deckCount[player]; i++)
+    #####:  344:	for (i = 0; i < state->deckCount[player]; i++)
         -:  345:	{
-136677455:  346:		if (state->deck[player][i] == card)
-  7342524:  347:			count++;
+    #####:  346:		if (state->deck[player][i] == card)
+    #####:  347:			count++;
         -:  348:	}
         -:  349:
-137140029:  350:	for (i = 0; i < state->handCount[player]; i++)
+    #####:  350:	for (i = 0; i < state->handCount[player]; i++)
         -:  351:	{
-136840029:  352:		if (state->hand[player][i] == card)
-  7355868:  353:			count++;
+    #####:  352:		if (state->hand[player][i] == card)
+    #####:  353:			count++;
         -:  354:	}
         -:  355:
-137077897:  356:	for (i = 0; i < state->discardCount[player]; i++)
+    #####:  356:	for (i = 0; i < state->discardCount[player]; i++)
         -:  357:	{
-136777897:  358:		if (state->discard[player][i] == card)
-  7352234:  359:			count++;
+    #####:  358:		if (state->discard[player][i] == card)
+    #####:  359:			count++;
         -:  360:	}
         -:  361:
-   300000:  362:	return count;
+    #####:  362:	return count;
         -:  363:}
         -:  364:
-      736:  365:int whoseTurn( struct gameState *state )
+     4062:  365:int whoseTurn( struct gameState *state )
         -:  366:{
-      736:  367:	return state->whoseTurn;
+     4062:  367:	return state->whoseTurn;
         -:  368:}
         -:  369:
-      736:  370:int endTurn( struct gameState *state )
+     4062:  370:int endTurn( struct gameState *state )
         -:  371:{
         -:  372:	int k;
         -:  373:	int i;
-      736:  374:	int currentPlayer = whoseTurn( state );
+     4062:  374:	int currentPlayer = whoseTurn( state );
         -:  375:
         -:  376:	//Discard hand
-     4416:  377:	for (i = 0; i < state->handCount[currentPlayer]; i++)
+    24372:  377:	for (i = 0; i < state->handCount[currentPlayer]; i++)
         -:  378:	{
-     7360:  379:		state->discard[currentPlayer][state->discardCount[currentPlayer]++] =
-     3680:  380:				state->hand[currentPlayer][i];    //Discard
-     3680:  381:		state->hand[currentPlayer][i] = -1;    //Set card to -1
+    40620:  379:		state->discard[currentPlayer][state->discardCount[currentPlayer]++] =
+    20310:  380:				state->hand[currentPlayer][i];    //Discard
+    20310:  381:		state->hand[currentPlayer][i] = -1;    //Set card to -1
         -:  382:	}
-      736:  383:	state->handCount[currentPlayer] = 0;    //Reset hand count
+     4062:  383:	state->handCount[currentPlayer] = 0;    //Reset hand count
         -:  384:
         -:  385:	//Code for determining the player
-      736:  386:	if (currentPlayer < ( state->numPlayers - 1 ))
+     4062:  386:	if (currentPlayer < ( state->numPlayers - 1 ))
         -:  387:	{
-      736:  388:		state->whoseTurn = currentPlayer + 1;    //Still safe to increment
+     3062:  388:		state->whoseTurn = currentPlayer + 1;    //Still safe to increment
         -:  389:	} else
         -:  390:	{
-    #####:  391:		state->whoseTurn = 0;    //Max player has been reached, loop back around to player 1
+     1000:  391:		state->whoseTurn = 0;    //Max player has been reached, loop back around to player 1
         -:  392:	}
         -:  393:
-      736:  394:	state->outpostPlayed = 0;
-      736:  395:	state->phase = 0;
-      736:  396:	state->numActions = 1;
-      736:  397:	state->coins = 0;
-      736:  398:	state->numBuys = 1;
-      736:  399:	state->playedCardCount = 0;
-      736:  400:	state->handCount[state->whoseTurn] = 0;
+     4062:  394:	state->outpostPlayed = 0;
+     4062:  395:	state->phase = 0;
+     4062:  396:	state->numActions = 1;
+     4062:  397:	state->coins = 0;
+     4062:  398:	state->numBuys = 1;
+     4062:  399:	state->playedCardCount = 0;
+     4062:  400:	state->handCount[state->whoseTurn] = 0;
         -:  401:
         -:  402:	//int k; move to top
         -:  403:	//Next player draws hand
-     4416:  404:	for (k = 0; k < 5; k++)
+    24372:  404:	for (k = 0; k < 5; k++)
         -:  405:	{
-     3680:  406:		drawCard( state->whoseTurn, state );    //Draw a card
+    20310:  406:		drawCard( state->whoseTurn, state );    //Draw a card
         -:  407:	}
         -:  408:
         -:  409:	//Update money
-      736:  410:	updateCoins( state->whoseTurn, state, 0 );
+     4062:  410:	updateCoins( state->whoseTurn, state, 0 );
         -:  411:
-      736:  412:	return 0;
+     4062:  412:	return 0;
         -:  413:}
         -:  414:
     #####:  415:int isGameOver( struct gameState *state )
@@ -738,128 +1622,128 @@ Creating 'dominion.c.gcov'
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-    95823:  605:int drawCard( int player, struct gameState *state )
+    37567:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    95823:  609:	if (state->deckCount[player] <= 0)
+    37567:  609:	if (state->deckCount[player] <= 0)
         -:  610:	{    //Deck is empty
         -:  611:
         -:  612:		//Step 1 Shuffle the discard pile back into a deck
         -:  613:		int i;
         -:  614:		//Move discard to deck
-        9:  615:		for (i = 0; i < state->discardCount[player]; i++)
+     2218:  615:		for (i = 0; i < state->discardCount[player]; i++)
         -:  616:		{
-        6:  617:			state->deck[player][i] = state->discard[player][i];
-        6:  618:			state->discard[player][i] = -1;
+     1735:  617:			state->deck[player][i] = state->discard[player][i];
+     1735:  618:			state->discard[player][i] = -1;
         -:  619:		}
         -:  620:
-        3:  621:		state->deckCount[player] = state->discardCount[player];
-        3:  622:		state->discardCount[player] = 0;    //Reset discard
+      483:  621:		state->deckCount[player] = state->discardCount[player];
+      483:  622:		state->discardCount[player] = 0;    //Reset discard
         -:  623:
         -:  624:		//Shufffle the deck
-        3:  625:		shuffle( player, state );    //Shuffle the deck up and make it so that we can draw
+      483:  625:		shuffle( player, state );    //Shuffle the deck up and make it so that we can draw
         -:  626:
         -:  627:		if (DEBUG)
         -:  628:		{    //Debug statements
         -:  629:			printf( "Deck count now: %d\n", state->deckCount[player] );
         -:  630:		}
         -:  631:
-        3:  632:		state->discardCount[player] = 0;
+      483:  632:		state->discardCount[player] = 0;
         -:  633:
         -:  634:		//Step 2 Draw Card
-        3:  635:		count = state->handCount[player];    //Get current player's hand count
+      483:  635:		count = state->handCount[player];    //Get current player's hand count
         -:  636:
         -:  637:		if (DEBUG)
         -:  638:		{    //Debug statements
         -:  639:			printf( "Current hand count: %d\n", count );
         -:  640:		}
         -:  641:
-        3:  642:		deckCounter = state->deckCount[player];    //Create a holder for the deck count
+      483:  642:		deckCounter = state->deckCount[player];    //Create a holder for the deck count
         -:  643:
-        3:  644:		if (deckCounter == 0)
-        1:  645:			return -1;
+      483:  644:		if (deckCounter == 0)
+      136:  645:			return -1;
         -:  646:
-        2:  647:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to hand
-        2:  648:		state->deckCount[player]--;
-        2:  649:		state->handCount[player]++;    //Increment hand count
+      347:  647:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to hand
+      347:  648:		state->deckCount[player]--;
+      347:  649:		state->handCount[player]++;    //Increment hand count
         -:  650:	}
         -:  651:
         -:  652:	else
         -:  653:	{
-    95820:  654:		int count = state->handCount[player];    //Get current hand count for player
+    37084:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
         -:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    95820:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    95820:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    95820:  663:		state->deckCount[player]--;
-    95820:  664:		state->handCount[player]++;    //Increment hand count
+    37084:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    37084:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    37084:  663:		state->deckCount[player]--;
+    37084:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    95822:  667:	return 0;
+    37431:  667:	return 0;
         -:  668:}
         -:  669:
-   443948:  670:int getCost( int cardNumber )
+    #####:  670:int getCost( int cardNumber )
         -:  671:{
-   443948:  672:	switch ( cardNumber ) {
+    #####:  672:	switch ( cardNumber ) {
         -:  673:	case curse:
-    16056:  674:		return 0;
+    #####:  674:		return 0;
         -:  675:	case estate:
-    14828:  676:		return 2;
+    #####:  676:		return 2;
         -:  677:	case duchy:
-    14588:  678:		return 5;
+    #####:  678:		return 5;
         -:  679:	case province:
-    14540:  680:		return 8;
+    #####:  680:		return 8;
         -:  681:	case copper:
-    16386:  682:		return 0;
+    #####:  682:		return 0;
         -:  683:	case silver:
-    45786:  684:		return 3;
+    #####:  684:		return 3;
         -:  685:	case gold:
-    36726:  686:		return 6;
+    #####:  686:		return 6;
         -:  687:	case adventurer:
-    14120:  688:		return 6;
+    #####:  688:		return 6;
         -:  689:	case council_room:
-    14140:  690:		return 5;
+    #####:  690:		return 5;
         -:  691:	case feast:
-    14200:  692:		return 4;
+    #####:  692:		return 4;
         -:  693:	case gardens:
-    14636:  694:		return 4;
+    #####:  694:		return 4;
         -:  695:	case mine:
-    14140:  696:		return 5;
+    #####:  696:		return 5;
         -:  697:	case remodel:
-    14200:  698:		return 4;
+    #####:  698:		return 4;
         -:  699:	case smithy:
-    14200:  700:		return 4;
+    #####:  700:		return 4;
         -:  701:	case village:
-    14280:  702:		return 3;
+    #####:  702:		return 3;
         -:  703:	case baron:
-    14200:  704:		return 4;
+    #####:  704:		return 4;
         -:  705:	case great_hall:
-    14700:  706:		return 3;
+    #####:  706:		return 3;
         -:  707:	case minion:
-    14140:  708:		return 5;
+    #####:  708:		return 5;
         -:  709:	case steward:
-    14280:  710:		return 3;
+    #####:  710:		return 3;
         -:  711:	case tribute:
-    14140:  712:		return 5;
+    #####:  712:		return 5;
         -:  713:	case ambassador:
-    14280:  714:		return 3;
+    #####:  714:		return 3;
         -:  715:	case cutpurse:
-    14200:  716:		return 4;
+    #####:  716:		return 4;
         -:  717:	case embargo:
-    14440:  718:		return 2;
+    #####:  718:		return 2;
         -:  719:	case outpost:
-    14140:  720:		return 5;
+    #####:  720:		return 5;
         -:  721:	case salvager:
-    14200:  722:		return 4;
+    #####:  722:		return 4;
         -:  723:	case sea_hag:
-    14200:  724:		return 4;
+    #####:  724:		return 4;
         -:  725:	case treasure_map:
-    14202:  726:		return 4;
+    #####:  726:		return 4;
         -:  727:	}
         -:  728:
     #####:  729:	return -1;
@@ -1512,58 +2396,58 @@ Creating 'dominion.c.gcov'
     #####: 1376:	return -1;
         -: 1377:}
         -: 1378:
-     1993: 1379:int discardCard( int handPos, int currentPlayer, struct gameState *state, int trashFlag )
+    #####: 1379:int discardCard( int handPos, int currentPlayer, struct gameState *state, int trashFlag )
         -: 1380:{
         -: 1381:
         -: 1382:	//if card is not trashed, added to Played pile
-     1993: 1383:	if (trashFlag < 1)
+    #####: 1383:	if (trashFlag < 1)
         -: 1384:	{
         -: 1385:		//add card to played pile
-     1006: 1386:		state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
-     1006: 1387:		state->playedCardCount++;
+    #####: 1386:		state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
+    #####: 1387:		state->playedCardCount++;
         -: 1388:
         -: 1389:		// I think this was missing before
-     2012: 1390:		state->discard[currentPlayer][state->discardCount[currentPlayer]] =
-     1006: 1391:				state->hand[currentPlayer][handPos];
-     1006: 1392:		state->discardCount[currentPlayer]++;
+    #####: 1390:		state->discard[currentPlayer][state->discardCount[currentPlayer]] =
+    #####: 1391:				state->hand[currentPlayer][handPos];
+    #####: 1392:		state->discardCount[currentPlayer]++;
         -: 1393:
         -: 1394:
         -: 1395:	}
         -: 1396:
         -: 1397:	//set played card to -1
-     1993: 1398:	state->hand[currentPlayer][handPos] = -1;
+    #####: 1398:	state->hand[currentPlayer][handPos] = -1;
         -: 1399:
         -: 1400:	//remove card from player's hand
-     1993: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
+    #####: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
         -: 1402:	{
         -: 1403:		//reduce number of cards in hand
-       87: 1404:		state->handCount[currentPlayer]--;
-     1906: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
+    #####: 1404:		state->handCount[currentPlayer]--;
+    #####: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
         -: 1406:	{
         -: 1407:		//reduce number of cards in hand
     #####: 1408:		state->handCount[currentPlayer]--;
         -: 1409:	} else
         -: 1410:	{
         -: 1411:		//replace discarded card with last card in hand
-     1906: 1412:		state->hand[currentPlayer][handPos] =
-     1906: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
+    #####: 1412:		state->hand[currentPlayer][handPos] =
+    #####: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
         -: 1414:		//set last card to -1
-     1906: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+    #####: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1416:		//reduce number of cards in hand
-     1906: 1417:		state->handCount[currentPlayer]--;
+    #####: 1417:		state->handCount[currentPlayer]--;
         -: 1418:	}
         -: 1419:
-     1993: 1420:	return 0;
+    #####: 1420:	return 0;
         -: 1421:}
         -: 1422:
-    36425: 1423:int gainCard( int supplyPos, struct gameState *state, int toFlag, int player )
+    #####: 1423:int gainCard( int supplyPos, struct gameState *state, int toFlag, int player )
         -: 1424:{
         -: 1425:	//Note: supplyPos is enum of choosen card
         -: 1426:
         -: 1427:	//check if supply pile is empty (0) or card is not used in game (-1)
-    36425: 1428:	if (supplyCount( supplyPos, state ) < 1)
+    #####: 1428:	if (supplyCount( supplyPos, state ) < 1)
         -: 1429:	{
-    14221: 1430:		return -1;
+    #####: 1430:		return -1;
         -: 1431:	}
         -: 1432:
         -: 1433:	//added card for [whoseTurn] current player:
@@ -1571,68 +2455,68 @@ Creating 'dominion.c.gcov'
         -: 1435:	// toFlag = 1 : add to deck
         -: 1436:	// toFlag = 2 : add to hand
         -: 1437:
-    22204: 1438:	if (toFlag == 1)
+    #####: 1438:	if (toFlag == 1)
         -: 1439:	{
-      260: 1440:		state->deck[player][state->deckCount[player]] = supplyPos;
-      260: 1441:		state->deckCount[player]++;
-    21944: 1442:	} else if (toFlag == 2)
+    #####: 1440:		state->deck[player][state->deckCount[player]] = supplyPos;
+    #####: 1441:		state->deckCount[player]++;
+    #####: 1442:	} else if (toFlag == 2)
         -: 1443:	{
-      283: 1444:		state->hand[player][state->handCount[player]] = supplyPos;
-      283: 1445:		state->handCount[player]++;
+    #####: 1444:		state->hand[player][state->handCount[player]] = supplyPos;
+    #####: 1445:		state->handCount[player]++;
         -: 1446:	} else
         -: 1447:	{
-    21661: 1448:		state->discard[player][state->discardCount[player]] = supplyPos;
-    21661: 1449:		state->discardCount[player]++;
+    #####: 1448:		state->discard[player][state->discardCount[player]] = supplyPos;
+    #####: 1449:		state->discardCount[player]++;
         -: 1450:	}
         -: 1451:
         -: 1452:	//decrease number in supply pile
-    22204: 1453:	state->supplyCount[supplyPos]--;
+    #####: 1453:	state->supplyCount[supplyPos]--;
         -: 1454:
-    22204: 1455:	return 0;
+    #####: 1455:	return 0;
         -: 1456:}
         -: 1457:
-    18559: 1458:int updateCoins( int player, struct gameState *state, int bonus )
+     5062: 1458:int updateCoins( int player, struct gameState *state, int bonus )
         -: 1459:{
         -: 1460:	int i;
         -: 1461:
         -: 1462:	//reset coin count
-    18559: 1463:	state->coins = 0;
+     5062: 1463:	state->coins = 0;
         -: 1464:
         -: 1465:	//add coins for each Treasure card in player's hand
-   111354: 1466:	for (i = 0; i < state->handCount[player]; i++)
+    30372: 1466:	for (i = 0; i < state->handCount[player]; i++)
         -: 1467:	{
-    92795: 1468:		if (state->hand[player][i] == copper)
+    25310: 1468:		if (state->hand[player][i] == copper)
         -: 1469:		{
-    74660: 1470:			state->coins += 1;
-    18135: 1471:		} else if (state->hand[player][i] == silver)
+    12073: 1470:			state->coins += 1;
+    13237: 1471:		} else if (state->hand[player][i] == silver)
         -: 1472:		{
-    #####: 1473:			state->coins += 2;
-    18135: 1474:		} else if (state->hand[player][i] == gold)
+      472: 1473:			state->coins += 2;
+    12765: 1474:		} else if (state->hand[player][i] == gold)
         -: 1475:		{
-    #####: 1476:			state->coins += 3;
+      436: 1476:			state->coins += 3;
         -: 1477:		}
         -: 1478:	}
         -: 1479:
         -: 1480:	//add bonus
-    18559: 1481:	state->coins += bonus;
+     5062: 1481:	state->coins += bonus;
         -: 1482:
-    18559: 1483:	return 0;
+     5062: 1483:	return 0;
         -: 1484:}
         -: 1485:
         -: 1486://end of dominion.c
         -: 1487:
 File 'dominion.c'
-Lines executed:42.20% of 519
-Branches executed:37.06% of 367
-Taken at least once:34.60% of 367
-Calls executed:21.92% of 73
+Lines executed:26.40% of 519
+Branches executed:21.25% of 367
+Taken at least once:20.16% of 367
+Calls executed:15.07% of 73
 Creating 'dominion.c.gcov'
 
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda
-        -:    0:Runs:8
-        -:    0:Programs:8
+        -:    0:Runs:1
+        -:    0:Programs:1
         -:    1:#include "dominion.h"
         -:    2:#include "dominion_helpers.h"
         -:    3:#include "rngs.h"
@@ -1640,18 +2524,18 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-function compare called 779447 returned 100% blocks executed 100%
-   779447:    8:int compare( const void* a, const void* b )
+function compare called 1481742 returned 100% blocks executed 100%
+  1481742:    8:int compare( const void* a, const void* b )
         -:    9:{
-   779447:   10:	if (*(int*) a > *(int*) b)
-branch  0 taken 3% (fallthrough)
-branch  1 taken 97%
-    24676:   11:		return 1;
-   754771:   12:	if (*(int*) a < *(int*) b)
-branch  0 taken 26% (fallthrough)
-branch  1 taken 74%
-   196079:   13:		return -1;
-   558692:   14:	return 0;
+  1481742:   10:	if (*(int*) a > *(int*) b)
+branch  0 taken 45% (fallthrough)
+branch  1 taken 55%
+   672643:   11:		return 1;
+   809099:   12:	if (*(int*) a < *(int*) b)
+branch  0 taken 38% (fallthrough)
+branch  1 taken 62%
+   305882:   13:		return -1;
+   503217:   14:	return 0;
         -:   15:}
         -:   16:
 function newGame called 0 returned 0% blocks executed 0%
@@ -1678,21 +2562,21 @@ function kingdomCards called 0 returned 0% blocks executed 0%
     #####:   36:	return k;
         -:   37:}
         -:   38:
-function initializeGame called 17823 returned 100% blocks executed 95%
-    17823:   39:int initializeGame( int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state )
+function initializeGame called 1000 returned 100% blocks executed 95%
+     1000:   39:int initializeGame( int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state )
         -:   40:{
         -:   41:
         -:   42:	int i;
         -:   43:	int j;
         -:   44:	int it;
         -:   45:	//set up random number generator
-    17823:   46:	SelectStream( 1 );
+     1000:   46:	SelectStream( 1 );
 call    0 returned 100%
-    17823:   47:	PutSeed( (long) randomSeed );
+     1000:   47:	PutSeed( (long) randomSeed );
 call    0 returned 100%
         -:   48:
         -:   49:	//check number of players
-    17823:   50:	if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+     1000:   50:	if (numPlayers > MAX_PLAYERS || numPlayers < 2)
 branch  0 taken 100% (fallthrough)
 branch  1 taken 0%
 branch  2 taken 0% (fallthrough)
@@ -1702,18 +2586,18 @@ branch  3 taken 100%
         -:   53:	}
         -:   54:
         -:   55:	//set number of players
-    17823:   56:	state->numPlayers = numPlayers;
+     1000:   56:	state->numPlayers = numPlayers;
         -:   57:
         -:   58:	//check selected kingdom cards are different
-   196053:   59:	for (i = 0; i < 10; i++)
+    11000:   59:	for (i = 0; i < 10; i++)
 branch  0 taken 91%
 branch  1 taken 9% (fallthrough)
         -:   60:	{
-  1960530:   61:		for (j = 0; j < 10; j++)
+   110000:   61:		for (j = 0; j < 10; j++)
 branch  0 taken 91%
 branch  1 taken 9% (fallthrough)
         -:   62:		{
-  1782300:   63:			if (j != i && kingdomCards[j] == kingdomCards[i])
+   100000:   63:			if (j != i && kingdomCards[j] == kingdomCards[i])
 branch  0 taken 90% (fallthrough)
 branch  1 taken 10%
 branch  2 taken 0% (fallthrough)
@@ -1728,78 +2612,78 @@ branch  3 taken 100%
         -:   71:	///////////////////////////////
         -:   72:
         -:   73:	//set number of Curse cards
-    17823:   74:	if (numPlayers == 2)
-branch  0 taken 41% (fallthrough)
-branch  1 taken 59%
+     1000:   74:	if (numPlayers == 2)
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
         -:   75:	{
-     7343:   76:		state->supplyCount[curse] = 10;
-    10480:   77:	} else if (numPlayers == 3)
-branch  0 taken 99% (fallthrough)
-branch  1 taken 1%
+      331:   76:		state->supplyCount[curse] = 10;
+      669:   77:	} else if (numPlayers == 3)
+branch  0 taken 48% (fallthrough)
+branch  1 taken 52%
         -:   78:	{
-    10470:   79:		state->supplyCount[curse] = 20;
+      323:   79:		state->supplyCount[curse] = 20;
         -:   80:	} else
         -:   81:	{
-       10:   82:		state->supplyCount[curse] = 30;
+      346:   82:		state->supplyCount[curse] = 30;
         -:   83:	}
         -:   84:
         -:   85:	//set number of Victory cards
-    17823:   86:	if (numPlayers == 2)
-branch  0 taken 41% (fallthrough)
-branch  1 taken 59%
+     1000:   86:	if (numPlayers == 2)
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
         -:   87:	{
-     7343:   88:		state->supplyCount[estate] = 8;
-     7343:   89:		state->supplyCount[duchy] = 8;
-     7343:   90:		state->supplyCount[province] = 8;
+      331:   88:		state->supplyCount[estate] = 8;
+      331:   89:		state->supplyCount[duchy] = 8;
+      331:   90:		state->supplyCount[province] = 8;
         -:   91:	} else
         -:   92:	{
-    10480:   93:		state->supplyCount[estate] = 12;
-    10480:   94:		state->supplyCount[duchy] = 12;
-    10480:   95:		state->supplyCount[province] = 12;
+      669:   93:		state->supplyCount[estate] = 12;
+      669:   94:		state->supplyCount[duchy] = 12;
+      669:   95:		state->supplyCount[province] = 12;
         -:   96:	}
         -:   97:
         -:   98:	//set number of Treasure cards
-    17823:   99:	state->supplyCount[copper] = 60 - ( 7 * numPlayers );
-    17823:  100:	state->supplyCount[silver] = 40;
-    17823:  101:	state->supplyCount[gold] = 30;
+     1000:   99:	state->supplyCount[copper] = 60 - ( 7 * numPlayers );
+     1000:  100:	state->supplyCount[silver] = 40;
+     1000:  101:	state->supplyCount[gold] = 30;
         -:  102:
         -:  103:	//set number of Kingdom cards
-   374283:  104:	for (i = adventurer; i <= treasure_map; i++)    //loop all cards
+    21000:  104:	for (i = adventurer; i <= treasure_map; i++)    //loop all cards
 branch  0 taken 95%
 branch  1 taken 5% (fallthrough)
         -:  105:	{
-  2940795:  106:		for (j = 0; j < 10; j++)    //loop chosen cards
+   165000:  106:		for (j = 0; j < 10; j++)    //loop chosen cards
 branch  0 taken 94%
 branch  1 taken 6% (fallthrough)
         -:  107:		{
-  2762565:  108:			if (kingdomCards[j] == i)
+   155000:  108:			if (kingdomCards[j] == i)
 branch  0 taken 6% (fallthrough)
 branch  1 taken 94%
         -:  109:			{
         -:  110:				//check if card is a 'Victory' Kingdom card
-   178230:  111:				if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
-branch  0 taken 99% (fallthrough)
-branch  1 taken 1%
-branch  2 taken 10% (fallthrough)
-branch  3 taken 90%
+    10000:  111:				if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+branch  0 taken 95% (fallthrough)
+branch  1 taken 5%
+branch  2 taken 6% (fallthrough)
+branch  3 taken 94%
         -:  112:				{
-    36982:  113:					if (numPlayers == 2)
-branch  0 taken 41% (fallthrough)
-branch  1 taken 59%
+     2140:  113:					if (numPlayers == 2)
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
         -:  114:					{
-     7612:  115:						state->supplyCount[i] = 8;
+      351:  115:						state->supplyCount[i] = 8;
         -:  116:					} else
         -:  117:					{
-    10879:  118:						state->supplyCount[i] = 12;
+      719:  118:						state->supplyCount[i] = 12;
         -:  119:					}
         -:  120:				} else
         -:  121:				{
-   159739:  122:					state->supplyCount[i] = 10;
+     8930:  122:					state->supplyCount[i] = 10;
         -:  123:				}
-   178230:  124:				break;
+    10000:  124:				break;
         -:  125:			} else    //card is not in the set choosen for the game
         -:  126:			{
-  2584335:  127:				state->supplyCount[i] = -1;
+   145000:  127:				state->supplyCount[i] = -1;
         -:  128:			}
         -:  129:		}
         -:  130:
@@ -1809,33 +2693,33 @@ branch  1 taken 59%
         -:  134:	//supply intilization complete
         -:  135:
         -:  136:	//set player decks
-    63959:  137:	for (i = 0; i < numPlayers; i++)
-branch  0 taken 72%
-branch  1 taken 28% (fallthrough)
+     4015:  137:	for (i = 0; i < numPlayers; i++)
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
         -:  138:	{
-    46136:  139:		state->deckCount[i] = 0;
-   184544:  140:		for (j = 0; j < 3; j++)
+     3015:  139:		state->deckCount[i] = 0;
+    12060:  140:		for (j = 0; j < 3; j++)
 branch  0 taken 75%
 branch  1 taken 25% (fallthrough)
         -:  141:		{
-   138408:  142:			state->deck[i][j] = estate;
-   138408:  143:			state->deckCount[i]++;
+     9045:  142:			state->deck[i][j] = estate;
+     9045:  143:			state->deckCount[i]++;
         -:  144:		}
-   369088:  145:		for (j = 3; j < 10; j++)
+    24120:  145:		for (j = 3; j < 10; j++)
 branch  0 taken 88%
 branch  1 taken 13% (fallthrough)
         -:  146:		{
-   322952:  147:			state->deck[i][j] = copper;
-   322952:  148:			state->deckCount[i]++;
+    21105:  147:			state->deck[i][j] = copper;
+    21105:  148:			state->deckCount[i]++;
         -:  149:		}
         -:  150:	}
         -:  151:
         -:  152:	//shuffle player decks
-    63959:  153:	for (i = 0; i < numPlayers; i++)
-branch  0 taken 72%
-branch  1 taken 28% (fallthrough)
+     4015:  153:	for (i = 0; i < numPlayers; i++)
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
         -:  154:	{
-    46136:  155:		if (shuffle( i, state ) < 0)
+     3015:  155:		if (shuffle( i, state ) < 0)
 call    0 returned 100%
 branch  1 taken 0% (fallthrough)
 branch  2 taken 100%
@@ -1845,13 +2729,13 @@ branch  2 taken 100%
         -:  159:	}
         -:  160:
         -:  161:	//draw player hands
-    63959:  162:	for (i = 0; i < numPlayers; i++)
-branch  0 taken 72%
-branch  1 taken 28% (fallthrough)
+     4015:  162:	for (i = 0; i < numPlayers; i++)
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
         -:  163:	{
         -:  164:		//initialize hand size to zero
-    46136:  165:		state->handCount[i] = 0;
-    46136:  166:		state->discardCount[i] = 0;
+     3015:  165:		state->handCount[i] = 0;
+     3015:  166:		state->discardCount[i] = 0;
         -:  167:		//draw 5 cards
         -:  168:		// for (j = 0; j < 5; j++)
         -:  169:		//	{
@@ -1860,80 +2744,80 @@ branch  1 taken 28% (fallthrough)
         -:  172:	}
         -:  173:
         -:  174:	//set embargo tokens to 0 for all supply piles
-   499044:  175:	for (i = 0; i <= treasure_map; i++)
+    28000:  175:	for (i = 0; i <= treasure_map; i++)
 branch  0 taken 96%
 branch  1 taken 4% (fallthrough)
         -:  176:	{
-   481221:  177:		state->embargoTokens[i] = 0;
+    27000:  177:		state->embargoTokens[i] = 0;
         -:  178:	}
         -:  179:
         -:  180:	//initialize first player's turn
-    17823:  181:	state->outpostPlayed = 0;
-    17823:  182:	state->phase = 0;
-    17823:  183:	state->numActions = 1;
-    17823:  184:	state->numBuys = 1;
-    17823:  185:	state->playedCardCount = 0;
-    17823:  186:	state->whoseTurn = 0;
-    17823:  187:	state->handCount[state->whoseTurn] = 0;
+     1000:  181:	state->outpostPlayed = 0;
+     1000:  182:	state->phase = 0;
+     1000:  183:	state->numActions = 1;
+     1000:  184:	state->numBuys = 1;
+     1000:  185:	state->playedCardCount = 0;
+     1000:  186:	state->whoseTurn = 0;
+     1000:  187:	state->handCount[state->whoseTurn] = 0;
         -:  188:	//int it; move to top
         -:  189:
         -:  190:	//Moved draw cards to here, only drawing at the start of a turn
-   106938:  191:	for (it = 0; it < 5; it++)
+     6000:  191:	for (it = 0; it < 5; it++)
 branch  0 taken 83%
 branch  1 taken 17% (fallthrough)
         -:  192:	{
-    89115:  193:		drawCard( state->whoseTurn, state );
+     5000:  193:		drawCard( state->whoseTurn, state );
 call    0 returned 100%
         -:  194:	}
         -:  195:
-    17823:  196:	updateCoins( state->whoseTurn, state, 0 );
+     1000:  196:	updateCoins( state->whoseTurn, state, 0 );
 call    0 returned 100%
         -:  197:
-    17823:  198:	return 0;
+     1000:  198:	return 0;
         -:  199:}
         -:  200:
-function shuffle called 46172 returned 100% blocks executed 100%
-    46172:  201:int shuffle( int player, struct gameState *state )
+function shuffle called 3981 returned 100% blocks executed 100%
+     3981:  201:int shuffle( int player, struct gameState *state )
         -:  202:{
         -:  203:
         -:  204:	int newDeck[MAX_DECK];
-    46172:  205:	int newDeckPos = 0;
+     3981:  205:	int newDeckPos = 0;
         -:  206:	int card;
         -:  207:	int i;
         -:  208:
-    46172:  209:	if (state->deckCount[player] < 1)
-branch  0 taken 1% (fallthrough)
-branch  1 taken 99%
-        4:  210:		return -1;
-    46168:  211:	qsort( (void*) ( state->deck[player] ), state->deckCount[player], sizeof(int), compare );
+     3981:  209:	if (state->deckCount[player] < 1)
+branch  0 taken 16% (fallthrough)
+branch  1 taken 84%
+      619:  210:		return -1;
+     3362:  211:	qsort( (void*) ( state->deck[player] ), state->deckCount[player], sizeof(int), compare );
 call    0 returned 100%
         -:  212:	/* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
         -:  213:
-   553934:  214:	while ( state->deckCount[player] > 0 )
-branch  0 taken 91%
-branch  1 taken 9% (fallthrough)
+    38609:  214:	while ( state->deckCount[player] > 0 )
+branch  0 taken 90%
+branch  1 taken 10% (fallthrough)
         -:  215:	{
-   461598:  216:		card = floor( Random() * state->deckCount[player] );
+    31885:  216:		card = floor( Random() * state->deckCount[player] );
 call    0 returned 100%
-   461598:  217:		newDeck[newDeckPos] = state->deck[player][card];
-   461598:  218:		newDeckPos++;
-  1614098:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
-branch  0 taken 71%
-branch  1 taken 29% (fallthrough)
+    31885:  217:		newDeck[newDeckPos] = state->deck[player][card];
+    31885:  218:		newDeckPos++;
+   107301:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+branch  0 taken 70%
+branch  1 taken 30% (fallthrough)
         -:  220:		{
-  1152500:  221:			state->deck[player][i] = state->deck[player][i + 1];
+    75416:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
-   461598:  223:		state->deckCount[player]--;
+    31885:  223:		state->deckCount[player]--;
         -:  224:	}
-   507766:  225:	for (i = 0; i < newDeckPos; i++)
-branch  0 taken 91%
-branch  1 taken 9% (fallthrough)
+    35247:  225:	for (i = 0; i < newDeckPos; i++)
+branch  0 taken 90%
+branch  1 taken 10% (fallthrough)
         -:  226:	{
-   461598:  227:		state->deck[player][i] = newDeck[i];
-   461598:  228:		state->deckCount[player]++;
+    31885:  227:		state->deck[player][i] = newDeck[i];
+    31885:  228:		state->deckCount[player]++;
         -:  229:	}
         -:  230:
-    46168:  231:	return 0;
+     3362:  231:	return 0;
         -:  232:}
         -:  233:
 function playCard called 0 returned 0% blocks executed 0%
@@ -1992,8 +2876,8 @@ call    0 never executed
         -:  273:}
         -:  274:
         -:  275:// apparently, supplyPos is the enum value of the card being bought
-function buyCard called 242073 returned 100% blocks executed 100%
-   242073:  276:int buyCard( int supplyPos, struct gameState *state )
+function buyCard called 0 returned 0% blocks executed 0%
+    #####:  276:int buyCard( int supplyPos, struct gameState *state )
         -:  277:{
         -:  278:	int who;
         -:  279:	if (DEBUG)
@@ -2003,42 +2887,42 @@ function buyCard called 242073 returned 100% blocks executed 100%
         -:  283:
         -:  284:	// I don't know what to do about the phase thing.
         -:  285:
-   242073:  286:	who = state->whoseTurn;
+    #####:  286:	who = state->whoseTurn;
         -:  287:
-   242073:  288:	if (state->numBuys < 1)
-branch  0 taken 17% (fallthrough)
-branch  1 taken 83%
+    #####:  288:	if (state->numBuys < 1)
+branch  0 never executed
+branch  1 never executed
         -:  289:	{
         -:  290:		if (DEBUG)
         -:  291:			printf( "You do not have any buys left\n" );
-    41477:  292:		return -1;
-   200596:  293:	} else if (supplyCount( supplyPos, state ) < 1)
-call    0 returned 100%
-branch  1 taken 1% (fallthrough)
-branch  2 taken 99%
+    #####:  292:		return -1;
+    #####:  293:	} else if (supplyCount( supplyPos, state ) < 1)
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
         -:  294:	{
         -:  295:		if (DEBUG)
         -:  296:			printf( "There are not any of that type of card left\n" );
-      108:  297:		return -1;
-   200488:  298:	} else if (state->coins < getCost( supplyPos ))
-call    0 returned 100%
-branch  1 taken 89% (fallthrough)
-branch  2 taken 11%
+    #####:  297:		return -1;
+    #####:  298:	} else if (state->coins < getCost( supplyPos ))
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
         -:  299:	{
         -:  300:		if (DEBUG)
         -:  301:			printf( "You do not have enough money to buy that. You have %d coins.\n",
         -:  302:					state->coins );
-   179066:  303:		return -1;
+    #####:  303:		return -1;
         -:  304:	} else
         -:  305:	{
-    21422:  306:		state->phase = 1;
+    #####:  306:		state->phase = 1;
         -:  307:		//state->supplyCount[supplyPos]--;
-    21422:  308:		gainCard( supplyPos, state, 0, who );   //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
-call    0 returned 100%
+    #####:  308:		gainCard( supplyPos, state, 0, who );   //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
+call    0 never executed
         -:  309:
-    21422:  310:		state->coins = ( state->coins ) - ( getCost( supplyPos ) );
-call    0 returned 100%
-    21422:  311:		state->numBuys--;
+    #####:  310:		state->coins = ( state->coins ) - ( getCost( supplyPos ) );
+call    0 never executed
+    #####:  311:		state->numBuys--;
         -:  312:		if (DEBUG)
         -:  313:			printf( "You bought card number %d for %d coins. You now have %d buys and %d coins.\n",
         -:  314:					supplyPos, getCost( supplyPos ), state->numBuys, state->coins );
@@ -2047,7 +2931,7 @@ call    0 returned 100%
         -:  317:	//state->discard[who][state->discardCount[who]] = supplyPos;
         -:  318:	//state->discardCount[who]++;
         -:  319:
-    21422:  320:	return 0;
+    #####:  320:	return 0;
         -:  321:}
         -:  322:
 function numHandCards called 0 returned 0% blocks executed 0%
@@ -2065,110 +2949,110 @@ call    0 never executed
     #####:  331:	return state->hand[currentPlayer][handPos];
         -:  332:}
         -:  333:
-function supplyCount called 237021 returned 100% blocks executed 100%
-   237021:  334:int supplyCount( int card, struct gameState *state )
+function supplyCount called 0 returned 0% blocks executed 0%
+    #####:  334:int supplyCount( int card, struct gameState *state )
         -:  335:{
-   237021:  336:	return state->supplyCount[card];
+    #####:  336:	return state->supplyCount[card];
         -:  337:}
         -:  338:
-function fullDeckCount called 300000 returned 100% blocks executed 100%
-   300000:  339:int fullDeckCount( int player, int card, struct gameState *state )
+function fullDeckCount called 0 returned 0% blocks executed 0%
+    #####:  339:int fullDeckCount( int player, int card, struct gameState *state )
         -:  340:{
         -:  341:	int i;
-   300000:  342:	int count = 0;
+    #####:  342:	int count = 0;
         -:  343:
-136977455:  344:	for (i = 0; i < state->deckCount[player]; i++)
-branch  0 taken 99%
-branch  1 taken 1% (fallthrough)
+    #####:  344:	for (i = 0; i < state->deckCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
         -:  345:	{
-136677455:  346:		if (state->deck[player][i] == card)
-branch  0 taken 5% (fallthrough)
-branch  1 taken 95%
-  7342524:  347:			count++;
+    #####:  346:		if (state->deck[player][i] == card)
+branch  0 never executed
+branch  1 never executed
+    #####:  347:			count++;
         -:  348:	}
         -:  349:
-137140029:  350:	for (i = 0; i < state->handCount[player]; i++)
-branch  0 taken 99%
-branch  1 taken 1% (fallthrough)
+    #####:  350:	for (i = 0; i < state->handCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
         -:  351:	{
-136840029:  352:		if (state->hand[player][i] == card)
-branch  0 taken 5% (fallthrough)
-branch  1 taken 95%
-  7355868:  353:			count++;
+    #####:  352:		if (state->hand[player][i] == card)
+branch  0 never executed
+branch  1 never executed
+    #####:  353:			count++;
         -:  354:	}
         -:  355:
-137077897:  356:	for (i = 0; i < state->discardCount[player]; i++)
-branch  0 taken 99%
-branch  1 taken 1% (fallthrough)
+    #####:  356:	for (i = 0; i < state->discardCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
         -:  357:	{
-136777897:  358:		if (state->discard[player][i] == card)
-branch  0 taken 5% (fallthrough)
-branch  1 taken 95%
-  7352234:  359:			count++;
+    #####:  358:		if (state->discard[player][i] == card)
+branch  0 never executed
+branch  1 never executed
+    #####:  359:			count++;
         -:  360:	}
         -:  361:
-   300000:  362:	return count;
+    #####:  362:	return count;
         -:  363:}
         -:  364:
-function whoseTurn called 736 returned 100% blocks executed 100%
-      736:  365:int whoseTurn( struct gameState *state )
+function whoseTurn called 4062 returned 100% blocks executed 100%
+     4062:  365:int whoseTurn( struct gameState *state )
         -:  366:{
-      736:  367:	return state->whoseTurn;
+     4062:  367:	return state->whoseTurn;
         -:  368:}
         -:  369:
-function endTurn called 736 returned 100% blocks executed 93%
-      736:  370:int endTurn( struct gameState *state )
+function endTurn called 4062 returned 100% blocks executed 100%
+     4062:  370:int endTurn( struct gameState *state )
         -:  371:{
         -:  372:	int k;
         -:  373:	int i;
-      736:  374:	int currentPlayer = whoseTurn( state );
+     4062:  374:	int currentPlayer = whoseTurn( state );
 call    0 returned 100%
         -:  375:
         -:  376:	//Discard hand
-     4416:  377:	for (i = 0; i < state->handCount[currentPlayer]; i++)
+    24372:  377:	for (i = 0; i < state->handCount[currentPlayer]; i++)
 branch  0 taken 83%
 branch  1 taken 17% (fallthrough)
         -:  378:	{
-     7360:  379:		state->discard[currentPlayer][state->discardCount[currentPlayer]++] =
-     3680:  380:				state->hand[currentPlayer][i];    //Discard
-     3680:  381:		state->hand[currentPlayer][i] = -1;    //Set card to -1
+    40620:  379:		state->discard[currentPlayer][state->discardCount[currentPlayer]++] =
+    20310:  380:				state->hand[currentPlayer][i];    //Discard
+    20310:  381:		state->hand[currentPlayer][i] = -1;    //Set card to -1
         -:  382:	}
-      736:  383:	state->handCount[currentPlayer] = 0;    //Reset hand count
+     4062:  383:	state->handCount[currentPlayer] = 0;    //Reset hand count
         -:  384:
         -:  385:	//Code for determining the player
-      736:  386:	if (currentPlayer < ( state->numPlayers - 1 ))
-branch  0 taken 100% (fallthrough)
-branch  1 taken 0%
+     4062:  386:	if (currentPlayer < ( state->numPlayers - 1 ))
+branch  0 taken 75% (fallthrough)
+branch  1 taken 25%
         -:  387:	{
-      736:  388:		state->whoseTurn = currentPlayer + 1;    //Still safe to increment
+     3062:  388:		state->whoseTurn = currentPlayer + 1;    //Still safe to increment
         -:  389:	} else
         -:  390:	{
-    #####:  391:		state->whoseTurn = 0;    //Max player has been reached, loop back around to player 1
+     1000:  391:		state->whoseTurn = 0;    //Max player has been reached, loop back around to player 1
         -:  392:	}
         -:  393:
-      736:  394:	state->outpostPlayed = 0;
-      736:  395:	state->phase = 0;
-      736:  396:	state->numActions = 1;
-      736:  397:	state->coins = 0;
-      736:  398:	state->numBuys = 1;
-      736:  399:	state->playedCardCount = 0;
-      736:  400:	state->handCount[state->whoseTurn] = 0;
+     4062:  394:	state->outpostPlayed = 0;
+     4062:  395:	state->phase = 0;
+     4062:  396:	state->numActions = 1;
+     4062:  397:	state->coins = 0;
+     4062:  398:	state->numBuys = 1;
+     4062:  399:	state->playedCardCount = 0;
+     4062:  400:	state->handCount[state->whoseTurn] = 0;
         -:  401:
         -:  402:	//int k; move to top
         -:  403:	//Next player draws hand
-     4416:  404:	for (k = 0; k < 5; k++)
+    24372:  404:	for (k = 0; k < 5; k++)
 branch  0 taken 83%
 branch  1 taken 17% (fallthrough)
         -:  405:	{
-     3680:  406:		drawCard( state->whoseTurn, state );    //Draw a card
+    20310:  406:		drawCard( state->whoseTurn, state );    //Draw a card
 call    0 returned 100%
         -:  407:	}
         -:  408:
         -:  409:	//Update money
-      736:  410:	updateCoins( state->whoseTurn, state, 0 );
+     4062:  410:	updateCoins( state->whoseTurn, state, 0 );
 call    0 returned 100%
         -:  411:
-      736:  412:	return 0;
+     4062:  412:	return 0;
         -:  413:}
         -:  414:
 function isGameOver called 0 returned 0% blocks executed 0%
@@ -2441,12 +3325,12 @@ branch  1 never executed
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-function drawCard called 95823 returned 100% blocks executed 100%
-    95823:  605:int drawCard( int player, struct gameState *state )
+function drawCard called 37567 returned 100% blocks executed 100%
+    37567:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    95823:  609:	if (state->deckCount[player] <= 0)
+    37567:  609:	if (state->deckCount[player] <= 0)
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
         -:  610:	{    //Deck is empty
@@ -2454,19 +3338,19 @@ branch  1 taken 99%
         -:  612:		//Step 1 Shuffle the discard pile back into a deck
         -:  613:		int i;
         -:  614:		//Move discard to deck
-        9:  615:		for (i = 0; i < state->discardCount[player]; i++)
-branch  0 taken 67%
-branch  1 taken 33% (fallthrough)
+     2218:  615:		for (i = 0; i < state->discardCount[player]; i++)
+branch  0 taken 78%
+branch  1 taken 22% (fallthrough)
         -:  616:		{
-        6:  617:			state->deck[player][i] = state->discard[player][i];
-        6:  618:			state->discard[player][i] = -1;
+     1735:  617:			state->deck[player][i] = state->discard[player][i];
+     1735:  618:			state->discard[player][i] = -1;
         -:  619:		}
         -:  620:
-        3:  621:		state->deckCount[player] = state->discardCount[player];
-        3:  622:		state->discardCount[player] = 0;    //Reset discard
+      483:  621:		state->deckCount[player] = state->discardCount[player];
+      483:  622:		state->discardCount[player] = 0;    //Reset discard
         -:  623:
         -:  624:		//Shufffle the deck
-        3:  625:		shuffle( player, state );    //Shuffle the deck up and make it so that we can draw
+      483:  625:		shuffle( player, state );    //Shuffle the deck up and make it so that we can draw
 call    0 returned 100%
         -:  626:
         -:  627:		if (DEBUG)
@@ -2474,132 +3358,132 @@ call    0 returned 100%
         -:  629:			printf( "Deck count now: %d\n", state->deckCount[player] );
         -:  630:		}
         -:  631:
-        3:  632:		state->discardCount[player] = 0;
+      483:  632:		state->discardCount[player] = 0;
         -:  633:
         -:  634:		//Step 2 Draw Card
-        3:  635:		count = state->handCount[player];    //Get current player's hand count
+      483:  635:		count = state->handCount[player];    //Get current player's hand count
         -:  636:
         -:  637:		if (DEBUG)
         -:  638:		{    //Debug statements
         -:  639:			printf( "Current hand count: %d\n", count );
         -:  640:		}
         -:  641:
-        3:  642:		deckCounter = state->deckCount[player];    //Create a holder for the deck count
+      483:  642:		deckCounter = state->deckCount[player];    //Create a holder for the deck count
         -:  643:
-        3:  644:		if (deckCounter == 0)
-branch  0 taken 33% (fallthrough)
-branch  1 taken 67%
-        1:  645:			return -1;
+      483:  644:		if (deckCounter == 0)
+branch  0 taken 28% (fallthrough)
+branch  1 taken 72%
+      136:  645:			return -1;
         -:  646:
-        2:  647:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to hand
-        2:  648:		state->deckCount[player]--;
-        2:  649:		state->handCount[player]++;    //Increment hand count
+      347:  647:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to hand
+      347:  648:		state->deckCount[player]--;
+      347:  649:		state->handCount[player]++;    //Increment hand count
         -:  650:	}
         -:  651:
         -:  652:	else
         -:  653:	{
-    95820:  654:		int count = state->handCount[player];    //Get current hand count for player
+    37084:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
         -:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    95820:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    95820:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    95820:  663:		state->deckCount[player]--;
-    95820:  664:		state->handCount[player]++;    //Increment hand count
+    37084:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    37084:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    37084:  663:		state->deckCount[player]--;
+    37084:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    95822:  667:	return 0;
+    37431:  667:	return 0;
         -:  668:}
         -:  669:
-function getCost called 443948 returned 100% blocks executed 97%
-   443948:  670:int getCost( int cardNumber )
+function getCost called 0 returned 0% blocks executed 0%
+    #####:  670:int getCost( int cardNumber )
         -:  671:{
-   443948:  672:	switch ( cardNumber ) {
-branch  0 taken 4%
-branch  1 taken 3%
-branch  2 taken 3%
-branch  3 taken 3%
-branch  4 taken 4%
-branch  5 taken 10%
-branch  6 taken 8%
-branch  7 taken 3%
-branch  8 taken 3%
-branch  9 taken 3%
-branch 10 taken 3%
-branch 11 taken 3%
-branch 12 taken 3%
-branch 13 taken 3%
-branch 14 taken 3%
-branch 15 taken 3%
-branch 16 taken 3%
-branch 17 taken 3%
-branch 18 taken 3%
-branch 19 taken 3%
-branch 20 taken 3%
-branch 21 taken 3%
-branch 22 taken 3%
-branch 23 taken 3%
-branch 24 taken 3%
-branch 25 taken 3%
-branch 26 taken 3%
-branch 27 taken 0%
+    #####:  672:	switch ( cardNumber ) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+branch 10 never executed
+branch 11 never executed
+branch 12 never executed
+branch 13 never executed
+branch 14 never executed
+branch 15 never executed
+branch 16 never executed
+branch 17 never executed
+branch 18 never executed
+branch 19 never executed
+branch 20 never executed
+branch 21 never executed
+branch 22 never executed
+branch 23 never executed
+branch 24 never executed
+branch 25 never executed
+branch 26 never executed
+branch 27 never executed
         -:  673:	case curse:
-    16056:  674:		return 0;
+    #####:  674:		return 0;
         -:  675:	case estate:
-    14828:  676:		return 2;
+    #####:  676:		return 2;
         -:  677:	case duchy:
-    14588:  678:		return 5;
+    #####:  678:		return 5;
         -:  679:	case province:
-    14540:  680:		return 8;
+    #####:  680:		return 8;
         -:  681:	case copper:
-    16386:  682:		return 0;
+    #####:  682:		return 0;
         -:  683:	case silver:
-    45786:  684:		return 3;
+    #####:  684:		return 3;
         -:  685:	case gold:
-    36726:  686:		return 6;
+    #####:  686:		return 6;
         -:  687:	case adventurer:
-    14120:  688:		return 6;
+    #####:  688:		return 6;
         -:  689:	case council_room:
-    14140:  690:		return 5;
+    #####:  690:		return 5;
         -:  691:	case feast:
-    14200:  692:		return 4;
+    #####:  692:		return 4;
         -:  693:	case gardens:
-    14636:  694:		return 4;
+    #####:  694:		return 4;
         -:  695:	case mine:
-    14140:  696:		return 5;
+    #####:  696:		return 5;
         -:  697:	case remodel:
-    14200:  698:		return 4;
+    #####:  698:		return 4;
         -:  699:	case smithy:
-    14200:  700:		return 4;
+    #####:  700:		return 4;
         -:  701:	case village:
-    14280:  702:		return 3;
+    #####:  702:		return 3;
         -:  703:	case baron:
-    14200:  704:		return 4;
+    #####:  704:		return 4;
         -:  705:	case great_hall:
-    14700:  706:		return 3;
+    #####:  706:		return 3;
         -:  707:	case minion:
-    14140:  708:		return 5;
+    #####:  708:		return 5;
         -:  709:	case steward:
-    14280:  710:		return 3;
+    #####:  710:		return 3;
         -:  711:	case tribute:
-    14140:  712:		return 5;
+    #####:  712:		return 5;
         -:  713:	case ambassador:
-    14280:  714:		return 3;
+    #####:  714:		return 3;
         -:  715:	case cutpurse:
-    14200:  716:		return 4;
+    #####:  716:		return 4;
         -:  717:	case embargo:
-    14440:  718:		return 2;
+    #####:  718:		return 2;
         -:  719:	case outpost:
-    14140:  720:		return 5;
+    #####:  720:		return 5;
         -:  721:	case salvager:
-    14200:  722:		return 4;
+    #####:  722:		return 4;
         -:  723:	case sea_hag:
-    14200:  724:		return 4;
+    #####:  724:		return 4;
         -:  725:	case treasure_map:
-    14202:  726:		return 4;
+    #####:  726:		return 4;
         -:  727:	}
         -:  728:
     #####:  729:	return -1;
@@ -3449,69 +4333,69 @@ call    0 never executed
     #####: 1376:	return -1;
         -: 1377:}
         -: 1378:
-function discardCard called 1993 returned 100% blocks executed 89%
-     1993: 1379:int discardCard( int handPos, int currentPlayer, struct gameState *state, int trashFlag )
+function discardCard called 0 returned 0% blocks executed 0%
+    #####: 1379:int discardCard( int handPos, int currentPlayer, struct gameState *state, int trashFlag )
         -: 1380:{
         -: 1381:
         -: 1382:	//if card is not trashed, added to Played pile
-     1993: 1383:	if (trashFlag < 1)
-branch  0 taken 50% (fallthrough)
-branch  1 taken 50%
+    #####: 1383:	if (trashFlag < 1)
+branch  0 never executed
+branch  1 never executed
         -: 1384:	{
         -: 1385:		//add card to played pile
-     1006: 1386:		state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
-     1006: 1387:		state->playedCardCount++;
+    #####: 1386:		state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
+    #####: 1387:		state->playedCardCount++;
         -: 1388:
         -: 1389:		// I think this was missing before
-     2012: 1390:		state->discard[currentPlayer][state->discardCount[currentPlayer]] =
-     1006: 1391:				state->hand[currentPlayer][handPos];
-     1006: 1392:		state->discardCount[currentPlayer]++;
+    #####: 1390:		state->discard[currentPlayer][state->discardCount[currentPlayer]] =
+    #####: 1391:				state->hand[currentPlayer][handPos];
+    #####: 1392:		state->discardCount[currentPlayer]++;
         -: 1393:
         -: 1394:
         -: 1395:	}
         -: 1396:
         -: 1397:	//set played card to -1
-     1993: 1398:	state->hand[currentPlayer][handPos] = -1;
+    #####: 1398:	state->hand[currentPlayer][handPos] = -1;
         -: 1399:
         -: 1400:	//remove card from player's hand
-     1993: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
-branch  0 taken 4% (fallthrough)
-branch  1 taken 96%
+    #####: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
+branch  0 never executed
+branch  1 never executed
         -: 1402:	{
         -: 1403:		//reduce number of cards in hand
-       87: 1404:		state->handCount[currentPlayer]--;
-     1906: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
-branch  0 taken 0% (fallthrough)
-branch  1 taken 100%
+    #####: 1404:		state->handCount[currentPlayer]--;
+    #####: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
+branch  0 never executed
+branch  1 never executed
         -: 1406:	{
         -: 1407:		//reduce number of cards in hand
     #####: 1408:		state->handCount[currentPlayer]--;
         -: 1409:	} else
         -: 1410:	{
         -: 1411:		//replace discarded card with last card in hand
-     1906: 1412:		state->hand[currentPlayer][handPos] =
-     1906: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
+    #####: 1412:		state->hand[currentPlayer][handPos] =
+    #####: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
         -: 1414:		//set last card to -1
-     1906: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+    #####: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1416:		//reduce number of cards in hand
-     1906: 1417:		state->handCount[currentPlayer]--;
+    #####: 1417:		state->handCount[currentPlayer]--;
         -: 1418:	}
         -: 1419:
-     1993: 1420:	return 0;
+    #####: 1420:	return 0;
         -: 1421:}
         -: 1422:
-function gainCard called 36425 returned 100% blocks executed 100%
-    36425: 1423:int gainCard( int supplyPos, struct gameState *state, int toFlag, int player )
+function gainCard called 0 returned 0% blocks executed 0%
+    #####: 1423:int gainCard( int supplyPos, struct gameState *state, int toFlag, int player )
         -: 1424:{
         -: 1425:	//Note: supplyPos is enum of choosen card
         -: 1426:
         -: 1427:	//check if supply pile is empty (0) or card is not used in game (-1)
-    36425: 1428:	if (supplyCount( supplyPos, state ) < 1)
-call    0 returned 100%
-branch  1 taken 39% (fallthrough)
-branch  2 taken 61%
+    #####: 1428:	if (supplyCount( supplyPos, state ) < 1)
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
         -: 1429:	{
-    14221: 1430:		return -1;
+    #####: 1430:		return -1;
         -: 1431:	}
         -: 1432:
         -: 1433:	//added card for [whoseTurn] current player:
@@ -3519,65 +4403,65 @@ branch  2 taken 61%
         -: 1435:	// toFlag = 1 : add to deck
         -: 1436:	// toFlag = 2 : add to hand
         -: 1437:
-    22204: 1438:	if (toFlag == 1)
-branch  0 taken 1% (fallthrough)
-branch  1 taken 99%
+    #####: 1438:	if (toFlag == 1)
+branch  0 never executed
+branch  1 never executed
         -: 1439:	{
-      260: 1440:		state->deck[player][state->deckCount[player]] = supplyPos;
-      260: 1441:		state->deckCount[player]++;
-    21944: 1442:	} else if (toFlag == 2)
-branch  0 taken 1% (fallthrough)
-branch  1 taken 99%
+    #####: 1440:		state->deck[player][state->deckCount[player]] = supplyPos;
+    #####: 1441:		state->deckCount[player]++;
+    #####: 1442:	} else if (toFlag == 2)
+branch  0 never executed
+branch  1 never executed
         -: 1443:	{
-      283: 1444:		state->hand[player][state->handCount[player]] = supplyPos;
-      283: 1445:		state->handCount[player]++;
+    #####: 1444:		state->hand[player][state->handCount[player]] = supplyPos;
+    #####: 1445:		state->handCount[player]++;
         -: 1446:	} else
         -: 1447:	{
-    21661: 1448:		state->discard[player][state->discardCount[player]] = supplyPos;
-    21661: 1449:		state->discardCount[player]++;
+    #####: 1448:		state->discard[player][state->discardCount[player]] = supplyPos;
+    #####: 1449:		state->discardCount[player]++;
         -: 1450:	}
         -: 1451:
         -: 1452:	//decrease number in supply pile
-    22204: 1453:	state->supplyCount[supplyPos]--;
+    #####: 1453:	state->supplyCount[supplyPos]--;
         -: 1454:
-    22204: 1455:	return 0;
+    #####: 1455:	return 0;
         -: 1456:}
         -: 1457:
-function updateCoins called 18559 returned 100% blocks executed 82%
-    18559: 1458:int updateCoins( int player, struct gameState *state, int bonus )
+function updateCoins called 5062 returned 100% blocks executed 100%
+     5062: 1458:int updateCoins( int player, struct gameState *state, int bonus )
         -: 1459:{
         -: 1460:	int i;
         -: 1461:
         -: 1462:	//reset coin count
-    18559: 1463:	state->coins = 0;
+     5062: 1463:	state->coins = 0;
         -: 1464:
         -: 1465:	//add coins for each Treasure card in player's hand
-   111354: 1466:	for (i = 0; i < state->handCount[player]; i++)
+    30372: 1466:	for (i = 0; i < state->handCount[player]; i++)
 branch  0 taken 83%
 branch  1 taken 17% (fallthrough)
         -: 1467:	{
-    92795: 1468:		if (state->hand[player][i] == copper)
-branch  0 taken 80% (fallthrough)
-branch  1 taken 20%
+    25310: 1468:		if (state->hand[player][i] == copper)
+branch  0 taken 48% (fallthrough)
+branch  1 taken 52%
         -: 1469:		{
-    74660: 1470:			state->coins += 1;
-    18135: 1471:		} else if (state->hand[player][i] == silver)
-branch  0 taken 0% (fallthrough)
-branch  1 taken 100%
+    12073: 1470:			state->coins += 1;
+    13237: 1471:		} else if (state->hand[player][i] == silver)
+branch  0 taken 4% (fallthrough)
+branch  1 taken 96%
         -: 1472:		{
-    #####: 1473:			state->coins += 2;
-    18135: 1474:		} else if (state->hand[player][i] == gold)
-branch  0 taken 0% (fallthrough)
-branch  1 taken 100%
+      472: 1473:			state->coins += 2;
+    12765: 1474:		} else if (state->hand[player][i] == gold)
+branch  0 taken 3% (fallthrough)
+branch  1 taken 97%
         -: 1475:		{
-    #####: 1476:			state->coins += 3;
+      436: 1476:			state->coins += 3;
         -: 1477:		}
         -: 1478:	}
         -: 1479:
         -: 1480:	//add bonus
-    18559: 1481:	state->coins += bonus;
+     5062: 1481:	state->coins += bonus;
         -: 1482:
-    18559: 1483:	return 0;
+     5062: 1483:	return 0;
         -: 1484:}
         -: 1485:
         -: 1486://end of dominion.c

@@ -773,7 +773,7 @@ void baronCard(int currentPlayer,struct gameState *state,int choice1){
 	            state->discardCount[currentPlayer]++;
 	    
                 for (;p < state->handCount[currentPlayer]; p++){
-	                state->hand[currentPlayer][p] = state->hand[currentPlayer][p];
+	                //state->hand[currentPlayer][p] = state->hand[currentPlayer][p];
 	            }
 	            state->hand[currentPlayer][state->handCount[currentPlayer]] = -1;
 	            state->handCount[currentPlayer]--;

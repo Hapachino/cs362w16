@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -coverage -lm
+CFLAGS = -Wall -fpic -fprofile-arcs -ftest-coverage -lm
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -74,17 +74,22 @@ unittestresults.out: dominion.h rngs.h dominion_helpers.h dominion.o rngs.o unit
 	gcov dominion.c >> unitTestResults.out
 	cat dominion.c.gcov >> unitTestResults.out
 
-randomtestcard.out:dominion.h rngs.h dominion_helpers.h dominion.o rngs.o randomTestCard.c 
+randomTestCard.out:dominion.h rngs.h dominion_helpers.h dominion.o rngs.o randomTestCard.c 
 	gcc -o randomTestCard.o randomTestCard.c dominion.o rngs.o -g $(CFLAGS)
 	./randomTestCard.o
-	gcov dominion.c >> randomTestCard.out
+	gcov -b dominion.c >> randomTestCard.out
 	cat dominion.c.gcov >> randomTestCard.out
 
 
-randomtestadventurer.out:dominion.h rngs.h dominion_helpers.h dominion.o rngs.o randomTestAdventurer.c 
+randomTestAdventurer.out:dominion.h rngs.h dominion_helpers.h dominion.o rngs.o randomTestAdventurer.c 
 	gcc -o randomTestAdventurer.o randomTestAdventurer.c dominion.o rngs.o -g $(CFLAGS)
-	gcov dominion.c >> randomTestAdventurer.out
+	gcov -b dominion.c >> randomTestAdventurer.out
 	cat dominion.c.gcov >> randomTestAdventurer.out
+
+randomTestVillage.out:dominion.h rngs.h dominion_helpers.h dominion.o rngs.o randomTestCardVillage.c 
+	gcc -o randomTestCardVillage.o randomTestCardVillage.c dominion.o rngs.o -g $(CFLAGS)
+	gcov -b dominion.c >> randomTestVillage.out
+	cat dominion.c.gcov >> randomTestVillage.out
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 

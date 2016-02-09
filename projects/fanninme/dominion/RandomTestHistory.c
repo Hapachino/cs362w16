@@ -1,7 +1,7 @@
 //Megan Fanning
 
-Write up and check in the development of your random testers, 
-including improvements in coverage and effort to check the correctness of your specification, as randomhistory.c.
+//Write up and check in the development of your random testers, 
+//including improvements in coverage and effort to check the correctness of your specification, as randomhistory.c.
 
 //Adventurer
 Original Coverage
@@ -20,6 +20,7 @@ Bug:segfault
 cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];
 the card drawn is equal to a negative number which causes a segfault.
 
+Current Coverage
 
 //Village
 //OPTION B do the baron - no segfaults!

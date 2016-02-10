@@ -3,8 +3,6 @@
  Basic requirements of smithy card
    1)Increase current players hand by 1 card
    2)Actions increased by 2
-   3)Increase current players hand +1 card and +2 actions with different player sizes.
-   4)Play village card when players deck is empty.
  * -----------------------------------------------------------------------
  */
  

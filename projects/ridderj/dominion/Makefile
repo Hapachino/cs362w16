@@ -73,6 +73,14 @@ unittestresults.out:  unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.
 	./cardtest4 >> unittestresults.out
 	gcov $(CG) dominion.c >> unittestresults.out
 
+randomtestcard.out:  randomtestcard.c dominion.o rngs.o
+	echo "Results for Running Randomtestcard:" > randomtestcard.out
+	
+	echo "randomtestcard.c:" >> randomtestcard.out
+	gcc -o randomtestcard randomtestcard.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard 
+	gcov $(CG) dominion.c >>  randomtestcard.out
+
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 

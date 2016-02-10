@@ -12,7 +12,7 @@ void testSmithy(struct gameState *G, int cardsInPlay[10]);
 int main (int argc, char** argv) {
     struct gameState G;
 	int seed = 200;
-	int count = 1000000;
+	int count = 100000;
     int cardsInPlay[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
    
     setupTest(&G, cardsInPlay, seed); //game state and handcount
@@ -41,9 +41,9 @@ void testSmithy(struct gameState *G, int cardsInPlay[10]) {
     int numberInHand = G->handCount[player];
     int numberInDeck = G->deckCount[player];
     int playedCards = G->playedCardCount;
-    int numInDeck2 = G->deckCount[1];
-    int numInHand2 = G->handCount[1];
-    int numInDiscard2 = G->discardCount[1];
+    int numInDeck2;
+    int numInHand2;
+    int numInDiscard2;
     int kc[10];
     int i, j;
     int sc[4];
@@ -59,21 +59,27 @@ void testSmithy(struct gameState *G, int cardsInPlay[10]) {
 	
 	//random deck count/contents
 	G->deckCount[player] = 0;
+	G->deckCount[player+1] = 0;
 	result = rand() % MAX_DECK;
 	
 	for (j = 0; j < result; j++) {
 		  G->deck[player][j] = (rand() % 16) + 1; //random card in range of cards in play
 		  G->deckCount[player]++;
+		  G->deck[player+1][j] = (rand() % 16) + 1; //random card in range of cards in play
+		  G->deckCount[player+1]++;
 	}
 	
 	//ensure that there is something valid in the discards to shuffle if necessary
 	for (j = 0; j < 3; j++) {
 		G->discard[player][G->discardCount[player]] = copper;
 		G->discardCount[player]++;
+		G->discard[player+1][G->discardCount[player]] = copper;
+		G->discardCount[player+1]++;
 	}
 
 	//shuffle player deck
 	shuffle(player, G);
+	shuffle(player+1, G);
 
 	numberInDeck = G->deckCount[player];
 	numberInDiscards = G->discardCount[player];
@@ -94,16 +100,24 @@ void testSmithy(struct gameState *G, int cardsInPlay[10]) {
 		handcount = (rand() % (MAX_HAND - 10)) + 1;
 	
 	G->handCount[player] = 0;
+	G->handCount[player+1] = 0;
 	
 	//populate the hand with random cards
 	for (i = 0; i < handcount; i++) {
 		random = (rand() % 16) + 1;
 		G->hand[player][i] = random; //randomly assign hand cards from cards in play
 		G->handCount[player]++;
+		G->hand[player+1][i] = random; //randomly assign hand cards from cards in play
+		G->handCount[player+1]++;
 	}
+	
+	numInDeck2 = G->deckCount[1];
+	numInHand2 = G->handCount[1];
+    numInDiscard2 = G->discardCount[1];
 	
 	handPos = rand() % handcount; //pulling card out of random spot in hand
     result = playSmithy(player, G, handPos);
+	
     assert(result == 0);
     printf("testSmithy(): PASS didn't produce an error.\n");
     assert(numInDeck2 == G->deckCount[1]);

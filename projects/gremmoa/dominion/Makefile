@@ -24,7 +24,7 @@ testAll: dominion.o testSuite.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-tests: cardtest1.c cardtest2.c cardtest3.c cardtest4.c unittest1.c unittest2.c unittest3.c unittest4.c dominion.o rngs.o
+unittestresults.out: cardtest1.c cardtest2.c cardtest3.c cardtest4.c unittest1.c unittest2.c unittest3.c unittest4.c dominion.o rngs.o
 	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
@@ -33,8 +33,6 @@ tests: cardtest1.c cardtest2.c cardtest3.c cardtest4.c unittest1.c unittest2.c u
 	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
-
-runtests:
 	rm -f unittestresult.out
 	./cardtest1 >> unittestresult.out
 	./cardtest2 >> unittestresult.out

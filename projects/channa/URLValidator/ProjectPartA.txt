@@ -1,15 +1,44 @@
+Team Members:
+Andrew Calhoun
+Jonathan Lagrew
+Nancy Chan
+
 CS 362
 Project Part A
 
 Explain testIsValid Function of UrlValidator test code.
+	testIsValid() has two parameters passed to it: testUrlParts and UrlValidator.ALLOW_ALL_SCHEMES.
+
+	testUrlParts is an array of ResultPair object arrays. ResultPair.item is a url part (scheme, authority, port, path, or query) and ResultPair.valid is true or false depending on whether or not the url part is valid.
+
+	UrlValidator.ALLOW_ALL_SCHEMES. is the option specifying that all schemes are considered valid. This is contrasted with the option in testIsValidScheme() which only recognizes "http" and "gopher" as valid.
 
 Give how many total number of urls it is testing.
+	schemes: 9
+	authority: 19
+	port: 7
+	path: 10
+	query: 3
 
 Also, explain how it is building all the urls.
-1. 
+	1. "testBuffer" is created.
+	2. "testPartsIndex.length" = 5 because there are 5 url parts:
+	(scheme, authority, port, path, and query).
+	3. "testPartsIndexIndex" increments from 0 to 4 (scheme to query).
+	4. In the do-while loop, "ResultPair[] part" contains the url part at "testPartsIndexIndex".
+	5. "part[index].item", the url part, is appended to "testBuffer".
+	6. "expected" is set to true or false depending on what was stored at "part[index].valid".
+	7. "testBuffer" is converted to a string and stored in "url".
+	8. "url" is passed to urlVal.isValid() and the return value is stored in "result".
+	9. The same combination of scheme, authority, and port is used until all combinations with path and query have been exhausted before moving onto the next port (and then the next authority followed by the next scheme).
 
 Give an example of valid url being tested and an invalid url being tested by
 testIsValid() method.
+
+	1. valid url being tested: http://www.google.com:80/test1?action=view
+
+	2. invalid url being tested: http://www.google.com:80/..?action=view
+	   (path is invalid: "/..")
 
 UrlValidator code is a direct copy paste of apache commons url validator code. The test file/code is also direct copy paste of apache commons test code.
 Do you think that a real world test (URL Validator's testIsValid() test in this

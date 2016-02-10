@@ -66,6 +66,25 @@ unittestresults.out: unittest*.c cardtest*.c
 	@printf "\ndominion.c.gcov contents:\n" >> $@
 	@cat dominion.c.gcov >> $@
 
+randomtest*.c: dominion.o rngs.o fordsamTest.o
+	gcc -o $(@:.c=) -g $@ $^ $(CFLAGS)
+
+randomtestadventurer.out: randomtestadventurer.c
+	@printf "\n---------- randomtestadventurer ----------\n" >> $@
+	./randomtestadventurer >> $@
+	@printf "\n\n\n---------- Gcov Output ----------\n\n" >> $@
+	gcov -b dominion.c >> $@
+	@printf "\ndominion.c.gcov contents:\n" >> $@
+	@cat dominion.c.gcov >> $@
+
+randomtestcard.out: randomtestcard.c
+	@printf "\n---------- randomtestcard ----------\n" >> $@
+	./randomtestcard >> $@
+	@printf "\n\n\n---------- Gcov Output ----------\n\n" >> $@
+	gcov -b dominion.c >> $@
+	@printf "\ndominion.c.gcov contents:\n" >> $@
+	@cat dominion.c.gcov >> $@
+
 clean:
-	rm -f *.o *.gcov *.gcda *.gcno *.so playdom playdom.exe test test.exe player player.exe badTestDrawCard testBuyCard testDrawCard testInit testShuffle testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 unittestresults.out
+	rm -f *.o *.gcov *.gcda *.gcno *.so playdom playdom.exe test test.exe player player.exe badTestDrawCard testBuyCard testDrawCard testInit testShuffle testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 unittestresults.out randomtestadventurer randomtestcard randomtestadventurer.out randomtestcard.out
 	rm -rf *.dSYM

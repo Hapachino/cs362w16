@@ -12,15 +12,13 @@
  **
  ** 3. The two treasures should be added to the hand
  ** 
- ** 4. The other cards should be discarded
+ ** 4. Other cards should be discarded & discardCount increase by total - 2.
  **
  ** 5. handCount should increase by 2. 
  **
- ** 6. discardCount should increase by the total number drawn - 2.
- **
- ** 7. deckCount should decrease by the total number drawn.  
+ ** 6. deckCount should decrease by the total number drawn.  
  ** 
- ** 8. The other features of the state of the game should all be unchanged. 
+ ** 7. The other features of the state of the game should all be unchanged. 
  **
  **************************************************************************/
 
@@ -249,17 +247,6 @@ int checkAdventurer(struct gameState *pre, int player, FILE *f){
 
   /************************************************************************/
   /*                              BEGIN TESTING                           */
- 
- /** 4. The other cards should be discarded
- **
- ** 5. handCount should increase by 2. 
- **
- ** 6. discardCount should increase by the total number drawn - 2.
- **
- ** 7. deckCount should decrease by the total number drawn.  
- ** 
- ** 8. The other features of the state of the game should all be unchanged. 
-
   /************************************************************************/
 
 
@@ -270,69 +257,96 @@ int checkAdventurer(struct gameState *pre, int player, FILE *f){
   /* 2. Should result in the cards drawn from the deck until 2 treasures are*/
   /*    found.*/
   while (treasureCount < 2){
-    tempHand[tempCount]= pre->deck[player][preDeckCounter];
+    tempHand[tempCount]= pre->deck[player][preDeckCounter -(tempCount+1)];
     if ( (tempHand[tempCount] == copper)
 	 || (tempHand[tempCount]== silver)
 	 || (tempHand[tempCount] == gold) ){
       treasureCount ++; 
     }
 
-    tempCount++; 
-    preDeckCounter--;
+    tempCount++;
   }
+
 
   /* 3. The two treasures should be added to the hand */
   if ( (  (  post->hand[player][preHandCounter] != copper) 
-	  ||(post->hand[player][preHandCounter] != silver)
-	  ||(post->hand[player][preHandCounter] != gold))
+	  &&(post->hand[player][preHandCounter] != silver)
+	  &&(post->hand[player][preHandCounter] != gold))
 
-       && ( (  post->hand[player][preHandCounter+1] != copper) 
-	    ||(post->hand[player][preHandCounter +1] != silver)
-	    ||(post->hand[player][preHandCounter +1] != gold))){
+       || ( (  post->hand[player][preHandCounter+1] != copper)
+	    &&(post->hand[player][preHandCounter +1] != silver)
+	    &&(post->hand[player][preHandCounter +1] != gold))){
     printf("Business rule #3 fails: 2 treasures not delivered to hand\n");
     fprintf(f,"Business rule #3 fails: 2 treasures not delivered to hand\n");
+    testFail=1;
   }
 
 
-  /************************************************************************/
+
+  /* 4. The other cards should be discarded, discardCount increase by total-2*/
+  if(post->discardCount[player]>=preDiscardCounter+tempCount-2){
+    printf("Business rule #4 fails: temp hand not discarded properly\n");
+    fprintf(f,"Business rule #4 fails: temp hand not discarded properly\n");
+    testFail =1; 
+  }
+ 
 
 
-  /* 8. The other features of the state of the game should all be unchanged.*/
+  /* 5. handCount should increase by 2. */
+  if(post->discardCount[player]>=preHandCounter+2){
+    printf("Business rule #5 fails: player hand count not increased by 2\n");
+    fprintf(f,"Business rule #5 fails: player hand count not");
+    fprintf(f," increased by 2\n");
+    testFail =1; 
+  }
+
+
+
+  /* 6. deckCount should decrease by the total number drawn.  */
+  if(post->deckCount[player] != (preDeckCounter - tempCount)){
+    printf("Business rule #6 fails: player deck count improperly decreased\n");
+    fprintf(f,"Business rule #6 fails: player deck count improperly decreased");
+    testFail =1; 
+  }
+
+
+
+  /* 7. The other features of the state of the game should all be unchanged.*/
   
   compareGameState(pre, post, differences, MEMBERS); 
   for (int i =0; i < MEMBERS; i++){
     /* First clause checks all of the members that shouldn't change at all */
     if ( (differences[i]) && (i < 10) ){
       testFail =1; 
-      printf("playSmithy() fails business rule #7:");
+      printf("playAdventurer() fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      fprintf(f,"playSmithy() fails business rule #7:");
+      fprintf(f,"playAdventurer() fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]);
 
       /* Next 4 clauses ensure only the chosen player's data has changed*/ 
     } else if ((differences[i] ==1) && (player !=0)){
       testFail =1; 
-      printf("playSmithy() fails business rule #7:");
+      printf("playAdventurer() fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      fprintf(f,"playSmithy() fails business rule #7:");
+      fprintf(f,"playAdventurer() fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     } else if ((differences[i] ==10) && (player !=1)){
       testFail =1; 
-      printf("playSmithy() fails business rule #7:");
+      printf("playAdventurer() fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      fprintf(f,"playSmithy() fails business rule #7:");
+      fprintf(f,"playAdventurer() fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     } else if ((differences[i] ==100) && (player !=2)){
       testFail =1; 
-      printf("playSmithy() fails business rule #7:");
+      printf("playAdventurer() fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      fprintf(f,"playSmithy() fails business rule #7:");
+      fprintf(f,"playAdventurer() fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     } else if ((differences[i] ==1000) && (player !=3)){
       testFail =1; 
-      printf("playSmithy() fails business rule #7:");
+      printf("playAdventurer() fails business rule #7:");
       printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      fprintf(f,"playSmithy() fails business rule #7:");
+      fprintf(f,"playAdventurer() fails business rule #7:");
       fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
     }
   }

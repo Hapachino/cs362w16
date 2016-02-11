@@ -88,9 +88,6 @@ int main () {
     G.coins = floor(Random() * MAX_DECK);//NEW
     G.numPlayers = floor(Random() * MAX_PLAYERS);
 
-    //int player = 1; //floor(Random() * MAX_PLAYERS);
-    //G.hand[player][G.handCount[player]]=floor(Random() * MAX_HAND);
-
     for (int i =0; i< G.numPlayers +1; i++){
     	G.deckCount[i] = floor(Random() * MAX_DECK);
         G.handCount[i]= floor(Random() * MAX_DECK);
@@ -110,6 +107,11 @@ int main () {
         }
     }
   }
+  //FIXED TESTS needed
+    //fixed test to check branch for if deckCount is 0;
+    //G.deckCount[1]=0;//deckCount currentPlayer
+
+
   printf ("ALL Random TESTS Complete\n");
   printf ("Errors type 1: %d ",errorA);
    printf("gameState memory is wrong\n");

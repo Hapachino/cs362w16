@@ -27,7 +27,8 @@ Branches executed:4.82% of 415
 Taken at least once:3.86% of 415
 Calls executed:5.32% of 94
 
-The new coverage increases the number of lines executed but the branch coverage isn't as good.
+The new coverage increases the number of lines executed but the branch coverage isn't as good.A large part of the failure of the coverage is failing to create fixed tests which ensure that ensure branch coverage. Because there is no garentee that each branch is taken at least once a lot of coverage is lost.
+The calls executed dramatically improved from 0% to 5.32%.
 
 Baron
 ------------------------------------------
@@ -36,6 +37,9 @@ Lines executed:5.18% of 560
 Branches executed:4.82% of 415
 Taken at least once:3.86% of 415
 Calls executed:5.32% of 94
+
+A large part of the failure of the coverage is failing to create fixed tests which ensure that ensure branch coverage. Because there is no garentee that each branch is taken at least once a lot of coverage is lost.
+
 
 Village
 ---------------------------------------
@@ -58,4 +62,5 @@ Taken at least once:3.86% of 415
 Calls executed:5.32% of 94
 Creating 'dominion.c.gcov'
 
-
+The new coverage is better, although there was random testing in the orginal coverage the intialization values where not 'reasonable' resulting in a segfault. By adding random initializers for the gamestate's arrays this was resolved allowing more of the tests to complete.
+The calls executed dramatically improved from 0% to 5.32%.

@@ -117,7 +117,7 @@ int main () {
         G.discard[i][ G.discardCount[i] ] = floor(Random() * MAX_DECK);
         G.discardCount[i]= floor(Random() * MAX_DECK);
     }
-    int choice1 = floor(Random() * 1);//boolean true or false
+    int choice1 = floor(Random() * 2);//boolean true or false
     //call function with test input
     error=unitTest(G.numPlayers,&G,choice1);
 

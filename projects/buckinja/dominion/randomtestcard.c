@@ -12,7 +12,7 @@ void testSmithy(struct gameState *G, int cardsInPlay[10]);
 int main (int argc, char** argv) {
     struct gameState G;
 	int seed = 200;
-	int count = 100000;
+	int count = 10000;
     int cardsInPlay[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
    
     setupTest(&G, cardsInPlay, seed); //game state and handcount

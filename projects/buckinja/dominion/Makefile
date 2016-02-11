@@ -59,12 +59,14 @@ interface.o: interface.h interface.c
 
 
 randomtestcard.out: rtcard
+	rm -f dominion.gcda
 	./rtcard
 
 	gcov dominion.c -b >> randomtestcard.out
 	cat dominion.c.gcov >> randomtestcard.out
 	
 randomtestadventurer.out: rtadventurer
+	rm -f dominion.gcda
 	./rtadventurer
 
 	gcov dominion.c -b >> randomtestadventurer.out

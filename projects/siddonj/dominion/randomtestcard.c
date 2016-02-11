@@ -55,6 +55,11 @@ void randomBuys(struct gameState *state) {
   state->numBuys = rand() % 100;
 }
 
+// Sets random number of coins.
+void randomCoins(struct gameState *state) {
+  state->coins = rand() % 100;
+}
+
 
 void testRandomCard() {
   int i = 0;
@@ -95,7 +100,7 @@ void testRandomCard() {
   for(i = 0; i < NUM_TESTS; i++) {
 
     // Change number of players.
-    numPlayers = rand() % 3 + 2;                      // Generate random number between 1 and 6, 1 because thats to few and 6 because thats to many. Interesting values.
+    numPlayers = rand() % 3 + 2;                      // Generate random number between 2 and 4, we are testing playSmithy not create game so pick good values.
     kingdomCardCount = 0;
 
     // Fill kingdomCards array with random kingom cards.
@@ -125,6 +130,7 @@ void testRandomCard() {
     randomDiscard(state);
     randomActions(state);         // Set random number of actions.
     randomBuys(state);            // Set random number of buys.
+    randomCoins(state);           // Set random number of coins.
 
     int smithyIndex = rand() % 5;                                       // Randomize hand position smithy is in.
     memcpy(testGame, state, sizeof(struct gameState));                  // Setup clean test game.
@@ -140,7 +146,6 @@ void testRandomCard() {
     printf("Deck Size - %d, Discard Size - %d ", testGame->deckCount[testGame->whoseTurn], testGame->discardCount[testGame->whoseTurn]);   // Print game condition tests are executing against.
     printf("Num Actions - %d, Num Buys - %d\n", testGame->numActions, testGame->numBuys);
 
-
     // TEST - Smithy draws 3 cards, but also the player discards smithy making net handsize gain only two.
     int handSizeIncrease = state->handCount[statePlayer] - testGame->handCount[testPlayer];       // Should equal 2.
     if(handSizeIncrease == 2) {
@@ -148,7 +153,7 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1's 'hand' size to increase by a total of '2', 'hand' increased by: %d\n", handSizeIncrease);
+    printf("expects Player 1 'hand' size to increase by a total of '2', 'hand' increased by: %d\n", handSizeIncrease);
 
     // TEST - Deck count decreased by 3.
     int deckCountDecrease = testGame->deckCount[testPlayer] - state->deckCount[statePlayer];
@@ -157,7 +162,7 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1's 'deck' size to decrease by a total of '3', 'deck' decreased by: %d\n", deckCountDecrease);
+    printf("expects Player 1 'deck' size to decrease by a total of '3', 'deck' decreased by: %d\n", deckCountDecrease);
 
     // TEST - Action reduced by 1.
     int actionDecrease = testGame->numActions - state->numActions;
@@ -166,7 +171,7 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1's 'action' amount to decrease by '1', 'actions' decreased by: %d\n", actionDecrease);
+    printf("expects Player 1 'action' amount to decrease by '1', 'actions' decreased by: %d\n", actionDecrease);
 
     // TEST - Number of Buys not reduced.
     int buyDecrease = testGame->numBuys - state->numBuys;
@@ -175,72 +180,111 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1's 'buy' amount to decrease by '0', 'buys' decreased by: %d\n", buyDecrease);
+    printf("expects Player 1 'buy' amount to decrease by '0', 'buys' decreased by: %d\n", buyDecrease);
+
+    // TEST - Number of Coins not changed.
+    int coinDecrease = testGame->coins - state->coins;
+    if(coinDecrease == 0) {         // 0 coin change.
+      printf(PLAYSMITHY_PASS);
+    } else {
+      printf(PLAYSMITHY_FAIL);
+    }
+    printf("expects Player 1 'coins' to be the same after playing smithy, changed by: %d\n", coinDecrease);
 
 
+    // TEST - Number of Smithy in hand after playing.
+    int smithyHandCountAfter = 0;
+    for(j = 0; j < state->handCount[statePlayer]; j++) {    // After playing
+      if(state->hand[statePlayer][j] == smithy)             // Card is smithy.
+        smithyHandCountAfter++;
+    }
+    int smithyHandCountBefore = 0;
+    for(j = 0; j < testGame->handCount[statePlayer]; j++) {    // After playing
+      if(testGame->hand[statePlayer][j] == smithy)             // Card is smithy.
+        smithyHandCountBefore++;
+    }
+    if(smithyHandCountAfter == smithyHandCountBefore-1) {    // Smithy count should be 1 less.
+      printf(PLAYSMITHY_PASS);
+    } else {
+      printf(PLAYSMITHY_FAIL);
+    }
+    printf("expects Player 1 to have 1 less 'smithy' card in hand, has less: %d\n", smithyHandCountBefore - smithyHandCountAfter);
 
-/////////
+    // TEST - Number of smithy cards in played pile.
+    int smithyPlayedCountAfter = 0;
+    for(j = 0; j < state->playedCardCount; j++) {    // After playing
+      if(state->playedCards[j] == smithy)             // Card is smithy.
+        smithyPlayedCountAfter++;
+    }
+    int smithyPlayedCountBefore = 0;
+    for(j = 0; j < testGame->playedCardCount; j++) {    // After playing
+      if(testGame->playedCards[j] == smithy)             // Card is smithy.
+        smithyPlayedCountBefore++;
+    }
+    if(smithyPlayedCountAfter == smithyPlayedCountBefore+1) {    // 1 smithy in played cards pile.
+      printf(PLAYSMITHY_PASS);
+    } else {
+      printf(PLAYSMITHY_FAIL);
+    }
+    printf("expects Player 1 to have 1 more 'smithy' card in played card pile, has more: %d\n", smithyPlayedCountAfter - smithyPlayedCountBefore);
 
-    // // TEST - Number of Smithy in hand after playing.
-    // int smithyHandCount = 0;
-    // for(i = 0; i < state->handCount[statePlayer]; i++) {
-    //   if(state->hand[statePlayer][i] == smithy)             // Card is smithy.
-    //     smithyHandCount++;
-    // }
-    // if(smithyHandCount == 0) {    // No smithy in hand.
-    //   printf(PLAYSMITHY_PASS);
-    // } else {
-    //   printf(PLAYSMITHY_FAIL);
-    // }
-    // printf("expects Player 1 to have 0 'smithy' cards in hand, got: %d\n", smithyHandCount);
+    // TEST - Number of smithy cards in played pile.
+    int smithyDiscardCountAfter = 0;
+    for(j = 0; j < state->discardCount[statePlayer]; j++) {    // After playing
+      if(state->discard[statePlayer][j] == smithy)             // Card is smithy.
+        smithyPlayedCountAfter++;
+    }
+    int smithyDiscardCountBefore = 0;
+    for(j = 0; j < testGame->discardCount[testPlayer]; j++) {    // After playing
+      if(testGame->discard[testPlayer][j] == smithy)             // Card is smithy.
+        smithyPlayedCountBefore++;
+    }
+    if(smithyDiscardCountAfter == smithyDiscardCountBefore) {    // 0 smithy in discard.
+      printf(PLAYSMITHY_PASS);
+    } else {
+      printf(PLAYSMITHY_FAIL);
+    }
+    printf("expects Player 1 to have 0 'smithy' cards in discard pile, has: %d\n", smithyDiscardCountAfter - smithyDiscardCountBefore);
 
-    // int smithyPlayedCount = 0;
-    // if(smithyPlayedCount == 1) {    // 1 smithy in played cards pile.
-    //   printf(PLAYSMITHY_PASS);
-    // } else {
-    //   printf(PLAYSMITHY_FAIL);
-    // }
-    // printf("expects Player 1 to have 1 'smithy' card in played card pile, got: %d\n", smithyPlayedCount);
-    //
-    // int smithyDiscardCount = 0;
-    // if(smithyDiscardCount == 0) {    // 0 smithy in discard.
-    //   printf(PLAYSMITHY_PASS);
-    // } else {
-    //   printf(PLAYSMITHY_FAIL);
-    // }
-    // printf("expects Player 1 to have 0 'smithy' cards in discard pile, got: %d\n", smithyDiscardCount);
-    //
-    // if(testGame->coins == state->coins) {         // 0 coin change.
-    //   printf(PLAYSMITHY_PASS);
-    // } else {
-    //   printf(PLAYSMITHY_FAIL);
-    // }
-    // printf("expects Player 1 'coins' to be the same after playing smithy, changed by: %d\n", testGame->coins-state->coins);
-    //
-    // // Other players
-    // int otherHandIncrease = 0;
-    // if(otherHandIncrease == 0) {    // Make sure other players hand size doesn't increase.
-    //   printf(PLAYSMITHY_PASS);
-    // } else {
-    //   printf(PLAYSMITHY_FAIL);
-    // }
-    // printf("expects other player's 'hand' size to not increase, other player's 'hands' increased by: %d\n", otherHandIncrease);
-    //
-    // int otherDeckIncrease = 0;
-    // if(otherDeckIncrease == 0) {    // Make sure other players deck size doesn't increase.
-    //   printf(PLAYSMITHY_PASS);
-    // } else {
-    //   printf(PLAYSMITHY_FAIL);
-    // }
-    // printf("expects other player's 'deck' size to not increase, other player's 'decks' increased by: %d\n", otherDeckIncrease);
-    //
-    // int otherDiscardIncrease = 0;
-    // if(otherDiscardIncrease == 0) {    // Make sure other players discard size doesn't increase.
-    //   printf(PLAYSMITHY_PASS);
-    // } else {
-    //   printf(PLAYSMITHY_FAIL);
-    // }
-    // printf("expects other player's 'discard' size to not increase, other player's 'discard' pile increased by: %d\n", otherDiscardIncrease);
+
+    // Other players
+    // TEST - Number of cards increased in other players hands, deck, discard.
+    int otherHandIncrease = 0;
+    int otherDeckIncrease = 0;
+    int otherDiscardIncrease = 0;
+
+    for(j = 1; j < state->numPlayers; j++) {
+      if(testGame->handCount[j] > 0) {
+        otherHandIncrease++;
+      }
+      if(testGame->deckCount[j] > 10) {
+        otherDeckIncrease++;
+      }
+      if(testGame->discardCount[j] > 0) {
+        otherDiscardIncrease++;
+      }
+    }
+
+    if(otherHandIncrease == 0) {    // Make sure other players hand size doesn't increase.
+      printf(PLAYSMITHY_PASS);
+    } else {
+      printf(PLAYSMITHY_FAIL);
+    }
+    printf("expects other player's 'hand' size to not increase, other player's 'hands' increased by: %d\n", otherHandIncrease);
+
+    if(otherDeckIncrease == 0) {    // Make sure other players deck size doesn't increase.
+      printf(PLAYSMITHY_PASS);
+    } else {
+      printf(PLAYSMITHY_FAIL);
+    }
+    printf("expects other player's 'deck' size to not increase, other player's 'decks' increased by: %d\n", otherDeckIncrease);
+
+    if(otherDiscardIncrease == 0) {    // Make sure other players discard size doesn't increase.
+      printf(PLAYSMITHY_PASS);
+    } else {
+      printf(PLAYSMITHY_FAIL);
+    }
+    printf("expects other player's 'discard' size to not increase, other player's 'discard' pile increased by: %d\n", otherDiscardIncrease);
 
 
 

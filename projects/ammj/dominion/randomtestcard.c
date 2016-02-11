@@ -878,14 +878,14 @@ int main(int argc, char *argv[]){
 	r->addedBuys = 1;
 	r->tests->numTests = 100000;
 
-	printf("\nSTARTING: Baron (cardtest3)\n");
+	printf("\nSTARTING: Baron (randomtestcard)\n");
 	for(i = 0; i < r->tests->numTests; i++)
 	{
 		randomtestcard(printVal, seed, r);
 		r->testNum++;
 	}
 	free(r);
-	printf("\nFINISHED: Baron (cardtest3)\n");
+	printf("\nFINISHED: Baron (randomtestcard)\n");
 
 	return 0;
 }

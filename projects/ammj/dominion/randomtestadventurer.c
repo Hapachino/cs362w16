@@ -642,13 +642,13 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 }
 
 /**
- * Function: cardtest2
+ * Function: randomtestadventurer
  * Inputs: printVal, seed, struct cardResults
  * Outputs: None
  * Description:  setup, running and verification of results obtained from
  * 	running playAdventurer() in dominion.c
  */
-void cardTest2(int printVal, int seed, struct cardResults *result){
+void randomtestadventurer(int printVal, int seed, struct cardResults *result){
 
 	int r=0;
 	int bias;
@@ -722,12 +722,12 @@ int main(int argc, char *argv[]){
 	result->cardsToAdd = 2;
 	result->numTests = 100000;
 
-	printf("\nSTARTING: Adventurer (cardtest2)\n");
+	printf("\nSTARTING: Adventurer (randomtestadventurer)\n");
 
 	for(i = 0; i < result->numTests; i++)
 	{
 		printf("\nITERATION %d: STARTING\n", result->testNum);
-		cardTest2(printVal, seed, result);
+		randomtestadventurer(printVal, seed, result);
 		result->testNum++;
 	}
 
@@ -736,7 +736,7 @@ int main(int argc, char *argv[]){
 
 	printf("Passed Tests: %d, Failed Tests: %d\n", result->testsPassed, result->testsFailed);
 	printf("Tests with 0 cards to draw from: %d\n", result->zeroCards);
-	printf("FINISHED: Adventurer (cardtest2)\n");
+	printf("FINISHED: Adventurer (randomtestadventurer)\n");
 
 	return 0;
 }

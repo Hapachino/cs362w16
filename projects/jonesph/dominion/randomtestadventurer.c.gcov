@@ -1,0 +1,212 @@
+        -:    0:Source:randomtestadventurer.c
+        -:    0:Graph:randomtestadventurer.gcno
+        -:    0:Data:randomtestadventurer.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/********************
+        -:    2:* Author: Philip Jones
+        -:    3:* Term: Winter 2016
+        -:    4:* Description: Does random tests on the Adventurer card.
+        -:    5:********************/
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <assert.h>
+        -:   11:#include <stdlib.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <math.h>
+        -:   14:#include <time.h>
+        -:   15:#include "rngs.h"
+        -:   16:
+        -:   17:// set NOISY_TEST to 0 to remove printfs from output
+        -:   18:#define NOISY_TEST 1
+        -:   19:
+     2000:   20:int randomAdventurer(int player, struct gameState *after, int position, int trash)
+        -:   21:{
+        -:   22:	struct gameState before;
+     2000:   23:	memcpy(&before, after, sizeof(struct gameState));
+        -:   24:
+        -:   25:	int i, j, k;
+     2000:   26:	int card = adventurer;
+     2000:   27:	int firstChoice = 1;
+     2000:   28:	int secondChoice = 4;
+     2000:   29:	int thirdChoice = 4;
+     2000:   30:	int bonus = 0;
+        -:   31:
+     2000:   32:	player = before.whoseTurn;
+     2000:   33:	j = cardEffect(card, firstChoice, secondChoice, thirdChoice, after, position, &bonus);
+        -:   34:	
+     2000:   35:	k = 0;
+     2000:   36:	int treasures = 0;
+        -:   37:	int drawnCard;
+        -:   38:	int temp[MAX_HAND];
+        -:   39:
+    39557:   40:	while (treasures < 2)
+        -:   41:	{
+    35557:   42:		if (before.deckCount[player] < 1)
+        -:   43:		{
+       56:   44:			shuffle(player, &before);
+        -:   45:		}
+        -:   46:
+        -:   47:		int count;
+        -:   48:		int countDeck;
+    35557:   49:		if (before.deckCount[player] <= 0)
+        -:   50:		{
+    15711:   51:			for (i = 0; i < before.discardCount[player]; i++)
+        -:   52:			{
+    15655:   53:				before.deck[player][i] = before.discard[player][i];
+    15655:   54:				before.discard[player][i] = -1;
+        -:   55:			}
+        -:   56:
+       56:   57:			before.deckCount[player] = before.discardCount[player];
+       56:   58:			before.discardCount[player] = 0;
+        -:   59:
+       56:   60:			shuffle(player, &before);
+       56:   61:			before.discardCount[player] = 0;
+        -:   62:
+       56:   63:			count = before.handCount[player];
+       56:   64:			countDeck = before.deckCount[player];
+        -:   65:
+       56:   66:			if (countDeck == 0)
+        -:   67:			{
+    #####:   68:				return -1;
+        -:   69:			}
+        -:   70:
+       56:   71:			before.hand[player][count] = before.deck[player][countDeck - 1];
+       56:   72:			before.deckCount[player]--;
+       56:   73:			before.handCount[player]++;
+        -:   74:		}
+        -:   75:		else
+        -:   76:		{
+    35501:   77:			count = before.handCount[player];
+    35501:   78:			countDeck = before.deckCount[player];
+        -:   79:
+    35501:   80:			before.hand[player][count] = before.deck[player][countDeck - 1];
+    35501:   81:			before.deckCount[player]--;
+    35501:   82:			before.handCount[player]++;
+        -:   83:		}
+        -:   84:
+    35557:   85:		drawnCard = before.hand[player][before.handCount[player] - 1];
+        -:   86:
+    39557:   87:		if (drawnCard == copper || drawnCard == silver || drawnCard == gold)
+        -:   88:		{
+     4000:   89:			treasures++;
+        -:   90:		}
+        -:   91:		else
+        -:   92:		{
+    31557:   93:			temp[k] = drawnCard;
+    31557:   94:			before.handCount[player]--;
+    31557:   95:			k++;
+        -:   96:		}
+        -:   97:	}
+        -:   98:
+    35557:   99:	while (k - 1 >= 0)
+        -:  100:	{
+    31557:  101:		before.discard[player][before.discardCount[player]++] = temp[k - 1];
+    31557:  102:		k--;
+        -:  103:	}
+        -:  104:
+     2000:  105:	before.playedCards[before.playedCardCount] = before.hand[player][position];
+     2000:  106:	before.playedCardCount++;
+     2000:  107:	before.hand[player][position] = -1;
+        -:  108:
+     2000:  109:	if (position == (before.handCount[player] - 1))
+        -:  110:	{
+        5:  111:		before.handCount[player]--;
+        -:  112:	}
+     1995:  113:	else if (before.handCount[player] == 1)
+        -:  114:	{
+    #####:  115:		before.handCount[player]--;
+        -:  116:	}
+        -:  117:	else
+        -:  118:	{
+     1995:  119:		before.hand[player][position] = before.hand[player][(before.handCount[player] - 1)];
+     1995:  120:		before.hand[player][before.handCount[player] - 1] = -1;
+     1995:  121:		before.handCount[player]--;
+        -:  122:	}
+        -:  123:
+        -:  124://	assert(j == 0);
+     2000:  125:	printf("Error in cardEffect. \n");
+        -:  126:
+        -:  127://	assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
+     2000:  128:	printf("Error in memory comparison. \n");
+        -:  129:
+     2000:  130:	return 0;
+        -:  131:}
+        -:  132:
+        1:  133:int main()
+        -:  134:{
+        -:  135:	int i, j, k, a;
+        -:  136:	int trash, position, count, seed, players;
+        -:  137:
+        -:  138:	struct gameState state;
+        -:  139:
+        1:  140:	int card[10] = { adventurer, baron, council_room, feast, gardens, great_hall, mine, remodel, smithy, village };
+        -:  141:
+        1:  142:	SelectStream(2);
+        1:  143:	PutSeed(3);
+        1:  144:	srand(time(NULL));
+        -:  145:
+     2001:  146:	for (count = 0; count < 2000; count++)
+        -:  147:	{
+     2000:  148:		seed = rand();
+     2000:  149:		players = 5;
+        -:  150:
+ 52602000:  151:		for (i = 0; i < sizeof(struct gameState); i++)
+        -:  152:		{
+ 52600000:  153:			((char*)&state)[i] = floor(Random() * 256);
+        -:  154:		}
+        -:  155:
+     2000:  156:		initializeGame(players, card, seed, &state);
+        -:  157:
+     2000:  158:		state.numPlayers = players;
+     2000:  159:		a = floor(Random() * (players - 1));
+     2000:  160:		state.whoseTurn = a;
+    10000:  161:		for (j = 0; j < players - 1; j++)
+        -:  162:		{
+     8000:  163:			state.deckCount[j] = floor(Random() * MAX_DECK);
+  1968183:  164:			for (k = 0; k < state.deckCount[j]; k++)
+        -:  165:			{
+  1960183:  166:				state.deck[j][k] = floor(Random() * 26);
+        -:  167:			}
+        -:  168:			
+     8000:  169:			state.discardCount[j] = floor(Random() * MAX_DECK);
+  1996396:  170:			for (k = 0; k < state.discardCount[j]; k++)
+        -:  171:			{
+  1988396:  172:				state.discard[j][k] = floor(Random() * 26);
+        -:  173:			}
+        -:  174:
+     8000:  175:			state.handCount[j] = rand() % MAX_HAND + 1;
+  1993037:  176:			for (k = 0; k < state.handCount[j]; k++)
+        -:  177:			{
+  1985037:  178:				state.hand[j][k] = floor(Random() * 26);
+        -:  179:			}
+        -:  180:
+   216000:  181:			for (k = 0; k < 26; k++)
+        -:  182:			{
+   208000:  183:				state.supplyCount[k] = floor(Random() * 26) + 1;
+        -:  184:			}
+        -:  185:		}
+        -:  186:		
+     2000:  187:		state.playedCardCount = floor(Random() * MAX_DECK);
+   506271:  188:		for (j = 0; j < state.playedCardCount; j++)
+        -:  189:		{
+   504271:  190:			state.playedCards[j] = floor(Random() * 26) + 1;
+        -:  191:		}
+        -:  192:
+     2000:  193:		if (state.handCount[a] < 1)
+        -:  194:		{
+    #####:  195:			exit(-1);
+        -:  196:		}
+        -:  197:
+     2000:  198:		position = floor(Random() * MAX_HAND);
+     2000:  199:		trash = floor(Random() * 1);
+        -:  200:		
+     2000:  201:		randomAdventurer(a, &state, position, trash);
+        -:  202:	}
+        -:  203:
+        1:  204:	printf("No errors encountered \n");
+        -:  205:
+        1:  206:	return 0;
+        -:  207:}

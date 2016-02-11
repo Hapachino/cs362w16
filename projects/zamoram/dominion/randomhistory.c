@@ -27,10 +27,10 @@ in between are being called, like discardCard(), updateCoins(), etc. This gives 
 the game rather than isolating the card.
 
 Results after testing adverturer card:
-Lines executed:36.75% of 566
-Branches executed:44.84% of 417
-Taken at least once:35.97% of 417
-Calls executed:24.00% of 100
+Lines executed:29.33% of 566
+Branches executed:34.77% of 417
+Taken at least once:24.94% of 417
+Calls executed:17.00% of 100
 function playSmithy called 1000 returned 100% blocks executed 100%
 
 Again, I was able to cover much more with this test than I previously did with the unit tests. I played the smithy 

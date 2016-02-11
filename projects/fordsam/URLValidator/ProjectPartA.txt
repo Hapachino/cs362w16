@@ -1,0 +1,21 @@
+Joshua Curtis
+Samuel Ford
+Joseph Vidal
+CS 362-400, Winter 2016
+
+Final Project: Part A
+
+The testIsValid() function basically works by taking arrays of URL parts (scheme, authority, port, path, query) and adding them together in the correct order to create a URL to test.  These part arrays are composed of ResultPair objects, containing an “item” property (a string which holds the actual URL part) and a “valid” property (a boolean which indicates whether that part should be considered valid).
+
+testIsValid() iterates over the URL parts, taking one part from each of the arrays (in order) and appending the ResultPair.item string to the existing URL.  When testIsValid() appends a part to the URL, it also keeps track of whether the generated URL should be considered valid.  This is accomplished by doing a bitwise AND with the “expected” value (initialized to true) and the ResultPair.valid property of the URL part being added; if any part of the URL has a ResultPair.valid property which is false then the “expected” value becomes false as well.
+
+testIsValid() uses an integer array called testPartsIndex to determine the ResultPair member to use from each of the five parts arrays for a given iteration.  Each of these indices starts at zero and the incrementTestPartsIndex() function is responsible for modifying the indices so that testIsValid() exhaustively tests all possible [in order] combinations of the URL parts.  incrementTestPartsIndex() is executed in the while condition of testIsValid()’s do-while loop, so the testPartIndex indices get updated after each iteration.
+
+incrementTestPartsIndex() works from back to front, incrementing the last index in the testPartsIndex array first.  The last index is incremented until it’s equal to the length of the corresponding parts array, at which point the last index is reset to 0 and the second to last index is incremented by 1.  This continues on, incrementing the indices from back to front in a rollover fashion, until all of the possible index value combinations have been used.  Consequently, this should lead to the generation of all the URL permutations that are possible using the various URL parts in the correct order.
+
+Once the URL is generated, it’s tested using UrlValidator.isValid() and an assertion is executed to ensure that the expected result and the actual result are equal.  Of course, if the assertion fails, then the test will fail.
+
+
+Altogether, there appear to be 31920 URLs being tested, where 1890 of them are valid and 30030 are invalid.  An example of a valid URL being tested by testIsValid() is "ftp://www.google.com/test1/file?action=edit&mode=up" and an example of an invalid URL being tested is "://go.a:0/test1/?action=view".
+
+It’s safe to say that the Dominion program that we’re working with has a more restricted domain so, naturally, our tests are a little more limited.  That is, the number of possible URL permutations is seemingly very large, so you have to test a relatively large number of URLs to develop any confidence in a URL validating function.  However, this “real world” test and our Dominion tests both operate by setting up conditions, running the function to test, and making assertions about the result.  testIsValid() is a little more complex since it tests a larger number of inputs and involves a sophisticated manner of generating the test inputs but it still utilizes the same fundamental concepts that we’ve been using.

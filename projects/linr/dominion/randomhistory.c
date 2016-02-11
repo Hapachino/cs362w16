@@ -8,6 +8,7 @@ Taken at least once:21.45% of 415
 Calls executed:21.00% of 100
 
 
+*I ran all 8 tests from Assignment 3 and then ran 10 tests (Assignment 3+4)
 Updated results after testing smithy card:
 File 'dominion.c'
 Lines executed:30.86% of 580

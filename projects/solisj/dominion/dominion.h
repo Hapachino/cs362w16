@@ -136,6 +136,7 @@ int playSmithy(int currentPlayer, struct gameState *state, int handPos);
 int playVillage(int currentPlayer, struct gameState *state, int handPos);
 int playSeahag(int currentPlayer, struct gameState *state);
 int playCutpurse(int currentPlayer, struct gameState *state, int handPos);
+int playSalvager(int currentPlayer, struct gameState *state, int handPos, int choice1);
 
 
 #endif

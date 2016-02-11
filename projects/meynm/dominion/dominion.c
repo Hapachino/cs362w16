@@ -305,7 +305,7 @@ int buyCard( int supplyPos, struct gameState *state )
 	{
 		state->phase = 1;
 		//state->supplyCount[supplyPos]--;
-		gainCard( supplyPos, state, 0, who );    //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
+		gainCard( supplyPos, state, 0, who );   //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
 
 		state->coins = ( state->coins ) - ( getCost( supplyPos ) );
 		state->numBuys--;
@@ -784,7 +784,8 @@ int cardEffect( int card, int choice1, int choice2, int choice3, struct gameStat
 		}
 		return 0;
 		*/
-		playAdventurer(currentPlayer, state);
+
+		playAdventurer( currentPlayer, state );
 		return 0;
 	case council_room:
 		//+4 Cards
@@ -915,8 +916,7 @@ int cardEffect( int card, int choice1, int choice2, int choice3, struct gameStat
 
 		return 0;
 		*/
-
-		return playMine(currentPlayer, state, handPos, choice1, choice2 );
+		return playMine( currentPlayer, state, handPos, choice1, choice2 );
 
 	case remodel:
 		j = state->hand[currentPlayer][choice1];    //store card we will trash
@@ -946,16 +946,16 @@ int cardEffect( int card, int choice1, int choice2, int choice3, struct gameStat
 	case smithy:
 		//+3 Cards
 		/*
-		for (i = 0; i < 3; i++)
-		{
-			drawCard( currentPlayer, state );
-		}
+		 for (i = 0; i < 3; i++)
+		 {
+		 drawCard( currentPlayer, state );
+		 }
 
-		//discard card from hand
-		discardCard( handPos, currentPlayer, state, 0 );
-		return 0;
-		*/
-		playSmithy(currentPlayer, state, 0);
+		 //discard card from hand
+		 discardCard( handPos, currentPlayer, state, 0 );
+		 return 0;
+		 */
+		playSmithy( currentPlayer, state, 0 );
 		return 0;
 
 	case village:
@@ -1032,8 +1032,7 @@ int cardEffect( int card, int choice1, int choice2, int choice3, struct gameStat
 
 		return 0;
 		*/
-
-		playBaron( currentPlayer, state, choice1);
+		playBaron( currentPlayer, state, choice1 );
 		return 0;
 
 	case great_hall:
@@ -1059,7 +1058,7 @@ int cardEffect( int card, int choice1, int choice2, int choice3, struct gameStat
 			state->coins = state->coins + 2;
 		}
 
-		else if (choice2)    //discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
+		else if (choice2)   //discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
 		{
 			//discard hand
 			while ( numHandCards( state ) > 0 )
@@ -1099,7 +1098,8 @@ int cardEffect( int card, int choice1, int choice2, int choice3, struct gameStat
 		return 0;
 
 	case steward:
-		/*if (choice1 == 1)
+		/*
+		if (choice1 == 1)
 		{
 			//+2 cards
 			drawCard( currentPlayer, state );
@@ -1119,7 +1119,7 @@ int cardEffect( int card, int choice1, int choice2, int choice3, struct gameStat
 		discardCard( handPos, currentPlayer, state, 0 );
 		return 0;
 		*/
-		playSteward(currentPlayer, state, handPos, choice1, choice2, choice3);
+		playSteward( currentPlayer, state, handPos, choice1, choice2, choice3 );
 		return 0;
 	case tribute:
 		if (( state->discardCount[nextPlayer] + state->deckCount[nextPlayer] ) <= 1)
@@ -1385,6 +1385,13 @@ int discardCard( int handPos, int currentPlayer, struct gameState *state, int tr
 		//add card to played pile
 		state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
 		state->playedCardCount++;
+
+		// I think this was missing before
+		state->discard[currentPlayer][state->discardCount[currentPlayer]] =
+				state->hand[currentPlayer][handPos];
+		state->discardCount[currentPlayer]++;
+
+
 	}
 
 	//set played card to -1

@@ -1,5 +1,11 @@
 /* -----------------------------------------------------------------------
  * Testing isGameOver()
+ Basic requirements of isGameOver()
+   1)Does game end when provience cards are empty?
+   2)Game shouldn't end with a provience card.
+   3)Does game end when only 2 or less supply piles are empty?
+   4)Does game end when a certain type of card 
+      is included when the 3 piles are gone?
  * -----------------------------------------------------------------------
  */
 
@@ -28,7 +34,6 @@ int main() {
      int k[10] = {adventurer, council_room, feast, gardens, mine
                 , remodel, smithy, village, baron, great_hall};
     struct gameState G;
-    //Make Array called nameCards, that holds decks full of same card name
 
     
     

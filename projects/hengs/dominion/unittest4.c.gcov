@@ -1,0 +1,44 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * Test is for getCost()
+        -:    3: *
+        -:    4: * unittest4
+        -:    5: * -----------------------------------------------------------------------
+        -:    6: */
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <stdio.h>
+        -:   11:#include <stdlib.h>
+        -:   12:#include "rngs.h"
+        -:   13:
+        -:   14:
+        -:   15:
+        1:   16:int main(){
+        -:   17:	
+        -:   18:	int i; 
+        -:   19:	int value;
+        1:   20:	int cardAmount = 27;
+        -:   21:	char *availableCards[27]= {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room", 
+        -:   22:			"feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
+        1:   23:			"tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"};
+        -:   24:
+        1:   25:	int cardValue[27] = {0,2,5,8,0,3,6,6,5,4,4,5,4,4,3,4,3,5,3,5,3,4,2,5,4,4,4};
+        -:   26:
+       28:   27:	for (i = 0; i < cardAmount; i++){
+       27:   28:		value = getCost(i);
+       27:   29:		if(value == cardValue[i]){
+       27:   30:			printf(">>>>>Success:%s is the correct amount of %d\n", availableCards[i], cardValue[i]);
+        -:   31:		}
+        -:   32:			
+        -:   33:		else
+    #####:   34:			printf(">>>>>ERROR: %s is the incorrect amount.\n", availableCards[i]);
+        -:   35:	}
+        -:   36:
+        1:   37:	return (0);
+        -:   38:	
+        -:   39:}

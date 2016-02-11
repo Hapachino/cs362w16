@@ -14,11 +14,16 @@
 
 #define SEED 100
 
+int runCount, failCount;
+
 int testGainCard( int numPlayers, int numRuns );
 
 int main()
 {
 	int i, result, anyErrors = 0;
+	runCount = 0;
+	failCount = 0;
+	fprintf(stdout, "\n**********\nunittest3\nTesting gainCard():\n");
 	for (i = 2; i <= MAX_PLAYERS; i++)
 	{
 		result = testGainCard( i, 5000 );
@@ -32,18 +37,18 @@ int main()
 			return 1;
 		}
 	}
+	fprintf(stdout, "\n%d tests run.\n", runCount);
 	if(anyErrors)
-		fprintf(stdout, "Some tests failed.\n");
+		fprintf(stdout, "\n%d failures.\n\n**********\n\n", failCount);
 	else
-		fprintf(stdout, "All tests passed.\n");
+		fprintf(stdout, "\nAll tests passed.\n\n**********\n\n");
 	return 0;
 }
 
 int testGainCard( int numPlayers, int numRuns )
 {
 	int i, j, used = 0, player, card, toFlag, result, expectedResult, errFlag = 0, anyError = 0;
-	int k[10] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};/* = { adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute,
-			smithy };*/
+	int k[10] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	struct gameState pre, post;
 	const int r = treasure_map - adventurer;
 
@@ -83,12 +88,18 @@ int testGainCard( int numPlayers, int numRuns )
 			expectedResult = 0;
 
 		result = gainCard( card, &post, toFlag, player );
+		runCount++;
 
 		if (result != expectedResult)
 			errFlag = 1;
 
 		if (result == 0)
 		{
+			// test whether the supply of this card has been updated
+			if(post.supplyCount[card] != pre.supplyCount[card] - 1)
+				errFlag = 1;
+
+			// test whether the player got the card
 			switch ( toFlag ) {
 			case 0:
 				if (post.discardCount[player] != 1 + pre.discardCount[player])
@@ -112,13 +123,17 @@ int testGainCard( int numPlayers, int numRuns )
 				return -1;
 			}
 		}
+		else if(result == -1)
+		{
+			if (memcmp( &pre, &post, sizeof(struct gameState) ) != 0)
+				errFlag = 1;
+		}
 
 		if (errFlag)
 		{
 			fprintf( stdout, "numPlayers=%d, player=%d, card=%d, toFlag=%d: FAIL\n",
 					numPlayers, player, card, toFlag );
-			fprintf(stdout, "i=%d\n", i);
-			anyError = 1;
+			failCount++;
 		}
 
 		memcpy( &pre, &post, sizeof(struct gameState) );

@@ -4,6 +4,6 @@
 #include "dominion.h"
 
 void testFunc() {
-	printf("");
+	printf("test");
 	return;
 }

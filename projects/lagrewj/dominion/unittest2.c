@@ -31,7 +31,7 @@ int main() {
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
 #if (NOISY_TEST == 1)
-    printf("TESTING fullDeckCount():\n");
+    printf("\nTESTING fullDeckCount():\n");
 #endif
 
     for (p = 0; p < numPlayer; p++)// loop through players, for testing set to 2 players, 0 and 1 

@@ -1,18 +1,7 @@
-/* 	Interactive Dominion Interface
-	
-	Sam Heinith CS362
-	1/26/2010
-*/
-
-
-
+/* 	Interactive Dominion Interface */
 #ifndef _INTERFACE_H
 #define _INTERFACE_H
-
-
-
 #include "dominion.h"
-
 //Last card enum (Treasure map) card number plus one for the 0th card.
 #define NUM_TOTAL_K_CARDS (treasure_map + 1)
 #define NUM_K_CARDS 10
@@ -84,45 +73,20 @@
 #define TREASURE_MAP_COST 4
 #define ONETHOUSAND 1000
 
-
-int addCardToHand(int player, int card, struct gameState *game); 
-
+int addCardToHand(int player, int card, struct gameState *game);
 int countHandCoins(int player, struct gameState *game);
-
-
 void executeBotTurn(int player, int *turnNum, struct gameState *game);
-
-void phaseNumToName(int phase, char *name); 
+void phaseNumToName(int phase, char *name);
 void cardNumToName(int card, char *name);
-
 int getCardCost(int card);
-
 void printHelp(void);
-
 void printHand(int player, struct gameState *game);
-
 void printDeck(int player, struct gameState *game);
-
 void printDiscard(int player, struct gameState *game);
-
 void printPlayed(int player, struct gameState *game);
-
 void printState(struct gameState *game);
-
 void printSupply(struct gameState *game);
-
 void printGameState(struct gameState *game);
-
 void printScores(struct gameState *game);
-
 void selectKingdomCards(int randomSeed, int kingdomCards[NUM_K_CARDS]);
-
-
-
 #endif
-
-
-
-
-
-

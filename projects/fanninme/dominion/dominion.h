@@ -139,6 +139,9 @@ void adventurerCard(int currentPlayer, struct gameState *state);
 void feastCard(int currentPlayer,struct gameState *state,int choice1);
 void smithyCard(int currentPlayer,struct gameState *state,int handPos);
 void villageCard(int currentPlayer,struct gameState *state,int handPos);
+void baronCard(int currentPlayer,struct gameState *state, int choice1);
+
+
 
 
 #endif

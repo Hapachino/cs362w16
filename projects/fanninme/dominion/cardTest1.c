@@ -34,6 +34,12 @@ int unitTest(int player,struct gameState *post){
         return 1;
     }
     //card specific checks 
+    if(post->hand[player][post->handCount[player]] < 0){
+        #if (NOISY_TEST==1)
+        printf("invalid handsize");
+        #endif
+    }
+    
     //player hand size should be 2 larger after gaining treasure
     if(post->handCount != pre.handCount +2){
         #if (NOISY_TEST == 1)

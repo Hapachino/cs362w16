@@ -1,3 +1,16 @@
-make unittest2
+make unittests 
+RET=$?
 make clean
-./unittest2
+if [ $RET -eq 0 ]
+then
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	./randomtestcard
+	rm randomtestcard 
+
+fi

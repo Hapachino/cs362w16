@@ -1,8 +1,11 @@
 CFLAGS = -Wall -fpic -coverage -lm
-DOMINIONOBJECTS = rngs.o dominion.o
+DOMINIONOBJECTS = rngs.o dominion.o interface.o
 UNITTESTFILES = unittest1.c unittest2.c unittest3.c unittest4.c
 CARDTESTFILES = cardtest1.c cardtest2.c cardtest3.c cardtest4.c
 EXECUTABLES = unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+OUTPUTFILES = *.gcov *.out
+
+default: unittestresults.out
 
 unittestresults.out: $(DOMINIONOBJECTS) unitTests cardTests
 	unittest1 >> unittestresults.out
@@ -13,12 +16,17 @@ unittestresults.out: $(DOMINIONOBJECTS) unitTests cardTests
 	cardtest2 >> unittestresults.out
 	cardtest3 >> unittestresults.out
 	cardtest4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out 
 
 rngs.o: rngs.h rngs.c
-	gcc -c rngs.c  $(CFLAGS)
+	gcc -c rngs.c $(CFLAGS)
 
-dominion.o: dominion.h dominion.c rngs.o
-	gcc -c dominion.c  $(CFLAGS)
+dominion.o: dominion.h dominion.c dominion_helpers.h rngs.o
+	gcc -c dominion.c $(CFLAGS)
+
+interface.o: interface.h interface.c
+	gcc -c interface.c $(CFLAGS)
 
 unitTests: $(TESTFILES) $(DOMINIONOBJECTS)
 	gcc -o unittest1 unittest1.c $(DOMINIONOBJECTS) $(CFLAGS)
@@ -33,4 +41,7 @@ cardTests: $(CARDTESTFILES) $(DOMINIONOBJECTS)
 	gcc -o cardtest4 cardtest4.c $(DOMINIONOBJECTS) $(CFLAGS)
 
 clean:
-	rm -f *.o *.gcov *.gcda *.gcno *.gch *.so $(EXECUTABLES)
+	rm -f *.o *.gcda *.gcno *.gch *.so $(EXECUTABLES)
+
+cleanall:
+	rm -f *.o *gcda *.gcno *.gch *.so $(EXECUTABLES) $(OUTPUTFILES)

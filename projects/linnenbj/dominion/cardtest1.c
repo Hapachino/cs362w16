@@ -21,262 +21,483 @@
  *     (deck & discard contain less than 3 cards)
  * -----------------------------------------------------------------------
  */
-
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <assert.h>
 #include "rngs.h"
+#include <stdlib.h>
 
-#include <stdio.h>
-#include <time.h>
-#include "rngs.h"
+#define TESTCARD "smithy"
+/* qsort int comparison function */
+int int_cmp(const void *a, const void *b)
+{
+    const int *ia = (const int *)a; // casting pointer types
+    const int *ib = (const int *)b;
+    return *ia  - *ib;
+	/* integer comparison: returns negative if b > a
+	and positive if a > b */
+}
 
-
-
-
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 0
-int main() {
+//Determine if two gameStates are identical or not: Return 1 if identical, 0 if not
+int statesAreEqual(struct gameState *g1, struct gameState *g2, int arraychecks)
+{
     int i, j;
-    int numcards, temp, numHand, numDeck, numDiscard;
-    int testHandCounts = 0, testPlayedCounts = 0, testDeckCounts = 0;
-    int testHandCards = 0, testPlayedCards = 0;
-    int smithyLoc, currentTest;
-    int tests = 100;  // number of times to run test
-    int seed = 500;
-    srand(seed);
-    struct gameState game, test;
-    int tempCards[20];
-    int tempDeck[MAX_DECK];
-    int tempHand[MAX_HAND];
-    int tempDiscard[MAX_HAND];
+
+    if(g1->numPlayers != g2->numPlayers) return 0;
+    for(i = 0; i < treasure_map+1; i++)
+        if(g1->supplyCount[i] != g2->supplyCount[i]) return 0;
+    for(i = 0; i < treasure_map+1; i++)
+        if(g1->embargoTokens[i] != g2->embargoTokens[i]) return 0;
+    if(g1->outpostPlayed != g2->outpostPlayed) return 0;
+    if(g1->outpostTurn != g2->outpostTurn) return 0;
+    if(g1->whoseTurn != g2->whoseTurn) return 0;
+    if(g1->phase != g2->phase) return 0;
+    if(g1->numActions != g2->numActions) return 0;
+    if(g1->coins != g2->coins) return 0;
+    if(g1->numBuys != g2->numBuys) return 0;
+    if(g1->playedCardCount != g2->playedCardCount) return 0;
+
+    qsort ((void*)(g1->deck[0]), g1->deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g1->hand[0]), g1->handCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g1->discard[0]), g1->discardCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g1->playedCards), g1->playedCardCount, sizeof(int), int_cmp);
+    qsort ((void*)(g2->deck[0]), g2->deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g2->hand[0]), g2->handCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g2->discard[0]), g2->discardCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(g2->playedCards), g2->playedCardCount, sizeof(int), int_cmp);
 
 
-    printf ("TESTING playCardSmithy():\n");
-    for(j=0; j < tests; j++)
+
+
+    for(i = 0; i < g1->numPlayers; i++)
     {
-        currentTest = 1;
-        numHand = 0;
-        numDeck = 0;
-        numDiscard = -1;
-        //determine how big the player's deck size should be 0 - 20
-        //(technically, 0 is allowable for a deck size, but 1 has to be
-        // in the hand to play smithy card 20 seems a reasonable upper limit)
-        numcards = (int)(rand() % 17 + 4);
+        if(g1->handCount[i] != g2->handCount[i]) return 0;
+        if(g1->deckCount[i] != g2->deckCount[i]) return 0;
+        if(g1->discardCount[i] != g2->discardCount[i]) return 0;
 
-        //load a temporary set of cards randomly picked
-        for(i = 0; i < 20; i++)
+        if(arraychecks == 1)
         {
-            tempCards[i] = -1;
-        }
-
-        for(i = 0; i < numcards; i++)
-        {
-            temp = rand() % 27;
-            tempCards[i] = temp;
-        }
-
-        //decide how many cards to have in hand/deck/discard
-        //make sure the hand has at least 1 card in it (for smithy)
-        while(numDeck == 0)
-            numDeck = rand() % numcards;
-        while(numDiscard < 0)
-            numDiscard = rand() % (numcards - (numDeck));
-        while(numHand == 0)
-            numHand = rand() % (numcards - (numDeck + numDiscard))+1;
-
-        //create temporary deck, hand, discard
-        for(i=0; i < numDeck; i++)
-            tempDeck[i] = tempCards[i];
-        for(i=numDeck; i < numDeck + numHand; i++)
-            tempHand[i-numDeck] = tempCards[i];
-        for(i=numHand+numDeck; i < numcards; i++)
-            tempDiscard[i-(numHand+numDeck)] = tempCards[i];
-
-        //make sure smithy card is in player's hand
-        smithyLoc = (int) (rand() % numHand);
-        tempHand[smithyLoc] = smithy;
-#if (NOISY_TEST == 1)
-        printf("TEST# %d:   ", j);
-        printf("%d\t%d\t%d\t%d\n", numcards, numDeck, numDiscard, numHand);
-        printf("temp: %d [", numcards);
-        for(i = 0; i < 20; i++)
-            printf("%d, ", tempCards[i]);
-        printf("\b\b]\n");
-
-        printf("hand:  %d [", numHand);
-        for(i = 0; i < numHand; i++)
-            printf("%d, ", tempHand[i]);
-        printf("\b\b]\n");
-
-        printf("deck: %d [", numDeck);
-        for(i = 0; i < numDeck; i++)
-            printf("%d, ", tempDeck[i]);
-        printf("\b\b]\n");
-
-        printf("discard: [");
-        for(i = 0; i < numDiscard; i++)
-            printf("%d, ", tempDiscard[i]);
-        printf("\b\b]\n");
-#endif
-
-         //populate the gamestate with the player's relevant deck, hand, and discard information
-         memset(&game, 0, sizeof(struct gameState));          // clear the game state
-         memcpy(game.hand[0], tempHand, sizeof(int) * numHand);
-         memcpy(game.deck[0], tempDeck, sizeof(int) * numDeck);
-         memcpy(game.discard[0], tempDiscard, sizeof(int) * numDiscard);
-         game.handCount[0] = numHand;
-         game.deckCount[0] = numDeck;
-         game.discardCount[0] = numDiscard;
-         game.playedCardCount = 0;
-         for(i=0; i < MAX_DECK; i++){game.playedCards[i] = -1;}
-         memcpy(&test, &game, sizeof(struct gameState));     //establish a cloned game state
-         playCardSmithy(&game, 0, smithyLoc);
-
-
-#if (NOISY_TEST == 1)
-        printf("\nAFTER PLAYED SMITHY\n");
-        printf("temp: %d [", numcards);
-        for(i = 0; i < 20; i++)
-            printf("%d, ", tempCards[i]);
-        printf("\b\b]\n");
-
-        printf("hand:  %d \t[", game.handCount[0]);
-        for(i = 0; i < game.handCount[0]; i++)
-            printf("%d, ", game.hand[0][i]);
-        printf("\b\b]\n");
-
-        printf("deck:  %d \t[", game.deckCount[0]);
-        for(i = 0; i < game.deckCount[0]; i++)
-            printf("%d, ", game.deck[0][i]);
-        printf("\b\b]\n");
-
-        printf("discard: [");
-        for(i = 0; i < game.discardCount[0]; i++)
-            printf("%d, ", game.discard[0][i]);
-        printf("\b\b]\n");
-
-#endif
-        //Check for proper card counts
-        if(game.handCount[0] == numHand + 2)
-            testHandCounts++;
-        else if(numDeck + numDiscard < 3 && game.handCount[0] == numHand + numDeck + numDiscard -1)
-            testHandCounts++;
-        else
-        {
-            #if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-            #endif
-        }
-        //Check for deck card counts
-        if(numDeck < 3) //did we have to shuffle
-        {
-            if(game.deckCount[0] == numDeck + numDiscard - 3)
-                testDeckCounts++;
-            else if(numDeck + numDiscard < 3 && game.deckCount[0] == 0)
-                testDeckCounts++;
-            else
+            for(j = 0; j < g1->discardCount[i]; j++)
             {
-               #if (NOISY_TEST == 1)
-               printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-               #endif
-            }
-        }
-        else if(game.deckCount[0] == numDeck -3)
-                testDeckCounts++;
-        else
-            {
-               #if (NOISY_TEST == 1)
-               printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-               #endif
+                if(g1->discard[i][j] != g2->discard[i][j]) return 0;
             }
 
-
-        //Check for played card counts
-        if(game.playedCardCount == 1)
-                testPlayedCounts++;
-        else
-        {
-            #if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nPLAYED COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-            #endif
-        }
-
-        //check for played card accuracy
-        if(game.playedCards[game.playedCardCount-1] == smithy)
-            testPlayedCards++;
-        else
-        {
-            #if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nPLAYED CARD LIST FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-            #endif
-        }
-
-        //check for deck & hand card accuracy
-        currentTest = 1;
-        if(numDeck >= 3)  //no shuffle
-        {
-
-            for(i = 0; i < numDeck - 3; i++)
+            for(j = 0; j < g1->handCount[i]; j++)
             {
-                if(game.deck[0][i] != tempDeck[i])
-                    currentTest = 0;
+                if(g1->hand[i][j] != g2->hand[i][j]) return 0;
             }
 
-
-            if((game.hand[0][numHand-1] != tempDeck[numDeck-3]) &&
-               (game.hand[0][numHand] != tempDeck[numDeck-1]) &&
-               (game.hand[0][numHand+1] != tempDeck[numDeck-2]))
-               {
-                   currentTest = 0;
-               }
-
-
-            if(currentTest == 1)
-                testHandCards++;
-            else
+            for(j = 0; j < g1->deckCount[i]; j++)
             {
-                #if (NOISY_TEST == 1)
-                printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND & DECK CARD LIST FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-                #endif
+                if(g1->deck[i][j] != g2->deck[i][j]) return 0;
+            }
+            for(j = 0; j < g1->playedCardCount; j++)
+            {
+                if(g1->playedCards[j] != g2->playedCards[j]) return 0;
             }
         }
-        else
-        {
-            testHandCards++;
-
-        }
+    }
+        return 1;
+}
 
 
+
+int transform_ints_to_string(int const* data, int data_length,
+                             char* output, int output_length)
+{
+  // if not enough space was available, returns -1
+  // otherwise returns the number of characters written to
+  // output, not counting the additional null character
+
+  // precondition: non-null pointers
+  assert(data);
+  assert(output);
+  // precondition: valid data length
+  assert(data_length >= 0);
+  // precondition: output has room for null
+  assert(output_length >= 1);
+
+  int written = 0;
+  for (; data_length; data_length--) {
+    int length = snprintf(output, output_length, "%d, ", *data++);
+    if (length >= output_length) {
+      // not enough space
+      return -1;
+    }
+    written += length;
+    output += length;
+    output_length -= length;
+  }
+  return written;
+}
+
+
+
+
+int main() {
+    char buffer[200] = "";
+    char buffer2[200] = "";
+    int handpos = 0, bonus = 0;
+    int seed = 500;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
+
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+
+	printf("*** Testing Card: %s \n", TESTCARD);
+
+	// ----------- TEST 1: Enough cards in deck to draw 3 --------------
+	printf("-------------------------------------------------------------\n");
+	printf("TEST 1: Enough cards in player's deck to draw 3\n");
+    printf("-------------------------------------------------------------\n");
+	assert(G.deckCount[thisPlayer] >= 3);           //make sure there is enough cards in deck
+	handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = smithy;           //assign the smithy card to the end of the hand
+
+	memcpy(&testG, &G, sizeof(struct gameState));   // copy the game state to a test case
+
+	cardEffect(smithy, 0, 0, 0, &testG, handpos, &bonus);   //Play the card
+
+	//determine if hand/deck is correct
+	int count = 1;
+	assert(transform_ints_to_string(G.hand[thisPlayer], G.handCount[thisPlayer], buffer2, sizeof buffer2));
+	printf("Starting hand: [%s\b\b]\n", buffer2);
+	assert(transform_ints_to_string(G.deck[thisPlayer], G.deckCount[thisPlayer], buffer, sizeof buffer));
+	printf("Starting deck: [%s\b\b]\n", buffer);
+
+	discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+    drawCard(thisPlayer, &G);
+    drawCard(thisPlayer, &G);
+    drawCard(thisPlayer, &G);
+
+    printf("After smithy card has been played:\n");
+	printf("\tCards in hand: %d [%d expected]\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
+	printf("\tCards in deck: %d [%d expected]\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]); //drew 3 cards
+	printf("\tPlayed cards: %d [%d expected]\n", testG.playedCardCount, G.playedCardCount); //played 1 smithy card
+
+	assert(transform_ints_to_string(testG.hand[thisPlayer], testG.handCount[thisPlayer], buffer, sizeof buffer));
+	printf("\tPlayer's hand: [%s\b\b] \n", buffer);
+	assert(transform_ints_to_string(G.hand[thisPlayer], G.handCount[thisPlayer], buffer2, sizeof buffer2));
+	printf("\texpected hand: [%s\b\b]\n", buffer2);
+	printf("\tGamestates equal: %d\n", statesAreEqual(&G, &testG, 0));
+	if(statesAreEqual(&G, &testG, 1) != 1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 1 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***\n");
+        printf("-------------------------------------------------------------\n");
+    }
+    else
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 1 STATUS:  PASSED!\n");
+        printf("-------------------------------------------------------------\n\n");
     }
 
-    printf("CardCountTests (%d total tests):\n", tests);
-    if(testHandCounts == tests)
-        printf("\tALL HAND COUNT TESTS PASSED\n");
-    else
-        printf("\tThere were %d hand count test failures.\n", tests - testHandCounts);
-    if(testDeckCounts == tests)
-        printf("\tALL DECK COUNT TESTS PASSED\n");
-    else
-        printf("\tThere were %d deck count test failures.\n", tests - testDeckCounts);
-    if(testPlayedCounts == tests)
-        printf("\tALL PLAYED COUNT TESTS PASSED\n");
-    else
-        printf("\tThere were %d played count test failures.\n", tests - testPlayedCounts);
-
-    printf("ListAccuracyTests (%d total tests):\n", tests);
-    if(testPlayedCards == tests)
-        printf("\tALL PLAYED CARDS LIST TESTS PASSED\n");
-    else
-        printf("\tThere were %d played cards list test failures.\n", tests - testPlayedCards);
-    if(testHandCards == tests)
-        printf("\tALL HAND & DECK LIST TESTS PASSED\n");
-    else
-        printf("\tThere were %d hand & deck  list test failures.\n", tests - testHandCards);
 
 
-    return 0;
+
+
+	// ----------- TEST 2: Force a Shuffle but still enough to draw 3 cards --------------
+	printf("-------------------------------------------------------------\n");
+	printf("TEST 2: Force a shuffle, drawCount + discardCount >= 3\n");
+    printf("-------------------------------------------------------------\n");
+
+    memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+
+    // initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+    handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = smithy;           //assign the smithy card to the end of the hand
+
+	//move enough cards from the deck into discard so deckCount = 2
+	count = 0;
+	while(G.deckCount[thisPlayer] > 2)
+    {
+        G.discard[thisPlayer][count] = G.deck[thisPlayer][G.deckCount[thisPlayer]-1];
+        G.deckCount[thisPlayer]--;
+        G.discardCount[thisPlayer]++;
+        count++;
+    }
+
+	//display starting hand/deck/discard
+	assert(transform_ints_to_string(G.hand[thisPlayer], G.handCount[thisPlayer], buffer, sizeof buffer));
+	printf("Starting hand: [%s\b\b]\n", buffer);
+	assert(transform_ints_to_string(G.deck[thisPlayer], G.deckCount[thisPlayer], buffer, sizeof buffer));
+	printf("Starting deck: [%s\b\b]\n", buffer);
+	assert(transform_ints_to_string(G.discard[thisPlayer], G.discardCount[thisPlayer], buffer, sizeof buffer));
+	printf("Starting discard: [%s\b\b]\n", buffer);
+
+
+    memcpy(&testG, &G, sizeof(struct gameState));   // copy the game state to a test case
+
+    discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+    drawCard(thisPlayer, &G);
+    drawCard(thisPlayer, &G);
+    drawCard(thisPlayer, &G);  //should force a shuffle
+
+    cardEffect(smithy, 0, 0, 0, &testG, handpos, &bonus);   //Play the card
+
+    printf("After smithy card has been played:\n");
+	printf("\tCards in hand: %d [%d expected]\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
+	printf("\tCards in deck: %d [%d expected]\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
+	printf("\tCards in discard: %d [%d expected]\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer]);
+	printf("\tPlayed cards: %d [%d expected]\n", testG.playedCardCount, G.playedCardCount); //played 1 smithy card
+
+
+    //sort the hands & decks to account for shuffle randomization
+    qsort ((void*)(G.deck[0]), G.deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(G.hand[0]), G.handCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(testG.deck[0]), testG.deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(testG.hand[0]), testG.handCount[0], sizeof(int), int_cmp);
+
+	assert(transform_ints_to_string(testG.hand[thisPlayer], testG.handCount[thisPlayer], buffer, sizeof buffer));
+	printf("\tPlayer's hand: [%s\b\b] \n", buffer);
+	assert(transform_ints_to_string(G.hand[thisPlayer], G.handCount[thisPlayer], buffer2, sizeof buffer2));
+	printf("\texpected hand: [%s\b\b]\n", buffer2);
+	assert(transform_ints_to_string(testG.deck[thisPlayer], testG.deckCount[thisPlayer], buffer, sizeof buffer));
+	printf("\tPlayer's deck: [%s\b\b] \n", buffer);
+	assert(transform_ints_to_string(G.deck[thisPlayer], G.deckCount[thisPlayer], buffer2, sizeof buffer2));
+	printf("\texpected deck: [%s\b\b]\n", buffer2);
+	printf("\tGamestates equal: %d\n", statesAreEqual(&G, &testG, 1));
+	if(statesAreEqual(&G, &testG, 1) != 1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 2 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***\n");
+        printf("-------------------------------------------------------------\n");
+    }
+    else
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 2 STATUS:  PASSED!\n");
+        printf("-------------------------------------------------------------\n\n");
+    }
+
+
+	// ----------- TEST 3: Empty Deck but discardCount >= 3 --------------
+	printf("-------------------------------------------------------------\n");
+	printf("TEST 3: Empty Deck but discardCount >= 3\n");
+    printf("-------------------------------------------------------------\n");
+
+    memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+
+    // initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+    handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = smithy;           //assign the smithy card to the end of the hand
+
+	//move enough cards from the deck into discard so deckCount = 0
+	count = 0;
+	while(G.deckCount[thisPlayer] > 0)
+    {
+        G.discard[thisPlayer][count] = G.deck[thisPlayer][G.deckCount[thisPlayer]-1];
+        G.deckCount[thisPlayer]--;
+        G.discardCount[thisPlayer]++;
+        count++;
+    }
+
+	//display starting hand/deck/discard
+	assert(transform_ints_to_string(G.hand[thisPlayer], G.handCount[thisPlayer], buffer, sizeof buffer));
+	printf("Starting hand: [%s\b\b]\n", buffer);
+	if(G.deckCount[thisPlayer] == 0)
+    {
+        printf("Starting deck: [ ]\n");
+    }
+    else
+    {
+        assert(transform_ints_to_string(G.deck[thisPlayer], G.deckCount[thisPlayer], buffer, sizeof buffer));
+        printf("Starting deck: [%s\b\b]\n", buffer);
+    }
+	if(G.discardCount[thisPlayer] == 0)
+    {
+        printf("Starting discard: [ ]\n");
+    }
+    else
+    {
+        assert(transform_ints_to_string(G.discard[thisPlayer], G.discardCount[thisPlayer], buffer, sizeof buffer));
+        printf("Starting discard: [%s\b\b]\n", buffer);
+    }
+
+    memcpy(&testG, &G, sizeof(struct gameState));   // copy the game state to a test case
+
+    discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+    drawCard(thisPlayer, &G);  //should force a shuffle
+    drawCard(thisPlayer, &G);
+    drawCard(thisPlayer, &G);
+
+    cardEffect(smithy, 0, 0, 0, &testG, handpos, &bonus);   //Play the card
+
+    printf("After smithy card has been played:\n");
+	printf("\tCards in hand: %d [%d expected]\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
+	printf("\tCards in deck: %d [%d expected]\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
+	printf("\tCards in discard: %d [%d expected]\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer]);
+	printf("\tPlayed cards: %d [%d expected]\n", testG.playedCardCount, G.playedCardCount); //played 1 smithy card
+
+
+    //sort the hands & decks to account for shuffle randomization
+    qsort ((void*)(G.deck[0]), G.deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(G.hand[0]), G.handCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(testG.deck[0]), testG.deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(testG.hand[0]), testG.handCount[0], sizeof(int), int_cmp);
+
+	assert(transform_ints_to_string(testG.hand[thisPlayer], testG.handCount[thisPlayer], buffer, sizeof buffer));
+	printf("\tPlayer's hand: [%s\b\b] \n", buffer);
+	assert(transform_ints_to_string(G.hand[thisPlayer], G.handCount[thisPlayer], buffer2, sizeof buffer2));
+	printf("\texpected hand: [%s\b\b]\n", buffer2);
+	assert(transform_ints_to_string(testG.deck[thisPlayer], testG.deckCount[thisPlayer], buffer, sizeof buffer));
+	printf("\tPlayer's deck: [%s\b\b] \n", buffer);
+	assert(transform_ints_to_string(G.deck[thisPlayer], G.deckCount[thisPlayer], buffer2, sizeof buffer2));
+	printf("\texpected deck: [%s\b\b]\n", buffer2);
+	printf("\tGamestates equal: %d  (0 not autofail b/c shuffle)\n", statesAreEqual(&G, &testG, 1));
+	if(statesAreEqual(&G, &testG, 0) != 1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 3 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***\n");
+        printf("-------------------------------------------------------------\n");
+    }
+    else
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 3 STATUS:  PASSED!\n");
+        printf("-------------------------------------------------------------\n\n");
+    }
+
+
+	// ----------- TEST 4: Less than 3 cards available in deck/discard --------------
+	printf("-------------------------------------------------------------\n");
+	printf("TEST 4: deckCount + discardCount < 3\n");
+    printf("-------------------------------------------------------------\n");
+
+    memset(&G, 0, sizeof(struct gameState));              // clear the game state
+    memset(&testG, 0, sizeof(struct gameState));          // clear the game state
+
+    // initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+    handpos= G.handCount[thisPlayer]-1;
+	G.hand[thisPlayer][handpos] = smithy;           //assign the smithy card to the end of the hand
+
+	//move enough cards from the deck into discard so deckCount = 1
+
+	//draw 3 cards to get deckCount to 2;
+    drawCard(thisPlayer, &G);
+    drawCard(thisPlayer, &G);
+    drawCard(thisPlayer, &G);	//deck should now be at 2
+	assert(G.deckCount[thisPlayer] == 2);
+
+
+	//display starting hand/deck/discard
+	assert(transform_ints_to_string(G.hand[thisPlayer], G.handCount[thisPlayer], buffer, sizeof buffer));
+	printf("Starting hand: [%s\b\b]\n", buffer);
+	if(G.deckCount[thisPlayer] == 0)
+    {
+        printf("Starting deck: [ ]\n");
+    }
+    else
+    {
+        assert(transform_ints_to_string(G.deck[thisPlayer], G.deckCount[thisPlayer], buffer, sizeof buffer));
+        printf("Starting deck: [%s\b\b]\n", buffer);
+    }
+	if(G.discardCount[thisPlayer] == 0)
+    {
+        printf("Starting discard: [ ]\n");
+    }
+    else
+    {
+        assert(transform_ints_to_string(G.discard[thisPlayer], G.discardCount[thisPlayer], buffer, sizeof buffer));
+        printf("Starting discard: [%s\b\b]\n", buffer);
+    }
+
+    memcpy(&testG, &G, sizeof(struct gameState));   // copy the game state to a test case
+
+    discardCard(handpos, thisPlayer, &G, 0);
+    drawCard(thisPlayer, &G);
+    drawCard(thisPlayer, &G);
+    drawCard(thisPlayer, &G);   //force draw on empty deck/discard
+
+
+    cardEffect(smithy, 0, 0, 0, &testG, handpos, &bonus);   //Play the card
+
+    printf("After smithy card has been played:\n");
+	printf("\tCards in hand: %d [%d expected]\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
+	printf("\tCards in deck: %d [%d expected]\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
+	printf("\tCards in discard: %d [%d expected]\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer]);
+	printf("\tPlayed cards: %d [%d expected]\n", testG.playedCardCount, G.playedCardCount); //played 1 smithy card
+
+
+    //sort the hands & decks to account for shuffle randomization
+    qsort ((void*)(G.deck[0]), G.deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(G.hand[0]), G.handCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(testG.deck[0]), testG.deckCount[0], sizeof(int), int_cmp);
+    qsort ((void*)(testG.hand[0]), testG.handCount[0], sizeof(int), int_cmp);
+
+	assert(transform_ints_to_string(testG.hand[thisPlayer], testG.handCount[thisPlayer], buffer, sizeof buffer));
+	printf("\tPlayer's hand: [%s\b\b] \n", buffer);
+	assert(transform_ints_to_string(G.hand[thisPlayer], G.handCount[thisPlayer], buffer2, sizeof buffer2));
+	printf("\texpected hand: [%s\b\b]\n", buffer2);
+    if(testG.deckCount[thisPlayer] == 0)
+    {
+        printf("player's deck: [ ]\n");
+    }
+    else
+    {
+        assert(transform_ints_to_string(testG.deck[thisPlayer], testG.deckCount[thisPlayer], buffer, sizeof buffer));
+        printf("Player's deck: [%s\b\b]\n", buffer);
+    }
+    	if(G.deckCount[thisPlayer] == 0)
+    {
+        printf("Expected deck: [ ]\n");
+    }
+    else
+    {
+        assert(transform_ints_to_string(G.deck[thisPlayer], G.deckCount[thisPlayer], buffer, sizeof buffer));
+        printf("Expected deck: [%s\b\b]\n", buffer);
+    }
+	if(testG.discardCount[thisPlayer] == 0)
+    {
+        printf("Player's discard: [ ]\n");
+    }
+    else
+    {
+        assert(transform_ints_to_string(testG.discard[thisPlayer], testG.discardCount[thisPlayer], buffer, sizeof buffer));
+        printf("Player's discard: [%s\b\b]\n", buffer);
+    }
+
+
+	if(G.discardCount[thisPlayer] == 0)
+    {
+        printf("Expected discard: [ ]\n");
+    }
+    else
+    {
+        assert(transform_ints_to_string(G.discard[thisPlayer], G.discardCount[thisPlayer], buffer, sizeof buffer));
+        printf("Expected discard: [%s\b\b]\n", buffer);
+    }
+
+
+	printf("\tGamestates equal: %d\n", statesAreEqual(&G, &testG, 1));
+	if(statesAreEqual(&G, &testG, 1) != 1)
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 4 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***\n");
+        printf("-------------------------------------------------------------\n");
+    }
+    else
+    {
+        printf("-------------------------------------------------------------\n");
+        printf("TEST 4 STATUS:  PASSED!\n");
+        printf("-------------------------------------------------------------\n\n");
+    }
+
+
+	printf("\n >>>>> Testing complete %s <<<<<\n\n", TESTCARD);
+
+
+	return 0;
 }

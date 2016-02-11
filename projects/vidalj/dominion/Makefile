@@ -8,7 +8,10 @@ dominion.o: dominion.h dominion.c rngs.o
 
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
-
+    
+unittest1: unittest1.c dominion.o rngs.o
+	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+    
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
@@ -32,8 +35,10 @@ runtests: testDrawCard
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+    
+unittestresults.out: unittest1
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard
+all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

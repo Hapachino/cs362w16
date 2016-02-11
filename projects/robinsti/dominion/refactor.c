@@ -45,7 +45,7 @@
 	instead of 3.
 
 	ADVENTURER
-	The initialization of the z vartiable is off by 1, initialized to -1 instead
+	The initialization of the z variable is off by 1, initialized to -1 instead
 	of 0. This causes the temphand to be incorrectly discarded.
 
 	GREAT HALL

@@ -1,0 +1,292 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * Test is for initializeGame()
+        -:    3: *
+        -:    4: * unittest1
+        -:    5: * -----------------------------------------------------------------------
+        -:    6: */
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <stdio.h>
+        -:   11:#include "rngs.h"
+        -:   12:
+        1:   13:int main() {
+        -:   14:
+        -:   15:	int k[10] = {adventurer, council_room, feast, gardens, mine
+        1:   16:               , remodel, smithy, village, baron, great_hall};
+        -:   17:    struct gameState test;
+        -:   18:
+        -:   19:    int i;
+        -:   20:  
+        1:   21:    int seed = 1000;
+        -:   22:    int totalPlayers;
+        -:   23:    int result;
+        1:   24:    int testNum = 3;
+        -:   25:
+        1:   26:    printf("\n--------Testing for game initilization function----------");
+        -:   27:
+        1:   28:   	printf("\n--------Testing #1 for only one player----------");
+        -:   29:
+        1:   30:   	memset(&test, 23, sizeof(struct gameState));   // clear the game state
+        -:   31:
+        1:   32:   	totalPlayers = 1;
+        -:   33:
+        1:   34:   	result = initializeGame(totalPlayers, k, seed, &test); // initialize a new game
+        -:   35:
+        1:   36:    if(result == -1){
+        1:   37:    	printf("\n>>>>Success: one player is not enough to play the game!!!");
+        -:   38:    }
+        -:   39:    else{
+    #####:   40:    	printf("\n>>>>Fail: one player alone cant play the game!!!");
+        -:   41:    }
+        -:   42:
+        1:   43:    printf("\n--------Testing #2 for only five players----------");
+        -:   44:
+        1:   45:   	memset(&test, 23, sizeof(struct gameState));   // clear the game state
+        -:   46:
+        1:   47:   	totalPlayers = 5;
+        -:   48:
+        1:   49:   	result = initializeGame(totalPlayers, k, seed, &test); // initialize a new game
+        -:   50:
+        1:   51:    if(result == -1){
+        1:   52:    	printf("\n>>>>Success: five players is too much for the game!!!");
+        -:   53:    }
+        -:   54:    else{
+    #####:   55:    	printf("\n>>>>Fail: five players cant play the game!!!");
+        -:   56:    }
+        -:   57:
+        4:   58:    for(totalPlayers = 2; totalPlayers <=4; totalPlayers++){
+        3:   59:    	printf("\n--------Testing #%d for only five players----------", testNum);
+        -:   60:
+        3:   61:    	testNum++;
+        -:   62:
+        3:   63:	   	memset(&test, 23, sizeof(struct gameState));   // clear the game state
+        -:   64:
+        3:   65:	   	result = initializeGame(totalPlayers, k, seed, &test); // initialize a new game
+        -:   66:
+        3:   67:	    if(result == 0){
+        3:   68:    	printf("\n>>>>Success: %d players is enough for the game!!!", totalPlayers);
+        -:   69:	    }
+        -:   70:	    else{
+    #####:   71:	    	printf("\n>>>>Fail: %d players are suppose to be able to play the game!!!", totalPlayers);
+        -:   72:	    }
+        3:   73:	    if(totalPlayers == 2){
+        1:   74:	    	if(test.supplyCount[curse] == 10){
+        1:   75:	    		printf("\n>>>>SUCCESS: supply count for curse is correct!!!");
+        -:   76:	    	}
+        -:   77:	    	else{
+    #####:   78:	    		printf("\n>>>>Fail: supply count for curse is incorrect!!!");
+        -:   79:	    	}
+        1:   80:	    	if(test.supplyCount[estate] == 8){
+        1:   81:	    		printf("\n>>>>SUCCESS: supply count for estate is correct!!!");
+        -:   82:	    	}
+        -:   83:	    	else{
+    #####:   84:	    		printf("\n>>>>Fail: supply count for estate is incorrect!!!");
+        -:   85:	    	}
+        1:   86:	    	if(test.supplyCount[duchy] == 8){
+        1:   87:	    		printf("\n>>>>SUCCESS: supply count for duchy is correct!!!");
+        -:   88:	    	}
+        -:   89:	    	else{
+    #####:   90:	    		printf("\n>>>>Fail: supply count for duchy is incorrect!!!");
+        -:   91:	    	}
+        1:   92:	    	if(test.supplyCount[province] == 8){
+        1:   93:	    		printf("\n>>>>SUCCESS: supply count for province is correct!!!");
+        -:   94:	    	}
+        -:   95:	    	else{
+    #####:   96:	    		printf("\n>>>>Fail: supply count for province is incorrect!!!");
+        -:   97:	    	}
+        1:   98:	    	if(test.supplyCount[copper] == 60 - (7 * totalPlayers)){
+        1:   99:	    		printf("\n>>>>SUCCESS: supply count for copper is correct!!!");
+        -:  100:	    	}
+        -:  101:	    	else{
+    #####:  102:	    		printf("\n>>>>Fail: supply count for copper is incorrect!!!");
+        -:  103:	    	}
+        1:  104:	    	if(test.supplyCount[silver] == 40){
+        1:  105:	    		printf("\n>>>>SUCCESS: supply count for silver is correct!!!");
+        -:  106:	    	}
+        -:  107:	    	else{
+    #####:  108:	    		printf("\n>>>Fail: supply count for silver is incorrect!!!");
+        -:  109:	    	}
+        1:  110:	    	if(test.supplyCount[gold] == 30){
+        1:  111:	    		printf("\n>>>>SUCCESS: supply count for gold is correct!!!");
+        -:  112:	    	}
+        -:  113:	    	else{
+    #####:  114:	    		printf("\n>>>>Fail: supply count for gold is incorrect!!!");
+        -:  115:	    	}
+        -:  116:	    }
+        3:  117:	    if(totalPlayers == 3){
+        1:  118:	    	if(test.supplyCount[curse] == 20){
+        1:  119:	    		printf("\n>>>>SUCCESS: supply count for curse is correct!!!");
+        -:  120:	    	}
+        -:  121:	    	else{
+    #####:  122:	    		printf("\n>>>>Fail: supply count for curse is incorrect!!!");
+        -:  123:	    	}
+        1:  124:	    	if(test.supplyCount[estate] == 12){
+        1:  125:	    		printf("\n>>>>SUCCESS: supply count for estate is correct!!!");
+        -:  126:	    	}
+        -:  127:	    	else{
+    #####:  128:	    		printf("\n>>>>Fail: supply count for estate is incorrect!!!");
+        -:  129:	    	}
+        1:  130:	    	if(test.supplyCount[duchy] == 12){
+        1:  131:	    		printf("\n>>>>SUCCESS: supply count for duchy is correct!!!");
+        -:  132:	    	}
+        -:  133:	    	else{
+    #####:  134:	    		printf("\n>>>>Fail: supply count for duchy is incorrect!!!");
+        -:  135:	    	}
+        1:  136:	    	if(test.supplyCount[province] == 12){
+        1:  137:	    		printf("\n>>>>SUCCESS: supply count for province is correct!!!");
+        -:  138:	    	}
+        -:  139:	    	else{
+    #####:  140:	    		printf("\n>>>>Fail: supply count for province is incorrect!!!");
+        -:  141:	    	}
+        1:  142:	    	if(test.supplyCount[copper] == 60 - (7 * totalPlayers)){
+        1:  143:	    		printf("\n>>>>SUCCESS: supply count for copper is correct!!!");
+        -:  144:	    	}
+        -:  145:	    	else{
+    #####:  146:	    		printf("\n>>>>Fail: supply count for copper is incorrect!!!");
+        -:  147:	    	}
+        1:  148:	    	if(test.supplyCount[silver] == 40){
+        1:  149:	    		printf("\n>>>>SUCCESS: supply count for silver is correct!!!");
+        -:  150:	    	}
+        -:  151:	    	else{
+    #####:  152:	    		printf("\n>>>>Fail: supply count for silver is incorrect!!!");
+        -:  153:	    	}
+        1:  154:	    	if(test.supplyCount[gold] == 30){
+        1:  155:	    		printf("\n>>>>SUCCESS: supply count for gold is correct!!!");
+        -:  156:	    	}
+        -:  157:	    	else{
+    #####:  158:	    		printf("\n>>>>Fail: supply count for gold is incorrect!!!");
+        -:  159:	    	}
+        -:  160:	    }
+        3:  161:	    if(totalPlayers == 4){
+        1:  162:	    	if(test.supplyCount[curse] == 30){
+        1:  163:	    		printf("\n>>>>SUCCESS: supply count for curse is correct!!!");
+        -:  164:	    	}
+        -:  165:	    	else{
+    #####:  166:	    		printf("\n>>>>Fail: supply count for curse is incorrect!!!");
+        -:  167:	    	}
+        1:  168:	    	if(test.supplyCount[estate] == 12){
+        1:  169:	    		printf("\n>>>>SUCCESS: supply count for estate is correct!!!");
+        -:  170:	    	}
+        -:  171:	    	else{
+    #####:  172:	    		printf("\n>>>>Fail: supply count for estate is incorrect!!!");
+        -:  173:	    	}
+        1:  174:	    	if(test.supplyCount[duchy] == 12){
+        1:  175:	    		printf("\n>>>>SUCCESS: supply count for duchy is correct!!!");
+        -:  176:	    	}
+        -:  177:	    	else{
+    #####:  178:	    		printf("\n>>>>Fail: supply count for duchy is incorrect!!!");
+        -:  179:	    	}
+        1:  180:	    	if(test.supplyCount[province] == 12){
+        1:  181:	    		printf("\n>>>>SUCCESS: supply count for province is correct!!!");
+        -:  182:	    	}
+        -:  183:	    	else{
+    #####:  184:	    		printf("\n>>>>Fail: supply count for province is incorrect!!!");
+        -:  185:	    	}
+        1:  186:	    	if(test.supplyCount[copper] == 60 - (7 * totalPlayers)){
+        1:  187:	    		printf("\n>>>>SUCCESS: supply count for copper is correct!!!");
+        -:  188:	    	}
+        -:  189:	    	else{
+    #####:  190:	    		printf("\n>>>>Fail: supply count for copper is incorrect!!!");
+        -:  191:	    	}
+        1:  192:	    	if(test.supplyCount[silver] == 40){
+        1:  193:	    		printf("\n>>>>SUCCESS: supply count for silver is correct!!!");
+        -:  194:	    	}
+        -:  195:	    	else{
+    #####:  196:	    		printf("\n>>>>Fail: supply count for silver is incorrect!!!");
+        -:  197:	    	}
+        1:  198:	    	if(test.supplyCount[gold] == 30){
+        1:  199:	    		printf("\n>>>>SUCCESS: supply count for gold is correct!!!");
+        -:  200:	    	}
+        -:  201:	    	else{
+    #####:  202:	    		printf("\n>>>>Fail: supply count for gold is incorrect!!!");
+        -:  203:	    	}
+        -:  204:	    }
+        -:  205:
+        -:  206:    }
+        1:  207:    	totalPlayers = 2;
+        1:  208:    	memset(&test, 23, sizeof(struct gameState));   // clear the game state
+        -:  209:
+        1:  210:	   	result = initializeGame(totalPlayers, k, seed, &test); // initialize a new game
+        -:  211:
+        1:  212:	   	printf("\n-------Test if kingdom cards are correct amount-----");
+        -:  213:
+        1:  214:	   	if(test.supplyCount[adventurer] == 10){
+        1:  215:	   		printf("\n>>>>SUCCESS: supply count for adventurer is correct!!!");
+        -:  216:	   	}
+        -:  217:	   	else{
+    #####:  218:	    	printf("\n>>>>Fail: supply count for adventurer is incorrect!!!");
+        -:  219:	    	}
+        1:  220:	    if(test.supplyCount[gardens] == 8){
+        1:  221:	   		printf("\n>>>>SUCCESS: supply count for gardens is correct!!!");
+        -:  222:	   	}
+        -:  223:	   	else{
+    #####:  224:	    	printf("\n>>>>Fail: supply count for gardens is incorrect!!!");
+        -:  225:	    	}
+        -:  226:
+        3:  227:	    for(i =0; i < totalPlayers; i++){
+        -:  228:			
+        2:  229:			if(i==0){
+        1:  230:				if(test.handCount[i] == 5){
+        1:  231:					printf("\n>>>>SUCCESS: Player #%d hand count is 5!!!", i+1);
+        -:  232:				}
+        -:  233:				else{
+    #####:  234:					printf("\n>>>>Fail: Player #%d hand count is not 5!!!", i+1);
+        -:  235:					}
+        -:  236:			}
+        -:  237:			else{
+        1:  238:				if(test.handCount[i] == 0){
+        1:  239:					printf("\n>>>>SUCCESS: Player #%d hand count is empty!!!", i+1);
+        -:  240:				}
+        -:  241:				else{
+    #####:  242:					printf("\n>>>>Fail: Player #%d hand count is not empty!!!", i+1);
+        -:  243:					}
+        -:  244:			}
+        2:  245:		    if(test.discardCount[i] == 0){
+        2:  246:		    	printf("\n>>>>SUCCESS: Player #%d discardCount is empty!!!", i+1);
+        -:  247:		    }
+        -:  248:		    else{
+    #####:  249:		    	printf("\n>>>>Fail: Player #%d discardCount is not empty!!!", i+1);
+        -:  250:		    	}
+        -:  251:
+        -:  252:	    }
+        -:  253:
+        1:  254:	    if(test.numActions == 1){
+        1:  255:	   		printf("\n>>>>SUCCESS: Number of actions is correct!!!");
+        -:  256:	   	}
+        -:  257:	   	else{
+    #####:  258:	    	printf("\n>>>>Fail: Number of actions is inrrect!!!");
+        -:  259:	    	}
+        -:  260:
+        1:  261:	    if(test.numBuys == 1){
+        1:  262:	   		printf("\n>>>>SUCCESS: Number of buys is correct!!!\n\n");
+        -:  263:	   	}
+        -:  264:	   	else{
+    #####:  265:	    	printf("\n>>>>Fail: Number of buys is inrrect!!!");
+        -:  266:	    	}
+        -:  267:		/*
+        -:  268:		if(test.handCount[0] == 5){
+        -:  269:		    	printf("\n>>>>SUCCESS: Player #1 hand count contains 5 cards!!!");
+        -:  270:		    }
+        -:  271:		else{
+        -:  272:		    printf("\n>>>>Fail: Player #1 hand count does contains 5 cards!!!");
+        -:  273:		    	}
+        -:  274:				
+        -:  275:		if(test.handCount[1] == 0){
+        -:  276:		    	printf("\n>>>>SUCCESS: Player #2 hand count is empty!!!");
+        -:  277:		    }
+        -:  278:		else{
+        -:  279:		    printf("\n>>>>Fail: Player #2 hand count is not empty to start!!!");
+        -:  280:		    	}
+        -:  281:		*/
+        -:  282:
+        -:  283:
+        -:  284:
+        -:  285:
+        1:  286:    return 0;
+        -:  287:}

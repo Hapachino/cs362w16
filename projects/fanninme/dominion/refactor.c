@@ -12,6 +12,7 @@ line 653 :[state->handCount[currentPlayer]-1]; changed to
 Bugs in Unit Tests:
 This function crashed during unit testing
 
+
 //#Feast
 Function: removed int x from card effect
 function receives current player,state and the choice1 (the players card choice).
@@ -19,7 +20,7 @@ Bugs:infinite loop
 line 710:x = 0;//No more buying cards
 is removed creating an infinite loop.
 Bugs in Unit Tests:
-this function crashed during unit testing
+this function ran in a infinite loop during unit testing resulting.
 
 //#Smithy
 Function: Function accepts currentplayer and stated. added int i to function

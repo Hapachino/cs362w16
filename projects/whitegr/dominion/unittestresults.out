@@ -1,0 +1,174 @@
+Testing Smithy Card cardtest1.
+Error in Hand Count - Intentional Bug
+Error in Hand Count - Intentional Bug
+Error in Hand Count - Intentional Bug
+Error in Hand Count - Intentional Bug
+Error Discarding Smithy
+before-20 after-20
+Error in Hand Count - Intentional Bug
+Error in Hand Count - Intentional Bug
+Error in Hand Count - Intentional Bug
+Error in Hand Count - Intentional Bug
+Error in Hand Count - Intentional Bug
+Error Discarding Smithy
+before-12 after-12
+Error in Hand Count - Intentional Bug
+END Testing Smithy Card cardtest1.
+File 'dominion.c'
+Lines executed:10.85% of 562
+Branches executed:6.27% of 415
+Taken at least once:5.06% of 415
+Calls executed:6.06% of 99
+Creating 'dominion.c.gcov'
+
+Testing Adventurer Card cardtest2.
+Incorrect Number of Treasures in HAND!
+Before - 54
+After - 55
+
+PA-0Error: Could Not find adventure card in played cards
+Incorrect Number of Treasures in HAND!
+Before - 0
+After - 1
+
+PA-0Error: Could Not find adventure card in played cards
+Incorrect Number of Treasures in HAND!
+Before - 40
+After - 41
+
+PA-0Error: Could Not find adventure card in played cards
+END Testing Adventurer Card cardtest2.
+File 'dominion.c'
+Lines executed:14.23% of 562
+Branches executed:9.16% of 415
+Taken at least once:8.19% of 415
+Calls executed:9.09% of 99
+Creating 'dominion.c.gcov'
+
+Testing Council Room Card cardtest3.c
+ERROR (intentional): current player handcount is 9
+Cards in hand should be: 8
+
+Last played card is not Council_RoomERROR (intentional): current player handcount is 476
+Cards in hand should be: 475
+
+Last played card is not Council_RoomERROR (intentional): current player handcount is 478
+Cards in hand should be: 477
+
+Last played card is not Council_RoomERROR (intentional): current player handcount is 359
+Cards in hand should be: 358
+
+Last played card is not Council_RoomERROR (intentional): current player handcount is 499
+Cards in hand should be: 498
+
+Last played card is not Council_RoomERROR (intentional): current player handcount is 504
+Cards in hand should be: 503
+
+Last played card is not Council_RoomERROR (intentional): current player handcount is 242
+Cards in hand should be: 241
+
+Last played card is not Council_RoomERROR (intentional): current player handcount is 8
+Cards in hand should be: 7
+
+Last played card is not Council_RoomERROR (intentional): current player handcount is 172
+Cards in hand should be: 171
+
+Last played card is not Council_RoomERROR (intentional): current player handcount is 196
+Cards in hand should be: 195
+
+Last played card is not Council_RoomEND Testing Council Room Card cardtest3.c
+File 'dominion.c'
+Lines executed:15.84% of 562
+Branches executed:10.12% of 415
+Taken at least once:9.16% of 415
+Calls executed:13.13% of 99
+Creating 'dominion.c.gcov'
+
+Testing Steward Card cardtest4.
+ERROR: Intentional Problem - discard problem
+before-1 after-0
+
+ERROR: Intentional Problem - discard problem
+before-1 after-1
+
+ERROR: Intentional Problem - discard problem
+before-1 after-1
+
+ERROR: Intentional Problem - discard problem
+before-1 after-1
+
+ERROR: Intentional Problem - discard problem
+before-1 after-1
+
+ERROR: Intentional Problem - discard problem
+before-1 after-1
+
+ERROR: Intentional Problem - discard problem
+before-1 after-1
+
+ERROR: Intentional Problem - discard problem
+before-1 after-1
+
+ERROR: Intentional Problem - discard problem
+before-1 after-1
+
+ERROR: Intentional Problem - discard problem
+before-1 after-1
+
+END Testing Steward Card cardtest4.
+File 'dominion.c'
+Lines executed:17.62% of 562
+Branches executed:11.08% of 415
+Taken at least once:10.36% of 415
+Calls executed:18.18% of 99
+Creating 'dominion.c.gcov'
+
+Testing scoreFor() unittest1.c
+Player 1 Hand Score: 30
+Check correct SCORE no garden...PASS
+Player 2 Hand Score: 9
+Check correct SCORE garden card...FALSE
+END Testing scoreFor() unittest1.c
+File 'dominion.c'
+Lines executed:23.49% of 562
+Branches executed:24.10% of 415
+Taken at least once:23.37% of 415
+Calls executed:21.21% of 99
+Creating 'dominion.c.gcov'
+
+Testing BuyCard() unittest2.c
+Error if No enough Buy...Passed
+Check Cant Buy No  Supplies...Passed
+Check if enough money...Passed
+Check if money dec...Passed
+Check if buys decreased...Passed
+END Testing BuyCard() unittest2.c
+File 'dominion.c'
+Lines executed:38.61% of 562
+Branches executed:45.78% of 415
+Taken at least once:35.42% of 415
+Calls executed:31.31% of 99
+Creating 'dominion.c.gcov'
+
+Testing gainCard() unittest3.c
+END Testing gainCard() unittest3.c
+File 'dominion.c'
+Lines executed:39.86% of 562
+Branches executed:46.27% of 415
+Taken at least once:36.63% of 415
+Calls executed:31.31% of 99
+Creating 'dominion.c.gcov'
+
+Testing isGameOver() unittest4.c
+Test 1:
+Provence Cards 0 = Game Over....Passed
+Test 2:
+Three Piles Empty = Game Over....Passed
+END Testing isGameOver() unittest4.c
+File 'dominion.c'
+Lines executed:40.39% of 562
+Branches executed:46.75% of 415
+Taken at least once:36.87% of 415
+Calls executed:31.31% of 99
+Creating 'dominion.c.gcov'
+

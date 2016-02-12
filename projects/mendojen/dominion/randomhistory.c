@@ -1,155 +1,63 @@
-/* -----------------------------------------------------------------------
- *  Business requirements
- *  1) Current player gets 3 cards 
- *  2) 3 cards will only come from current player's pile
- *  3) Other player's state remains unchanged
- *
- * testSmithy: cardtest3.c dominion.o rngs.o
- *      gcc -o card3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
- *
- * -----------------------------------------------------------------------
- */
+Jennifer Mendoza
+Description of Random test development
+Results can be obtained by running make assignment4
 
- 
-#include "dominion.h"
-#include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
-#include "rngs.h"
+Initial Stages of Development
+I concentrated on what I tested for in Assigment 3. I also kept track of the bugs that I found with the fixed tests to 
+effectively create random tests. I also based my tests on Assignment 3. The difference would be the random inputs
+and increased complexity by checking more members of the game state of each player. 
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+randomtestcard.c (Smithy Card)
+I used testDrawCard.c as a template on my random card test. The overall structure of my program includes a main
+function which calls testSmithy, a function I defined in the program. I wanted this test to test more members
+of the game state for both player 1 and player 2. I initially tested for hand count, discard count, and deck count 
+for both players and kept track of any changes by using memcpy. For my final submission, I added more members to 
+test for to account for all the members that should/should not have changed when playSmithy was called.
+
+randomtestadventurer.c (Adventurer Card)
+Similar to the randomtestcard.c file, I again used testDrawCard.c as a template for my tests. I looked at my previous 
+assignment and used the same structure for this assignment. I used the code I had for randomtestcard.c and just added 
+more tests to check for more gamestate members. For my final submission, my additions should account for all the 
+members that should/should not have changed when playAdventurer was called.
 
 
-int main() {
-	int seed = 1000;
-    int numPlayer = 2;
-    int r,i;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
-    struct gameState G;
 
-	printf ("TESTING playSmithy():\n");
- 	for (i=0;i<50;i++)
-	{
-		memset(&G, 23, sizeof(struct gameState));   // clear the game state
-		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-		G.handCount[0] = 0;                 // set the number of cards on hand to 5 for player 0
 
-	#if (NOISY_TEST == 1)
-		printf("Set starting values:\n handcount=0\n numBuys=0\n coins=0\n playedCardCount=0\n\n");
-		
-		printf("****Testing 1 Smithy play****\n");
-	#endif
-		playSmithy(&G,0);
-	#if (NOISY_TEST == 1)
-		printf("Hand Count = %d, expected = 3", G.handCount[0]);
-		if (G.handCount[0]==3)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("Number of Cards Played = %d, expected = 1", G.playedCardCount);
-		if (G.playedCardCount==1)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("****Testing another Smithy play****\n");
-	#endif
-		playSmithy(&G,2);
-	#if (NOISY_TEST == 1)
-		printf("Hand Count = %d, expected = 6", G.handCount[0]);
-		if (G.handCount[0]==6)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("Number of Cards Played = %d, expected = 2", G.playedCardCount);
-		if (G.playedCardCount==2)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("****Testing another Smithy play****\n");
-	#endif
-		playSmithy(&G,0);
-	#if (NOISY_TEST == 1)
-		printf("Hand Count = %d, expected = 9", G.handCount[0]);
-		if (G.handCount[0]==9)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("Number of Cards Played = %d, expected = 3", G.playedCardCount);	
-		if (G.playedCardCount==3)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("****Testing another Smithy play****\n");
-	#endif
-		playSmithy(&G,0);
-	#if (NOISY_TEST == 1)
-		printf("Hand Count = %d, expected = 15", G.handCount[0]);
-		if (G.handCount[0]==15)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf("Number of Cards Played = %d, expected = 4", G.playedCardCount);	
-		if (G.playedCardCount==4)
-		{
-			printf("....PASS\n\n"); 
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-	#endif
-		endTurn(&G);
-	#if (NOISY_TEST == 1)
-		printf("****Testing other player's hand****\n");
-		printf("Buys = %d, expected = 1", G.numBuys);
-		if (G.numBuys==1)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf("Hand Count = %d, expected = 0", G.handCount[0]);
-		if (G.handCount[0]==0)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-	#endif	
-	}
-	printf("Testing completed\n");
-    return 0;
-}
+Coverage Analysis:
+With my first check at my coverage, the coverage for assignment 3 is higher than assignment 4. I concentrated on 
+improving my random test to get a higher coverage. I was able to cover more tests, but my percentages were nearly
+identical. I looked at the branch coverage to see how my code can be improved. I improved my Adventurer card test
+as my random tests gave me a coverage of 62%. I included my fixed tests and was able to obtain 100%. Lines executed
+improved while the other stats almost stayed the same. I added more tests and more complexity in the test which puzzled
+me a bit on why my coverage did not improve. I was able to increase the percentages when looking at the coverage data.
+I included the scenario that would invoke the specific branch. However, this only increased my percentage by a fraction
+of a percent.
+
+Previous Smithy card coverage
+Lines executed:24.42% of 565
+Branches executed:20.14% of 417
+Taken at least once:16.55% of 417
+Calls executed:14.00% of 100
+function playSmithy called 200 returned 100% blocks executed 100%
+
+Previous Adventurer card coverage
+Lines executed:25.31% of 565
+Branches executed:21.10% of 417
+Taken at least once:17.99% of 417
+Calls executed:14.00% of 100
+function playAdventurer called 350 returned 100% blocks executed 100%
+
+Updated Smithy card coverage
+Lines executed:26.19% of 565
+Branches executed:20.14% of 417
+Taken at least once:15.83% of 417
+Calls executed:14.00% of 100
+function playSmithy called 2000 returned 100% blocks executed 100%
+
+
+Updated Adventurer card coverage
+Lines executed:28.85% of 565
+Branches executed:21.58% of 417
+Taken at least once:18.94% of 417
+Calls executed:14.00% of 100
+function playAdventurer called 2350 returned 100% blocks executed 100%

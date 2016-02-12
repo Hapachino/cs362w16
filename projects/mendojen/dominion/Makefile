@@ -73,17 +73,17 @@ randomtestcard.out:
 	rm -f randomtestcard.out
 	make randomtestSmithy
 	./randomtest
-	gcov dominion.c -b >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
 	cat dominion.c.gcov >> randomtestcard.out
 	rm -f dominion.gcda
 	
 	
 randomtestadventurer.out:
 	make clean
-	rm -f randomtestcard.out
+	rm -f randomtestadventurer.out
 	make randomtestadventurer
 	./randomadventurer
-	gcov dominion.c -b >> randomtestadventurer.out
+	gcov -b dominion.c  >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 	rm -f dominion.gcda
 

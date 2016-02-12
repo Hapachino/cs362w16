@@ -1,6 +1,6 @@
 Jennifer Mendoza
 Description of Random test development
-Results can be obtained by running make assignment4
+Results can be obtained by running make randomtestadventurer.out and make randomtestcard.out
 
 Initial Stages of Development
 I concentrated on what I tested for in Assigment 3. I also kept track of the bugs that I found with the fixed tests to 

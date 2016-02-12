@@ -67,51 +67,26 @@ all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 test: getCost updateCoins isGameOver buyCard testVillage testAdventurer testSalvager testSmithy
 
-randomtests: randomtestadventurer randomtestcard
 
-runrandomtests:
-	./randomtest >> randomtestcard.out
-	./randomadventurer >> randomtestadventurer.out
-	
-assignment4:
+randomtestcard.out:
 	make clean
 	rm -f randomtestcard.out
-	rm -f randomtestadventurer.out
 	make randomtestSmithy
 	./randomtest
 	gcov dominion.c -b >> randomtestcard.out
 	cat dominion.c.gcov >> randomtestcard.out
 	rm -f dominion.gcda
+	
+	
+randomtestadventurer.out:
+	make clean
+	rm -f randomtestcard.out
 	make randomtestadventurer
 	./randomadventurer
 	gcov dominion.c -b >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 	rm -f dominion.gcda
-	
-assignment3total:
-	make clean
-	make testSmithy
-	./card3
-	make testAdventurer
-	./card4
-	gcov dominion.c -b >> smithyadventurer.out
-	cat dominion.c.gcov >> smithyadventurer.out
-	rm -f dominion.gcda
-	
-	
-assignment4total:
-	make clean
-	make testSmithy
-	./card3
-	make testAdventurer
-	./card4
-	make randomtestSmithy
-	./randomtest
-	make randomtestadventurer
-	./randomadventurer
-	gcov dominion.c -b >> randomsmithyadventurer.out
-	cat dominion.c.gcov >> randomsmithyadventurer.out
-	rm -f dominion.gcda
+
 	
 previous:
 	make clean

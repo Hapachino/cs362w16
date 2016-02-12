@@ -20,8 +20,10 @@ assignment and used the same structure for this assignment. I used the code I ha
 more tests to check for more gamestate members. For my final submission, my additions should account for all the 
 members that should/should not have changed when playAdventurer was called.
 
-
-
+For both tests, I was trying to find the bug that I introduced in the first assignment. However, the bug I found was
+with the player's handCount not being incremented. Since this was a bug that took place before my bug would be 
+executed, my specific bug was not found by my program. The drawCard bug would first need to be fixed so that my
+bug will be found by my program.
 
 Coverage Analysis:
 With my first check at my coverage, the coverage for assignment 3 is higher than assignment 4. I concentrated on 

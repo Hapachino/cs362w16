@@ -7,6 +7,14 @@ testDiscardCard() found no bugs
 testIsGameOver() found no bugs
 testBuyCard() found no bugs
 
+Bug name: card_adventurer2
+Description: 
+A new bug was discovered with the random tester for the adventurer card: After the random tester has been running for a few seconds, the 
+second player's discard is altered, which shouldn't be possible.  In the observed cases, the discard holds a mid-to-high number (500-1500)
+before calling playAdventurer(), and a low number of cards (3-20) afterward.  Bug has not been located.  playAdventurer() doesn't 
+appear to increment player incorrectly, or change discards in an unusual way that I can see.
+
+
 
 
 Bug name: card_smithy1

@@ -32,7 +32,7 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-unittestresults.out: unittest1.c testHelpers.o dominion.o rngs.o
+unittestresults.out: testHelpers.o dominion.o rngs.o
 	echo "-------------------------------------------------" > unittestresults.out
 	echo -e "\tResults for Function Unit Tests" >> unittestresults.out
 	echo "-------------------------------------------------" >> unittestresults.out
@@ -85,6 +85,19 @@ unittestresults.out: unittest1.c testHelpers.o dominion.o rngs.o
 	gcov ./dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
+randomtestadventurer.out: testHelpers.o dominion.o rngs.o
+	echo "-----------------------------------------------------------" > randomtestadventurer.out
+	echo -e "\tResults for Random Tests: Adventurer" >> randomtestadventurer.out
+	echo "-----------------------------------------------------------" >> randomtestadventurer.out
+	
+	gcc -o randomtestadventurer randomtestadventurer.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./randomtestadventurer >> randomtestadventurer.out
+	
+	echo -e "\n-----------------------------------------------------------" >> randomtestadventurer.out
+	echo -e "\t\tCode Coverage" >> randomtestadventurer.out
+	echo "-----------------------------------------------------------" >> randomtestadventurer.out
+	gcov ./dominion.c >> randomtestadventurer.out
+	
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 

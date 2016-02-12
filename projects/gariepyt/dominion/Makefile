@@ -90,6 +90,20 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c
 	./cardtest4 >> unittestresults.out
 	gcov cardtest4.c >> unittestresults.out
 
+randomtestcard.out: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+	echo "Results of running random test card" >> randomtestcard.out
+	./randomtestcard >> randomtestcard.out
+	gcov randomtestcard.c >> randomtestcard.out
+
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+	echo "Results of running random adventurer card" >> randomtestadventurer.out
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov randomtestadventurer.c >> randomtestadventurer.out
+
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 

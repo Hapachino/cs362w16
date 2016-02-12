@@ -12,7 +12,7 @@ void testAdventurer(struct gameState *G, int cardsInPlay[10]);
 
 int main (int argc, char** argv) {
     struct gameState G;
-	int seed = 10;
+	int seed = 20;
     int cardsInPlay[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
    
     setupTest(&G, cardsInPlay, seed); //game state and handcount
@@ -42,31 +42,36 @@ void testAdventurer(struct gameState *G, int cardsInPlay[10]) {
     int numTreasureAfter = 0;
     int numberInHand = G->handCount[player];
     int kc[10];
-    //ensuring other player's state doesn't change
-    int numInDeck2 = G->deckCount[1];
-    int numInHand2 = G->handCount[1];
-    int numInDiscard2 = G->discardCount[1];
     int sc[4];
 	int where = rand() % 2;
 	int handcount;
+	int numInDeck2;
+    int numInHand2;
+    int numInDiscard2;
 	
 	//random deck count/contents
 	G->deckCount[player] = 0;
+	G->deckCount[player+1] = 0;
 	result = rand() % MAX_DECK;
 	
 	for (j = 0; j < result; j++) {
 		  G->deck[player][j] = (rand() % 16) + 1; //random card in range of cards in play
 		  G->deckCount[player]++;
+		  G->deck[player+1][j] = (rand() % 16) + 1; //random card in range of cards in play
+		  G->deckCount[player+1]++;
 	}
 	
 	//ensure that there is something valid in the discards to shuffle if necessary
 	for (j = 0; j < 3; j++) {
 		G->discard[player][G->discardCount[player]] = copper;
 		G->discardCount[player]++;
+		G->discard[player+1][G->discardCount[player+1]] = copper;
+		G->discardCount[player+1]++;
 	}
 
 	//shuffle player deck
 	shuffle(player, G);
+	shuffle(player+1, G);
 
 	numberInDeck = G->deckCount[player];
 	numInDiscards = G->discardCount[player];
@@ -81,12 +86,15 @@ void testAdventurer(struct gameState *G, int cardsInPlay[10]) {
 	}
 	
 	G->handCount[player] = 0;
+	G->handCount[player+1] = 0;
 	
 	//populate the hand with random cards and keep track of how many treasures are being inserted.
 	for (i = 0; i < handcount; i++) {
 		random = (rand() % 16) + 1;
 		G->hand[player][i] = random; //randomly assign hand cards from cards in play
+		G->hand[player+1][i] = random;
 		G->handCount[player]++;
+		G->handCount[player+1]++;
 		if (G->hand[player][i] == copper || G->hand[player][i] == silver || G->hand[player][i] == gold) {
 			numTreasure++;
 		}
@@ -102,6 +110,11 @@ void testAdventurer(struct gameState *G, int cardsInPlay[10]) {
         sc[i] = G->supplyCount[i];
     }
 	
+	//ensuring other player's state doesn't change
+    numInDeck2 = G->deckCount[player+1];
+    numInHand2 = G->handCount[player+1];
+    numInDiscard2 = G->discardCount[player+1];
+	
 	//call the function
 	result = playAdventurer(player, G);
     
@@ -114,7 +127,7 @@ void testAdventurer(struct gameState *G, int cardsInPlay[10]) {
     if(numInDiscard2 == G->discardCount[1])
 		printf("testAdventurer(): PASS other player's discard count unchanged.\n");
 	else {
-		printf("testAdventurer(): FAIL other player's discard count has changed.\n");
+		printf("testAdventurer(): FAIL other player's discard count has changed from %d to %d.\n", numInDiscard2, G->discardCount[1]);
 		exit(0);
 	}
     if(numberInDeck > G->deckCount[player])

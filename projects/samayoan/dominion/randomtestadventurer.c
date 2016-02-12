@@ -64,12 +64,8 @@ void processResults(struct gameState *testState, struct gameState *oldState)
     // Increase in that players coin count (executed after cardEffect)
     updateCoins(testState->whoseTurn, testState, 0);
 
-    // 1 more card in their hand (2 new treasures minus 1 discarded adventurer card)
+    // 2 more cards in their hand (because discard is skipped)
     printf("\tHand count = %d, expected = %d\n", testState->handCount[PLAYER], oldState->handCount[PLAYER] + 2);
-
-    // Two newest cards in their deck will be treasure cards
-    printf("\tNewest cards in deck should be treasure (%d, %d, or %d) - Actual: %d and %d \n",
-            gold, silver, copper, testState->hand[PLAYER][testState->handCount[PLAYER] - 1], testState->hand[PLAYER][testState->handCount[PLAYER] - 2]);
 
     printf("\tDeck count = %d, expected = %d\n", testState->deckCount[PLAYER], oldState->deckCount[PLAYER]) - 2;
 
@@ -81,6 +77,12 @@ void processResults(struct gameState *testState, struct gameState *oldState)
     assert(testState->handCount[1] == oldState->handCount[1]);
     assert(testState->deckCount[1] == oldState->deckCount[1]);
     assert(testState->discardCount[1] == oldState->discardCount[1]);
+
+    // Two newest cards in their deck will be treasure cards
+    int lastC = testState->hand[PLAYER][testState->handCount[PLAYER] - 1];
+    int secLC = testState->hand[PLAYER][testState->handCount[PLAYER] - 2];
+    assert(lastC == gold || lastC == silver || lastC == copper);
+    assert(secLC == gold || secLC == silver || secLC == copper);
 }
 
 int main(int argc, char *argv[]){

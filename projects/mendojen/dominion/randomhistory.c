@@ -4,7 +4,7 @@ Results can be obtained by running make randomtestadventurer.out and make random
 
 Initial Stages of Development
 I concentrated on what I tested for in Assigment 3. I also kept track of the bugs that I found with the fixed tests to 
-effectively create random tests. I also based my tests on Assignment 3. The difference would be the random inputs
+effectively create random tests. I also based my test program structure on Assignment 3. The difference would be the random inputs
 and increased complexity by checking more members of the game state of each player. 
 
 randomtestcard.c (Smithy Card)
@@ -18,7 +18,8 @@ randomtestadventurer.c (Adventurer Card)
 Similar to the randomtestcard.c file, I again used testDrawCard.c as a template for my tests. I looked at my previous 
 assignment and used the same structure for this assignment. I used the code I had for randomtestcard.c and just added 
 more tests to check for more gamestate members. For my final submission, my additions should account for all the 
-members that should/should not have changed when playAdventurer was called.
+members that should/should not have changed when playAdventurer was called. Because there were some values not
+accounted for, I included fixed tests.
 
 For both tests, I was trying to find the bug that I introduced in the first assignment. However, the bug I found was
 with the player's handCount not being incremented. Since this was a bug that took place before my bug would be 

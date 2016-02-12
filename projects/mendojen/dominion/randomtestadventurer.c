@@ -333,7 +333,7 @@ void testAdventurer(struct gameState *post,int p ) {
 		initializeGame(2, k, 1000, &G); // initialize a new game
 		G.handCount[0]=0;
 	#if (NOISY_TEST == 1)
-		printf ("****Playing adventurer card 1 time****\n");
+		printf ("Playing adventurer card 1 time\n");
 	#endif	
 		playAdventurer(&G); 
 	#if (NOISY_TEST == 1)
@@ -346,7 +346,7 @@ void testAdventurer(struct gameState *post,int p ) {
 		else{
 			printf("....FAIL\n");
 		}
-		printf ("****Playing adventurer card another time****\n");
+		printf ("Playing adventurer card another time\n");
 	#endif	 
 		playAdventurer(&G); 
 	#if (NOISY_TEST == 1)
@@ -359,7 +359,7 @@ void testAdventurer(struct gameState *post,int p ) {
 		else{
 			printf("....FAIL\n");
 		}
-		printf ("****Playing adventurer card another time****\n");
+		printf ("Playing adventurer card another time\n");
 	#endif	
 		playAdventurer(&G); 
 	#if (NOISY_TEST == 1)
@@ -372,7 +372,7 @@ void testAdventurer(struct gameState *post,int p ) {
 		else{
 			printf("....FAIL\n");
 		}
-		printf ("****Playing adventurer card another time****\n");
+		printf ("Playing adventurer card another time\n");
 	#endif	
 		playAdventurer(&G); 
 	#if (NOISY_TEST == 1)
@@ -385,7 +385,7 @@ void testAdventurer(struct gameState *post,int p ) {
 		else{
 			printf("....FAIL\n");
 		}
-		printf ("****Playing adventurer card another time****\n");
+		printf ("Playing adventurer card another time\n");
 	#endif	
 		playAdventurer(&G); 
 	#if (NOISY_TEST == 1)
@@ -398,7 +398,7 @@ void testAdventurer(struct gameState *post,int p ) {
 		else{
 			printf("....FAIL\n");
 		}
-		printf ("****Playing adventurer card another time****\n");
+		printf ("Playing adventurer card another time\n");
 	#endif	 
 		playAdventurer(&G); 
 	#if (NOISY_TEST == 1)
@@ -411,7 +411,7 @@ void testAdventurer(struct gameState *post,int p ) {
 		else{
 			printf("....FAIL\n");
 		}
-		printf ("****Playing adventurer card another time****\n");
+		printf ("Playing adventurer card another time*\n");
 	#endif	
 		playAdventurer(&G); 
 	#if (NOISY_TEST == 1)
@@ -427,7 +427,7 @@ void testAdventurer(struct gameState *post,int p ) {
 	#endif	
 		endTurn(&G);
 	#if (NOISY_TEST == 1)
-		printf("****Testing other player's hand****\n");
+		printf("Testing other player's hand\n");
 		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
 		if (G.playedCardCount==0)
 		{

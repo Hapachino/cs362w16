@@ -7,7 +7,7 @@
 #define PLAYSMITHY_PASS "playSmithy() PASS: "
 #define PLAYSMITHY_FAIL "playSmithy() FAIL: "
 
-#define NUM_TESTS 1000
+#define NUM_TESTS 10000
 
 // Generates a random deck.
 void randomDeck(struct gameState *state) {

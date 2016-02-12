@@ -55,6 +55,8 @@ it into their deck). To meet this condition I created a test that counts the tot
 treasure count in the deck and discard piles then if that count is < 1, it checks to see
 if the player only added 1 card to their hand.
 
+Currently 1/4 tests are failing and I am running the playAdventurer() method 10,000 times.
+
 
 ** randomtestcard **
 The other card I developed a random tester for was the smithy card. Smithy has
@@ -62,7 +64,8 @@ a simpler function than adventurer but I was still able to improve my initial ra
 testor coverage results by implementing more player randomization like I had built
 in the adventurer method. My initial coverage results were:
   - playSmithy():
-    100% block coverage, 100% statement coverage
+    assignment 3 - 100% block coverage, 100% statement coverage
+    assignment 4 - 100% block coverage, 100% statement coverage
   - dominion.c
     Lines executed:22.61% of 566
     Branches executed:18.14% of 419
@@ -90,3 +93,10 @@ decksize increasing. These changes didn't change my playSmithy() or dominion tes
 coverage results but did change tests that were failing in my general test output
 to passing, since I now knew that this condition would cause the player to draw
 less than they should.
+
+The overall coverage from my final random testor isn't any different than from
+the coverage I had in Assignment 3 but the amount of times and condtions this
+method was exercised under was much higher. In assignment 3 this method was only
+executed once, where as now it is being executed 10,000 times!
+
+Currently 1/2 tests are failing and I am running the playSmithy() method 10,000 times.

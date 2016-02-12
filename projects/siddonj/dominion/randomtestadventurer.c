@@ -23,7 +23,7 @@ void randomDeck(struct gameState *state) {
   int randDeckSize = rand() % (MAX_DECK+1);       // Get random deck size.
   state->deckCount[state->whoseTurn] = randDeckSize;
 
-  if(randDeckSize == 0) {
+  if(randDeckSize == 0 || randDeckSize % 9 == 0) {
     // Do nothing.
   } else if(randDeckSize % 3 == 0) {
     for(i = 0; i < state->deckCount[state->whoseTurn]; i++) {
@@ -45,7 +45,9 @@ void randomHand(struct gameState *state) {
   int randHandSize = rand() % ((MAX_HAND+1) - currentCardInPlayTotal);  // Make sure we don't exceed total possible cards in play.
   state->handCount[state->whoseTurn] = randHandSize;
 
-  if(randHandSize % 3 == 0) {
+  if(randHandSize == 0 || randHandSize % 9 == 0) {
+    // Do nothing.
+  } else if(randHandSize % 3 == 0) {
     for(i = 0; i < state->handCount[state->whoseTurn]; i++) {         // Fill hand with treasure.
       state->hand[state->whoseTurn][i] = randomTreasure();
     }
@@ -64,7 +66,9 @@ void randomDiscard(struct gameState *state) {
   int randDiscardSize = rand() % ((MAX_DECK+1) - currentCardInPlayTotal);     // Make sure we don't exceed total possible deck size.
   state->discardCount[state->whoseTurn] = randDiscardSize;
 
-  if(randDiscardSize % 3 == 0) {
+  if(randDiscardSize == 0 || randDiscardSize % 9 == 0) {
+    // Do nothing.
+  } else if(randDiscardSize % 3 == 0) {
     for(i = 0; i < state->discardCount[state->whoseTurn]; i++) {
       state->discard[state->whoseTurn][i] = randomTreasure();             // Fill discard with treature. copper, silver, gold.
     }

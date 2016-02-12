@@ -60,6 +60,11 @@ void randomCoins(struct gameState *state) {
   state->coins = rand() % 100;
 }
 
+// Sets random player.
+void randomPlayer(struct gameState *state) {
+  state->whoseTurn = rand() % state->numPlayers;
+}
+
 
 void testRandomCard() {
   int i = 0;
@@ -125,6 +130,7 @@ void testRandomCard() {
 
     initializeGame(numPlayers, kingdomCards, gameRandomSeed, state);    // Initialize game with randomly generated game values.
 
+    // randomPlayer(state);
     randomDeck(state);
     randomHand(state);
     randomDiscard(state);
@@ -153,16 +159,26 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1 'hand' size to increase by a total of '2', 'hand' increased by: %d\n", handSizeIncrease);
+    printf("expects Player %d 'hand' size to increase by a total of '2', 'hand' increased by: %d\n", statePlayer+1, handSizeIncrease);
 
     // TEST - Deck count decreased by 3.
-    int deckCountDecrease = testGame->deckCount[testPlayer] - state->deckCount[statePlayer];
-    if(deckCountDecrease == 3) {    // Smithy draws 3 cards so deck should decrease by 3.
-      printf(PLAYSMITHY_PASS);
+    if((testGame->deckCount[testPlayer]+testGame->discardCount[testPlayer]) < 3) {              // Deck should be 0 since total available cards to draw were less than 0.
+      if(state->deckCount[statePlayer] == 0) {    // Smithy draws 3 cards so deck should decrease by 3.
+        printf(PLAYSMITHY_PASS);
+      } else {
+        printf(PLAYSMITHY_FAIL);
+      }
+      printf("expects Player %d 'deck' size to be 0 when total cards in deck and discard is less than 3, 'deck' size: %d\n", statePlayer+1, state->deckCount[statePlayer]);
+
     } else {
-      printf(PLAYSMITHY_FAIL);
+      int deckCountDecrease = testGame->deckCount[testPlayer] - state->deckCount[statePlayer];
+      if(deckCountDecrease == 3) {    // Smithy draws 3 cards so deck should decrease by 3.
+        printf(PLAYSMITHY_PASS);
+      } else {
+        printf(PLAYSMITHY_FAIL);
+      }
+      printf("expects Player %d 'deck' size to decrease by a total of '3', 'deck' decreased by: %d\n", statePlayer+1, deckCountDecrease);
     }
-    printf("expects Player 1 'deck' size to decrease by a total of '3', 'deck' decreased by: %d\n", deckCountDecrease);
 
     // TEST - Action reduced by 1.
     int actionDecrease = testGame->numActions - state->numActions;
@@ -171,7 +187,7 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1 'action' amount to decrease by '1', 'actions' decreased by: %d\n", actionDecrease);
+    printf("expects Player %d 'action' amount to decrease by '1', 'actions' decreased by: %d\n", statePlayer+1, actionDecrease);
 
     // TEST - Number of Buys not reduced.
     int buyDecrease = testGame->numBuys - state->numBuys;
@@ -180,7 +196,7 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1 'buy' amount to decrease by '0', 'buys' decreased by: %d\n", buyDecrease);
+    printf("expects Player %d 'buy' amount to decrease by '0', 'buys' decreased by: %d\n", statePlayer+1, buyDecrease);
 
     // TEST - Number of Coins not changed.
     int coinDecrease = testGame->coins - state->coins;
@@ -189,7 +205,7 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1 'coins' to be the same after playing smithy, changed by: %d\n", coinDecrease);
+    printf("expects Player %d 'coins' to be the same after playing smithy, changed by: %d\n", statePlayer+1, coinDecrease);
 
 
     // TEST - Number of Smithy in hand after playing.
@@ -208,7 +224,7 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1 to have 1 less 'smithy' card in hand, has less: %d\n", smithyHandCountBefore - smithyHandCountAfter);
+    printf("expects Player %d to have 1 less 'smithy' card in hand, has less: %d\n", statePlayer+1, smithyHandCountBefore - smithyHandCountAfter);
 
     // TEST - Number of smithy cards in played pile.
     int smithyPlayedCountAfter = 0;
@@ -226,7 +242,7 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1 to have 1 more 'smithy' card in played card pile, has more: %d\n", smithyPlayedCountAfter - smithyPlayedCountBefore);
+    printf("expects Player %d to have 1 more 'smithy' card in played card pile, has more: %d\n", statePlayer+1, smithyPlayedCountAfter - smithyPlayedCountBefore);
 
     // TEST - Number of smithy cards in played pile.
     int smithyDiscardCountAfter = 0;
@@ -244,7 +260,7 @@ void testRandomCard() {
     } else {
       printf(PLAYSMITHY_FAIL);
     }
-    printf("expects Player 1 to have 0 'smithy' cards in discard pile, has: %d\n", smithyDiscardCountAfter - smithyDiscardCountBefore);
+    printf("expects Player %d to have 0 'smithy' cards in discard pile, has: %d\n", statePlayer+1, smithyDiscardCountAfter - smithyDiscardCountBefore);
 
 
     // Other players

@@ -39,15 +39,17 @@ int randomAdventurer(int player, struct gameState *after, int position, int tras
 
 	while (treasures < 2)
 	{
+//checking for empty deck-- if so, need to shuffle in the discard pile		
 		if (before.deckCount[player] < 1)
 		{
 			shuffle(player, &before);
 		}
-
 		int count;
 		int countDeck;
+
 		if (before.deckCount[player] <= 0)
 		{
+//putting the discard pile back into the deck
 			for (i = 0; i < before.discardCount[player]; i++)
 			{
 				before.deck[player][i] = before.discard[player][i];
@@ -56,40 +58,46 @@ int randomAdventurer(int player, struct gameState *after, int position, int tras
 
 			before.deckCount[player] = before.discardCount[player];
 			before.discardCount[player] = 0;
-
+//shuffling the newly-apportioned deck
 			shuffle(player, &before);
 			before.discardCount[player] = 0;
 
+//set up count as current player's hand count
 			count = before.handCount[player];
+//set up countDeck as the current deck count
 			countDeck = before.deckCount[player];
 
 			if (countDeck == 0)
 			{
 				return -1;
 			}
-
+//add card from deck to hand; increment hand count / decrement deck count
 			before.hand[player][count] = before.deck[player][countDeck - 1];
 			before.deckCount[player]--;
 			before.handCount[player]++;
 		}
 		else
 		{
+//set up count as current player's hand count
 			count = before.handCount[player];
+//set up countDeck as current deck count
 			countDeck = before.deckCount[player];
-
+//add card from deck to hand; increment hand count / decrement deck count
 			before.hand[player][count] = before.deck[player][countDeck - 1];
 			before.deckCount[player]--;
 			before.handCount[player]++;
 		}
-
+//drawnCard is the top card on the hand, and the card just drawn from the deck
 		drawnCard = before.hand[player][before.handCount[player] - 1];
 
+//if card is a treasure, increment the treasure count
 		if (drawnCard == copper || drawnCard == silver || drawnCard == gold)
 		{
 			treasures++;
 		}
 		else
 		{
+//remove the drawnCard and decrement hand count
 			temp[k] = drawnCard;
 			before.handCount[player]--;
 			k++;
@@ -98,6 +106,7 @@ int randomAdventurer(int player, struct gameState *after, int position, int tras
 
 	while (k - 1 >= 0)
 	{
+//discard all cards that have been drawn
 		before.discard[player][before.discardCount[player]++] = temp[k - 1];
 		k--;
 	}
@@ -158,6 +167,8 @@ int main()
 		state.numPlayers = players;
 		a = floor(Random() * (players - 1));
 		state.whoseTurn = a;
+
+//the j for loop should randomly populate the game state with values in range
 		for (j = 0; j < players - 1; j++)
 		{
 			state.deckCount[j] = floor(Random() * MAX_DECK);
@@ -183,7 +194,8 @@ int main()
 				state.supplyCount[k] = floor(Random() * 26) + 1;
 			}
 		}
-		
+
+//generates a random played card count in range
 		state.playedCardCount = floor(Random() * MAX_DECK);
 		for (j = 0; j < state.playedCardCount; j++)
 		{
@@ -197,7 +209,8 @@ int main()
 
 		position = floor(Random() * MAX_HAND);
 		trash = floor(Random() * 1);
-		
+
+//run the randomAdventurer with the randomly generated state		
 		randomAdventurer(a, &state, position, trash);
 	}
 

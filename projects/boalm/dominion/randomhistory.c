@@ -12,6 +12,6 @@ To test I fixed the bug, I made the loop run 100 times with reporting on every t
 to make sure it looked like everything was ok.  I had not gotten any failures previously with one card drawn
 and I wanted to make sure it was passing.  There were several examples of 1 card passing successfully in this report.
 
-After this, I turned up the number of tests to 1,000,000.  This test takes 5-10 seconds.  I do not think it makes sense to
+After this, I turned up the number of tests to 1,000,000.  This test takes ~10 seconds.  I do not think it makes sense to
 make the number of tests higher.  I am confident that it tests all possibilities and that there are not any bugs for that card.
 

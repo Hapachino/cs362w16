@@ -1,13 +1,13 @@
 /*
- * asrandomtestcard.c
+ * randomtestadventurer.c
  *
  */
 
 /*
  * Include the following lines in your makefile:
  *
- * asrandomtestcard: asrandomtestcard.c dominion.o rngs.o
- *      gcc -o asrandomtestcard -g  asrandomtestcard.c dominion.o rngs.o $(CFLAGS)
+ * randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+ *      gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
  */
 
 #include "dominion.h"

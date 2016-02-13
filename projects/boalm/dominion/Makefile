@@ -38,6 +38,16 @@ all: playdom player testDrawCard testBuyCard badTestDrawCard
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
 
+randomtestadventurer.out: asrandomtestcard.c dominion.o rngs.o
+	echo "running test of faketest:" > randomtestadventurer.out
+
+	echo "asrandomtestcard.c:" >> randomtestadventurer.out
+	gcc -o asrandomtestcard -g asrandomtestcard.c dominion.o rngs.o $(CFLAGS)
+	./asrandomtestcard >> randomtestadventurer.out
+
+	gcov -f -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
 unittestresults.out: cardtest1.c testUpdateCoins.c dominion.o rngs.o
 	echo "running test of faketest:" > unittestresults.out
 

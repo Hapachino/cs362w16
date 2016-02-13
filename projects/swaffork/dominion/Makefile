@@ -51,6 +51,18 @@ testhelper.o: testhelper.h testhelper.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
+randomtestcard: randomtestcard.c dominion.o rngs.o testhelper.o
+	gcc -o randomtestcard -g randomtestcard.c testhelper.o dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o testhelper.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c testhelper.o dominion.o rngs.o $(CFLAGS)
+
+randomtestcard.out: randomtestcard
+	./randomtestcard &> randomtestcard.out
+
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer &> randomtestadventurer.out
+
 runtests: cardtest1 cardtest2 
 	./unittest1 &> unittestresult.out
 	./unittest2 &>> unittestresult.out
@@ -82,7 +94,7 @@ runtests: cardtest1 cardtest2
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
+all: playdom player cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4 randomtestcard randomtestadventurer
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcov *.gcda *.gcno *.so

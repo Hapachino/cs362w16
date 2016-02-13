@@ -49,10 +49,10 @@ int main () {
 		printf("Errors: ");
 		
 		//Setup card options
-		choice1 = -1;
-		choice2 = -1;
-		choice3 = -1;
-		coin_bonus = 0;
+		choice1 = rand() % 3;
+		choice2 = rand() % 3;
+		choice3 = rand() % 3;
+		coin_bonus = rand() % 11;
 		
 		//Create random game
 		g = randomGame(seed++);
@@ -268,7 +268,7 @@ int main () {
 		//[8] Check treasure cards are removed from deck/discard
 		//Expected Results: deckCount + discardCount = -2
 		if ( (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]) != (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 2) ){
-			printf("\nCurrent player's hand count: %d, Expected: %d", (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]), (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 2));
+			printf("\nCurrent player's deck + discard count: %d, Expected: %d", (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]), (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 2));
 			failed = 1;	
 			errors[8]++;						
 		}
@@ -298,7 +298,7 @@ int main () {
 	
 	//Print test summary
 	printf("-----------------------------------------------------------\n");
-	printf("\tSummary for Random Tests: Adventurer\n");
+	printf("\tSummary for Random Tests: Adventurer Card\n");
 	printf("-----------------------------------------------------------\n");
 	printf("Test Summary:\n");
 	printf("Passed: %d\n", testsPassed);

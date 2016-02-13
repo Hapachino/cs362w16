@@ -21,6 +21,17 @@ int setUp(struct gameState* state)
         printf("Error: Default initializeGame() failed.\n");
         return -1;
     }
+
+    // Randomly change bytes in game state
+    for (i = 0; i <= 1000; i++)
+    {
+        for (j = 0; j < sizeof(struct gameState); j++)
+        {
+            ((char*)state)[j] = floor(Random() * 256);
+        }
+    }
+
+    // Randomly assign players and their decks, hands, and discard piles
     
     state->whoseTurn = player;
     return 0;
@@ -28,22 +39,14 @@ int setUp(struct gameState* state)
 
 int testAdventurer(struct gameState* state)
 {
-    int player = 0;
-    int rand = 0;
     int i;
-    struct gameState state;
-    if (setUp(&state) == -1) return 0;
+    int j;
+    printf("Beginning random tests for adventurer:\n");
 
-    // Randomize player deck
-    state->deckCount[player] = 0;
-    state->deckCount[player + 1] = 0;
-    rand = rand() % MAX_DECK;
-    
-    for (i = 0; i < rand; i++)
-    {
-    }
+    SelectStream(2);
+    PutSeed(3);
 
-    return 0;
+            
 }
 
 int main()

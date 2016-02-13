@@ -51,17 +51,23 @@ testhelper.o: testhelper.h testhelper.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-randomtestcard: randomtestcard.c dominion.o rngs.o testhelper.o
+randomtestcard.out: randomtestcard.c dominion.o rngs.o testhelper.o
+	echo "*** Results for randomtestcard.c ***" >> randomtestcard.out
 	gcc -o randomtestcard -g randomtestcard.c testhelper.o dominion.o rngs.o $(CFLAGS)
+	./randomtestcard &>> randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
+	cat dominion.c >> randomtestcard.out
+	gcov randomtestcard.c >> randomtestcard.out
+	cat randomtestcard.c.gcov >> randomtestcard.out
 
-randomtestadventurer: randomtestadventurer.c dominion.o rngs.o testhelper.o
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o testhelper.o
+	echo "*** Results for randomtestadventurer.c ***" >> randomtestadventurer.out
 	gcc -o randomtestadventurer -g randomtestadventurer.c testhelper.o dominion.o rngs.o $(CFLAGS)
-
-randomtestcard.out: randomtestcard
-	./randomtestcard &> randomtestcard.out
-
-randomtestadventurer.out: randomtestadventurer
-	./randomtestadventurer &> randomtestadventurer.out
+	./randomtestadventurer &>> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+	cat dominion.c >> randomtestadventurer.out
+	gcov randomtestadventurer.c >> randomtestadventurer.out
+	cat randomtestadventurer.c.gcov >> randomtestadventurer.out
 
 runtests: cardtest1 cardtest2 
 	./unittest1 &> unittestresult.out

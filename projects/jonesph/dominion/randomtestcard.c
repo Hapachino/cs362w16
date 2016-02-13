@@ -32,15 +32,18 @@ int randomFeast(int player, struct gameState *after, int position, int trash)
 	
 	player = before.whoseTurn;
 	j = cardEffect(card, firstChoice, secondChoice, thirdChoice, after, position, &bonus);
+//should gain back a card with a coin cost no greater than 5 and lose the feast card
 
 	for (i = 0; i <= before.handCount[player]; i++)
 	{
+//creating a temp hand for backup
 		temp[i] = before.hand[player][i];
 		before.hand[player][i] = -1;
 	}
-
+//set starting coins to 0
 	before.coins = 0;
 
+//add up any coins that are in the player's hand
 	for (i = 0; i < before.handCount[player]; i++)
 	{
 		if (before.hand[player][i] == copper)
@@ -56,12 +59,15 @@ int randomFeast(int player, struct gameState *after, int position, int trash)
 			before.coins += 3;
 		}
 	}
-//bonus
+//add in the 5 coin bonus from the Feast card
 	before.coins += 5;
 
+//k serves as a loop checker
 	k = 1;
+//attempt to buy a card with coins
 	while (k == 1)
 	{
+//need to have enough coins to make the purchase
 		if (supplyCount(firstChoice, &before) <= 0)
 		{
 			k = 0;
@@ -72,25 +78,29 @@ int randomFeast(int player, struct gameState *after, int position, int trash)
 		}
 		else
 		{
+//player should get the card that was bought
 			if (firstChoice < 0)
 			{
 				return -1;
 			}
-
+//makes sure that the card is available, then decreases supply of that card
 			before.discard[player][before.discardCount[player]] = firstChoice;
 			before.discardCount[player]++;
 
 			before.supplyCount[firstChoice]--;
+//set loop checker to 0 to exit loop
 			k = 0;
 		}
 	}
 
+//set the temp backup hand back to the player's hand
 	for (i = 0; i <= before.handCount[player]; i++)
 	{
 		before.hand[player][i] = temp[i];
 		temp[i] = -1;
 	}
 
+//discard the feast card and decrement hand
 	before.playedCards[before.playedCardCount] = before.hand[player][position];
 	before.playedCardCount++;
 	before.hand[player][position] = -1;
@@ -147,6 +157,7 @@ int main()
 		p = floor(Random() * (players - 1));
 		state.whoseTurn = p;
 
+//the j for loop should randomly populate the game state with values in range
 		for (j = 0; j < players - 1; j++)
 		{
 			state.deckCount[j] = floor(Random() * MAX_DECK);
@@ -173,6 +184,7 @@ int main()
 			}
 		}
 
+//generates a random played card count in range
 		state.playedCardCount = floor(Random() * MAX_DECK);
 		for (k = 0; k < state.playedCardCount; k++)
 		{
@@ -187,6 +199,8 @@ int main()
 		state.coins = floor(Random() * 20);
 		position = floor(Random() * MAX_HAND);
 		trash = floor(Random() * 1);
+
+//runs the randomFeast with a randomly generated state
 		randomFeast(p, &state, position, trash);
 	}
 	printf("No errors encountered \n");

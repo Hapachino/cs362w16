@@ -1,0 +1,27 @@
+﻿Project Part A
+Caleb Bernard, Chelsea Colvin, Tom Gariepy, Jonathon Hicke
+
+Explanation of testIsValid
+Each iteration of the do-while loop generates one url and runs it through the URLValidator class’ isValid method, then outputs according to whether or not the test was successful. The for-loop inside the do-loop constructs a URL by combining smaller parts of a URL, some of which are valid parts, and others of which aren’t.
+
+
+How many total number of urls are being tested?
+538,650
+
+
+Explanation of urls being created
+It uses testPartsIndex as a counter to combine every possible mashup of the elements in our resultsPair arrays, such that each individual URL will contain one element from each of these arrays.
+
+The parts of the url have been separated into 5 sections: scheme, authority, port, path, and query. When the url is created, they are placed into an array in that order, so the result will look like:
+
+<scheme><authority><port><path><query>
+
+
+Example of valid and invalid url being tested
+Valid: http://www.google.com:65535/t123?action=view
+
+Invalid: 3ht://0.0.0.0:-1/$23?action=edit&mode=up
+
+
+Do you think that a real world test is very different than the unit tests and card tests that we wrote? Explain in few lines.
+In the real world, more emphasis tends to be placed on testing the end results than unit testing each function, since deadlines and supply / demand restrict your ability to do full tests, so that more focus can be placed on things the end-user will be likely to notice. Also in a less ‘staged’ environment, bugs can slip by easier when you’re not given a known-buggy piece of code for the sake of learning. However in the real world, coverage is still a very important factor, just like in this course. 100% coverage is often an impossible ideal in the fast-paced industry.

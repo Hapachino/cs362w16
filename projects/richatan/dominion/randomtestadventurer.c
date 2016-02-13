@@ -52,7 +52,7 @@ int main () {
 		choice1 = rand() % 3;
 		choice2 = rand() % 3;
 		choice3 = rand() % 3;
-		coin_bonus = rand() % 11;
+		coin_bonus = 0;
 		
 		//Create random game
 		g = randomGame(seed++);
@@ -273,13 +273,21 @@ int main () {
 			errors[8]++;						
 		}
 		
-		//[9] Check current player's total cards unchanged (treasure cards just moved from deck/discard to hand)
-		//Expected Results: full deck count unchanged for every card
+		//[9] Check current player's total cards unchanged (treasure cards just moved from deck/discard to hand) EXCEPT test card moved to played
+		//Expected Results: full deck count unchanged for every card, except test card -1
 		for (i = 0; i <= treasure_map; i++){
-			if (fullDeckCount(whoseTurn(g), i, g) != fullDeckCount(whoseTurn(g), i, pre)){
-				printf("\nCurrent player's full count for card %d: %d, Expected: %d", i, fullDeckCount(whoseTurn(g), i, g), fullDeckCount(whoseTurn(g), i, pre));
+			if (i == TEST_CARD){
+				if (fullDeckCount(whoseTurn(g), i, g) != fullDeckCount(whoseTurn(g), i, pre) - 1){
+				printf("\nCurrent player's full count for card %d: %d, Expected: %d", i, fullDeckCount(whoseTurn(g), i, g), fullDeckCount(whoseTurn(g), i, pre) - 1);
 				failed = 1;	
 				errors[9]++;			
+				}
+			} else { 
+				if (fullDeckCount(whoseTurn(g), i, g) != fullDeckCount(whoseTurn(g), i, pre)){
+					printf("\nCurrent player's full count for card %d: %d, Expected: %d", i, fullDeckCount(whoseTurn(g), i, g), fullDeckCount(whoseTurn(g), i, pre));
+					failed = 1;	
+					errors[9]++;			
+				}
 			}
 		}
 

@@ -81,11 +81,10 @@ void randomizePlayedCards(struct gameState *testG, int thisPlayer) {
 }
 
 void randomizeGameState(struct gameState *testG, int thisPlayer) {
-    testG->numBuys = rand() % 5 + 1;
     testG->numActions = rand() % 5 + 1;
     testG->coins = rand() % 10;
     
-    testG->handCount[thisPlayer] = rand() % 10;  //1 is so we always put the TESTCARD in position 1
+    testG->handCount[thisPlayer] = rand() % 10 + 1;  //1 is so we always put the TESTCARD in position 1
     randomizeHandCards(testG, thisPlayer);
 
     testG->discardCount[thisPlayer] = rand() % 20;
@@ -98,7 +97,8 @@ void randomizeGameState(struct gameState *testG, int thisPlayer) {
     randomizeDeckCards(testG, thisPlayer);
 }
 
-int numTreasureCards(struct gameState *testG, thisPlayer) {
+//This returns the smaller of the number of available treasure cards or 2
+int numTreasureCardsOr2(struct gameState *testG, int thisPlayer) {
     int treasureCardsFound = 0;
     int i = 0;
     for (i = 0; i < testG->discardCount[thisPlayer]; ++i){
@@ -111,17 +111,20 @@ int numTreasureCards(struct gameState *testG, thisPlayer) {
             treasureCardsFound += 1;
         }
     }
-    return treasureCardsFound;
+    if (treasureCardsFound > 2) 
+        return 2;
+    else
+        return treasureCardsFound;
 }
 
-void setOracle(struct gameState *testG, struct gameState *oracleG, thisPlayer) {
+void setOracle(struct gameState *testG, struct gameState *oracleG, int thisPlayer) {
     //Adventurer will attempt to draw two treasure cards from the deck/discard.
     //The handsize should increase by drawn treasure cards - 1
     //  This can be tested by checking to see if discard + deck is 2 less than previous
     //
     //played cards should increase by 1
     //trashed should be unchanged.  deck + hand + played + discard should be unchanged
-    int treasureCards = numTreasureCards(testG, thisPlayer);
+    int treasureCards = numTreasureCardsOr2(testG, thisPlayer);
 
     // remove number of drawn treasure cards from discard or deck count
     if( oracleG->discardCount[thisPlayer] >= treasureCards ) {
@@ -143,6 +146,56 @@ void setOracle(struct gameState *testG, struct gameState *oracleG, thisPlayer) {
 
 }
 
+int totalCardsInPlay(struct gameState *someG, int thisPlayer) {
+    return someG->discardCount[thisPlayer] + someG->playedCardCount + someG->handCount[thisPlayer] + someG->deckCount[thisPlayer];
+}
+
+int checkOracle(struct gameState *testG, struct gameState *oracleG, int thisPlayer) {
+    int treasureCards = oracleG->numBuys;
+    if(testG->numActions != oracleG->numActions) 
+        return 0;
+    if(testG->coins != oracleG->coins)
+        return 0;
+
+    //This should indicate that the correct number of treasure cards were grabbed from the deck/discard
+    if((testG->discardCount[thisPlayer] + testG->deckCount[thisPlayer]) != (oracleG->discardCount[thisPlayer] + oracleG->deckCount[thisPlayer]))
+        return 0;
+
+    //This should indicate that the played card was put in the playedCards pile
+    if(testG->playedCardCount != oracleG->playedCardCount)
+        return 0;
+
+    //total cards for both oracle and test should be the same
+    if(totalCardsInPlay(testG, thisPlayer) != totalCardsInPlay(oracleG, thisPlayer))
+        return 0;
+
+    //this should represent that the treasure cards were added to the hand
+    if(testG->handCount[thisPlayer] != oracleG->handCount[thisPlayer]) 
+        return 0;
+
+    //true
+    return 1;
+}
+
+void printG(struct gameState *someG, int thisPlayer) {
+    printf(" numBuys: %d\n", someG->numBuys);
+    printf(" handCount: %d\n", someG->handCount[thisPlayer]);
+    printf(" deckCount + discardCount: %d\n", someG->deckCount[thisPlayer] + someG->discardCount[thisPlayer]);
+    printf(" playedCardCount: %d\n", someG->playedCardCount);
+    printf(" Total Cards Available: %d\n", totalCardsInPlay(someG, thisPlayer));
+}
+
+void printErrorReport(struct gameState *testG, struct gameState *oracleG, struct gameState *beforeG, int thisPlayer, int i) {
+    printf("Test number %d failed.  Report: \n", i);
+    printf("\nbeforeG: (state after randomizing, but before card was played\n");
+    printG(beforeG, thisPlayer);
+    printf("\ntestG:\n");
+    printG(testG, thisPlayer);
+    printf("\noracleG:  (note: numBuys = expected treasureCards)\n");
+    printG(oracleG, thisPlayer);
+    printf("--------------------------------------------------------------\n\n");
+}
+
 int main() {
     int newCards = 0;
     int discarded = 1;
@@ -152,7 +205,8 @@ int main() {
     int drawnCard2 = 0;
     srand(time(NULL));
 
-    int i, j, m;
+    int i = 0;
+    int failed = 0;
     int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
     int remove1, remove2;
     int seed = 645;
@@ -169,35 +223,34 @@ int main() {
     printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 
     // ----------- TEST 1: choice1 = 1 = +2 cards --------------
-    printf("TEST 1: = Play adventurer card\n");
+    printf("RANDOM TEST : = Play adventurer card\n\n\n");
 
-    // copy a blank gamestate to testG
-    memcpy(&testG, &G, sizeof(struct gameState));
+    for (i = 0; i < 1000000; ++i)
+    {
 
-
-    randomizeGameState(&testG, thisPlayer);
-
-    //Set oracleG to values after randomizing gameState
-    memcpy(&oracleG, &testG, sizeof(struct gameState));
-
-    //I think beforeG needs to be here, but I don't remember.
-    memcpy(&beforeG, &testG, sizeof(struct gameState));
-
-    setOracle(&testG, &oracleG, thisPlayer);
-
-    printf("treasureCardsFound: %d\n", oracleG.numBuys);
+        // copy a blank gamestate to testG
+        memcpy(&testG, &G, sizeof(struct gameState));
 
 
-    //Perform the test...
-    cardEffect(adventurer, choice1, choice2, choice3, &testG, handpos, &bonus);
+        randomizeGameState(&testG, thisPlayer);
 
-    printf("Stuff %d\n", testG.numBuys);
-    printf("Stuff %d, %d, %d, %d, %d, %d, \n", testG.hand[thisPlayer][0], testG.hand[thisPlayer][2], testG.hand[thisPlayer][3], testG.hand[thisPlayer][4], testG.hand[thisPlayer][5], testG.hand[thisPlayer][6]);
-    printf("adventurer: %d, silver: %d, gold: %d\n", adventurer, silver, gold);
-    testG.hand[thisPlayer][0] = adventurer;
-    printf("adventurer: %d\n", testG.hand[thisPlayer][0]);
+        //Set oracleG to values after randomizing gameState
+        memcpy(&oracleG, &testG, sizeof(struct gameState));
 
+        //This is so the original state can be printed if there is an error.
+        memcpy(&beforeG, &testG, sizeof(struct gameState));
 
+        setOracle(&testG, &oracleG, thisPlayer);
+
+        //Perform the test...
+        cardEffect(adventurer, choice1, choice2, choice3, &testG, handpos, &bonus);
+
+        if(!checkOracle(&testG, &oracleG, thisPlayer)) {
+            printErrorReport(&testG, &oracleG, &beforeG, thisPlayer, i + 1);
+            failed++;
+        } 
+    }
+    printf("The test ran %d times and resulted in %d failures.\n", i, failed);
 
     printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
 

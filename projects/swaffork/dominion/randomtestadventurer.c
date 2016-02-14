@@ -1,3 +1,10 @@
+/*
+ * randomtestadventurer.c
+ *
+ * Random tester for adventurer card in Dominion.
+ * Code based on random testing lecture from CS362 - Winter16
+ *
+ */
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
@@ -9,7 +16,10 @@
 
 int setUp(struct gameState* state)
 {
-    int player = 0;
+    int i;
+    int r; 
+    int index = -1;
+    int player;
     int seed = 1000;
     int numPlayers = 2;
     int cards[10] = {adventurer, council_room, feast, gardens, mine,
@@ -22,34 +32,124 @@ int setUp(struct gameState* state)
         return -1;
     }
 
-    // Randomly change bytes in game state
-    for (i = 0; i <= 1000; i++)
+    // Randomly decide who goes first and randomly set their deck, discard, and hand count
+    player = rand() % 2;
+    state->whoseTurn = player;
+    state->deckCount[player] = floor(Random() * MAX_DECK);
+    state->handCount[player] = floor(Random() * MAX_HAND + 1);
+    state->discardCount[player] = floor(Random() * MAX_DECK);
+
+    // Since adventurer must draw 2 treasure cards, consider case where there are two treasure cards for interesting test results:
+    for (i = 0; i < 2; i++)
     {
-        for (j = 0; j < sizeof(struct gameState); j++)
-        {
-            ((char*)state)[j] = floor(Random() * 256);
-        }
+        r = floor(Random() * state->deckCount[player];
+        if (index == r) continue;
+        else index = r;
+        state->deck[player][index] = copper;
     }
 
-    // Randomly assign players and their decks, hands, and discard piles
-    
-    state->whoseTurn = player;
     return 0;
 }
 
-int testAdventurer(struct gameState* state)
+int checkDiff(struct StateDiff* diff)
 {
-    int i;
-    int j;
+    int passed = 1;
+    if (diff->flags[PLAYED_CARDS] == 1)
+    {
+        printf("Failed: played cards pile do not match.\n");
+        passed = 0;
+    }
+    if (diff->flags[PLAYED_CARD_COUNT] == 1)
+    {
+        printf("Failed: played cards count do not match.\n");
+        passed = 0;
+    }
+    if (diff->flags[HAND] == 1)
+    {
+        printf("Failed: hands do not match.\n");
+        passed = 0;
+    }
+    if (diff->flags[HAND_COUNT] == 1)
+    {
+        printf("Failed: hand counts do not match.\n");
+        passed = 0;
+    }
+    return passed;
+}
+
+void testAdventurer()
+{
     printf("Beginning random tests for adventurer:\n");
 
-    SelectStream(2);
-    PutSeed(3);
+    int i;
+    int tcount;
+    int handCount;
+    int passed = 0;
+    int failed = 0;
+    int numTests = 1000;
 
-            
+    for (i = 0; i < numTests; i++)
+    {
+        struct gameState state;
+        if (setUp(&state) < 0)
+        {
+            printf("ERROR: setup failed\n");
+            failed = 1;
+            continue;
+        }
+        struct gameState expectedState;
+        memcpy(&expectedState, &state, sizeof(struct gameState));
+
+        int success = playAdventurer(&state);
+        if (success != 0)
+        {
+            printf("playAdventurer() failed\n");
+            failed = 1;
+            continue;
+        }
+
+        int player = state.whoseTurn;
+
+        // Setup expected state.
+        // Add adventurer to played pile and treasure cards to hand
+        expectedState.playedCards[0] = adventurer;
+
+        for (tcount = 0; tcount < 2; tcount++)
+        {
+            handCount = expectedState.handCount[player];
+            expectedState.hand[player][handCount] = copper;
+            expectedState.handCount[player]++;
+            expectedState.deckCount[player]--;
+        }
+
+        struct StateDiff diff = compareStates(&expectedState, &state);
+        if (state.handCount[(player + 1) % 2] != expectedState.handCount[(player + 1) % 2])
+        {
+            printf("Non-active player's hand changed.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.deckCount[(player + 1) % 2] != expectedState.deckCount[(player + 1) % 2])
+        {
+            printf("Non-active player's deck changed.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.discardCount[(player + 1) % 2] != expectedState.discardCount[(player + 1) % 2])
+        {
+            printf("Non-active player's discard pile changed.\n");
+            passed += 0;
+            continue;
+        }
+        
+        passed += checkDiff(&diff);
+    }
+
+    printf("End of test. %d out of %d tests passed.\n\n", passed, i);
 }
 
 int main()
 {
-    srand(time(NULL));
-
+    testAdventurer();
+    return 0;
+}

@@ -1,0 +1,34 @@
+CS 362-400  Final Project Part A
+Group Members:  Lynn Herrick, Kim McLeod, Regina Imhoff
+
+1. Explain testIsValid Function of UrlValidator test code:
+- makes a new urlValidator object
+- asserts isValid method of object works on known working urls
+- sets statusPerLine to 60 or 6 (if printIndex)
+- enters do-while loop (while iterating through testUrlParts) :
+	- builds url string buffer using testPartsIndex
+	- converts url string buffer to string
+	- checks if valid using object method isValid()
+	- if url is valid, url string is printed 
+	- if url from above was printed print “.” else print “X”
+	- print new line when printed equals statusPerLine
+- print a new line
+
+
+2. Give how many total number of urls it is testing:
+To solve for this we looked at how many indices were in testUrlScheme,testUrlAuthority, testUrlPort, testPath, testUrlQuery and then multiplied them together for all possible options.
+9 * 19 * 7 * 10 * 3 = 35910
+
+
+3. Also, explain how it is building all the urls. 
+It iterates through each ResultPair, taking one option and concatenates the ResultPairs together to make a single url.
+
+
+4. Give an example of valid url being tested and an invalid url being tested by testIsValid() method. 
+Valid URL: http://www.google.com:80/test1/?action=view
+Invalid URL: 3ht://1.2.3.4.:-1/../
+
+
+5. UrlValidator code is a direct copy paste of apache commons url validator code. The test file/code is also direct copy paste of apache commons test code. Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines
+
+It is not incredibly different from the unit tests we wrote in the fact that it looks at all potential options for composing and tests to make sure they are valid within the framework of the object we are testing on/with.  To get more specific, both use the assert function as well as print statements to let the tester know that status of tests run.

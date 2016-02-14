@@ -1,0 +1,41 @@
+CS362 winter 2016
+Project Part A: ProjectPartA.txt
+Team Members:  Janel Buckingham, Paul Zotz, Jeannine Amm
+
+1) Explain testIsValid Function of URLValidator Code.
+
+// testIsValid() calls testIsValid(testUrlParts, UrlValidator.ALLOW_ALL_SCHEMES);
+// builds a URLValidator Object.  
+// asserts that isValid method is working
+
+// do below while incrementing test part index up to [8,0,0,0,0]
+// create string buffer obj
+// loops through test part index and concatenates a string URL from parts
+// calculates the expected output from isValid(url) function and stores it in expected.
+// calls isValid on url string and stores it in result
+// checks if result equals expected
+// If result is true it prints out the url to the console.
+
+Note:
+Each element of testPartsIndex identifies an index for each of the resultPairs under test.  The indexes correspond to Result Pairs: [testUrlScheme, testUrlAuthority, testUrlPort, testPath, testUrlQuery].
+
+
+2) Total number of URLs it is testing (testIsValid)
+    testIsValid tests 31920 URLs. 
+(8 * 19 * 7 * 10 * 3) = 31920
+
+3) Explain how it is building the URLs
+
+    It first creates several arrays of resultPairs containing a part of a URL combined with a boolean true or false.  The arrays consist of testUrlScheme, testUrlAuthority, testUrlPort, testPath, testUrlQuery.  It then cycles through every combination that can be made with the parts of the URL contained and performs an  AND operation on the true or false result expected for each part of the url to get the resulting boolean value for the url as a full string.  It uses testPartsIndex to store the parts indexes for the resultPairs under test and increments the values in testPartsIndex until all combinations have been used with the exception of where testUrlScheme = “”.
+    
+
+4) Give an example of valid and an invalid URL
+
+An example of a  valid URL is http://www.google.com:80/test1?action=view.  
+An example of an invalid URL is http://256.256.256.256/test1?action=view.
+
+5) Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we write (in terms of concepts and complexity? 
+
+The complexity and concepts are very similar to what we used in the Dominion code base.  The object is created and set up, given a set of inputs within the range of possible inputs that could be encountered during execution, and the outcome of each is recorded and compared with what we expect the correct result to be.  One difference, however, is that the method of choosing inputs seems in keeping with the covering array concept introduced in the NIST Practical Combinatorial Testing reading* which we have not yet used in practice.
+
+*Kuhn, D. R., Kacker, R. N., Lei, Y., Practical Combinatorial Testing, ch. 6, National Institute of Standards and Technology, Oct. 2010, http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-142.pdf

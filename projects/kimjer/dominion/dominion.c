@@ -36,11 +36,12 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
   return k;
 }
 
+
 int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) 
 {
   int i;
   int j;
-  int it;			
+  int it;      
   //set up random number generator
   SelectStream(1);
   PutSeed((long)randomSeed);
@@ -59,10 +60,10 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
     {
       for (j = 0; j < 10; j++)
         {
-	  if (j != i && kingdomCards[j] == kingdomCards[i])
-	    {
-	      return -1;
-	    }
+   if (j != i && kingdomCards[j] == kingdomCards[i])
+     {
+       return -1;
+     }
         }
     }
 
@@ -104,9 +105,9 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
   state->supplyCount[gold] = 30;
 
   //set number of Kingdom cards
-  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+  for (i = adventurer; i <= treasure_map; i++)         //loop all cards
   {
-    for (j = 0; j < 10; j++)           		//loop chosen cards
+    for (j = 0; j < 10; j++)               //loop chosen cards
     {
       if (kingdomCards[j] == i)
       {
@@ -143,23 +144,23 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
   {
     state->deckCount[i] = 0;
     for (j = 0; j < 3; j++)
-  	{
-  	  state->deck[i][j] = estate;
-  	  state->deckCount[i]++;
-  	}
+   {
+     state->deck[i][j] = estate;
+     state->deckCount[i]++;
+   }
     for (j = 3; j < 10; j++)
-  	{
-  	  state->deck[i][j] = copper;
-  	  state->deckCount[i]++;		
-  	}
+   {
+     state->deck[i][j] = copper;
+     state->deckCount[i]++;    
+   }
   }
   //shuffle player decks
   for (i = 0; i < numPlayers; i++)
     {
       if ( shuffle(i, state) < 0 )
-	{
-	  return -1;
-	}
+ {
+   return -1;
+ }
     }
 
   //draw player hands
@@ -170,9 +171,9 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
       state->discardCount[i] = 0;
       //draw 5 cards
       // for (j = 0; j < 5; j++)
-      //	{
-      //	  drawCard(i, state);
-      //	}
+      // {
+      //   drawCard(i, state);
+      // }
     }
   
   //set embargo tokens to 0 for all supply piles
@@ -200,6 +201,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct 
   return 0;
 }
 
+
 int shuffle(int player, struct gameState *state) {
  
   int newDeck[MAX_DECK];
@@ -225,7 +227,6 @@ int shuffle(int player, struct gameState *state) {
     state->deck[player][i] = newDeck[i];
     state->deckCount[player]++;
   }
-
   return 0;
 }
 
@@ -1273,7 +1274,8 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-int effectAdventure(struct gameState *state, struct infosStruct *infos) {
+int effectAdventure(struct gameState *state, struct infosStruct *infos) 
+{
   int drawntreasure2 = infos->drawntreasure;
   int currentPlayer = infos->currentPlayer;
   int cardDrawn = infos->cardDrawn;
@@ -1282,26 +1284,38 @@ int effectAdventure(struct gameState *state, struct infosStruct *infos) {
   int handPos = infos->handPos;
   int i = infos->i;
 
-  while(drawntreasure2<2) {
-    if (state->deckCount[currentPlayer] <1) {//if the deck is empty we need to shuffle discard and add to deck
+  while(drawntreasure2<2) 
+  {
+    if (state->deckCount[currentPlayer] <1) 
+    {//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
-    drawCard(currentPlayer, state);
+
+    drawCard(currentPlayer, state);// draw card doesn't update handCount?
+
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+    
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+    {
       drawntreasure2++;
-    else{
+    }
+    else
+    {
       temphand[z]=cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
       z++;
     }
-      }
-      while(z-1>=0){
-  state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-  z=z-1;
-      }
-      return 0;
-      
+  }
+
+    printf("VAL OF Z IS : %d\n", z);
+    printf("the discard count is : %d\n", state->discardCount[currentPlayer]);
+ 
+  while(z-1>=0)
+  {
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    z=z-1;
+  }
+  return 0;  
 }
 
 int effectCouncil(struct gameState *state, struct infosStruct *infos)
@@ -1366,7 +1380,7 @@ int effectRemodel(struct gameState *state, struct infosStruct *infos)
 
 int effectSmithy(struct gameState *state, struct infosStruct *infos) 
 {
-  int i = infos->i;
+  int i;
   int currentPlayer= infos->currentPlayer;
   int handPos = infos->handPos;
 

@@ -1,16 +1,98 @@
 Beginning initializing state.
 Completed initializing state.
+Testing shuffle():
+Shuffling Player 0:
+Checking order of player 0's deck...
+	shuffled card 0: 1
+	original card 0: 1
+	shuffled card 1: 4
+	original card 1: 4
+
+Player 0's is different! Great success!
+Checking order of player 1's deck...
+	shuffled card 0: 1
+	original card 0: 1
+	shuffled card 1: 4
+	original card 1: 4
+	shuffled card 2: 5
+	original card 2: 5
+	shuffled card 3: 6
+	original card 3: 6
+	shuffled card 4: 7
+	original card 4: 7
+	shuffled card 5: 8
+	original card 5: 8
+	shuffled card 6: 9
+	original card 6: 9
+	shuffled card 7: 10
+	original card 7: 10
+	shuffled card 8: 11
+	original card 8: 11
+	shuffled card 9: 12
+	original card 9: 12
+
+All tests passed!
+Beginning initializing state.
+Completed initializing state.
+Testing discardCard():
+All state changes as expected.
+All tests passed.
+Beginning initializing state.
+Completed initializing state.
+Testing gainCard():
+	ERROR: card not gained into deck. dest = 1
+	New deck count: 1
+	Expected deck count: 11
+End of gainCard() test.
+Beginning initializing state.
+Completed initializing state.
 Testing isGameOver():
 All tests passed.
+Testing adventurer card with only treasure cards in deck
+Failed: played cards pile do not match.
+Failed: hands do not match.
+Failed: hand counts do not match.
+Failed: discard piles do not match.
+Failed: dicard counts do not match.
+End of test
+
+Test adventurer card with only two treasure cards mixed in.
+Failed: played cards pile do not match.
+Failed: hands do not match.
+Failed: hand counts do not match.
+Failed: discard piles do not match.
+Failed: dicard counts do not match.
+End of test
+
+2 tests failed!
+--------
+Testing smithy card
+Failed: hand counts do not match.
+Failed: hands do not match.
+Failed: played card counts do not match.
+Failed: played cards do not match.
+Smithy card failed 4 tests!
+
+--------
+Testing tribute card
+Tribute card passed all tests!
+
+--------
+Testing mine card
+Failed: playMine() failed
+Failed: hand counts do not match
+Failed: hands do not match.
+mine card failed 3 tests!
+
 File 'dominion.c'
-Lines executed:1.54% of 584
+Lines executed:28.60% of 584
 dominion.c:creating 'dominion.c.gcov'
 
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda
-        -:    0:Runs:1
-        -:    0:Programs:1
+        -:    0:Runs:8
+        -:    0:Programs:8
         -:    1:#include "dominion.h"
         -:    2:#include "dominion_helpers.h"
         -:    3:#include "rngs.h"
@@ -18,12 +100,12 @@ dominion.c:creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-    #####:    8:int compare(const void* a, const void* b) {
-    #####:    9:    if (*(int*)a > *(int*)b)
-    #####:   10:        return 1;
-    #####:   11:    if (*(int*)a < *(int*)b)
-    #####:   12:        return -1;
-    #####:   13:    return 0;
+      246:    8:int compare(const void* a, const void* b) {
+      246:    9:    if (*(int*)a > *(int*)b)
+       23:   10:        return 1;
+      223:   11:    if (*(int*)a < *(int*)b)
+       88:   12:        return -1;
+      135:   13:    return 0;
         -:   14:}
         -:   15:
     #####:   16:struct gameState* newGame() {
@@ -47,31 +129,31 @@ dominion.c:creating 'dominion.c.gcov'
     #####:   34:    return k;
         -:   35:}
         -:   36:
-    #####:   37:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
+        5:   37:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
         -:   38:        struct gameState *state) {
         -:   39:
         -:   40:    int i;
         -:   41:    int j;
         -:   42:    int it;			
         -:   43:    //set up random number generator
-    #####:   44:    SelectStream(1);
-    #####:   45:    PutSeed((long)randomSeed);
+        5:   44:    SelectStream(1);
+        5:   45:    PutSeed((long)randomSeed);
         -:   46:
         -:   47:    //check number of players
-    #####:   48:    if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+        5:   48:    if (numPlayers > MAX_PLAYERS || numPlayers < 2)
         -:   49:    {
     #####:   50:        return -1;
         -:   51:    }
         -:   52:
         -:   53:    //set number of players
-    #####:   54:    state->numPlayers = numPlayers;
+        5:   54:    state->numPlayers = numPlayers;
         -:   55:
         -:   56:    //check selected kingdom cards are different
-    #####:   57:    for (i = 0; i < 10; i++)
+       55:   57:    for (i = 0; i < 10; i++)
         -:   58:    {
-    #####:   59:        for (j = 0; j < 10; j++)
+      550:   59:        for (j = 0; j < 10; j++)
         -:   60:        {
-    #####:   61:            if (j != i && kingdomCards[j] == kingdomCards[i])
+      500:   61:            if (j != i && kingdomCards[j] == kingdomCards[i])
         -:   62:            {
     #####:   63:                return -1;
         -:   64:            }
@@ -83,9 +165,9 @@ dominion.c:creating 'dominion.c.gcov'
         -:   70:    ///////////////////////////////
         -:   71:
         -:   72:    //set number of Curse cards
-    #####:   73:    if (numPlayers == 2)
+        5:   73:    if (numPlayers == 2)
         -:   74:    {
-    #####:   75:        state->supplyCount[curse] = 10;
+        5:   75:        state->supplyCount[curse] = 10;
         -:   76:    }
     #####:   77:    else if (numPlayers == 3)
         -:   78:    {
@@ -97,11 +179,11 @@ dominion.c:creating 'dominion.c.gcov'
         -:   84:    }
         -:   85:
         -:   86:    //set number of Victory cards
-    #####:   87:    if (numPlayers == 2)
+        5:   87:    if (numPlayers == 2)
         -:   88:    {
-    #####:   89:        state->supplyCount[estate] = 8;
-    #####:   90:        state->supplyCount[duchy] = 8;
-    #####:   91:        state->supplyCount[province] = 8;
+        5:   89:        state->supplyCount[estate] = 8;
+        5:   90:        state->supplyCount[duchy] = 8;
+        5:   91:        state->supplyCount[province] = 8;
         -:   92:    }
         -:   93:    else
         -:   94:    {
@@ -111,34 +193,34 @@ dominion.c:creating 'dominion.c.gcov'
         -:   98:    }
         -:   99:
         -:  100:    //set number of Treasure cards
-    #####:  101:    state->supplyCount[copper] = 60 - (7 * numPlayers);
-    #####:  102:    state->supplyCount[silver] = 40;
-    #####:  103:    state->supplyCount[gold] = 30;
+        5:  101:    state->supplyCount[copper] = 60 - (7 * numPlayers);
+        5:  102:    state->supplyCount[silver] = 40;
+        5:  103:    state->supplyCount[gold] = 30;
         -:  104:
         -:  105:    //set number of Kingdom cards
-    #####:  106:    for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+      105:  106:    for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
         -:  107:    {
-    #####:  108:        for (j = 0; j < 10; j++)           		//loop chosen cards
+      825:  108:        for (j = 0; j < 10; j++)           		//loop chosen cards
         -:  109:        {
-    #####:  110:            if (kingdomCards[j] == i)
+      775:  110:            if (kingdomCards[j] == i)
         -:  111:            {
         -:  112:                //check if card is a 'Victory' Kingdom card
-    #####:  113:                if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+       60:  113:                if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
         -:  114:                {
-    #####:  115:                    if (numPlayers == 2){ 
-    #####:  116:                        state->supplyCount[i] = 8; 
+       10:  115:                    if (numPlayers == 2){ 
+       10:  116:                        state->supplyCount[i] = 8; 
         -:  117:                    }
     #####:  118:                    else{ state->supplyCount[i] = 12; }
         -:  119:                }
         -:  120:                else
         -:  121:                {
-    #####:  122:                    state->supplyCount[i] = 10;
+       40:  122:                    state->supplyCount[i] = 10;
         -:  123:                }
-    #####:  124:                break;
+       50:  124:                break;
         -:  125:            }
         -:  126:            else    //card is not in the set choosen for the game
         -:  127:            {
-    #####:  128:                state->supplyCount[i] = -1;
+      725:  128:                state->supplyCount[i] = -1;
         -:  129:            }
         -:  130:        }
         -:  131:
@@ -148,36 +230,36 @@ dominion.c:creating 'dominion.c.gcov'
         -:  135:    //supply intilization complete
         -:  136:
         -:  137:    //set player decks
-    #####:  138:    for (i = 0; i < numPlayers; i++)
+       15:  138:    for (i = 0; i < numPlayers; i++)
         -:  139:    {
-    #####:  140:        state->deckCount[i] = 0;
-    #####:  141:        for (j = 0; j < 3; j++)
+       10:  140:        state->deckCount[i] = 0;
+       40:  141:        for (j = 0; j < 3; j++)
         -:  142:        {
-    #####:  143:            state->deck[i][j] = estate;
-    #####:  144:            state->deckCount[i]++;
+       30:  143:            state->deck[i][j] = estate;
+       30:  144:            state->deckCount[i]++;
         -:  145:        }
-    #####:  146:        for (j = 3; j < 10; j++)
+       80:  146:        for (j = 3; j < 10; j++)
         -:  147:        {
-    #####:  148:            state->deck[i][j] = copper;
-    #####:  149:            state->deckCount[i]++;		
+       70:  148:            state->deck[i][j] = copper;
+       70:  149:            state->deckCount[i]++;		
         -:  150:        }
         -:  151:    }
         -:  152:
         -:  153:    //shuffle player decks
-    #####:  154:    for (i = 0; i < numPlayers; i++)
+       15:  154:    for (i = 0; i < numPlayers; i++)
         -:  155:    {
-    #####:  156:        if ( shuffle(i, state) < 0 )
+       10:  156:        if ( shuffle(i, state) < 0 )
         -:  157:        {
     #####:  158:            return -1;
         -:  159:        }
         -:  160:    }
         -:  161:
         -:  162:    //draw player hands
-    #####:  163:    for (i = 0; i < numPlayers; i++)
+       15:  163:    for (i = 0; i < numPlayers; i++)
         -:  164:    {  
         -:  165:        //initialize hand size to zero
-    #####:  166:        state->handCount[i] = 0;
-    #####:  167:        state->discardCount[i] = 0;
+       10:  166:        state->handCount[i] = 0;
+       10:  167:        state->discardCount[i] = 0;
         -:  168:        //draw 5 cards
         -:  169:        // for (j = 0; j < 5; j++)
         -:  170:        //	{
@@ -186,59 +268,59 @@ dominion.c:creating 'dominion.c.gcov'
         -:  173:    }
         -:  174:
         -:  175:    //set embargo tokens to 0 for all supply piles
-    #####:  176:    for (i = 0; i <= treasure_map; i++)
+      140:  176:    for (i = 0; i <= treasure_map; i++)
         -:  177:    {
-    #####:  178:        state->embargoTokens[i] = 0;
+      135:  178:        state->embargoTokens[i] = 0;
         -:  179:    }
         -:  180:
         -:  181:    //initialize first player's turn
-    #####:  182:    state->outpostPlayed = 0;
-    #####:  183:    state->phase = 0;
-    #####:  184:    state->numActions = 1;
-    #####:  185:    state->numBuys = 1;
-    #####:  186:    state->playedCardCount = 0;
-    #####:  187:    state->whoseTurn = 0;
-    #####:  188:    state->handCount[state->whoseTurn] = 0;
+        5:  182:    state->outpostPlayed = 0;
+        5:  183:    state->phase = 0;
+        5:  184:    state->numActions = 1;
+        5:  185:    state->numBuys = 1;
+        5:  186:    state->playedCardCount = 0;
+        5:  187:    state->whoseTurn = 0;
+        5:  188:    state->handCount[state->whoseTurn] = 0;
         -:  189:    //int it; move to top
         -:  190:
         -:  191:    //Moved draw cards to here, only drawing at the start of a turn
-    #####:  192:    for (it = 0; it < 5; it++){
-    #####:  193:        drawCard(state->whoseTurn, state);
+       30:  192:    for (it = 0; it < 5; it++){
+       25:  193:        drawCard(state->whoseTurn, state);
         -:  194:    }
         -:  195:
-    #####:  196:    updateCoins(state->whoseTurn, state, 0);
+        5:  196:    updateCoins(state->whoseTurn, state, 0);
         -:  197:
-    #####:  198:    return 0;
+        5:  198:    return 0;
         -:  199:}
         -:  200:
-    #####:  201:int shuffle(int player, struct gameState *state) {
+     1995:  201:int shuffle(int player, struct gameState *state) {
         -:  202:
         -:  203:
         -:  204:    int newDeck[MAX_DECK];
-    #####:  205:    int newDeckPos = 0;
+     1995:  205:    int newDeckPos = 0;
         -:  206:    int card;
         -:  207:    int i;
         -:  208:
-    #####:  209:    if (state->deckCount[player] < 1)
-    #####:  210:        return -1;
-    #####:  211:    qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
+     1995:  209:    if (state->deckCount[player] < 1)
+     1984:  210:        return -1;
+       11:  211:    qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
         -:  212:    /* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
         -:  213:
-    #####:  214:    while (state->deckCount[player] > 0) {
-    #####:  215:        card = floor(Random() * state->deckCount[player]);
-    #####:  216:        newDeck[newDeckPos] = state->deck[player][card];
-    #####:  217:        newDeckPos++;
-    #####:  218:        for (i = card; i < state->deckCount[player]-1; i++) {
-    #####:  219:            state->deck[player][i] = state->deck[player][i+1];
+      132:  214:    while (state->deckCount[player] > 0) {
+      110:  215:        card = floor(Random() * state->deckCount[player]);
+      110:  216:        newDeck[newDeckPos] = state->deck[player][card];
+      110:  217:        newDeckPos++;
+      387:  218:        for (i = card; i < state->deckCount[player]-1; i++) {
+      277:  219:            state->deck[player][i] = state->deck[player][i+1];
         -:  220:        }
-    #####:  221:        state->deckCount[player]--;
+      110:  221:        state->deckCount[player]--;
         -:  222:    }
-    #####:  223:    for (i = 0; i < newDeckPos; i++) {
-    #####:  224:        state->deck[player][i] = newDeck[i];
-    #####:  225:        state->deckCount[player]++;
+      121:  223:    for (i = 0; i < newDeckPos; i++) {
+      110:  224:        state->deck[player][i] = newDeck[i];
+      110:  225:        state->deckCount[player]++;
         -:  226:    }
         -:  227:
-    #####:  228:    return 0;
+       11:  228:    return 0;
         -:  229:}
         -:  230:
     #####:  231:int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
@@ -330,8 +412,8 @@ dominion.c:creating 'dominion.c.gcov'
     #####:  317:    return state->hand[currentPlayer][handPos];
         -:  318:}
         -:  319:
-    #####:  320:int supplyCount(int card, struct gameState *state) {
-    #####:  321:    return state->supplyCount[card];
+        3:  320:int supplyCount(int card, struct gameState *state) {
+        3:  321:    return state->supplyCount[card];
         -:  322:}
         -:  323:
     #####:  324:int fullDeckCount(int player, int card, struct gameState *state) {
@@ -356,8 +438,8 @@ dominion.c:creating 'dominion.c.gcov'
     #####:  343:    return count;
         -:  344:}
         -:  345:
-    #####:  346:int whoseTurn(struct gameState *state) {
-    #####:  347:    return state->whoseTurn;
+        4:  346:int whoseTurn(struct gameState *state) {
+        4:  347:    return state->whoseTurn;
         -:  348:}
         -:  349:
     #####:  350:int endTurn(struct gameState *state) {
@@ -535,42 +617,42 @@ dominion.c:creating 'dominion.c.gcov'
     #####:  522:    return 0;
         -:  523:}
         -:  524:
-    #####:  525:int drawCard(int player, struct gameState *state)
+     1030:  525:int drawCard(int player, struct gameState *state)
         -:  526:{	int count;
         -:  527:    int deckCounter;
-    #####:  528:    if (state->deckCount[player] <= 0){//Deck is empty
+     1030:  528:    if (state->deckCount[player] <= 0){//Deck is empty
         -:  529:
         -:  530:        //Step 1 Shuffle the discard pile back into a deck
         -:  531:        int i;
         -:  532:        //Move discard to deck
-    #####:  533:        for (i = 0; i < state->discardCount[player];i++){
+      992:  533:        for (i = 0; i < state->discardCount[player];i++){
     #####:  534:            state->deck[player][i] = state->discard[player][i];
     #####:  535:            state->discard[player][i] = -1;
         -:  536:        }
         -:  537:
-    #####:  538:        state->deckCount[player] = state->discardCount[player];
-    #####:  539:        state->discardCount[player] = 0;//Reset discard
+      992:  538:        state->deckCount[player] = state->discardCount[player];
+      992:  539:        state->discardCount[player] = 0;//Reset discard
         -:  540:
         -:  541:        //Shufffle the deck
-    #####:  542:        shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+      992:  542:        shuffle(player, state);//Shuffle the deck up and make it so that we can draw
         -:  543:
-    #####:  544:        if (DEBUG){//Debug statements
+      992:  544:        if (DEBUG){//Debug statements
         -:  545:            printf("Deck count now: %d\n", state->deckCount[player]);
         -:  546:        }
         -:  547:
-    #####:  548:        state->discardCount[player] = 0;
+      992:  548:        state->discardCount[player] = 0;
         -:  549:
         -:  550:        //Step 2 Draw Card
-    #####:  551:        count = state->handCount[player];//Get current player's hand count
+      992:  551:        count = state->handCount[player];//Get current player's hand count
         -:  552:
-    #####:  553:        if (DEBUG){//Debug statements
+      992:  553:        if (DEBUG){//Debug statements
         -:  554:            printf("Current hand count: %d\n", count);
         -:  555:        }
         -:  556:
-    #####:  557:        deckCounter = state->deckCount[player];//Create a holder for the deck count
+      992:  557:        deckCounter = state->deckCount[player];//Create a holder for the deck count
         -:  558:
-    #####:  559:        if (deckCounter == 0)
-    #####:  560:            return -1;
+      992:  559:        if (deckCounter == 0)
+      992:  560:            return -1;
         -:  561:
     #####:  562:        state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
     #####:  563:        state->deckCount[player]--;
@@ -578,19 +660,19 @@ dominion.c:creating 'dominion.c.gcov'
         -:  565:    }
         -:  566:
         -:  567:    else{
-    #####:  568:        int count = state->handCount[player];//Get current hand count for player
+       38:  568:        int count = state->handCount[player];//Get current hand count for player
         -:  569:        int deckCounter;
-    #####:  570:        if (DEBUG){//Debug statements
+       38:  570:        if (DEBUG){//Debug statements
         -:  571:            printf("Current hand count: %d\n", count);
         -:  572:        }
         -:  573:
-    #####:  574:        deckCounter = state->deckCount[player];//Create holder for the deck count
-    #####:  575:        state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-    #####:  576:        state->deckCount[player]--;
-    #####:  577:        state->handCount[player]++;//Increment hand count
+       38:  574:        deckCounter = state->deckCount[player];//Create holder for the deck count
+       38:  575:        state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+       38:  576:        state->deckCount[player]--;
+       38:  577:        state->handCount[player]++;//Increment hand count
         -:  578:    }
         -:  579:
-    #####:  580:    return 0;
+       38:  580:    return 0;
         -:  581:}
         -:  582:
     #####:  583:int getCost(int cardNumber)
@@ -1064,27 +1146,27 @@ dominion.c:creating 'dominion.c.gcov'
     #####: 1051:    return -1;
         -: 1052:}
         -: 1053:
-    #####: 1054:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+        4: 1054:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
         -: 1055:{
         -: 1056:
         -: 1057:    //if card is not trashed, added to Played pile 
-    #####: 1058:    if (trashFlag < 1)
+        4: 1058:    if (trashFlag < 1)
         -: 1059:    {
         -: 1060:        //add card to played pile
-    #####: 1061:        state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-    #####: 1062:        state->playedCardCount++;
+        4: 1061:        state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+        4: 1062:        state->playedCardCount++;
         -: 1063:    }
         -: 1064:
         -: 1065:    //set played card to -1
-    #####: 1066:    state->hand[currentPlayer][handPos] = -1;
+        4: 1066:    state->hand[currentPlayer][handPos] = -1;
         -: 1067:
         -: 1068:    //remove card from player's hand
-    #####: 1069:    if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+        4: 1069:    if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
         -: 1070:    {
         -: 1071:        //reduce number of cards in hand
-    #####: 1072:        state->handCount[currentPlayer]--;
+        1: 1072:        state->handCount[currentPlayer]--;
         -: 1073:    }
-    #####: 1074:    else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+        3: 1074:    else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
         -: 1075:    {
         -: 1076:        //reduce number of cards in hand
     #####: 1077:        state->handCount[currentPlayer]--;
@@ -1092,22 +1174,22 @@ dominion.c:creating 'dominion.c.gcov'
         -: 1079:    else 	
         -: 1080:    {
         -: 1081:        //replace discarded card with last card in hand
-    #####: 1082:        state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+        3: 1082:        state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
         -: 1083:        //set last card to -1
-    #####: 1084:        state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+        3: 1084:        state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1085:        //reduce number of cards in hand
-    #####: 1086:        state->handCount[currentPlayer]--;
+        3: 1086:        state->handCount[currentPlayer]--;
         -: 1087:    }
         -: 1088:
-    #####: 1089:    return 0;
+        4: 1089:    return 0;
         -: 1090:}
         -: 1091:
-    #####: 1092:int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
+        3: 1092:int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
         -: 1093:{
         -: 1094:    //Note: supplyPos is enum of choosen card
         -: 1095:
         -: 1096:    //check if supply pile is empty (0) or card is not used in game (-1)
-    #####: 1097:    if ( supplyCount(supplyPos, state) < 1 )
+        3: 1097:    if ( supplyCount(supplyPos, state) < 1 )
         -: 1098:    {
     #####: 1099:        return -1;
         -: 1100:    }
@@ -1117,124 +1199,124 @@ dominion.c:creating 'dominion.c.gcov'
         -: 1104:    // toFlag = 1 : add to deck
         -: 1105:    // toFlag = 2 : add to hand
         -: 1106:
-    #####: 1107:    if (toFlag == 1)
+        3: 1107:    if (toFlag == 1)
         -: 1108:    {
-    #####: 1109:        state->deck[ player ][ state->deckCount[player] ] = supplyPos;
-    #####: 1110:        state->deckCount[player]++;
+        1: 1109:        state->deck[ player ][ state->deckCount[player] ] = supplyPos;
+        1: 1110:        state->deckCount[player]++;
         -: 1111:    }
-    #####: 1112:    else if (toFlag == 2)
+        2: 1112:    else if (toFlag == 2)
         -: 1113:    {
-    #####: 1114:        state->hand[ player ][ state->handCount[player] ] = supplyPos;
-    #####: 1115:        state->handCount[player]++;
+        1: 1114:        state->hand[ player ][ state->handCount[player] ] = supplyPos;
+        1: 1115:        state->handCount[player]++;
         -: 1116:    }
         -: 1117:    else
         -: 1118:    {
-    #####: 1119:        state->discard[player][ state->discardCount[player] ] = supplyPos;
-    #####: 1120:        state->discardCount[player]++;
+        1: 1119:        state->discard[player][ state->discardCount[player] ] = supplyPos;
+        1: 1120:        state->discardCount[player]++;
         -: 1121:    }
         -: 1122:
         -: 1123:    //decrease number in supply pile
-    #####: 1124:    state->supplyCount[supplyPos]--;
+        3: 1124:    state->supplyCount[supplyPos]--;
         -: 1125:
-    #####: 1126:    return 0;
+        3: 1126:    return 0;
         -: 1127:}
         -: 1128:
-    #####: 1129:int updateCoins(int player, struct gameState *state, int bonus)
+        5: 1129:int updateCoins(int player, struct gameState *state, int bonus)
         -: 1130:{
         -: 1131:    int i;
         -: 1132:
         -: 1133:    //reset coin count
-    #####: 1134:    state->coins = 0;
+        5: 1134:    state->coins = 0;
         -: 1135:
         -: 1136:    //add coins for each Treasure card in player's hand
-    #####: 1137:    for (i = 0; i < state->handCount[player]; i++)
+       30: 1137:    for (i = 0; i < state->handCount[player]; i++)
         -: 1138:    {
-    #####: 1139:        if (state->hand[player][i] == copper)
+       25: 1139:        if (state->hand[player][i] == copper)
         -: 1140:        {
-    #####: 1141:            state->coins += 1;
+       20: 1141:            state->coins += 1;
         -: 1142:        }
-    #####: 1143:        else if (state->hand[player][i] == silver)
+        5: 1143:        else if (state->hand[player][i] == silver)
         -: 1144:        {
     #####: 1145:            state->coins += 2;
         -: 1146:        }
-    #####: 1147:        else if (state->hand[player][i] == gold)
+        5: 1147:        else if (state->hand[player][i] == gold)
         -: 1148:        {
     #####: 1149:            state->coins += 3;
         -: 1150:        }	
         -: 1151:    }	
         -: 1152:
         -: 1153:    //add bonus
-    #####: 1154:    state->coins += bonus;
+        5: 1154:    state->coins += bonus;
         -: 1155:
-    #####: 1156:    return 0;
+        5: 1156:    return 0;
         -: 1157:}
         -: 1158:
-    #####: 1159:int playAdventurer (struct gameState *state)
+        2: 1159:int playAdventurer (struct gameState *state)
         -: 1160:{
-    #####: 1161:    int drawntreasure = 0;
-    #####: 1162:    int currentPlayer = whoseTurn(state);
+        2: 1161:    int drawntreasure = 0;
+        2: 1162:    int currentPlayer = whoseTurn(state);
         -: 1163:    int cardDrawn;
         -: 1164:    int temphand[MAX_HAND];
-    #####: 1165:    int z = 0;			// this is the counter for the temp hand
+        2: 1165:    int z = 0;			// this is the counter for the temp hand
         -: 1166:
-    #####: 1167:    while (drawntreasure < 2)
+     1006: 1167:    while (drawntreasure < 2)
         -: 1168:    {
-    #####: 1169:        if (state->deckCount[currentPlayer] < 1)
+     1002: 1169:        if (state->deckCount[currentPlayer] < 1)
         -: 1170:        {
         -: 1171:            //if the deck is empty we need to shuffle discard and add to deck
-    #####: 1172:            shuffle (currentPlayer, state);
+      992: 1172:            shuffle (currentPlayer, state);
         -: 1173:        }
-    #####: 1174:        drawCard (currentPlayer, state);
-    #####: 1175:        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+     1002: 1174:        drawCard (currentPlayer, state);
+     1002: 1175:        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
         -: 1176:        {
     #####: 1177:            cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];	//top card of hand is most recently drawn card.
     #####: 1178:            drawntreasure++;
         -: 1179:        }
         -: 1180:        else
         -: 1181:        {
-    #####: 1182:            temphand[z] = cardDrawn;
-    #####: 1183:            state->handCount[currentPlayer]--;	//this should just remove the top card (the most recently drawn one).
-    #####: 1184:            z++;
+     1002: 1182:            temphand[z] = cardDrawn;
+     1002: 1183:            state->handCount[currentPlayer]--;	//this should just remove the top card (the most recently drawn one).
+     1002: 1184:            z++;
         -: 1185:        }
         -: 1186:    }
         -: 1187:
-    #####: 1188:    while (z - 1 >= 0)
+     1006: 1188:    while (z - 1 >= 0)
         -: 1189:    {
         -: 1190:        // discard all cards in play that have been drawn
-    #####: 1191:        state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1];
-    #####: 1192:        z = z - 1;
+     1002: 1191:        state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1];
+     1002: 1192:        z = z - 1;
         -: 1193:    }
         -: 1194:
-    #####: 1195:    return 0;
+        2: 1195:    return 0;
         -: 1196:}
         -: 1197:
-    #####: 1198:int playSmithy(struct gameState *state, int handPos)
+        1: 1198:int playSmithy(struct gameState *state, int handPos)
         -: 1199:{
         -: 1200:    int i;
-    #####: 1201:    int currentPlayer = whoseTurn(state);
+        1: 1201:    int currentPlayer = whoseTurn(state);
         -: 1202:
         -: 1203:    //+3 Cards
-    #####: 1204:    for (i = 0; i < 3; i++)
+        4: 1204:    for (i = 0; i < 3; i++)
         -: 1205:    {
-    #####: 1206:        drawCard(currentPlayer, state);
+        3: 1206:        drawCard(currentPlayer, state);
         -: 1207:        //discard card from hand
-    #####: 1208:        discardCard(handPos, currentPlayer, state, 0);
+        3: 1208:        discardCard(handPos, currentPlayer, state, 0);
         -: 1209:    }
         -: 1210:
-    #####: 1211:    return 0;
+        1: 1211:    return 0;
         -: 1212:}
         -: 1213:
-    #####: 1214:int playMine(struct gameState *state, int handPos, int choice1, int choice2)
+        1: 1214:int playMine(struct gameState *state, int handPos, int choice1, int choice2)
         -: 1215:{
         -: 1216:    int i;
         -: 1217:    int j;
-    #####: 1218:    int currentPlayer = whoseTurn(state);
+        1: 1218:    int currentPlayer = whoseTurn(state);
         -: 1219:
-    #####: 1220:    j = state->hand[currentPlayer][choice1];  //store card we will trash
+        1: 1220:    j = state->hand[currentPlayer][choice1];  //store card we will trash
         -: 1221:
-    #####: 1222:    if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
+        1: 1222:    if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
         -: 1223:    {
-    #####: 1224:        return -1;
+        1: 1224:        return -1;
         -: 1225:    }
         -: 1226:
     #####: 1227:    if (choice2 > treasure_map || choice2 < curse)
@@ -1419,3 +1501,939 @@ dominion.c:creating 'dominion.c.gcov'
         -: 1406:
         -: 1407://end of dominion.c
         -: 1408:
+File 'unittest1.c'
+Lines executed:71.43% of 42
+unittest1.c:creating 'unittest1.c.gcov'
+
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * shuffle()
+        -:    3: *
+        -:    4: * The shuffle() function works as follows:
+        -:    5: *  -create a new deck to hold shuffled deck
+        -:    6: *  -sort the player's cards
+        -:    7: *  -pick random cards from the player's deck and place into new deck
+        -:    8: *  -copy new deck into player's deck
+        -:    9: *
+        -:   10: * Things to check:
+        -:   11: *  -Set of cards in deck is the same (check first that deck count is unchanged)
+        -:   12: *  -Order of cards in deck is not the same
+        -:   13: *  -Set and order of other players' decks is the same
+        -:   14: *  -If the player has <= 1 card in his or her deck, everything should be the same
+        -:   15: * -----------------------------------------------------------------------
+        -:   16: */
+        -:   17:
+        -:   18:#include "dominion.h"
+        -:   19:#include "dominion_helpers.h"
+        -:   20:#include "rngs.h"
+        -:   21:#include "testhelper.h"
+        -:   22:#include <stdlib.h>
+        -:   23:#include <string.h>
+        -:   24:#include <stdio.h>
+        -:   25:#include <assert.h>
+        -:   26:
+        -:   27:int compare(const void* a, const void* b);
+        -:   28:
+        1:   29:int main() {
+        -:   30:    int i;
+        -:   31:    int player;
+        1:   32:    int seed = 1000;
+        1:   33:    int numPlayers = 2;
+        -:   34:    int cards[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   35:                     remodel, smithy, village, baron, great_hall};
+        -:   36:    struct gameState state;
+        -:   37:    struct gameState originalState;
+        -:   38:
+        -:   39:    // Initialize gameState
+        1:   40:    if (initializeState(numPlayers, cards, seed, &state) != 0)
+        -:   41:    {
+    #####:   42:        printf("Error: Could not initialize state.\n");
+    #####:   43:        return -1;
+        -:   44:    }
+        -:   45:
+        -:   46:    // Preserve the original game state to compare result of shuffle()
+        1:   47:    memcpy(&originalState, &state, sizeof(struct gameState));
+        -:   48:
+        1:   49:    printf ("Testing shuffle():\n");
+        -:   50:
+        1:   51:    player = 0;
+        1:   52:    printf("Shuffling Player %d:\n", player);
+        -:   53:
+        1:   54:    if (shuffle(player, &state) < 0)
+        -:   55:    {
+    #####:   56:        printf("\tERROR: shuffe() failed.\n");
+    #####:   57:        return -1;
+        -:   58:    }
+        -:   59:
+        -:   60:    // Check first that each player's deck count is unchanged)
+        -:   61:    int p;
+        3:   62:    for (p = 0; p < numPlayers; p++)
+        -:   63:    {
+        2:   64:        if (state.handCount[p] != originalState.handCount[p])
+        -:   65:        {
+    #####:   66:            printf("\tERROR: handCount not the same\n");
+    #####:   67:            return -1;
+        -:   68:        }
+        -:   69:    }
+        -:   70:
+        -:   71:    // Check order of cards for each player 
+        3:   72:    for (p = 0; p < numPlayers; p++)
+        -:   73:    {
+        2:   74:        printf("Checking order of player %d's deck...\n", p);
+        -:   75:
+        2:   76:        i = 0;
+       29:   77:        while ( (i < state.deckCount[p]) &&
+       13:   78:                (state.deck[p][i] == originalState.deck[p][i]) )
+        -:   79:        {
+       12:   80:            printf("\tshuffled card %d: %d\n", i, state.deck[p][i]);
+       12:   81:            printf("\toriginal card %d: %d\n", i, originalState.deck[p][i]);
+       12:   82:            i++;
+        -:   83:        }
+        2:   84:        printf("\n");
+        -:   85:        
+        -:   86:        // Check if order of cards in shuffled deck is the same
+        2:   87:        if (p == player && i >= state.deckCount[p])
+        -:   88:        {
+    #####:   89:            printf("ERROR: Order of shuffled deck is the same.\n");
+    #####:   90:            return -1;
+        -:   91:        }
+        2:   92:        else if (p == player && i < state.deckCount[p])
+        -:   93:        {
+        1:   94:            printf("Player %d's is different! Great success!\n", player);
+        -:   95:        }
+        -:   96:
+        -:   97:        // Check if order of cards in unshuffled deck is the same
+        2:   98:        if (p != player && i < state.deckCount[p])
+        -:   99:        {
+    #####:  100:            printf("ERROR: Order of non-shuffled deck is different.\n");
+    #####:  101:            return -1;
+        -:  102:        }
+        -:  103:    }
+        -:  104:    
+        -:  105:    // Check that shuffled deck has same set of cards
+        1:  106:    qsort((void*)(state.deck[0]), state.deckCount[player], sizeof(int), compare);
+        1:  107:    qsort((void*)(originalState.deck[0]), state.deckCount[player], sizeof(int), compare);
+        -:  108:
+        1:  109:    if (memcmp(&state, &originalState, sizeof(struct gameState)) != 0)
+        -:  110:    {
+    #####:  111:        printf("\tERROR: memcmp failed.\n");
+    #####:  112:        return -1;
+        -:  113:    }
+        -:  114:
+        1:  115:    printf("All tests passed!\n");
+        1:  116:    return 0;
+        -:  117:}
+File 'unittest2.c'
+Lines executed:60.00% of 45
+unittest2.c:creating 'unittest2.c.gcov'
+
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * discardCard()
+        -:    3: *
+        -:    4: * The discardCard() function works as follows:
+        -:    5: *  -add card to playedCards pile
+        -:    6: *  -set the played card to -1
+        -:    7: *  -decrement hand count
+        -:    8: *  -if there are cards left in the player's hand, move last hard to empty
+        -:    9: *  space left by discarded card
+        -:   10: *
+        -:   11: * Things to check:
+        -:   12: *  -playedCards contains the card that was discarded (df.flags[PLAYED_CARDS] == 1)
+        -:   13: *  -playedCardCount increased by 1 (df.flags[PLAYED_CARD_COUNT] == 1)
+        -:   14: *  -player's hand has decreased by 1 (df.flags[HAND] == df.flags[HAND_COUNT] == 1)
+        -:   15: *  -nothing else in gamestate has changed
+        -:   16: * -----------------------------------------------------------------------
+        -:   17: */
+        -:   18:
+        -:   19:#include "dominion.h"
+        -:   20:#include "dominion_helpers.h"
+        -:   21:#include "rngs.h"
+        -:   22:#include "testhelper.h"
+        -:   23:#include <stdlib.h>
+        -:   24:#include <string.h>
+        -:   25:#include <stdio.h>
+        -:   26:
+        1:   27:int main()
+        -:   28:{
+        -:   29:    int i;
+        -:   30:    int count;
+        -:   31:    int player;
+        -:   32:    int flag;
+        1:   33:    int seed = 1000;
+        1:   34:    int numPlayers = 2;
+        -:   35:    int cards[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   36:                     remodel, smithy, village, baron, great_hall};
+        -:   37:    struct gameState state;
+        -:   38:    struct gameState originalState;
+        -:   39:
+        -:   40:    // Initialize gameState
+        1:   41:    if (initializeState(numPlayers, cards, seed, &state) != 0)
+        -:   42:    {
+    #####:   43:        printf("Error: Could not initialize state.\n");
+    #####:   44:        return -1;
+        -:   45:    }
+        -:   46:
+        -:   47:    // Put card into player's hand
+        1:   48:    player = 0;
+        1:   49:    count = 0;
+        -:   50:
+        1:   51:    int deckCounter = state.deckCount[player];
+        1:   52:    state.handCount[player] = count;
+        -:   53:
+        1:   54:    if (deckCounter == 0)
+        -:   55:    {
+    #####:   56:        printf("ERROR: Could not draw card.\n");
+    #####:   57:        return -1;
+        -:   58:    }
+        -:   59:
+        1:   60:    state.hand[player][count] = state.deck[player][deckCounter - 1];//Add card to hand
+        1:   61:    state.deckCount[player]--;
+        1:   62:    state.handCount[player]++;//Increment hand count
+        -:   63:
+        -:   64:    // Preserve the original game state to compare result of shuffle()
+        1:   65:    memcpy(&originalState, &state, sizeof(struct gameState));
+        -:   66:
+        1:   67:    printf ("Testing discardCard():\n");
+        -:   68:
+        -:   69:
+        1:   70:    if (discardCard(0, player, &state, 0) < 0)
+        -:   71:    {
+    #####:   72:        printf("\tERROR: discardCard() failed.\n");
+    #####:   73:        return -1;
+        -:   74:    }
+        -:   75:
+        1:   76:    struct StateDiff df = compareStates(&originalState, &state);
+        -:   77:    
+       19:   78:    for (i = 0; i < NUM_FIELDS; i++)
+        -:   79:    {
+       18:   80:        flag = df.flags[i];
+        -:   81:
+       18:   82:        if (flag == 1 && i != PLAYED_CARDS
+        -:   83:                      && i != PLAYED_CARD_COUNT
+        -:   84:                      && i != HAND
+        -:   85:                      && i != HAND_COUNT)
+        -:   86:        {
+    #####:   87:            printf("\tERROR: unexpected state change at df.flags[%d]\n", i);
+    #####:   88:            return -1;
+        -:   89:        }
+       18:   90:        else if (flag == 0 && (i == PLAYED_CARDS
+        -:   91:                               || i == PLAYED_CARD_COUNT
+        -:   92:                               || i == HAND
+        -:   93:                               || i == HAND_COUNT))
+        -:   94:        {
+    #####:   95:            printf("\tERROR: expected state change at df.flags[%d]\n", i);
+    #####:   96:            return -1;
+        -:   97:        }
+        -:   98:    }
+        -:   99:
+        1:  100:    printf("All state changes as expected.\n");
+        -:  101:
+        -:  102:    // playedCards contains the card that was discarded (df.flags[PLAYED_CARDS] == 1)
+        1:  103:    if (state.playedCards[0] != originalState.hand[player][0])
+        -:  104:    {
+    #####:  105:        printf("\tERROR: incorrect card discarded.\n");
+    #####:  106:        return -1;
+        -:  107:    } 
+        -:  108:     
+        -:  109:    // playedCardCount increased by 1 (df.flags[PLAYED_CARD_COUNT] == 1)
+        1:  110:    if (state.playedCardCount != originalState.playedCardCount + 1)
+        -:  111:    {
+    #####:  112:        printf("\tERROR: playedCardCount is incorrect.\n");
+    #####:  113:        return -1;
+        -:  114:    }
+        -:  115:    
+        -:  116:    // player's hand has decreased by 1 (df.flags[HAND] == df.flags[HAND_COUNT] == 1)
+        1:  117:    if (state.handCount[player] != (originalState.handCount[player] - 1))
+        -:  118:    {
+    #####:  119:        printf("\tERROR: handCount is incorrect.\n");
+    #####:  120:        printf("New hand count: %d\n", state.handCount[player]);
+    #####:  121:        printf("Expected hand count: %d\n", originalState.handCount[player] - 1);
+    #####:  122:        return -1;
+        -:  123:    }
+        -:  124:
+        1:  125:    printf ("All tests passed.\n");
+        1:  126:    return 0;
+        -:  127:}
+File 'unittest3.c'
+Lines executed:73.81% of 42
+unittest3.c:creating 'unittest3.c.gcov'
+
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * gainCard()
+        -:    3: *
+        -:    4: * The gainCard() function works as follows:
+        -:    5: *  -checks if chosen card is in supply
+        -:    6: *  -adds card to 1: deck OR 2: hand OR 3: discard pile of current player
+        -:    7: *  -decrements count of card in supply
+        -:    8: *
+        -:    9: * Things to check:
+        -:   10: *  -if dest == 1: player's deckCount increased, card on top of deck is chosen card
+        -:   11: *  -if dest == 2: player's handCount is increased, card on top of hand is chosen card
+        -:   12: *  -if dest == 3: player's discardCount is increased, card on top of discard is chosen card
+        -:   13: *  -supply count of chosen card has decreased
+        -:   14: *  -nothing else in state has changed
+        -:   15: * -----------------------------------------------------------------------
+        -:   16: */
+        -:   17:
+        -:   18:#include "dominion.h"
+        -:   19:#include "dominion_helpers.h"
+        -:   20:#include "rngs.h"
+        -:   21:#include "testhelper.h"
+        -:   22:#include <stdlib.h>
+        -:   23:#include <string.h>
+        -:   24:#include <stdio.h>
+        -:   25:
+        1:   26:int main()
+        -:   27:{
+        -:   28:    int i;
+        -:   29:    int player;
+        -:   30:    int dest;
+        -:   31:    int supplyPos;
+        -:   32:    int flag;
+        1:   33:    int seed = 1000;
+        1:   34:    int numPlayers = 2;
+        -:   35:    int cards[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   36:                     remodel, smithy, village, baron, great_hall};
+        -:   37:    struct gameState state;
+        -:   38:    struct gameState originalState;
+        -:   39:
+        -:   40:    // Initialize gameState
+        1:   41:    if (initializeState(numPlayers, cards, seed, &state) != 0)
+        -:   42:    {
+    #####:   43:        printf("Error: Could not initialize state.\n");
+    #####:   44:        return -1;
+        -:   45:    }
+        -:   46:
+        -:   47:    // Preserve the original game state to compare result of shuffle()
+        1:   48:    memcpy(&originalState, &state, sizeof(struct gameState));
+        -:   49:
+        1:   50:    printf ("Testing gainCard():\n");
+        1:   51:    player = 0;
+        1:   52:    state.deckCount[player] = 0;
+        1:   53:    state.handCount[player] = 0;
+        1:   54:    state.discardCount[player] = 0;
+        1:   55:    supplyPos = adventurer;
+        -:   56:
+        4:   57:    for (dest = 1; dest < 4; dest++)
+        -:   58:    {
+        3:   59:        if (gainCard(supplyPos, &state, dest, player) < 0)
+        -:   60:        {
+    #####:   61:            printf("ERROR: gainCard() failed, dest = %d\n", dest);
+    #####:   62:            return -1;
+        -:   63:        }
+        -:   64:
+        3:   65:        struct StateDiff df = compareStates(&originalState, &state);
+       57:   66:        for (i = 0; i < NUM_FIELDS; i++)
+        -:   67:        {
+       54:   68:            flag = df.flags[i];
+        -:   69:
+       54:   70:            if (flag == 1 && i != SUPPLY_COUNT 
+        -:   71:                          && i != DECK
+        -:   72:                          && i != DECK_COUNT
+        -:   73:                          && i != HAND
+        -:   74:                          && i != HAND_COUNT
+        -:   75:                          && i != DISCARD
+        -:   76:                          && i != DISCARD_COUNT)
+        -:   77:            {
+    #####:   78:                printf("\tERROR: unexpected state change at df.flags[%d]\n", i);
+    #####:   79:                return -1;
+        -:   80:            }
+        -:   81:        }
+        -:   82:
+        -:   83:        // dest == 1: player's deckCount increased, card on top of deck is chosen card
+        4:   84:        if (dest == 1 && (state.deckCount[player] != originalState.deckCount[player] + 1
+        1:   85:                          || state.deck[player][0] != supplyPos))
+        -:   86:        {
+        1:   87:            printf("\tERROR: card not gained into deck. dest = %d\n", dest);
+        1:   88:            printf("\tNew deck count: %d\n", state.deckCount[player]);
+        1:   89:            printf("\tExpected deck count: %d\n", originalState.deckCount[player] + 1);
+        -:   90:        }
+        -:   91:        // dest == 2: player's handCount is increased, card on top of hand is chosen card
+        5:   92:        if (dest == 2 && (state.handCount[player] != originalState.handCount[player] + 1
+        2:   93:                          || state.hand[player][0] != supplyPos))
+        -:   94:        {
+    #####:   95:            printf("\tERROR: card not gained into hand.\n");
+        -:   96:        }
+        -:   97:        // dest == 3: player's discardCount is increased, card on top of discard is chosen card
+        5:   98:        if (dest == 3 && (state.discardCount[player] != originalState.discardCount[player] + 1
+        2:   99:                          || state.discard[player][0] != supplyPos))
+        -:  100:        {
+    #####:  101:            printf("\tERROR: card not gained into discard.\n");
+        -:  102:        }
+        -:  103:
+        -:  104:        // supply count of chosen card has decreased
+        3:  105:        if (state.supplyCount[supplyPos] != originalState.supplyCount[supplyPos] - 1)
+        -:  106:        {
+    #####:  107:            printf("ERROR: supplyCount() is incorrect.\n");
+    #####:  108:            printf("New supplyCount: %d\n", state.supplyCount[supplyPos]);
+    #####:  109:            printf("Expected supplyCount: %d\n", originalState.supplyCount[supplyPos] - 1);
+        -:  110:        }
+        -:  111:
+        -:  112:        // after each dest tested, restore original game state for new test
+        3:  113:        memcpy(&state, &originalState, sizeof(struct gameState));
+        -:  114:    }
+        -:  115:
+        1:  116:    printf ("End of gainCard() test.\n");
+        1:  117:    return 0;
+        -:  118:}
+File 'unittest4.c'
+Lines executed:71.43% of 21
+unittest4.c:creating 'unittest4.c.gcov'
+
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * isGameOver()
+        -:    3: *
+        -:    4: * The isGameOver() function works as follows:
+        -:    5: *  -returns 1 on any end-game condition (0 province cards OR three supply piles at 0)
+        -:    6: *
+        -:    7: * Things to check:
+        -:    8: *  -0 province cards returns 1
+        -:    9: *  -3 supply piles at 0 returns 1
+        -:   10: * -----------------------------------------------------------------------
+        -:   11: */
+        -:   12:
+        -:   13:#include "dominion.h"
+        -:   14:#include "dominion_helpers.h"
+        -:   15:#include "rngs.h"
+        -:   16:#include "testhelper.h"
+        -:   17:#include <stdlib.h>
+        -:   18:#include <string.h>
+        -:   19:#include <stdio.h>
+        -:   20:
+        1:   21:int main()
+        -:   22:{
+        1:   23:    int seed = 1000;
+        1:   24:    int numPlayers = 2;
+        -:   25:    int cards[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   26:                     remodel, smithy, village, baron, great_hall};
+        -:   27:    struct gameState state;
+        -:   28:
+        -:   29:    // Initialize gameState
+        1:   30:    if (initializeState(numPlayers, cards, seed, &state) != 0)
+        -:   31:    {
+    #####:   32:        printf("Error: Could not initialize state.\n");
+    #####:   33:        return -1;
+        -:   34:    }
+        -:   35:
+        1:   36:    printf("Testing isGameOver():\n");
+        -:   37:
+        -:   38:    // Stack of province cards is empty
+        1:   39:    state.supplyCount[province] = 0;
+        1:   40:    if (isGameOver(&state) != 1)
+        -:   41:    {
+    #####:   42:        printf("\tERROR: No province cards left; game should be over.\n");
+    #####:   43:        return -1;
+        -:   44:    }
+        -:   45:    // restore supply count for next test
+        1:   46:    state.supplyCount[province] = 8;
+        -:   47:    
+        -:   48:    // 3 supply stacks are empty
+        1:   49:    state.supplyCount[adventurer] = 0;
+        1:   50:    state.supplyCount[council_room] = 0;
+        1:   51:    state.supplyCount[feast] = 0;
+        1:   52:    if (isGameOver(&state) != 1)
+        -:   53:    {
+    #####:   54:        printf("\tERROR: 3 supply stacks are empty; game should be over.\n");
+    #####:   55:        return -1;
+        -:   56:    }
+        -:   57:
+        1:   58:    printf ("All tests passed.\n");
+        1:   59:    return 0;
+        -:   60:}
+File 'cardtest1.c'
+Lines executed:90.32% of 93
+cardtest1.c:creating 'cardtest1.c.gcov'
+
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * playAdventurer()
+        -:    3: *
+        -:    4: * The playAdventurer() function works as follows:
+        -:    5: *  -discards cards until player draws 2 treasure cards
+        -:    6: *  -discards all cards drawn that were not treasure cards
+        -:    7: *  -adventurer card goes to played deck
+        -:    8: *
+        -:    9: * Things to check:
+        -:   10: *  -player has drawn 2 treasure cards into hand
+        -:   11: * -----------------------------------------------------------------------
+        -:   12: */
+        -:   13:
+        -:   14:#include "dominion.h"
+        -:   15:#include "dominion_helpers.h"
+        -:   16:#include "rngs.h"
+        -:   17:#include "testhelper.h"
+        -:   18:#include <stdlib.h>
+        -:   19:#include <string.h>
+        -:   20:#include <stdio.h>
+        -:   21:#include <assert.h>
+        -:   22:
+        -:   23:int compare(const void* a, const void* b);
+        -:   24:
+        2:   25:int setUp(struct gameState* state)
+        -:   26:{
+        2:   27:    int player = 0;
+        2:   28:    int seed = 1000;
+        2:   29:    int numPlayers = 2;
+        -:   30:    int cards[10] = {adventurer, council_room, feast, gardens, mine,
+        2:   31:                     remodel, smithy, village, baron, great_hall};
+        -:   32:
+        -:   33:    // Initialize gameState
+        2:   34:    if (initializeGame(numPlayers, cards, seed, state) != 0)
+        -:   35:    {
+    #####:   36:        printf("Error: Default initializeGame() failed.\n");
+    #####:   37:        return -1;
+        -:   38:    }
+        -:   39:    
+        2:   40:    state->whoseTurn = player;
+        2:   41:    return 0;
+        -:   42:}
+        -:   43:
+        2:   44:int drawCardHelper(struct gameState* state, int player)
+        -:   45:{
+        2:   46:    int card = state->deck[player][state->deckCount[player] - 1];
+        2:   47:    state->deckCount[player]--;
+        2:   48:    state->hand[player][state->handCount[player]] = card;
+        2:   49:    state->handCount[player]++;
+        2:   50:    return card;
+        -:   51:}
+        -:   52:
+        2:   53:int checkDiff(struct StateDiff* diff)
+        -:   54:{
+        2:   55:    int passed = 1;
+        2:   56:    if (diff->flags[PLAYED_CARDS] == 1)
+        -:   57:    {
+        2:   58:        printf("Failed: played cards pile do not match.\n");
+        2:   59:        passed = 0;
+        -:   60:    }
+        2:   61:    if (diff->flags[PLAYED_CARD_COUNT] == 1)
+        -:   62:    {
+    #####:   63:        printf("Failed: played cards count do not match.\n");
+    #####:   64:        passed = 0;
+        -:   65:    }
+        2:   66:    if (diff->flags[HAND] == 1)
+        -:   67:    {
+        2:   68:        printf("Failed: hands do not match.\n");
+        2:   69:        passed = 0;
+        -:   70:    }
+        2:   71:    if (diff->flags[HAND_COUNT] == 1)
+        -:   72:    {
+        2:   73:        printf("Failed: hand counts do not match.\n");
+        2:   74:        passed = 0;
+        -:   75:    }
+        2:   76:    if (diff->flags[DISCARD] == 1)
+        -:   77:    {
+        2:   78:        printf("Failed: discard piles do not match.\n");
+        2:   79:        passed = 0;
+        -:   80:    }
+        2:   81:    if (diff->flags[DISCARD_COUNT] == 1)
+        -:   82:    {
+        2:   83:        printf("Failed: dicard counts do not match.\n");
+        2:   84:        passed = 0;
+        -:   85:    }
+        2:   86:    return passed;
+        -:   87:}
+        -:   88:
+        -:   89:// Test with deck of only treasure cards
+        1:   90:int testAdventurer1()
+        -:   91:{
+        1:   92:    printf("Testing adventurer card with only treasure cards in deck\n");
+        -:   93:    struct gameState state;
+        1:   94:    if (setUp(&state) == -1) return 0;
+        1:   95:    int player = state.whoseTurn;
+        -:   96:
+        -:   97:    // Replace player's deck with treasure cards.
+        -:   98:    int i;
+        6:   99:    for (i = 0; i < state.deckCount[player]; i++)
+        -:  100:    {
+        5:  101:        int treasure = copper;
+        5:  102:        if (i % 3 == 0) treasure = gold;
+        3:  103:        else if (i % 2 == 0) treasure = silver;
+        5:  104:        state.deck[player][i] = treasure;
+        -:  105:    }
+        -:  106:
+        -:  107:    // Make copy of initial state.
+        -:  108:    struct gameState expectedState;
+        1:  109:    memcpy(&expectedState, &state, sizeof(struct gameState));
+        -:  110:
+        1:  111:    int success = playAdventurer(&state);
+        1:  112:    if (success != 0)
+        -:  113:    {
+    #####:  114:        printf("playAdventurer() failed\n");
+    #####:  115:        return 0;
+        -:  116:    }
+        -:  117:
+        -:  118:    // Setup expected state.
+        -:  119:    // Add adventurer to played pile.
+        1:  120:    expectedState.playedCards[0] = adventurer;
+        -:  121:    // Draw top two cards from deck and add them to hand.
+        1:  122:    drawCardHelper(&expectedState, player);
+        1:  123:    drawCardHelper(&expectedState, player);
+        -:  124:
+        1:  125:    struct StateDiff diff = compareStates(&expectedState, &state);
+        1:  126:    int passed = checkDiff(&diff);
+        1:  127:    printf("End of test\n\n");
+        1:  128:    return passed;
+        -:  129:}
+        -:  130:
+        -:  131:// Test with only two treasure cards mixed in.
+        1:  132:int testAdventurer2()
+        -:  133:{
+        1:  134:    printf("Test adventurer card with only two treasure cards mixed in.\n");
+        -:  135:    struct gameState state;
+        1:  136:    if (setUp(&state) == -1) return 0;
+        1:  137:    int player = state.whoseTurn;
+        -:  138:
+        -:  139:    // Replace deck with estates.
+        -:  140:    int i;
+        6:  141:    for (i = 0; i < state.deckCount[player]; i++)
+        -:  142:    {
+        5:  143:        state.deck[player][i] = estate;
+        -:  144:    }
+        -:  145:    // Add two treasure cards
+        1:  146:    state.deck[player][0] = copper;
+        1:  147:    state.deck[player][5] = copper;
+        -:  148:
+        -:  149:    // Make copy of initial state.
+        -:  150:    struct gameState expectedState;
+        1:  151:    memcpy(&expectedState, &state, sizeof(struct gameState));
+        -:  152:
+        1:  153:    int success = playAdventurer(&state);
+        1:  154:    if (success != 0)
+        -:  155:    {
+    #####:  156:        printf("playAdventurer() failed\n");
+    #####:  157:        return 0;
+        -:  158:    }
+        -:  159:
+        -:  160:    // Setup expected state.
+        1:  161:    expectedState.playedCards[0] = adventurer;
+        1:  162:    expectedState.hand[player][0] = copper;
+        1:  163:    expectedState.hand[player][1] = copper;
+        9:  164:    for (i = 0; i < 8; i++)
+        -:  165:    {
+        8:  166:        expectedState.discard[player][i] = estate;
+        8:  167:        expectedState.discardCount[player]++;
+        -:  168:    }
+        1:  169:    expectedState.deckCount[player] = 0;
+        -:  170:
+        -:  171:    // Compare states
+        1:  172:    struct StateDiff diff = compareStates(&expectedState, &state);
+        1:  173:    int passed = checkDiff(&diff);
+        1:  174:    printf("End of test\n\n");
+        1:  175:    return passed;
+        -:  176:}
+        -:  177:
+        1:  178:int runAllTests()
+        -:  179:{
+        1:  180:    int failed = 0;
+        1:  181:    failed += 1 - testAdventurer1();
+        1:  182:    failed += 1 - testAdventurer2();
+        1:  183:    return failed;
+        -:  184:}
+        -:  185:
+        1:  186:int main()
+        -:  187:{
+        1:  188:    int failed = runAllTests();
+        1:  189:    if (failed)
+        -:  190:    {
+        1:  191:        printf("%d tests failed!\n", failed);
+        -:  192:    }
+        -:  193:    else
+        -:  194:    {
+    #####:  195:        printf("All tests passed!\n");
+        -:  196:    }
+        1:  197:    return 0;
+        -:  198:}
+File 'cardtest2.c'
+Lines executed:89.58% of 48
+cardtest2.c:creating 'cardtest2.c.gcov'
+
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * playSmithy()
+        -:    3: *
+        -:    4: * The playSmithy() function works as follows:
+        -:    5: *  -draw 3 cards into player's hand
+        -:    6: *  -put smithy into player's played cards pile
+        -:    7: *
+        -:    8: * Things to check:
+        -:    9: *  -player has 3 more cards in hand
+        -:   10: *  -player has 3 less cards in deck
+        -:   11: *  -player has same amount of cards in played cards pile
+        -:   12: * -----------------------------------------------------------------------
+        -:   13: */
+        -:   14:
+        -:   15:#include "dominion.h"
+        -:   16:#include "dominion_helpers.h"
+        -:   17:#include "rngs.h"
+        -:   18:#include "testhelper.h"
+        -:   19:#include <stdlib.h>
+        -:   20:#include <string.h>
+        -:   21:#include <stdio.h>
+        -:   22:
+        -:   23:int compare(const void*, const void*);
+        -:   24:
+        1:   25:int testSmithy()
+        -:   26:{
+        1:   27:    int failed = 0;
+        -:   28:    int i;
+        -:   29:    struct gameState state;
+        1:   30:    if (!testHelperSetUpState(&state))
+        -:   31:    {
+    #####:   32:        printf("Failed: could not init state\n");
+    #####:   33:        failed++;
+        -:   34:    }
+        1:   35:    int player = state.whoseTurn;
+        -:   36:
+        -:   37:    // Setup expected state
+        -:   38:    struct gameState expected;
+        1:   39:    memcpy(&expected, &state, sizeof(struct gameState));
+        4:   40:    for (i = 0; i < 3; i++)
+        -:   41:    {
+        3:   42:        expected.hand[player][expected.handCount[player]] = expected.deck[player][expected.deckCount[player]];
+        3:   43:        expected.handCount[player]++;
+        3:   44:        expected.deckCount[player]--;
+        -:   45:    }
+        1:   46:    expected.handCount[player] += 3;
+        1:   47:    expected.playedCards[expected.playedCardCount] = smithy;
+        1:   48:    expected.playedCardCount++;
+        -:   49:    
+        -:   50:    // Add smithy as last card in hand and play it.
+        1:   51:    int handPos = state.handCount[player];
+        1:   52:    state.hand[player][handPos] = smithy;
+        1:   53:    state.handCount[player]++;
+        1:   54:    if (playSmithy(&state, handPos) != 0)
+        -:   55:    {
+    #####:   56:        printf("Failed: playSmithy() failed.\n");
+    #####:   57:        failed++;
+        -:   58:    }
+        -:   59:
+        -:   60:    // Compare hands
+        1:   61:    if (state.handCount[player] != expected.handCount[player])
+        -:   62:    {
+        1:   63:        printf("Failed: hand counts do not match.\n");
+        1:   64:        failed++;
+        -:   65:    }
+        1:   66:    qsort(state.hand[player], state.handCount[player], sizeof(int), compare);
+        1:   67:    qsort(expected.hand[player], expected.handCount[player], sizeof(int), compare);
+        1:   68:    for (i = 0; i < expected.handCount[player]; i++)
+        -:   69:    {
+        1:   70:        if (state.hand[player][i] != expected.hand[player][i])
+        -:   71:        {
+        1:   72:            printf("Failed: hands do not match.\n");
+        1:   73:            failed++;
+        1:   74:            break;
+        -:   75:        }
+        -:   76:    }
+        -:   77:
+        -:   78:    // Compare played card piles
+        1:   79:    if (state.playedCardCount != expected.playedCardCount)
+        -:   80:    {
+        1:   81:        printf("Failed: played card counts do not match.\n");
+        1:   82:        failed++;
+        -:   83:    }
+        1:   84:    qsort(state.playedCards, state.playedCardCount, sizeof(int), compare);
+        1:   85:    qsort(expected.playedCards, expected.playedCardCount, sizeof(int), compare);
+        1:   86:    for (i = 0; i < expected.playedCardCount; i++)
+        -:   87:    {
+        1:   88:        if (state.playedCards[i] != expected.playedCards[i])
+        -:   89:        {
+        1:   90:            printf("Failed: played cards do not match.\n");
+        1:   91:            failed++;
+        1:   92:            break;
+        -:   93:        }
+        -:   94:    }
+        1:   95:    return failed;
+        -:   96:}
+        -:   97:
+        1:   98:int main()
+        -:   99:{
+        1:  100:    printf("--------\nTesting smithy card\n");
+        1:  101:    int failed = testSmithy();
+        1:  102:    if (failed)
+        -:  103:    {
+        1:  104:        printf("Smithy card failed %d tests!\n\n", failed);
+        -:  105:    }
+        -:  106:    else
+        -:  107:    {
+    #####:  108:        printf("Smithy card passed all tests!\n\n");
+        -:  109:    }
+        1:  110:    return 0;
+        -:  111:}
+File 'cardtest3.c'
+Lines executed:80.00% of 15
+cardtest3.c:creating 'cardtest3.c.gcov'
+
+        -:    0:Source:cardtest3.c
+        -:    0:Graph:cardtest3.gcno
+        -:    0:Data:cardtest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: * playTribute()
+        -:    3: *
+        -:    4: * The playTribute() function works as follows:
+        -:    5: *  -player gets two coins if either of top two cards of the deck are treasures
+        -:    6: *  -if either of top two cards are victory cards, current player draws two cards
+        -:    7: *  -if either of top two cards are action cards, player gets two more actions in numActions
+        -:    8: *
+        -:    9: * Things to check:
+        -:   10: *  -player gets two coins if a top card is a treasure
+        -:   11: *  -player gets two cards in hand if a top card is a victory card, two cards removed from deck
+        -:   12: *  -player gets two extra actions if a top card is an action card
+        -:   13: *  -each effect happens only once
+        -:   14: * -----------------------------------------------------------------------
+        -:   15: */
+        -:   16:
+        -:   17:#include "dominion.h"
+        -:   18:#include "dominion_helpers.h"
+        -:   19:#include "rngs.h"
+        -:   20:#include "testhelper.h"
+        -:   21:#include <stdlib.h>
+        -:   22:#include <string.h>
+        -:   23:#include <stdio.h>
+        -:   24:
+        -:   25:int compare(const void*, const void*);
+        -:   26:
+        1:   27:int testTribute()
+        -:   28:{
+        1:   29:    int failed = 0;
+        -:   30:    int i;
+        -:   31:    struct gameState state;
+        1:   32:    if (!testHelperSetUpState(&state))
+        -:   33:    {
+    #####:   34:        printf("Failed: could not init state\n");
+    #####:   35:        failed++;
+        -:   36:    }
+        1:   37:    int player = state.whoseTurn;
+        -:   38:
+        -:   39:    // Setup expected state
+        -:   40:    struct gameState expected;
+        1:   41:    memcpy(&expected, &state, sizeof(struct gameState));
+        -:   42:
+        1:   43:    return failed;
+        -:   44:}
+        -:   45:
+        1:   46:int main()
+        -:   47:{
+        1:   48:    printf("--------\nTesting tribute card\n");
+        1:   49:    int failed = testTribute();
+        1:   50:    if (failed)
+        -:   51:    {
+    #####:   52:        printf("Tribute card failed %d tests!\n\n", failed);
+        -:   53:    }
+        -:   54:    else
+        -:   55:    {
+        1:   56:        printf("Tribute card passed all tests!\n\n");
+        -:   57:    }
+        1:   58:    return 0;
+        -:   59:}
+File 'cardtest4.c'
+Lines executed:91.18% of 34
+cardtest4.c:creating 'cardtest4.c.gcov'
+
+        -:    0:Source:cardtest4.c
+        -:    0:Graph:cardtest4.gcno
+        -:    0:Data:cardtest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include "testhelper.h"
+        -:    5:#include <stdlib.h>
+        -:    6:#include <string.h>
+        -:    7:#include <stdio.h>
+        -:    8:
+        -:    9:int compare(const void*, const void*);
+        -:   10:
+        1:   11:int testMine()
+        -:   12:{
+        1:   13:    int failed = 0;
+        -:   14:    int i;
+        -:   15:    struct gameState state;
+        1:   16:    if (!testHelperSetUpState(&state))
+        -:   17:    {
+    #####:   18:        printf("Failed: could not init state\n");
+    #####:   19:        failed++;
+        -:   20:    }
+        1:   21:    int player = state.whoseTurn;
+        -:   22:
+        -:   23:    // Setup expected state
+        -:   24:    struct gameState expected;
+        1:   25:    memcpy(&expected, &state, sizeof(struct gameState));
+        1:   26:    int choice1 = silver;
+        1:   27:    int choice2 = gold;
+        1:   28:    expected.hand[player][expected.handCount[player] - 1] = choice2;
+        -:   29:
+        1:   30:    int handPos = state.handCount[player];
+        1:   31:    state.hand[player][handPos] = mine;
+        1:   32:    state.handCount[player]++;
+        -:   33:
+        1:   34:    if (playMine(&state, handPos, choice1, choice2) != 0)
+        -:   35:    {
+        1:   36:        printf("Failed: playMine() failed\n");
+        1:   37:        failed++;
+        -:   38:    }
+        -:   39:
+        -:   40:    // Compare states
+        1:   41:    if (state.handCount[player] != expected.handCount[player])
+        -:   42:    {
+        1:   43:        printf("Failed: hand counts do not match\n");
+        1:   44:        failed++;
+        -:   45:    }
+        1:   46:    qsort(state.hand[player], state.handCount[player], sizeof(int), compare);
+        1:   47:    qsort(expected.hand[player], expected.handCount[player], sizeof(int), compare);
+        5:   48:    for (i = 0; i < expected.handCount[player]; i++)
+        -:   49:    {
+        5:   50:        if (state.hand[player][i] != expected.hand[player][i])
+        -:   51:        {
+        1:   52:            printf("Failed: hands do not match.\n");
+        1:   53:            failed++;
+        1:   54:            break;
+        -:   55:        }
+        -:   56:    }
+        -:   57:
+        1:   58:    return failed;
+        -:   59:}
+        -:   60:
+        1:   61:int main()
+        -:   62:{
+        1:   63:    printf("--------\nTesting mine card\n");
+        1:   64:    int failed = testMine();
+        1:   65:    if (failed)
+        -:   66:    {
+        1:   67:        printf("mine card failed %d tests!\n\n", failed);
+        -:   68:    }
+        -:   69:    else
+        -:   70:    {
+    #####:   71:        printf("Tribute card passed all tests!\n\n");
+        -:   72:    }
+        1:   73:    return 0;
+        -:   74:}

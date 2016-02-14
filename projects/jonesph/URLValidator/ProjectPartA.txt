@@ -1,0 +1,38 @@
+﻿----------------------------------------------------------------------------------------------------------------------------
+- URL Validator Comprehension
+- CS 362 - Winter 2016
+- Team members: Cierra Shawe, Philip Jones, Richard Ratliff
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+How many URLs does it test?
+----------------------------------------------------------------------------------------------------------------------------
+Scheme x Authority x Port x Path x Query = 9 x 19 x 7 x 10 x 3 = 35910
+
+
+
+
+How does it build the URLs?
+----------------------------------------------------------------------------------------------------------------------------
+The URLs are built from five parts: scheme, authority, port, path and query as in <scheme>://<authority><port><path>?<query> except that the port number is broken out of authority to increase the number of permutations.  All five parts must each be individually valid for the entire URL to be valid.  Parts are saved in arrays and all possible permutations are of the arrays are combined for tests.
+
+
+
+
+Example of valid URL and invalid URL being tested by testIsValid():
+----------------------------------------------------------------------------------------------------------------------------
+Valid:  http://www.google.com and http://www.google.com/ are valid URLs to start the tests and http://www.google.com:80/test1?action=view is the first valid URL built from the five parts.
+
+
+Invalid:  Some invalid URLs that will be built for the test are: http:www.google.com:80/test1?action=view
+http://www.google.com:-1/test1?action=view
+http://www.google.com:80/../?action=view
+
+
+
+
+Is this real-world test more valid than the unit/card tests we did (in terms of concepts and complexity)? Explain why?
+----------------------------------------------------------------------------------------------------------------------------
+In this particular instance, these tests are more valid, because of the circumstances in the software we are testing, however we would not always expect for this to be the case. The URL validator is using a combinatorial approach to testing in order to ensure all permutations are valid. The card tests on the other hand were testing for expected outcomes, and all that needed to be tested was if the game state was as expected after the test had been ran. In this way, the scope of the unit and card tests was less than that of the URL validator.

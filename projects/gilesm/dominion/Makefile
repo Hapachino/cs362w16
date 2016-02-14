@@ -21,9 +21,13 @@ unittestresults.out: $(DOMINIONOBJECTS) unitTests cardTests
 
 randomtestcard.out: $(DOMINIONOBJECTS) randomtestcard
 	randomtestcard >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
 
 randomtestadventurer.out: $(DOMINIONOBJECTS) randomtestadventurer
 	randomtestadventurer >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c $(CFLAGS)

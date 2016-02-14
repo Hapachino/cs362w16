@@ -6,6 +6,16 @@ Assignment 4
 
 Discussion of random tests
 
+**** HOW TO RUN TESTS
+make clean
+make all
+make randomtestadventurer.out
+
+make clean
+make all
+make randomtestcard.out
+
+
 ******************************************
 **********  ADVENTURER CARD **************
 ******************************************

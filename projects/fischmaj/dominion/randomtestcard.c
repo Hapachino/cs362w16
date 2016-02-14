@@ -1,23 +1,24 @@
 /***************************************************************************
- ** randomtestadventurer.c ( test of adventurer functions) 
+ ** randomcardtest.c ( test of smithy functions) 
  ** Jeremy Fischman
  ** 
- ** This program is a unit test of the playAdventurer() function including a
- ** random tester.  It tests that playAdventurer() complies with the following
+ ** This program is a unit test of the playSmithy() function that includes a
+ ** random tester.  It tests that  playSmithy() complies with the following 
  ** business rules: 
  **
- ** 1. The function accepts a game state, and a player
+ ** 1. The function accepts 1 player, a game state, and a hand position
  **
- ** 2. Should result in the cards drawn from the deck until 2 treasures are
- **    found.
+ ** 2. Should result in the next 3 cards from the player's deck moving to 
+ **    his hand. 
  **
- ** 3. The two treasures should be added to the hand
+ ** 3. The smithy card should be removed from the player's hand, and go to
+ **    the discard deck. 
  ** 
- ** 4. Other cards should be discarded & discardCount increase by total - 2.
+ ** 4. deckCount should decrease by 3.
  **
- ** 5. handCount should increase by 2. 
+ ** 5. handCount should increase by 2 (3 more cards, but smithy discarded). 
  **
- ** 6. deckCount should decrease by the total number drawn.  
+ ** 6. discardCount should increase by 1 (for smithy card). 
  ** 
  ** 7. The other features of the state of the game should all be unchanged. 
  **
@@ -34,7 +35,7 @@
 #define MEMBERS 18     /* Number of member variables in a gameState (gS) */
 #define DECKCOUNTMEMBER 13  /* The deckCount is 14th member of gS, index 13*/
 #define CARDTYPES treasure_map+1  /* Number of different card types in game */
-#define NUMTESTS 100000   /* Number of times to run the tests */
+#define NUMTESTS 10000   /* Number of times to run the tests */
 
 
 /* function prototypes */
@@ -44,14 +45,14 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 int countCards(int *deck, int *cardCount);
 
-int checkAdventurer(struct gameState *pre, int player, 
-		    int *array); 
+int checkSmithy(int player, struct gameState *pre, int position, 
+		int *array); 
 
 
 int main(){
 
-  int n, i, j, p;
-  int testsFailed = 0;
+  int n, i, j, p; 
+  int testsFailed = 0; 
 
   /* record the rules which fail tests*/  
   int *rulesTest = malloc(sizeof(int)*7);
@@ -60,6 +61,7 @@ int main(){
   }
 
   float percentage; 
+
   int randomDeckCount=0;
   int randomHandCount=0;
   int randomDiscardCount=0;
@@ -72,17 +74,18 @@ int main(){
   PutSeed(3);
 
 
-  printf("\n Running tests of playAdventurer():\n");
+  printf("\n Running tests of smithy():\n");
 
 
   for (n = 0; n < NUMTESTS; n ++){
-    /* generate a random gamestate*/
+
 
     int k[10]= {adventurer, gardens, embargo, village, minion, mine, cutpurse,
 		sea_hag, tribute, smithy};
 
     /* initialize a game state */
     initializeGame(2, k, 2, pre);
+
 
     /* setting certain key features to random, but within specs. */
 
@@ -94,6 +97,8 @@ int main(){
       randomDiscardCount= floor(Random()*MAX_DECK);
     } while ((randomDeckCount+randomHandCount+randomDiscardCount)>MAX_DECK); 
 
+    /* pick one card in the hand to be the Smithy*/
+    int randomSmithyPos = floor(Random()*randomHandCount); 
 
     /* pick a random player */
     p=floor(Random()*2);
@@ -111,13 +116,19 @@ int main(){
 	  pre->hand[i][j]= floor(Random()*CARDTYPES);
       }
     }
-    testsFailed += checkAdventurer(pre, p, rulesTest);
+
+    /* Rewrite the selected player's hand to include smithy at the random*/
+    /* position in his hand */
+    pre->hand[p][randomSmithyPos]= smithy;
+
+    testsFailed +=  checkSmithy(p, pre, randomSmithyPos, rulesTest);
+  
  }
 
 
 
   percentage = (float)rulesTest[i]/NUMTESTS *100;
-  printf("\nTesting playAdventurer() complete.\n");
+  printf("\nTesting playSmithy() complete.\n");
   printf("%d of %d test cases failed. ", testsFailed, NUMTESTS);
   printf("(%f%%)\n\n", percentage);
 
@@ -126,6 +137,7 @@ int main(){
     printf("Test criteria %d failed %d", i+1, rulesTest[i]); 
     printf(" times out of %d tests (%f%%).\n",NUMTESTS, percentage);
   }
+
   return 0;
 }
 
@@ -231,16 +243,13 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 
 
-int checkAdventurer(struct gameState *pre, int player, int *array){
+int checkSmithy(int player, struct gameState *pre, int position, int *array){
 
   int testFail = 0; 
-  int tempHand[MAX_HAND];
-  int tempCount = 0;
-  int treasureCount = 0;
-
-  int preDeckCounter = pre->deckCount[player];
-  int preHandCounter = pre->handCount[player];
-  int preDiscardCounter = pre->discardCount[player];
+  int preCards[3];
+  int preDeckCounter;
+  int preHandCounter;
+  int preDiscardCounter;
 
 
 
@@ -259,69 +268,63 @@ int checkAdventurer(struct gameState *pre, int player, int *array){
   /************************************************************************/
 
 
-  /* 1. The function accepts a game state, and a player*/
-  playAdventurer(post,player); 
+
+  /* 1. The function accepts 1 player, a game state, and a hand position */
+  playSmithy(post,player, position); 
 
 
-  /* 2. Should result in the cards drawn from the deck until 2 treasures are*/
-  /*    found.*/
-  while (treasureCount < 2){
-    tempHand[tempCount]= pre->deck[player][preDeckCounter -(tempCount+1)];
-    if ( (tempHand[tempCount] == copper)
-	 || (tempHand[tempCount]== silver)
-	 || (tempHand[tempCount] == gold) ){
-      treasureCount ++; 
+
+
+  /* 2. Should result in the next 3 cards from the player's deck moving to */
+  /*    his hand. */
+
+  preDeckCounter=pre->deckCount[player];
+  preHandCounter=pre->handCount[player];
+  preDiscardCounter=pre->discardCount[player];
+
+  /* Check the 2 cards added to the end of the hand*/
+  for (int i = 0; i < 2; i++){
+    preCards[i] = pre->deck[player][preDeckCounter-(1+i)];
+
+    if (post->hand[player][preHandCounter+i] != preCards[i]){
+      testFail = 1; 
+      array[0]++; 
     }
+  }
 
-    tempCount++;
+  /* 3. The smithy card should be removed from the player's hand, and go to the discard deck.*/ 
+
+  /* check that the 3rd card was moved to the hand in the same position as the discarded Smithy*/
+  /* (This also finishes test of business rule 2.*/ 
+  if (post->hand[player][position] !=pre->deck[player][preDeckCounter-3]){
+    testFail = 1; 
+    array[1]++;
+  }
+
+  /* Check that the most recent discard is Smithy*/    
+  if (post->discard[player][preDiscardCounter+1] != smithy){
+    testFail= 1;
+    array[2]++;
+  }
+
+  /* 4. deckCount should decrease by 3.*/
+  if(post->deckCount[player] != preDeckCounter -3){
+    testFail = 1; 
+    array[3]++;
+  }
+
+  /* 5. handCount should increase by 2 (3 more cards, but smithy discarded).*/
+  if(post->handCount[player] != preHandCounter +2){
+    testFail = 1; 
+    array[4]++; 
   }
 
 
-  /* 3. The two treasures should be added to the hand */
-  if ( (  (  post->hand[player][preHandCounter] != copper) 
-	  &&(post->hand[player][preHandCounter] != silver)
-	  &&(post->hand[player][preHandCounter] != gold))
-
-       || ( (  post->hand[player][preHandCounter+1] != copper)
-	    &&(post->hand[player][preHandCounter +1] != silver)
-	    &&(post->hand[player][preHandCounter +1] != gold))){
-    //printf("Business rule #3 fails: 2 treasures not delivered to hand\n");
-    //fprintf(f,"Business rule #3 fails: 2 treasures not delivered to hand\n");
-    testFail=1;
-    array[3]++; 
-  }
-
-
-
-  /* 4. The other cards should be discarded, discardCount increase by total-2*/
-  if(post->discardCount[player]>=preDiscardCounter+tempCount-2){
-    //printf("Business rule #4 fails: temp hand not discarded properly\n");
-    //fprintf(f,"Business rule #4 fails: temp hand not discarded properly\n");
-    testFail =1;
-    array[4]++;  
-  }
- 
-
-
-  /* 5. handCount should increase by 2. */
-  if(post->discardCount[player]>=preHandCounter+2){
-    //printf("Business rule #5 fails: player hand count not increased by 2\n");
-    //fprintf(f,"Business rule #5 fails: player hand count not");
-    //fprintf(f," increased by 2\n");
-    testFail =1;
-    array[5]++; 
-  }
-
-
-
-  /* 6. deckCount should decrease by the total number drawn.  */
-  if(post->deckCount[player] != (preDeckCounter - tempCount)){
-    //printf("Business rule #6 fails: player deck count improperly decreased\n");
-    //fprintf(f,"Business rule #6 fails: player deck count improperly decreased");
-    testFail =1;
-    array[6]++;  
-  }
-
+  /* 6. discardCount should increase by 1 (for smithy card). */
+  if(post->discardCount[player] != preDiscardCounter + 1){
+    testFail= 1; 
+    array[5]++;
+ }
 
 
   /* 7. The other features of the state of the game should all be unchanged.*/
@@ -330,47 +333,26 @@ int checkAdventurer(struct gameState *pre, int player, int *array){
   for (int i =0; i < MEMBERS; i++){
     /* First clause checks all of the members that shouldn't change at all */
     if ( (differences[i]) && (i < 10) ){
-      testFail =1;
-      array[7]++;  
-      //printf("playAdventurer() fails business rule #7:");
-      //printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      //fprintf(f,"playAdventurer() fails business rule #7:");
-      //fprintf(f," state param #%d fails\n with code %d", i, differences[i]);
-
+      testFail= 1; 
+      array[6]++;
       /* Next 4 clauses ensure only the chosen player's data has changed*/ 
     } else if ((differences[i] ==1) && (player !=0)){
-      testFail =1;
-      array[7]++; 
-      //printf("playAdventurer() fails business rule #7:");
-      //printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      //fprintf(f,"playAdventurer() fails business rule #7:");
-      //fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
+      testFail= 1; 
+      array[6]++;
     } else if ((differences[i] ==10) && (player !=1)){
-      testFail =1;
-      array[7]++; 
-      //printf("playAdventurer() fails business rule #7:");
-      //printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      //fprintf(f,"playAdventurer() fails business rule #7:");
-      //fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
+      testFail= 1; 
+      array[6]++;
     } else if ((differences[i] ==100) && (player !=2)){
-      testFail =1;
-      array[7]++; 
-      //printf("playAdventurer() fails business rule #7:");
-      //printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      //fprintf(f,"playAdventurer() fails business rule #7:");
-      //fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
+      testFail= 1; 
+      array[6]++;
     } else if ((differences[i] ==1000) && (player !=3)){
-      testFail =1;
-      array[7]++;
-      //printf("playAdventurer() fails business rule #7:");
-      //printf(" state param #%d fails\n with code %d", i, differences[i]); 
-      //fprintf(f,"playAdventurer() fails business rule #7:");
-      //fprintf(f," state param #%d fails\n with code %d", i, differences[i]); 
+      testFail= 1; 
+      array[6]++;
     }
   }
 
   if(!testFail){
-    //printf("\tTests passed.\n");
+    printf("\tTests passed.\n");
   }
 
 

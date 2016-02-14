@@ -64,6 +64,10 @@ randomtestadventurer: randomtestadventurer.c dominion.o
 	gcc -o randomtestadventurer -g randomtestadventurer.c  \
 dominion.o rngs.o  $(CFLAGS)
 
+randomtestcard: randomtestcard.c dominion.o 
+	gcc -o randomtestcard -g randomtestcard.c  \
+dominion.o rngs.o  $(CFLAGS)
+
 
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
@@ -83,9 +87,16 @@ cardtest2 cardtest3 cardtest4
 	cat dominion.c.gcov >> unittestresults.out
 
 randomtestadventurer.out: randomtestadventurer
-	./randomtestadventurer >> randomtestadventurer.out
+	echo "Running randomtestadventurer..."
+	./randomtestadventurer > randomtestadventurer.out
 	gcov dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard.out: randomtestcard
+	echo "Running randomtestcard ..." 
+	./randomtestcard > randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
 
 
 clean:

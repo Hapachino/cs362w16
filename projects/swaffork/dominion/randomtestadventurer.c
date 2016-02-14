@@ -74,20 +74,10 @@ int checkDiff(struct StateDiff* diff)
         printf("Failed: hand counts do not match.\n");
         passed = 0;
     }
-    if (diff->flags[DISCARD] == 1)
-    {
-        printf("Failed: discard piles do not match.\n");
-        passed = 0;
-    }
-    if (diff->flags[DISCARD_COUNT] == 1)
-    {
-        printf("Failed: dicard counts do not match.\n");
-        passed = 0;
-    }
     return passed;
 }
 
-int testAdventurer()
+void testAdventurer()
 {
     printf("Beginning random tests for adventurer:\n");
 
@@ -133,7 +123,26 @@ int testAdventurer()
         }
 
         struct StateDiff diff = compareStates(&expectedState, &state);
-        int passed += checkDiff(&diff);
+        if (state.handCount[(player + 1) % 2] != expectedState.handCount[(player + 1) % 2])
+        {
+            printf("Non-active player's hand changed.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.deckCount[(player + 1) % 2] != expectedState.deckCount[(player + 1) % 2])
+        {
+            printf("Non-active player's deck changed.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.discardCount[(player + 1) % 2] != expectedState.discardCount[(player + 1) % 2])
+        {
+            printf("Non-active player's discard pile changed.\n");
+            passed += 0;
+            continue;
+        }
+        
+        passed += checkDiff(&diff);
     }
 
     printf("End of test. %d out of %d tests passed.\n\n", passed, i);

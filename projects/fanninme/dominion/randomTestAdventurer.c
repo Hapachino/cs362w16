@@ -29,32 +29,31 @@ int unitTest(int player,struct gameState *post){
     //memcmp game state size
     if(memcmp(&pre,post, sizeof(struct gameState))!=0){
         #if (NOISY_TEST == 1)
-        printf("gameState memory is wrong");
+        printf("gameState memory is wrong\n");
         #endif
         return 1;
     }
     //card specific checks 
     if(post->hand[player][post->handCount[player]] < 0){
         #if (NOISY_TEST==1)
-        printf("invalid handsize");
+        printf("invalid hand size\n");
         #endif
     }
     
     //player hand size should be 2 larger after gaining treasure
     if(post->handCount != pre.handCount +2){
         #if (NOISY_TEST == 1)
-        printf("Player did not receive 2 additional cards correctly");
+        printf("Player did not receive 2 additional cards correctly\n");
         #endif
         return 2;
     }
     //player should have at least 2 more treasures
     if(post->coins < pre.coins +2){
         #if (NOISY_TEST ==1)
-        printf("player did not receive 2 additional coins");
+        printf("player did not receive 2 additional coins\n");
         #endif
         return 3;
     }
-    //TODO hand count check
 
     return 0;
 }
@@ -85,9 +84,16 @@ int main () {
     G.deckCount[p] = floor(Random() * MAX_DECK);
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
+    G.numBuys = floor(Random() * MAX_HAND);//NEW
+    G.coins = floor(Random() * MAX_DECK);//NEW
     G.numPlayers = floor(Random() * MAX_PLAYERS);
-    int player = floor(Random() * MAX_PLAYERS);
-    G.hand[player][G.handCount[player]]=floor(Random() * MAX_HAND); 
+
+    for (int i =0; i< G.numPlayers +1; i++){
+    	G.deckCount[i] = floor(Random() * MAX_DECK);
+        G.handCount[i]= floor(Random() * MAX_DECK);
+        G.hand[i][G.handCount[i]] = floor(Random() * MAX_HAND);
+    }
+
     //call function with test input
     error=unitTest(G.numPlayers,&G);
 
@@ -101,15 +107,20 @@ int main () {
         }
     }
   }
+  //FIXED TESTS needed
+    //fixed test to check branch for if deckCount is 0;
+    //G.deckCount[1]=0;//deckCount currentPlayer
+
+
   printf ("ALL Random TESTS Complete\n");
   printf ("Errors type 1: %d ",errorA);
-   printf("gameState memory is wrong");
+   printf("gameState memory is wrong\n");
 
   printf ("Errors type 2: %d ",errorB);
-  printf("Player did not receive 2 additional cards correctly");
+  printf("Player did not receive 2 additional cards correctly\n");
 
   printf ("Errors type 3: %d ",errorC);
-  printf("player did not receive 2 additional coins");
+  printf("player did not receive 2 additional coins\n");
 
   return 0;
 }

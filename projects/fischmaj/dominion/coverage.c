@@ -38,7 +38,7 @@ playVillage: Every line of this function was covered 100 times.
 100% line coverage. 
 
 
-Conclusions:  The gcov data suggests that the targe units were tested rather
+Conclusions:  The gcov data suggests that the target units were tested rather
 thoroughly except for getCost, which has two edge cases that should probably
 be tested for specifically.  Other than that, I would focus further testing on 
 other units next, since the overall line coverage is still only ~23%. 

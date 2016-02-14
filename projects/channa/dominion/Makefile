@@ -60,8 +60,8 @@ testRandom: testRandom.c dominion.o rngs.o
 randomtestcard: randomtestcard.c dominion.o rngs.o
 	gcc -o randomtestcard -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
 
-runrandomtestcard:
-	./randomtestcard
+runrandomtestcard: randomtestcard
+	./randomtestcard > /dev/null
 	touch randomtestcard.out
 	gcov dominion.c >> randomtestcard.out
 	cat dominion.c.gcov >> randomtestcard.out
@@ -75,8 +75,8 @@ randomtestcard.out:
 randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
 	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 
-runrandomtestadventurer:
-	./randomtestadventurer
+runrandomtestadventurer: randomtestadventurer
+	./randomtestadventurer > /dev/null
 	touch randomtestadventurer.out
 	gcov dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out

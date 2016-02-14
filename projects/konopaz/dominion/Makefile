@@ -94,8 +94,22 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c
 	./cardtest4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 
+randomtestadventurer: randomtestadventurer.c dominion.c rngs.o
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.c rngs.o $(CFLAGS)
+
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+
+randomtestcard: randomtestcard.c dominion.c rngs.o
+	gcc -o randomtestcard randomtestcard.c -g dominion.c rngs.o $(CFLAGS)
+
+randomtestcard.out: randomtestcard
+	./randomtestcard >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so testSuite badTestDrawCard testDrawCard
-	#My test target results
-	rm -f unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 unittestresults.out unittestresult.out
+	rm -f unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 unittestresults.out unittestresult.out randomtestadventurer randomtestadventurer.out randomtestcard randomtestcard.out
+
 

@@ -7,8 +7,6 @@
 // The player that drew the card should have 2 more coins in the coin count
 // The other players should have one less copper card in their hand
 // The other players should have one less in their coin count
-// The discard pile for all players should increase by one
-// The hand count for the opposing players should decrease by one
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -27,7 +25,24 @@ void cardEffectCutpurse(int handPos, struct gameState *state){
 void processResults(struct gameState *testState, struct gameState *oldState){
     // The player that drew the card should have 2 more coins in the coin count
     updateCoins(PLAYER1, oldState, 0);
-    printf("\tCoins count = %d, expected = %d\n", testState->coins, oldState->coins + 2);
+    assert(testState->coins == oldState->coins + 2);
+    // The other players should have one less copper card in their hand
+    int expectedCoppers = numOfCardInHand(copper, oldState->hand[PLAYER2]) - 1;
+    int actualCoppers = numOfCardInHand(copper, testState->hand[PLAYER2]);
+    printf("\tCopper cards in player 2's hand. Expected = %d Actual = %d\n", expectedCoppers, actualCoppers);
+
+    // The other players should have one less in their coin count
+    updateCoins(PLAYER2, oldState, 0);
+    updateCoins(PLAYER2, testState, 0);
+    int expectedCoins = oldState->coins - 1;
+    int actualCoins = testState->coins;
+    printf("\tCoin count for player 2. Expected = %d Actual = %d\n", expectedCoins, actualCoins);
+
+    if (actualCoppers != expectedCoppers || actualCoins != expectedCoins){
+        printf("\tRun run status: FAIL\n");
+    } else {
+        printf("\tRun run status: PASS\n");
+    }
 }
 
 int numOfCardInHand(int card, struct gameState *state, int player){

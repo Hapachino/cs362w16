@@ -9,6 +9,28 @@ dominion.o: dominion.h dominion.c rngs.o
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer.out: clean randomtestadventurer
+	./randomtestadventurer &> randomtestadventurer.out
+	echo " "    >> randomtestadventurer.out
+	gcov -f -b dominion.c >> randomtestadventurer.out
+	echo " "    >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard.out: clean randomtestcard
+	./randomtestcard &> randomtestcard.out
+	echo " "    >> randomtestcard.out
+	gcov -f -b dominion.c >> randomtestcard.out
+	echo " "    >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+
+random: randomtestadventurer.out randomtestcard.out
+
 unittest1: unittest1.c dominion.o rngs.o
 	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
 
@@ -60,9 +82,10 @@ unittestresults.out: clean unittest1 unittest2 unittest3 unittest4 cardtest1 car
 	echo " "    >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
-all: clean playdom player unittestresults.out
+all: clean playdom player unittestresults.out random
 
 clean:
 	rm -f *.o playdom player *.gcov *.gcda *.gcno *.so *.out *~
 	rm -f unittest1	unittest2 unittest3 unittest4
 	rm -f cardtest1 cardtest2 cardtest3 cardtest4
+	rm -f randomtestadventurer randomtestcard

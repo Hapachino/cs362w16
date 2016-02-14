@@ -27,7 +27,7 @@ int unitTest(int player, struct gameState *post, int choice1){
     //memcmp game state size
     if (memcmp(&pre,post, sizeof(struct gameState))!=0){
         #if (NOISY_TEST == 1)
-        printf("Memory mismatch");
+        printf("Memory mismatch \n");
         #endif
         return 1;
     }
@@ -39,7 +39,7 @@ int unitTest(int player, struct gameState *post, int choice1){
     //plus one buy
     if (post->numBuys != pre.numBuys){
         #if (NOISY_TEST == 1) 
-        printf("Player did not get an additional buy");
+        printf("Player did not get an additional buy\n");
         #endif
         return 2;
     }
@@ -48,14 +48,14 @@ int unitTest(int player, struct gameState *post, int choice1){
         if(post->supplyCount[estate] == pre.supplyCount[estate]-1){
             if(post->coins != pre.coins+4){
                 #if (NOISY_TEST == 1)
-                printf("player discarded estate but did not gain coins");
+                printf("player discarded estate but did not gain coins\n");
                 #endif
                 return 3;
             }
         }
         else{
             #if (NOISY_TEST == 1)
-            printf("card discarded was not an estate");
+            printf("card discarded was not an estate\n");
             #endif
             return 4;
         }
@@ -70,7 +70,7 @@ int unitTest(int player, struct gameState *post, int choice1){
         }
         if(post->supplyCount[estate] != pre.supplyCount[estate]+1){
             #if (NOISY_TEST == 1)
-            printf("player didn't discard an estate and did not gain one after");
+            printf("player didn't discard an estate and did not gain one after \n");
             #endif
             return 6;
         }
@@ -105,11 +105,19 @@ int main () {
       ((char*)&G)[i] = floor(Random() * 256);
     }
     p = floor(Random() * 2);
-    G.deckCount[p] = floor(Random() * MAX_DECK);
-    G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
     G.numPlayers= floor(Random() * MAX_PLAYERS);
-    int choice1 = floor(Random() * 1);//boolean true or false
+    G.numBuys = floor(Random() * MAX_HAND);//NEW
+    G.coins = floor(Random() * MAX_DECK);//NEW
+    //intialize arrays to 0
+    for (int i =0; i< G.numPlayers +1; i++){
+    	G.deckCount[i] = floor(Random() * MAX_DECK);
+    	G.discardCount[i] = floor(Random() * MAX_DECK);
+    	G.supplyCount[i]=floor(Random() * MAX_DECK);
+        G.discard[i][ G.discardCount[i] ] = floor(Random() * MAX_DECK);
+        G.discardCount[i]= floor(Random() * MAX_DECK);
+    }
+    int choice1 = floor(Random() * 2);//boolean true or false
     //call function with test input
     error=unitTest(G.numPlayers,&G,choice1);
 
@@ -131,13 +139,13 @@ int main () {
     }
   }
   printf ("ALL Random TESTS Complete\n");
-  printf ("Errors type 1: %d memory mismatch",errorA);
-  printf ("Errors type 3: %d player didn't receive extra buy",errorB);
-  printf ("Errors type 3: %d discarded but didn't receive coins",errorC);
+  printf ("Errors type 1: %d memory mismatch \n",errorA);
+  printf ("Errors type 3: %d player didn't receive extra buy\n",errorB);
+  printf ("Errors type 3: %d discarded but didn't receive coins\n",errorC);
 
-  printf ("Errors type 4: %d estate not discarded",errorC);
-  printf ("Errors type 5: %d choice doesn't match action",errorD);
-  printf ("Errors type 6: %d didn't gain estate",errorE);
+  printf ("Errors type 4: %d estate not discarded\n",errorC);
+  printf ("Errors type 5: %d choice doesn't match action\n",errorD);
+  printf ("Errors type 6: %d didn't gain estate\n",errorE);
 
   return 0;
 }

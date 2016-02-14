@@ -53,6 +53,12 @@ cardtest3: cardtest3.c dominion.o rngs.o
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
 
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
 buildAllTests:
 	make unittest1
 	make unittest2
@@ -79,6 +85,20 @@ unittestresults.out: buildAllTests
 	echo "Coverage starts below:" >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	#cat dominion.c.gcov >> unittestresults.out
+
+randomtestadventurer.out: randomtestadventurer
+	rm -f dominion.gcda
+	cat /dev/null > randomtestadventurer.out
+	./randomtestadventurer >> randomtestadventurer.out
+	echo "Coverage starts below:" >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+
+randomtestcard.out: randomtestcard
+	rm -f dominion.gcda
+	cat /dev/null > randomtestcard.out
+	./randomtestcard >> randomtestcard.out
+	echo "Coverage starts below:" >> randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

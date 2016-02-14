@@ -1,0 +1,60 @@
+	The testIsValid() function uses an array of ResultPair object arrays to
+build URLs that are predetermined to be valid or invalid, then tests the
+result of the isValid() function it is testing against the predetermined result.
+
+	ResultPair is an object with two member variables, a String and a boolean.
+The String is a segment of the URL, either the scheme, authority, path, port, or
+query. A URL can be broken down to: <scheme>://<authority><path><port>?<query>.
+If the given segment of the URL will make the URL invalid, the boolean will be set
+to false. Otherwise, that segment of the URL is valid, so the boolean is set to true.
+
+	testIsValid uses an array of 5 ResultPair object arrays. Each array has ResultPair
+objects that represent different parts of the URL. For example, one array consists
+only of ResultPairs where the String variable contains schemes such as "http://". There
+are 4 other ResultPair arrays for authorities, paths, ports, and queries. 
+
+	testIsValid uses an integer array of length 5, called testPartsIndex, to track the 
+indices of the ResultPair arrays we are using to build the URL string. For example, 
+when the array is set to [0, 0, 0, 0, 0], we will use the first ResultPair objects from 
+each array to build the URL.
+
+	To build the URL, testIsValid uses a for loop to pick one ResultPair from each
+of the 5 arrays (which ResultPair is determined by the testPartsIndex integer array). Once it selects
+the ResultPair, it appends the String to a StringBuffer that is holding the URL as it is
+being created. It then uses the '&=' logical operator to append the ResultPair's boolean
+value. Before the URL building begins, this boolean is set to true. As we add ResultPair parts
+to the URL, if the segment of the URL is valid, the boolean will remain true. However, if any of the
+ResultPair URL segments are invalid, their boolean is false and this makes the overall URL string
+boolean false. Thus, once the complete URL is build, we have a boolean value that correctly stores
+if the URL is valid (true) or not (false).
+
+	Once the URL is built, testIsValid passes the URL to the isValid() function and stores the
+resulting boolean value in a new boolean variable. Then, if isValid() returns true, the
+URL is printed to the console. Finally, we use an assertEquals to determine if the predetermined
+boolean value is the same as the boolean value returned by isValid(). The result of this assert is
+also printed to the console.
+
+	The URL building is placed within a do-while loop. In the while condition, we call a function
+that increments the testPartsIndex array. It only increments one index by one, so we would go from
+[0, 0, 0, 0, 0] to [0, 0, 0, 0, 1]. This way, we test each combination of ResultPairs possible. It
+also does a check to make sure the index does not exceed the array length. If it does, it will reset the 
+value to 0 so we can increment the next index. Once all combinations have been checked, the function
+will return false and the do-while loop will exit.
+
+	The total number of URLs tested is 9*19*7*10*3 = 35,910 URLs. We get this because we have 9 schemes,
+19 authorities, 7 ports, 10 paths, and 3 queries. 
+
+	An example of a valid URL is 'http://wwww.google.com/test1?action=view'
+	An example of an invalid URL is '://go.com:-1/test1' (the scheme, "://", and port, ":-1", are invalid)
+	
+	There is a bit more complexity in the real world tests as compared to the unit tests and card tests
+we created. In the unit and card tests, I created a Gamestate in dominion, executed a unit or a card, then
+tested the resulting Gamestate against a copy of the Gamestate prior to the unit or card being executed to
+make sure the resulting changes to the Gamestate were what I expected. My random card tests ran 100 and 500
+test cases respectively, whereas over 35,000 URLs are being tested by testIsValid. That being said, the logic
+of testIsValid is very similar to that of our unit and card tests. In our tests, we made a move in the game
+knowing what the outcome should be, then we asserted that outcome against what the Gamestate was prior to the
+card being played to determine if the test passed or failed. In testIsValid, they also generated a large
+number of test cases and ran them through the function they were testing (isValid) and checked that result
+against the outcome they expected to find. So, logically, our tests and the testIsValid followed a very
+similar pattern. The biggest difference between our tests and testIsValid was in the number of test cases run.

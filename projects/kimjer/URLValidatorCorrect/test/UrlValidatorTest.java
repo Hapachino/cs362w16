@@ -83,10 +83,15 @@ public class UrlValidatorTest extends TestCase {
     * @param testObjects Used to create a url.
     */
    public void testIsValid(Object[] testObjects, long options) {
+    //make urlVal object, why?
       UrlValidator urlVal = new UrlValidator(null, null, options);
+
+      //check basic domains
       assertTrue(urlVal.isValid("http://www.google.com"));
       assertTrue(urlVal.isValid("http://www.google.com/"));
+
       int statusPerLine = 60;
+
       int printed = 0;
       if (printIndex)  {
          statusPerLine = 6;

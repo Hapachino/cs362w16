@@ -2,8 +2,9 @@
 Jack Holkeboer
 Oregon State University cs362
 holkeboj@onid.oregonstate.edu
+Assignment 4
 
-Test for Adventurer Card
+Random Test for Adventurer Card
 
 Business logic to be tested:
 * Reveal card from the deck until you get 2 treasure cards
@@ -22,9 +23,71 @@ Business logic to be tested:
 
 # define TESTCARD "Adventurer"
 
-void checkAdventurer(int player, struct gameState *testGame, int *testsRun, int *testsPassed) {
-    int preTreasureCount, localTestsRun = 0, localTestsPassed = 0;
+void checkAdventurer(int player, struct gameState testGame, int *testsRun, int *testsPassed);
+
+int main() {
+    int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+           sea_hag, tribute, smithy};    
+    int treasure, testNumber, testsToRun = 1000, testsRun = 0, testsPassed = 0, i, j,
+        player, playerCount, randomTreasure, randomDeckPos;
+    struct gameState testGame;
+
+    // random seed
+    srand(time(NULL));
+
+    printf("---------- Testing Card: %s --------------\n", TESTCARD);
+    for (testNumber = 0; testNumber < testsToRun; testNumber++) {
+        playerCount = 2 + (rand() % (MAX_PLAYERS - 1));
+        player = rand() % playerCount;
+        
+        // clear game state and initialize
+        bzero(&testGame, sizeof(struct gameState));
+        initializeGame(2, k, 500, &testGame);
+       
+        // create random test case
+        for (i = 0; i < playerCount; i++) {
+            testGame.deckCount[i] = rand() % MAX_DECK; // random deck count
+            testGame.discardCount[i] = rand() % MAX_DECK; // random discard count
+            testGame.handCount[i] = rand () % MAX_HAND + 1; // random hand count
+            
+            // give each player a random hand
+            for (j = 0; j < testGame.handCount[i]; j++) {
+                testGame.hand[i][j] = rand() % 27;   
+            }
+        }
+        
+        // make sure the player being tested has an adventurer card
+        testGame.hand[player][rand() % testGame.handCount[player]] = adventurer;
+        
+        // make sure there are at least two treasure cards in the deck
+        for (treasure = 0; treasure < 2; treasure++) {
+            randomTreasure = rand() % 3;
+            randomDeckPos = rand() % MAX_DECK;
+            if (randomTreasure == 0) {
+                // add a gold to the deck
+                testGame.deck[player][randomDeckPos] = gold;
+            } else if (randomTreasure == 1) {
+                // add a copper to the deck
+                testGame.deck[player][randomDeckPos] = silver;
+            } else {
+                testGame.deck[player][randomDeckPos] = copper;
+            }
+        }
+        
+        // check random test case
+        checkAdventurer(player, testGame, &testsRun, &testsPassed);
+    }
+    
+    printf("\n---- %d Passed ---- %d Failed ------\n", testsPassed, (testsRun - testsPassed));    
+    printf("---------- Testing %s Card Complete ------\n", TESTCARD);
+    return 0;
+}
+
+void checkAdventurer(int player, struct gameState testGame, int *testsRun, int *testsPassed) {
+    int i, otherPlayer, preTreasureCount = 0, postTreasureCount = 0, localTestsRun = 0, localTestsPassed = 0;
     struct gameState cleanGame;
+    
+    otherPlayer = (player == 1) ? 0 : 1;
 
     // get treasure count
     for (i = 0; i < testGame.handCount[player]; i++) {
@@ -38,8 +101,16 @@ void checkAdventurer(int player, struct gameState *testGame, int *testsRun, int 
     testGame.whoseTurn = player;
     memcpy(&cleanGame, &testGame, sizeof(struct gameState));
     cardEffect(adventurer,0,0,0,&testGame,0,0);
-    
-    // test conditions
+
+    // count treasure cards after playing
+    for (i = 0; i < testGame.handCount[player]; i++) {
+        if (testGame.hand[player][i] == copper || testGame.hand[player][i] == silver
+            || testGame.hand[player][i] == gold) {
+            postTreasureCount++;   
+        }
+    } 
+
+    // test conditions for adventurer
     printf("---- Did player %d receive two cards ?\n", player);
     if (testGame.handCount[player] == cleanGame.handCount[player] + 1) {
         // printf("Passed.\n");
@@ -143,30 +214,4 @@ void checkAdventurer(int player, struct gameState *testGame, int *testsRun, int 
     // increment test count
     *testsRun += localTestsRun;
     *testsPassed += localTestsPassed;
-}
-
-int main() {
-    int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-           sea_hag, tribute, smithy};    
-    int testNumber, testsToRun = 1000, testsRun = 0, testsPassed = 0, i, preTreasureCount = 0, postTreasureCount = 0, otherPlayer, player;
-    struct gameState testGame;
-
-    // random seed
-    srand(time(NULL));
-
-    printf("---------- Testing Card: %s --------------\n", TESTCARD);
-    for (testNumber = 0; testNumber < testsToRun; testNumber++) {
-        player = random() % 2;
-        otherPlayer = (player == 1) ? 0 : 1;
-        initializeGame(2, k, 500, &testGame);
-       
-        // create random test case
-        
-        // check random test case
-        checkAdventurer(player, &testGame, &testsRun, &testsPassed);
-    }
-    
-    printf("\n---- %d Passed ---- %d Failed ------\n", testsPassed, (testsRun - testsPassed));    
-    printf("---------- Testing %s Card Complete ------\n", TESTCARD);
-    return 0;
 }

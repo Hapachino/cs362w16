@@ -87,7 +87,7 @@ unittestresults.out: testHelpers.o dominion.o rngs.o
 
 randomtestadventurer.out: testHelpers.o dominion.o rngs.o
 	echo "-----------------------------------------------------------" > randomtestadventurer.out
-	echo -e "\tResults for Random Tests: Adventurer" >> randomtestadventurer.out
+	echo -e "\tResults for Random Tests: Adventurer Card" >> randomtestadventurer.out
 	echo "-----------------------------------------------------------" >> randomtestadventurer.out
 	
 	gcc -o randomtestadventurer randomtestadventurer.c test_helpers.o dominion.o rngs.o $(CFLAGS)
@@ -97,6 +97,21 @@ randomtestadventurer.out: testHelpers.o dominion.o rngs.o
 	echo -e "\t\tCode Coverage" >> randomtestadventurer.out
 	echo "-----------------------------------------------------------" >> randomtestadventurer.out
 	gcov ./dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard.out: testHelpers.o dominion.o rngs.o
+	echo "-----------------------------------------------------------" > randomtestcard.out
+	echo -e "\tResults for Random Tests: Village Card" >> randomtestcard.out
+	echo "-----------------------------------------------------------" >> randomtestcard.out
+	
+	gcc -o randomtestcard randomtestcard.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./randomtestcard >> randomtestcard.out
+	
+	echo -e "\n-----------------------------------------------------------" >> randomtestcard.out
+	echo -e "\t\tCode Coverage" >> randomtestcard.out
+	echo "-----------------------------------------------------------" >> randomtestcard.out
+	gcov ./dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
 	
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

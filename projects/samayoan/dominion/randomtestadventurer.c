@@ -65,13 +65,22 @@ void processResults(struct gameState *testState, struct gameState *oldState)
     updateCoins(testState->whoseTurn, testState, 0);
 
     // 2 more cards in their hand (because discard is skipped)
-    printf("\tHand count = %d, expected = %d\n", testState->handCount[PLAYER], oldState->handCount[PLAYER] + 2);
+    int expHandCount = oldState->handCount[PLAYER] + 2;
+    int actHandCount = testState->handCount[PLAYER];
+    printf("\tHand count Expected = %d, Actual = %d\n", expHandCount, actHandCount);
 
-    printf("\tDeck count = %d, expected = %d\n", testState->deckCount[PLAYER], oldState->deckCount[PLAYER]) - 2;
+    int expDeckCount = oldState->deckCount[PLAYER] - 2;
+    int actDeckCount = testState->deckCount[PLAYER];
+    printf("\tDeck count Expected = %d, Actual = %d\n", expDeckCount, actDeckCount);
 
     // Increase of one or more in discard pile
-    printf("\tDiscard count = %d, should be >= %d\n", testState->discardCount[PLAYER], 1 + oldState->discardCount[PLAYER]);
-    printf("\tCoins = %d. Expected > %d\n", testState->coins, oldState->coins);
+    int expDiscardCount = 1 + oldState->discardCount[PLAYER];
+    int actDiscardCount = testState->discardCount[PLAYER];
+    printf("\tDiscard Expceted = %d, Actual = %d\n", expDiscardCount, actDiscardCount);
+
+    int expectedCoins = oldState->coins;
+    int actualCoins = testState->coins;
+    printf("\tCoins Expected > %d, Actual = %d\n", expectedCoins, actualCoins);
 
     // No change to the other player's piles/hand
     assert(testState->handCount[1] == oldState->handCount[1]);
@@ -83,6 +92,12 @@ void processResults(struct gameState *testState, struct gameState *oldState)
     int secLC = testState->hand[PLAYER][testState->handCount[PLAYER] - 2];
     assert(lastC == gold || lastC == silver || lastC == copper);
     assert(secLC == gold || secLC == silver || secLC == copper);
+
+    if (actHandCount != expHandCount || actDeckCount != expDeckCount || actDiscardCount != expDiscardCount || actualCoins < expectedCoins) {
+        printf("\tRun run status: FAIL\n");
+    } else {
+        printf("\tRun run status: PASS\n");
+    }
 }
 
 int main(int argc, char *argv[]){

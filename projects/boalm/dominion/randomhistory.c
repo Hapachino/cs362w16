@@ -27,4 +27,9 @@ sea_had was decrementing the size of the deck by 1 and not increasing it back wh
 
 sea_hag was adding a card to discard, when the deck was empty.  Fixed this.
 
-Now it works and runs 1,000,000 times successfully.
+Now it works and runs 1,000,000 times successfully. 
+
+
+
+Above are some notes I made while running the tests and debugging the implementation of the cards.
+

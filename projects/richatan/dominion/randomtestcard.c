@@ -15,7 +15,7 @@
 #include <time.h> 		//for random number generator
 
 #define TEST_CARD village
-#define NUM_TESTS 5000
+#define NUM_TESTS 100000
  
 int main () {
 	

@@ -1,3 +1,7 @@
+CS 362
+Final Project - Part A
+Rishi Bhandarkar, Tom Dale, Matt Walz
+
 	The testIsValid() function uses an array of ResultPair object arrays to
 build URLs that are predetermined to be valid or invalid, then tests the
 result of the isValid() function it is testing against the predetermined result.

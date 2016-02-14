@@ -1,6 +1,4 @@
-/*
-todo: figure out how to pass in by address in initI
-*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -43,7 +41,18 @@ void makeK(int k[])
 	{
 		k[i] = rand()%NUMCARDS;
 	}
-}	
+}
+
+int* makeKUnique() 
+{
+	int *k = malloc(NUMCARDS*(sizeof(int)));
+	do 
+	{
+		makeK(k);
+	}
+	while(!isUnique(k));	
+	return k;
+}
 
 void initI(struct infosStruct *infos) 
 {
@@ -71,7 +80,7 @@ int main() {
 	struct gameState *g;
 	struct infosStruct infos;
 	g = newGame();
-	int k[NUMCARDS]; 
+	int *k;
 	int n;
 	int handCount, deckCount, discardCount;
 	int handCountExp, deckCountExp, discardCountExp;
@@ -79,12 +88,7 @@ int main() {
 	//Make sure draw card is working correctly
 	for(n=0; n < 2000; n++)
 	{
-		//make unique kingdom cards
-		do 
-		{
-			makeK(k);
-		}
-		while(!isUnique(k));
+		k = makeKUnique();
 
 		initializeGame(2, k, 3, g);
 
@@ -317,6 +321,63 @@ int main() {
 }
 
 
+/*
+int effectVillage(struct gameState *state, struct infosStruct *infos)
+{
+
+  int currentPlayer= infos->currentPlayer;
+
+  int handPos = infos->handPos;
+  //+1 Card
+  drawCard(currentPlayer, state);
+
+  //+2 Actions
+  state->numActions = state->numActions + 2;
+
+  //discard played card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  return 0;
+}
+*/
+
+/*
+int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+{
+  //if card is not trashed, added to Played pile 
+  if (trashFlag < 1)
+  {
+    //add card to played pile
+    state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+    state->playedCardCount++;
+  }
+	
+  //set played card to -1
+  state->hand[currentPlayer][handPos] = -1;
+	
+  //remove card from player's hand
+  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+  {
+    //reduce number of cards in hand
+    state->handCount[currentPlayer]--;
+  }
+  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+  {
+    //reduce number of cards in hand
+    state->handCount[currentPlayer]--;
+  }
+  else 	
+  {
+    //replace discarded card with last card in hand
+    state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+    //set last card to -1
+    state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+    //reduce number of cards in hand
+    state->handCount[currentPlayer]--;
+  }
+	
+  return 0;
+}
+*/
 // int drawCard(int player, struct gameState *state)
 // {	
 //	 int count;

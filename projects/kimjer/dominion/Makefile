@@ -97,7 +97,7 @@ unittests: smithytest adventurertest unittest2
 	cat dominion.c.gcov >> unittestresult.out
 	
 	gcc -o randomtestcard randomtestcard.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
-	
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out	

@@ -10,8 +10,8 @@ then
 	echo ""
 	echo ""
 	echo ""
-	./randomtestcard
-	rm randomtestcard 
+	./randomtestadventurer
+	rm randomtestadventurer
 	if [[ -f cardFunctions ]]
 	then 
 		rm cardFunctions

@@ -20,7 +20,6 @@ int setUp(struct gameState* state)
     int r; 
     int index = -1;
     int player;
-    int numTests = 1000;
     int seed = 1000;
     int numPlayers = 2;
     int cards[10] = {adventurer, council_room, feast, gardens, mine,
@@ -52,17 +51,96 @@ int setUp(struct gameState* state)
     return 0;
 }
 
-int testAdventurer(struct gameState* state)
+int checkDiff(struct StateDiff* diff)
+{
+    int passed = 1;
+    if (diff->flags[PLAYED_CARDS] == 1)
+    {
+        printf("Failed: played cards pile do not match.\n");
+        passed = 0;
+    }
+    if (diff->flags[PLAYED_CARD_COUNT] == 1)
+    {
+        printf("Failed: played cards count do not match.\n");
+        passed = 0;
+    }
+    if (diff->flags[HAND] == 1)
+    {
+        printf("Failed: hands do not match.\n");
+        passed = 0;
+    }
+    if (diff->flags[HAND_COUNT] == 1)
+    {
+        printf("Failed: hand counts do not match.\n");
+        passed = 0;
+    }
+    if (diff->flags[DISCARD] == 1)
+    {
+        printf("Failed: discard piles do not match.\n");
+        passed = 0;
+    }
+    if (diff->flags[DISCARD_COUNT] == 1)
+    {
+        printf("Failed: dicard counts do not match.\n");
+        passed = 0;
+    }
+    return passed;
+}
+
+int testAdventurer()
 {
     printf("Beginning random tests for adventurer:\n");
 
-    SelectStream(2);
-    PutSeed(3);
-            
+    int i;
+    int tcount;
+    int handCount;
+    int passed = 0;
+    int failed = 0;
+    int numTests = 1000;
+
+    for (i = 0; i < numTests; i++)
+    {
+        struct gameState state;
+        if (setUp(&state) < 0)
+        {
+            printf("ERROR: setup failed\n");
+            failed = 1;
+            continue;
+        }
+        struct gameState expectedState;
+        memcpy(&expectedState, &state, sizeof(struct gameState));
+
+        int success = playAdventurer(&state);
+        if (success != 0)
+        {
+            printf("playAdventurer() failed\n");
+            failed = 1;
+            continue;
+        }
+
+        int player = state.whoseTurn;
+
+        // Setup expected state.
+        // Add adventurer to played pile and treasure cards to hand
+        expectedState.playedCards[0] = adventurer;
+
+        for (tcount = 0; tcount < 2; tcount++)
+        {
+            handCount = expectedState.handCount[player];
+            expectedState.hand[player][handCount] = copper;
+            expectedState.handCount[player]++;
+            expectedState.deckCount[player]--;
+        }
+
+        struct StateDiff diff = compareStates(&expectedState, &state);
+        int passed += checkDiff(&diff);
+    }
+
+    printf("End of test. %d out of %d tests passed.\n\n", passed, i);
 }
 
 int main()
 {
-
+    testAdventurer();
     return 0;
 }

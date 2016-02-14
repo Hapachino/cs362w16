@@ -136,7 +136,7 @@ static char * all_tests() {
 }
 
 int main(int argc, char **argv) {
-	clock_t start = clock(), diff; // timer
+
 	srand(time(NULL));
 	// initialize a game state and player cards
 	int i = 0;

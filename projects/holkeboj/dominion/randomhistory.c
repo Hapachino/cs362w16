@@ -108,7 +108,9 @@ In the randomized for, there were 7998 passed and 3002 failed (37.5% pass rate).
 The higher percentage of failures in the random tests suggests that they are 
 catching some bugs that were not caught by the simpler test cases.  However, since
 the sample size from the previous test was so small, we must be cautious in interpreting
-this difference.  The three tests that consistently are failing are:
+this difference.  There is also some slight variation in the number of tests passed,
+indicating that randomness has an effect. 
+The three tests that consistently are failing are:
 
     Did played card count increment?
     Did player _ receive two cards ?

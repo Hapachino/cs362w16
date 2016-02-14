@@ -69,6 +69,22 @@ unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
+randomtestcard: rngs.o dominion.o
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+randomtestcard.out: randomtestcard all
+	./randomtestcard >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+
+randomtestadventurer: rngs.o dominion.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o -Wall -fpic -coverage -lm
+
+randomtestadventurer.out: randomtestadventurer all
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:

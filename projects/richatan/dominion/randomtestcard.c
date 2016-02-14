@@ -1,7 +1,7 @@
 /*Tanna Richardson
   CS362 - Winter 2016
   Assignment 4
-  Random test for: adventurer
+  Random test for: village
 */
 
 #include "dominion.h"
@@ -14,7 +14,7 @@
 #include <string.h>
 #include <time.h> 		//for random number generator
 
-#define TEST_CARD adventurer
+#define TEST_CARD village
 #define NUM_TESTS 100000
  
 int main () {
@@ -27,7 +27,7 @@ int main () {
 	int testsPassed = 0;	//counts total tests passed
 	int testsFailed = 0;	//counts total tests failed
 	int testsAborted = 0;	//counts total tests aborted due to incorrect setup
-	int errors[10] = {0};	//count for each check failed
+	int errors[11] = {0};	//count for each check failed
 	
 	//Game variables
 	struct gameState *g;										//working game state
@@ -56,32 +56,6 @@ int main () {
 		
 		//Create random game
 		g = randomGame(seed++);
-		
-		//Check that game includes at least 2 treasure cards in deck and discard
-		//If not, abort test and continue to next
-		//Note: Domionion game rules specify that 0 or 1 treasure cards should work as well, but bug in current
-		//  dominion code creates infinite loop in this case, so for now test is limited to >= 2 treasure cards.
-		found = 0;
-		for (i = copper; i <= gold; i++){
-			//Find treasure cards in deck
-			for (j = 0; j < g->deckCount[whoseTurn(g)]; j++){
-				if (g->deck[whoseTurn(g)][j] == i){
-					found++;
-				}
-			}
-			//Find treasure cards in discard
-			for (j = 0; j < g->discardCount[whoseTurn(g)]; j++){
-				if (g->discard[whoseTurn(g)][j] == i){
-					found++;
-				}
-			}
-		}
-		if (found < 2){
-			printf("Game contains less than 2 treasure cards.\n");
-			printf("Test aborted.\n");
-			testsAborted++;
-			continue;
-		}
 		
 		//Check that hand contains test card; If not set pos 0 = test card
 		found = 0;
@@ -141,11 +115,6 @@ int main () {
 		}
 		if (checkPhase(pre, g) < 0){
 			printf("\nphase: %d, Expected: %d", g->phase, pre->phase);
-			failed = 1;
-			errors[1]++;
-		}	
-		if (checkNumActions(pre, g) < 0){
-			printf("\nnumActions: %d, Expected: %d", g->numActions, pre->numActions);
 			failed = 1;
 			errors[1]++;
 		}	
@@ -234,8 +203,8 @@ int main () {
 			errors[5]++;			
 		}	
 		
-		//[6] Check played pile for adventurer card
-		//Expected Result: count = +1, last card in played pile = advneturer
+		//[6] Check played pile for test card
+		//Expected Result: count = +1, last card in played pile = test card
 		if (g->playedCardCount != pre->playedCardCount + 1){
 			printf("\nPlayed card count: %d, Expected: %d", g->playedCardCount, pre->playedCardCount + 1);
 			failed = 1;
@@ -246,47 +215,57 @@ int main () {
 			errors[6]++;
 		}
 		
-		//[7] Check 2 treasure cards added to hand, adventurer removed
-		//Expected Results: handCount = +1 (+2 treasures, -1 adventurer)
-		if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)] + 1){
-			printf("\nCurrent player's hand count: %d, Expected: %d", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 1);
+		//[7] Check for +2 actions
+		//Expected Results: numActions increased by 2
+		if (g->numActions != pre->numActions + 2){
+			printf("\nnumActions: %d, Expected: %d", g->numActions, pre->numActions + 2);
+			failed = 1;
+			errors[7]++;
+		}	
+		
+		//[8] Check 1 card added to hand, test card removed
+		//Expected Results: handCount unchanged (+1 card, -1 village), cards in hand changed
+		if (g->handCount[whoseTurn(g)] != pre->handCount[whoseTurn(g)]){
+			printf("\nCurrent player's hand count: %d, Expected: %d", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)]);
 			failed = 1;	
-			errors[7]++;			
+			errors[8]++;			
 		}
-		if ( (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] < copper) && (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] > gold) ){
-			printf("\nCurrent player's hand[%d]: %d, Expected: 1-3", g->handCount[whoseTurn(g)] - 1, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1]);
-			failed = 1;		
-			errors[7]++;			
+		found = 0;	//found = change found
+		for (i = 0; i < g->handCount[whoseTurn(g)]; i++){
+			if (g->hand[whoseTurn(g)][i] != pre->hand[whoseTurn(g)][i]){
+				found = 1;
+				break;
+			}
 		}
-		if ( (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2] < copper) && (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2] > gold) ){
-			printf("\nCurrent player's hand[%d]: %d, Expected: 1-3", g->handCount[whoseTurn(g)] - 2, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2]);
-			failed = 1;		
-			errors[7]++;			
+		if (!found){
+			printf("\nContents of current player's hand did not change");
+			failed = 1;	
+			errors[8]++;
 		}
 		
 		//Note: deck and discard may be combined and shuffled during card execution.
-		//[8] Check treasure cards are removed from deck/discard
-		//Expected Results: deckCount + discardCount = -2
-		if ( (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]) != (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 2) ){
-			printf("\nCurrent player's deck + discard count: %d, Expected: %d", (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]), (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 2));
+		//[9] Check 1 card removed from deck/discard
+		//Expected Results: deckCount + discardCount = -1
+		if ( (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]) != (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 1) ){
+			printf("\nCurrent player's hand count: %d, Expected: %d", (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]), (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 1));
 			failed = 1;	
-			errors[8]++;						
+			errors[9]++;						
 		}
 		
-		//[9] Check current player's total cards unchanged (treasure cards just moved from deck/discard to hand) EXCEPT test card moved to played
+		//[10] Check current player's total cards unchanged (1 card just moved from deck/discard to hand) EXCEPT test card moved to played
 		//Expected Results: full deck count unchanged for every card, except test card -1
 		for (i = 0; i <= treasure_map; i++){
 			if (i == TEST_CARD){
 				if (fullDeckCount(whoseTurn(g), i, g) != fullDeckCount(whoseTurn(g), i, pre) - 1){
 				printf("\nCurrent player's full count for card %d: %d, Expected: %d", i, fullDeckCount(whoseTurn(g), i, g), fullDeckCount(whoseTurn(g), i, pre) - 1);
 				failed = 1;	
-				errors[9]++;			
+				errors[10]++;			
 				}
 			} else { 
 				if (fullDeckCount(whoseTurn(g), i, g) != fullDeckCount(whoseTurn(g), i, pre)){
 					printf("\nCurrent player's full count for card %d: %d, Expected: %d", i, fullDeckCount(whoseTurn(g), i, g), fullDeckCount(whoseTurn(g), i, pre));
 					failed = 1;	
-					errors[9]++;			
+					errors[10]++;			
 				}
 			}
 		}
@@ -306,7 +285,7 @@ int main () {
 	
 	//Print test summary
 	printf("-----------------------------------------------------------\n");
-	printf("\tSummary for Random Tests: Adventurer Card\n");
+	printf("\tSummary for Random Tests: Village Card\n");
 	printf("-----------------------------------------------------------\n");
 	printf("Test Summary:\n");
 	printf("Passed: %d\n", testsPassed);
@@ -320,10 +299,11 @@ int main () {
 		printf("[3] Other player's deck changed: %d\n", errors[3]);
 		printf("[4] Other player's hand changed: %d\n", errors[4]);
 		printf("[5] Coin bonus changed: %d\n", errors[5]);
-		printf("[6] Adventurer not moved to played pile: %d\n", errors[6]);
-		printf("[7] Player's hand not changed correctly (+2 treasure, -1 adventurer): %d\n", errors[7]);
-		printf("[8] Treasure cards not removed from player's deck/discard: %d\n", errors[8]);
-		printf("[9] Player's full deck count changed: %d\n", errors[9]);
+		printf("[6] Village not moved to played pile: %d\n", errors[6]);
+		printf("[7] Actions not changed correctly (+2): %d\n", errors[7]);
+		printf("[8] Player's hand not changed correctly (+1 card, -1 village): %d\n", errors[8]);
+		printf("[9] Drawn card not removed from player's deck/discard: %d\n", errors[9]);
+		printf("[10] Player's full deck count changed: %d\n", errors[10]);
 	}
 		
 	return 0;

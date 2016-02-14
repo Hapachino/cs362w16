@@ -15,3 +15,16 @@ and I wanted to make sure it was passing.  There were several examples of 1 card
 After this, I turned up the number of tests to 1,000,000.  This test takes ~10 seconds.  I do not think it makes sense to
 make the number of tests higher.  I am confident that it tests all possibilities and that there are not any bugs for that card.
 
+sea_hag:
+It looks like sea_hag did not have the discardCard method called at the end to put
+it into the playedCard pile.
+
+The -- that sea_hag is using, will actually decrement the actual value of the variable it is used on.  
+When looking for one less than the value of the count of a pile of cards, - 1 should be used.  This will
+not change the value of the variable.
+
+sea_had was decrementing the size of the deck by 1 and not increasing it back when adding curse.  I fixed this.
+
+sea_hag was adding a card to discard, when the deck was empty.  Fixed this.
+
+Now it works and runs 1,000,000 times successfully.

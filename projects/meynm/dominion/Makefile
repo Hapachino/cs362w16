@@ -69,6 +69,8 @@ unittestresult.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 
 	cat dominion.c.gcov >> unittestresult.out
 
 randomtestadventurer.out: randomtestadventurer
+	make clean
+	make randomtestadventurer
 	./randomtestadventurer > randomtestadventurer.out
 	gcov dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
@@ -76,6 +78,8 @@ randomtestadventurer.out: randomtestadventurer
 	cat dominion.c.gcov >> randomtestadventurer.out
 	
 randomtestcard.out: randomtestcard
+	make clean
+	make randomtestcard
 	./randomtestcard > randomtestcard.out
 	gcov dominion.c >> randomtestcard.out
 	cat dominion.c.gcov >> randomtestcard.out

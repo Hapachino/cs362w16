@@ -60,6 +60,12 @@ cardtest3: cardtest3.c dominion.o
 cardtest4: cardtest4.c dominion.o 
 	gcc -o cardtest4 -g cardtest4.c  dominion.o rngs.o  $(CFLAGS)
 
+randomtestadventurer: randomtestadventurer.c dominion.o 
+	gcc -o randomtestadventurer -g randomtestadventurer.c  \
+dominion.o rngs.o  $(CFLAGS)
+
+
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 
@@ -76,6 +82,10 @@ cardtest2 cardtest3 cardtest4
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
 
 
 clean:

@@ -55,11 +55,11 @@ int main() {
                 testGame.hand[i][j] = rand() % 27;
             }
             // give each player a random deck
-            for (j = 0; j < testGame.deckCount[i], j++) {
+            for (j = 0; j < testGame.deckCount[i]; j++) {
                 testGame.deck[i][j] = rand() % 27;
             }
             // give each player a random discard pile
-            for (j = 0; j < testGame.discardCount[i], j++) {
+            for (j = 0; j < testGame.discardCount[i]; j++) {
                 testGame.discard[i][j] = rand() % 27;
             }
         }

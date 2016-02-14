@@ -2,7 +2,7 @@ CFLAGS = -Wall -fpic -coverage -lm
 DOMINIONOBJECTS = rngs.o dominion.o interface.o
 UNITTESTFILES = unittest1.c unittest2.c unittest3.c unittest4.c
 CARDTESTFILES = cardtest1.c cardtest2.c cardtest3.c cardtest4.c
-EXECUTABLES = unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+EXECUTABLES = unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestcard randomtestadventurer
 OUTPUTFILES = *.gcov *.out
 
 default: unittestresults.out
@@ -18,6 +18,12 @@ unittestresults.out: $(DOMINIONOBJECTS) unitTests cardTests
 	cardtest4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out 
+
+randomtestcard.out: $(DOMINIONOBJECTS) randomtestcard
+	randomtestcard >> randomtestcard.out
+
+randomtestadventurer.out: $(DOMINIONOBJECTS) randomtestadventurer
+	randomtestadventurer >> randomtestadventurer.out
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c $(CFLAGS)
@@ -39,6 +45,12 @@ cardTests: $(CARDTESTFILES) $(DOMINIONOBJECTS)
 	gcc -o cardtest2 cardtest2.c $(DOMINIONOBJECTS) $(CFLAGS)
 	gcc -o cardtest3 cardtest3.c $(DOMINIONOBJECTS) $(CFLAGS)
 	gcc -o cardtest4 cardtest4.c $(DOMINIONOBJECTS) $(CFLAGS)
+
+randomtestcard: randomtestcard.c $(DOMINIONOBJECTS)
+	gcc -o randomtestcard randomtestcard.c $(DOMINIONOBJECTS) $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.c $(DOMINIONOBJECTS) 
+	gcc -o randomtestadventurer randomtestadventurer.c $(DOMINIONOBJECTS) $(CFLAGS)
 
 clean:
 	rm -f *.o *.gcda *.gcno *.gch *.so $(EXECUTABLES)

@@ -89,23 +89,28 @@ void checkGreatHall(int player, struct gameState testGame, int *testsRun, int *t
 
     // test conditions for Great Hall
     // Since we also discard a card, count should not change
-    if (testGame.handCount[player] == cleanGame.handCount[player]) {
-        // printf("Test Passed.\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did player %d draw 1 card?\n", player);
-        printf("Test Failed.\n");
-    }
+    // if (testGame.handCount[player] == cleanGame.handCount[player]) {
+    //     // printf("Test Passed.\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did player %d draw 1 card?\n", player);
+    //     printf("Test Failed.\n");
+    // }
     localTestsRun++;
+    assert(testGame.handCount[player] == cleanGame.handCount[player]);
+    localTestsPassed++;
     
-    if (testGame.numActions == cleanGame.numActions + 1) {
-        // printf("Test Passed\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did player %d gain one action?\n",player);
-        printf("Test Failed.\n");
-    }
+    
+    // if (testGame.numActions == cleanGame.numActions + 1) {
+    //     // printf("Test Passed\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did player %d gain one action?\n",player);
+    //     printf("Test Failed.\n");
+    // }
     localTestsRun++;
+    assert(testGame.numActions == cleanGame.numActions + 1);
+    localTestsPassed++;
     
     if (testGame.discardCount[player] == cleanGame.discardCount[player] + 1) {
         // printf("Test Passed.\n");
@@ -117,95 +122,117 @@ void checkGreatHall(int player, struct gameState testGame, int *testsRun, int *t
     localTestsRun++;
     
     // check for game state changes
-    if (testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]) {
-        // printf("Test Passed.\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Was player %d's discard pile unaffected?\n", otherPlayer);
-        printf("Test Failed.\n");
-    }
+    // if (testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]) {
+    //     // printf("Test Passed.\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Was player %d's discard pile unaffected?\n", otherPlayer);
+    //     printf("Test Failed.\n");
+    // }
     localTestsRun++;
-
-    if (testGame.whoseTurn == cleanGame.whoseTurn) {
-        // printf("No, it didn't change.  Test Passed.\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did whoseTurn change?\n");
-        printf("Yes, it changed. Test Failed.\n");
-    }
-    localTestsRun++;
-
-    if (testGame.numPlayers == cleanGame.numPlayers) {
-        // printf("No. Test Passed\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did player count change?\n");
-        printf("Yes. Test Failed.\n");
-    }
-    localTestsRun++;
-
-    if (testGame.outpostPlayed == cleanGame.outpostPlayed) {
-        // printf("No. Test Passed\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did outpostPlayed change?\n");
-        printf("Yes. Test Failed.\n");
-    }
-    localTestsRun++;
-
-    if (testGame.outpostTurn == cleanGame.outpostTurn) {
-        // printf("Test Passed\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did outpostTurn change?\n");
-        printf("Test Failed.\n");
-    }
-    localTestsRun++;
-
-    if (testGame.phase == cleanGame.phase) {
-        // printf("Test Passed\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did phase change?\n");
-        printf("Test Failed.\n");
-    }
-    localTestsRun++;
+    assert(testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]);
+    localTestsPassed++;
     
-    if (testGame.numBuys == cleanGame.numBuys) {
-        // printf("Test Passed\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did number of buys change?\n");
-        printf("Test Failed.\n");
-    }
-    localTestsRun++;
 
-    if (testGame.handCount[otherPlayer] == cleanGame.handCount[otherPlayer]) {
-        // printf("Test Passed.\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did the other player's hand change?\n");
-        printf("Test Failed.\n");
-    }
+    // if (testGame.whoseTurn == cleanGame.whoseTurn) {
+    //     // printf("No, it didn't change.  Test Passed.\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did whoseTurn change?\n");
+    //     printf("Yes, it changed. Test Failed.\n");
+    // }
     localTestsRun++;
+    assert(testGame.whoseTurn == cleanGame.whoseTurn);
+    localTestsPassed++;
 
-    if (testGame.deckCount[otherPlayer] == cleanGame.deckCount[otherPlayer]) {
-        // printf("Test Passed\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did the other player's deck change?\n");
-        printf("Test Failed.\n");
-    }
+    // if (testGame.numPlayers == cleanGame.numPlayers) {
+    //     // printf("No. Test Passed\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did player count change?\n");
+    //     printf("Yes. Test Failed.\n");
+    // }
     localTestsRun++;
+    assert(testGame.numPlayers == cleanGame.numPlayers);
+    localTestsPassed++;
+    
 
-    if (testGame.playedCardCount == cleanGame.playedCardCount + 1) {
-        // printf("Test Passed\n");
-        localTestsPassed++;
-    } else {
-        printf("---- Did played card count increment?\n");
-        printf("Test Failed.\n");
-    }
+    // if (testGame.outpostPlayed == cleanGame.outpostPlayed) {
+    //     // printf("No. Test Passed\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did outpostPlayed change?\n");
+    //     printf("Yes. Test Failed.\n");
+    // }
     localTestsRun++;
+    assert(testGame.outpostPlayed == cleanGame.outpostPlayed);
+    localTestsPassed++;
+
+    // if (testGame.outpostTurn == cleanGame.outpostTurn) {
+    //     // printf("Test Passed\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did outpostTurn change?\n");
+    //     printf("Test Failed.\n");
+    // }
+    localTestsRun++;
+    assert(testGame.outpostTurn == cleanGame.outpostTurn);
+    localTestsPassed++;
+
+    // if (testGame.phase == cleanGame.phase) {
+    //     // printf("Test Passed\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did phase change?\n");
+    //     printf("Test Failed.\n");
+    // }
+    localTestsRun++;
+    assert(testGame.phase == cleanGame.phase);
+    localTestsPassed++;
+    
+    // if (testGame.numBuys == cleanGame.numBuys) {
+    //     // printf("Test Passed\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did number of buys change?\n");
+    //     printf("Test Failed.\n");
+    // }
+    localTestsRun++;
+    assert(testGame.numBuys == cleanGame.numBuys);
+    localTestsPassed++;
+
+    // if (testGame.handCount[otherPlayer] == cleanGame.handCount[otherPlayer]) {
+    //     // printf("Test Passed.\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did the other player's hand change?\n");
+    //     printf("Test Failed.\n");
+    // }
+    localTestsRun++;
+    assert(testGame.handCount[otherPlayer] == cleanGame.handCount[otherPlayer]);
+    localTestsPassed++;
+
+    // if (testGame.deckCount[otherPlayer] == cleanGame.deckCount[otherPlayer]) {
+    //     // printf("Test Passed\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did the other player's deck change?\n");
+    //     printf("Test Failed.\n");
+    // }
+    localTestsRun++;
+    assert(testGame.deckCount[otherPlayer] == cleanGame.deckCount[otherPlayer]);
+    localTestsPassed++;
+
+    // if (testGame.playedCardCount == cleanGame.playedCardCount + 1) {
+    //     // printf("Test Passed\n");
+    //     localTestsPassed++;
+    // } else {
+    //     printf("---- Did played card count increment?\n");
+    //     printf("Test Failed.\n");
+    // }
+    localTestsRun++;
+    assert(testGame.playedCardCount == cleanGame.playedCardCount + 1);
+    localTestsPassed++;
 
     // increment test count
     *testsRun += localTestsRun;

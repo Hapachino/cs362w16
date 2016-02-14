@@ -52,30 +52,38 @@ int main() {
 
 			if(isGameOver(&newGame) == 0)
 			{
-//				printf("Game is not over\n");
-//				printf("Old province count: %d Last supply: %d\n", oldGame.supplyCount[province], oldGame.supplyCount[randSup]);
-//				printf("New province count: %d Last supply: %d\n", newGame.supplyCount[province], newGame.supplyCount[randSup]);
+/*
+				printf("Game is not over\n");
+				printf("Old province count: %d Last supply: %d\n", oldGame.supplyCount[province], oldGame.supplyCount[randSup]);
+				printf("New province count: %d Last supply: %d\n", newGame.supplyCount[province], newGame.supplyCount[randSup]);
+*/
 				if((newGame.supplyCount[province] < 1 && newGame.supplyCount[province] == oldGame.supplyCount[province] - 1) || (newGame.supplyCount[randSup] < 1 && newGame.supplyCount[randSup] == oldGame.supplyCount[randSup] - 1))
 				{
 					failCount++;
+//					printf("Fail\n");
 				}
 				else
 				{
 					passCount++;
+//					printf("Pass\n");
 				}
 			}
 			else
 			{
-//				printf("Game is over\n");	
-//				printf("Old province count: %d Last supply: %d\n", oldGame.supplyCount[province], oldGame.supplyCount[randSup]);
-//				printf("New province count: %d Last supply: %d\n", newGame.supplyCount[province], newGame.supplyCount[randSup]);
+/*
+				printf("Game is over\n");	
+				printf("Old province count: %d Last supply: %d\n", oldGame.supplyCount[province], oldGame.supplyCount[randSup]);
+				printf("New province count: %d Last supply: %d\n", newGame.supplyCount[province], newGame.supplyCount[randSup]);
+*/
 				if((newGame.supplyCount[province] < 1 && newGame.supplyCount[province] == oldGame.supplyCount[province] - 1) || (newGame.supplyCount[randSup] < 1 && newGame.supplyCount[randSup] == oldGame.supplyCount[randSup] - 1))
 				{
 					passCount++;
+//					printf("Pass\n");
 				}
 				else
 				{
 					failCount++;
+//					printf("Fail\n");
 				}
 	
 			}		

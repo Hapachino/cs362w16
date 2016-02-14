@@ -1,3 +1,5 @@
+***NOTE: All asserts have been replaced by IF() {printf()} statements to avoid program termination***
+
 unittest1.c - isGameOver() - BUGGY
 
 This unit test fails to run after my second scenario, because I was able to find a bug. 
@@ -29,19 +31,19 @@ which result in undercounting the points for a player holding garden cards.
 
 cardtest1.c - playSmithy - BUGGY
 
-This unit test fails to run after the first scenario, because I was able to find a bug.
+This unit test fails all scenarios for this car due to several bugs. 
 The bug is located in the playSmithy function, where it adds 4 cards (not 3), and also does 
 this for player 2. This causes the first test, that other player states remain the same, to failing
 because the first the second player always receives additional cards. These did seems to be 
 distributed correctly, as the player deck was pulled from appropriately. I commented out these 
 asserts and also noticed the player drawing was receiving 4 cards as well, introducing another 
-bug into the system.
+bug into the system. This also causes the final test to fail because the entire game state does not match. 
 
 cardtest2.c - adventurer - BUGGY
 
-This unit test fails in scenario 1 and scenario 2, and I'm able to immediately find three bugs as 
+This unit test fails in scenario 1, 2, and 3, and I'm able to immediately find three bugs as 
 a result. The first bug is related to the playAdventurer() function not counting gold treasures,
-which can result in the number of treasures possible to be added intot he hand being too low. This 
+which can result in the number of treasures possible to be added into the hand being too low. This 
 results in the Oracle returning more treasures to the hand than the formula does. If this passes (gold
 treasures not a factor), then the test fails on the final test where the total card sizes of a player
 are compared. It appears that playAdventurer() is always one card short. This seems to be a bug with 
@@ -49,10 +51,19 @@ the temp hand used in the implementation of that card. The temp hand is forgetti
 to the discard, resulting in this issue. The final bug is that the playAdventurer can return more than 3
 treasures to the players hand. This causes an error because the test case compares the starting treasures
 in hand to the ending treasures, to ensure no more than 2 were added. This is a problem with the while loop
-in playAdventurer.
+in playAdventurer. This also causes the number of cards the player has to become out of sync.
 
-cardtest3.c - outpost - WIP
+cardtest3.c - outpost - CLEAN
 
-cardtest4.c - village - WIP
+I was unable to find a bug in this part of the program.
+However, while researching for this I did notice that the code does not properly handle this card because
+the flag is not taken into account in the endTurn function, or in a function to override who the next player is.
 
+cardtest4.c - village - BUGGY
+
+This unit test fails in scenario 1, 2, and 3, and I'm able to immediately find two bugs as 
+a result. The first bug is related to the playVillage() function adding the extra card to the wrong player.
+This causes test 1 and test 3 to fail because the current player and another player have the incorrectly
+number of cards. Test 2 fails because 5 actions are added for the user instead of 2, leading to the assert 
+to fail. If these two bugs are fixed, it would appear all test cases would be passed.
 

@@ -1,0 +1,180 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "dominion_helpers.h"
+        -:    2:#include "dominion.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <stdio.h>
+        -:    5:#include <stdlib.h>
+        -:    6:#include <string.h>
+        -:    7:
+        -:    8://Fulldeck Count test
+        -:    9:
+        -:   10:
+        -:   11:// To empty a pile, set card to -1 and reset to 1.
+function _setHand called 4 returned 100% blocks executed 100%
+        4:   12:void _setHand(struct gameState *g,int player,int max, int card, int reset)
+        -:   13:{
+        -:   14:	int i;
+        4:   15:	g->handCount[player] = 0;
+      534:   16:	for(i = 0; i<= max-1; i++)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   17:	{
+      530:   18:		g->hand[player][i] = card;
+      530:   19:		if(reset == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+      530:   20:		g->handCount[player]++;
+        -:   21:	}
+        4:   22:}
+        -:   23:
+function _setDeck called 4 returned 100% blocks executed 100%
+        4:   24:void _setDeck(struct gameState *g, int player,int max, int card, int reset)
+        -:   25:{
+        -:   26:	int i;
+        4:   27:	g->deckCount[player] = 0;
+      554:   28:	for(i = 0; i<= max-1; i++)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   29:	{
+      550:   30:		g->deck[player][i] = card;
+      550:   31:		if(reset == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+      550:   32:		g->deckCount[player]++;
+        -:   33:	}
+        4:   34:}
+        -:   35:
+function _setDiscard called 4 returned 100% blocks executed 100%
+        4:   36:void _setDiscard(struct gameState *g, int player,int max,int card, int reset)
+        -:   37:{
+        -:   38:	int i;
+        4:   39:	g->discardCount[player] = 0;
+     1074:   40:	for(i = 0; i<= max-1; i++)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   41:	{
+     1070:   42:		g->discard[player][i] = card;
+     1070:   43:		if(reset == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+     1070:   44:		g->discardCount[player]++;
+        -:   45:	}
+        4:   46:}
+        -:   47:
+function testFullDeck called 1 returned 100% blocks executed 85%
+        1:   48:void testFullDeck(struct gameState *g, int player)
+        -:   49:{
+        -:   50:	int handCount,deckCount,discardCount,cardCount;
+        -:   51:	
+        1:   52:	_setHand(g,player,15,3,0);
+call    0 returned 100%
+        1:   53:	_setDeck(g,player,25,4,0);
+call    0 returned 100%
+        1:   54:	_setDiscard(g,player,35,5,0);
+call    0 returned 100%
+        -:   55:
+        1:   56:	printf("\n\n\tRunning FullDeck test\n\n");
+call    0 returned 100%
+        1:   57:	cardCount = fullDeckCount(player,3,g); 	
+call    0 returned 100%
+        1:   58:	if(cardCount != 15) printf("fullDeckCount failed checking hand pile for card exclusive to hand pile.\n");
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   59:	else printf("fullDeckCount passed checking hand pile for card exclusive to hand pile.\n\n");
+call    0 returned 100%
+        -:   60:
+        1:   61:	cardCount = fullDeckCount(player,4,g); 	
+call    0 returned 100%
+        1:   62:	if(cardCount != 25) printf("fullDeckCount failed checking deck pile for card exclusive to hand pile.\n");
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   63:	else printf("fullDeckCount passed checking deck pile for card exclusive to deck pile.\n\n");
+call    0 returned 100%
+        -:   64:
+        1:   65:	cardCount = fullDeckCount(player,5,g); 	
+call    0 returned 100%
+        1:   66:	if(cardCount != 35) printf("fullDeckCount failed checking discard pile for card exclusive to discard pile.\n");	
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   67:	else printf("fullDeckCount passed checking discard pile for card exclusive to discard pile.\n\n");
+call    0 returned 100%
+        -:   68:
+        1:   69:	_setHand(g,player,15,3,0);
+call    0 returned 100%
+        1:   70:	_setDeck(g,player,25,3,0);
+call    0 returned 100%
+        1:   71:	_setDiscard(g,player,35,3,0);
+call    0 returned 100%
+        -:   72:	
+        1:   73:	cardCount = fullDeckCount(player,3,g); 	
+call    0 returned 100%
+        1:   74:	if(cardCount != 75) printf("fullDeckCount failed checking all piles for card in all piles.\n");	
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   75:	else printf("fullDeckCount passed checking all piles for card in all piles.\n\n");
+call    0 returned 100%
+        -:   76:
+        1:   77:	_setHand(g,player,0,-1,1);
+call    0 returned 100%
+        1:   78:	_setDeck(g,player,0,-1,1);
+call    0 returned 100%
+        1:   79:	_setDiscard(g,player,0,-1,1);
+call    0 returned 100%
+        -:   80:	
+        1:   81:	cardCount = fullDeckCount(player,-1,g); 	
+call    0 returned 100%
+        1:   82:	if(cardCount != 0) printf("fullDeckCount failed checking all piles for card with empty piles.\n");	
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   83:	else printf("fullDeckCount passed checking all piles for card with empty piles (there are 0 cards).\n\n");
+call    0 returned 100%
+        -:   84:
+        1:   85:	_setHand(g,player,MAX_HAND,1,0);
+call    0 returned 100%
+        1:   86:	_setDeck(g,player,MAX_DECK,1,0);
+call    0 returned 100%
+        1:   87:	_setDiscard(g,player,MAX_HAND+MAX_DECK,1,0);
+call    0 returned 100%
+        -:   88:	
+        1:   89:	cardCount = fullDeckCount(player,1,g); 	
+call    0 returned 100%
+        1:   90:	if(cardCount != 2000) printf("fullDeckCount failed checking all piles for card in all piles with max count.\n");	
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        1:   91:	else printf("fullDeckCount passed checking all piles for card with max count.\n\n");
+call    0 returned 100%
+        -:   92:
+        1:   93:	printf("\n\tEnd of fullDeck Test\n\n");
+call    0 returned 100%
+        -:   94:
+        1:   95:}
+        -:   96:
+function main called 1 returned 100% blocks executed 100%
+        1:   97:int main()
+        -:   98:{
+        -:   99:        int i;
+        1:  100:        int seed = 1000;
+        1:  101:        int numPlayers = 2;
+        1:  102:        int player  = 0;
+        -:  103:        struct gameState preState, postState;
+        1:  104:        int k[10] = {adventurer, council_room, feast, gardens, mine ,remodel, smithy, village, baron, great_hall};
+        1:  105:        initializeGame(numPlayers,k,seed,&postState);
+call    0 returned 100%
+        1:  106:        memcpy(&preState,&postState,sizeof(struct gameState));
+        1:  107:	printf("\n\nFullDeck test\n\n");
+call    0 returned 100%
+        1:  108:	testFullDeck(&postState,player);
+call    0 returned 100%
+        1:  109:}
+        -:  110:
+        -:  111:

@@ -36,16 +36,7 @@ dominion.gcno:cannot open notes file
 
 implications:We know from the errors print out that the supply count is some how getting decrimented below 0 (which should end the game).
 
-3)unit test 3: end of turn function
-unitTest3.gcda:cannot open data file, assuming not executed
-File 'unitTest3.c'
-No executable lines
-Removing 'unitTest3.c.gcov'
-
-implications: The end of turn function segfaults ending the unitTest program early and resulting in a incomplete coverage file.
-The dominion code most likely has a out of bounds access error and it would be best to run through a debugger or add a series of print statements to determine where in the function the segfault is occuring.
-
-4)unit test 4: full deck count
+3)unit test 3: full deck count
 dominion.gcno:cannot open notes file
 
 File 'unitTest4.c'
@@ -58,24 +49,66 @@ Creating 'unitTest4.c.gcov'
 implications:
 There is good branch coverage but not all lines were executed nor were all branches taken at least once implying that we are not generating test conditions which will make the program branch (and there by test by executing that code).
 
-5)Adventurer
+4)unit test 4: end of turn function
+unitTest4: unitTest4.c:31: unitTest: Assertion `memcmp(&pre,post, sizeof(struct gameState))==0' failed.
+Aborted (core dumped)
 
+File 'dominion.c'
+Lines executed:3.57% of 561
+Branches executed:5.30% of 415
+Taken at least once:3.61% of 415
+Calls executed:0.00% of 94
+Creating 'dominion.c.gcov'
+
+implications: The end of turn function segfaults ending the unitTest program early and resulting in a incomplete coverage file.
+The dominion code most likely has a out of bounds access error.
+The segfault is occuring in the discardCard function on line 357, the current player value is very high (in the hundreds of thousands) which seems to indicate there maybe a flaw 
+in line 353 "int currentPlayer = whoseTurn(state);"
+
+5)Adventurer
+File dominion.c
+Lines executed:3.57% of 561
+Branches executed:5.30% of 415
+Taken at least once:3.61% of 415
+Calls executed:0.00% of 94
+Creating 'dominion.c.gcov'
 
 implications:
+The segfault which occured made this test virtually unusable, this code needs be corrected to allow better testing.
+ The limited coverage within unitTest itself indicates that the test coverage is less than optimal it may require a different method of dealing with failed tests so that the entire program doesn't stop when a error is found.
+ Additionally branch coverage is poor inplying that conditional statements maybe incorrect.
 
 6)Feast
+File dominion.c
+Lines executed:3.57% of 561
+Branches executed:5.30% of 415
+Taken at least once:3.61% of 415
+Calls executed:0.00% of 94
+Creating 'dominion.c.gcov'
 
 implications:
-The segfault which occured made this test virtually unusable, this code needs be corrected to allow better testing. The limited coverage within unitTest itself indicates that the test coverage is less than optimal it may require a different method of dealing with failed tests so that the entire program doesn't stop when a error is found. Additionally branch coverage is poor inplying that conditional statements maybe incorrect.
+The segfault which occured made this test virtually unusable, this code needs be corrected to allow better testing.
+ The limited coverage within unitTest itself indicates that the test coverage is less than optimal it may require a different method of dealing with failed tests so that the entire program doesn't stop when a error is found.
+ Additionally branch coverage is poor inplying that conditional statements maybe incorrect.
 
 
 7)Smithy
+I was unable to get results since the smithy file failed to terminate.
 
-implications:
+implications: The infinite loop I created during the last assignment was "sucessful" and results in a program that doesn't terminate.
 
 
 8)Village Card
+File dominion.c
+Lines executed:3.57% of 561
+Branches executed:5.30% of 415
+Taken at least once:3.61% of 415
+Calls executed:0.00% of 94
+Creating 'dominion.c.gcov'
 
 
 implications:
+The segfault which occured made this test virtually unusable, this code needs be corrected to allow better testing.
+ The limited coverage within unitTest itself indicates that the test coverage is less than optimal it may require a different method of dealing with failed tests so that the entire program doesn't stop when a error is found.
+ Additionally branch coverage is poor inplying that conditional statements maybe incorrect.
 

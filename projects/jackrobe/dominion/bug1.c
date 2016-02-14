@@ -1,3 +1,11 @@
+/*
+ Robert Jackson
+ Bug1 report
+ 2/2/2016
+ cs 362
+
+/*
+
 /* Adventurer bug
 Second while loop should be (z - 1 >= 0)
 

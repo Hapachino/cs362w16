@@ -1,0 +1,250 @@
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "dominion_helpers.h"
+        -:    2:#include "dominion.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <stdio.h>
+        -:    5:#include <stdlib.h>
+        -:    6:#include <string.h>
+        -:    7:
+        -:    8:
+        -:    9://Test update Coins
+        -:   10:
+        -:   11://Helper function to count coins in player Hand. Does not include bonus coins.
+function _countCoins called 2 returned 100% blocks executed 100%
+        2:   12:int _countCoins(struct gameState *g, int player)
+        -:   13:{
+        2:   14:	int coins = 0;
+        -:   15:	int i;
+        2:   16:	int cardCount = g->handCount[player];
+       16:   17:	for(i = 0; i <= cardCount; i++)
+branch  0 taken 88%
+branch  1 taken 13% (fallthrough)
+        -:   18:	{
+       14:   19:		if(g->hand[player][i] == 4)
+branch  0 taken 29% (fallthrough)
+branch  1 taken 71%
+        -:   20:		{
+        4:   21:			coins+=1;
+        -:   22:		}
+       10:   23:		else if(g->hand[player][i] == 5)
+branch  0 taken 40% (fallthrough)
+branch  1 taken 60%
+        -:   24:		{
+        4:   25:			coins+=2;
+        -:   26:		}
+        6:   27:		else if(g->hand[player][i] == 6)
+branch  0 taken 67% (fallthrough)
+branch  1 taken 33%
+        -:   28:		{
+        4:   29:			coins+=3;
+        -:   30:		}
+        -:   31:	}
+        2:   32:	return coins;
+        -:   33:}
+        -:   34:
+function _setCoins called 1 returned 100% blocks executed 100%
+        1:   35:void _setCoins(struct gameState *g, int player)
+        -:   36:{
+        -:   37:	int i;
+        1:   38:	g->handCount[player] = 12;
+        -:   39:	int coins;
+       13:   40:	for(i=0; i<= 11; i++)
+branch  0 taken 92%
+branch  1 taken 8% (fallthrough)
+        -:   41:	{
+       12:   42:		if(i<=3)
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
+        -:   43:		{
+        4:   44:			g->hand[player][i] = 4;
+        -:   45:		}
+        8:   46:		else if(i<=7)
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+        -:   47:		{
+        4:   48:			g->hand[player][i] = 5;
+        -:   49:		}
+        -:   50:		else
+        -:   51:		{
+        4:   52:			g->hand[player][i] = 6;
+        -:   53:		}
+        -:   54:	}
+        1:   55:}
+        -:   56:
+        -:   57://Set player hand to empty. Set coinState to 0.
+function _zeroHand called 1 returned 100% blocks executed 100%
+        1:   58:void _zeroHand(struct gameState *g, int player)
+        -:   59:{
+        -:   60:	int i;
+        6:   61:	for(i=0;i<g->handCount[player];i++)
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
+        -:   62:	{
+        5:   63:		g->hand[player][i] = -1;
+        -:   64:	}
+        1:   65:	g->handCount[player] = 0;
+        1:   66:	g->coins=0;
+        1:   67:}
+function testHand called 1 returned 100% blocks executed 83%
+        1:   68:void testHand(struct gameState *g, int player)
+        -:   69:{
+        -:   70://	_setCoins(g,player);
+        -:   71://	g->handCount[player] = 12;
+        -:   72://	updateCoins(player,g,0);
+        -:   73:
+        -:   74:
+        -:   75://	int coinsUpdate = g->coins;
+        -:   76://	int testCoins = _countCoins(g,player);
+        1:   77:	_zeroHand(g,player);	
+call    0 returned 100%
+        1:   78:	updateCoins(player,g,0);
+call    0 returned 100%
+        1:   79:	int coinsUpdate = g->coins;
+        1:   80:	int testCoins = _countCoins(g,player);
+call    0 returned 100%
+        -:   81:
+        1:   82:	printf("\n\n\tTesting updateCoins for empty player hand\n\n");
+call    0 returned 100%
+        1:   83:	if(coinsUpdate != testCoins)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   84:	{		
+    #####:   85:		printf("Error. Total number of coins in hand is not included in coins state for player %d! Coins in hand = %d. Coins in coinState = %d\n",player,testCoins,coinsUpdate);
+call    0 never executed
+        -:   86:	}
+        -:   87:	else
+        -:   88:	{
+        1:   89:		printf("Success! Total number of coins for player %d is %d and coin state is %d\n",player,testCoins,coinsUpdate);
+call    0 returned 100%
+        -:   90:	}
+        -:   91:
+        1:   92:	_setCoins(g,player);
+call    0 returned 100%
+        1:   93:	g->handCount[player] = 12;
+        1:   94:	updateCoins(player,g,0);
+call    0 returned 100%
+        -:   95:
+        1:   96:	coinsUpdate = g->coins;
+        1:   97:	testCoins = _countCoins(g,player);
+call    0 returned 100%
+        -:   98:
+        1:   99:	printf("\n\n\tTesting updateCoins without Bonus Coins\n\n");
+call    0 returned 100%
+        1:  100:	if(coinsUpdate != testCoins)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  101:	{
+    #####:  102:		printf("Error. Total number of coins in hand is not included in coins state for player %d! Coins in hand = %d. Coins in coinState = %d\n",player,testCoins,coinsUpdate);
+call    0 never executed
+        -:  103:	}
+        -:  104:	else
+        -:  105:	{
+        1:  106:		printf("Success! Total number of coins for player %d is %d and coin state is %d\n",player,testCoins,coinsUpdate);
+call    0 returned 100%
+        -:  107:	}
+        -:  108:
+        1:  109:	printf("\n\n\tTesting updateCoins with 500 Bonus Coins!!\n\n");
+call    0 returned 100%
+        1:  110:	updateCoins(player,g,500);
+call    0 returned 100%
+        1:  111:	testCoins = testCoins+500;
+        1:  112:	coinsUpdate = g->coins;
+        -:  113:	
+        1:  114:	if(coinsUpdate != testCoins)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  115:	{
+    #####:  116:		printf("Error. Total number of coins in hand is not included in coins state for player %d! Coins in hand = %d. Coins in coinState = %d\n",player,testCoins,coinsUpdate);
+call    0 never executed
+        -:  117:	}
+        -:  118:	else
+        -:  119:	{
+        1:  120:		printf("Success! Total number of coins for player %d is %d and coin state is %d\n",player,testCoins,coinsUpdate);
+call    0 returned 100%
+        -:  121:	}
+        -:  122:
+        1:  123:	printf("\n\n\tTesting updateCoins with 1000 Bonus Coins!!\n\n");
+call    0 returned 100%
+        1:  124:	updateCoins(player,g,1000);
+call    0 returned 100%
+        1:  125:	testCoins = testCoins+500;
+        1:  126:	coinsUpdate = g->coins;
+        -:  127:	
+        1:  128:	if(coinsUpdate != testCoins)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  129:	{
+    #####:  130:		printf("Error. Total number of coins in hand is not included in coins state for player %d! Coins in hand = %d. Coins in coinState = %d\n",player,testCoins,coinsUpdate);
+call    0 never executed
+        -:  131:	}
+        -:  132:	else
+        -:  133:	{
+        1:  134:		printf("Success! Total number of coins for player %d is %d and coin state is %d\n",player,testCoins,coinsUpdate);
+call    0 returned 100%
+        -:  135:	}
+        -:  136:
+        1:  137:	printf("\n\n\tTesting updateCoins with 1500 Bonus Coins!!\n\n");
+call    0 returned 100%
+        1:  138:	updateCoins(player,g,1500);
+call    0 returned 100%
+        1:  139:	testCoins = testCoins+500;
+        1:  140:	coinsUpdate = g->coins;
+        -:  141:	
+        1:  142:	if(coinsUpdate != testCoins)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  143:	{
+    #####:  144:		printf("Error. Total number of coins in hand is not included in coins state for player %d! Coins in hand = %d. Coins in coinState = %d\n",player,testCoins,coinsUpdate);
+call    0 never executed
+        -:  145:	}
+        -:  146:	else
+        -:  147:	{
+        1:  148:		printf("Success! Total number of coins for player %d is %d and coin state is %d\n",player,testCoins,coinsUpdate);
+call    0 returned 100%
+        -:  149:	}
+        -:  150:
+        1:  151:	printf("\n\n\tTesting updateCoins with negative 1500 Bonus Coins!!\n\n");
+call    0 returned 100%
+        1:  152:	updateCoins(player,g,-1500);
+call    0 returned 100%
+        1:  153:	testCoins = testCoins+-3000;
+        1:  154:	coinsUpdate = g->coins;
+        -:  155:	
+        1:  156:	if(coinsUpdate != testCoins)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  157:	{
+    #####:  158:		printf("Error. Total number of coins in hand is not included in coins state for player %d! Coins in hand = %d. Coins in coinState = %d\n",player,testCoins,coinsUpdate);
+call    0 never executed
+        -:  159:	}
+        -:  160:	else	
+        -:  161:	{
+        1:  162:		printf("Success! Total number of coins for player %d is %d and coin state is %d\n",player,testCoins,coinsUpdate);
+call    0 returned 100%
+        -:  163:	}
+        1:  164:}
+        -:  165:
+function main called 1 returned 100% blocks executed 100%
+        1:  166:int main()
+        -:  167:{
+        -:  168:        int i;
+        1:  169:        int seed = 1000;
+        1:  170:        int numPlayers = 2;
+        1:  171:        int player  = 0;
+        -:  172:        struct gameState preState, postState;
+        1:  173:        int k[10] = {adventurer, council_room, feast, gardens, mine ,remodel, smithy, village, baron, great_hall};
+        1:  174:        initializeGame(numPlayers,k,seed,&postState);
+call    0 returned 100%
+        1:  175:        memcpy(&preState,&postState,sizeof(struct gameState));
+        1:  176:	printf("\n\nUpdate Coins test\n\n");
+call    0 returned 100%
+        1:  177:	testHand(&postState,player);
+call    0 returned 100%
+        1:  178:	printf("\n\n\tCoins update complete\n\n");
+call    0 returned 100%
+        1:  179:}
+        -:  180:

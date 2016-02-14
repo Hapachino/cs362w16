@@ -643,6 +643,7 @@ int getCost(int cardNumber)
   return -1;
 }
 
+
 int refactoredGreatHall(struct gameState *state, int handPos) {
 
    int currentPlayer = whoseTurn(state);

@@ -20,7 +20,7 @@ void playSmithy( int currentPlayer, struct gameState *state, int handPos )
 // bugs in line 23, 43 (fixed), 44 (fixed)
 void playAdventurer( int currentPlayer, struct gameState *state )
 {
-	int drawntreasure, cardDrawn, z = 0;	// should be initialized to 0
+	int drawntreasure=0, cardDrawn, z = 0;	// should be initialized to 0
 	int temphand[MAX_HAND];
 	//keep drawing cards until 2 treasure cards are drawn
 	while ( drawntreasure < 2 )
@@ -171,8 +171,8 @@ void playSteward(int currentPlayer, struct gameState *state, int handPos, int ch
 	} else
 	{
 		//trash 2 cards in hand
-		discardCard( choice1, currentPlayer, state, 1 ); // choice1 should be choice2
-		//discardCard( choice2, currentPlayer, state, 1 ); // choice1 should be choice2
+		//discardCard( choice1, currentPlayer, state, 1 ); // choice1 should be choice2
+		discardCard( choice2, currentPlayer, state, 1 ); // choice1 should be choice2
 		discardCard( choice3, currentPlayer, state, 1 );
 	}
 

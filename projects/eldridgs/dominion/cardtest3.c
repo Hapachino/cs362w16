@@ -12,7 +12,8 @@ int checkVillage (struct gameState *post, int p, int handP) {
     struct gameState pre;
     memcpy (&pre, post, sizeof(struct gameState));
 
-    int r = pvillage(post, p, handP);
+    int r = pVillage(post, p, handP);
+
 
     //village is draw one card and get 2 more actions
     drawCard(p, &pre);
@@ -23,18 +24,6 @@ int checkVillage (struct gameState *post, int p, int handP) {
     assert (r == 0);
 
     assert(memcmp(&pre, post, sizeof(struct gameState)) == 0);
-}
-
-int pVillage(struct gameState *state, int currentPlayer, int handPos){
-//+1 Card
-            drawCard(currentPlayer, state);
-
-            //+2 Actions
-            state->numActions = state->numActions + 2;
-
-            //discard played card from hand
-            discardCard(handPos + 1, currentPlayer, state, 0);
-            return 0;
 }
 
 int main () {

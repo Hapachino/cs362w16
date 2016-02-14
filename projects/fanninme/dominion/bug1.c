@@ -13,23 +13,29 @@ Errors type 2: 0 Error bad return value from function
 Errors type 3: 991 Error negative supply count 
 
 Bug:
-The supply count is some how getting decrimented below 0 (which should end the game).
+The supply count is some how getting decrimented below 0 (which should end the game). This could be addressed by checking inputs and any iterating loops which may affect the value of the supply count.
 
-3) unit test 3: end of turn function
-Testing end turn function.
-RANDOM TESTS.
-Segmentation fault (core dumped)
-
-Bug: The end of turn function segfaults ending the unitTest program early. There is likely a out of bound memory access error in end of turn function however to catch it we would need to alter the source code or use a debugger on tthe source code to determine where the segfault is occuring.
-
-
-4)Unit Test 4: full deck count
+3)Unit Test 3: full deck count
 Errors type 1: 0 Error in end turn function.
 Errors type 2: 0 Error in full deck function.
 Errors type 3: 2000 Memory size different.
 
 Bug:
 We caught a bug where in the memory size of the game state is different than it was when it began. We should look at the ways in which the game state is altered by this function to determine what caused this.
+
+
+4) unit test 4: end of turn function
+Test Results:
+Testing end turn function.
+RANDOM TESTS.
+unitTest4: unitTest4.c:31: unitTest: Assertion `memcmp(&pre,post, sizeof(struct gameState))==0' failed.
+Aborted (core dumped)
+
+Bug:
+Segmentation fault (core dumped) occurs in dominion.c line 357, the current player value is 1817024117 which seems to indicate there maybe a flaw 
+in line 353 "int currentPlayer = whoseTurn(state);"
+I then altered the code to ensure that the whoseTurn variable was no larger than max players however the current player value after this change was still much larger than max players.
+
 
 5) card unit test 1: Adventurer
 Bug:segfault
@@ -43,9 +49,14 @@ When the supply count of a card is returned. That is because the choice1 is grea
 
 7)card unit test 3: Testing smithy Card.
 bug:segfault
-The segfault is occuring in the discardCard function
+The segfault is occuring in the discardCard function on line 357, the current player value is very high (in the hundreds of thousands) which seems to indicate there maybe a flaw 
+in line 353 "int currentPlayer = whoseTurn(state);"
+
 
 8)card unit test 4:Testing village Card.
 bug:segfault.
-The segfault is occuring in the discardCard function
+The segfault is occuring in the discardCard function on line 1259, the current player value is very high (in the hundreds of thousands) and played card count is a negative number, either.
+just prior to calling the village card the whoseTurn field is very high (hundreds of thousands) and the played card count is negative. This indicates that it was a failure to initialize these value with "reasonable" values for the purposes for random testing.
+
+
 

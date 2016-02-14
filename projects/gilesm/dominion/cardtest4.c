@@ -1,9 +1,9 @@
 /******************************************************************************
  * Author: Mark Giles
- * Description: Unit tests for the adventurer cardEffect function in dominion.c. This 
- *   file utilizes the function adventurer cardEffect and dominion supporting files to 
+ * Description: Unit tests for the remodel cardEffect function in dominion.c. This 
+ *   file utilizes the function remodel cardEffect and dominion supporting files to 
  *   execute the function and check for error conditions.
- * File Name: cardtest2.c
+ * File Name: cardtest4.c
  * Date Created: 1/31/2016
  *****************************************************************************/#include <stdio.h>
 #include <assert.h>
@@ -22,11 +22,7 @@ int main() {
 		j = 0,						// iteration variable for loop counting
 		numPlayers = 2,				// number of players in game
 		randomSeed = 10000,			// seed for random generation
-		validationCheck = 1,		// used to determine pass or fail
-		cardDrawn = 0,				// card selected from deck
-		count = 0,					// number of cards removed from player deck
-		drawntreasure = 0,			// determines number of cards drawn
-		temphand[100];				// used to store non-treasure cards
+		validationCheck = 1;		// used to determine pass or fail
 	// initial array of kingdom cards
 	int kingdomCards[10] = {adventurer, gardens, village, minion, mine, cutpurse,
 							sea_hag, remodel, smithy};
@@ -36,63 +32,44 @@ int main() {
 
 	// PERFORMING OPERATIONS TO MEET TEST CONDITION
 	memcpy(&stateOriginal, &state, sizeof(struct gameState));
-
+	state.hand[state.whoseTurn][0] = silver;
 	// DISPLAY
-	for (i = 0; i < 100; i++) {
-		temphand[i] = -1;
-	}
 	printf("***************************************************************************\n");
-	printf("* TESTING FUNCTION: adventurerEffect\n");
+	printf("* TESTING FUNCTION: remodelEffect\n");
 	printf("***************************************************************************\n");
-	printf("\n  EXECUTING: villageEffect(state.whoseTurn, -1, -1, temphand, &state)\n\n");
-	
-	printf("  TEST: Non-treasure cards are successfully added to the discard pile\n\n");
-	validationCheck = 1;
-	while (drawntreasure < 2) {
-		cardDrawn = stateOriginal.deck[state.whoseTurn][stateOriginal.deckCount[state.whoseTurn] - 1];
-		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
-			drawntreasure++;
-			count++;
-		} else {
-			count++;
+	printf("\n  EXECUTING: remodelEffect(state.whoseTurn, 1, 2, &state, 0)\n\n");
+	remodelEffect(state.whoseTurn, 1, 2, &state, 0);
+
+	printf("  TEST: Choice1 removed from player's hand with valid selection...\n\n");
+	validationCheck = 0;
+	for (i = 0; i < state.handCount[state.whoseTurn]; i++) {
+		if (state.hand[state.whoseTurn][i] == 1) {
+			validationCheck = 1;
+			break;
 		}
 	}
-	if (state.discardCount[state.whoseTurn] != stateOriginal.discardCount[state.whoseTurn] + (count - 2))
+	printTestResult(validationCheck, -999, -999);
+
+	memcpy(&state, &stateOriginal, sizeof(struct gameState));
+	remodelEffect(state.whoseTurn, province, copper, &state, 0);
+	printf("  TEST: Choice1/discard card cost + 2 must not be greater than choice2/buyCard...\n\n");
+	validationCheck = 1;
+	if (memcmp(&state, &stateOriginal, sizeof(struct gameState)) != 0)
 		validationCheck = 0;
 	printTestResult(validationCheck, -999, -999);
 
-	printf("  TEST: Two additional treasure cards are added to the player's hand\n\n");
-	validationCheck = 1;
-	if (state.handCount[state.whoseTurn] != state.handCount[state.whoseTurn] + 2)
-		validationCheck = 0;
-	if (!(state.hand[state.whoseTurn][state.handCount[state.whoseTurn] - 1] == copper ||
-		state.hand[state.whoseTurn][state.handCount[state.whoseTurn] - 1] == silver ||
-		state.hand[state.whoseTurn][state.handCount[state.whoseTurn] - 1] == gold)) {
-		validationCheck = 0;
-	}
-	if (!(state.hand[state.whoseTurn][state.handCount[state.whoseTurn] - 2] == copper ||
-		state.hand[state.whoseTurn][state.handCount[state.whoseTurn] - 2] == silver ||
-		state.hand[state.whoseTurn][state.handCount[state.whoseTurn] - 2] == gold)) {
-		validationCheck = 0;
-	}
-	printTestResult(validationCheck, -999, -999);
 
-	printf("  TEST: Other Player's cards are not modified\n\n");
+	memcpy(&state, &stateOriginal, sizeof(struct gameState));
+	remodelEffect(state.whoseTurn, copper, province, &state, 0);
+	printf("  TEST: The new card must be added to the player's hand...\n\n");
 	validationCheck = 1;
-	if (isDeckSame(&state, &stateOriginal, state.whoseTurn + 1) != 1)
-		validationCheck = 0;
-	if (isHandSame(&state, &stateOriginal, state.whoseTurn + 1) != 1)
-		validationCheck = 0;
-	if (isDiscardSame(&state, &stateOriginal, state.whoseTurn + 1) != 1)
+	if (state.hand[state.whoseTurn][state.handCount[state.whoseTurn] - 1] != copper)
 		validationCheck = 0;
 	printTestResult(validationCheck, -999, -999);
 
-	printf("  TEST: Game state supply count is not modified\n\n");
-	validationCheck = 1;
-	for (i = 0; i < 28; i++) {
-		if (state.supplyCount[i] != stateOriginal.supplyCount[i])
+	printf("  TEST: The trashed card must be removed from the player's hand and placed in discard...\n\n");
+	if (state.discard[state.whoseTurn][state.discardCount[state.whoseTurn] - 1] != province)
 		validationCheck = 0;
-	}
 	printTestResult(validationCheck, -999, -999);
 	
 	return 0;

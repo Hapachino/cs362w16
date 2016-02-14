@@ -69,6 +69,7 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	cat dominion.c.gcov >> unittestresults.out
 
 randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	rm -f randomtestadventurer.gcda
 	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 
 runrandomtestadventurer: randomtestadventurer

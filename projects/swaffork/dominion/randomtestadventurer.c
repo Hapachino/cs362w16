@@ -1,3 +1,10 @@
+/*
+ * randomtestadventurer.c
+ *
+ * Random tester for adventurer card in Dominion.
+ * Code based on random testing lecture from CS362 - Winter16
+ *
+ */
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
@@ -9,7 +16,11 @@
 
 int setUp(struct gameState* state)
 {
-    int player = 0;
+    int i;
+    int r; 
+    int index = -1;
+    int player;
+    int numTests = 1000;
     int seed = 1000;
     int numPlayers = 2;
     int cards[10] = {adventurer, council_room, feast, gardens, mine,
@@ -22,34 +33,36 @@ int setUp(struct gameState* state)
         return -1;
     }
 
-    // Randomly change bytes in game state
-    for (i = 0; i <= 1000; i++)
+    // Randomly decide who goes first and randomly set their deck, discard, and hand count
+    player = rand() % 2;
+    state->whoseTurn = player;
+    state->deckCount[player] = floor(Random() * MAX_DECK);
+    state->handCount[player] = floor(Random() * MAX_HAND + 1);
+    state->discardCount[player] = floor(Random() * MAX_DECK);
+
+    // Since adventurer must draw 2 treasure cards, consider case where there are two treasure cards for interesting test results:
+    for (i = 0; i < 2; i++)
     {
-        for (j = 0; j < sizeof(struct gameState); j++)
-        {
-            ((char*)state)[j] = floor(Random() * 256);
-        }
+        r = floor(Random() * state->deckCount[player];
+        if (index == r) continue;
+        else index = r;
+        state->deck[player][index] = copper;
     }
 
-    // Randomly assign players and their decks, hands, and discard piles
-    
-    state->whoseTurn = player;
     return 0;
 }
 
 int testAdventurer(struct gameState* state)
 {
-    int i;
-    int j;
     printf("Beginning random tests for adventurer:\n");
 
     SelectStream(2);
     PutSeed(3);
-
             
 }
 
 int main()
 {
-    srand(time(NULL));
 
+    return 0;
+}

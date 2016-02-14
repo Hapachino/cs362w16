@@ -15,7 +15,7 @@
 #include <time.h> 		//for random number generator
 
 #define TEST_CARD adventurer
-#define NUM_TESTS 5000
+#define NUM_TESTS 100000
  
 int main () {
 	
@@ -49,9 +49,9 @@ int main () {
 		printf("Errors: ");
 		
 		//Setup card options
-		choice1 = -1;
-		choice2 = -1;
-		choice3 = -1;
+		choice1 = rand() % 3;
+		choice2 = rand() % 3;
+		choice3 = rand() % 3;
 		coin_bonus = 0;
 		
 		//Create random game
@@ -268,18 +268,26 @@ int main () {
 		//[8] Check treasure cards are removed from deck/discard
 		//Expected Results: deckCount + discardCount = -2
 		if ( (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]) != (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 2) ){
-			printf("\nCurrent player's hand count: %d, Expected: %d", (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]), (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 2));
+			printf("\nCurrent player's deck + discard count: %d, Expected: %d", (g->deckCount[whoseTurn(g)] + g->discardCount[whoseTurn(g)]), (pre->deckCount[whoseTurn(g)] + pre->discardCount[whoseTurn(g)] - 2));
 			failed = 1;	
 			errors[8]++;						
 		}
 		
-		//[9] Check current player's total cards unchanged (treasure cards just moved from deck/discard to hand)
-		//Expected Results: full deck count unchanged for every card
+		//[9] Check current player's total cards unchanged (treasure cards just moved from deck/discard to hand) EXCEPT test card moved to played
+		//Expected Results: full deck count unchanged for every card, except test card -1
 		for (i = 0; i <= treasure_map; i++){
-			if (fullDeckCount(whoseTurn(g), i, g) != fullDeckCount(whoseTurn(g), i, pre)){
-				printf("\nCurrent player's full count for card %d: %d, Expected: %d", i, fullDeckCount(whoseTurn(g), i, g), fullDeckCount(whoseTurn(g), i, pre));
+			if (i == TEST_CARD){
+				if (fullDeckCount(whoseTurn(g), i, g) != fullDeckCount(whoseTurn(g), i, pre) - 1){
+				printf("\nCurrent player's full count for card %d: %d, Expected: %d", i, fullDeckCount(whoseTurn(g), i, g), fullDeckCount(whoseTurn(g), i, pre) - 1);
 				failed = 1;	
 				errors[9]++;			
+				}
+			} else { 
+				if (fullDeckCount(whoseTurn(g), i, g) != fullDeckCount(whoseTurn(g), i, pre)){
+					printf("\nCurrent player's full count for card %d: %d, Expected: %d", i, fullDeckCount(whoseTurn(g), i, g), fullDeckCount(whoseTurn(g), i, pre));
+					failed = 1;	
+					errors[9]++;			
+				}
 			}
 		}
 
@@ -298,7 +306,7 @@ int main () {
 	
 	//Print test summary
 	printf("-----------------------------------------------------------\n");
-	printf("\tSummary for Random Tests: Adventurer\n");
+	printf("\tSummary for Random Tests: Adventurer Card\n");
 	printf("-----------------------------------------------------------\n");
 	printf("Test Summary:\n");
 	printf("Passed: %d\n", testsPassed);

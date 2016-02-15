@@ -1,22 +1,3 @@
-Testing updateCoins():
-Woot woot, everything passed for unittest1!!
-unittest2
-isGameOver passed all tests!
-
-------- unittest3 - Shuffle -------- 
-shuffle passed all tests!
-
-------- unittest4 - Shuffle -------- 
-Expected Score - 34
-Actual score: -1Expected Score - 41
-Actual score: 0Expected Score - 80 Actual score: 6shuffle passed all tests!
-
-[H[2JTesting myAdventurer()
-=======================================================
-
-=======================================================
-Testing finished for Adventurer
-
 [H[2JTesting mySmithy()
 =======================================================
 Error - Deck Count is not as expected. Test: 0, Actual: 1, Expected: 2

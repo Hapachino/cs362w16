@@ -1,39 +1,24 @@
-CFLAGS = -Wall -fpic -coverage -lm
+# Name: YUNSIK CHOI
+# CS 362 Winter 16
+# Creates randomtestcard.out and randomtestadventurer.out
+# makefile
 
-rngs.o: rngs.h rngs.c
-	gcc -c rngs.c -g  $(CFLAGS)
+CFLAGS = -Wall -coverage -fpic -lm
 
-dominion.o: dominion.h dominion.c rngs.o
-	gcc -c dominion.c -g  $(CFLAGS)
+all: randomtestcard randomtestadventurer runrandomtestcard runrandomtestadventurer
 
-playdom: dominion.o playdom.c
-	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
+randomtestcard: randomtestcard.c dominion.c rngs.c
+	gcc -o randomtestcard randomtestcard.c dominion.c rngs.c $(CFLAGS)
 
-testDrawCard: testDrawCard.c dominion.o rngs.o
-	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
+randomtestadventurer: randomtestadventurer.c dominion.c rngs.c
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.c rngs.c $(CFLAGS)
+	
+runrandomtestcard: randomtestcard
+	./randomtestcard
+	gcov randomtestcard.c -b > randomtestcard.out
+	cat randomtestcard.c.gcov >> randomtestcard.out
 
-badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
-	gcc -o badTestDrawCard -g  badTestDrawCard.c dominion.o rngs.o $(CFLAGS)
-
-testBuyCard: testDrawCard.c dominion.o rngs.o
-	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
-
-testAll: dominion.o testSuite.c
-	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
-
-interface.o: interface.h interface.c
-	gcc -c interface.c -g  $(CFLAGS)
-
-runtests: testDrawCard 
-	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
-
-
-player: player.c interface.o
-	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
-
-all: playdom player testDrawCard testBuyCard badTestDrawCard
-
-clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+runrandomtestadventurer: randomtestadventurer
+	./randomtestadventurer
+	gcov randomtestadventurer.c -b > randomtestadventurer.out
+	cat randomtestadventurer.c.gcov >> randomtestadventurer.out

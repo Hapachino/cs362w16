@@ -81,6 +81,26 @@ runrandomtestadventurer: randomtestadventurer
 	cat dominion.c.gcov >> randomtestadventurer.out
 	./randomtestadventurer  >> randomtestadventurer.out
 
+randomtestcard: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard.out:
+	make clean; make randomtestcard; make runrandomtestcard;
+
+.PHONY: randomtestcard.out
+
+runrandomtestcard: randomtestcard
+	./randomtestcard > /dev/null
+	touch randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+	./randomtestcard  >> randomtestcard.out
+
+randomtestadventurer.out:
+	make clean; make randomtestadventurer; make runrandomtestadventurer;
+
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 

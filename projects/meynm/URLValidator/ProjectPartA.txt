@@ -1,0 +1,62 @@
+Write-up of testIsValid() from UrlValidator test code
+
+What testIsValid() does:
+
+It is using a combinatorial method of testing. It starts by checking the isValid method against a known good URL as a sanity 
+check. Then it puts together URLs from some basic parts. In the testers’ analysis, there are 5 basic parts to a URL:
+
+    Scheme ("http://”, "ftp://", etc.)
+    Authority ("www.google.com")
+    Port
+    Path
+    Query
+    
+The test function builds a URL string by joining together pre-defined values of each URL component, resulting in URL’s that are
+combinations of each type of each component.
+
+This test is combinatorial testing in the sense that it loops through all possible combinations of URL components. A limitation 
+of this test is that the URL components are pre-defined, so there are only a few examples of each type of component, covering a 
+tiny fraction of the possible input space. So it’s not a true combinatorial test like what we read about, because it doesn’t 
+cover all possible inputs supported by the URL validator. Doing so would require testing all possible strings from length 0 to 
+the maximum length accepted by the validator. For example, Internet Explorer accepts up to about 2000 characters in a URL, so 
+testing all possible inputs would mean testing over 100^2000 cases. And it would be necessary to determine for each input 
+whether it is valid or not, so this is probably a good way to come up with a variety of inputs.
+
+Total number of URLs tested
+
+A while() loop in test function keeps testing until incrementTestPartsIndex() returns false, which should happen when each array
+of objects has been cycled through once. Given the tested URL component counts:
+
+    9 scheme
+    19 authority
+    7 port
+    10 path
+    3 query
+    
+We get a total for possible URL’s: 3x10x7x19x9 = 35,910
+        
+Example of valid URL tested:
+
+http://www.google.com:80/test1?action=view
+
+Example of invalid URL tested:
+
+://:65a/$23
+
+Do you think testIsValid() is very different than the unit tests and card tests that we wrote in terms of concepts & complexity?
+
+This probably depends somewhat on the individual, because we all wrote different unit tests and some probably wrote more complex
+ones than others. But essentially, no, it does not seem very different. There’s more overhead involved in setting up the test 
+inputs, but similar idea: just use a variety of inputs and see if you get the results you expect.
+
+Some of the functions in dominion could be tested in a similar (e.g. combinatorial way). A very thorough test suite for 
+playCard(), for example, could test the function for different game sizes, all players in a game, and for all possible cards in 
+the game. Most of the focus in the dominion card and function unit tests was on making sure the postconditions (changes to the 
+game state) were as expected, but the urlValidator testing is all about making sure the return value is as expected. The dominion
+tests use and modified a GameState object for testing. This object is never seen or used by the end-user (the game player). The
+methods tested were also methods that the player would never directly call. Those tests were Unit tests. testIsValid, on the 
+other hand, tests a method that is directly used by the API client, and the return value is one that is returned to the user.
+Formulating test inputs for the URL validator is more work because the input space is basically all possible strings, as opposed 
+to the inputs in Dominion, which are all integers within certain ranges. However, testing the validator for correctness of output
+is easier, because all you have to know is whether the input provided contains an invalid component. If so, the test should fail,
+otherwise it should succeed.

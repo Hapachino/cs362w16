@@ -98,6 +98,39 @@ static void generateRandDeck()
 	}
 }
 
+/*
+	Given the deck in G calculate how many cards will be discarded when adventurer card is played
+*/
+static int getExpectedDiscardCardCount()
+{
+	// if deck is empty we will use cards from discard array and we know two cards should be discarded in this case
+	if (G.deckCount[thisPlayer] <= 0)
+	{
+		return 2;
+	}
+	int trCardCount = 0;
+	int noTrCardCount = 0;
+	for (i = G.deckCount[thisPlayer] - 1; i >= 0; i--)
+	{
+		if (trCardCount == 2)
+		{
+			return noTrCardCount;
+		}
+		if (G.deck[thisPlayer][i] == copper || G.deck[thisPlayer][i] == silver || G.deck[thisPlayer][i] == gold)
+		{
+			trCardCount++;
+		}
+		else
+		{
+			noTrCardCount++;
+		}
+	}
+
+	// if we get here it means there is no enough treasure cards in deck and we need to draw from discard cards. Unfortunately since the 
+	// deck wiil be shuffled after moving cards from discard cards pile, we can't determine the sequence beforehands. Will return -1 here
+	return -1;
+}
+
 
 
 static char * test_adventurer() {
@@ -118,8 +151,10 @@ static char * test_adventurer() {
 	printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newcard -1 );
 	printf("coins = %d, expected = %d\n", testG.coins, G.coins);
 	printf("action = %d, expected = %d\n", testG.numActions, G.numActions);
-	//bug z-1>=0
-	mu_assert("-error: card discard not correct", G.discardCount[thisPlayer] == testG.discardCount[thisPlayer] - newcard);
+	int expectedNonTreatureCardCount = getExpectedDiscardCardCount();
+	if (expectedNonTreatureCardCount>=0)
+		//hit bug z-1>=0
+		mu_assert("-error: card discard not correct", G.discardCount[thisPlayer] == testG.discardCount[thisPlayer] - expectedNonTreatureCardCount);
 	mu_assert("-error: handcount not correct", testG.handCount[thisPlayer] == G.handCount[thisPlayer] + newcard - 1);
 	mu_assert("-error: last 2 cards not treasure", istreasure == 1);
 	mu_assert("-error: coins not correct", testG.coins == G.coins );

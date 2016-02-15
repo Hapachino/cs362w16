@@ -1252,13 +1252,16 @@ int updateCoins(int player, struct gameState *state, int bonus)
  *  - int currentPlayer: integer representing current player
  *  - int handPos: integer representing current position of card in the hand
  * ********************************************/
-void play_smithy(struct gameState *state, int currentPlayer,int handPos){
+int play_smithy(struct gameState *state, int currentPlayer, int handPos){
   int i;
   for (i = 0; i < 3; i++)
   {
-    drawCard(currentPlayer, state);
+    if (drawCard(currentPlayer, state) == -1){
+      return -1;
+    }
   }
 
+  return 0;
 }
 
 /**********************************************
@@ -1267,17 +1270,20 @@ void play_smithy(struct gameState *state, int currentPlayer,int handPos){
  * Output:
  * Description: Draw until 2 treasure cards are drawn. Discard all others drawn. 
  * ********************************************/
-void play_adventurer(struct gameState *state, int currentPlayer,int handPos){
+int play_adventurer(struct gameState *state, int currentPlayer,int handPos){
   int drawntreasure = 0;
   int temphand[MAX_HAND];
   int z = 0;
   int cardDrawn;
+  //add error checkers 
 
   while(drawntreasure < 2){
     if (state->deckCount[currentPlayer] < 1) {//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
-    drawCard(currentPlayer, state);
+    if (drawCard(currentPlayer, state) == -1){
+      return -1;
+    }
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];//top card of hand is most recently drawn card.
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
       drawntreasure++;
@@ -1291,6 +1297,11 @@ void play_adventurer(struct gameState *state, int currentPlayer,int handPos){
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
   }
+
+  if (discardCard(handPos, currentPlayer, state, 0) == -1){
+    return -1;
+  }
+  return 0;
 }
 
 /**********************************************

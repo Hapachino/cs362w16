@@ -5,6 +5,22 @@
 #include "rngs.h"
 #include <stdio.h>
 
+int testHelperSetUpState(struct gameState* state)
+{
+    int player = 0;
+    int seed = 1000;
+    int numPlayers = 2;
+    int cards[10] = {adventurer, council_room, feast, gardens, mine,
+                     remodel, smithy, village, baron, great_hall};
+
+    if (initializeGame(numPlayers, cards, seed, state) != 0)
+    {
+        return 0;
+    }
+    state->whoseTurn = player;
+    return 1;
+}
+
 // This function differs from the original initializeGame() in dominion.c in
 // that it does not call shuffle() and does not draw cards for first player and
 // has different initial cards in each deck for easier debugging

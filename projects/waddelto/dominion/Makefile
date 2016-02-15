@@ -3,6 +3,28 @@ CFLAGS = -std=c99 -Wall -fpic -coverage -lm
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
 
+randomtester: dominion.o test_helper.o rngs.o rtestadventurer.o cardtest2.o rtestminion.o
+	gcc -o randomtester -g randomtester.c dominion.o rngs.o test_helper.o $(CFLAGS)
+
+randomtestcard.out: clean randomtestcard.c dominion.o test_helper.o rngs.o 
+	gcc -o randomtestcard randomtestcard.c -g dominion.o rngs.o test_helper.o $(CFLAGS)
+	touch randomtestcard.out
+	./randomtestcard 2 >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+
+randomtestadventurer.out: clean randomtestadventurer.c dominion.o test_helper.o rngs.o 
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o test_helper.o $(CFLAGS)
+	touch randomtestadventurer.out
+	./randomtestadventurer 3 >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+
+
+rtestadventurer.o: rtestadventurer.c
+	gcc -c rtestadventurer.c -g $(CFLAGS)
+
 testcontrol: dominion.o test_helper.o test1.o test2.o test3.o test4.o cardtest1.o cardtest2.o cardtest3.o cardtest4.o
 	gcc -o testcontrol -g testcontrol.c test_helper.o dominion.o rngs.o $(CFLAGS)
 
@@ -66,4 +88,4 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom playdom test test player player testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out unittestresult.out
+	rm -f *.o playdom playdom test test player player testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out 

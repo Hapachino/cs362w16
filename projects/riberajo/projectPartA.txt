@@ -1,0 +1,33 @@
+Group:
+Josh Ribera
+Ava Petley
+Kyle Johnson
+
+Final Project Part A
+
+Explain testIsValid Function of UrlValidator test code
+testIsValid() called without arguments will call the constructor passing the testObjects and the options. This function takes in an array of objects that together compose a url called testObjects and a long named options. Options specifies additional requirements for the url. It is currently set for all schemes but you can set it to other options such as no fragments. The url parts include the scheme, authority, port, path, query, and options and adding them together in the correct order to create a pseudo URL which is then tested. In order for a url to be valid all parts of the url must be valid. It begins by taking a piece of each part and appending them to the URL. One thing to note is that it keeps track of the boolean value of each part. For instance, if it takes one invalid part from authority and the rest are valid then the test expects the result to be false when tested as a valid URL. If the status is expected then the test prints a ‘.’ character otherwise it prints an ‘X’ to indicate an unexpected result. Near the end of the function there is a call to another function called incrementTestPartsIndex which returns if true/false based on whether or not the test parts index has reached it’s max.
+
+Give how many total number of urls it is testing. 
+
+Based on the number of loops from incrementTestPartsIndex:
+
+len(testUrlScheme) = 9, len(testUrlAuthority) = 19, len(testUrlPort) = 7,  len(testPath) = 10, len(testUrlQuery) = 3
+
+{9 * 19 * 7 * 10 * 3} = 35,910
+
+
+Also, explain how it is building all the urls. 
+
+The testIsValid function builds the urls by looping through each of the 5 url component parts of the given testObjects (testUrlScheme, testUrlAuthority, testUrlPort, testPath, testUrlQuery) using the testPartsIndexIndex and calls to the incrementTestPartsIndex method to create urls with all available ResultPair contents created in the main function. Each part of the url is appended to a string to form a complete url which is then passed as a parameter to the isValid method. This creates urls using all of the possible combinations of all of the parts.
+	
+Give an example of valid url being tested and an invalid url being tested by testIsValid() method.
+
+Valid:	http://go.com	
+Invalid: 3ht://1.2.3.4.5:-1/$23 
+
+Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines.
+
+In short, we feel that in a real world test the complexity is greater than in our dominion tests. A lot of this has to do with the sheer amount of possible URL permutations and devising tests that accurately test a large number of URLs or options. However, the fundamentals between what we are doing in class and the real world example are very similar. For example, if we take the testIsValid function. It has assertions, it has conditional statements that print ‘.’ and ‘x’ to indicate the status all of which are things we have done in class.
+
+

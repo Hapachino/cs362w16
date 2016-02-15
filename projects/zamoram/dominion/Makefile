@@ -38,6 +38,7 @@ all: playdom player
 clean:
 	rm -f *.o playdom.exe playdom test.exe testDrawCard badTestDrawCard test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
 	rm -f unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.out
+	rm -f randomtestadventurer randomtestcard
 	
 unittestresults.out: dominion.o rngs.o unittest1.c
 	make all
@@ -65,3 +66,23 @@ rununittests:
 	./cardtest2 >> unittestresults.out
 	./cardtest3 >> unittestresults.out
 	./cardtest4 >> unittestresults.out
+	
+randomtestadventurer:  dominion.o rngs.o randomtestadventurer.c
+	gcc -g -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestcard:  dominion.o rngs.o randomtestcard.c
+	gcc -g -o randomtestcard randomtestcard.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestadventurer.out: dominion.o rngs.o randomtestadventurer.c
+	make all
+	make randomtestadventurer
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	
+randomtestcard.out: dominion.o rngs.o randomtestcard.c
+	make all
+	make randomtestcard
+	./randomtestcard >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out

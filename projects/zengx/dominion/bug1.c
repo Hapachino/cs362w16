@@ -69,6 +69,23 @@ However in drawcard() when deck card is 0, they used discardCard for shuffler.
 4: cardtest1.c for smithy
 BUG1: find the bug from last week. only draw 2 card instead of 3
 
+5:unittest1.c for discardCard:
+
+BUG1: didn't check if handPos is valid or not(when handPos > handcount) 
+BUG2: As I mentioned in 3.BUG4, if discard array and count tracking the discard(no use anymore) in this game, it should increase when trash flag is on.
+But it is not change here.
+
+6:unittest2.c for gainCard:
+BUG1: for int supplyPos if invalid number is passed in, ie, -1, it will hit exception
+BUG2: in the comments it said toFlag = 0 : add to discard, but in reality when any number other than 1 or 2 is passed it will get added to discard 
+
+7:unittest3.c for updateCoin
+No Bugs Found
+
+8:unittest4.c for isgameover
+NO Bugs Found
+
+
 
 
 

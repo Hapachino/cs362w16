@@ -11,6 +11,21 @@ dominion.o: dominion.h dominion.c rngs.o
 compare_gamestates.o: compare_gamestates.h compare_gamestates.c dominion.o
 	gcc -c compare_gamestates.c -g $(CFLAGS)
 
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o 
+	echo "Results from running the random tester on adventurer card:" >> randomtestsadventurer.out
+	gcc -o randomtestadventurer dominion.o rngs.o randomtestadventurer.c $(CFLAGS)
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+
+
+randomtestcard.out: randomtestcard.c dominion.o rngs.o 
+	echo "Results from running the random tester on smithy card:" >> randomtestcard.out
+	gcc -o randomtestcard dominion.o rngs.o randomtestcard.c $(CFLAGS)
+	./randomtestcard >> randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
+
+
+
 unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.o rngs.o
 	echo "Result for running dominion function unit tests:" >> tests.out
 	
@@ -91,10 +106,16 @@ testCard4: cardtest4.c dominion.o rngs.o
 testEqual: equaltest.c dominion.o rngs.o compare.o
 	gcc -o equaltest dominion.o rngs.o compare.o equaltest.c $(CFLAGS)
 
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o 
+	gcc -o randomtestadventurer dominion.o rngs.o randomtestadventurer.c $(CFLAGS)
+
+randomtestcard: randomtestcard.c dominion.o rngs.o 
+	gcc -o randomtestcard dominion.o rngs.o randomtestcard.c $(CFLAGS)
+
 clean:
-	rm unittestresult.out
+	rm unittestresult.out rm randomtestadventurer.out randomtestcard.out
 
 cleanall: 
-	rm unittestresult.out unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcda *.gcno *.gcov dominion.o
+	rm unittestresult.out unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcda *.gcno *.gcov dominion.o randomtestadventurer randomtestcard
 
 	

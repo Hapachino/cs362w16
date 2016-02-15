@@ -48,6 +48,48 @@ int containsCard(int card, int array[], int arrayCount) {
   return 0;   /* Return 0 (not found) by default */
 }
 
+/* This function searches the provided array for the card, returning the index
+   of the card if it's found */
+int handIndex(int card, int *array, int arrayCount) {
+  int i = 0;
+
+  /* Search the target array for the provided card */
+  for (i = 0; i < arrayCount; i++) {
+    if (array[i] == card) {
+      /* Return index if the card was found */
+      return i;
+    }
+  }
+
+  return -1;   /* Return -1 (not found) by default */
+}
+
+/* This function simply determines whether the passed card is a treasure card
+   (copper, silver, or gold) */
+int isTreasureCard(int card) {
+  if (card == copper || card == silver || card == gold) {
+    /* Return 1 (is a treasure card) if the card is a treasure card */
+    return 1;
+  }
+
+  return 0;   /* Return 0 (not a treasure card) by default */
+}
+
+/* Goes through the player's hand to determine the number of treasure cards */
+int treasureCardsInHand(int player, struct gameState *state) {
+  int i = 0;
+  int count = 0;
+
+  for (i = 0; i < state->handCount[player]; i++) {
+    if (isTreasureCard(state->hand[player][i])) {
+      /* Increment the count when we find a treasure card */
+      count += 1;
+    }
+  }
+
+  return count;
+}
+
 /* This function compares two game states, stores the results of the
    comparisons in the passed gameStateComparison struct, and also returns
    an int indicating whether all the comparisons were equal (0 for equal, and
@@ -146,9 +188,9 @@ int compareState(
   return changed;
 }
 
-/* This function is prints the contents of an array of integers, for debugging
+/* This function prints the contents of an array of integers, for debugging
    purposes */
-int printIntArray(int array[], int arrayCount) {
+void printIntArray(int array[], int arrayCount) {
   int i = 0;
 
   /* Iterate through the array and print each of the integers */
@@ -159,6 +201,157 @@ int printIntArray(int array[], int arrayCount) {
       printf("%d\n", array[i]);
     }
   }
+}
 
-  return 0;   /* Return 0 (not found) by default */
+void enumToCardName(int card, char *name, int nameLength) {
+  /* Clear out any existing contents of the provided name string */
+  bzero(name, nameLength);
+
+  /* Copy the name of the provided card into the name string */
+  switch (card) {
+    case curse:
+      sprintf(name, "curse");
+      break;
+    case estate:
+      sprintf(name, "estate");
+      break;
+    case duchy:
+      sprintf(name, "duchy");
+      break;
+    case province:
+      sprintf(name, "province");
+      break;
+    case copper:
+      sprintf(name, "copper");
+      break;
+    case silver:
+      sprintf(name, "silver");
+      break;
+    case gold:
+      sprintf(name, "gold");
+      break;
+    case adventurer:
+      sprintf(name, "adventurer");
+      break;
+    case council_room:
+      sprintf(name, "council_room");
+      break;
+    case feast:
+      sprintf(name, "feast");
+      break;
+    case gardens:
+      sprintf(name, "gardens");
+      break;
+    case mine:
+      sprintf(name, "mine");
+      break;
+    case remodel:
+      sprintf(name, "remodel");
+      break;
+    case smithy:
+      sprintf(name, "smithy");
+      break;
+    case village:
+      sprintf(name, "village");
+      break;
+    case baron:
+      sprintf(name, "baron");
+      break;
+    case great_hall:
+      sprintf(name, "great_hall");
+      break;
+    case minion:
+      sprintf(name, "minion");
+      break;
+    case steward:
+      sprintf(name, "steward");
+      break;
+    case tribute:
+      sprintf(name, "tribute");
+      break;
+    case ambassador:
+      sprintf(name, "ambassador");
+      break;
+    case cutpurse:
+      sprintf(name, "cutpurse");
+      break;
+    case embargo:
+      sprintf(name, "embargo");
+      break;
+    case outpost:
+      sprintf(name, "outpost");
+      break;
+    case salvager:
+      sprintf(name, "salvager");
+      break;
+    case sea_hag:
+      sprintf(name, "sea_hag");
+      break;
+    case treasure_map:
+      sprintf(name, "treasure_map");
+      break;
+    default:
+      sprintf(name, "UNKNOWN_CARD (%d)", card);
+  }
+}
+
+/* Print the members of a gameState struct in a readable manner, for
+   debugging */
+void printGameState(struct gameState *state) {
+  int i = 0, j = 0;
+  char cardName[CARD_NAME_LENGTH];
+
+  printf("numPlayers: %d\n", state->numPlayers);
+
+  for (i = 0; i < treasure_map+1; i++) {
+    enumToCardName(i, cardName, CARD_NAME_LENGTH);
+    printf("supplyCount[%s]: %d\n", cardName, state->supplyCount[i]);
+  }
+
+  for (i = 0; i < treasure_map+1; i++) {
+    enumToCardName(i, cardName, CARD_NAME_LENGTH);
+    printf("embargoTokens[%s]: %d\n", cardName, state->embargoTokens[i]);
+  }
+
+  printf("outpostPlayed: %d\n", state->outpostPlayed);
+  printf("outpostTurn: %d\n", state->outpostTurn);
+  printf("whoseTurn: %d\n", state->whoseTurn);
+  printf("phase: %d\n", state->phase);
+  printf("numActions: %d\n", state->numActions);
+  printf("coins: %d\n", state->coins);
+  printf("numBuys: %d\n", state->numBuys);
+
+  for (i = 0; i < state->numPlayers; i++) {
+    for (j = 0; j < state->handCount[i]; j++) {
+      enumToCardName(state->hand[i][j], cardName, CARD_NAME_LENGTH);
+      printf("hand[%d][%d]: %s\n", i, j, cardName);
+    }
+
+    printf("handCount[%d]: %d\n", i, state->handCount[i]);
+  }
+
+  for (i = 0; i < state->numPlayers; i++) {
+    for (j = 0; j < state->deckCount[i]; j++) {
+      enumToCardName(state->deck[i][j], cardName, CARD_NAME_LENGTH);
+      printf("deck[%d][%d]: %s\n", i, j, cardName);
+    }
+
+    printf("deckCount[%d]: %d\n", i, state->deckCount[i]);
+  }
+
+  for (i = 0; i < state->numPlayers; i++) {
+    for (j = 0; j < state->discardCount[i]; j++) {
+      enumToCardName(state->discard[i][j], cardName, CARD_NAME_LENGTH);
+      printf("discard[%d][%d]: %s\n", i, j, cardName);
+    }
+
+    printf("discardCount[%d]: %d\n", i, state->discardCount[i]);
+  }
+
+  for (i = 0; i < state->playedCardCount; i++) {
+    enumToCardName(state->playedCards[i], cardName, CARD_NAME_LENGTH);
+    printf("playedCards[%d]: %s\n", i, cardName);
+  }
+
+  printf("playedCardCount: %d\n", state->playedCardCount);
 }

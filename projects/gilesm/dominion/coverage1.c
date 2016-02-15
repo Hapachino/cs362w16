@@ -2,7 +2,8 @@ CS 362 - Software Engineering II
 Assignment 3
 Coverage Summary
 My final line coverage percentace for dominion.c after running four unit tests and
-four card tests was 31.34%. Considering the number of functions available for
+four card tests was 31.34%. Similarly, looking at dominion.c as a whole, I executed
+31.65% of available branches. Considering the number of functions available for
 testing compared to the 8 that I selected, this seems to be an appropriate number. 
 There were several areas of the file not under consideration, so I will give a brief
 summary of coverage for each of the functions tested.

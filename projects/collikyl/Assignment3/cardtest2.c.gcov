@@ -1,0 +1,549 @@
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "dominion_helpers.h"
+        -:    2:#include "dominion.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include "interface.h"
+        -:    5:#include <stdio.h>
+        -:    6:#include <math.h>
+        -:    7:#include <stdlib.h>
+        -:    8:#include <string.h>
+        -:    9:
+        -:   10:
+        -:   11:
+        -:   12:
+        -:   13:#define DRAWCOUNT0 2
+        -:   14:#define DRAWCOUNT1 0
+        -:   15:
+        -:   16:#define DISCARDCOUNT0 0
+        -:   17:#define DISCARDCOUNT1 0
+        -:   18:
+        -:   19:#define TESTCARDVAL 7 
+        -:   20:
+        -:   21:#define PLAYEDCARDTEST -1
+        -:   22://Global Supply Value changes. 
+        -:   23:#define COPPERCHANGE 0
+        -:   24:#define SILVERCHANGE 0
+        -:   25:#define GOLDCHANGE 0
+        -:   26:#define ESTATECHANGE 0
+        -:   27:#define DUCHYCHANGE 0
+        -:   28:#define PROVINCECHANGE 0
+        -:   29:#define CURSECHANGE 0 
+        -:   30:
+        -:   31:#define TESTACTION -1
+        -:   32:#define TESTBUYS 0
+        -:   33:#define TESTCOINS 2 
+        -:   34:
+        -:   35:#define CHOICE1 0
+        -:   36:#define CHOICE2 0
+        -:   37:#define CHOICE3 0
+        -:   38:
+function displaySupply called 0 returned 0% blocks executed 0%
+    #####:   39:void displaySupply(struct gameState *preTest)
+        -:   40:{
+    #####:   41:	printf("\n\n\tVictory Point Data\n");
+call    0 never executed
+    #####:   42:	printf("Estate Count: %d \t", preTest->supplyCount[estate]);
+call    0 never executed
+    #####:   43:	printf("Duchy Count: %d \t", preTest->supplyCount[duchy]);
+call    0 never executed
+    #####:   44:	printf("Province Count: %d \t", preTest->supplyCount[province]);
+call    0 never executed
+    #####:   45:	printf("Curse Count: %d",preTest->supplyCount[curse]);
+call    0 never executed
+    #####:   46:	printf("\n\n\tTreasure Data\n");
+call    0 never executed
+    #####:   47:	printf("Copper Count: %d \t", preTest->supplyCount[copper]);
+call    0 never executed
+    #####:   48:	printf("Silver Count: %d \t", preTest->supplyCount[silver]);
+call    0 never executed
+    #####:   49:	printf("Gold Count: %d \t", preTest->supplyCount[gold]);
+call    0 never executed
+        -:   50:
+    #####:   51:}
+        -:   52:
+function _getDeck called 2 returned 100% blocks executed 86%
+        2:   53:int *_getDeck(struct gameState *g, int player)
+        -:   54:{	
+        -:   55:	int deckIndex;
+        2:   56:	int deckCount = g->deckCount[player];
+        2:   57:	if(deckCount == 0) return 0;
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        2:   58:	int *deck = malloc(sizeof(int*)*deckCount);
+       17:   59:	for(deckIndex = 0; deckIndex < deckCount; deckIndex++)
+branch  0 taken 88%
+branch  1 taken 12% (fallthrough)
+        -:   60:	{
+       15:   61:		deck[deckIndex] = g->deck[player][deckIndex];
+        -:   62:	}
+        2:   63:	return deck; 
+        -:   64:}
+        -:   65:
+function _getHand called 6 returned 100% blocks executed 100%
+        6:   66:int *_getHand(struct gameState *g, int player)
+        -:   67:{
+        -:   68:	int handIndex;
+        6:   69:	int handCount = g->handCount[player];
+        6:   70:	if(handCount == 0) return 0;
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+        3:   71:	int *hand = malloc(sizeof(int*)*handCount);
+       24:   72:	for(handIndex = 0; handIndex < handCount; handIndex++)
+branch  0 taken 88%
+branch  1 taken 13% (fallthrough)
+        -:   73:	{
+       21:   74:		hand[handIndex] = g->hand[player][handIndex];
+        -:   75:	}
+        3:   76:	return hand; 
+        -:   77:}
+        -:   78:
+function _getPlayed called 0 returned 0% blocks executed 0%
+    #####:   79:int *_getPlayed(struct gameState *g, int player)
+        -:   80:{
+        -:   81:	int playedIndex;
+    #####:   82:	int playedCount = g->playedCardCount;
+    #####:   83:	if(playedCount == 0) return 0;
+branch  0 never executed
+branch  1 never executed
+    #####:   84:	int *played = malloc(sizeof(int*)*playedCount);
+    #####:   85:	for(playedIndex = 0; playedIndex < playedCount; playedIndex++)
+branch  0 never executed
+branch  1 never executed
+        -:   86:	{
+    #####:   87:		played[playedIndex] = g->playedCards[playedIndex];
+        -:   88:	}
+    #####:   89:	return played; 
+        -:   90:}
+        -:   91:
+function _getDiscard called 0 returned 0% blocks executed 0%
+    #####:   92:int *_getDiscard(struct gameState *g, int player)
+        -:   93:{
+        -:   94:	int discardIndex;
+    #####:   95:	int discardCount = g->discardCount[player];
+    #####:   96:	if(discardCount == 0) return 0;
+branch  0 never executed
+branch  1 never executed
+    #####:   97:	int *discard = malloc(sizeof(int*)*discardCount);
+    #####:   98:	for(discardIndex = 0; discardIndex < discardCount; discardIndex++)
+branch  0 never executed
+branch  1 never executed
+        -:   99:	{
+    #####:  100:		discard[discardIndex] = g->discard[player][discardIndex];
+        -:  101:	}
+    #####:  102:	return discard; 
+        -:  103:}
+        -:  104:
+function _getSupp called 2 returned 100% blocks executed 100%
+        2:  105:int *_getSupp(struct gameState *g)
+        -:  106:{
+        2:  107:	int es = g->supplyCount[1];
+        2:  108:	int du = g->supplyCount[2];
+        2:  109:	int pr = g->supplyCount[province];
+        2:  110:	int cu = g->supplyCount[curse];
+        2:  111:	int co = g->supplyCount[copper];
+        2:  112:	int si = g->supplyCount[silver];
+        2:  113:	int go = g->supplyCount[gold];
+        2:  114:	int *supply = malloc(sizeof(int*)*7);
+        2:  115:	int hold[7] = {cu,es, du, pr, co, si, go};
+        2:  116:	memcpy(supply,(int*)hold,sizeof(int)*7);
+        2:  117:	return supply;
+        -:  118:}
+        -:  119:
+        -:  120:
+function _getUtility called 2 returned 100% blocks executed 100%
+        2:  121:int *_getUtility(struct gameState *g)
+        -:  122:{
+        2:  123:	int a = g->numActions;
+        2:  124:	int c = g->coins;
+        2:  125:	int b = g->numBuys;
+        2:  126:	int *utility = malloc(sizeof(int*)*3);
+        2:  127:	int hold[3] = {a,b,c};
+        2:  128:	memcpy(utility,(int*)hold,sizeof(int)*3);
+        2:  129:	return utility;
+        -:  130:}
+        -:  131:
+function displayPlayers called 0 returned 0% blocks executed 0%
+    #####:  132:void displayPlayers(struct gameState *g, int player)
+        -:  133:{
+        -:  134:	int playerIndex;
+    #####:  135:	printf("\n\n\tPlayer Data\n");	
+call    0 never executed
+    #####:  136:	for(playerIndex = 0; playerIndex <= 1; playerIndex++)
+branch  0 never executed
+branch  1 never executed
+        -:  137:	{
+    #####:  138:		printf("Player %d: \tDeck Count: %d \t\tHand Count: %d \t\tDiscard Count %d\n\n",playerIndex,g->deckCount[playerIndex],g->handCount[playerIndex],g->discardCount[player]);
+call    0 never executed
+        -:  139:	}
+    #####:  140:}
+        -:  141:
+function insertCard called 1 returned 100% blocks executed 100%
+        1:  142:void insertCard(struct gameState *g,int player)
+        -:  143:{
+        1:  144:	int handCount = g->handCount[player];
+        1:  145:	g->hand[player][handCount] = TESTCARDVAL;
+        1:  146:	g->handCount[player]+=1;
+        1:  147:}
+        -:  148:
+function display called 0 returned 0% blocks executed 0%
+    #####:  149:void display(struct gameState *g,int player)
+        -:  150:{
+    #####:  151:	printSupply(g);
+call    0 never executed
+    #####:  152:	displayPlayers(g,player);
+call    0 never executed
+    #####:  153:	printDeck(player,g);
+call    0 never executed
+    #####:  154:	printHand(player,g);
+call    0 never executed
+    #####:  155:	printDiscard(player,g);
+call    0 never executed
+    #####:  156:	printDeck(player+1,g);
+call    0 never executed
+    #####:  157:	printHand(player+1,g);
+call    0 never executed
+    #####:  158:	printDiscard(player+1,g);
+call    0 never executed
+    #####:  159:}
+        -:  160:
+function testDraw called 1 returned 100% blocks executed 74%
+        1:  161:void testDraw(struct gameState *preTest,struct gameState *postTest,int player)
+        -:  162:{
+        1:  163:	printf("\n\tTesting Draw Specifications\n");
+call    0 returned 100%
+        -:  164:	int i,c;
+        1:  165:	int countTest[2] = {DRAWCOUNT0,DRAWCOUNT1};
+        1:  166:	int flag = 0;
+        3:  167:	for(c = 0; c <= 1; c++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  168:	{
+        2:  169:		int *deck = _getDeck(preTest,player+c);
+call    0 returned 100%
+        2:  170:		int *hand = _getHand(postTest,player+c);
+call    0 returned 100%
+        2:  171:		int diffDeck = preTest->deckCount[player+c] - postTest->deckCount[player+c]; //check if # of cards drawn were correct
+        2:  172:		if(diffDeck!=countTest[c])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  173:		{
+    #####:  174:			printf("Error in deck count for player %d! Player deck count = %d instead of %d\n",diffDeck,countTest[c]);
+call    0 never executed
+    #####:  175:			flag  = 1;
+        -:  176:		}
+        4:  177:		for(i=1;i<=countTest[c];i++)
+branch  0 taken 50%
+branch  1 taken 50% (fallthrough)
+        -:  178:		{
+        2:  179:			if(deck[preTest->deckCount[player]-i] != hand[postTest->handCount[player]-i])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  180:			{
+    #####:  181:				printf("Error, mistmached card drawn for player %d! Did not come from top of deck\n",player);
+call    0 never executed
+    #####:  182:				flag = 1;
+        -:  183:			}
+        -:  184:		}
+        2:  185:		free(deck);
+        2:  186:		free(hand);
+        -:  187:	}
+        1:  188:	if(flag == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:  189:	{
+        1:  190:		printf("Draw Test passed.\n");
+call    0 returned 100%
+        -:  191:	}
+        -:  192:	else
+        -:  193:	{
+    #####:  194:		printf("Draw Test failed.\n");
+call    0 never executed
+        -:  195:	}
+        1:  196:}
+        -:  197:
+function testHand called 1 returned 100% blocks executed 72%
+        1:  198:void testHand(struct gameState *preTest, struct gameState *postTest, int player)
+        -:  199:{
+        -:  200:	int c,i;
+        1:  201:	int flag = 0;
+        1:  202:	int offSet[2] = {DRAWCOUNT0,DRAWCOUNT1};
+        1:  203:	printf("\n\tTesting Hand Specifications\n");
+call    0 returned 100%
+        3:  204:	for(c = 0; c <= 1; c++) //player index
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  205:	{
+        2:  206:		int *preHand = _getHand(preTest,player+c);
+call    0 returned 100%
+        2:  207:		int *postHand = _getHand(postTest,player+c);
+call    0 returned 100%
+        5:  208:		for(i = 0; i <= preTest->handCount[player+c] - offSet[player+c]-1; i++)
+branch  0 taken 60%
+branch  1 taken 40% (fallthrough)
+        -:  209:		{
+        3:  210:			if(preHand[i] != postHand[i])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  211:			{
+        -:  212:				char name[50];
+        -:  213:				char name2[50];
+    #####:  214:				cardNumToName(preHand[i],name);
+call    0 never executed
+    #####:  215:				cardNumToName(postHand[i],name2);
+call    0 never executed
+    #####:  216:				printf("Error, hand for player %d altered incorrectly. Card at position %d is %s. Should be %s\n",player+c,i,name2,name);
+call    0 never executed
+    #####:  217:				flag = 1;
+        -:  218:			}
+        -:  219:		}
+        2:  220:		free(preHand);
+        2:  221:		free(postHand);
+        -:  222:	}
+        1:  223:	if(flag == 1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  224:	{
+    #####:  225:		printf("Hand Test failed\n");
+call    0 never executed
+        -:  226:	}
+        -:  227:	else
+        -:  228:	{
+        1:  229:		printf("Hand Test passed\n");
+call    0 returned 100%
+        -:  230:	}
+        1:  231:}
+        -:  232:
+function testDiscard called 1 returned 100% blocks executed 71%
+        1:  233:void testDiscard(struct gameState *preTest,struct gameState *postTest, int player)
+        -:  234:{
+        1:  235:	printf("\n\tTesting Discard Specifications\n");
+call    0 returned 100%
+        -:  236:	int c;
+        1:  237:	int countTest[2] = {DISCARDCOUNT0,DISCARDCOUNT1};
+        1:  238:	int flag = 0;
+        3:  239:	for(c = 0; c <= 1; c++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  240:	{
+        2:  241:		int diff = postTest->discardCount[player+c] - preTest->discardCount[player+c];
+        2:  242:		if(diff != countTest[c])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  243:		{
+    #####:  244:			printf("Error discarding cards for player %d! Player discarded %d instead of %d\n",c,diff,countTest[c]);
+call    0 never executed
+    #####:  245:			flag = 1;
+        -:  246:		}
+        2:  247:		if(flag == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:  248:		{
+        2:  249:			printf("Discard test passed for player: %d\n",c);
+call    0 returned 100%
+        -:  250:		}
+        -:  251:		else
+        -:  252:		{
+    #####:  253:			printf("Discard test failed for player: %d\n",c);
+call    0 never executed
+        -:  254:		}
+        2:  255:		flag = 0;
+        -:  256:	}
+        1:  257:	if(flag == 1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  258:	{
+    #####:  259:		printf("Discard Test failed.\n");
+call    0 never executed
+        -:  260:	}
+        -:  261:	else
+        -:  262:	{
+        1:  263:		printf("Discard Test passed.\n");
+call    0 returned 100%
+        -:  264:	}
+        1:  265:}
+        -:  266:
+function testSupply called 1 returned 100% blocks executed 71%
+        1:  267:void testSupply(struct gameState *preTest,struct gameState *postTest)
+        -:  268:{
+        -:  269:	int i;
+        -:  270:	char name[50];
+        1:  271:	int flag = 0;
+        1:  272:	int *supplyPre = _getSupp(preTest);
+call    0 returned 100%
+        1:  273:	int *supplyPost = _getSupp(postTest);
+call    0 returned 100%
+        1:  274:	int supplyCheck[7] = {CURSECHANGE,ESTATECHANGE,DUCHYCHANGE,PROVINCECHANGE,COPPERCHANGE,SILVERCHANGE,GOLDCHANGE};
+        1:  275:	printf("\n\tTesting Supply Specifications\n");
+call    0 returned 100%
+        8:  276:	for(i = 0; i <= 6; i++)
+branch  0 taken 88%
+branch  1 taken 13% (fallthrough)
+        -:  277:	{
+        7:  278:		if( (supplyPre[i]-supplyPost[i]) != supplyCheck[i])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  279:		{
+    #####:  280:			cardNumToName(i,name);
+call    0 never executed
+    #####:  281:			printf("Supply card: %s incorrectly altered to %d. Should be %d\n",name,supplyPost[i],supplyPost[i]+supplyCheck[i]);
+call    0 never executed
+    #####:  282:			flag = 1;
+        -:  283:		}
+        -:  284:	}
+        1:  285:	if(flag == 1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  286:	{
+    #####:  287:		printf("Supply Test failed.\n");
+call    0 never executed
+        -:  288:	}
+        -:  289:	else
+        -:  290:	{
+        1:  291:		printf("Supply Test passed.\n");
+call    0 returned 100%
+        -:  292:	}
+        1:  293:	free(supplyPre);
+        1:  294:	free(supplyPost);
+        1:  295:}
+function testPlayed called 1 returned 100% blocks executed 56%
+        1:  296:void testPlayed(struct gameState *preTest,struct gameState *postTest)
+        -:  297:{
+        -:  298:	int i;
+        -:  299:	int card,card2;
+        1:  300:	int diff = postTest->playedCardCount - (preTest -> playedCardCount + 1);
+        -:  301:	char name[50];
+        -:  302:	char name2[50];
+        1:  303:	int flag = 0;
+        1:  304:	printf("\n\tTesting Played Specifications\n");
+call    0 returned 100%
+        1:  305:	if(diff != PLAYEDCARDTEST)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  306:	{
+    #####:  307:		printf("PlayedCardCount incorrect. Off by %d\n",diff-PLAYEDCARDTEST); //NEGATIVE VALUE INDICATES TOO FEW CARDS MOVED TO PLAYED PILE
+call    0 never executed
+    #####:  308:		flag = 1;
+        -:  309:	}
+        1:  310:	else if(diff != TESTCARDVAL)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:  311:	{
+        1:  312:		printf("PlayedCard val incorrect. Played wrong card!\n");
+call    0 returned 100%
+        1:  313:		flag = 1;
+        -:  314:	}
+        1:  315:	for(i = 0; i <= preTest->playedCardCount -1; i++) //WILL ONLY DISPLAY IF TOO MANY CARDS IN PLAYED CARD PILE, AND THERE IS A WRONG CARD IN THE PILE
+branch  0 taken 0%
+branch  1 taken 100% (fallthrough)
+        -:  316:	{
+    #####:  317:		if(preTest->playedCards[i] != postTest->playedCards[i])
+branch  0 never executed
+branch  1 never executed
+        -:  318:		{
+    #####:  319:			flag = 1;
+    #####:  320:			card = preTest->playedCards[i];
+    #####:  321:			card2 = postTest->playedCards[i];
+    #####:  322:			cardNumToName(card,name);
+call    0 never executed
+    #####:  323:			cardNumToName(card2,name2);
+call    0 never executed
+    #####:  324:			printf("Error in playedCards pile. Card found is %s, should be %s.\n",name,name2);
+call    0 never executed
+        -:  325:		}						
+        -:  326:	}
+        1:  327:	if(flag == 1)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:  328:	{
+        1:  329:		printf("Played Test failed\n");
+call    0 returned 100%
+        -:  330:	}
+        -:  331:	else
+        -:  332:	{
+    #####:  333:		printf("Played Test passed.\n");
+call    0 never executed
+        -:  334:	} 		
+        1:  335:}
+        -:  336:
+function testUtility called 1 returned 100% blocks executed 77%
+        1:  337:void testUtility(struct gameState *preTest, struct gameState *postTest)
+        -:  338:{
+        1:  339:	int *preUtility = _getUtility(preTest);
+call    0 returned 100%
+        1:  340:	int *postUtility = _getUtility(postTest);
+call    0 returned 100%
+        -:  341:	int i;
+        1:  342:	int flag = 0;
+        1:  343:	int diff[3] = {TESTACTION,TESTBUYS,TESTCOINS};
+        1:  344:	printf("\n\tTesting Utility\n");
+call    0 returned 100%
+        4:  345:	for(i = 0; i < 3; i++)
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
+        -:  346:	{
+        3:  347:		if( (postUtility[i] - preUtility[i]) != diff[i])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  348:		{
+    #####:  349:			printf("Error in utility skill detected\n");
+call    0 never executed
+    #####:  350:			flag = 1;
+        -:  351:		}
+        -:  352:	}
+        1:  353:	if(flag == 1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  354:	{
+    #####:  355:		printf("Utility Test failed\n");
+call    0 never executed
+        -:  356:	}
+        -:  357:	else
+        -:  358:	{
+        1:  359:		printf("Utility Test passed\n");
+call    0 returned 100%
+        -:  360:	}
+        1:  361:	free(preUtility);
+        1:  362:	free(postUtility);
+        1:  363:}
+function main called 1 returned 100% blocks executed 100%
+        1:  364:int main()
+        -:  365:{
+        -:  366:	int i;
+        1:  367:	int seed = 1000;
+        1:  368:	int numPlayers = 2;
+        1:  369:	int player  = 0;
+        -:  370:	int *deckZero,*deckOne;
+        -:  371:	struct gameState preTest, postTest;
+        1:  372:	int k[10] = {adventurer, council_room, feast, gardens, mine ,remodel, smithy, village, baron, great_hall};
+        -:  373:	/* Test Specification Variables */
+        1:  374:	int drawCountTestZero = 3;
+        1:  375:	int drawCountTestOne = 0;
+        -:  376:
+        1:  377:	initializeGame(numPlayers,k,seed,&postTest);
+call    0 returned 100%
+        1:  378:	printf("\n\nBeginning Test for adventurer...\n\n");
+call    0 returned 100%
+        1:  379:	memcpy(&preTest,&postTest,sizeof(struct gameState));
+        1:  380:	insertCard(&postTest,player);
+call    0 returned 100%
+        1:  381:	playCard((postTest.handCount[player]-1),0,0,0,&postTest);
+call    0 returned 100%
+        1:  382:	testDraw(&preTest,&postTest,player);
+call    0 returned 100%
+        1:  383:	testHand(&preTest,&postTest,player);
+call    0 returned 100%
+        1:  384:	testDiscard(&preTest,&postTest,player);
+call    0 returned 100%
+        1:  385:	testSupply(&preTest,&postTest);
+call    0 returned 100%
+        1:  386:	testPlayed(&preTest,&postTest);
+call    0 returned 100%
+        1:  387:	testUtility(&preTest,&postTest);
+call    0 returned 100%
+        1:  388:	printf("\n\tTesting finished\n\n");
+call    0 returned 100%
+        1:  389:}

@@ -26,7 +26,8 @@
 
 int main () {
     srand(time(NULL));
-    
+    int failCount1 = 0;
+    int failCount2 = 0;
     printf("Testing getCost().\n");
     
     /* Array created by looking up card values online, and putting 
@@ -51,17 +52,27 @@ int main () {
         compare against control array in this program with the functions
         return value */
         if (card < 0 || card >= cardCount) { // Requirement 2 and 3
-            card = -1;
+            int illegalCardValue = -1;
             printf("Testing card number %d -- ", card);
-            printf("Expecting: %d, Received: %d\n", cardValueArray[card], cardCost);
-            assert(card == cardCost);
+            printf("Expecting: %d, Received: %d\n", illegalCardValue, cardCost);
+            if(illegalCardValue != cardCost) {
+                printf(" FAIL \n");
+                failCount1++;
+            }
         } else { // Requirement 1
             printf("Testing card number %d\n", card);
             printf("Expecting: %d, Received: %d\n", cardValueArray[card], cardCost);
-            assert(cardValueArray[card] == cardCost);
+            if(cardValueArray[card] != cardCost) {
+                printf(" FAIL \n");
+                failCount2++;
+            }
         }
     }
-    
-    printf("Finished all getCost() tests succesfully!\n");
+    int totalFails = failCount1 + failCount2;
+    if (totalFails == 0) {
+        printf("Finished all getCost() tests succesfully!\n");
+    } else {
+        printf("Finished all getCost() tests.\nFAILS 1: %d, FAILS 2: %d\n", failCount1, failCount2);
+    }
     return 0;
 }

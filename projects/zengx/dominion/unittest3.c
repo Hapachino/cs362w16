@@ -42,8 +42,10 @@ check after updateCoin no hand card change.
 //if bouns == 0; 
 static char * test_treasureCard_coinNum()
 {
+	printf("========== test treasureCard coinNum ==============\n");
 	// All gold
-	for (int i = 0; i < 5; i++)
+	int i = 0;
+	for (; i < 5; i++)
 	{
 		G.hand[thisPlayer][i] = gold;
 	}
@@ -59,7 +61,8 @@ static char * test_treasureCard_coinNum()
 		printf("coin expected =%d\n", testG.coins);
 		mu_assert("-error: coin not correct", testG.coins == coinsAdd);
 		// All silver
-		for (int i = 0; i < 5; i++)
+		
+		for (i = 0; i < 5; i++)
 		{
 			G.hand[thisPlayer][i] = silver;
 		}
@@ -75,7 +78,7 @@ static char * test_treasureCard_coinNum()
 		printf("coin expected =%d\n", testG.coins);
 		mu_assert("-error: coin not correct", testG.coins == coinsAdd);
 		// All copper
-		for (int i = 0; i < 5; i++)
+		for (i = 0; i < 5; i++)
 		{
 			G.hand[thisPlayer][i] = copper;
 		}
@@ -91,7 +94,7 @@ static char * test_treasureCard_coinNum()
 		printf("coin expected =%d\n", testG.coins);
 		mu_assert("-error: coin not correct", testG.coins == coinsAdd);
 		// none
-		for (int i = 0; i < 5; i++)
+		for (i = 0; i < 5; i++)
 		{
 			G.hand[thisPlayer][i] = 0;
 		}
@@ -113,9 +116,11 @@ static char * test_treasureCard_coinNum()
 // if bounus add
 static char * test_bounus()
 {
+	printf("========== test bounus ==============\n");
 	printf("add bounus from -100 to 100");
 	int bounus = 0;
-	for (int i = 0; i < 5; i++)
+	int i = 0;
+	for (; i < 5; i++)
 	{
 		G.hand[thisPlayer][i] = 0;
 	}
@@ -133,6 +138,7 @@ static char * test_bounus()
 // if checkhand card
 static char * test_handcard()
 {
+	printf("========== test handcard ==============\n");
 	memcpy(&testG, &G, sizeof(struct gameState));
 	int currentPlayer = whoseTurn(&G);
 	updateCoins(currentPlayer, &testG, 0);
@@ -152,7 +158,7 @@ static char * test_handcard()
 
 
 static char * all_tests() {
-	printf("=============test update coin =========");
+	printf("=============test update coin =========\n");
 	mu_run_test(test_treasureCard_coinNum);
 	mu_run_test(test_bounus);
 	mu_run_test(test_handcard);

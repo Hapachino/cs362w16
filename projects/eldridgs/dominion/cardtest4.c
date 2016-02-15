@@ -25,20 +25,6 @@ int checkGreatHall (struct gameState *post, int p, int handP) {
     assert(memcmp(&pre, post, sizeof(struct gameState)) == 0);
 }
 
-int pGreatHall(struct gameState *state, int currentPlayer, int handPos)
-{
-    //+1 Card
-            drawCard(currentPlayer, state);
-            drawCard(currentPlayer + 1, state);
-
-            //+1 Actions
-            state->numActions++;
-
-            //discard card from hand
-            discardCard(handPos, currentPlayer, state, 0);
-            return 0;
-}
-
 int main () {
     int x;
     int i;

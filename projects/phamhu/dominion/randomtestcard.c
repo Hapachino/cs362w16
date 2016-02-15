@@ -29,7 +29,7 @@ int main() {
     int failCount = 0;
     int passCount = 0;
 	int testCount = 0;
-	int MAXRUN = 5;
+	int MAXRUN = 100;
     printf ("<< TESTING - council room card - using random tester  >>\n");
 	
 	for(testCount = 0; testCount < MAXRUN; testCount++)
@@ -37,8 +37,7 @@ int main() {
 	//generate random seed
 	seed = rand() % 100000;
 	// generate random number of players    		
-//	numPlayers = rand() % 3 + 2;
-	numPlayers = 2;	
+	numPlayers = rand() % 3 + 2;
 	printf("Test #%d - seed:%d \n", testCount, seed);
  	
 	for(p = 0; p < maxHandCount; p++)
@@ -68,8 +67,8 @@ int main() {
 
 				if((newGame.numBuys == oldGame.numBuys + 1) &&
 					(newGame.handCount[player] == oldGame.handCount[player] + 4) &&
-					(otherDrawCount == numPlayers - 1)
-				
+					(otherDrawCount == numPlayers - 1) &&
+					(newGame.deckCount[player] == oldGame.deckCount[player] - 4)	
 				  )
 				{
 					passCount++;
@@ -79,6 +78,8 @@ int main() {
 					printf("Failed - \t player %d\n", player);
 					printf("\t expected buy: %d - actual buy: %d\n", oldGame.numBuys + 1, newGame.numBuys);
 					printf("\t expected handCount: %d - actual handCount: %d\n", oldGame.handCount[player] + 4, newGame.handCount[player]);
+					printf("\t expected deckCount: %d - actual deckCount: %d\n", oldGame.deckCount[player] - 4, newGame.deckCount[player]);	
+//					printf("\t expected playedCardCount: %d - actual playedCardCount: %d\n", oldGame.playedCardCount, newGame.playedCardCount);
 					printf("\t expected number of other players whom drew a card: %d - actual count: %d\n", numPlayers - 1, otherDrawCount);
 					failCount++;
 				}

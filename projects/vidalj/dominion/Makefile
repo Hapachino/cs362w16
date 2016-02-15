@@ -44,15 +44,15 @@ player: player.c interface.o
     
 unittestresults.out: unittest1
 
-# randomtestcard.out: randomtestcard
-#     ./randomtestcard &> randomtestcard.out
-#     gcov -b dominion.c >> randomtestcard.out
-#     @cat dominion.c.gcov >> randomtestcard.out
-    
-# randomtestadventurer.out: randomtestadventurer
-#     ./randomtestadventurer &> randomtestadventurer.out
-#     gcov -b dominion.c >> randomtestadventurer.out
-#     @cat dominion.c.gcov >> randomtestadventurer.out
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer >> $@
+	gcov -b dominion >> $@
+	@cat dominion.c.gcov >> $@
+
+randomtestcard.out: randomtestcard
+	./randomtestcard >> $@
+	gcov -b dominion >> $@  
+	@cat dominion.c.gcov >> $@
     
 all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 randomtestadventurer randomtestcard
 

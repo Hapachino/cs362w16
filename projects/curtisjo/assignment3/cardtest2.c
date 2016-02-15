@@ -31,13 +31,13 @@ int main() {
    cardEffect(adventurer, choice1, choice2, choice3, &testG, handpos, &bonus);
    printf("check current players state\n");
    printf("hand count = %d, expected = %d\n", testG.handCount[curPlayer], G.handCount[curPlayer] + newCards);
-   //check smithy card on testG check deckCount
+   //check adventure card on testG check deckCount
    printf("deck count should be at least two less than control\n");
    printf("deck count = %d, control = %d\n", testG.deckCount[curPlayer], G.deckCount[curPlayer]);
    //check that other players state is not changed
    printf("check other players state\n");
    printf("hand count = %d, expected = %d\n", testG.handCount[otherPlayer], G.handCount[otherPlayer]);
-   //check smithy card on testG check deckCount
+   //check adventure card on testG check deckCount
    printf("deck count = %d, expected = %d\n", testG.deckCount[otherPlayer], G.deckCount[otherPlayer]);
    
    return 0;

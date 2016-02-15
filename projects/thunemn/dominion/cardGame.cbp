@@ -31,70 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="badTestDrawCard.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="betterTestDrawCard.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="documentation.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="dominion.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="dominion.h" />
-		<Unit filename="dominion_helpers.h" />
-		<Unit filename="interface.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="interface.h" />
 		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="playdom.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="player.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="refactor.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="rngs.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="rngs.h" />
-		<Unit filename="rt.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="supplyTest.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="testBuyCard.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="testDrawCard.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="testInit.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="testShuffle.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="unitTest1.c">
-			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="unitTest2.c">
-			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="unitTest3.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="unitTest4.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

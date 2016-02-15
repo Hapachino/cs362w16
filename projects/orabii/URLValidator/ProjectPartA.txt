@@ -1,0 +1,35 @@
+﻿CS 362 - Software Engineering II
+Chris Durham, Lorena Nacoste, Ismail Orabi
+Due: February 14, 2016
+
+
+Final Project: Part A
+
+
+1. Explain testIsValid function of UrlValidator test code (under christia/UrlValidator folder)
+        
+* testIsValid() is the tester for UrlValidator::isValid(). The method creates a UrlValidator object to be put under test and immediatly tests the validator with 2 obvisouly valid URLs. testIsValid() then loops through several test cases by building different urls based on the 5 arrays of url parts. When a permuation of a url is built from the 5 different parts, the validator checks if it is valid and if so, prints it to standard out, while also asserting the expected result.
+
+
+1. Give how many total number of urls it is testing
+
+
+* Given the way that the URLs are built (explained below), the total number of URLs tested is very large. The total number is a permutation of all the different parts needed to build the URLs.  There are 9 schemes, 19 authorities, 7 ports, 10 paths, and 3 queries. The total number of urls tested is all possible permutations of these parts (9*19*7*10*3 = 35,910 urls)
+
+
+1. Explain how it is building all the urls
+
+
+* A basic URL is made up of four main parts: scheme, authority, path, and query.  The function builds URLs by defining several different schemes, authorities, paths, ports, and queries then during test execution, the different parts of the URL are appended together to make individual URLs for testing. Every possible combination of the different URL parts are tested.
+
+
+1. Give an example of a valid and invalid url being tested by testIsValid function
+
+
+* A valid url would be www.facebook.com while an invalid url would be :/.9.9.9.9//:-9/.. Which would fail all 5 of the methods tested for validity.
+
+
+1. Do you think a real world test (URL Validator's testIsValid function test) is very different from unit tests and card tests that we wrote? (In terms of concepts / complexity) Explain in a few lines
+
+
+* The real world tests of the URLValidator are similar to what we wrote for the unit tests and card tests. Both print or use assertions to output failures. Both tests must create preconditions to conduct a good test. In the case of the URLValidator it generates a url while in the Dominion code it must generate a game state. This all requires knowing ahead of time which tests should pass or fail which the test cases have identified beforehand.

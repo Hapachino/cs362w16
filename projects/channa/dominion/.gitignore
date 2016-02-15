@@ -4,3 +4,6 @@
 
 # Text files
 *.txt
+
+# To experiment with rngs.c
+testRandom.c

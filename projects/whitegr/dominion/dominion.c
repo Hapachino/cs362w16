@@ -5,11 +5,7 @@
 #include <math.h>
 #include <stdlib.h> 
 
-int adventurerCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
-int smithyCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
-int council_roomCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
-int stewardCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
-int tributeCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
+
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
@@ -532,7 +528,7 @@ int drawCard(int player, struct gameState *state)
 {	int count;
   int deckCounter;
   if (state->deckCount[player] <= 0){//Deck is empty
-    
+    printf("Empty");
     //Step 1 Shuffle the discard pile back into a deck
     int i;
     //Move discard to deck
@@ -1274,7 +1270,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     }
   else 	
     {
-      //replace discarded card with last card in hand
+        //replace discarded card with last card in hand
       state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
       //set last card to -1
       state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
@@ -1357,7 +1353,7 @@ int adventurerCard(int choice1, int choice2, int choice3, struct gameState *stat
 	
    int z=0;
    int cardDrawn;
-   int drawntreasure=1;
+   int drawntreasure=0;
    int currentPlayer = whoseTurn(state);
    int temphand[MAX_HAND];
 	
@@ -1378,7 +1374,7 @@ int adventurerCard(int choice1, int choice2, int choice3, struct gameState *stat
       while(z-1>=0){
 	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 	z=z-1;
-      }
+	      }
 	  
 	  return 0;
 	  
@@ -1414,10 +1410,12 @@ int council_roomCard(int choice1, int choice2, int choice3, struct gameState *st
 	{
 	  drawCard(currentPlayer, state);
 	}
+
 			
       //+1 Buy
       state->numBuys++;
-			
+
+				
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
 	{

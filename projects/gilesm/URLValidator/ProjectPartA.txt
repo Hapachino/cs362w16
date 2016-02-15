@@ -1,0 +1,118 @@
+******************************
+* Group Members: Mark Giles, Jerry Kim & Eric Olson
+* Final Project Part A
+* Analysis of 'testIsValid' Method from URLValidatorCorrect Folder
+******************************
+
+/////Function Overview/////
+    The testIsValid() method is designed to test the functionality of the .isValid() method of the
+UrlValidator class. In order to do this it creates URLs piecemeal using a set of various components,
+which are in the order of the protocol, domain, port, directory path, and finally query parameters. 
+These components are drawn from prefilled arrays of the ResultPair type (defined in ResultPair.java) 
+and are initialized with the component value (e.g. 'http://', 'ftp://', '3ht://') and a true or false 
+according to whether that value is to be considered valid or not. If ANY of the components during the 
+run of the main loop is found to be invalid, a test of the resulting URL is also expected to return 
+invalid.
+
+    As each test is run, the expected result of true or false is compared with the result of the 
+.isValid() method call using an assertEquals().  If they differ, the JUnit test fails.  It should be 
+noted the URLValidatorTest class that houses the testIsValid() method has a number of options to set, 
+including the testing of double slashes, additional schemes, and how verbose the output is.  The default 
+setup is a minimalist test, with minimial output, which will be the scope of this report.
+
+
+/////Function Mechanics/////
+    The testIsValid() begins by running two basic tests against Google's domain, presumably in order to 
+test the basic functionality before beginning the complex URL generation testing.  It then proceeds to 
+use a number of sub/sibling functions/objects to generate and test mock URLs.  This process begins with 
+'testPartsIndex' an array of 5 integers to track the method's progress through the 5 components.  Each 
+URL generated uses the 'testPartsIndex' values to build a URL from the available component options. The 
+5 component buckets contain the following # of options from which to pull:
+
+    - testUrlScheme (protocol) - 9 options.
+    - testUrlAuthority (domain) - 19 options.
+    - testUrlPort (port) - 7 options.
+    - testPath (directory) - 10 options.
+    - testUrlQuery (paramaters) - 3 options.
+
+    As each URL is built from the available components using the 'testPartsIndex' as a guide, the final 
+URL as stored in testBuffer is determined to be valid only if all its components are predetermined to be 
+valid. Otherwise, the whole URL is determined to be invalid. This value is the expected value and is 
+tested against the value returned by the .isValid(). If the value returned by .isValid() differ, the test 
+fails.  
+
+    After each test the 'testPartsIndex' is iterated using the incrementTestPartsIndex() method.  While
+there is a bug in this method (discussed later), its intention is to ensure every single combination
+of test components are tested.  It increments (from back to front) the values in
+'testPartsIndex' to ensure this goal is met.  The five integers relate progress through the five
+components listed above.  So 'testPartsIndex'[0] refers to the selection from testURLScheme, 'tPI[1]'
+to the selection from testUrlAuthority and so on.  An example of the progression of 'textPartsIndex':
+        
+        tPI[0,0,0,0,0]
+        tPI[0,0,0,0,1]
+        tPI[0,0,0,0,2]
+        tPI[0,0,0,1,0]
+        tPI[0,0,0,1,1]
+            ...
+
+    With the options for 'printStatus', the only thing output by the function to screen/console is
+the actual URL text for any URL's that returned valid.  Any invalid URL's are evaluated, but not
+printed to screen.
+
+
+/////URL's Validated Count/////
+    We believe the intention of the testIsValid method is to test every possible combination of 
+components provided in the component arrays.  Per the counts provided above this would result in
+35,910 generated URL's being tested (9*19*7*10*3 = 35,910), plus the 2 static google domains for 
+a grand total of 35,912 total URL validations tested.  However we also believe there to be a bug
+in the incrementTestPartsIndex() or iTPI() method which we will describe below.
+
+    The iTPI() method attempts to iterate the values in tPI starting at the right.  If the right most
+int in tPI has reached its max, it resets that value to 0 and 'carries over' 1 to the next int
+to the left.  Once an addition is made the function continues to cycle over the other int
+values, but making no changes.  Each cycle it evaluates if the int is maxed or not via this statement:
+        
+        maxIndex &= (index == (part.length - 1));  
+
+    If any ints to the left of the one incremented are not yet maxed out, maxIndex equates to false, 
+and remains that way through the rest of the cycles due to the '&='.  When all checks are complete
+the maxIndex value is returned to testIsValid().  If false tests continue, if true testIsValid() exits
+its Do-While loop and testing is complete.  The issue is when iTPI[0] increments to 8 (it's max value),
+there are no more ints to the left to reset maxIndex to false, however none of the iTPI[8,x,x,x,x]
+have been able to run yet.  Essentially this design flaw leaves all of the tests associated with
+iTPI[8] untested.  iTPI[8] is protocol == "" essentially testing with no protocol and is valid 
+(e.g. www.google.com).
+    Finally this is trivially confirmable by putting a test counter in the program, and evaluating the
+values of iTPI[] before and after the final test.  The counter shows 31,920 and final test run is on 
+iTPI[8,0,0,0,0] and never makes it to iTPI[8,0,0,0,1] and beyond.
+
+  With this bug in mind the actual test number executed is (8*19*7*10*3) = 31,920.  2 trivial google 
+tests  brings us to a grand total of 31,922.
+
+
+/////Example URL's/////
+Valid URL Example - ftp://255.com/test1?action=view
+Built Via:
+    Protocol - ("ftp://", true)
+    Domain - ("255.com", true)
+    Port - ("", true)
+    Directory - ("/test1", true)
+    Paramaters - ("?action=view", true)
+
+Invalid URL Example - http:/go.com:65a?action=edit&mode=up
+Built Via:
+    Protocol - ("http:/", false)
+    Domain - ("go.com", true)
+    Port - (":65a", false)
+    Directory - ("", true)
+    Paramaters - ("?action=edit&mode=up", true)
+
+
+/////testIsValid() vs Class/////
+    The type of testing found in the testIsValid() method is not entirely different from the levels
+of concepts and complexity we've done in the course thus far.  Ignoring the declaration of all of the
+mock component possibilities, there are fewer then 100 lines of actual test code in testIsValid() and 
+incrementTestPartsIndex(), the two primary methods used.  At its base it's an iterative evaluation
+of a domain partitioning similar to tests we've built.  Once you start following the program into
+the .isValid() method, or start considering the other adjacent tests included in UrlValidatorTest.java
+you start to see complexity that we've yet to reach in class.

@@ -73,6 +73,18 @@ rununittests:
 	./unittest3
 	./unittest4
 
+randomtestcard:
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer:
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+runrandomtestcard:
+	./randomtestcard
+
+runrandomtestadventurer:
+	./randomtestadventurer
+
 codecoverage:
 	gcov -f -b dominion.c
 
@@ -81,6 +93,22 @@ unittestresults.out:
 	make rununittests >> unittestresults.out
 	echo "-------Code Coverage-------" >> unittestresults.out
 	make codecoverage >> unittestresults.out
+
+randomtestcard.out:
+	make randomtestcard
+	make runrandomtestcard >> randomtestcard.out
+	echo "-------Code Coverage-------" >> randomtestcard.out
+	make codecoverage >> randomtestcard.out
+
+randomtestadventurer.out:
+	make randomtestadventurer
+	make runrandomtestadventurer >> randomtestadventurer.out
+	echo "-------Code Coverage-------" >> randomtestadventurer.out
+	make codecoverage >> randomtestadventurer.out
+
+make randomtests:
+	make randomtestadventurer.out
+	make randomtestcard.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

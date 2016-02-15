@@ -34,7 +34,7 @@ int unitTest(int player,struct gameState *post){
         return 1;
     }
     //card specific checks 
-    if(state->hand[player][state->handCount[currentPlayer]] < 0){
+    if(post->hand[player][post->handCount[player]] < 0){
         #if (NOISY_TEST==1)
         printf("invalid handsize");
         #endif

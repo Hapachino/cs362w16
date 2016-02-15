@@ -29,6 +29,59 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+### Added for Assignment 3
+unittestresults.out:
+	make cardtest1
+	make cardtest2
+	make cardtest3
+	make cardtest4
+	make unittest1
+	make unittest2
+	make unittest3
+	make unittest4
+	echo "Coverage of entire dominion.c: " >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	echo "**************** TEST BUNDLE : Printout ****************" >> unittestresults.out
+	echo "All" >> unittestresults.out
+	make tests >> unittestresults.out
+	echo "**************** COVERAGE: Individual functions and total dominion.c coverage ****************" >> unittestresults.out
+	gcov -f -b dominion.c >> unittestresults.out
+	echo "Results have been written to file \"unittestresults.out\"."
+	echo "Open with an editor, or run \"cat unittestresults.out\"."
+
+tests: 
+	./cardtest1
+	./cardtest2
+	./cardtest3
+	./cardtest4
+	./unittest3
+	./unittest1
+	./unittest2
+	./unittest4
+
+cardtest1: cardtest1.c dominion.o rngs.o
+	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+
+cardtest2: cardtest2.c dominion.o rngs.o
+	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+
+cardtest3: cardtest3.c dominion.o rngs.o
+	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+
+cardtest4: cardtest4.c dominion.o rngs.o
+	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+
+unittest1: unittest1.c dominion.o rngs.o
+	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+
+unittest2: unittest2.c dominion.o rngs.o
+	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
+
+unittest3: unittest3.c dominion.o rngs.o
+	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
+
+unittest4: unittest4.c dominion.o rngs.o
+	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
@@ -36,4 +89,4 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4 unittestresults.out

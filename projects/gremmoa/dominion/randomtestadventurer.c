@@ -104,7 +104,7 @@ int main() {
     }
   }
 
-  printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
+  printf("\n >>>>> SUCCESS: Random Testing complete %s <<<<<\n\n", TESTCARD);
 
   return 0;
 }

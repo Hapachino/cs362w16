@@ -15,7 +15,7 @@
 #include <time.h> 		//for random number generator
 
 #define TEST_CARD adventurer
-#define NUM_TESTS 100000
+#define NUM_TESTS 50000
  
 int main () {
 	

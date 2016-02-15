@@ -1,0 +1,74 @@
+Final Project - Part A - Marco Zamora, Jason Ridder, & James Linnenburger
+
+1) Explain testIsValid Function of UrlValidator test code.
+
+	First, it makes sure that isValid works on a sane url such as "http://www.google.com". Then, it uses
+   statusPerLine to set the amount of characters to print before printing a new line. A do-while loop iterates
+   through all test parts by incrementing the testPartsIndex each loop. The URL is built by adding parts to a buffer
+   and then converting that buffer into a string. The URL is finally checked for validity, and the result is saved.
+   If the result is true, the URL is printed out. If printIndex is set, a ‘.’ or ‘X’ is printed depending if the
+   expected result was received. Then, the new line is printed.
+
+      
+   
+2) Give how many total number of urls it is testing.
+
+   31,920. Even though there can be a total of 35,910(9x19x7x10x3) combinations, when
+   we inserted a counter variable into the code, it only totalled up to 31,920 when
+   actually running the method.
+
+3) Explain how it is building all the urls.
+
+   A string buffer is created to hold the complete URL and it is called testBuffer. The URL is built using six major
+   parts from arrays composed of resultPairs. A resultPair consist of the part, example “http://”, and if it’s valid
+   or not. The part “http://” would be true and “3ht://” would be false as an example. The array testUrlScheme looks
+   like this:
+
+   ResultPair[] testUrlScheme = {new ResultPair("http://", true),
+                                  new ResultPair("ftp://", true),
+                                  new ResultPair("h3t://", true),
+                                  new ResultPair("3ht://", false),
+                                  new ResultPair("http:/", false),
+                                  new ResultPair("http:", false),
+                                  new ResultPair("http/", false),
+                                  new ResultPair("://", false),
+                                  new ResultPair("", true)};
+
+                                  
+   The other arrays are called testUrlScheme, testUrlPort, testPath, testUrlPathOptions, and testUrlQuery. The amount of parts
+   for each one, in the order I listed them, are 9,19,7,10,3 and allow for 35,910 unique URL’s.
+
+   An example of a whole URL put together looks like this:
+   
+   ********************************************************************************************
+   testUrlScheme| |testUrlScheme| |testUrlPort| |testPath| |testUrlPathOptions| |testUrlQuery
+   ********************************************************************************************
+       http://      www.google.com      :80        /test1         /test1          ?action=view
+   
+   The method testIsValid uses a FOR loop to select one of the resultPair arrays one at a time and appends it to the end of
+   testBuffer. At the end of each loop, the part, has a bitwise operation done on it, and if the part is false, changes the
+   variable “expected” to false also. The “expected” variable will be used in the assert to see if the test went correctly.
+   This continues until the whole URL has been built.
+
+   
+   
+
+4) Give an example of valid url being tested and an invalid url being tested by testIsValid() method.
+
+   result to true at line 107: if(result == true)
+
+      http://go.cc/test1 - VALID
+
+   Changed result to false at line 107: if(result == false)
+
+      ://:65a/test1//file  - NOT VALID 
+
+      
+      
+      
+5) Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests
+   and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines.
+   
+   No, we don't think it's very different. Both of them assemble a controlled random input for some function that is needed to
+   be tested. The tests situations can also be reran exactly the sameway each time. Finally the output of the function is tested
+   against an oracle to make sure of correctness.

@@ -1,4 +1,4 @@
-Final Project - Part A - Marco Zamora & Jason Ridder
+Final Project - Part A - Marco Zamora, Jason Ridder, & James Linnenburger
 
 1) Explain testIsValid Function of UrlValidator test code.
 

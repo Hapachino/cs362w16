@@ -22,10 +22,9 @@
 
 #define DECK_SIZE 10
 #define HAND_SIZE 5
-#define KINGDOM_CARDS_LENGTH 10
+#define KINGDOM_CARDS_SIZE 10
 #define TESTCARD "adventurer"
-#define TEST_COUNT 1
-
+#define TEST_COUNT 2
 
 int isCoin(int card) {
     return card == copper || card == silver || card == gold;
@@ -47,8 +46,17 @@ char *cardName(int card) {
     char *name = NULL;
     
     switch (card) {
+        case ambassador:
+            name = "ambassador";
+            break;
         case adventurer:
             name = "adventurer";
+            break;
+        case baron:
+            name = "baron";
+            break;
+        case copper:
+            name = "copper";
             break;
         case council_room:
             name = "council room";
@@ -59,8 +67,26 @@ char *cardName(int card) {
         case cutpurse:
             name = "cutpurse";
             break;
+        case duchy:
+            name = "duchy";
+            break;
         case embargo:
             name = "embargo";
+            break;
+        case estate:
+            name = "estate";
+            break;
+        case feast:
+            name = "feast";
+            break;
+        case gardens:
+            name = "gardens";
+            break;
+        case gold:
+            name = "gold";
+            break;
+        case great_hall:
+            name = "great hall";
             break;
         case mine:
             name = "mine";
@@ -68,14 +94,34 @@ char *cardName(int card) {
         case minion:
             name = "minion";
             break;
+        case outpost:
+            name = "outpost";
+            break;
+        case province:
+            name = "province";
+            break;
+        case remodel:
+            name = "remodel";
+            break;
+        case salvager:
+            name = "salvager";
+            break;
         case sea_hag:
             name = "sea hag";
+            break;
+        case silver:
+            name = "silver";
             break;
         case smithy:
             name = "smithy";
             break;
+        case steward:
+            name = "steward";
+        case treasure_map:
+            name = "treasure map";
+            break;
         case tribute:
-            name = "smithy";
+            name = "tribute";
             break;
         case village:
             name = "village";
@@ -86,7 +132,7 @@ char *cardName(int card) {
 }
 
 void printPositionCard(int position, int card) {
-    printf("Position %d, Card: ", position);
+    printf("  Position %d, Card: ", position);
     
     char *name = cardName(card);
     
@@ -123,47 +169,60 @@ void printHand(int player, struct gameState *state) {
     }
 }
 
-int randomCard(int kingdomCards[KINGDOM_CARDS_LENGTH]) {
-    int cardIndex = floor(Random() * KINGDOM_CARDS_LENGTH);
-    assert(cardIndex >= 0 && cardIndex < KINGDOM_CARDS_LENGTH);
+int randomCard() {
+    int card = floor(Random() * (treasure_map + 1));
     
-    return kingdomCards[cardIndex];
+    assert(card >= 0 && card <= treasure_map + 1);
+    
+    return card;
 }
 
-void randomDeck(int player, int size, int kingdomCards[KINGDOM_CARDS_LENGTH], struct gameState *state) {
+void randomDeck(int player, int size, struct gameState *state) {
     state->deckCount[player] = 0;
     
     for(int i = 0; i < size; i++){
-        state->deck[player][i] = randomCard(kingdomCards);
+        state->deck[player][i] = randomCard();
         state->deckCount[player]++;
     }
 }
 
-void randomHand(int player, int size, int kingdomCards[KINGDOM_CARDS_LENGTH], struct gameState *state) {
-    state->handCount[player] = 0;
+#define DECK_COIN_INDEX_NOT_FOUND -1
+
+int deckCoinIndex(int player, int coinCount, struct gameState *state) {
+    int foundCoinCount = 0;
+    // -1 for not found
+    int coinCountIndex = DECK_COIN_INDEX_NOT_FOUND;
     
-    for(int i = 0; i < size; i++){
-        state->hand[player][i] = randomCard(kingdomCards);
-        state->handCount[player]++;
+    for(int i = 0; i < state->deckCount[player]; i++){
+        if (isCoin(state->deck[player][i])) {
+            foundCoinCount++;
+            
+            if(foundCoinCount == coinCount) {
+                coinCountIndex = i;
+                break;
+            }
+        }
     }
+    
+    return coinCountIndex;
 }
 
-bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_LENGTH]) {
+bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_SIZE]) {
     int player = 0;
     struct gameState testGame;
     bool allPassed = true;
     
-    memcpy(&testGame, &originalGame, sizeof(struct gameState));
+    memcpy(&testGame, originalGame, sizeof(struct gameState));
     
-    randomDeck(player, DECK_SIZE, cards, &testGame);
+    randomDeck(player, DECK_SIZE, &testGame);
     int deckCoinCountBefore = deckCoinCount(player, &testGame);
+    int thirdDeckCoinIndex = deckCoinIndex(player, 3, &testGame);
     
     // empty discard pile
     testGame.discardCount[player] = 0;
     
-    randomHand(player, HAND_SIZE, cards, &testGame);
-    
     int deckCountBefore = testGame.deckCount[player];
+    int handCountBefore = testGame.handCount[player];
     
     printf("Before Play Adventurer\n");
     printDeck(player, &testGame);
@@ -173,41 +232,63 @@ bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_LENGTH])
     playAdventurer(player, &testGame);
     printf("After Play Adventurer\n");
     
-    /* Test Failed Statements */
+    
     /* Test 1 */
+    printHand(player, &testGame);
     
-    printDeck(player, &testGame);
-
-    int actualDeckCountAfter = testGame.deckCount[player];
-    int expectedDeckCountAfter = deckCountBefore - deckCoinCountBefore;
-    printf("Deck count: %d, Expected: %d\n", actualDeckCountAfter, expectedDeckCountAfter);
+    int actualHandCountAfter = testGame.handCount[player];
+    int expectedHandCoinCountDelta;
     
-    if(actualDeckCountAfter != expectedDeckCountAfter){
-        printf(">>>>>>> ERROR: TEST 1 FAILED: >>>>>>>\n");
+    if (deckCoinCountBefore > 3) {
+        expectedHandCoinCountDelta = 3;
+    } else {
+        expectedHandCoinCountDelta = deckCoinCountBefore;
+    }
+    
+    int expectedHandCountAfter = handCountBefore + expectedHandCoinCountDelta;
+    printf("Hand count: %d, Expected: %d\n", actualHandCountAfter, expectedHandCountAfter);
+    
+    if(actualHandCountAfter != expectedHandCountAfter){
+        printf(">>>>>>> ERROR: TEST 1 FAILED >>>>>>>\n");
         allPassed &= false;
     }
     
+    /* Test Failed Statements */
     /* Test 2 */
-    printDiscard(player, &testGame);
     
-    int actualDiscardCountAfter = testGame.discardCount[player];
-    int expectedDiscardCountAfter = 0; // TODO
-    printf("Discard count: %d, Expected: %d\n", actualDiscardCountAfter, expectedDiscardCountAfter);
+    printDeck(player, &testGame);
+    int actualDeckCountAfter = testGame.deckCount[player];
+    int expectedDeckCountAfter;
     
-    if(actualDiscardCountAfter != expectedDiscardCountAfter){
+    if (thirdDeckCoinIndex == DECK_COIN_INDEX_NOT_FOUND) {
+       expectedDeckCountAfter = 0;
+    } else {
+       expectedDeckCountAfter = deckCountBefore - (thirdDeckCoinIndex + 1);
+    }
+    
+    printf("Deck count: %d, Expected: %d\n", actualDeckCountAfter, expectedDeckCountAfter);
+    
+    if(actualDeckCountAfter != expectedDeckCountAfter){
         printf(">>>>>>> ERROR: TEST 2 FAILED: >>>>>>>\n");
         allPassed &= false;
     }
     
     /* Test 3 */
-    printHand(player, &testGame);
+    printDiscard(player, &testGame);
+    int actualDiscardCountAfter = testGame.discardCount[player];
+    int expectedDiscardCountAfter;
     
-    int actualHandCountAfter = testGame.handCount[player];
-    int expectedHandCountAfter = 0; // TODO
-    printf("Hand count: %d, Expected: %d\n", actualHandCountAfter, expectedHandCountAfter);
+    if (thirdDeckCoinIndex == DECK_COIN_INDEX_NOT_FOUND) {
+        expectedDiscardCountAfter = deckCountBefore - deckCoinCountBefore;
+    } else {
+        assert(NULL != NULL);
+        expectedDiscardCountAfter = thirdDeckCoinIndex - 3;
+    }
     
-    if(actualHandCountAfter != expectedHandCountAfter){
-        printf(">>>>>>> ERROR: TEST 3 FAILED >>>>>>>\n");
+    printf("Discard count: %d, Expected: %d\n", actualDiscardCountAfter, expectedDiscardCountAfter);
+    
+    if(actualDiscardCountAfter != expectedDiscardCountAfter){
+        printf(">>>>>>> ERROR: TEST 3 FAILED: >>>>>>>\n");
         allPassed &= false;
     }
     
@@ -216,11 +297,9 @@ bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_LENGTH])
 
 
 int main(){
-    
-    int i;
-    int cards[KINGDOM_CARDS_LENGTH] = {adventurer, embargo, village, minion, mine, cutpurse,
+    int cards[KINGDOM_CARDS_SIZE] = {adventurer, embargo, village, minion, mine, cutpurse,
         sea_hag, tribute, smithy, council_room};
-    int seed = 1000;
+    int seed = 4;
     int numberOfPlayers = 2;
     
     bool allPassed = true;
@@ -232,7 +311,7 @@ int main(){
     printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
     
     // run through random test 1000 times
-    for(i = 0; i < TEST_COUNT; i++){
+    for(int i = 0; i < TEST_COUNT; i++){
         printf("Random Test %d/%d\n", i + 1, TEST_COUNT);
         allPassed &= randomTest(&originalGame, cards);
     }

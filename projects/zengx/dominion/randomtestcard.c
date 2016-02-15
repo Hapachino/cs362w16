@@ -45,7 +45,6 @@ static void generateRandDeckHand()
 	initializeGame(numPlayers, k, seed, &G);
 	G.deckCount[thisPlayer] = 0;
 	G.handCount[thisPlayer] = 0;
-	int cardChoice[7] = { 0, 1, 2, 3, 4, 5, 6 };
 	int handSize = rand() % 6; // rand a handcard size
 	int i = 0;
 	int cardToHand = 0;

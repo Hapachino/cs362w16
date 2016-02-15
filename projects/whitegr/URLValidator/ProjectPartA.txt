@@ -1,0 +1,27 @@
+Give how many total number of urls it is testing.
+31,920 combinations
+
+Also, explain how it is building all the urls.
+1. The URLValidatorTest function contains five lists of string values that when assembled represent a full URL: for example, section one is the url scheme which includes items like “http://” and https://. The five sections are:
+1. Scheme
+2. Domain
+3. Port Number
+4. Path
+5. Query String
+ 
+The full URL to be tested would be Scheme + Domain + Port + Path + Query String
+
+2. For every item of the different lists there is an associated status value indicating whether that section value is valid or not. For example “Go.com” is an option for the URL Authority section and its status value is “valid”.
+
+3. The tester's testIsValid method iterates through all possible combinations of URLs. It does this by incrementing through all possible combinations working from right to left. Each time a list to the right has been cycled through the lists to the left gets incremented and the items to the right are cycled through again. 
+
+For each iteration the tester checks the status value of each section and if they are all valid then the unit test knows that this is a valid URL or it is an invalid URL if one section has false status value – this is the oracle that the URL Validator program is checked against. 
+
+The tester then compares that oracle status of the URL with the results of the isValid() Validator method which should have identical results. If the results are not identical then there is a disagreement between the unit test and the URLValidator program and this will result in the program ending with a failed assertion.
+
+4. There are a couple of significant differences between the tests for the UrlValidator and our tests for dominion. We can disregard code style and the inherent differences between Java and C and simply focus on the approach to the tests. The biggest difference we see is that the UrlValidator takes a data driven unit test approach as opposed to a random testing approach that validates some state after the test code has run. These tests will be effective at validating the specific use cases they represent but they won't necessarily catch underlying problems with the system. They are limited to testing the cases that are explicitly stated in the test code. This would be similar to if we changed our dominion testing approach to instead of initialising the game state to some random position to instead maintaining a list of specific states, the action to take and the expected state after the action. You can see how even in our relatively simple dominion game how that list could quickly become unmanageable.
+
+In effect the testing shown in the UrlValidator is actually somewhat naive in that it is only demonstrating  the correctness of the code for the specific states listed in the test code. Validation code is often exposed to effectively random user provided data. Without some kind of random testing the UrlValidator can be considered vulnerable to the tricky kind of bug that comes from invalid data being introduced to the system.
+
+We should note that this doesn't mean that the UrlValidator is vulnerable to random input bugs simply that we can't be confident that it isn't. Even if we were running random input tests against the UrlValidator the absence of reported errors doesn't indicate the absence of bugs. It only indicates that that specific run didn't cause any errors.
+

@@ -33,3 +33,26 @@ Now it works and runs 1,000,000 times successfully.
 
 Above are some notes I made while running the tests and debugging the implementation of the cards.
 
+Coverage results from Assn3:
+
+File 'dominion.c'
+Lines executed:37.22% of 634
+Branches executed:50.62% of 405
+Taken at least once:32.35% of 405
+
+
+adventurer random tester:
+
+File 'dominion.c'
+Lines executed:40.51% of 632
+Branches executed:51.60% of 405
+Taken at least once:35.06% of 405
+
+
+sea_hag random tester: 
+
+File 'dominion.c'
+Lines executed:21.51% of 637
+Branches executed:24.82% of 407
+Taken at least once:15.72% of 407
+

@@ -56,10 +56,42 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+
+randomtestadventurer.out: 
+	make clean; make randomtestadventurer; make runrandomadv;
+	
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+runrandomadv:
+	rm -f randomtestadventurer.out
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -b randomtestadventurer >> randomtestadventurer.out
+	cat randomtestadventurer.c.gcov >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard.out: 
+	make clean; make randomtestcard; make runrandomtestcard;
+	
+
+randomtestcard: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+runrandomtestcard:
+	rm -f randomtestcard.out
+	./randomtestcard >> randomtestcard.out
+	gcov -b randomtestcard >> randomtestcard.out
+	cat randomtestcard.c.gcov >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe badTestDrawCard.exe testDrawCard.exe unit1 unittest1.exe unit2 unittest2.exe unit3 unittest3.exe unit4 unittest4.exe card1 cardtest1.exe card2 cardtest2.exe card3 cardtest3.exe card4 cardtest4.exe unittestresults.out unittestresults.out? *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe badTestDrawCard.exe testDrawCard.exe unit1 unittest1.exe unit2 unittest2.exe unit3 unittest3.exe unit4 unittest4.exe card1 cardtest1.exe card2 cardtest2.exe card3 cardtest3.exe card4 cardtest4.exe unittestresults.out unittestresults.out? randomtestadventurer.out randomtestcard.out *.gcov *.gcda *.gcno *.so
 
 unittestresults.out:
 	make clean; make tests; make runmytests;

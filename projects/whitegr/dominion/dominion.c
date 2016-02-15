@@ -528,7 +528,7 @@ int drawCard(int player, struct gameState *state)
 {	int count;
   int deckCounter;
   if (state->deckCount[player] <= 0){//Deck is empty
-    
+    printf("Empty");
     //Step 1 Shuffle the discard pile back into a deck
     int i;
     //Move discard to deck
@@ -1353,7 +1353,7 @@ int adventurerCard(int choice1, int choice2, int choice3, struct gameState *stat
 	
    int z=0;
    int cardDrawn;
-   int drawntreasure=1;
+   int drawntreasure=0;
    int currentPlayer = whoseTurn(state);
    int temphand[MAX_HAND];
 	

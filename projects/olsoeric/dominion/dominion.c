@@ -847,14 +847,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case great_hall:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+1 Actions
-      state->numActions++;
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      great_hall_play(currentPlayer, state, handPos);
       return 0;
 		
     case minion:
@@ -1273,6 +1266,8 @@ void adventurer_play(int currentPlayer, struct gameState *state){
     else{
       temphand[z]=cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+      //Check added to avoid seg faults when playing adventurer and fewer then 2 treasures bug.
+      if (state->handCount[0] <= 0) { return; }
       z++;
     }
   }
@@ -1348,7 +1343,20 @@ void cutpurse_play(int currentPlayer, struct gameState *state, int handPos){
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);
 }  
+      
 
+/*Refactored function for play of Great Hall (for assignment 4).
+ *Adds 1 card, +1 action.*/
+void great_hall_play(int currentPlayer, struct gameState *state, int handPos){
+  //+1 Card
+  drawCard(currentPlayer, state);
+			
+  //+1 Actions
+  state->numActions++;
+			
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+}
 
 //end of dominion.c
 

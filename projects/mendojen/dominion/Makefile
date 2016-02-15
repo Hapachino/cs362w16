@@ -47,13 +47,19 @@ testAll: dominion.o testSuite.c
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
+	
+randomtestSmithy: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtest -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-
+	
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
@@ -61,6 +67,40 @@ all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 test: getCost updateCoins isGameOver buyCard testVillage testAdventurer testSalvager testSmithy
 
+
+randomtestcard.out:
+	make clean
+	rm -f randomtestcard.out
+	make randomtestSmithy
+	./randomtest
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+	rm -f dominion.gcda
+	
+	
+randomtestadventurer.out:
+	make clean
+	rm -f randomtestadventurer.out
+	make randomtestadventurer
+	./randomadventurer
+	gcov -b dominion.c  >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	rm -f dominion.gcda
+
+	
+previous:
+	make clean
+	make testSmithy
+	./card3
+	gcov dominion.c -b >> Smithy.out
+	cat dominion.c.gcov >> Smithy.out
+	rm -f dominion.gcda
+	make testAdventurer
+	./card4
+	gcov dominion.c -b >> Adventurer.out
+	cat dominion.c.gcov >> Adventurer.out
+	rm -f dominion.gcda
+	
 runtest: 
 	./unit1 >> unittestresults.out
 	./unit2 >> unittestresults.out

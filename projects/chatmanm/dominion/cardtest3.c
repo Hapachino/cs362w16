@@ -40,11 +40,11 @@ int testGreatHall(int p, struct gameState *G1) {
 
 int main() {
     struct gameState G1;
-    int p;
+    int n, i, p;
     printf ("Testing Card: Great Hall\n");
     
-    for (int n = 0; n < 2000; n++) {
-        for (int i = 0; i < sizeof(struct gameState); i++) {
+    for (n = 0; n < 2000; n++) {
+        for (i = 0; i < sizeof(struct gameState); i++) {
             ((char*)&G1)[i] = floor(Random() * 256);
         }
         

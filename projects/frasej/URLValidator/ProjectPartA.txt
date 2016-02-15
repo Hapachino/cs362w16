@@ -1,0 +1,84 @@
+﻿#Explain testIsValid function:
+
+
+Parts of urls such as scheme (testUrlScheme), authority (testUrlAuthority), port, path, and query are prepared as pairs of contents and boolean values with indicating they are valid or invalid.
+
+
+For example, 
+        ResultPair[] testUrlScheme = {new ResultPair("http://", true),
+                                                                ...
+                               new ResultPair("://", false),
+                               new ResultPair("", true)};
+
+
+        ResultPair[] testUrlAuthority = {new ResultPair("www.google.com", true),
+                                                                ...
+                                  new ResultPair("256.256.256.256", false),
+                                  new ResultPair("255.com", true)};
+
+
+These url parts are represented as ResultPair object arrays.
+
+
+The method, testIsValid basically combines each part out of ResultPair object arrays, creates a combined url (testUrlScheme + testUrlAuthority + ...), and plugs it into one of UrlValidator methods, isValid(url) to see if the url is valid or not. 
+
+
+Since each url part is already determined in terms of validity (boolean value), the method also compares the boolean result from isValid(url) to the predetermined value.
+Remember each url part has a boolean value attached (i.e. new ResultPair("http://", true)).  
+Each url part's boolean value is combined with and (&&) operator, which means all values must be true in order the combined url to be true.
+
+
+This process is repeated in a do/while loop as long as all the possible combinations of different url parts exist.
+
+
+As for how to combine each url part, it is done by only changing the last part per combination.
+
+
+For example, parts from scheme, authority, port, and path remain the same. 
+But the next element from the query list (array) will be added to the combination. 
+This approach yields all possible combinations of url parts.
+
+
+
+
+                Five parts of urls
+                Each part is prepared with a number of possible values, which are listed in arrays.
+
+
+                              scheme             authority        port           path          query
+        Iteration 1             0                    0              0              0             0
+        Iteration 2             0                    0              0              0             1
+        Iteration 3             0                    0              0              0             2
+        Iteration 4             0                    0              0              0             3
+        Iteration 5             0                    0              0              1             0
+        Iteration 6             0                    0              0              2             0
+        Iteration 7             0                    0              0              3             0
+        Iteration 8             0                    0              0              4             0
+        Iteration 9             0                    0              1              0             0
+        Iteration 10           	0                    0              2              0             0
+        Iteration 11            0                    0              3              0             0
+        Iteration 12            0                    0              4              0      	 0
+        Iteration 13            0                    1              0              0             0
+        …
+
+
+In terms of printing out validation results, if a url is valid then the url gets printed.
+Every 6 lines a blank line gets inserted.
+
+
+#Give how many urls are tested and explain how they are built as well as give an example for a valid and invalid url.
+
+
+The urls as explained above are built from 5 different parts, the scheme, authority, port, path, and query. 
+Each of these parts have an array which have the valid and invalid components for that part in different indexes. 
+The testIsValid function loops through all the parts appending 1 index from each array to a string to form a url. 
+As mentioned above the parts are then changed as needed until all the possible urls are needed. 
+This means that there are 35,910 possible urls that are tested, based on the indexes of all the parts.
+A valid url would look like http://www.google.com:80/test1. 
+An invalid url may look like 3ht://www.google.com:80/test1.
+
+
+#Do you think that the tester is very different from the unit/card test we have created in class?
+
+
+The tester is not drastically different from the unit/card tests we have created in class. In concept, the test is similar to the previous assignment in that a wide variety of inputs are generated and all possible combinations or permutations are tested together. In complexity, the test is also relatively comparable to the previous assignment in that the tests in both examples are able to be generated in a few hundred lines of code. One significant difference between the two, however, is that the inputs for testIsValid() are generated prior to the test function itself.

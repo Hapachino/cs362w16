@@ -103,11 +103,6 @@ int main() {
 	int j;
 	int player;
 	int players;
-	int ret;
-	int coins;
-	int shuffle;
-	int discardPos;
-	int deckPos;
 
 	srand(100);
 	
@@ -117,9 +112,7 @@ int main() {
 	printf("Verbose mode.\n", seed);
 #endif	
 	for (j = 0; j < 10; j++){
-		
-		shuffle = 0;
-		discardPos = 0;	 
+		 
 		// rand num of players
 		players = (int)(rand() % 3) + 2; //4 players 0 = 2, 1 = 3, 2 = 4
 		Game = setup(players); //set up cards
@@ -133,6 +126,32 @@ int main() {
 #if (VERBOSE == 1)
 		printf("Test: %d, Players: %d, Hand Count: %d\n", j, players, handCount);
 #endif
+		//using this to ensure smithy is always in the hand
+		Game.hand[player][Game.handCount[player]-1] = smithy;
+		mySmithy(&Game, player, Game.handCount[player]-1);
+		
+		
+		//game deck is down three cards
+		if (Test.deckCount[player]  >= 3 && Game.deckCount[player] != Test.deckCount[player] -3){
+			printf("Error - Deck Count is not as expected. Test: %d, Actual: %d, Expected: %d\n", j, Game.deckCount[player], Test.deckCount[player] -3);
+		}
+		//check hand is up two cards
+		if (Game.handCount[player] != Test.handCount[player] + 2){
+			printf("Error - Deck Count is not as expected. Test: %d, Actual: %d, Expected: %d\n", j, Game.handCount[player], Test.handCount[player] + 2);
+		}
+		//check discard is up one card (based on original number)
+		if (Test.deckCount[player] >= 3){
+			if (Game.discard[player][Game.discardCount[player]] != smithy){
+				printf("Error - We have a Smithy on the loose! (aka, it's not where it should be.)\n");
+			}
+		}
+		//testing if the deck count is less than three
+		if (Test.deckCount[player] < 3){
+			if (Test.deckCount[player] + Test.discardCount != Game.deckCount[player] + Game.discardCount[player] + 2){
+				printf("Error - Discard Count is not as expected. Test: %d, Actual: %d, Expected: %d\n", j, Game.discardCount[player], 1);
+			}
+		}
+		
 		
 		//printf("\n");
 		//free(Game); // Did someone say, memory leaks? I love memory leaks! (sarcastic)
@@ -145,7 +164,7 @@ int main() {
 }
 
 //bug introduced 
-/*int mySmithy(struct gameState *state, int currentPlayer, int handPos){
+/*int mySmithy(struct gameState *state, int currentPlayer){
 	
 	int i;
 	

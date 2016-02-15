@@ -9,3 +9,13 @@ Overall I achieved 100% statement and branch coverage within my function, so eve
 
 Smithy:
 The biggest thing I need to test here, is that the user hand has 2 more cards than it originally did, and that the discard pile is up 1, and the deck is three less. There is no point in doing tests that will never deal with anything being changed within the program. In this case, I think a less is more approach is the way to go. 
+
+One thing to note, is if I was doing unit tests, I would be much more concerned with making sure that if my deck and my edge conditions were met, however this is random testing, it’s meant to ensure that given random inputs, the card continues to work. 
+
+The biggest thing to note, is that I didn’t run thousands of tests, mostly due to the fact that the bug I introduced will always make the program output. (it draws 4 cards, which throws off deck, hand, and discard count.
+
+So my test suite did catchy my bug :D
+
+My coverage was 100% block and branch with the random testing, however my overall coverage went from 22% to 20% when I added the smithy card. This doesn’t make sense to me. 
+
+I did start earlier on this assignment, however this week was crazy, so it got started and then neglected. I'm slowly tending to my little programs more often, however next assignment my goal is to get it done in the first few days. 

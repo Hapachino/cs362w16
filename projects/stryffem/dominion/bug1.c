@@ -27,7 +27,7 @@ adding extra cards to the player's hand. This is a bug that I introduced in assi
 this bug are that the player's hand count, discard count, and deck counts are off after using Adventurer.
 
 Card test 3 exposes a bug in the Village card effect. This bug sets the number of available actions to the
-wront value. This corresponds to a bug that I introduced in assignment 2. This bug causes the number of 
+wrong value. This corresponds to a bug that I introduced in assignment 2. This bug causes the number of 
 actions to be set to the number of coins + 2 rather than the number of actions + 2.
 
 Card test 4 has uncovered no bugs so far.

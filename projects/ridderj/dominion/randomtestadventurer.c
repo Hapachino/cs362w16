@@ -1,71 +1,8 @@
 /* -----------------------------------------------------------------------
  * Testing Adventuerer card
- Basic requirements of smithy card
-
  * -----------------------------------------------------------------------
  */
  
- /*
- -random amount of players
- -random main player
- 
- -deck has random amount & random cards
- 
- -fill hand with one adventuerer
- -allow deck to possiably have 0 treasure cards
-
- -discard has random amount & random cards
- 
-
-
--checking hand supply count 
-
--had a problem with deck because it wasn't max hand
-
-BUG
--Deck has to be 500 cards intially or causes segmentation fault
-TEST START---------------------------------
-TEST NUM: 17 Deck: 10 Hand: 48 Discard: 84 Player 3
-make: *** [randomtestadventurer.out] Segmentation fault (core dumped)
-make: *** Deleting file `randomtestadventurer.out'
-
-
-
-
-BUG
--5 cards are taken out instead of just 2
--Actually hand count is always wrong
-
--Added situation where deck could me empty 25% of the time
-BUG
--Empty deck causes segmentation fault every time.
-
--discard pile should be updated.
-
-
-Added ablity to count how many cards should be discarded.
-BUG found, sometimes discard is correct, sometimes not.
-
-TEST START---------------------------------
-TEST NUM: 99998 Deck: 500 Hand: 49 Discard: 36 Player: 3 DiscardCount: 25
-ADVENTURER CARD---
-Hand Supply Count = 77 ,expected 51
-TEST FAIL
-Discard Supply Count = 62,expected 62
-Coins = 16 ,expected 16
-Number of buys = 10,expected 10
-
-TEST START---------------------------------
-TEST NUM: 99999 Deck: 500 Hand: 67 Discard: 85 Player: 2 DiscardCount: 10
-ADVENTURER CARD---
-Hand Supply Count = 80 ,expected 69
-TEST FAIL
-Discard Supply Count = 96,expected 96
-Coins = 0 ,expected 0
-Number of buys = 16,expected 16
-
-
- */
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -135,7 +72,7 @@ int main() {
     
    
     
-    while(countNum < 100000){ //Stops testing after a certain number of attemtps
+    while(countNum < 500000){ //Stops testing after a certain number of attemtps
     if(DEBUG2)
       printf("\nTEST START---------------------------------\n");
 

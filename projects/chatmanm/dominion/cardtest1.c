@@ -43,8 +43,8 @@ int testSmithyCard(int p, int card, int handPos, struct gameState *G1)
 int main() {
     struct gameState G1;
     int numPlayers = 2;
-    int p;
     int handPos = 0;
+    int p = 0;
     int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
         sea_hag, tribute, smithy, council_room};
     

@@ -1410,5 +1410,6 @@ int effectVillage(struct gameState *state, struct infosStruct *infos)
 
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);
+
   return 0;
 }

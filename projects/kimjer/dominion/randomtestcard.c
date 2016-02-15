@@ -1,3 +1,4 @@
+//villagetest
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,18 +42,7 @@ void makeK(int k[])
 	{
 		k[i] = rand()%NUMCARDS;
 	}
-}
-
-int* makeKUnique() 
-{
-	int *k = malloc(NUMCARDS*(sizeof(int)));
-	do 
-	{
-		makeK(k);
-	}
-	while(!isUnique(k));	
-	return k;
-}
+}	
 
 void initI(struct infosStruct *infos) 
 {
@@ -75,136 +65,18 @@ void func(int *x)
 }
 
 int main() {
+
 	srand(time(NULL));
 	int i, j, ret;
 	struct gameState *g;
 	struct infosStruct infos;
 	g = newGame();
-	int *k;
+	int k[NUMCARDS]; 
 	int n;
-	int handCount, deckCount, discardCount;
-	int handCountExp, deckCountExp, discardCountExp;
+	int handCount, deckCount, discardCount, actionCount;
+	int handCountExp, deckCountExp, discardCountExp, actionCountExp;
 
 	//Make sure draw card is working correctly
-	for(n=0; n < 2000; n++)
-	{
-		k = makeKUnique();
-
-		initializeGame(2, k, 3, g);
-
-		//randomize number of players
-		int numPlayers = (rand()%MAX_PLAYERS)+1;
-		g->numPlayers = numPlayers;
-
-		//randomize unused properties
-		g->outpostPlayed = rand();
-		g->outpostTurn = rand();
-		g->whoseTurn = rand(); //this may be important
-		g->phase = rand();
-		g->numActions = rand();
-		g->coins = rand();
-		g->numBuys = rand();
-
-		//randomized player hands
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = floor(rand()%(MAX_HAND/3));
-			}
-			while(numCards < 13);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->hand[i][j] = rand()%15;
-			}
-			g->handCount[i] = numCards;
-		}
-
-		//randomized player decks
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->deck[i][j] = rand()%15;
-			}
-			g->deckCount[i] = numCards;
-		}
-
-		//randomized player discard counts
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards == 0 && g->deckCount[i] == 0);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->discard[i][j] = rand()%15;
-			}
-			g->discardCount[i] = numCards;
-		}
-
-		//initialize infosStruct
-		infos.drawntreasure = 0;
-		infos.drawntreasure = 0;
-		infos.cardDrawn = 0; //random
-		for(i = 0; i < MAX_HAND; i++)
-			infos.temphand[i] = rand(); //rand()%MAX_HAND
-		infos.z = 0;
-		infos.handPos = 0; //not used
-		infos.i = 0; //not used either
-
-		//randomly select current player
-		do
-		{
-			infos.currentPlayer = rand()%MAX_PLAYERS;
-		}
-		while(infos.currentPlayer >= numPlayers);
-
-		//get gameState values before calling drawCard()
-		handCount = g->handCount[numPlayers-1];
-		deckCount = g->deckCount[numPlayers-1];
-		discardCount = g->discardCount[numPlayers-1];
-
-		//handle case when deckCount is 0
-		if(deckCount == 0)
-		{
-			deckCount = discardCount;
-			discardCount = 0;
-			g->deckCount[numPlayers-1] = g->discardCount[numPlayers-1];
-			g->discardCount[numPlayers-1] = 0;
-		}
-		else //discardCount is not affected
-		{
-			discardCountExp = discardCount;
-		}
-
-		handCountExp = handCount + 1;
-		deckCountExp = deckCount - 1;
-		drawCard(numPlayers-1, g);
-
-		handCount = g->handCount[numPlayers-1];
-		deckCount = g->deckCount[numPlayers-1];
-		discardCount = g->discardCount[numPlayers-1];
-		ASSERT2(handCountExp, handCount, "handCount after drawCard()");
-		ASSERT2(deckCountExp, deckCount, "deckCount after drawCard()");
-		ASSERT2(discardCountExp, discardCount, "discardCount after drawCard()");
-	}
-	puts("drawCard(): PASSED");
-	
-	//make sure player has two more cards after effectAdventurer
 	for(n=0; n < 2000; n++)
 	{
 		//make unique kingdom cards
@@ -250,11 +122,9 @@ int main() {
 		for(i = 0; i < numPlayers; i++)
 		{
 			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards);
+
+			numCards = rand()%(MAX_HAND/3);
+
 
 			for(j = 0; j < numCards; j++)
 			{
@@ -262,6 +132,7 @@ int main() {
 			}
 			g->deckCount[i] = numCards;
 		}
+		deckCount = g->deckCount[numPlayers-1];
 
 		//randomized player discard counts
 		for(i = 0; i < numPlayers; i++)
@@ -279,7 +150,7 @@ int main() {
 			}
 			g->discardCount[i] = numCards;
 		}
-
+		discardCount = g->discardCount[numPlayers-1];
 		//initialize infosStruct
 		infos.drawntreasure = 0;
 		infos.drawntreasure = 0;
@@ -297,29 +168,167 @@ int main() {
 		}
 		while(infos.currentPlayer >= numPlayers);
 
+		//get gameState values before calling drawCard()
+		handCount = g->handCount[numPlayers-1];
 		//handle case when deckCount is 0
 		if(deckCount == 0)
 		{
-			deckCount = discardCount;
-			discardCount = 0;
-			g->deckCount[numPlayers-1] = g->discardCount[numPlayers-1];
-			g->discardCount[numPlayers-1] = 0;
+			deckCountExp = discardCount;
+			deckCountExp--; //because draw card
+			discardCountExp = 0;
 		}
-		else //discardCount is not affected (in drawCard())
+		else //discardCount is not affected
 		{
 			discardCountExp = discardCount;
+			deckCountExp = deckCount - 1;
+		}
+		
+		handCountExp = handCount + 1;
+
+		drawCard(numPlayers-1, g);
+
+		handCount = g->handCount[numPlayers-1];
+		deckCount = g->deckCount[numPlayers-1];
+		discardCount = g->discardCount[numPlayers-1];
+
+		ASSERT2(handCountExp, handCount, "handCount after drawCard()");
+		ASSERT2(deckCountExp, deckCount, "deckCount after drawCard()");
+		ASSERT2(discardCountExp, discardCount, "discardCount after drawCard()");
+	}
+	puts("drawCard(): PASSED");
+	//make sure player has two more cards after effectAdventurer
+	for(n=0; n < 2000; n++)
+	{
+		//make unique kingdom cards
+		do 
+		{
+			makeK(k);
+		}
+		while(!isUnique(k));
+
+		initializeGame(2, k, 3, g);
+
+		//randomize number of players
+		int numPlayers = (rand()%MAX_PLAYERS)+1;
+		g->numPlayers = numPlayers;
+		//randomly select current player
+		do
+		{
+			infos.currentPlayer = rand()%MAX_PLAYERS;
+		}
+		while(infos.currentPlayer >= numPlayers);
+
+		//randomize unused properties
+		g->outpostPlayed = rand();
+		g->outpostTurn = rand();
+		g->whoseTurn = rand(); //this may be important
+		g->phase = rand();
+		g->numActions = rand();
+		g->coins = rand();
+		g->numBuys = rand();
+
+		//randomized player hands
+		for(i = 0; i < numPlayers; i++)
+		{
+			int numCards;
+			do
+			{
+				numCards = floor(rand()%(MAX_HAND/3));
+			}
+			while(numCards < 13);
+
+			for(j = 0; j < numCards; j++)
+			{
+				g->hand[i][j] = rand()%15;
+			}
+			g->handCount[i] = numCards;
 		}
 
+		//randomized player decks
+		for(i = 0; i < numPlayers; i++)
+		{
+			int numCards;
+			int coinCount = 0;
+			do
+			{
+
+			numCards = rand()%(MAX_HAND/3);
+				for(j = 0; j < numCards; j++)
+				{
+					int coin = rand()%15;
+					if(coin == copper)
+						coinCount++;
+					if(coin == silver)
+						coinCount++;
+					if(coin == gold)
+						coinCount++;
+					g->deck[i][j] = coin;
+				}
+			}
+			while(coinCount < 2);
+			g->deckCount[i] = numCards;
+		}
+		deckCount = g->deckCount[infos.currentPlayer];
+		
+
+		//randomized player discard counts
+		for(i = 0; i < numPlayers; i++)
+		{
+			int numCards;
+			do
+			{
+				numCards = rand()%(MAX_HAND/3);
+			}
+			while(numCards == 0 && g->deckCount[i] == 0);
+
+			for(j = 0; j < numCards; j++)
+			{
+				g->discard[i][j] = rand()%15;
+			}
+			g->discardCount[i] = numCards;
+		}
+		discardCount = g->discardCount[infos.currentPlayer];
+
+		//initialize infosStruct
+		infos.drawntreasure = 0;
+		infos.drawntreasure = 0;
+		infos.cardDrawn = 0; //random
+		for(i = 0; i < MAX_HAND; i++)
+			infos.temphand[i] = rand(); //rand()%MAX_HAND
+		infos.z = 0;
+		infos.handPos = 0; //not used
+		infos.i = 0; //not used either
+
+		//get gameState values before calling drawCard()
 		handCount = g->handCount[infos.currentPlayer];
-		handCountExp = handCount + 2;
-		ret = effectAdventure(g, &infos);
+		//handle case when deckCount is 0
+		if(deckCount == 0)
+		{
+			deckCountExp = discardCount;
+			deckCountExp--; //because draw card
+			discardCountExp = 0;
+		}
+		else //discardCount is not affected
+		{
+			discardCountExp = discardCount;
+			deckCountExp = deckCount - 1;
+		}
+				//printf("hand count is %d\n", handCount);
+		handCountExp = handCount;
+		actionCount = g->numActions;
+		actionCountExp = actionCount + 2;
+		effectVillage(g, &infos);
+
+
+		actionCount = g->numActions;
 		handCount = g->handCount[infos.currentPlayer];
-		ASSERT2(handCountExp, handCount, "adventurer");
+		//printf("hand count is %d\n", handCount);
+		ASSERT2(handCountExp, handCount, "handCount");
+		ASSERT2(actionCountExp, actionCount, "actionCount");
 	}
-	puts("effectAdventure(): Passed");
+	puts("effectVillage(): Passed");
 	return 0; 
 }
-
 
 /*
 int effectVillage(struct gameState *state, struct infosStruct *infos)

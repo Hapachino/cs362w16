@@ -10,21 +10,6 @@
 #define NO 0 
 #define NUMCARDS 10
 
-int checkTwoCoinCards(int *cards, int length) {
-	int i;
-	int coinCount = 0;
-	for(i = 0; i < length; i++)
-	{
-		if(cards[i] == copper || cards[i] == silver || cards[i] == gold)
-		{
-			coinCount++;
-		}
-		if(coinCount == 2)
-			return YES;
-	}
-	return NO;
-}
-
 void ASSERT2(int expVal, int realVal, char *s) 
 {	
 	if(expVal != realVal) 
@@ -334,6 +319,7 @@ int main() {
 		handCount = g->handCount[infos.currentPlayer];
 		deckCount = g->deckCount[infos.currentPlayer];
 		discardCount = g->discardCount[infos.currentPlayer];
+		ASSERT2(handCountExp, handCount, "handCount" );
 	}
 	puts("effectAdventure(): Passed");
 	return 0; 

@@ -36,111 +36,49 @@ float genPro(){
 
 //http://stackoverflow.com/questions/3437404/min-and-max-in-c
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
-//
-//
-//
-//
-//
-//
-//
-//void printHand(int player, struct gameState *game) {
-//    int handCount = game->handCount[player];
-//    int handIndex;
-//    printf("Player %d's hand:\n", player);
-//    if(handCount > 0) printf("#  Card\n");
-//    for(handIndex = 0; handIndex < handCount; handIndex++) {
-//        int card = game->hand[player][handIndex];
-//        char name[MAX_STRING_LENGTH];
-//        cardNumToName(card, name);
-//        printf("%-2d %-13s\n", handIndex, name);
-//    }
-//    printf("\n");
-//}
-//
-//
-//
-//void printDeck(int player, struct gameState *game) {
-//    int deckCount = game->deckCount[player];
-//    int deckIndex;
-//    printf("Player %d's deck: \n", player);
-//    if(deckCount > 0) printf("#  Card\n");
-//    for(deckIndex = 0; deckIndex < deckCount; deckIndex++) {
-//        int card = game->deck[player][deckIndex];
-//        char name[MAX_STRING_LENGTH];
-//        cardNumToName(card, name);
-//        printf("%-2d %-13s\n", deckIndex, name);
-//    }
-//    printf("\n");
-//}
 
-struct gameState makeRandomState (int players){
 
-    //Set up
-    struct gameState G;
+//Sets up a random card state for each player
+void makeRandomState (int players, struct gameState * G){
+    int i, j, maxDeck;
+    maxDeck = MAX_DECK;
+    float l = Random();
 
-    int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-                 sea_hag, tribute, smithy};
-
-    int money = 0;
-    int smithyPos = -1;
-    int adventurerPos = -1;
-    int j,p,i=0;
-
-    int numSmithies = 0;
-    int numAdventurers = 0;
-    int prob, quartprob;
-    int maxDeck = MAX_DECK;
-
-    //initialize
-    initializeGame(2, k, players, &G);
-    srand(time(NULL));
-
-     p= rand()%11;
-
-    //30% of the time the deck is 0
-    if(genPro() < 0.3){
+    //30% of the time the deck or Hand is 0
+    if(l < 0.3){
         maxDeck = 0;
     }
-
-
 
     //set up a  deck for  each player
     ///randdome to size of deck, discount, or hand
     //add one so that it's not a zeo deck or hand
-    for(i=0; i < players-1; i++) {
-        srand(time(NULL)+i);
-        i=0;
-        G.deckCount[i] =  rand()% maxDeck +1;
-        for(j=0; j < G.deckCount[i]-1; j++){
-            srand(time(NULL)+j);
-            G.deck[i][j] = rand()%11;
+    for(i=0; i < players; i++) {
+
+        G->deckCount[i] =  Random() * maxDeck +1;
+        for(j=0; j <  G->deckCount[i]-1; j++){
+            G->deck[i][j] = Random() * 19;
         }
 
-        G.discardCount[i] = rand()% maxDeck;
-        for(j=0; j < G.discardCount[i]-1; j++){
-            srand(time(NULL)+j);
-            G.discard[i][j] = rand()% 11;
+        G->discardCount[i] = Random() * maxDeck +1;
+        for(j=0; j <  G->discardCount[i]-1; j++){
+            G->discard[i][j] = Random() * 19;
 
         }
 
-        G.handCount[i] = floor(rand()% maxDeck +1);
-        for(j=0; j < G.handCount[i]-1; j++){
-            srand(time(NULL)+j);
-            G.hand[i][j] = rand()% 11;
+        G->handCount[i] = Random() * MAX_HAND +1;
+        for(j=0; j <  G->handCount[i]-1; j++){
+            G->hand[i][j] = Random() * 19;
         }
     }
 
-return G;
 }
 
 
-int testSmithy(struct gameState *state ){
+int testSmithy(struct gameState *state, int currentPlayer, int verbose ){
 
     //set some beginning vars
-    int currentPlayer = whoseTurn(state);
     int beginHandCount = state->handCount[currentPlayer];
-    int handPos = rand()% state->handCount[currentPlayer]+1;
-
+    int handPos = Random() * state->handCount[currentPlayer]-1;
     struct gameState preState;
     preState = *state;
 
@@ -152,8 +90,7 @@ int testSmithy(struct gameState *state ){
     srand(seed);
     assert(currentPlayer >= 0);
     assert(beginHandCount > 0);
-    assert(handPos > 0);
-
+    assert(handPos >= 0);
 
     //put the smithy card in the random hand position
     state->deck[currentPlayer][handPos] = smithy;
@@ -165,34 +102,70 @@ int testSmithy(struct gameState *state ){
     //But discard the card being used for a net gain of 2 to the current hand.
     if(state->handCount[currentPlayer] != beginHandCount+2){
         status++;
-        printf("BeginHand Count was: %i \n", beginHandCount);
-        printf("Actual Hand Count was: %i \n", state->handCount[currentPlayer]);
-        printf("Hand Count should be: %i \n", beginHandCount+2);
+        if(verbose == 1){
+            printf("BeginHand Count was: %i \n", beginHandCount);
+            printf("Actual Hand Count was: %i \n", state->handCount[currentPlayer]);
+            printf("Hand Count should be: %i \n", beginHandCount+2);
+        }else if(verbose == 2){
+            printf("HandCount Failed \n");
+            printf("summary:  DeckCount-%i, DisCC - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
+                   preState.discardCount[currentPlayer], preState.handCount[currentPlayer]);
+        }
+    }else{
+        if (verbose >= 1) {
+            printf("Hand Count Passed:\n");
+            printf("summary:  DeckCount-%i, DisCC - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
+                   preState.discardCount[currentPlayer], preState.handCount[currentPlayer]);
+        }
+
     }
 
     //make sure smithy was "discarded" i.e. set to -1
     if(state->hand[currentPlayer][handPos] == smithy){
         status++;
-        printf("Actual card in hand was: %i \n", state->hand[currentPlayer][handPos]);
-        printf("Hand Count should be: %i \n", -1);
+        if(verbose == 1) {
 
+            printf("Hand Discard Failed\n");
+            printf("Actual card in hand was: %i \n", state->hand[currentPlayer][handPos]);
+            printf("should be: %i \n", -1);
+            printf("summary:  DeckCount-%i, DisCC - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
+                   preState.discardCount[currentPlayer], preState.handCount[currentPlayer]);
+
+        }else if(verbose == 2){
+            printf(" Hand Discard Failed\n");
+            printf("summary:  DeckCount-%i, DisCC - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
+                   preState.discardCount[currentPlayer], preState.handCount[currentPlayer]);
+        }
+    }else {
+        if (verbose >= 1) {
+            printf("Hand Discard Passed:\n");
+            printf("summary:  DeckCount-%i, DisCC - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
+                   preState.discardCount[currentPlayer], preState.handCount[currentPlayer]);
+        }
     }
 
-    //make sure correct deck cards were drawn
-    if(state->hand[currentPlayer][state->handCount[currentPlayer] -1] != preState.deck[currentPlayer][preState.deckCount[currentPlayer]-2]){
+    //make sure "discard" was increased
+    if(state->discardCount[currentPlayer] == preState.discardCount[currentPlayer] +1){
         status++;
-        printf("Actual card in hand was: %i \n", state->hand[currentPlayer][state->handCount[currentPlayer] -1]);
-        printf(" should be: %i \n", preState.deck[currentPlayer][preState.deckCount[currentPlayer]-2]);
-    }
-    if(state->hand[currentPlayer][state->handCount[currentPlayer] -2] != preState.deck[currentPlayer][preState.deckCount[currentPlayer]-1]){
-        status++;
-        printf("Actual card in hand was: %i \n", state->hand[currentPlayer][state->handCount[currentPlayer] -2]);
-        printf(" should be: %i \n", preState.deck[currentPlayer][preState.deckCount[currentPlayer]-1]);
+        if(verbose == 1) {
+            printf("Discard Count Failed\n");
+            printf("discard was: %i \n", state->discardCount[currentPlayer]);
+            printf("should be: %i \n", preState.discardCount[currentPlayer] +1);
+            printf("summary:  DeckCount-%i, DisCC - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
+                   preState.discardCount[currentPlayer], preState.handCount[currentPlayer]);
+        }else if(verbose == 2){
+            printf("Discard Count Failed\n");
+            printf("summary:  DeckCount-%i, DisCC - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
+                   preState.discardCount[currentPlayer], preState.handCount[currentPlayer]);
+        }
+    }else {
+        if (verbose >= 1){
+            printf("Discard Count Passed\n");
+            printf("summary:  DeckCount-%i, DisCC - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
+                   preState.discardCount[currentPlayer], preState.handCount[currentPlayer]);
+        }
     }
 
-    //printf("%i", seed);
-    report.status = status;
-    report.badSeed = seed;
 
     return status;
 }
@@ -200,43 +173,54 @@ int testSmithy(struct gameState *state ){
 
 int main(int argc, char** argv) {
 
-    int n;
-
+    int n, cp;
     struct gameState G;
+    int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+                 sea_hag, tribute, smithy};
 
-    //G = makeRandomState(atoi(argv[1]));
-    int maxTestsFailed =0;
-    int badSeed = 0;
+    int maxTestsFailed = 0;
     int testResult = 0;
     int totalFailed =0;
+    printf ("Starting game. with %i players\n", atoi(argv[1]));
+
+    initializeGame(atoi(argv[1]), k, time(NULL) ,&G);
+
+    int money = 0;
+    int smithyPos = -1;
+    int adventurerPos = -1;
+    int i=0;
+    int verbose = atoi(argv[3]);
+    int numSmithies = 0;
+    int numAdventurers = 0;
+    srand(time(NULL));
+
     printf("\n\nTESTING Smithy CARD: ------------------ \n");
-    for (n = 0; n < 1000; n++) {
-        srand(time(NULL));
-        struct gameState G;
 
-        G = makeRandomState(atoi(argv[1]));
+    //Run 100k tests
+    //CHECK VERBOSE  is ZERO BEFORE RUNNING HIGH AMOUNTS
+    for (n = 0; n < atoi(argv[2]); n++) {
 
-        testResult = testSmithy(&G);
+        makeRandomState(atoi(argv[1]), &G);
 
-        if (testResult == 0) {
-            printf("testSmithy: OK\n");
+        //change current player
+        //is not working there is a bug with the initialization
+        cp = Random()* atoi(argv[1]);
 
-        } else {
-            printf("FAILED : %i tests \n", testResult);
-            maxTestsFailed = MAX(maxTestsFailed, testResult);
-            printf("Most Failed : %i tests \n", maxTestsFailed);
-            printf("Total Failed : %i tests of %i \n", totalFailed, n);
+        testResult = testSmithy(&G, cp, verbose);
+
+        if (testResult != 0) {
             totalFailed++;
-            //printf("BadSeed : %i  \n", badSeed);
+
         }
 
     }
-//    int i;
-//    for(i =0; i < 2000; i++){
-//
-//        int p = Random() * 11;
-//        printf("%i\n",p);
-//    }
+    if (testResult == 0)
+        printf("testSmithy: OK\n");
+
+    printf("Most Failed : %i tests \n", MAX(maxTestsFailed, testResult));
+    printf("Total Failed : %i tests of %i \n", totalFailed, n);
+
+
 
 return 0;
 }

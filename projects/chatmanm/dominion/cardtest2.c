@@ -22,10 +22,9 @@
 
 int testAdventurerCard(int p, struct gameState *G1)
 {
-    struct gameState G2;
     int preCount = 0;
     int postCount = 0;
-    
+ 
     preCount = countTreasure(p, G1); // counts the number of Treasure in hand
     cardEffect(adventurer, 0, 0, 0, G1, 0, 0);
     postCount = countTreasure(p, G1); // counts the number of Treasure after playing adventurer card
@@ -36,8 +35,9 @@ int testAdventurerCard(int p, struct gameState *G1)
 
 int countTreasure(int p, struct gameState *G1) {
     int cnt = 0;
-    
-    for (int i = 0; i < G1->handCount[p]; i++) {
+    int i;
+   
+    for (i = 0; i < G1->handCount[p]; i++) {
         if (G1->hand[p][i] == copper || G1->hand[p][i] == silver || G1->hand[p][i] == gold) {
             cnt++;
         }
@@ -47,7 +47,7 @@ int countTreasure(int p, struct gameState *G1) {
 
 int main() {
     struct gameState G1;
-    int p;
+    int p, i;
     
     printf("Testing Card: Adventurer\n");
     
@@ -56,14 +56,14 @@ int main() {
     G1.discardCount[p] = floor(Random() * MAX_DECK);
     G1.handCount[p] = floor(Random() * MAX_HAND);
     
-    for(int j = 0; j < G1.deckCount[p]; j++){
-        G1.deck[p][j] = floor(Random() * (27));
+    for(i = 0; i < G1.deckCount[p]; i++){
+        G1.deck[p][i] = floor(Random() * (27));
     }
-    for(int j = 0; j < G1.handCount[p]; j++){
-        G1.hand[p][j] = floor(Random() * (27));
+    for(i = 0; i < G1.handCount[p]; i++){
+        G1.hand[p][i] = floor(Random() * (27));
     }
-    for(int j = 0; j < G1.discardCount[p]; j++){
-        G1.discard[p][j] = floor(Random() * (27));
+    for(i = 0; i < G1.discardCount[p]; i++){
+        G1.discard[p][i] = floor(Random() * (27));
     }
     
     testAdventurerCard(p, &G1);

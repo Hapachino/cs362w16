@@ -1,0 +1,36 @@
+CS 362 Final Project Part A
+
+Project Group
+Robyn Lin
+Faye Yao
+Shaun Stapleton
+
+Due Sunday, February 14
+
+
+Part 1: Explain testIsValid function of UrlValidator test code
+
+
+testIsValid takes a testObjects array and any options, and creates a series of tests to validate all possible permutations of the combinations of testURLs, testing schemes, authorities, ports, and paths, like “http://”, /test1, :80, etc . By creating all permutations of these parts, we test these URLs to see if UrlValidator works as intended. The expected results are stored in ResultPair’s attribute “valid”, in order to verify if the test is working.
+
+
+Part 2: Give how many total number of urls it is testing. Also, explain how it is building all the urls. 
+
+
+There are 9 testUrlScheme ResultPairs, 19 testUrlAuthority ResultPairs, 7 testUrlPort ResultPairs, 3 testUrlQuery ResultPairs, and 10 testPath ResultPairs. Every possible permutation of schemes, authorities, ports, queries, and paths would be 9 * 19 * 7 * 10 * 3, which would be 35910 total URLs that are being tested. 
+First, it builds URLs by first creating a StringBuffer named testBuffer. Then testIsValid creates ResultPair arrays on every index of testObjects in a do-while loop (using a helper function to iterate through testObjects), and by iterating through testPartsIndexIndex (0 to 4 for schemes, authorities, ports, queries, and paths) to go through scheme to query. Each ResultPair in the part array holds its piece of the URL in its “item” attribute. Finally, it appends the ResultPair’s url part to testBuffer, which is then converted to a string that is tested to see if it’s a valid URL by comparing against the “valid” attribute in the corresponding ResultPair in the part array. In this way, testIsValid tests all possible combinations of URL schemes, ports, authorities, paths, and queries.
+
+
+Part 3: give a valid example of valid url being tested and an invalid url being tested by testIsValid() method
+
+
+The testIsValid() method operates on a set of testObjects to check if they have valid URLs. It creates a new ResultPair array and fills it with the testObjects parameter at the testPartsIndexIndex position. It then appends this array to the testBuffer, and converts the testBuffer to a string. Then the isValid function is called to test the validity of this string. Since the Object called testUrlParts is passed in to testIsValid(), the function will test all parts of the url including url scheme, authority, port, path, and query, all of which are required to form a valid url. 
+An example of a valid url is “http://go.com:80/t123?action=view”. An example of an invalid url is “http:/1.2.3.4.5.:0/test1?action=edit&mode=up”.
+
+
+Part 4: Would a real world test (URL Validator's testIsValid() test in this case) be very different from the unit tests and card tests we wrote (in terms of concepts & complexity)? Explain in a few lines.
+
+
+        There does not appear to be a large discrepancy between the test cases utilized in the URL Validator test case and the unit tests that we have been implementing throughout the course. The testIsValid() test case handles testing in a similar progression by creating an instance of an object that it wants to test and then proceeding through various steps to ensure that all of the possible test cases are taken into account. In our unit tests we similarly wanted to initialize or copy a gameState struct that we would then modify to identify any possible errors in the code. 
+	In order to identify errors, both tests do a pre-state check to confirm that the function or object in question is properly working. For the isValid test, there are two assertions called for this confirmation. In some of the unit tests for class, we may check the gameState by confirming that different supplyCounts are as we expect. From this point, both enter into different modifications that will be checked against the expected outcome. If the expected outcome is different from the actual result, an oracle provides the tester with feedback. Along with these post-state evaluations they both look to identify whether there are any other affected portions of the object or struct that could point out potential errors with helper functions. 
+	All things considered we would say that there is a close similarity in the concepts and complexity surrounding both the testIsValid function and the unit tests for dominion that have been implemented throughout the course.

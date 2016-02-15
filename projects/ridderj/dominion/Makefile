@@ -78,15 +78,15 @@ randomtestcard.out:  randomtestcard.c dominion.o rngs.o
 	
 	echo "randomtestcard.c:" >> randomtestcard.out
 	gcc -o randomtestcard randomtestcard.c dominion.o rngs.o $(CFLAGS)
-	./randomtestcard 
+	./randomtestcard >> randomtestcard.out
 	gcov $(CG) dominion.c >>  randomtestcard.out
 
 randomtestadventurer.out:  randomtestadventurer.c dominion.o rngs.o
-	echo "Results for Running Randomtestadventurer:" > randomtestcard.out
+	echo "Results for Running Randomtestadventurer:" > randomtestadventurer.out
 	
-	echo "randomtestadventurer.c:" >> randomtestcard.out
-	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
-	./randomtestadventurer 
+	echo "randomtestadventurer.c:" >> randomtestadventurer.out
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o -g $(CFLAGS)
+	./randomtestadventurer >> randomtestadventurer.out
 	gcov $(CG) dominion.c >>  randomtestadventurer.out
 
 player: player.c interface.o

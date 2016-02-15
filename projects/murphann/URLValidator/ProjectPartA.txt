@@ -4,29 +4,29 @@ Andy Garcia <garciaan@oregonstate.edu>
 
 
 1. Explain testIsValid Function of UrlValidator test code. (It is available under christia/UrlValidator folder.)
-        
-testIsValid() function is used to create a set of tests by generating a bunch of urls with known results and comparing the expected results to the results from the test. This is a way to verify if the current test correctly analyzes the url’s and returns correct results. It builds a url from hard-coded test values with known validity and then compares the test result with the known result.  It creates different possible urls by adding and removed different pieces of the url. These pieces are one of the ResultPair objects which are testUrlScheme, testUrlAuthority, testUrlPort, testPath, testUrlPathOptions, and testUrlQuery. It does every possible combination of all of the data in those objects with the order being testUrlScheme + testUrlAuthority + testUrlPort + testPath + testUrlPathOptions + testUrlQuery. The strings contained in the ResultPair objects are known to either be a valid or invalid subsection of a url. In order to be a valid url, every ResultPair objects must have given a valid subsection url. 
+
+testIsValid() function is used to create a set of tests by generating a bunch of urls with known results and comparing the expected results to the results from the test. This is a way to verify if the current test correctly analyzes the url’s and returns correct results. It builds a url from hard-coded test values with known validity and then compares the test result with the known result.  It creates different possible urls by adding and removed different pieces of the url. These pieces are one of the ResultPair objects which are testUrlScheme, testUrlAuthority, testUrlPort, testPath, testUrlPathOptions, and testUrlQuery. It does every possible combination of all of the data in those objects with the order being testUrlScheme + testUrlAuthority + testUrlPort + testPath + testUrlPathOptions + testUrlQuery. The strings contained in the ResultPair objects are known to either be a valid or invalid subsection of a url. In order to be a valid url, every ResultPair objects must have given a valid subsection url.
 
 
-1. Give how many total number of urls it is testing.
-        
-The total number of combinations is scheme*authority*path*pathOptions*port*query = 9*19*7*10*16*3 = 574,560. 
+2. Give how many total number of urls it is testing.
+
+The total number of combinations is scheme*authority*path*port*query = 9*19*7*10*3 = 35,910. when certain options are enabled the number is 9*19*7*16*3 = 57456.
 
 
-1. Also, explain how it is building all the urls.
+3. Also, explain how it is building all the urls.
 
 
-There are 5 arrays containing different test parts of URL’s in the form of <scheme><authority><port><path><pathOptions><query>. The TestIsValid function cycles through all the possible combinations of each possible url subsection, taking one item at a time and appending it to a string. However, each subsection has an option of an empty string, so the subsection may not at all be included in the final generated url. 
+There are 5 arrays containing different test parts of URL’s in the form of <scheme><authority><port><path><pathOptions><query>. The TestIsValid function cycles through all the possible combinations of each possible url subsection, taking one item at a time and appending it to a string. However, each subsection has an option of an empty string, so the subsection may not at all be included in the final generated url.
 
 
-1. Give an example of valid url being tested and an invalid url being tested by testIsValid() method.  (UrlValidator code is a direct copy paste of apache commons url validator code. The test file/code is also direct copy paste of apache commons test code.)
+4. Give an example of valid url being tested and an invalid url being tested by testIsValid() method.  (UrlValidator code is a direct copy paste of apache commons url validator code. The test file/code is also direct copy paste of apache commons test code.)
 
 
 valid: http://go.com:80/test1?action=view
 invalid: ://aaa:-1/test1//file?action=edit&mode=up
 
 
-1. Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines.
+5. Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines.
 
 
 The concepts are different because the isValid function is searching for whether or not something is true whereas our card tests are performing an action and trying to find out if it did was it was supposed to do. They are however the same in the sense that when we test the cards, we are looking for whether or not the action performed was true, but we also have to look for if it did more than it was supposed to. In the isvalid test, it is just testing different possible combinations of substrings within a url that are known to be true or false. With the card test, we have to perform the action, and then test to see what the action changed and compare that to what we expected it to change, which in turn is true or false.

@@ -1,8 +1,4 @@
 /*
-
-
-
-
 BUG 1- discovered by unittest4.c
 Found 1 bug in isGameOver:  If one of the empty piles is sea_hag or 
 treasure_map, and there are 2 other empty piles elsewhere in the supply, 
@@ -33,3 +29,21 @@ BUG 6- discovered by cardtest2:
 Found bug in playAdventurer: player deck count improperly decreased (i.e., an 
 improper number of cards, either too few or too many, were removed from the 
 player's deck).  This could also be caused by the same bug that causes BUG #5.
+
+BUG 7- discovered by cardtest3:
+Found bug during great hall card test: Suspect location is in discard().
+When the random position of the great hall card is the last card in the hand,
+the card gained into the hand from the great hall card is immediately discarded.
+The great hall card is overwritten, and the cards in the hand are faulty: (a -1
+instead of the next card in the deck). 
+
+BUG 8 - discovered by cardtest4: 
+Found bug during playVillage: Discarded village card not placed in played cards 
+after play.  This is probably a separate bug from BUG #7, because it occurs every
+test.  
+
+BUG 9 - discovered by cardtest4: 
+Found bug in playVillage: Suspect the problem is the same problem as in BUG 7, likely
+location is discard().  When the random position of the village card is the last card
+in the hand, the next card placed into the deck is overwritten (a -1 instead of the
+next card).  

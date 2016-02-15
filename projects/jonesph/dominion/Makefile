@@ -42,6 +42,12 @@ cardTest3: cardtest3.c dominion.o rngs.o
 cardTest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardTest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
 
+randomTestAdventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomTestAdventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomTestCard: randomtestcard.c dominion.o rngs.o
+	gcc -o randomTestCard -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
@@ -91,10 +97,18 @@ unittestresults.out:
 	gcc -o cardTest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
 	./cardTest4 >> unittestresults.out
 	gcov cardtest4.c >> unittestresults.out  
+
+	gcc -o randomTestCard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+	./randomTestCard >> randomtestcard.out
+	gcov randomtestcard.c >> randomtestcard.out
+
+	gcc -o randomTestAdventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	./randomTestAdventurer >> randomtestadventurer.out
+	gcov randomtestadventurer.c >> randomtestadventurer.out
   
 	gcov dominion.c >> unittestresults.out
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard unitTest1 unitTest2 unitTest3 unitTest4 cardTest1 cardTest2 cardTest3 cardTest4
+all: playdom player testDrawCard testBuyCard badTestDrawCard unitTest1 unitTest2 unitTest3 unitTest4 cardTest1 cardTest2 cardTest3 cardTest4 randomTestCard randomTestAdventurer
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unitTest1.exe unitTest1 unitTest2.exe unitTest2 unitTest3.exe unitTest3 unitTest4.exe unitTest4 cardTest1.exe cardTest1 cardTest2.exe cardTest2 cardTest3.exe cardTest3 cardTest4.exe cardTest4 *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unitTest1.exe unitTest1 unitTest2.exe unitTest2 unitTest3.exe unitTest3 unitTest4.exe unitTest4 cardTest1.exe cardTest1 cardTest2.exe cardTest2 cardTest3.exe cardTest3 cardTest4.exe cardTest4 randomTestCard.exe randomTestCard randomTestAdventurer.exe randomTestAdventurer *.gcov *.gcda *.gcno *.so

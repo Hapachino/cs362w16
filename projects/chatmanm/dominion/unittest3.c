@@ -33,12 +33,13 @@ int testGetCost(randCard) {
 
 int main() {
     int randCard;
+    int n, i;
     struct gameState G;
     srand(time(NULL));
     
     printf("Testing Function: GetCost\n");
-    for (int n = 0; n < 2000; n++) {
-        for (int i = 0; i < sizeof(struct gameState); i++) {
+    for (n = 0; n < 2000; n++) {
+        for (i = 0; i < sizeof(struct gameState); i++) {
             ((char*)&G)[i] = floor(Random() * 256);
         }
         randCard = rand() % (treasure_map + 1); // generates random number 1 - 27

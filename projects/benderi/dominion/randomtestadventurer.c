@@ -53,8 +53,11 @@ void randomTestAdventurer(int *success, int *failure)
     seed = rand() % 1000 + 1;
     // allow for players between 1 and 5 to catch corner cases
     numPlayers = rand() % 5 + 1;
+    // causes 'stack smashing detected' error?
+    //thisPlayer = rand() % numPlayers;
 
-    printf("TESTING: seed = %d, numPlayers = %d\n", seed, numPlayers);
+    printf("TESTING: seed = %d, numPlayers = %d, thisPlayer = %d\n", 
+                seed, numPlayers, thisPlayer);
 
     //initialize game state
     outcome = initializeGame(numPlayers, k, seed, &G);

@@ -19,6 +19,13 @@ ended with a failure related to no additional cards being added to the test
 hand. This is due to a bug in the playAdventurer function. The other failures
 are attributed to initializing games with either 1 or 5 players.
 
+One interesting thing I noticed in testing the adventurer card is that if I try
+to randomly set the thisPlayer index, I often get a 'stack smashing detected'
+error. I'm not yet sure what this bug is, but it seems to be an issue with
+referencing an invalid memory location somewhere in the game initialization.
+    // causes 'stack smashing detected' error?
+    //thisPlayer = rand() % numPlayers;
+
 Game initialization errors were also common in random testing for the smithy
 card, when player numbers of 1 or 5 were input. The other failures were due to
 a player not gaining/discarding the correct number of cards. On this test, my

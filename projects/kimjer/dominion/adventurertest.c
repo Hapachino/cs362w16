@@ -118,7 +118,6 @@ int createRandomDecksHands(struct gameState* G) {
 
 int main() 
 {
-
 	srand(time(NULL));
 	int INTSIZE = sizeof(int);
 	struct gameState G;

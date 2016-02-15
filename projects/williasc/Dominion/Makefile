@@ -53,6 +53,34 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+randomTestCard: randomTestCard.c dominion.o rngs.o
+	gcc -o randomTestCard -g randomTestCard.c dominion.o rngs.o $(CFLAGS)
+
+randomTestAdventurer: randomTestAdventurer.c dominion.o rngs.o
+	gcc -o randomTestAdventurer -g randomTestAdventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard.out:
+	make clean; make randomTestCard; make runRandomTestCard
+
+runRandomTestCard: randomTestCard
+	touch randomtestcard.out
+	./randomTestCard &> randomtestcard.out
+	gcov randomTestCard.c >> randomtestcard.out
+	cat randomTestCard.c >> randomtestcard.out
+	gcov -b randomTestCard.c >> randomtestcard.out
+	cat randomTestCard.c.gcov >> randomtestcard.out
+
+randomtestadventurer.out:
+	make clean; make randomTestAdventurer; make runRandomTestAdventurer
+
+runRandomTestAdventurer: randomTestAdventurer
+	touch randomtestadventurer.out
+	./randomTestAdventurer &> randomtestadventurer.out
+	gcov randomTestAdventurer.c >> randomtestadventurer.out
+	cat randomTestAdventurer.c >> randomtestadventurer.out
+	gcov -b randomTestAdventurer.c >> randomtestadventurer.out
+	cat randomTestAdventurer.c.gcov >> randomtestadventurer.out
+
 unittestresults.out:
 	make clean; make tests; make runTest;
 

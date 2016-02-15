@@ -27,12 +27,22 @@ void processResults(struct gameState *testState, struct gameState *oldState){
     updateCoins(PLAYER1, oldState, 0);
     assert(testState->coins == oldState->coins + 2);
     // The other players should have one less copper card in their hand
-    printf("\tCopper cards in player 2's hand. Expected = %d Actual = %d\n", numOfCardInHand(copper, oldState->hand[PLAYER2]) - 1, numOfCardInHand(copper, testState->hand[PLAYER2]));
+    int expectedCoppers = numOfCardInHand(copper, oldState->hand[PLAYER2]) - 1;
+    int actualCoppers = numOfCardInHand(copper, testState->hand[PLAYER2]);
+    printf("\tCopper cards in player 2's hand. Expected = %d Actual = %d\n", expectedCoppers, actualCoppers);
 
     // The other players should have one less in their coin count
     updateCoins(PLAYER2, oldState, 0);
     updateCoins(PLAYER2, testState, 0);
-    printf("\tCoin count for player 2. Expected = %d Actual = %d\n", oldState->coins - 1, testState->coins);
+    int expectedCoins = oldState->coins - 1;
+    int actualCoins = testState->coins;
+    printf("\tCoin count for player 2. Expected = %d Actual = %d\n", expectedCoins, actualCoins);
+
+    if (actualCoppers != expectedCoppers || actualCoins != expectedCoins){
+        printf("\tRun run status: FAIL\n");
+    } else {
+        printf("\tRun run status: PASS\n");
+    }
 }
 
 int numOfCardInHand(int card, struct gameState *state, int player){

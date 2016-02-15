@@ -523,9 +523,10 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
 }
 
 int drawCard(int player, struct gameState *state)
-{	int count;
-  int deckCounter;
-  if (state->deckCount[player] <= 0){//Deck is empty
+{	
+	int count;	
+  	int deckCounter;
+ 	 if (state->deckCount[player] <= 0){//Deck is empty
     
     //Step 1 Shuffle the discard pile back into a deck
     int i;
@@ -561,7 +562,7 @@ int drawCard(int player, struct gameState *state)
 
     state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
     state->deckCount[player]--;
-    state->handCount[player]++;//Increment hand count
+	state->handCount[player]++;//Increment hand count
   }
 
   else{
@@ -576,7 +577,6 @@ int drawCard(int player, struct gameState *state)
     state->deckCount[player]--;
     state->handCount[player]++;//Increment hand count
   }
-
   return 0;
 }
 

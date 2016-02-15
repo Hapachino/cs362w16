@@ -258,7 +258,9 @@ public class UrlValidator implements Serializable {
 
         if (isOn(ALLOW_ALL_SCHEMES)) {
             this.allowedSchemes = Collections.EMPTY_SET;
-        } else {
+        } 
+        else 
+        {
             if (schemes == null) {
                 schemes = DEFAULT_SCHEMES;
             }

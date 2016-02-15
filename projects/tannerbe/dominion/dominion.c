@@ -18,6 +18,161 @@ struct gameState* newGame() {
   return g;
 }
 
+struct gameState newRandomGame(int kc[10], int stream)
+{
+  PlantSeeds(-1);
+  SelectStream(stream);
+  int i, j, r, c, result, thisPlayer;
+  int seed, numPlayers;
+  struct gameState Game;
+
+  //valid random number of players
+  numPlayers = floor(Random() * 3) + 2;
+
+  //valid random seed
+  seed = floor(Random() * 1000000000);
+  
+  //make the game
+  result = initializeGame(numPlayers, kc, seed, &Game);
+  if (result == -1)
+  {
+    for (i = 0; i < 10; i++)
+    {
+      printf("kc[%d] = %d   ", i, kc[i]);
+    }
+    printf("\nnumPlayers: %d\n", numPlayers);
+  }
+
+  //put the first player's hand back into the deck
+  Game.deck[0][5] = Game.hand[0][0];
+  Game.deck[0][6] = Game.hand[0][1];
+  Game.deck[0][7] = Game.hand[0][2];
+  Game.deck[0][8] = Game.hand[0][3];
+  Game.deck[0][9] = Game.hand[0][4];
+  Game.handCount[0] = 0;
+  Game.deckCount[0] = 10;
+  thisPlayer = floor(Random() * numPlayers);
+  Game.whoseTurn = thisPlayer;
+
+  //determine a random deckCount and discardCount for each player, and then fill with random cards
+  for (i = 0; i < numPlayers; i++)
+  {
+    //determine a random deckCount and discardCount
+    r = floor(Random() * 100);
+    if (r < 60) //60% of the time
+    {
+      Game.deckCount[i] = 10 + floor(Random() * 20);
+      Game.discardCount[i] = floor(Random() * Game.deckCount[i]);
+    }
+    else if (r >= 60 && r < 90) //30% of the time
+    {
+      Game.deckCount[i] = 30 + floor(Random() * 40);
+      Game.discardCount[i] = floor(Random() * Game.deckCount[i]);
+    }
+    else  //10% of the time
+    {
+      Game.deckCount[i] = floor(Random() * (MAX_DECK - 70)) + 70;
+      Game.discardCount[i] = floor(Random() * Game.deckCount[i]);
+    }
+
+    //Fill in deck with random cards, leaving the starting 7 coppers and 3 estates in the first 10 spots.
+    for (j = 10; j < Game.deckCount[i]; j++)
+    {
+      r = floor(Random() * 17);
+      if (r < 7)
+      {
+        Game.deck[i][j] = r;
+      }
+      else
+      {
+        Game.deck[i][j] = kc[r-7];
+      }
+      
+    }
+
+    //shuffle the deck with the new random cards
+    shuffle(i, &Game);
+
+    //add discardCount cards from top of deck to discard
+    for (j = 0; j < Game.discardCount[i]; j++)
+    {
+      Game.deckCount[i]--;
+      Game.discard[i][j] = Game.deck[i][Game.deckCount[i]];        
+    }
+  }
+
+  //only set up hand for the player who's turn it is
+  r = floor(Random() * 100);
+  if (r != 0) //99% of the time, pick a typical handCount (under 10)
+  {
+    r = floor(Random() * 10) + 1;
+    for (i = 0; i < r; i++)
+    {
+      drawCard(thisPlayer, &Game);
+    }
+  }
+  else //1% of the time, test a large handCount up to the number of available cards
+  {
+    r = floor(Random() * (Game.deckCount[thisPlayer] + Game.discardCount[thisPlayer])) + 1;
+    for (i = 0; i < r; i++)
+    {
+      drawCard(thisPlayer, &Game);
+    }
+  }
+  if (DEBUG == 1)
+  {
+    printf("Hand of Player %d\n", thisPlayer);
+    for (i = 0; i < Game.handCount[thisPlayer]; i++)
+    {
+      printf("\tcard[%d]: %d\n", i, Game.hand[thisPlayer][i]);     
+    }
+  }
+
+  //remove random numbers of cards from the supplies
+  Game.supplyCount[estate] = Game.supplyCount[estate] - floor(Random() * (3 * numPlayers));
+  Game.supplyCount[duchy] = Game.supplyCount[duchy] - floor(Random() * (3 * numPlayers));
+  Game.supplyCount[province] = Game.supplyCount[province] - floor(Random() * (3 * numPlayers));
+  Game.supplyCount[copper] = Game.supplyCount[copper] - floor(Random() * (60 - 7 * numPlayers));
+  Game.supplyCount[silver] = Game.supplyCount[silver] - floor(Random() * 40);
+  Game.supplyCount[gold] = Game.supplyCount[gold] - floor(Random() * 30);
+  Game.supplyCount[curse] = Game.supplyCount[curse] - floor(Random() * ((numPlayers-1) * 10));
+  for (i = 0; i < 10; i++)
+  {
+    if (kc[i] == great_hall || kc[i] == gardens)
+    {
+      if (numPlayers == 2)
+      {
+        Game.supplyCount[kc[i]] = Game.supplyCount[kc[i]] - floor(Random() * 9);        
+      }
+      else
+      {
+        Game.supplyCount[kc[i]] = Game.supplyCount[kc[i]] - floor(Random() * 13);
+      }
+    }
+    else
+    {
+      Game.supplyCount[kc[i]] = Game.supplyCount[kc[i]] - floor(Random() * 11);
+    }
+  }
+
+  //pick random playedCardCount
+  if (floor(Random() * 100) != 0) //99% of the time, test a typical playedCardCount (under 5)
+  {
+    Game.playedCardCount = floor(Random() * 5);
+  }
+  else //1% of the time, test a large playedCardCound
+  {
+    Game.playedCardCount = floor(Random() * (Game.deckCount[thisPlayer] + 1));
+  }
+
+  for (i = 0; i < Game.playedCardCount; i++)
+  {
+    r = floor(Random() * 10);
+    Game.playedCards[i] = kc[r];
+  }
+  return Game;
+}
+
 int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
 		  int k8, int k9, int k10) {
   int* k = malloc(10 * sizeof(int));
@@ -60,7 +215,9 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
         {
 	  if (j != i && kingdomCards[j] == kingdomCards[i])
 	    {
+        printf("failed at kingdom cards\n");
 	      return -1;
+
 	    }
         }
     }
@@ -658,12 +815,17 @@ int smithyEffect(int currentPlayer, int handPos, struct gameState *state)
 
 int adventurerEffect(int handPos, int currentPlayer, struct gameState *state, int cardDrawn, int temphand[], int z, int drawntreasure)
 {
+  int result;
      while(drawntreasure<2){
       //printf("!!deck count = %d, drawntreasure = %d\n", state->deckCount[currentPlayer], drawntreasure);
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state); //bug - this if block serves no purpose
 	}
-	drawCard(currentPlayer, state);
+	result = drawCard(currentPlayer, state);
+  if (result == -1 && DEBUG == 1)
+  {
+    printf("result was -1 from draw card\n");
+  }
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
 	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 	  drawntreasure++;

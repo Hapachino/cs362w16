@@ -46,7 +46,7 @@ int adventurerCard(int currentPlayer, struct gameState *state)
 		}
     }
     
-	ret = z;
+	ret = z + drawntreasure;
 	
     while(z-1>=0)
     {

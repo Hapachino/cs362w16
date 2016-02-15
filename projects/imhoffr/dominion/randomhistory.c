@@ -16,6 +16,14 @@
  A new bug was found with the random tester: After the first run, the second run found that the discard
  pile had been altered, which should not be possible.  The estate card, specifically, was not found in 
  the hand, despite not being played, and was found in the discard pile, again despite not being played. 
+ 
+ I took my bug out of the Adventurer function in dominion.c to see what would happen without my bug.
+ If the deck had zero coins in it, the last card in the hand was lost from the hand but was put in 
+ the discard pile.  
+ 
+ With my bug in the system, the bug not introduced to me "evens out" and cancels each other out.
+ Bugs playing with other bugs -- not good!  
+ 
  I had a difficult determining if this was my code and my previously introduced error or if this was 
  truely a bug.  All other bugs have been previously documented in bugs1.c
 

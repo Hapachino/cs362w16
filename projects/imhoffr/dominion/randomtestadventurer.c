@@ -21,8 +21,8 @@
 #include "rngs.h"
 
 #define DECK_SIZE 10
-#define HAND_SIZE 5
 #define KINGDOM_CARDS_SIZE 10
+#define ADVENTURER_COIN_COUNT 2
 #define TESTCARD "adventurer"
 #define TEST_COUNT 2
 
@@ -216,7 +216,7 @@ bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_SIZE]) {
     
     randomDeck(player, DECK_SIZE, &testGame);
     int deckCoinCountBefore = deckCoinCount(player, &testGame);
-    int thirdDeckCoinIndex = deckCoinIndex(player, 3, &testGame);
+    int secondDeckCoinIndex = deckCoinIndex(player, ADVENTURER_COIN_COUNT, &testGame);
     
     // empty discard pile
     testGame.discardCount[player] = 0;
@@ -234,13 +234,14 @@ bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_SIZE]) {
     
     
     /* Test 1 */
+    printf(" ------ TEST 1 ------\n");
     printHand(player, &testGame);
     
     int actualHandCountAfter = testGame.handCount[player];
     int expectedHandCoinCountDelta;
     
-    if (deckCoinCountBefore > 3) {
-        expectedHandCoinCountDelta = 3;
+    if (deckCoinCountBefore >= ADVENTURER_COIN_COUNT) {
+        expectedHandCoinCountDelta = ADVENTURER_COIN_COUNT;
     } else {
         expectedHandCoinCountDelta = deckCoinCountBefore;
     }
@@ -255,15 +256,16 @@ bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_SIZE]) {
     
     /* Test Failed Statements */
     /* Test 2 */
-    
+    printf(" ------ TEST 2 ------\n");
+
     printDeck(player, &testGame);
     int actualDeckCountAfter = testGame.deckCount[player];
     int expectedDeckCountAfter;
     
-    if (thirdDeckCoinIndex == DECK_COIN_INDEX_NOT_FOUND) {
+    if (secondDeckCoinIndex == DECK_COIN_INDEX_NOT_FOUND) {
        expectedDeckCountAfter = 0;
     } else {
-       expectedDeckCountAfter = deckCountBefore - (thirdDeckCoinIndex + 1);
+       expectedDeckCountAfter = deckCountBefore - (secondDeckCoinIndex + 1);
     }
     
     printf("Deck count: %d, Expected: %d\n", actualDeckCountAfter, expectedDeckCountAfter);
@@ -274,15 +276,18 @@ bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_SIZE]) {
     }
     
     /* Test 3 */
+    /* THIS IS EXPECTED TO FAIL!!! */
+    /* This is catching a bug I introduced in assignment, an off by one error */
+    printf(" ------ TEST 3 ------\n");
+
     printDiscard(player, &testGame);
     int actualDiscardCountAfter = testGame.discardCount[player];
     int expectedDiscardCountAfter;
     
-    if (thirdDeckCoinIndex == DECK_COIN_INDEX_NOT_FOUND) {
+    if (secondDeckCoinIndex == DECK_COIN_INDEX_NOT_FOUND) {
         expectedDiscardCountAfter = deckCountBefore - deckCoinCountBefore;
     } else {
-        assert(NULL != NULL);
-        expectedDiscardCountAfter = thirdDeckCoinIndex - 3;
+        expectedDiscardCountAfter = secondDeckCoinIndex - ADVENTURER_COIN_COUNT;
     }
     
     printf("Discard count: %d, Expected: %d\n", actualDiscardCountAfter, expectedDiscardCountAfter);
@@ -299,7 +304,8 @@ bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_SIZE]) {
 int main(){
     int cards[KINGDOM_CARDS_SIZE] = {adventurer, embargo, village, minion, mine, cutpurse,
         sea_hag, tribute, smithy, council_room};
-    int seed = 4;
+    // int seed = 4; /* Garaunteed at least 4 coins */
+    int seed = 1;
     int numberOfPlayers = 2;
     
     bool allPassed = true;

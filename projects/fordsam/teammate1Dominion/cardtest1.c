@@ -1,5 +1,5 @@
-/* Test the playAdventurer() function
-   NOTE: playAdventurer() should:
+/* Test the Adventurer card
+   NOTE: Adventurer should:
      * Draw cards from the player's deck until two treasure cards are drawn.
      * Discard all drawn cards that are not treasure cards.
      * Move the played card to the playedCards pile.
@@ -16,7 +16,7 @@
 #define P1 0
 #define P2 1
 
-int testPlayAdventurer() {
+int testAdventurer() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -55,7 +55,7 @@ int testPlayAdventurer() {
     perror("Error forking");
   } else if (pid == 0) {
     /* Execute the test in the child process */
-    result = playAdventurer(&state);
+    result = adventurerEffect(P1, &state);
 
     exit(result);
   } else if (pid > 0) {
@@ -90,7 +90,7 @@ int testPlayAdventurer() {
     /* Properly test the lack of treasure cards if it didn't cause a crash
        NOTE: This current setup relies on the pre-existing setup above */
     memcpy(&state, &preState, sizeof(struct gameState));
-    result = playAdventurer(&state);
+    result = adventurerEffect(P1, &state);
     compareState(&state, &preState, &gsc);
 
     /* Should not change the player's hand */
@@ -148,7 +148,7 @@ int testPlayAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = adventurerEffect(P1, &state);
   compareState(&state, &preState, &gsc);
 
   /* For 1 treasure card, hand should only get 1 additional card */
@@ -204,7 +204,7 @@ int testPlayAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = adventurerEffect(P1, &state);
   compareState(&state, &preState, &gsc);
 
   /* Should draw treasure cards from deck into hand */
@@ -260,7 +260,7 @@ int testPlayAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = adventurerEffect(P1, &state);
   compareState(&state, &preState, &gsc);
 
   /* Should draw treasure cards from deck into hand */
@@ -327,7 +327,7 @@ int testPlayAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = adventurerEffect(P1, &state);
   compareState(&state, &preState, &gsc);
 
   /* Should draw treasure cards from deck into hand */
@@ -380,6 +380,6 @@ int testPlayAdventurer() {
 }
 
 int main() {
-  testPlayAdventurer();
+  testAdventurer();
   return 0;
 }

@@ -36,6 +36,12 @@ cardtest3: dominion.o testFunctions.o cardtest3.c
 cardtest4: dominion.o testFunctions.o cardtest4.c
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o testFunctions.o $(CFLAGS)
 
+randomtestadventurer: dominion.o testFunctions.o randomtestadventurer.c
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o testFunctions.o $(CFLAGS)
+
+randomtestcard: dominion.o testFunctions.o randomtestcard.c
+	gcc -o randomtestcard randomtestcard.c -g dominion.o rngs.o testFunctions.o $(CFLAGS)
+
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
@@ -73,6 +79,10 @@ unittests: unittest1 unittest2 unittest3 unittest4
 
 cardtests: cardtest1 cardtest2 cardtest3 cardtest4
 
+printrandomtests: randomtestadventurer randomtestcard
+	./randomtestadventurer
+	./randomtestcard
+
 unittestresults.out: unittests cardtests
 	./unittest1 &> unittestresults.out
 	./unittest2 >> unittestresults.out
@@ -84,11 +94,19 @@ unittestresults.out: unittests cardtests
 	./cardtest4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 
-all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 testDrawCard testBuyCard badTestDrawCard
+randomtestcard.out: randomtestcard
+	./randomtestcard &> randomtestcardresults.out
+	gcov -b dominion.c >> randomtestcardresults.out
+
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer &> randomtestadventurerresults.out
+	gcov -b dominion.c >> randomtestadventurerresults.out
+
+all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player player.exe testInit testInit.exe *.out *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard player player.exe testInit testInit.exe *.out *.gcov *.gcda *.gcno *.so
 
 remake: 
 	make clean
-	make cardtest4
+	make randomtestcard

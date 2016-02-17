@@ -1,25 +1,8 @@
 /* -----------------------------------------------------------------------
  * Testing Adventuerer card
- Basic requirements of smithy card
-
  * -----------------------------------------------------------------------
  */
  
- /*
- -random amount of players
- -random main player
- 
- -deck has random amount & random cards
- 
- -fill hand with one adventuerer
- -allow deck to possiably have 0 treasure cards
-
- -discard has random amount & random cards
- 
-
-
--checking hand supply count 
- */
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -30,7 +13,7 @@
 #include <math.h>
 #include <limits.h>
 
-#define DEBUG 1
+#define DEBUG2 1
 
 int main() {
     int i;
@@ -43,6 +26,8 @@ int main() {
      "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map" };
     int countNum = 0;
     int coinRandom;
+    int coinCounter;
+    int allCardsCounter;
     int supplyRandomEstate;
     int randomNum;
     int deckRandom;
@@ -77,18 +62,18 @@ int main() {
       nameCards[i][j] = i;
        }
     }
-    
+
 
      SelectStream(2);
      PutSeed(3);
     
     
-    //printf ("TESTING cutpurse card:%d \n\n", INT_MAX);
+
     
    
     
-    while(countNum < 100000){ //Stops testing after a certain number of attemtps
-    if(DEBUG)
+    while(countNum < 500000){ //Stops testing after a certain number of attemtps
+    if(DEBUG2)
       printf("\nTEST START---------------------------------\n");
 
           //Setup game, number of players, whose turn is it-----------------------------
@@ -105,12 +90,39 @@ int main() {
           
           
           //Cards in DECK SETUP------------------------------------------------
-          deckRandom = floor(Random()*100);
+          deckRandom = MAX_DECK;//(Random()*MAX_DECK);
           for (i = 0; i < deckRandom; i++) {
             G.deck[G.whoseTurn][i] = floor(Random()*27); 
           }
-          //printf("What is deckRandom: %d\n",deckRandom);
           G.deckCount[G.whoseTurn] = deckRandom;
+          // if(floor(Random()*4) > 0)
+               // G.deckCount[G.whoseTurn] = 0;
+            
+            
+            
+            
+            
+            
+            
+            
+          //COINS & CARD COUNTER------------------------------------------------
+          //(Determines how many cards to be discarded.)
+          coinCounter = 0;
+          allCardsCounter = 0;
+          i = deckRandom-1;
+          while(coinCounter < 2 && i >= 0) {
+            allCardsCounter++;
+            //printf("Counter: %d  %d\n",allCardsCounter, G.deck[G.whoseTurn][i]);
+            if(G.deck[G.whoseTurn][i] == copper || G.deck[G.whoseTurn][i] == silver || G.deck[G.whoseTurn][i] == gold){
+               coinCounter++;
+            }
+            i--;
+          }
+          allCardsCounter = allCardsCounter - 2;
+          
+
+
+            
           
           
           
@@ -122,9 +134,7 @@ int main() {
           handRandom = floor((Random()*100)+2);
           for (i = 0; i < handRandom; i++) {
             randomNum = floor(Random()*27);
-            if(randomNum != estate) { //make sure inital hand never gets an estate, it will be added later
-               G.hand[G.whoseTurn][i] = 2;//just make it a duchy card
-            } else { G.hand[G.whoseTurn][i] = randomNum; }
+            G.hand[G.whoseTurn][i] = randomNum;
           }
           //Make sure 1 adventurer is in hand
           G.hand[G.whoseTurn][0] = adventurer;
@@ -145,8 +155,7 @@ int main() {
           G.discardCount[G.whoseTurn] = discardRandom;
           
           
-          
-          
+
           
           //SETUP COINS------------------------------------------------
           coinRandom = floor(Random()*27);
@@ -160,115 +169,43 @@ int main() {
           numBuysRandom = floor(Random()*20);//set intial buys
           G.numBuys = numBuysRandom; 
            
- 
-          
+          //COUNT HOW MANY CARDS BEFORE FINDING GOLD------------------------------------------------
           
           
           //RUN CARD FUNCTION------------------------------------------------
-          handpos = 0, choice1=0, choice2 = 0, choice3 = 0, bonus = 0;
+          handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
           cardEffect(adventurer, choice1, choice2, choice3, &G, handpos, &bonus);
-          
+
           
 
-          printf("TEST NUM: %d Deck: %d Hand: %d Discard: %d Player %d\n",countNum, deckRandom, handRandom, discardRandom, G.whoseTurn+1);
-          //////////////////////
-          ///GET ESTATE CARD
-          ////////////////////////
-          //if(choice1 == 0 && (G.hand[G.whoseTurn][1] == 1)) {
-             if(DEBUG) {
+          printf("TEST NUM: %d Deck: %d Hand: %d Discard: %d Player: %d DiscardCount: %d\n",countNum, deckRandom, handRandom, discardRandom, G.whoseTurn+1, allCardsCounter);
+ 
+             if(DEBUG2) {
                 printf("ADVENTURER CARD---\n");
                 
                 printf("Hand Supply Count = %d ,expected %d\n", G.handCount[G.whoseTurn], handRandom+2);
-                assert(G.handCount[G.whoseTurn] == handRandom);
-                
-                
-                
-/*                 printf("Coins = %d ,expected %d\n",G.coins, coinRandom);
-                assert( G.coins == coinRandom);
-                
-                printf("Number of buys = %d,expected %d\n",G.numBuys, (numBuysRandom+1));
-                assert( G.numBuys == (numBuysRandom+1));
-                
-                printf("Estate Supply Count = %d ,expected %d\n", G.supplyCount[estate], supplyRandomEstate-1);
-                if(G.supplyCount[estate] != supplyRandomEstate-1)
+                //assert(G.handCount[G.whoseTurn] == handRandom);
+                if(G.handCount[G.whoseTurn] != handRandom)
                    printf("TEST FAIL\n");
                 
-                printf("Hand Supply Count = %d ,expected %d\n", G.handCount[G.whoseTurn], handRandom);
-                assert(G.handCount[G.whoseTurn] == handRandom);
-            
-                printf("Discard Supply Count = %d ,expected %d\n", G.discardCount[G.whoseTurn], discardRandom+1);
-                //assert(G.discardCount[G.whoseTurn] == discardRandom+1);
-                if(G.discardCount[G.whoseTurn] != discardRandom+1);
-                  printf("TEST FAIL\n"); */
+                
+                printf("Discard Supply Count = %d,expected %d\n",G.discardCount[G.whoseTurn], discardRandom+allCardsCounter+1);
+                //assert( G.discardCount[G.whoseTurn] == discardRandom+allCardsCounter+1);
+                if( G.discardCount[G.whoseTurn] != discardRandom+allCardsCounter+1)
+                  printf("TEST FAIL\n");
+                
+                printf("Coins = %d ,expected %d\n",G.coins, coinRandom);
+                assert( G.coins == coinRandom);
+                
+                printf("Number of buys = %d,expected %d\n",G.numBuys, (numBuysRandom));
+                assert( G.numBuys == (numBuysRandom));
+                
                 
 
              }
-          //}
-          
-          
-          
-/*           //////////////////////
-          ///DISCARD ESTATE CARD
-          ////////////////////////
-          if(choice1 == 1 && (G.hand[G.whoseTurn][1] == 1)) {
-             if(DEBUG) {
-               printf("DISCARD ESTATE CARD---\n");
-               
-               printf("Coins = %d ,expected %d\n",G.coins, coinRandom+4);
-               assert( G.coins == coinRandom+4);
-               
-               printf("Number of buys = %d,expected %d\n",G.numBuys, (numBuysRandom+1));
-               assert( G.numBuys == (numBuysRandom+1));
-               
-               printf("Estate Supply Count = %d ,expected %d\n", G.supplyCount[estate], supplyRandomEstate);
-               assert( G.supplyCount[estate] == supplyRandomEstate);
-               
-               printf("Hand Supply Count = %d ,expected %d\n", G.handCount[G.whoseTurn], handRandom-1);
-                assert(G.handCount[G.whoseTurn] == handRandom-1);
-               
-               printf("Discard Supply Count = %d ,expected %d\n", G.discardCount[G.whoseTurn], discardRandom+1);
-                assert(G.discardCount[G.whoseTurn] == discardRandom+1);
-             }
          
-          } */
           
           
-   /*        //////////////////////
-          ///ESTATE CARD NOT FOUND IN HAND
-          ////////////////////////
-           if(choice1 == 1 && G.hand[G.whoseTurn][1] != estate){
-            if(DEBUG) {
-               printf("ESTATE CARD NOT FOUND---\n");
-               
-               printf("Coins = %d ,expected %d\n",G.coins, coinRandom);
-               //assert( G.coins == coinRandom);
-               if(G.coins != coinRandom)
-                   printf("TEST FAIL\n");
-               
-               printf("Number of buys = %d,expected %d\n",G.numBuys, (numBuysRandom+1));
-               assert( G.numBuys == (numBuysRandom+1));        
-               
-               printf("Estate Supply Count = %d ,expected %d\n", G.supplyCount[estate], supplyRandomEstate);
-               //assert( G.supplyCount[estate] == 10);
-               if(G.supplyCount[estate] != supplyRandomEstate)
-                   printf("TEST FAIL\n");
-               
-               printf("Deck Supply Count = %d ,expected %d\n", G.deckCount[G.whoseTurn], deckRandom);
-               assert(G.deckCount[G.whoseTurn] == deckRandom);
-               
-               printf("Hand Supply Count = %d ,expected %d\n", G.handCount[G.whoseTurn], handRandom-1);
-               //assert(G.handCount[G.whoseTurn] == handRandom-1);
-               if(G.handCount[G.whoseTurn] != handRandom-1)
-                  printf("TEST FAIL\n");
-               
-               
-               printf("Discard Supply Count = %d ,expected %d\n", G.discardCount[G.whoseTurn], discardRandom+1);
-               //assert(G.discardCount[G.whoseTurn] == discardRandom+1);
-               if(G.discardCount[G.whoseTurn] == discardRandom+1);
-                  printf("TEST FAIL\n");
-               }
-        
-          }  */
 
           countNum++;
        }

@@ -59,6 +59,21 @@ unittest3: unittest3.c dominion.o rngs.o
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
 
+randomtestadventurer.out: randomtestadventurer.c interface.o dominion.o rngs.o
+	gcc -o randomtestadventurer -g  randomtestadventurer.c interface.o dominion.o rngs.o $(CFLAGS)
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov randomtestadventurer >> randomtestadventurer.out
+	gcov -a -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard.out: randomtestcard.c interface.o dominion.o rngs.o
+	gcc -o randomtestcard -g  randomtestcard.c interface.o dominion.o rngs.o $(CFLAGS)
+	./randomtestcard >> randomtestcard.out
+	gcov randomtestcard >> randomtestcard.out
+	gcov -a -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+
+
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out
 
@@ -76,25 +91,25 @@ unittests: dominion.o rngs.o unittest1.c unittest2.c unittest3.c unittest4.c car
 
 unittestresults.out: unittests
 	./cardtest1 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
+	gcov -a -b dominion.c >> unittestresults.out
 	
 	./cardtest2 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
+	gcov -a -b dominion.c >> unittestresults.out
 	
 	./cardtest3 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
+	gcov -a -b dominion.c >> unittestresults.out
 	
 	./cardtest4 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
+	gcov -a -b dominion.c >> unittestresults.out
 	
 	./unittest1 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
+	gcov -a -b dominion.c >> unittestresults.out
 	
 	./unittest2 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
+	gcov -a -b dominion.c >> unittestresults.out
 	
 	./unittest3 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
+	gcov -a -b dominion.c >> unittestresults.out
 	
 	./unittest4 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
+	gcov -a -b dominion.c >> unittestresults.out

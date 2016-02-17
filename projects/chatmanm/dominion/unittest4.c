@@ -10,10 +10,11 @@
 
 int testUpdateCoins(int p, struct gameState *G1, int coins) {
     struct gameState G2;
-    
+    int i;
+ 
     memcpy(&G2, G1, sizeof(struct gameState));
     
-    for (int i = 0; i < G2.handCount[p]; i++) {
+    for (i = 0; i < G2.handCount[p]; i++) {
         switch (G2.hand[p][i])
         {
             case copper:
@@ -32,16 +33,13 @@ int testUpdateCoins(int p, struct gameState *G1, int coins) {
 
 int main () {
     struct gameState G1;
-    int p;
+    int n, i, p;
     int coins;
    
     printf("Testing Function: GetCost\n");
     
-    //SelectStream(2);
-    //PutSeed(3);
-    
-    for (int n = 0; n < 2000; n++) {
-        for (int i = 0; i < sizeof(struct gameState); i++) {
+    for (n = 0; n < 2000; n++) {
+        for (i = 0; i < sizeof(struct gameState); i++) {
             ((char*)&G1)[i] = floor(Random() * 256);
         }
         coins = 0;

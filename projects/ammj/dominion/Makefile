@@ -53,7 +53,13 @@ cardtest3: dominion.o cardtest3.c unittest.o rngs.o
 
 cardtest4: dominion.o cardtest4.c unittest.o rngs.o
 	gcc -o cardtest4 cardtest4.c -g  dominion.o rngs.o unittest.o $(CFLAGS)
-
+	
+randomtestadventurer: dominion.o randomtestadventurer.c unittest.o rngs.o
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o unittest.o $(CFLAGS)
+	
+randomtestcard: dominion.o randomtestcard.c unittest.o rngs.o
+	gcc -o randomtestcard randomtestcard.c -g dominion.o rngs.o unittest.o $(CFLAGS)
+	
 runcardtest4:
 	./cardtest4 >> cardtest4.out
 		
@@ -62,7 +68,24 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 	
+randomtestcard.out: randomtestcard
+	./randomtestcard >> randomtestcard.out
+	wait
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcardgcov.out
+	cat dominion.c.gcov >> randomtestcardgcov.out
+	
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer >> randomtestadventurer.out
+	wait
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurergcov.out 
+	cat dominion.c.gcov >> randomtestadventurergcov.out
+
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	rm -f unittestresults.out dominion.c.gcov cardtest*.g* unittest*.g*
 	./unittest1 >> unittestresults.out
 	wait
 	./unittest2 >> unittestresults.out
@@ -81,14 +104,18 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	wait
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	gcov -b dominion.c >> unittestresultsgcov.out
+	cat dominion.c.gcov >> unittestresultsgcov.out
+
+runALLtests: cleanAll unittestresults.out randomtestcard.out randomtestadventurer.out
 	
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard build_unit_test
 
-cleanAll:
-	rm -f *.o *.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 playdom test player testInit badTestDrawCard testDrawCard unittestresults.out *.gcov *.gcda *.gcno *.so
-
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o *.exe randomtestcard randomtestadventurer unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 playdom test player testInit badTestDrawCard testDrawCard *.gcov *.gcda *.gcno *.so
+	
+cleanAll: clean
+	rm -f unittestresults*.out randomtest*.out cardtest*.g* unittest*.g* rngs*.g* randomtest*.g*

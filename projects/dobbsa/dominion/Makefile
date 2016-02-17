@@ -33,6 +33,22 @@ testgameover: dominion.o rngs.o unittest3.c
 testscore: dominion.o rngs.o unittest4.c
 	gcc -o testscore unittest4.c -g dominion.o rngs.o $(CFLAGS)
 
+rtcard: dominion.o rngs.o randomtestcard.c
+	gcc -o rtcard randomtestcard.c -g dominion.o rngs.o $(CFLAGS)
+
+rtadventurer: dominion.o rngs.o randomtestadventurer.c
+	gcc -o rtadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
+
+randomtestcard.out: rtcard
+	./rtcard > randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+
+randomtestadventurer.out: rtadventurer
+	./rtadventurer > randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
 unittestresult.out: testadv testcouncil testsmithy testvillage testbuy testdiscard testgameover testscore
 	./testadv > unittestresult.out
 	./testcouncil >> unittestresult.out

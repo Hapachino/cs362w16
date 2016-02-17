@@ -770,7 +770,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		playSmithy(state, handPos, currentPlayer);
 		
     case village:
-		int playVillage(state, handPos, currentPlayer);
+		playVillage(state, handPos, currentPlayer);
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -1250,7 +1250,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-playAdventurer(struct gameState *state, int currentPlayer)
+int playAdventurer(struct gameState *state, int currentPlayer)
 {
 	int z = 0;
 	int temphand[MAX_HAND];
@@ -1278,7 +1278,7 @@ playAdventurer(struct gameState *state, int currentPlayer)
     return 0;
 }
 
-playSmithy(struct gameState *state, int handPos, int currentPlayer)
+int playSmithy(struct gameState *state, int handPos, int currentPlayer)
 {
 	int i;
       //+3 Cards

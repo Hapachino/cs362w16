@@ -1,4 +1,4 @@
-/* Test the playSmithy() function */
+/* Test the Smithy card */
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
@@ -8,7 +8,7 @@
 #define P2 1
 #define HANDPOS 2
 
-int testPlaySmithy() {
+int testSmithy() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -35,7 +35,7 @@ int testPlaySmithy() {
   state.handCount[P1] = 4;
   state.discardCount[P1] = 0;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playSmithy(HANDPOS, &state);
+  result = playSmithy(&state, HANDPOS, P1);
   compareState(&state, &preState, &gsc);
 
   /* Should add 3 cards to player's hand
@@ -82,6 +82,6 @@ int testPlaySmithy() {
 }
 
 int main() {
-  testPlaySmithy();
+  testSmithy();
   return 0;
 }

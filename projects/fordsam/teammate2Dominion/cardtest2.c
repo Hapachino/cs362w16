@@ -1,5 +1,5 @@
-/* Test the playCouncilRoom() function
-   NOTE: playCouncilRoom() should:
+/* Test the Council Room card
+   NOTE: Council Room should:
      * Draw four cards from the player's deck and add them to their hand.
      * Add 1 buy.
      * For each other player, draw a card from their deck and add it to their
@@ -16,7 +16,7 @@
 #define P3 2
 #define HANDPOS 1
 
-int testPlayCouncilRoom() {
+int testCouncilRoom() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -49,7 +49,7 @@ int testPlayCouncilRoom() {
   state.deck[P3][1] = cutpurse;
   state.deckCount[P3] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playCouncilRoom(HANDPOS, &state);
+  result = playCouncil_Room(&state, HANDPOS, P1);
 
   /* playCouncilRoom() should draw 4 cards to player's hand
      NOTE: We subtract one because the Council Room card is discarded */
@@ -107,6 +107,6 @@ int testPlayCouncilRoom() {
 }
 
 int main() {
-  testPlayCouncilRoom();
+  testCouncilRoom();
   return 0;
 }

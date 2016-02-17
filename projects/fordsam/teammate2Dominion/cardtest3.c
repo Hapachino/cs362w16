@@ -1,5 +1,5 @@
-/* Test the playMine() function
-   NOTE: playMine() should:
+/* Test the Mine card
+   NOTE: Mine should:
      * Trash a treasure card for a treasure card costing up to 3 coins more.
        * The new treasure card should be added to the player's hand.
      * Move the played card to the playedCards pile.
@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
+#include "dominion_helpers.h"
 #include "fordsamTest.h"
 
 #define P1 0
@@ -16,7 +17,7 @@
 #define BARONPOS 3
 #define ESTATEPOS 4
 
-int testPlayMine() {
+int testMine() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -54,7 +55,7 @@ int testPlayMine() {
   /* Test playMine() using a non-treasure card for choice1 */
   printf("----- Test: choice1 = estate, choice2 = silver\n");
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playMine(HANDPOS, ESTATEPOS, silver, &state);
+  result = cardEffect(mine, ESTATEPOS, silver, 0, &state, HANDPOS, 0);
 
   /* Should not make any changes when choice1 isn't treasure */
   testCount += 1;
@@ -73,7 +74,7 @@ int testPlayMine() {
   /* Test playMine() using a non-treasure card for choice1 */
   printf("\n----- Test: choice1 = baron, choice2 = silver\n");
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playMine(HANDPOS, BARONPOS, silver, &state);
+  result = cardEffect(mine, BARONPOS, silver, 0, &state, HANDPOS, 0);
 
   /* Should not make any changes when choice1 isn't treasure */
   testCount += 1;
@@ -94,7 +95,7 @@ int testPlayMine() {
   printf("\n----- Test: choice1 = copper, choice2 = treasure_map + 999\n");
   memcpy(&initialState, &state, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playMine(HANDPOS, COPPERPOS, treasure_map+999, &state);
+  result = cardEffect(mine, COPPERPOS, treasure_map+999, 0, &state, HANDPOS, 0);
 
   /* Should not make any changes when choice1 isn't a real card */
   testCount += 1;
@@ -115,7 +116,7 @@ int testPlayMine() {
   printf("\n----- Test: choice1 = copper, choice2 = curse - 999\n");
   memcpy(&initialState, &state, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playMine(HANDPOS, COPPERPOS, curse-999, &state);
+  result = cardEffect(mine, COPPERPOS, curse-999, 0, &state, HANDPOS, 0);
 
   /* Should not make any changes when choice1 isn't a real card */
   testCount += 1;
@@ -136,7 +137,7 @@ int testPlayMine() {
   printf("\n----- Test: choice1 = copper, choice2 = estate\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playMine(HANDPOS, COPPERPOS, estate, &state);
+  result = cardEffect(mine, COPPERPOS, estate, 0, &state, HANDPOS, 0);
 
   /* Should not make any changes when choice2 isn't treasure */
   testCount += 1;
@@ -157,7 +158,7 @@ int testPlayMine() {
   printf("\n----- Test: choice1 = copper, choice2 = gold\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playMine(HANDPOS, COPPERPOS, gold, &state);
+  result = cardEffect(mine, COPPERPOS, gold, 0, &state, HANDPOS, 0);
 
   /* Should not make any changes when choice2 is too costly */
   testCount += 1;
@@ -178,7 +179,7 @@ int testPlayMine() {
   printf("\n----- Test: choice1 = copper, choice2 = silver\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playMine(HANDPOS, COPPERPOS, silver, &state);
+  result = cardEffect(mine, COPPERPOS, silver, 0, &state, HANDPOS, 0);
   compareState(&state, &preState, &gsc);
 
   /* Should add choice2 card to hand */
@@ -235,6 +236,6 @@ int testPlayMine() {
 }
 
 int main() {
-  testPlayMine();
+  testMine();
   return 0;
 }

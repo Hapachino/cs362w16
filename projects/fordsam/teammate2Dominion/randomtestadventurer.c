@@ -1,5 +1,5 @@
-/* Randomly test the playAdventurer() function
-   NOTE: playAdventurer() should:
+/* Randomly test the Adventurer card
+   NOTE: Adventurer should:
      * Draw cards from the player's deck until two treasure cards are drawn.
      * Discard all drawn cards that are not treasure cards.
      * Move the played card to the playedCards pile.
@@ -108,8 +108,8 @@ int playerTreasureToDraw(struct gameState *state) {
   return count;
 }
 
-/* Randomly test the playAdventurer() function */
-int randomlyTestPlayAdventurer() {
+/* Randomly test the Adventurer card */
+int randomlyTestAdventurer() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -146,7 +146,7 @@ int randomlyTestPlayAdventurer() {
         perror("Error forking");
       } else if (pid == 0) {
         /* Execute the test in the child process */
-        result = playAdventurer(&state);
+        result = playAdventurer(&state, p);
 
         exit(result);
       } else if (pid > 0) {
@@ -192,7 +192,7 @@ int randomlyTestPlayAdventurer() {
     }
 
     /* Test the function using the generated game state */
-    result = playAdventurer(&state);
+    result = playAdventurer(&state, p);
     compareState(&state, &preState, &gsc);
 
     /* Determine the number of treasure cards that should have been added to
@@ -224,7 +224,7 @@ int randomlyTestPlayAdventurer() {
     snprintf(
       output, OUTPUT_MAX,
       "treasure cards in player's hand = %d, expected = %d",
-      p, treasureCardsInHand(p, &state),
+      treasureCardsInHand(p, &state),
       (treasureCardsInHand(p, &preState) + addedCards)
     );
     passCount += fakeAssert(
@@ -315,7 +315,7 @@ int randomlyTestPlayAdventurer() {
        whether all of the drawn cards are discarded.  We can't predict the
        order of the cards when they're shuffled(), so we can't make assertions
        about what the deck or discard pile should look like when
-       playAdventurer() finishees. */
+       Adventurer finishees. */
     testCount += 1;
     snprintf(
       output, OUTPUT_MAX,
@@ -373,6 +373,6 @@ int randomlyTestPlayAdventurer() {
 
 int main() {
   srand(time(NULL));
-  randomlyTestPlayAdventurer();
+  randomlyTestAdventurer();
   return 0;
 }

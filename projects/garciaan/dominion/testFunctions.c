@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <assert.h>
 
 /****************************************************
 * everything in the default init except does not draw 
@@ -472,15 +473,12 @@ int countTreasures(int player, struct gameState *state){
   int money = 0;
   while(i < numHandCards(state)){
     if (handCard(i, state) == copper){
-      playCard(i, -1, -1, -1, state);
       money++;
     }
     else if (handCard(i, state) == silver){
-      playCard(i, -1, -1, -1, state);
       money += 2;
     }
     else if (handCard(i, state) == gold){
-      playCard(i, -1, -1, -1, state);
       money += 3;
     }
     i++;
@@ -590,8 +588,7 @@ void resetError(){
 }
 
 /****************************************************
-* Checks for card removal from game, deck decrementing,
-* and accidental discarding. 
+* checks error flag, prints necessary statement 
 ****************************************************/
 void printResults(){
   if (ERROR != 0){
@@ -599,6 +596,17 @@ void printResults(){
   }
   else {
     printf("\t- RESULT: PASS\n\n");
+  }
+}
+/****************************************************
+* checks error flag, prints necessary statement
+****************************************************/
+void printRandomTestResults(int seed, char *msg){
+  if (ERROR != 0){
+    printf("- FAIL - SEED: %d - %s\n", seed, msg);
+  }
+  else {
+    printf("- PASS - SEED: %d - %s\n", seed, msg);
   }
 }
 
@@ -670,18 +678,96 @@ void resetCards(struct gameState *state, int player){
 
   state->playedCardCount = 0;
 }
+
+int testAdventurer(struct gameState *state, int player, int handPos){
+  int i;
+  int coin_count = 0;
+  struct gameState previousState;
+  int result = -999;
+
+  previousState = *state;
+  for (i = 0; i < state->deckCount[player]; i++){
+    if (state->deck[player][i] >= copper && state->deck[player][i] <= gold){
+      coin_count++;
+    }
+  }
+  for (i = 0; i < state->discardCount[player]; i++){
+    if (state->discard[player][i] >= copper && state->discard[player][i] <= gold){
+      coin_count++;
+    }
+  }
+
+  if (playCard(handPos, -1, -1, -1, state) == -1){
+    return -1;
+  }
+  
+  if (coin_count == 1){
+    checkError((previousState.handCount[player]) == state->handCount[player]); //gain 1 coins, play the adventurer
+  }
+  else if (coin_count > 1){
+    checkError((previousState.handCount[player] + 1) == state->handCount[player]); //gain 2 coins, play the adventurer
+  }
+  else {
+    checkError((previousState.handCount[player] - 1) == state->handCount[player]);
+  }
+
+
+  return 0;
+}
+
+int testSmithy(struct gameState *state, int player, int handPos){
+  int i;
+  int coin_count = 0;
+  struct gameState previousState;
+  int result = -999;
+  int next_cards[3];
+  int total_cards = 0;
+  int current_cards = 0;
+
+  previousState = *state;
+
+  if (playCard(handPos, -1, -1, -1, state) == -1){
+    return -1;
+  }
+  
+  total_cards = previousState.deckCount[player] + previousState.discardCount[player];
+  current_cards = state->deckCount[player] + state->discardCount[player];
+  //checks for if enough cards in the discard and deck together, this will almost never 
+  // get called unless all the cards in hand or have been trashed for some reason
+  if (total_cards >= 3){ 
+    checkError(total_cards - 3 == current_cards); //3 cards went to hand
+    checkError(previousState.handCount[player] + 2 == state->handCount[player]);
+  }
+  else if (total_cards == 2){
+    checkError(total_cards - 2 == current_cards); //2 cards went to hand
+    checkError(previousState.handCount[player] + 1 == state->handCount[player]);
+  }
+  else if (total_cards == 1){
+    checkError(total_cards - 1 == current_cards); //1 card went to hand
+    checkError(previousState.handCount[player] == state->handCount[player]); //played 1, gained 1
+  }
+  else {
+    checkError(total_cards == current_cards);
+    checkError(previousState.handCount[player] - 1 == state->handCount[player]);
+  }
+
+
+
+
+  return 0;
+}
 /****************************************************
 * SIGNAL HANDLERS
 ****************************************************/
 void timeout(int signum){
-  printf("\t- RESULT: FAIL - TIMEOUT - EXITING...\n\n");
+  printf("- RESULT: FAIL - TIMEOUT - EXITING...\n\n");
     printf(">>>>>>>>>>> FAILURE: Testing incomplete <<<<<<<<<<<\n\n");
 
   exit(0);
 }
 
 void handle_segfault(int signum){
-  printf("\t- RESULT: FAIL - SEGFAULT - EXITING...\n\n");
+  printf("- RESULT: FAIL - SEGFAULT - EXITING...\n\n");
   printf(">>>>>>>>>>> FAILURE: Testing incomplete <<<<<<<<<<<\n\n");
 
   exit(0);

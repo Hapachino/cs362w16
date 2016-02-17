@@ -5,7 +5,7 @@
  *
  * Development of randomtestadventurer.c
  *
- * When measuring coverage after executing randomtestadventurer, my initial effort produced a
+ * When measuring dominion.c coverage with my first version of randomtestadventurer, gcov reported
  * statement coverage of 18.50%.
  *
  * Randomizing the cards/count in the player's starting hand increased statement coverage to
@@ -27,11 +27,10 @@
  * player's deck was always a new deck with plenty of treasure cards in it.
  *
  * This updated test also uncovered new faults. Mostly when the deck count is small (less than 10),
- * the test fails. After tracing the code in the debugger, I suspect I have found the reason. In
- * playAdventurer(), if the player has no cards left in the deck, shuffle() is first called, which
- * is not very useful, because shuffle() checks the same condition and returns -1 if the deck is
- * empty. So, drawCard() is then called with an empty deck, and drawCard() attempts to repopulate
- * the deck:
+ * the test fails. I suspect I have found the reason: in playAdventurer(), if the player has no
+ * cards left in the deck, shuffle() is first called, which is not very useful, because shuffle()
+ * checks the same condition and returns -1 if the deck is empty. So, drawCard() is then called
+ * with an empty deck, and drawCard() attempts to repopulate the deck:
  *
 			  for (i = 0; i < state->discardCount[player]; i++)
 					{
@@ -89,7 +88,7 @@
  * which result in the cards in the player's hand being moved around. So the Steward card can
  * easily end up in another position. And it will end up in another position if it is the last or
  * next to last card in the hand. So the Steward card may remain in the hand and another card put
- * away instead. Thus, the counts are off.
+ * away instead. Thus, the counts are incorrect.
  *
  * It should be noted that all tests in randomtestcard will fail unless a bug is first fixed in the
  * function discardCard(), which never puts cards in discard[player], so every card that goes to

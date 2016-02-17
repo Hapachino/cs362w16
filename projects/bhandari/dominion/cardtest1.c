@@ -2,16 +2,16 @@
 Rishi Bhandarkar
 CS 362
 
-Unit test for Smithy card
+Smithy card random tester
 Gamestate
-	- The game is initiated for 2 players, and both players are dealt 3 estate cards and 7 copper cards
-	- Player 1 draws 5 cards and plays Smithy card
+	- The game is initiated for 2-4 players
+	- One player draws Smithy card
 	
 Requirements to test
-	- After Smithy card is played by Player 1
-		- Player 1 should have 2 additional cards in their hand (Gain 3, discard Smithy)
-		- Player 1 should have 3 less cards in their deck
-		- Player 1 discard pile / Player 2 piles should be unchanged
+	- After Smithy card is played by Player
+		- Player should have 2 additional cards in their hand (Gain 3, discard Smithy)
+		- Player should have 3 less cards in their deck
+		- Player discard pile / Other Player piles should be unchanged
 		- No change for Kingdom/Victory piles
 */
 #include "dominion.h"
@@ -19,6 +19,7 @@ Requirements to test
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <math.h>
 #include "rngs.h"
 
 int main () {
@@ -29,6 +30,8 @@ int main () {
 	SelectStream(2);
 	PutSeed(3);
 
+	
+	
 	initializeGame(2, k, seed, &G);
 	//add Smithy card to Player 1 hand for testing
 	gainCard(smithy, &G, 2, 0);

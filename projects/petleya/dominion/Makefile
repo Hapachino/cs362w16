@@ -47,7 +47,23 @@ cardtest3: cardtest3.c dominion.o rngs.o
 
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
-	
+
+randomtestadventurer: randomtestadventurer.c dominion.c rngs.c 
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.c rngs.c $(CFLAGS)
+
+randomtestcard: randomtestcard.c dominion.c rngs.c 
+	gcc -o randomtestcard -g randomtestcard.c dominion.c rngs.c $(CFLAGS)
+		
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer &>randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov>>randomtestadventurer.out
+
+randomtestcard.out: randomtestcard
+	./randomtestcard &>randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
+	cat dominion.c.gcov>>randomtestcard.out
+
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out

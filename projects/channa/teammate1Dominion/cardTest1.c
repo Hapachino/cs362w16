@@ -1,194 +1,283 @@
-// Andrew M. Calhoun
-// UNIT TEST - ASSIGNMENT 3
-// unitTest1.c
-// Unit Test for card function -- ADVENTURER.
-// cardtest1: cardtest1.c dominion.o rngs.o
-//       gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
-
-
+/* -----------------------------------------------------------------------
+ * test smithy
+ * 
+ *
+ * cardtest1: cardtest1.c dominion.o rngs.o
+ *      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+ * -----------------------------------------------------------------------
+ */
 
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <time.h>
-#include <stdlib.h>
-#include <math.h>
-#include <stdlib.h>
+#include <stdbool.h>
+#include "rngs.h"
 
-#define DEBUG 0
-#define NOISY_TEST 1
-#define TESTCARD "adventurer"
+int main() {
+    int i;
+    int seed = 1000;
 
-/*
+    int numPlayer = 2;
+    int p, r;
+    int k[10] = {adventurer, great_hall, cutpurse, gardens, mine
+               , remodel, smithy, village, sea_hag, embargo};
 
-int playAdventurer(struct gameState *state, int currentPlayer, int cardDrawn, int drawntreasure, int temphand[], int z)
-{
+    struct gameState G;
+    int count;
+    bool pass = true;
 
-      while(drawntreasure<2){
-	if (state->deckCount[currentPlayer] <=1)
-        {//if the deck is empty we need to shuffle discard and add to deck *** REFACTOR to <= will cause additional shuffling.
-	  shuffle(currentPlayer, state);
-        }
-        drawCard(currentPlayer, state);
-        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-	  drawntreasure+=2; // The adventurer should not make off with your treasure. Originally had this put as --, but it actually caused the game to freeze. Opted to give the player more coins. Changes seeded outcomes.
-	else{
-	  temphand[z]=cardDrawn;
-	  state->handCount[currentPlayer]++; //this should just remove the top card (the most recently drawn one).
-	  z++;
-	}
-      }
-      while(z-1>=0){
-	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-	z=z-1;
-      }
-      return 0;
-}
+    // Use for checking state change
+    int victoryCount, kingdomCount;
+    int victory_kingdom[13];
+    int index = 0;
+    bool equal = true;
 
-*/
+    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
-int checkPlayAdventurer(struct gameState *state, int currentPlayer, int cardDrawn, int drawnTreasure, int temphand[], int z)
-{
-    int preDraw, failTest = 0;
-    // int x;
-    struct gameState testState;
-    memcpy(&testState, state, sizeof(struct gameState));
+    printf("----------------- Testing smithy\n");
 
-    printf("\nChecking Drawn Treasure.\nDrawn Treasure: %d\n", drawnTreasure);
+    // Before testing, check victory and kingdom cards
+    // victory_kingdom[] saves pre-test pile counts
+    printf("----------------- BEFORE PLAYER ACTIONS AND BUYS\n");
 
-    printf("Initiating randomized deckCount: 1-5\n");
-    state->deckCount[currentPlayer] = rand() % 3;
+    victoryCount = G.supplyCount[estate];
+    victory_kingdom[index] = victoryCount;
+    index++;
+    printf("estate count: %d\n", victoryCount);
 
-    printf("Deck Count: %d\n", state->deckCount[currentPlayer]);
+    victoryCount = G.supplyCount[duchy];
+    victory_kingdom[index] = victoryCount;
+    index++;
+    printf("duchy count: %d\n", victoryCount);
 
-    preDraw = drawnTreasure;
+    victoryCount = G.supplyCount[province];
+    victory_kingdom[index] = victoryCount;
+    index++;
+    printf("province count: %d\n", victoryCount);
 
-    while(drawnTreasure < 2)   // less than two drawn treasure...
+    for (i = 0; i < 10; i++) {
+        kingdomCount = G.supplyCount[ k[i] ];
+        victory_kingdom[index] = kingdomCount;
+        index++;
+        printf("k[%d] count: %d\n", i, kingdomCount);
+    }
+
+    // Start testing
+    p = 0;
+    printf("----------------- Player %d:\n", p);
+
+    // Put smithy in hand
+    G.hand[p][ G.handCount[p] ] = smithy;
+    G.handCount[p]++;
+
+    // Check pile counts
+    printf("----------------- AFTER PUT SMITHY IN HAND\n");
+
+    printf("DECK COUNT\n");
+    for (i = 0; i < G.deckCount[p]; i++)
     {
-        if(state->deckCount[currentPlayer] <= 1)
-        {
-            shuffle(currentPlayer, &testState);
-            if(state->deckCount[currentPlayer] == 0)
-            {
-                printf("Deck shuffled at 0 properly. Test Passed.\n");
-            }
-            else
-            {
-                printf("Deck shuffled at 1. Test Failed.\n");
-                failTest = 1;
-            }
-            drawCard(currentPlayer, &testState);
-            cardDrawn = testState.hand[currentPlayer][state->handCount[currentPlayer]-1];
-            if(cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-            {
-                drawnTreasure+=2;   // will add too much treasure. Will always fail.
-                if(preDraw++ == drawnTreasure)
-                {
-                    printf("Treasure Draw Check Passed");
-                }
-                else
-                {
-                    printf("Treasure Draw Check Failed.");
-                    failTest = 1;
-                }
+        printf("Position %d, Card: %d\n", i, G.deck[p][i]);
+    }
 
+    printf("DISCARD COUNT\n");
+    for (i = 0; i < G.discardCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.discard[p][i]);
+    }
 
-            }
-            else
-            {
-                temphand[z] = cardDrawn;
-                testState.handCount[currentPlayer]++;
-                z++;
-            }
+    printf("HAND COUNT\n");
+    for (i = 0; i < G.handCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.hand[p][i]);
+    }
 
+    // Put cards in deck:
+    // adventurer = 7
+    // cutpurse = 21
+    // remodel = 12
+    // sea_hag = 25
+    // village = 14
+    G.deck[p][ G.deckCount[p] ] = adventurer;
+    G.deckCount[p]++;
+    G.deck[p][ G.deckCount[p] ] = cutpurse;
+    G.deckCount[p]++;
+    G.deck[p][ G.deckCount[p] ] = remodel;
+    G.deckCount[p]++;
+    G.deck[p][ G.deckCount[p] ] = sea_hag;
+    G.deckCount[p]++;
+    G.deck[p][ G.deckCount[p] ] = village;
+    G.deckCount[p]++;
+
+    // Check pile counts
+    printf("----------------- AFTER PUT 5 MORE CARDS IN DECK\n");
+
+    printf("DECK COUNT\n");
+    for (i = 0; i < G.deckCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.deck[p][i]);
+    }
+
+    printf("DISCARD COUNT\n");
+    for (i = 0; i < G.discardCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.discard[p][i]);
+    }
+
+    printf("HAND COUNT\n");
+    for (i = 0; i < G.handCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.hand[p][i]);
+    }
+
+    // smithy should draw 3 cards from player's own discard
+    // and add them to player's own hand
+    // 14, 25, and 12 should be drawn and added to hand
+    // 7 and 21 should stay in the deck
+    // smithy should be added to discard
+    playSmithy(p, &G, 5);
+
+    // Check pile counts
+    printf("----------------- AFTER PLAY SMITHY\n");
+
+    printf("DECK COUNT\n");
+    for (i = 0; i < G.deckCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.deck[p][i]);
+    }
+
+    // Verify
+    int check1[] = {estate, estate, copper, copper, copper, adventurer, cutpurse};
+    count = sizeof(check1)/sizeof(check1[0]);
+
+    printf("Deck count: %d, Expected: %d\n", G.deckCount[p], count);
+    if (G.deckCount[p] != count) {
+        printf("----------------- TEST FAILED!\n");
+        pass = false;
+    }
+
+    printf("DISCARD COUNT\n");
+    for (i = 0; i < G.discardCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.discard[p][i]);
+    }
+
+    // Verify
+    int check2[] = {smithy};
+    count = sizeof(check2)/sizeof(check2[0]);
+
+    printf("Discard count: %d, Expected: %d\n", G.discardCount[p], count);
+    if (G.discardCount[p] != count) {
+        printf("----------------- TEST FAILED!\n");
+        pass = false;
+    }
+
+    printf("HAND COUNT\n");
+    for (i = 0; i < G.handCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.hand[p][i]);
+    }
+
+    // Verify
+    int check3[] = {copper, copper, estate, copper, copper, village, sea_hag, remodel};
+    count = sizeof(check3)/sizeof(check3[0]);
+
+    printf("Hand count: %d, Expected: %d\n", G.handCount[p], count);
+    if (G.handCount[p] != count) {
+        printf("----------------- TEST FAILED!\n");
+        pass = false;
+    }
+
+    // Should be NO state changes made to next player's decks
+    p = 1;
+    printf("----------------- Player %d:\n", p);
+    printf("----------------- Check that no state changes were made to other player's deck\n");
+
+    // Check pile counts
+    int copperCount = 0;
+    int estateCount = 0;
+
+    printf("DECK COUNT\n");
+    for (i = 0; i < G.deckCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.deck[p][i]);
+        if (G.deck[p][i] == copper) {
+            copperCount++;
         }
+        if (G.deck[p][i] == estate) {
+            estateCount++;
+        }
+    }
 
-        else
-        {
-            printf("No shuffle. Test Passed.\n");
+    // Verify
+    printf("Copper count: %d, Expected: 7\n", copperCount);
+    printf("Estate count: %d, Expected: 3\n", estateCount);
+    assert(copperCount == 7);
+    assert(estateCount == 3);
+
+    printf("Deck count: %d, Expected: 10\n", G.deckCount[p]);
+    assert(G.deckCount[p] == 10);
+
+    printf("DISCARD COUNT\n");
+    for (i = 0; i < G.discardCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.discard[p][i]);
+    }
+
+    // Verify
+    printf("Discard count: %d, Expected: 0\n", G.discardCount[p]);
+    assert(G.discardCount[p] == 0);
+
+    printf("HAND COUNT\n");
+    for (i = 0; i < G.handCount[p]; i++)
+    {
+        printf("Position %d, Card: %d\n", i, G.hand[p][i]);
+    }
+
+    // Verify
+    printf("Hand count: %d, Expected: 0\n", G.handCount[p]);
+    assert(G.handCount[p] == 0);
+
+    // Should be NO state changes made to victory and kingdom cards
+    // (besides the changes intentionally made outside of playSmithy)
+    printf("----------------- Check that no state changes were made to victory and kingdom card piles\n");
+
+    victoryCount = G.supplyCount[estate];
+    printf("estate count: %d\n", victoryCount);
+    assert(victoryCount == victory_kingdom[0]);
+
+    victoryCount = G.supplyCount[duchy];
+    printf("duchy count: %d\n", victoryCount);
+    assert(victoryCount == victory_kingdom[1]);
+
+    victoryCount = G.supplyCount[province];
+    printf("province count: %d\n", victoryCount);
+    assert(victoryCount == victory_kingdom[2]);
+
+    // index 0 to 2 = victory
+    // index 3 to 12 = kingdom
+    int x = 3;
+
+    for (i = 0; i < 10; i++) {
+        kingdomCount = G.supplyCount[ k[i] ];
+        printf("k[%d] count: %d\n", i, kingdomCount);
+        if (victory_kingdom[x] != kingdomCount) {
+            equal = false;
             break;
-            // shuffled = 0;
         }
+        x++;
     }
 
-    printf("Testing Coins. Should only add 1\n\n");
-    if(testState.coins == state->coins++)
-    {
-        printf("State Coin Test passed.\n");
+    printf("No state changes for victory and kingdom card piles: %d\n", equal);
+
+    if (pass) {
+        printf("\nAll tests passed!\n");
     }
-    else
-    {
-        printf("State Coin Test failed.\n");
-        failTest = 1;
+    else {
+        printf("\nSome test(s) failed!\n");
     }
-
-
-    printf("Previous Hand Count: %d\n", state->handCount[currentPlayer]);
-    printf("Current Hand Count: %d\n", testState.handCount[currentPlayer]);
-
-    while(z-1>=0){
-	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-	z=z-1;
-    }
-
-    return failTest;
-}
-
-int main()
-{
-    // Set up the test harness.
-
-    srand(time(NULL));
-    int x, i, testSuiteSuccess = 0, testSuiteFailure = 0, testsRun = 0;
-    int seed = 1000; // Perhaps having a set seed would standardize testing, but we need ALL situations tested, even those we don't anticipate.
-    int k[10] = { adventurer, smithy, village, baron, great_hall, council_room, salvager, sea_hag, gardens, mine };
-    // const char *cards[] = { "curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room", "feast", "gardens", "mine", "remodel", "smithy", "village", "baron",
-    // "great_hall", "minion", "steward", "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map" };
-    int randomCard = 0; //rand() % 10;
-    int z = 0;
-    int drawnTreasure = rand() % 3;
-
-    struct gameState *post = malloc(sizeof(struct gameState));
-    int temphand[MAX_HAND];
-    initializeGame(2, k, seed, post);
-
-    for(i=0; i < MAX_HAND; i++)
-    {
-        if(i < 2)
-        {
-           temphand[i] = copper;
-        }
-        else
-        {
-            temphand[i] = k[i];
-        }
-    }
-
-    printf("Testing Adventurer!\n");
-    for(i=0; i < 20; i++)
-    {
-        x = checkPlayAdventurer(post, 0, randomCard, drawnTreasure, temphand, z);
-        if(x)
-        {
-            printf("One or More Assertion and Gameplay Tests Failed.\n");
-            testSuiteFailure++;
-            testsRun++;
-        }
-        else
-        {
-            printf("All Assertion and Gameplay Tests Passed!\n");
-            testSuiteSuccess++;
-            testsRun++;
-        }
-    }
-
-    printf("Successes / Tests Run: %d / %d\n", testSuiteSuccess, testsRun);
-    printf("Failures / Tests Run: %d / %d\n", testSuiteFailure, testsRun);
-
-    free(post);
+    
     return 0;
 }

@@ -1,130 +1,194 @@
-/* -----------------------------------------------------------------------
- * Faye Yao
- * CS 362
- * Adventurer Card Unit Test
- * 
- * This is a unit test for the adventurer card in Dominion.
+/*
+ * cardtest1.c
  *
- * We test for:
- * 1) Does the adventurer keep drawing from the deck until the player
- * that played it has two treasure cards?
- * 2) Does it successfully change the deck/discard state for only the player
- * that played the card?
- * 3) Is the rest of game state intact? No other states should change except
- * the player that played the adventurer.
- * -----------------------------------------------------------------------
+ 
  */
 
-#include <math.h>
+/*
+ * Include the following lines in your makefile:
+ *
+ * cardtest1: cardtest1.c dominion.o rngs.o
+ *      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+ */
+
+
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include <time.h>
 #include <stdlib.h>
-#include "compareStates.h"
+
+#define TESTCARD "remodel"
 
 int main() {
-    PutSeed(-1);
-    int i, j;
-    int seed = floor(Random() * 1000);
-    int numPlayer = 4; // we can reasonably expect the max players to be 4
-    int p, r;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
-    struct gameState G, copyG;
+    int newCards = 0;
+    int discarded = 1;
+    int shuffledCards = 0;
+	
+    int i, m, n;
+    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int remove1;
+    int seed = 1000;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
 
-    printf ("TESTING playAdventurer:\n");
-    printf("---------------------------------\n");
-    printf("Test if each player 1 through 4 can play Adventurer correctly.\n");
-    for (p = 0; p < numPlayer; p++)
-    {
-        printf("Testing if Player %i can playAdventurer properly.\n", p + 1);
-        printf("---------------------------------\n");
-        memset(&G, 23, sizeof(struct gameState));   // clear the game state
-        r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-        G.whoseTurn = p;
-        G.deckCount[p] = 0; 
-        memset(G.deck[p], 0, sizeof(int) * MAX_DECK);
-        G.discardCount[p] = MAX_DECK;
-        memset(G.discard[p], 0, sizeof(int) * MAX_DECK);
-        memset(G.hand[p], 0, sizeof(int) * MAX_HAND);
-        G.deck[p][MAX_DECK - 1] = copper;
-        G.deck[p][MAX_DECK - 2] = gold;
-        G.discard[p][MAX_DECK - 1] = copper;
-        G.discard[p][MAX_DECK - 2] = gold;
-        // set the player's hand to be "empty", with all -1 values
-        for (j = 0; j < MAX_HAND; j++)
-        {
-            G.hand[p][j] = -1;
-        }
-        G.handCount[p] = 1;
-        G.hand[p][0] = adventurer;
-        memcpy(&copyG, &G, sizeof(struct gameState));
-        printf("Test without any cards in the deck, but a full discard deck to see if shuffle will work.\n");
-        cardEffect(adventurer, 0, 0, 0, &G, 0, &i);
-        playAdventurer(&G);
-        printf("Checking if player drew two treasure cards successfully ...\n");
-        if (G.handCount[p] != 2)
-        {
-            printf("Player did not draw two treasure cards successfully. Expected handCount: 2, Actual handCount: %i\n", G.handCount[p]);
-        }
-        // if the first three cards in their hand are still -1, then they didn't draw a card for
-        // one of those slots
-        // we check the last two cards to see if it's either the copper or gold that we should've drawn from the
-        // deck
-        printf("Checking player hand contents ...\n");
-        for (j = 0; j < G.handCount[p]; j++)
-        {
-            if (!(G.hand[p][j] == copper || G.hand[p][j] == gold))
-                printf("Player did not draw a copper or gold card that we put into the deck. Drew a card that wasn't a treasure card at position %i! Card Value: %i\n", j, G.hand[p][j]);
-            if (G.hand[p][j] == -1)
-            {
-                printf("Player did not draw a treasure card successfully in their hand at position %i.\n", j);
-            }
-        }
-        printf("Checking the gameState for all other players to make sure it wasn't modified... \n");
-        for (j = 0; j < numPlayer; j++)
-        {
-            if (j == p)
-                continue;
-            printf("Testing if Player %i deck values have changed at all ... (they shouldn't)\n", j + 1);
-            if (cmpDeckCount(&G, &copyG, j))
-                printf("Deck Count has changed between copied and modified game state!\n");
-            if (cmpDiscard(&G, &copyG, j))
-                printf("Discard deck has changed between copied and modified game state!\n");
-            if (cmpDiscardCount(&G, &copyG, j))
-                printf("Discard count has been changed between copied and modified game state!\n");
-            if (cmpDeck(&G, &copyG, j))
-                printf("Deck has changed between copied and modified game state!\n");
-        }
-        printf("Testing general game state variables if they've been changed ...\n");
-        printf("This will test to see if our copied game state before we performed playAdventurer is equal to the modified game state.\n");
-        
-        if (cmpPlayedCards(&G, &copyG) == 0)
-            printf("playedCards hasn't changed between copied and modified game state!\n");
-        if (cmpPlayedCardCount(&G, &copyG) == 0)
-            printf("playedCardCount hasn't changed between copied and modified game state!\n");
-        if (cmpPhase(&G, &copyG))
-            printf("phase has changed between copied and modified game state!\n");
-        if (cmpWhoseTurn(&G, &copyG))
-            printf("WhoseTurn has changed between copied and modified game state!\n");
-        if (cmpNumActions(&G, &copyG) == 0)
-            printf("numActions hasn't changed between copied and modified game state!\n");
-        if (cmpOutpostPlayed(&G, &copyG))
-            printf("OutpostPlayed has changed between copied and modified game state!\n");
-        if (cmpNumPlayers(&G, &copyG))
-            printf("NumPlayers has changed between copied and modified game state!\n");
-        if (cmpNumBuys(&G, &copyG))
-            printf("NumBuys has changed between copied and modified game state!\n");
-        if (cmpOutpostTurn(&G, &copyG))
-            printf("OutpostTurn has changed between copied and modified game state!\n");
-        if (cmpSupplyCount(&G, &copyG))
-            printf("SupplyCount has changed between copied and modified game state!\n");
-        printf("Done checking game states.\n");
-    }
-    printf("\nAll tests done for playAdventurer!\n");
-    return 0;
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
+	printf("\n");
+
+		// cycle through each eligible card that's not remodel and confirm model is not removed.
+		//Additionally check to make sure the gainCard is no more than 2 cost of the trashed card.
+		for (i = 1; i<G.handCount[thisPlayer]; i++) {
+			
+			printf("\n---------- Test 1 - Pre state for each player and victory cards: ----------\n");
+
+			G.hand[thisPlayer][0] = smithy;
+			G.hand[thisPlayer][1] = copper;
+			G.hand[thisPlayer][2] = adventurer;
+			G.hand[thisPlayer][3] = estate;
+			G.hand[thisPlayer][4] = feast;
+
+			// copy the game state to a test case
+			memcpy(&testG, &G, sizeof(struct gameState));
+			
+			//check victory cards
+			printf("Victory cards count: Estate = %d, Duchy = %d, Province = %d ... expected values are 8,8,8\n", testG.supplyCount[estate], testG.supplyCount[duchy], testG.supplyCount[province]);
+			
+			//error victory cards
+			if(testG.supplyCount[estate] != 8 || testG.supplyCount[duchy] != 8 || testG.supplyCount[province] != 8){
+				printf("TEST FAILED: Victory Card totals are incorrect. \n");
+			}
+			
+			//Test player 1 hand and deck count before smithy is played
+			newCards = 0;
+			discarded = 0;
+			
+			printf("player 1 hand count before = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
+			
+			//error check player 1 hand count
+			if(testG.handCount[thisPlayer] != G.handCount[thisPlayer] + newCards - discarded){
+				printf("TEST FAILED: Player 1 hand count is incorrect. \n");
+			}
+			
+			printf("player 1 deck count before = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards + shuffledCards);
+			
+			//error check player 1 deck count
+			if(testG.deckCount[thisPlayer] != G.deckCount[thisPlayer] - newCards + shuffledCards){
+				printf("TEST FAILED: Player 1 deck count is incorrect. \n");
+			}
+			
+			//test player 2 deck state
+			printf("player 2 deck count before = %d, expected = %d\n", testG.deckCount[thisPlayer + 1], G.deckCount[thisPlayer + 1] - newCards + shuffledCards);
+			
+			//error check player 2 deck count
+			if(testG.deckCount[thisPlayer + 1] != G.deckCount[thisPlayer + 1] - newCards + shuffledCards){
+				printf("TEST FAILED: Player 2 deck count is incorrect. \n");
+			}
+			
+
+			printf("\nstarting cards: ");
+			for (m=0; m<testG.handCount[thisPlayer]; m++) {
+				printf("(%d)", testG.hand[thisPlayer][m]);
+			}
+			printf("; ");
+
+			// ----------- TEST21: choice1 tested against all cards that can be trashed  --------------
+			printf("\n\n---------- Test 2 - choice1 = test against each card per iteration: ----------\n");
+			printf("\nUser chooses Estate Card. \n");
+			
+			choice1 = i;
+			choice2 = 1; //Each time we will go through and select an Estate. This keeps the gained card from being
+			//more than the trashed card for the sake of testing. It will lead to a seg fault if not.
+			remove1 = testG.hand[thisPlayer][i];
+			cardEffect(remodel, choice1, choice2, choice3, &testG, handpos, &bonus);
+
+			printf("\nremoved: (%d); ", remove1);
+			printf("\nending cards: ");
+		
+			n = 0;
+			// tests that the removed cards are no longer in the player's hand
+			for (m=0; m<testG.handCount[thisPlayer]; m++) {
+				printf("(%d)", testG.hand[thisPlayer][m]);
+				//assert(testG.hand[thisPlayer][m] != remove1);
+				if(testG.hand[thisPlayer][m] == remove1){
+					n++;
+				}
+			}
+			//if we have an error output it
+			if( n > 0){
+				printf("TEST FAILED: There was a failure calling remodel.\n");
+			}
+			printf("\nexpected: ");
+			for (m=1; m<G.handCount[thisPlayer]; m++) {
+				if (G.hand[thisPlayer][m] != G.hand[thisPlayer][i]) {
+					printf("(%d)", G.hand[thisPlayer][m]);
+				}
+			}
+			printf("\n");
+			
+			//TEST 3: Check to make sure the card gained is no more than 2 cost of the discarded card.
+			printf("\n\n---------- Test 3 - choice2 = 1 Make sure gained card is no more than 2 the cost of the trashed: ----------\n");
+			printf("Cost of card gained: (%d) \n", getCost(testG.discard[thisPlayer][0]));
+			printf("Cost of card trashed: (%d) \n", getCost(G.hand[thisPlayer][i]));
+			
+			if ( (getCost(G.hand[thisPlayer][i]) + 2) < getCost(testG.discard[thisPlayer][0]) )
+			{
+				printf("TEST FAILED: The card failed to gain a card costing 2 or less.\n");
+			}
+			
+			//post state cards counts
+			printf("\n\n---------- Test 4 - Post state for each player and victory cards: ----------\n");
+			
+			//check victory cards
+			printf("Victory cards count: Estate = %d, Duchy = %d, Province = %d ... expected values are 8,8,8\n", testG.supplyCount[estate], testG.supplyCount[duchy], testG.supplyCount[province]);
+			
+			//error victory cards
+			if(testG.supplyCount[estate] != 7 || testG.supplyCount[duchy] != 8 || testG.supplyCount[province] != 8){
+				printf("TEST FAILED: Victory Card totals are incorrect. \n");
+			}
+			
+			// tests for the appropriate number of remaining cards
+			newCards = 0;
+			discarded = 2;
+			
+			printf("player 1 hand count after = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
+										
+			//error check player 1 hand count
+			if(testG.handCount[thisPlayer] != G.handCount[thisPlayer] + newCards - discarded){
+				printf("TEST FAILED: Player 1 hand count is incorrect. \n");
+			}
+			
+			printf("player 1 deck count after = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards + shuffledCards);
+			
+			//error check player 1 deck count
+			if(testG.deckCount[thisPlayer] != G.deckCount[thisPlayer] - newCards + shuffledCards){
+				printf("TEST FAILED: Player 1 deck count is incorrect. \n");
+			}
+			
+			newCards = 0;
+			discarded = 0;
+			//test player 2 deck state
+			printf("player 2 deck count after = %d, expected = %d\n", testG.deckCount[thisPlayer + 1], G.deckCount[thisPlayer + 1] - newCards + shuffledCards);
+			
+			//error check player 2 deck count
+			if(testG.deckCount[thisPlayer + 1] != G.deckCount[thisPlayer + 1] - newCards + shuffledCards){
+				printf("TEST FAILED: Player 2 deck count is incorrect. \n");
+			}
+			
+			
+			//assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] + newCards - discarded);
+			//assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer] - newCards + shuffledCards);
+		}
+
+		
+	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
+
+	return 0;
 }

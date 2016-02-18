@@ -1,15 +1,7 @@
 /*
- * cardtest2.c
- *
- 
- */
-
-/*
- * Include the following lines in your makefile:
- *
- * cardtest2: cardtest2.c dominion.o rngs.o
- *      gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
- */
+*Author: Robyn Lin
+* This tests the adventurer card
+*/
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -17,146 +9,72 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include <stdlib.h>
 
-#define TESTCARD "smithy"
+// set NOISY_TEST to 0 to remove printfs from output
+#define NOISY_TEST 1
+
+int testAdvent(struct gameState *, int); //function declaration
 
 int main() {
-    int newCards = 0;
-    int discarded = 1;
-    int shuffledCards = 0;
-	//int cardTotal = 7;
-    int m;
-    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
-    int seed = 1000;
-    int numPlayers = 2;
-    int thisPlayer = 0;
-	struct gameState G, testG;
-	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
-			sea_hag, tribute, smithy, council_room};
+   int seed = 1000;
+   int numPlayer = 3;
+   int r, result;
+   int handPos = 2;
+   int k[10] = {adventurer, council_room, feast, gardens, mine
+               , remodel, smithy, village, baron, great_hall};
 
-	// initialize a game state and player cards
-	initializeGame(numPlayers, k, seed, &G);
+   struct gameState G;
 
-	printf("\n----------------- Testing Card: %s ----------------\n", TESTCARD);
-	printf("\n");
+   memset(&G, 23, sizeof(struct gameState));   // clear the game state
+   r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
-	// ----------- TEST 1: draw 3 cards and see how it affects the state of each player and player 1's hand  --------------
+   result = testAdvent(&G, handPos);
 
-		printf("\n---------- Test 1 - Pre state for each player and victory cards: ----------\n");
+   if(result == 0)
+      printf("All tests passed!\n");
+   else
+      printf("Adventurer did not pass test!\n");
 
-			G.hand[thisPlayer][0] = smithy;
-			G.hand[thisPlayer][1] = copper;
-			G.hand[thisPlayer][2] = adventurer;
-			G.hand[thisPlayer][3] = estate;
-			G.hand[thisPlayer][4] = feast;
+   return 0;
+}
 
-			// copy the game state to a test case
-			memcpy(&testG, &G, sizeof(struct gameState));
-			
-			//check victory cards
-			printf("Victory cards count: Estate = %d, Duchy = %d, Province = %d ... expected values are 8,8,8\n", testG.supplyCount[estate], testG.supplyCount[duchy], testG.supplyCount[province]);
-			
-			//error victory cards
-			if(testG.supplyCount[estate] != 8 || testG.supplyCount[duchy] != 8 || testG.supplyCount[province] != 8){
-				printf("TEST FAILED: Victory Card totals are incorrect. \n");
-			}
-			
-			//Test player 1 hand and deck count before smithy is played
-			newCards = 0;
-			discarded = 0;
-			
-			printf("player 1 hand count before = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
-			
-			//error check player 1 hand count
-			if(testG.handCount[thisPlayer] != G.handCount[thisPlayer] + newCards - discarded){
-				printf("TEST FAILED: Player 1 hand count is incorrect. \n");
-			}
-			
-			printf("player 1 deck count before = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards + shuffledCards);
-			
-			//error check player 1 deck count
-			if(testG.deckCount[thisPlayer] != G.deckCount[thisPlayer] - newCards + shuffledCards){
-				printf("TEST FAILED: Player 1 deck count is incorrect. \n");
-			}
-			
-			//test player 2 deck state
-			printf("player 2 deck count before = %d, expected = %d\n", testG.deckCount[thisPlayer + 1], G.deckCount[thisPlayer + 1] - newCards + shuffledCards);
-			
-			//error check player 2 deck count
-			if(testG.deckCount[thisPlayer + 1] != G.deckCount[thisPlayer + 1] - newCards + shuffledCards){
-				printf("TEST FAILED: Player 2 deck count is incorrect. \n");
-			}
-			
-			printf("\nstarting cards for player 1: ");
-			for (m=0; m<testG.handCount[thisPlayer]; m++) {
-				printf("(%d)", testG.hand[thisPlayer][m]);
-			}
+int testAdvent(struct gameState *prestate, int handPos)
+{
+   int i, result, preAdventCount, card;
+   int preAdventCoins = 0;
+   int postAdventCoins = 0;
+   int currentPlayer = whoseTurn(prestate);
 
-			printf("; ");
-			
-			//Play card and see results
-			printf("\n\n----------Test 2 - add 3 cards to player 1: -------------\n");
-			cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+   preAdventCount = prestate->handCount[currentPlayer]; //hand count before playing Adventurer
+   printf("Number of cards in hand before playing Adventurer: %d\n", preAdventCount);
 
-			printf("\nending cards for player 1: ");
+   for(i = 0; i < preAdventCount; i++) //count treasure cards in player's hand
+   {
+      card = prestate->hand[currentPlayer][i];
+      if(card == copper || card == silver || card == gold)
+	preAdventCoins++;
+   } 
+   printf("Number of treasure cards in hand before playing Adventurer: %d\n", preAdventCoins);
 
-			// tests that the three cards are added to players hand
-			for (m=0; m<testG.handCount[thisPlayer]; m++) {
-				printf("(%d)", testG.hand[thisPlayer][m]);				
-			}
-			//assert(testG.handCount[thisPlayer] == cardTotal);
-			
-			//test total cards
-			if(testG.handCount[thisPlayer] != G.handCount[thisPlayer] + 2){
-				printf("TEST FAILED: Player 1 cards gained is incorrect. \n");
-			}
-			
-			
-			printf("\n");
-			
-			printf("\n---------- Test 3 - Post state for each player and victory cards: ----------\n");
-			
-			//check victory cards
-			printf("Victory cards count: Estate = %d, Duchy = %d, Province = %d ... expected values are 8,8,8\n", testG.supplyCount[estate], testG.supplyCount[duchy], testG.supplyCount[province]);
-			
-			//error victory cards
-			if(testG.supplyCount[estate] != 8 || testG.supplyCount[duchy] != 8 || testG.supplyCount[province] != 8){
-				printf("TEST FAILED: Victory Card totals are incorrect. \n");
-			}
-			
-			// tests for the appropriate number of remaining cards
-			newCards = 3;
-			discarded = 1;
-			
-			printf("player 1 hand count after = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
-										
-			//error check player 1 hand count
-			if(testG.handCount[thisPlayer] != G.handCount[thisPlayer] + newCards - discarded){
-				printf("TEST FAILED: Player 1 hand count is incorrect. \n");
-			}
-			
-			printf("player 1 deck count after = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards + shuffledCards);
-			
-			//error check player 1 deck count
-			if(testG.deckCount[thisPlayer] != G.deckCount[thisPlayer] - newCards + shuffledCards){
-				printf("TEST FAILED: Player 1 deck count is incorrect. \n");
-			}
-			
-			newCards = 0;
-			discarded = 0;
-			//test player 2 deck state
-			printf("player 2 deck count after = %d, expected = %d\n", testG.deckCount[thisPlayer + 1], G.deckCount[thisPlayer + 1] - newCards + shuffledCards);
-			
-			//error check player 2 deck count
-			if(testG.deckCount[thisPlayer + 1] != G.deckCount[thisPlayer + 1] - newCards + shuffledCards){
-				printf("TEST FAILED: Player 2 deck count is incorrect. \n");
-			}
-			//assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] + newCards - discarded);
-			//assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer] - newCards + shuffledCards);
+   result = cardEffect(adventurer, 0, 0, 0, prestate, handPos, 0);
 
-		
-	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
+   //discard Adventurer
+   discardCard(handPos, currentPlayer, prestate, 0);
 
-	return 0;
+   printf("\nActual number of cards in hand after playing Adventurer: %d\n", prestate->handCount[currentPlayer]);
+   printf("Expected number of cards in hand (Adventurer is discarded): %d\n", preAdventCount + 1);
+
+   for(i = 0; i < prestate->handCount[currentPlayer]; i++) //count treasure cards in player's hand
+   {
+      card = prestate->hand[currentPlayer][i];
+      if(card == copper || card == silver || card == gold)
+	postAdventCoins++;
+   } 
+   printf("Actual number of treasure cards in hand after playing Adventurer: %d\n", postAdventCoins);
+   printf("Expected number of treasure cards in hand: %d\n", preAdventCoins + 2);
+
+   if((preAdventCount + 1) == prestate->handCount[currentPlayer] && (preAdventCoins + 2 == postAdventCoins)) //correct card and treasure card count
+      return 0;
+   
+   return 1; 
 }

@@ -32,86 +32,71 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-unittestresults.out: testHelpers.o dominion.o rngs.o
-	echo "-------------------------------------------------" > unittestresults.out
-	echo -e "\tResults for Function Unit Tests" >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
-	
-	echo "unittest1.c: shuffle()" >> unittestresults.out
-	gcc -o unittest1 unittest1.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./unittest1 >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
-	
-	echo "unittest2.c: gainCard()" >> unittestresults.out
-	gcc -o unittest2 unittest2.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./unittest2 >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
-
-	echo "unittest3.c: buyCard()" >> unittestresults.out
-	gcc -o unittest3 unittest3.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./unittest3 >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
-
-	echo "unittest4.c: getWinners()" >> unittestresults.out
-	gcc -o unittest4 unittest4.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./unittest4 >> unittestresults.out
-	
-	echo -e "\n-------------------------------------------------" >> unittestresults.out
-	echo -e "\tResults for Card Unit Tests" >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
-	
-	echo "cardtest1.c: smithy" >> unittestresults.out
-	gcc -o cardtest1 cardtest1.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./cardtest1 >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
-
-	echo "cardtest2.c: adventurer" >> unittestresults.out
+adventurertest: test_helpers.o dominion.o rngs.o
 	gcc -o cardtest2 cardtest2.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./cardtest2 >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
 
-	echo "cardtest3.c: council_room" >> unittestresults.out
-	gcc -o cardtest3 cardtest3.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./cardtest3 >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
-
-	echo "cardtest4.c: baron" >> unittestresults.out
-	gcc -o cardtest4 cardtest4.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./cardtest4 >> unittestresults.out
+unittestresults.out: testHelpers.o dominion.o rngs.o
+	echo "-------------------------------------------------" > unittestresults_ej.out
+	echo -e "\tResults for Function Unit Tests - Emmalee" >> unittestresults_ej.out
+	echo "-------------------------------------------------" >> unittestresults_ej.out
 	
-	echo -e "\n-------------------------------------------------" >> unittestresults.out
-	echo -e "\t\tCode Coverage" >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
-	gcov ./dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
+	echo "unittest1.c: shuffle()" >> unittestresults_ej.out
+	gcc -o unittest1 unittest1.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./unittest1 >> unittestresults_ej.out
+	echo "-------------------------------------------------" >> unittestresults_ej.out
+	
+	echo "unittest2.c: gainCard()" >> unittestresults_ej.out
+	gcc -o unittest2 unittest2.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./unittest2 >> unittestresults_ej.out
+	echo "-------------------------------------------------" >> unittestresults_ej.out
+
+	echo "unittest3.c: buyCard()" >> unittestresults_ej.out
+	gcc -o unittest3 unittest3.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./unittest3 >> unittestresults_ej.out
+	echo "-------------------------------------------------" >> unittestresults_ej.out
+
+	echo "unittest4.c: getWinners()" >> unittestresults_ej.out
+	gcc -o unittest4 unittest4.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./unittest4 >> unittestresults_ej.out
+	
+	echo -e "\n-------------------------------------------------" >> unittestresults_ej.out
+	echo -e "\tResults for Card Unit Tests" >> unittestresults_ej.out
+	echo "-------------------------------------------------" >> unittestresults_ej.out
+	
+	echo "cardtest1.c: smithy" >> unittestresults_ej.out
+	gcc -o cardtest1 cardtest1.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./cardtest1 >> unittestresults_ej.out
+	echo "-------------------------------------------------" >> unittestresults_ej.out
+
+	echo "cardtest2.c: adventurer" >> unittestresults_ej.out
+	gcc -o cardtest2 cardtest2.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./cardtest2 >> unittestresults_ej.out
+	echo "-------------------------------------------------" >> unittestresults_ej.out
+
+	echo "cardtest3.c: council_room" >> unittestresults_ej.out
+	gcc -o cardtest3 cardtest3.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./cardtest3 >> unittestresults_ej.out
+	echo "-------------------------------------------------" >> unittestresults_ej.out
+
+	echo "cardtest4.c: baron" >> unittestresults_ej.out
+	gcc -o cardtest4 cardtest4.c test_helpers.o dominion.o rngs.o $(CFLAGS)
+	./cardtest4 >> unittestresults_ej.out
 
 randomtestadventurer.out: testHelpers.o dominion.o rngs.o
-	echo "-----------------------------------------------------------" > randomtestadventurer.out
-	echo -e "\tResults for Random Tests: Adventurer Card" >> randomtestadventurer.out
-	echo "-----------------------------------------------------------" >> randomtestadventurer.out
+	echo "-----------------------------------------------------------" > randomtestadventurer_ej.out
+	echo -e "\tResults for Random Tests: Adventurer Card (Emmalee)" >> randomtestadventurer_ej.out
+	echo "-----------------------------------------------------------" >> randomtestadventurer_ej.out
 	
 	gcc -o randomtestadventurer randomtestadventurer.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./randomtestadventurer >> randomtestadventurer.out
+	./randomtestadventurer >> randomtestadventurer_ej.out
 	
-	echo -e "\n-----------------------------------------------------------" >> randomtestadventurer.out
-	echo -e "\t\tCode Coverage" >> randomtestadventurer.out
-	echo "-----------------------------------------------------------" >> randomtestadventurer.out
-	gcov ./dominion.c >> randomtestadventurer.out
-	cat dominion.c.gcov >> randomtestadventurer.out
-
 randomtestcard.out: testHelpers.o dominion.o rngs.o
-	echo "-----------------------------------------------------------" > randomtestcard.out
-	echo -e "\tResults for Random Tests: Village Card" >> randomtestcard.out
-	echo "-----------------------------------------------------------" >> randomtestcard.out
+	echo "-----------------------------------------------------------" > randomtestcard_ej.out
+	echo -e "\tResults for Random Tests: Village Card (Emmalee)" >> randomtestcard_ej.out
+	echo "-----------------------------------------------------------" >> randomtestcard_ej.out
 	
 	gcc -o randomtestcard randomtestcard.c test_helpers.o dominion.o rngs.o $(CFLAGS)
-	./randomtestcard >> randomtestcard.out
-	
-	echo -e "\n-----------------------------------------------------------" >> randomtestcard.out
-	echo -e "\t\tCode Coverage" >> randomtestcard.out
-	echo "-----------------------------------------------------------" >> randomtestcard.out
-	gcov ./dominion.c >> randomtestcard.out
-	cat dominion.c.gcov >> randomtestcard.out
+	./randomtestcard >> randomtestcard_ej.out
 	
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

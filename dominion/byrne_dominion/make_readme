@@ -1,0 +1,5 @@
+make instructions
+
+make all
+make tests
+make runtests

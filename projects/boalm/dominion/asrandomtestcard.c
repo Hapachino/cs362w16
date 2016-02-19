@@ -242,7 +242,7 @@ int main() {
     printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 
     // ----------- TEST 1: choice1 = 1 = +2 cards --------------
-    printf("RANDOM TEST : = Play adventurer card\n\n\n");
+    printf("RANDOM TEST : = Play sea_hag\n\n\n");
 
     for (i = 0; i < 1000000; ++i)
     {

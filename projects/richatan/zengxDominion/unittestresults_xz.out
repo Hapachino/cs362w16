@@ -1,0 +1,147 @@
+-------------------------------------------------
+	Results for Function Unit Tests - Xiaohan
+-------------------------------------------------
+unittest1.c: shuffle()
+*** Testing deckCount = 0 ***
+Errors: none
+Result: PASS
+
+*** Testing deckCount = 1 ***
+Errors: none
+Result: PASS
+
+*** Testing deckCount > 1 ***
+Errors: none
+Result: PASS
+-------------------------------------------------
+unittest2.c: gainCard()
+*** Testing supplyCount = 0 ***
+Errors: none
+Result: PASS
+
+*** Testing invalid game card ***
+Errors: none
+Result: PASS
+
+*** Testing invalid toFlag ***
+Errors: 
+Return value: 0, Expected: -1
+gameState changed
+Result: FAIL
+
+*** Testing toFlag = 0 ***
+Errors: none
+Result: PASS
+
+*** Testing toFlag = 1 ***
+Errors: none
+Result: PASS
+
+*** Testing toFlag = 2 ***
+Errors: none
+Result: PASS
+-------------------------------------------------
+unittest3.c: buyCard()
+*** Testing numBuys = 0 ***
+Errors: none
+Result: PASS
+
+*** Testing supplyCount = 0 ***
+Errors: none
+Result: PASS
+
+*** Testing coins < cost ***
+Errors: none
+Result: PASS
+
+*** Testing invalid position ***
+Errors: none
+Result: PASS
+
+*** Testing valid buy ***
+Errors: none
+Result: PASS
+
+*** Testing valid buy with embargo ***
+Errors: 
+Supply count for curse card: 10, Expected: 9
+Embargo tokens for card 11: 1, Expected: 0
+Current player's discardCount: 1, Expected: 2
+Result: FAIL
+-------------------------------------------------
+unittest4.c: getWinners()
+*** Testing all scores = 0 ***
+Errors: none
+Result: PASS
+
+*** Testing 1 winner ***
+Errors: none
+Result: PASS
+
+*** Testing 2 winners ***
+Errors: none
+Result: PASS
+
+*** Testing all winners ***
+Errors: none
+Result: PASS
+
+-------------------------------------------------
+	Results for Card Unit Tests
+-------------------------------------------------
+cardtest1.c: smithy
+*** Testing valid smithy ***
+Errors: 
+Current player's hand count: 6, Expected: 7
+Current player's deck count: 3, Expected: 2
+Result: FAIL
+-------------------------------------------------
+cardtest2.c: adventurer
+*** Testing 2 treasure cards in deck ***
+Errors: 
+Played card count: 0, Expected: 1
+Current player's hand count: 7, Expected: 6
+Current player's discard count: 4, Expected: 5
+Current player's discard[-1]: 0, Expected: 1
+Result: FAIL
+
+*** Testing 1 treasure in deck + 1 in discard ***
+Test disabled because of infinite loop
+Result: FAIL
+
+*** Testing 1 treasure card in deck ***
+Test disabled because of infinite loop
+Result: FAIL
+-------------------------------------------------
+cardtest3.c: council_room
+*** Testing valid council_room ***
+Errors: 
+Current player's hand[6]: 2, Expected: 4
+Current player's hand[4]: 1, Expected: 4
+Player 1's hand[0]: 0, Expected: 4
+Player 2's hand[0]: 0, Expected: 4
+Result: FAIL
+-------------------------------------------------
+cardtest4.c: baron
+*** Testing choice1 = 1, estate in hand ***
+Errors: 
+Played card count: 0, Expected: 1
+Current player's hand count: 4, Expected: 3
+Current player's hand[0]: 15, Expected: 4
+Result: FAIL
+
+*** Testing choice1 = 1, NO estate in hand ***
+Errors: 
+Played card count: 0, Expected: 1
+Supply count for estate card: 6, Expected: 7
+Current player's hand count: 5, Expected: 4
+Current player's hand[0]: 15, Expected: 4
+Result: FAIL
+
+*** Testing choice1 = 0 ***
+Errors: 
+Played card count: 0, Expected: 1
+Supply count for estate card: 6, Expected: 7
+Current player's hand count: 5, Expected: 4
+Current player's hand[0]: 15, Expected: 4
+Result: FAIL

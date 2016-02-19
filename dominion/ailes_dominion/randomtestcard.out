@@ -1,0 +1,314 @@
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 53   Actual count: 53
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: 256425523   Deck size actual: 256425523
+TEST 3: Check hand count of other players
+Passed. hand count expected: -3611117   hand count actual: -3611117
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 187   Deck size actual: 187
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 29
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 339   Actual count: 339
+TEST 2: Check handsize of other players
+FAILED. Deck size expected: 85   Deck size actual: 82
+TEST 3: Check hand count of other players
+FAILED. hand count expected: 337   hand count actual: 339
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 82   Deck size actual: 82
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 28
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 263   Actual count: 263
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: 298616817   Deck size actual: 298616817
+TEST 3: Check hand count of other players
+Passed. hand count expected: 2044370785   hand count actual: 2044370785
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 410   Deck size actual: 410
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 211
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 180   Actual count: 180
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: -709668268   Deck size actual: -709668268
+TEST 3: Check hand count of other players
+Passed. hand count expected: -978755670   hand count actual: -978755670
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 397   Deck size actual: 397
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 111
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 293   Actual count: 293
+TEST 2: Check handsize of other players
+FAILED. Deck size expected: 36   Deck size actual: 33
+TEST 3: Check hand count of other players
+FAILED. hand count expected: 291   hand count actual: 293
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 33   Deck size actual: 33
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 25
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 478   Actual count: 478
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: 1936302629   Deck size actual: 1936302629
+TEST 3: Check hand count of other players
+Passed. hand count expected: -1007363372   hand count actual: -1007363372
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 438   Deck size actual: 438
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 254
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 379   Actual count: 379
+TEST 2: Check handsize of other players
+FAILED. Deck size expected: 186   Deck size actual: 183
+TEST 3: Check hand count of other players
+FAILED. hand count expected: 377   hand count actual: 379
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 183   Deck size actual: 183
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 233
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 49   Actual count: 49
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: -2096182322   Deck size actual: -2096182322
+TEST 3: Check hand count of other players
+Passed. hand count expected: -361169238   hand count actual: -361169238
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 455   Deck size actual: 455
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 445
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 489   Actual count: 489
+TEST 2: Check handsize of other players
+FAILED. Deck size expected: 189   Deck size actual: 186
+TEST 3: Check hand count of other players
+FAILED. hand count expected: 487   hand count actual: 489
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 186   Deck size actual: 186
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 86
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 160   Actual count: 160
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: 1425175386   Deck size actual: 1425175386
+TEST 3: Check hand count of other players
+Passed. hand count expected: -1819816285   hand count actual: -1819816285
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 118   Deck size actual: 118
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 51
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 74   Actual count: 74
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: -1764988122   Deck size actual: -1764988122
+TEST 3: Check hand count of other players
+Passed. hand count expected: -1920141624   hand count actual: -1920141624
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 97   Deck size actual: 97
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 339
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 230   Actual count: 230
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: 1896035684   Deck size actual: 1896035684
+TEST 3: Check hand count of other players
+Passed. hand count expected: 1989770069   hand count actual: 1989770069
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 199   Deck size actual: 199
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 447
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 197   Actual count: 197
+TEST 2: Check handsize of other players
+FAILED. Deck size expected: 434   Deck size actual: 431
+TEST 3: Check hand count of other players
+FAILED. hand count expected: 195   hand count actual: 197
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 431   Deck size actual: 431
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 218
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 119   Actual count: 119
+TEST 2: Check handsize of other players
+FAILED. Deck size expected: 304   Deck size actual: 301
+TEST 3: Check hand count of other players
+FAILED. hand count expected: 117   hand count actual: 119
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 301   Deck size actual: 301
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 281
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 278   Actual count: 278
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: 2124170372   Deck size actual: 2124170372
+TEST 3: Check hand count of other players
+Passed. hand count expected: 1069506610   hand count actual: 1069506610
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 330   Deck size actual: 330
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 95
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 296   Actual count: 296
+TEST 2: Check handsize of other players
+FAILED. Deck size expected: 113   Deck size actual: 110
+TEST 3: Check hand count of other players
+FAILED. hand count expected: 294   hand count actual: 296
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 110   Deck size actual: 110
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 489
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 473   Actual count: 473
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: -519004541   Deck size actual: -519004541
+TEST 3: Check hand count of other players
+Passed. hand count expected: 1355753050   hand count actual: 1355753050
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 299   Deck size actual: 299
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 5
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 467   Actual count: 467
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: -823007081   Deck size actual: -823007081
+TEST 3: Check hand count of other players
+Passed. hand count expected: 103239551   hand count actual: 103239551
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 49   Deck size actual: 49
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 320
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 222   Actual count: 222
+TEST 2: Check handsize of other players
+Passed. Deck size Expected: -1528678359   Deck size actual: -1528678359
+TEST 3: Check hand count of other players
+Passed. hand count expected: 1489691764   hand count actual: 1489691764
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 392   Deck size actual: 392
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 468
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Passed. Expected hand count: 177   Actual count: 177
+TEST 2: Check handsize of other players
+FAILED. Deck size expected: 405   Deck size actual: 402
+TEST 3: Check hand count of other players
+FAILED. hand count expected: 175   hand count actual: 177
+TEST 4: Check if smithy card came from players pile
+Passed. Expected: 402   Deck size actual: 402
+Test 5: Check if smithy card went to players pile
+FAILED. Expected increase in played pile: 1   To played pile: 97
+Test 6: : Victory cards
+Passed. Supply counts for curses and victory cards are the same
+Test 7: Supply cards
+Passed. Supply counts for treasure cards are the same
+ALL TESTS COMPLETE
+Function 'main'
+Lines executed:84.13% of 63
+Branches executed:100.00% of 28
+Taken at least once:64.29% of 28
+No calls
+
+File 'randomtestcard.c'
+Lines executed:84.13% of 63
+Branches executed:100.00% of 28
+Taken at least once:64.29% of 28
+No calls
+randomtestcard.c:creating 'randomtestcard.c.gcov'
+

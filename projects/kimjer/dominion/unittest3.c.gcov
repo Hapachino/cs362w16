@@ -46,25 +46,25 @@ function cardsAreUnique called 1000000 returned 100% blocks executed 100%
         -:   29:{
         -:   30:	int i, j;
         -:   31:	//check selected kingdom cards are different (from dominion.c)
-  2297100:   32:	for (i = 0; i < NUMCARDS; i++)
+  2294022:   32:	for (i = 0; i < NUMCARDS; i++)
 branch  0 taken 99%
 branch  1 taken 1% (fallthrough)
         -:   33:	{
- 20337058:   34:		for (j = 0; j < NUMCARDS; j++)
+ 20300017:   34:		for (j = 0; j < NUMCARDS; j++)
 branch  0 taken 94%
 branch  1 taken 6% (fallthrough)
         -:   35:		{
- 19039958:   36:			if (j != i && k[j] == k[i])
+ 19005995:   36:			if (j != i && k[j] == k[i])
 branch  0 taken 88% (fallthrough)
 branch  1 taken 12%
 branch  2 taken 6% (fallthrough)
 branch  3 taken 94%
         -:   37:			{
-   981227:   38:				return -1;
+   981249:   38:				return -1;
         -:   39:			}
         -:   40:		}
         -:   41:	}
-    18773:   42:	return 0;
+    18751:   42:	return 0;
         -:   43:}
         -:   44:
 function cardsAreCorrectVals called 0 returned 0% blocks executed 0%
@@ -121,11 +121,11 @@ call    0 returned 100%
   1000000:   77:		if(cret == 0) {
 branch  0 taken 2% (fallthrough)
 branch  1 taken 98%
-    18773:   78:			ASSERT2(ret, 0, "FAIL when cards are unique");
+    18751:   78:			ASSERT2(ret, 0, "FAIL when cards are unique");
 call    0 returned 100%
         -:   79:		}
         -:   80:		else {
-   981227:   81:			ASSERT2(ret, -1, "FAIL when cards are non-unique");
+   981249:   81:			ASSERT2(ret, -1, "FAIL when cards are non-unique");
 call    0 returned 100%
         -:   82:		}
         -:   83:	}

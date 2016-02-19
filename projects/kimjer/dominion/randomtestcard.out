@@ -1,9 +1,9 @@
 drawCard(): PASSED
 effectVillage(): Passed
 File 'dominion.c'
-Lines executed:31.63% of 588
+Lines executed:31.80% of 588
 Branches executed:22.54% of 417
-Taken at least once:20.62% of 417
+Taken at least once:20.86% of 417
 Calls executed:15.63% of 96
 Creating 'dominion.c.gcov'
 

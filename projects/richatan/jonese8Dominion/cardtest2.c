@@ -18,7 +18,7 @@
 #define TEST_POS 0
 #define EXTRA_COUNT 5
 #define EXTRA_CARD estate
-#define TREASURE copper
+#define TREASURE gold
  
 int main () {
 	int i, j;			//loop controls

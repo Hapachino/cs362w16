@@ -35,19 +35,8 @@ Bug 2
     
 
 Teammate 2: burrellp
-Bug 1
-    Title: 
-    Product: Dominion game
-    Classification: 
-    Platform: Ubuntu Linux 15.04 running Dominion in Code::Blocks IDE
-    Can it be reproduced?: Yes
-    Description: 
-    Steps to reproduce: Go into the teammate2dominion folder and run command "make {cccc}.out". 
-    Expected results: 
-    Actual results: 
-    Workaround: No workarounds exist that could be used by the player.
 
-BUg 2
+Bug 1
     Title: After a player plays the Salvager card, the coin count is often incorrect.
     Product: Dominion game
     Classification: Severe

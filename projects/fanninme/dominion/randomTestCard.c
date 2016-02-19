@@ -121,10 +121,6 @@ int main () {
     //call function with test input
     error=unitTest(G.numPlayers,&G,choice1);
 
-    //Fixed Tests needed for
-    //G.hand[currentPlayer][p] == estate need fixed test
-    //if (state->hand[currentPlayer][p] == estate)
-
     if (error > 0){
         if(error == 1){
             errorA++;

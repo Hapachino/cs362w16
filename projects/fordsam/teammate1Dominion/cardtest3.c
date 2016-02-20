@@ -52,7 +52,7 @@ int testMine() {
   state.supplyCount[silver] = 10;
   memcpy(&initialState, &state, sizeof(struct gameState));
 
-  /* Test playMine() using a non-treasure card for choice1 */
+  /* Test using a non-treasure card for choice1 */
   printf("----- Test: choice1 = estate, choice2 = silver\n");
   memcpy(&preState, &state, sizeof(struct gameState));
   result = cardEffect(mine, ESTATEPOS, silver, 0, &state, HANDPOS, 0);
@@ -71,7 +71,7 @@ int testMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a non-treasure card for choice1 */
+  /* Test using a non-treasure card for choice1 */
   printf("\n----- Test: choice1 = baron, choice2 = silver\n");
   memcpy(&preState, &state, sizeof(struct gameState));
   result = cardEffect(mine, BARONPOS, silver, 0, &state, HANDPOS, 0);
@@ -90,7 +90,7 @@ int testMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice 1 and a non-card for
+  /* Test using a treasure card for choice 1 and a non-card for choice2 */
      choice2 */
   printf("\n----- Test: choice1 = copper, choice2 = treasure_map + 999\n");
   memcpy(&initialState, &state, sizeof(struct gameState));
@@ -111,7 +111,7 @@ int testMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice 1 and a non-card for
+  /* Test using a treasure card for choice 1 and a non-card for choice2 */
      choice2 */
   printf("\n----- Test: choice1 = copper, choice2 = curse - 999\n");
   memcpy(&initialState, &state, sizeof(struct gameState));
@@ -132,8 +132,8 @@ int testMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice1 and a non-treasure card
-     for choice 2 */
+  /* Test using a treasure card for choice1 and a non-treasure card for
+     choice 2 */
   printf("\n----- Test: choice1 = copper, choice2 = estate\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
@@ -153,8 +153,8 @@ int testMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice1 and a treasure card
-     that's more than 3 coins more expensive */
+  /* Test using a treasure card for choice1 and a treasure card that's more
+     than 3 coins more expensive */
   printf("\n----- Test: choice1 = copper, choice2 = gold\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
@@ -174,8 +174,8 @@ int testMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice1 and a treasure card
-     that's up to 3 coins more (silver) */
+  /* Test using a treasure card for choice1 and a treasure card that's up to
+     3 coins more (silver) */
   printf("\n----- Test: choice1 = copper, choice2 = silver\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));

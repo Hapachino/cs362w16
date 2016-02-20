@@ -11,8 +11,8 @@
 
 #define P1 0
 #define P2 1
-#define HANDPOS 1
-#define COPPERPOS 0
+#define HANDPOS 0
+#define COPPERPOS 1
 #define COPPER2POS 2
 #define BARONPOS 3
 #define ESTATEPOS 4
@@ -36,8 +36,8 @@ int testMine() {
   state.deck[P1][3] = gardens;
   state.deck[P1][4] = cutpurse;
   state.deckCount[P1] = 5;
-  state.hand[P1][0] = copper;
-  state.hand[P1][1] = mine;
+  state.hand[P1][0] = mine;
+  state.hand[P1][1] = copper;
   state.hand[P1][2] = copper;
   state.hand[P1][3] = baron;
   state.hand[P1][4] = estate;

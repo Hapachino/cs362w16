@@ -11,7 +11,7 @@
 #define P2 1
 #define HANDPOS 2
 
-int testPlaySmithy() {
+int testSmithy() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -85,6 +85,6 @@ int testPlaySmithy() {
 }
 
 int main() {
-  testPlaySmithy();
+  testSmithy();
   return 0;
 }

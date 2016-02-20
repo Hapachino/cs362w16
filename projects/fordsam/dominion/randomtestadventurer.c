@@ -18,7 +18,7 @@
 #define TEST_ITERATIONS 10
 #define OUTPUT_MAX 200
 
-/* TODO: Tweak probabilities (e.g. tresure card)? */
+/* TODO: Tweak probabilities (e.g. treasure cards)? */
 
 /* Generates a random game state that's catered to this context (avoiding the
    randomization of parts of the game state which have no impact on this
@@ -52,7 +52,7 @@ void generateGameState(struct gameState *state) {
     }
 
     /* Replace one of the cards in the current player's hand with CARD to make
-    sure they have it */
+       sure they have it */
     if (i == state->whoseTurn) {
       if (state->handCount[i] == 0) {
         /* Set the handCount to 1 if they had 0 cards */

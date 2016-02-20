@@ -12,7 +12,8 @@
 #define P1 0
 #define P2 1
 #define HANDPOS 1
-#define COPPERPOS 2
+#define COPPERPOS 0
+#define COPPER2POS 2
 #define BARONPOS 3
 #define ESTATEPOS 4
 
@@ -200,8 +201,7 @@ int testMine() {
   testCount += 1;
   passCount += fakeAssert(
     "Should only affect one instance of choice1 card",
-    (containsCard(copper, state.hand[P1], state.handCount[P1])
-    && state.playedCardCount == 2)
+    (state.hand[P1][COPPER2POS] == copper)
   );
 
   /* Should not affect other players */

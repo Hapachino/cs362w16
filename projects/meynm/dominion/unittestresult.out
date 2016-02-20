@@ -141,13 +141,13 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-   779932:    8:int compare( const void* a, const void* b )
+   780962:    8:int compare( const void* a, const void* b )
         -:    9:{
-   779932:   10:	if (*(int*) a > *(int*) b)
-    25211:   11:		return 1;
-   754721:   12:	if (*(int*) a < *(int*) b)
-   197744:   13:		return -1;
-   556977:   14:	return 0;
+   780962:   10:	if (*(int*) a > *(int*) b)
+    26601:   11:		return 1;
+   754361:   12:	if (*(int*) a < *(int*) b)
+   195309:   13:		return -1;
+   559052:   14:	return 0;
         -:   15:}
         -:   16:
     #####:   17:struct gameState* newGame()
@@ -352,9 +352,9 @@ Creating 'dominion.c.gcov'
    461598:  216:		card = floor( Random() * state->deckCount[player] );
    461598:  217:		newDeck[newDeckPos] = state->deck[player][card];
    461598:  218:		newDeckPos++;
-  1588194:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+  1603646:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
         -:  220:		{
-  1126596:  221:			state->deck[player][i] = state->deck[player][i + 1];
+  1142048:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
    461598:  223:		state->deckCount[player]--;
         -:  224:	}
@@ -738,11 +738,11 @@ Creating 'dominion.c.gcov'
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-    96258:  605:int drawCard( int player, struct gameState *state )
+    96003:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    96258:  609:	if (state->deckCount[player] <= 0)
+    96003:  609:	if (state->deckCount[player] <= 0)
         -:  610:	{    //Deck is empty
         -:  611:
         -:  612:		//Step 1 Shuffle the discard pile back into a deck
@@ -787,20 +787,20 @@ Creating 'dominion.c.gcov'
         -:  651:
         -:  652:	else
         -:  653:	{
-    96255:  654:		int count = state->handCount[player];    //Get current hand count for player
+    96000:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
         -:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    96255:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    96255:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    96255:  663:		state->deckCount[player]--;
-    96255:  664:		state->handCount[player]++;    //Increment hand count
+    96000:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    96000:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    96000:  663:		state->deckCount[player]--;
+    96000:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    96257:  667:	return 0;
+    96002:  667:	return 0;
         -:  668:}
         -:  669:
    443948:  670:int getCost( int cardNumber )
@@ -1603,11 +1603,11 @@ Creating 'dominion.c.gcov'
         -: 1467:	{
     92795: 1468:		if (state->hand[player][i] == copper)
         -: 1469:		{
-    73660: 1470:			state->coins += 1;
-    19135: 1471:		} else if (state->hand[player][i] == silver)
+    74660: 1470:			state->coins += 1;
+    18135: 1471:		} else if (state->hand[player][i] == silver)
         -: 1472:		{
     #####: 1473:			state->coins += 2;
-    19135: 1474:		} else if (state->hand[player][i] == gold)
+    18135: 1474:		} else if (state->hand[player][i] == gold)
         -: 1475:		{
     #####: 1476:			state->coins += 3;
         -: 1477:		}
@@ -1640,18 +1640,18 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-function compare called 779932 returned 100% blocks executed 100%
-   779932:    8:int compare( const void* a, const void* b )
+function compare called 780962 returned 100% blocks executed 100%
+   780962:    8:int compare( const void* a, const void* b )
         -:    9:{
-   779932:   10:	if (*(int*) a > *(int*) b)
+   780962:   10:	if (*(int*) a > *(int*) b)
 branch  0 taken 3% (fallthrough)
 branch  1 taken 97%
-    25211:   11:		return 1;
-   754721:   12:	if (*(int*) a < *(int*) b)
+    26601:   11:		return 1;
+   754361:   12:	if (*(int*) a < *(int*) b)
 branch  0 taken 26% (fallthrough)
 branch  1 taken 74%
-   197744:   13:		return -1;
-   556977:   14:	return 0;
+   195309:   13:		return -1;
+   559052:   14:	return 0;
         -:   15:}
         -:   16:
 function newGame called 0 returned 0% blocks executed 0%
@@ -1917,11 +1917,11 @@ branch  1 taken 9% (fallthrough)
 call    0 returned 100%
    461598:  217:		newDeck[newDeckPos] = state->deck[player][card];
    461598:  218:		newDeckPos++;
-  1588194:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+  1603646:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
 branch  0 taken 71%
 branch  1 taken 29% (fallthrough)
         -:  220:		{
-  1126596:  221:			state->deck[player][i] = state->deck[player][i + 1];
+  1142048:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
    461598:  223:		state->deckCount[player]--;
         -:  224:	}
@@ -2441,12 +2441,12 @@ branch  1 never executed
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-function drawCard called 96258 returned 100% blocks executed 100%
-    96258:  605:int drawCard( int player, struct gameState *state )
+function drawCard called 96003 returned 100% blocks executed 100%
+    96003:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    96258:  609:	if (state->deckCount[player] <= 0)
+    96003:  609:	if (state->deckCount[player] <= 0)
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
         -:  610:	{    //Deck is empty
@@ -2498,20 +2498,20 @@ branch  1 taken 67%
         -:  651:
         -:  652:	else
         -:  653:	{
-    96255:  654:		int count = state->handCount[player];    //Get current hand count for player
+    96000:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
         -:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    96255:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    96255:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    96255:  663:		state->deckCount[player]--;
-    96255:  664:		state->handCount[player]++;    //Increment hand count
+    96000:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    96000:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    96000:  663:		state->deckCount[player]--;
+    96000:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    96257:  667:	return 0;
+    96002:  667:	return 0;
         -:  668:}
         -:  669:
 function getCost called 443948 returned 100% blocks executed 97%
@@ -3557,16 +3557,16 @@ branch  0 taken 83%
 branch  1 taken 17% (fallthrough)
         -: 1467:	{
     92795: 1468:		if (state->hand[player][i] == copper)
-branch  0 taken 79% (fallthrough)
-branch  1 taken 21%
+branch  0 taken 80% (fallthrough)
+branch  1 taken 20%
         -: 1469:		{
-    73660: 1470:			state->coins += 1;
-    19135: 1471:		} else if (state->hand[player][i] == silver)
+    74660: 1470:			state->coins += 1;
+    18135: 1471:		} else if (state->hand[player][i] == silver)
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -: 1472:		{
     #####: 1473:			state->coins += 2;
-    19135: 1474:		} else if (state->hand[player][i] == gold)
+    18135: 1474:		} else if (state->hand[player][i] == gold)
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -: 1475:		{

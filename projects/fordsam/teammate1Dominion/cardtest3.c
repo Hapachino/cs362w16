@@ -204,9 +204,7 @@ int testMine() {
   passCount += fakeAssert(
     "Should only affect one instance of choice1 card",
     (containsCard(copper, state.hand[P1], state.handCount[P1])
-    && !containsCard(copper, state.deck[P1], state.deckCount[P1])
-    && !containsCard(copper, state.discard[P1], state.discardCount[P1])
-    && !containsCard(copper, state.playedCards, state.playedCardCount))
+    && state.playedCardCount == 2)
   );
 
   /* Should not affect other players */

@@ -1341,7 +1341,7 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state) {
     return -1;
   }
 
-  if (choice2 > treasure_map || choice2 < curse) {
+  if (choice2 < copper || choice2 > gold) {
     return -1;
   }
 

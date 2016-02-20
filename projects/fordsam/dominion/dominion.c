@@ -1357,7 +1357,7 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state) {
   // Discard trashed card
   for (i = 0; i < state->handCount[player]; i++) {
     if (state->hand[player][i] == j) {
-      discardCard(i, player, state, 0);
+      discardCard(i, player, state, 1);
       break;
     }
   }

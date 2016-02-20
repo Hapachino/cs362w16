@@ -91,7 +91,6 @@ int testMine() {
   );
 
   /* Test using a treasure card for choice 1 and a non-card for choice2 */
-     choice2 */
   printf("\n----- Test: choice1 = copper, choice2 = treasure_map + 999\n");
   memcpy(&initialState, &state, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
@@ -112,7 +111,6 @@ int testMine() {
   );
 
   /* Test using a treasure card for choice 1 and a non-card for choice2 */
-     choice2 */
   printf("\n----- Test: choice1 = copper, choice2 = curse - 999\n");
   memcpy(&initialState, &state, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));

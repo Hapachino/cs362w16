@@ -1,5 +1,5 @@
-/* Test the playAdventurer() function
-   NOTE: playAdventurer() should:
+/* Test the Adventurer card
+   NOTE: Adventurer should:
      * Draw cards from the player's deck until two treasure cards are drawn.
      * Discard all drawn cards that are not treasure cards.
      * Move the played card to the playedCards pile.
@@ -16,7 +16,7 @@
 #define P1 0
 #define P2 1
 
-int testPlayAdventurer() {
+int testAdventurer() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -391,6 +391,6 @@ int testPlayAdventurer() {
 }
 
 int main() {
-  testPlayAdventurer();
+  testAdventurer();
   return 0;
 }

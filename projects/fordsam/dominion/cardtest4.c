@@ -1,4 +1,7 @@
-/* Test the playSmithy() function */
+/* Test the Smithy card
+   NOTE: Smithy should:
+     * Draw three cards from the player's deck and add them to their hand.
+*/
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"

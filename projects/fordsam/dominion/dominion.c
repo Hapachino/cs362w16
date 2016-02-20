@@ -1345,7 +1345,7 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state) {
     return -1;
   }
 
-  if ((getCost(state->hand[player][choice1]) + 3) > getCost(choice2)) {
+  if ((getCost(state->hand[player][choice1]) + 3) < getCost(choice2)) {
     return -1;
   }
 

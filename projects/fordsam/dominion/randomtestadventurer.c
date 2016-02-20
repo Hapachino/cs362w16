@@ -224,7 +224,7 @@ int randomlyTestAdventurer() {
     snprintf(
       output, OUTPUT_MAX,
       "treasure cards in player's hand = %d, expected = %d",
-      p, treasureCardsInHand(p, &state),
+      treasureCardsInHand(p, &state),
       (treasureCardsInHand(p, &preState) + addedCards)
     );
     passCount += fakeAssert(

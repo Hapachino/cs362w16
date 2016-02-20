@@ -23,7 +23,7 @@
 /* Generates a random game state that's catered to this context (avoiding the
    randomization of parts of the game state which have no impact on this
    particular function's behavior) */
-void generateGameState(struct gameState *state) {
+void generateGameState(int *handPos, struct gameState *state) {
   int i = 0, j = 0;
 
   /* Set the gameState to all zeros to clear any previous state */
@@ -58,7 +58,10 @@ void generateGameState(struct gameState *state) {
         /* Set the handCount to 1 if they had 0 cards */
         state->handCount[i] = 1;
       }
-      state->hand[i][(rand() % state->handCount[i])] = CARD;
+
+      /* Replace a random card in the hand with CARD */
+      *handPos = rand() % state->handCount[i];
+      state->hand[i][*handPos] = CARD;
     }
 
     /* Populate the deck with 0-17 cards */
@@ -121,6 +124,7 @@ int randomlyTestAdventurer() {
   int status = 0;
   int i = 0, j = 0;
   int p = 0;
+  int handPos = 0;
   int numTreasureToDraw = 0;
   int playerCardCount = 0;
   int addedCards = 0;
@@ -129,7 +133,7 @@ int randomlyTestAdventurer() {
   /* Generate a game state for each iteration and test it */
   for (i = 0; i < TEST_ITERATIONS; i++) {
     /* Generate a random gameState (zeroing out any previous state first) */
-    generateGameState(&state);
+    generateGameState(&handPos, &state);
     memcpy(&preState, &state, sizeof(struct gameState));
 
     /* Initialize some necessary variables before proceeding */

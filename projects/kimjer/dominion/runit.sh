@@ -11,7 +11,7 @@ then
 	echo ""
 	echo ""
 	./randomtestcard
-	rm randomtestcard 
+	rm randomtestcard
 	if [[ -f cardFunctions ]]
 	then 
 		rm cardFunctions

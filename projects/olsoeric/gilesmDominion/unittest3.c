@@ -1,137 +1,180 @@
-/******************************************************************************
- * Author: Mark Giles
- * Description: Unit tests for the gainCard function in dominion.c. This 
- *   file utilizes the function gainCard and dominion supporting files to 
- *   execute the function and check for error conditions.
- * File Name: unittest3.c
- * Date Created: 1/31/2016
- *****************************************************************************/#include <stdio.h>
-#include <assert.h>
+/******************
+ * Eric Olson
+ * CS362_Assignment3
+ * Shuffle Function Test
+ ******************/
+
+#include "dominion.h"
+#include "rngs.h"
+#include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
 #include <string.h>
-#include "dominion.h"
-#include "dominion_helpers.h"
-#include "rngs.h"
-#include "interface.h"
-#include "testTools.c"
 
-int main() {
-	struct gameState state,			// running instance of game
-					 stateOriginal;	// backup copy of game to detect changes
-	int i = 0,						// iteration variable for loop counting
-		numPlayers = 2,				// number of players in game
-		randomSeed = 10000,			// seed for random generation
-		validationCheck = 1;		// used to determine pass or fail
-	// initial array of kingdom cards
-	int kingdomCards[10] = {adventurer, gardens, village, minion, mine, cutpurse,
-							sea_hag, remodel, smithy};
-	
-	// Initializing game and backup copy of game
-	initializeGame(numPlayers, kingdomCards, randomSeed, &state);
+int validate(struct gameState *pre, struct gameState *post, int errors, int cards, int tally);
+void basic_setup(struct gameState *pre, struct gameState *post);
 
-	/**************************************************************************
-	 * TEST CONDITION - Successful use of function gainCard
-	 *************************************************************************/
-	// PERFORMING OPERATIONS TO MEET TEST CONDITION
-	memcpy(&stateOriginal, &state, sizeof(struct gameState));
-	state.supplyCount[smithy] = 10;
-	gainCard(smithy, &state, 1, state.whoseTurn);
+int main(){
+  struct gameState *pre = malloc(sizeof(struct gameState)), *post = malloc(sizeof(struct gameState));
+  int i, j, cards, tally, failure, errors = 0;
+  srand(time(NULL));
+  
+  printf("\n|------------------------------------------|\n");
+  printf("  Running tests on shuffle():\n");
+  printf("|------------------------------------------|\n");
+  
+  /***** RANDOM SCENARIO *****/
+  printf("Running 50,000 Random Scenarios...\n");
+  for (i = 0; i < 50000; i++){
+    //Setup Scenario:
+    basic_setup(pre, post);
+    //Stage Deck with between 0-MAX_DECK random cards.  (These are moved by drawCard to deck normally)
+    cards = (rand() % MAX_DECK);
+    tally = 0;
+    for (j = 0; j < cards; j++){
+       post->deck[0][j] = (rand() % 27);  //Assign a random card.
+       //And add card value to tally for later comparison.
+       tally = tally + post->deck[0][j];     
+    }
+    post->deckCount[0] = cards;
+    post->discardCount[0] = 0;
+    //Ensure pre & post are equal
+    memcpy(pre, post, sizeof(struct gameState));
+    //Test shuffle().
+    failure = shuffle(0, post);
+    //Confirm failure only if no cards in deck.
+    if (failure && post->deckCount[0] != 0){
+      printf("shuffle() returned -1 in error. (expected=0, actual=%d)\n", failure);
+      errors++;
+    }
+    //Check final state.
+    errors = validate(pre, post, errors, cards, tally);
+  }
+ 
+  
+  //Report Findings
+  if (errors) { printf("Tests Complete: shuffle() failed %d tests.\n", errors); }
+  else { printf("Tests Complete: No errors found.\n"); }
 
-	// DISPLAY
-	printf("***************************************************************************\n");
-	printf("* TESTING FUNCTION: gainCard\n");
-	printf("* CONDITION: Successful use of function gainCard.\n");
-	printf("***************************************************************************\n");
-	printf("\n  EXECUTING: gainCard(smithy, &state, 1, state.whoseTurn)\n\n");
+  return 0;  
+}
+  
+void basic_setup(struct gameState *pre, struct gameState *post){
+  int i, j, try, k[10] = { 0 };
+  //Clear any previous data.
+  memset(pre, 0, sizeof(struct gameState));
+  memset(post, 0, sizeof(struct gameState));
+  
+  //randomize kingdom cards & initalize a game.
+  for (i = 0; i < 10; i++) {
+    do{
+      //Pick random kingdom card.
+      try = ((rand() % 20) + 7);
+      for (j = 0; j <= i; j++) {
+        if (k[j] == try) { break; }  //If already used, break and try another random kingdom card.
+        if (j == i) { k[i] = try; }  //If no duplicates found, assigned random kingdom card to array.
+      }
+    } while (k[i] == 0);      
+  }
+  if (initializeGame(2, k, ((rand() % 500) + 1), post) != 0) { printf( "Initalization of game failed.\n"); }
 
-	printf("  TEST: gainCard with toFlag = 1 increments the player's deck count by 1...\n");
-	validationCheck = 1;
-	if (state.deckCount[state.whoseTurn] != stateOriginal.deckCount[state.whoseTurn] + 1)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
+  //And create identical copies of gamestate before test.
+  memcpy(pre, post, sizeof(struct gameState));
+}
+  
+int validate(struct gameState *pre, struct gameState *post, int errors, int cards, int tally){
+  int i, check_tally = 0;
 
-	printf("  TEST: gainCard with toFlag = 1 adds the card to the top of the player's deck...\n");
-	validationCheck = 1;
-	if (state.deck[state.whoseTurn][state.deckCount[state.whoseTurn] - 1] != smithy)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
+  //Check that the same cards made it back into the deck. . .
+  for (i = 0; i < cards; i++){
+     check_tally = check_tally + post->deck[0][i];
+  }
+  if (tally != check_tally){
+     printf("state.deck[0] card tally failed. (expected=%d, actual=%d)\n", tally, check_tally);
+     errors++;
+  }
+  //For large enough sample sizes make sure first couple cards not in same order
+  if (cards > 50 && pre->deck[0][0] == post->deck[0][0] && pre->deck[0][1] == post->deck[0][1] 
+      && pre->deck[0][2] == post->deck[0][2] && pre->deck[0][3] == post->deck[0][3] && pre->deck[0][4] == post->deck[0][4]
+      && pre->deck[0][5] == post->deck[0][5] && pre->deck[0][6] == post->deck[0][6] && pre->deck[0][7] == post->deck[0][7]
+      && pre->deck[0][8] == post->deck[0][8] && pre->deck[0][9] == post->deck[0][9] && pre->deck[0][10] == post->deck[0][10]){
+        printf("state.deck[0]... not sufficiently changed as expected.");
+        errors++;
+  }
+  
+  //Check pre vs post gameState's to ensure intended changes occured, and no unintended changes occured.
+  if (pre->numPlayers != post->numPlayers){ 
+    printf("state.numPlayers failed. (expected=%d, actual=%d)\n", pre->numPlayers, post->numPlayers);
+    errors++;   
+  }
+  for (i = 0; i < treasure_map + 1; i++) {
+    if (pre->supplyCount[i] != post->supplyCount[i]){ 
+      printf("state.supplyCount[%d] failed. (expected=%d, actual=%d)\n", 
+	     i, pre->supplyCount[i], post->supplyCount[i]);
+      errors++;  
+    }
+    if (pre->embargoTokens[i] != post->embargoTokens[i]){ 
+      printf("state.embargoTokens[%d] failed. (expected=%d, actual=%d)\n", 
+	     i, pre->embargoTokens[i], post->embargoTokens[i]);
+      errors++;  
+    }
+  }
+  if (pre->outpostPlayed != post->outpostPlayed){ 
+    printf("state.outpost->layed failed. (expected=%d, actual=%d)\n", pre->outpostPlayed, post->outpostPlayed);
+    errors++;  
+  }
+  if (pre->outpostTurn != post->outpostTurn){ 
+    printf("state.outpost->urn failed. (expected=%d, actual=%d)\n", pre->outpostTurn, post->outpostTurn);
+    errors++;  
+  }
+  if (pre->whoseTurn != post->whoseTurn){ 
+    printf("state.whoseTurn failed (expected=%d, actual=%d).\n", pre->whoseTurn, post->whoseTurn);
+    errors++;  
+  }
+  if (pre->phase != post->phase){ 
+    printf("state.phase failed. (expected=%d, actual=%d)\n", pre->phase, post->phase);
+    errors++;  
+  }
+  if (pre->numActions != post->numActions){ 
+    printf("state.numActions failed. (expected=%d, actual=%d)\n", pre->numActions, post->numActions);
+    errors++;  
+  }
+  if (pre->coins != post->coins){ 
+    printf("state.coins failed. (expected=%d, actual=%d)\n", pre->coins, post->coins);
+    errors++;  
+  }
+  if (pre->numBuys != post->numBuys){ 
+     printf("state.numBuys failed. (expected=%d, actual=%d)\n", pre->numBuys, post->numBuys);
+    errors++;  
+  }
+  if (post->handCount[0] != pre->handCount[0]){ 
+     printf("state.handCount failed. (expected=%d, actual=%d)\n", pre->handCount[0], post->handCount[0]);
+    errors++;  
+  }
+  if (pre->handCount[1] != post->handCount[1]){ 
+    printf("state.handCount[1] failed. (expected=%d, actual=%d)\n", pre->handCount[1], post->handCount[1]);
+    errors++;
+  }
+  if (pre->deckCount[0] != post->deckCount[0]){ 
+     printf("state.deckCount[0] failed. (expected=%d, actual=%d)\n", pre->deckCount[0], post->deckCount[0]);
+    errors++;
+  }
+  if (pre->discardCount[0] != post->discardCount[0]){
+     printf("state.discardCount[0] failed. (expected=%d, actual=%d)\n", pre->discardCount[0], post->discardCount[0]);
+     errors++;
+  }
+  if (pre->deckCount[1] != post->deckCount[1]){
+     printf("state.deckCount[1] failed. (expected=%d, actual=%d)\n", pre->deckCount[1], post->deckCount[1]);
+     errors++;
+  }
+  if (pre->discardCount[1] != post->discardCount[1]){
+     printf("state.discardCount[1] failed. (expected=%d, actual=%d)\n", pre->discardCount[1], post->discardCount[1]);
+     errors++;
+  }
+  if (post->playedCardCount != pre->playedCardCount){ 
+     printf("state.playedCardCount failed. (expected=%d, actual=%d)\n", pre->playedCardCount, post->playedCardCount);
+    errors++;
+  }
 
-	printf("  TEST: supply count for smithy decremented by 1, all other positions remain the same...\n");
-	validationCheck = 1;
-	for (i = 0; i < 28; i++) {
-		if (i == smithy) {
-			if (state.supplyCount[i] != stateOriginal.supplyCount[i] - 1) {
-				validationCheck = 0;
-			}
-		} else if (state.supplyCount[i] != stateOriginal.supplyCount[i]) {
-			validationCheck = 0;
-		}
-	}
-	printTestResult(validationCheck, -999, -999);
-
-	// reset game state
-	memcpy(&state, &stateOriginal, sizeof(struct gameState));
-	// add card to the player's hand
-	gainCard(smithy, &state, 2, state.whoseTurn);
-	printf("  EXECUTING: gainCard(smithy, &state, 2, state.whoseTurn)\n\n");
-	
-	printf("  TEST: gainCard with toFlag = 3 increments the player's hand count by 1...\n");
-	validationCheck = 1;
-	if (state.handCount[state.whoseTurn] != stateOriginal.handCount[state.whoseTurn] + 1)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
-	
-	printf("  TEST: gainCard with toFlag = 3 adds the card to the top of the player's hand...\n");
-	validationCheck = 1;
-	if (state.hand[state.whoseTurn][state.handCount[state.whoseTurn] - 1] != smithy)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
-
-	// ensure there are smithy cards available in supply count
-	state.supplyCount[smithy] = 10;
-	gainCard(smithy, &state, 3, state.whoseTurn);
-	printf("  EXECUTING: gainCard(smithy, &state, 3, state.whoseTurn)\n\n");
-
-	printf("  TEST: gainCard with toFlag = 3 increments the player's discard count by 1...\n");
-	validationCheck = 1;
-	if (state.discardCount[state.whoseTurn] != stateOriginal.discardCount[state.whoseTurn] + 1)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
-	
-	printf("  TEST: gainCard with toFlag = 3 adds the card to the top of the player's discard...\n");
-	validationCheck = 1;
-	if (state.discard[state.whoseTurn][state.discardCount[state.whoseTurn] - 1] != smithy)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
-
-	printf("  TEST: All changes are for current player, player 2's discard should be unchanged...\n");
-	validationCheck = 1;
-	if (isDiscardSame(&state, &stateOriginal, state.whoseTurn + 1) == 0)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
-
-	printf("  TEST: All changes are for current player, player 2's hand should be unchanged...\n");
-	validationCheck = 1;
-	if (isHandSame(&state, &stateOriginal, state.whoseTurn + 1) == 0)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
-
-	printf("  TEST: All changes are for current player, player 2's deck should be unchanged...\n");
-	validationCheck = 1;
-	if (isDeckSame(&state, &stateOriginal, state.whoseTurn + 1) == 0)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
-
-	// setting supply count to zero
-	stateOriginal.supplyCount[smithy] = 0;
-	memcpy(&state, &stateOriginal, sizeof(struct gameState));
-	gainCard(smithy, &state, 1, state.whoseTurn);
-
-	printf("  TEST: gainCard with supply count for card set to zero should not change state at all...\n");
-	validationCheck = 1;
-	if (memcmp(&state, &stateOriginal, sizeof(struct gameState)) != 0)
-		validationCheck = 0;
-	printTestResult(validationCheck, -999, -999);
-	
-	return 0;
+  return errors;
 }

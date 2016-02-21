@@ -1,99 +1,156 @@
+/* -----------------------------------------------------------------------
+ *  Business requirements
+ *  1) Current player gets 2 cards only 
+ *  2) Cards only come from current player's deck
+ *  3) Other player's state remains unchanged
+ *
+ * testAdventurer: cardtest4.c dominion.o rngs.o
+ *      gcc -o card4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+ *
+ * -----------------------------------------------------------------------
+ */
+ 
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include "rngs.h"
 #include <time.h>
 #include <stdlib.h>
-#include <math.h>
-#include <stdlib.h>
 
-#define DEBUG 0
+// set NOISY_TEST to 0 to remove printfs from output
 #define NOISY_TEST 1
 
-//Unit test for village Card
-//function accepts int currentPlayer,struct gameState *state,int handPos
-
-//oracle makes sure returns valid 
-int unitTest(int player, struct gameState *post){
-    srand(time(NULL));
-
-    //define variables
-    struct gameState pre;
-    memcpy(&pre,post,sizeof(struct gameState));
-    int handPos= rand();
-
-    //call function
-    villageCard(player,post,handPos);
-    //memcmp game state size
-    if (memcmp(&pre,post, sizeof(struct gameState))!=0){
-        #if (NOISY_TEST == 1)
-        printf("Memory mismatch");
-        #endif
-        exit(1);
-    }
-    //card specific checks
-    //plus one card- minus village card, hand remains the same
-    if (post->handCount != pre.handCount){
-        #if (NOISY_TEST == 1) 
-        printf("HandSize changed");
-        #endif
-        return 1;
-    }
-    //plus 2 actions
-    if(post->numActions != pre.numActions+2){
-        #if (NOISY_TEST == 1)
-        printf("Not the correct number of actions");
-        #endif
-        return 2;
-    }
-
-    
+int main() {
+    int seed = 1000;
+    int numPlayer = 2;
+    int r,i;
+    int k[10] = {adventurer, council_room, feast, gardens, mine
+               , remodel, smithy, village, baron, great_hall};
+    struct gameState G;
+	
+    printf ("TESTING adventurer():\n");
+	for (i=0;i<50;i++)
+	{
+		memset(&G, 23, sizeof(struct gameState));   // clear the game state
+		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+		G.handCount[0]=0;
+	#if (NOISY_TEST == 1)
+		printf ("****Playing adventurer card 1 time****\n");
+	#endif	
+		playAdventurer(&G); 
+	#if (NOISY_TEST == 1)
+		printf("Handcount: %d\n", G.handCount[0]);
+		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
+		if (G.playedCardCount==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf ("****Playing adventurer card another time****\n");
+	#endif	 
+		playAdventurer(&G); 
+	#if (NOISY_TEST == 1)
+		printf("Handcount: %d\n", G.handCount[0]);
+		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
+		if (G.playedCardCount==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf ("****Playing adventurer card another time****\n");
+	#endif	
+		playAdventurer(&G); 
+	#if (NOISY_TEST == 1)
+		printf("Handcount: %d\n", G.handCount[0]);
+		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
+		if (G.playedCardCount==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf ("****Playing adventurer card another time****\n");
+	#endif	
+		playAdventurer(&G); 
+	#if (NOISY_TEST == 1)
+		printf("Handcount: %d\n", G.handCount[0]);
+		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
+		if (G.playedCardCount==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf ("****Playing adventurer card another time****\n");
+	#endif	
+		playAdventurer(&G); 
+	#if (NOISY_TEST == 1)
+		printf("Handcount: %d\n", G.handCount[0]);
+		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
+		if (G.playedCardCount==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf ("****Playing adventurer card another time****\n");
+	#endif	 
+		playAdventurer(&G); 
+	#if (NOISY_TEST == 1)
+		printf("Handcount: %d\n", G.handCount[0]);
+		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
+		if (G.playedCardCount==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf ("****Playing adventurer card another time****\n");
+	#endif	
+		playAdventurer(&G); 
+	#if (NOISY_TEST == 1)
+		printf("Handcount: %d\n", G.handCount[0]);
+		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
+		if (G.playedCardCount==0)
+		{
+			printf("....PASS\n\n");
+		}
+		else{
+			printf("....FAIL\n\n");
+		}
+	#endif	
+		endTurn(&G);
+	#if (NOISY_TEST == 1)
+		printf("****Testing other player's hand****\n");
+		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
+		if (G.playedCardCount==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Hand Count = %d, expected = 0", G.handCount[0]);
+		if (G.handCount[0]==0)
+		{
+			printf("....PASS\n\n");
+		}
+		else{
+			printf("....FAIL\n\n");
+		}
+	#endif	
+	}
+	printf("Testing completed\n");
     return 0;
 }
 
-int main () {
-  //define variables  
-  int i, n, r, p,error,errorA,errorB;
-  errorA =0;
-  errorB =0;
-  //define a gamestate
-  struct gameState G;
-
-  printf ("Testing village Card.\n");
-
-  printf ("RANDOM TESTS.\n");
-  //create random seed
-  SelectStream(2);
-  PutSeed(3);
-  //for 2000 test cases
-  for (n = 0; n < 2000; n++) {
-    for (i = 0; i < sizeof(struct gameState); i++) {
-      //fill gamestate with random bits between 0-256 using ofset
-      ((char*)&G)[i] = floor(Random() * 256);
-    }
-    p = floor(Random() * 2);
-    G.deckCount[p] = floor(Random() * MAX_DECK);
-    G.discardCount[p] = floor(Random() * MAX_DECK);
-    G.handCount[p] = floor(Random() * MAX_HAND);
-    G.numPlayers= floor(Random() * MAX_PLAYERS);
-    //call function with test input
-    error=unitTest(G.numPlayers,&G);
-
-    if (error > 0){
-        if(error == 1){
-            errorA++;
-        }else if(error > 1){
-            errorB++;
-        }
-    }
-  }
-  printf ("ALL Random TESTS Complete\n");
-  printf ("Errors type 1: %d ",errorA);
-  printf ("Incorrect handsize.\n");
-  printf ("Errors type 2: %d ",errorB);
-  printf("incorrect number of actions\n");
-
-  return 0;
-}

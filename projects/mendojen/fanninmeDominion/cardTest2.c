@@ -1,94 +1,200 @@
+/* -----------------------------------------------------------------------
+ *  Business requirements
+ *  1) Player's hand gains an extra buy 
+ *  2) Current player gains coins equal to card
+ *  3) Hand count decreases by 2
+ *  4) Check's that other player's hand has not changed
+ *
+ * testSalvager: cardtest2.c dominion.o rngs.o
+ *      gcc -o card2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+ *
+ * -----------------------------------------------------------------------
+ */
+ 
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <time.h>
-#include <stdlib.h>
-#include <math.h>
-#include <stdlib.h>
+#include "rngs.h"
 
-#define DEBUG 0
+// set NOISY_TEST to 0 to remove printfs from output
 #define NOISY_TEST 1
 
-//Unit test for Feast Card
-//function accepts: current player, struct gameState *state, int choice 
 
-//oracle makes sure returns valid 
-int unitTest(int player, struct gameState *post,int choice){
-    srand(time(NULL));
+int main() {
+	int seed = 1000;
+    int numPlayer = 2;
+    int r,i;
+    int k[10] = {adventurer, council_room, feast, gardens, mine
+               , remodel, smithy, village, baron, great_hall};
+    struct gameState G;
 
-    //define variables
-    struct gameState pre;
-    memcpy(&pre,post,sizeof(struct gameState));
-    
-    //call function
-    feastCard(player,post,choice);
+	printf ("TESTING playSalvager():\n");
+	for (i=0;i<50;i++)
+	{
+		memset(&G, 23, sizeof(struct gameState));   // clear the game state
+		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+		G.handCount[0] = 10;                 // set the number of cards on hand to 5 for player 
+		G.numBuys=0;
+		G.coins=0;
 
-    //memcmp game state size
-    if (memcmp(&pre,post, sizeof(struct gameState))!=0){
-        #if (NOISY_TEST == 1)
-        printf("memory match error \n");
-        #endif
-        return 1;
+	#if (NOISY_TEST == 1)
+		printf("Set starting values:\n handcount=10\n numBuys=0\n coins=0\n\n");
+	
+		printf("****Testing 1 Salvager play****\n");
+	#endif
+		playSalvager(&G,0,adventurer);
+	#if (NOISY_TEST == 1)
+		printf("Buys = %d, expected = 1", G.numBuys);
+		if (G.numBuys==1)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Coins = %d, expected = 6", G.coins);
+		if (G.coins==6)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Hand Count = %d, expected = 8", G.handCount[0]);
+		if (G.handCount[0]==8)
+		{
+			printf("....PASS\n\n");
+		}
+		else{
+			printf("....FAIL\n\n");
+		}
+		printf("****Testing another Salvager play****\n");
+	#endif
+		playSalvager(&G,0,adventurer);
+	#if (NOISY_TEST == 1)
+		printf("Buys = %d, expected = 2", G.numBuys);
+		if (G.numBuys==2)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Coins = %d, expected = 6", G.coins);
+		if (G.coins==6)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Hand Count = %d, expected = 6", G.handCount[0]);
+		if (G.handCount[0]==6)
+		{
+			printf("....PASS\n\n");
+		}
+		else{
+			printf("....FAIL\n\n");
+		}
 
-    }
-    //card specific checks
-    if(post->handCount != pre.handCount+1){
-        #if (NOISY_TEST == 1)
-        printf("hand count was not incrimented by 1 \n");
-        #endif
-        return 2;
-    }    
+		printf("****Testing another Salvager play****\n");
+	#endif
+		playSalvager(&G,0,adventurer);
+	#if (NOISY_TEST == 1)
+		printf("Buys = %d, expected = 3", G.numBuys);
+		if (G.numBuys==3)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Coins = %d, expected = 6", G.coins);
+		if (G.coins==6)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Hand Count = %d, expected = 4", G.handCount[0]);
+		if (G.handCount[0]==4)
+		{
+			printf("....PASS\n\n");
+		}
+		else{
+			printf("....FAIL\n\n");
+		}
+
+		printf("****Testing another Salvager play with no discarded card****\n");
+	#endif
+		playSalvager(&G,0,0);
+	#if (NOISY_TEST == 1)
+		printf("Buys = %d, expected = 4", G.numBuys);
+		if (G.numBuys==4)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Coins = %d, expected = 0", G.coins);
+		if (G.coins==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Hand Count = %d, expected = 3", G.handCount[0]);
+		if (G.handCount[0]==3)
+		{
+			printf("....PASS\n\n");
+		}
+		else{
+			printf("....FAIL\n\n");
+		}
+	#endif	
+
+		endTurn(&G);
+	#if (NOISY_TEST == 1)
+		printf("****Testing other player's hand****\n");
+		printf("Buys = %d, expected = 1", G.numBuys);
+		if (G.numBuys==1)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Coins = %d, expected = 0", G.coins);
+		if (G.coins==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);
+		if (G.playedCardCount==0)
+		{
+			printf("....PASS\n");
+		}
+		else{
+			printf("....FAIL\n");
+		}
+		printf("Hand Count = %d, expected = 0", G.handCount[0]);
+		if (G.handCount[0]==0)
+		{
+			printf("....PASS\n\n");
+		}
+		else{
+			printf("....FAIL\n\n");
+		}
+	#endif	
+	}
+	printf("Testing completed\n");
     return 0;
-}
-
-
-int main () {
-  //define variables  
-  int i, n, r, p,error,errorA,errorB;
-  errorA =0;
-  errorB =0;
-  //define a array of cards
-
-  //define a gamestate
-  struct gameState G;
-
-  printf ("Testing Feast Card.\n");
-
-  printf ("RANDOM TESTS.\n");
-  //create random seed
-  SelectStream(2);
-  PutSeed(3);
-  //for 2000 test cases
-  for (n = 0; n < 2000; n++) {
-    for (i = 0; i < sizeof(struct gameState); i++) {
-      //fill gamestate with random bits between 0-256 using ofset
-      ((char*)&G)[i] = floor(Random() * 256);
-    }
-    p = floor(Random() * 2);
-    G.deckCount[p] = floor(Random() * MAX_DECK);
-    G.discardCount[p] = floor(Random() * MAX_DECK);
-    G.handCount[p] = floor(Random() * MAX_HAND);
-    G.numPlayers = floor(Random()* MAX_PLAYERS);
-    int choice= floor(Random() *MAX_DECK); 
-   //call function with test input
-    error=unitTest(G.numPlayers,&G,choice);
-
-    if (error > 0){
-        if(error == 1){
-            errorA++;
-        }else if(error > 1){
-            errorB++;
-        }
-    }
-  }
-  printf ("ALL Random TESTS Complete\n");
-  printf ("Errors type 1: %d ",errorA);
-  printf ("memory not same size \n");
-  printf ("Errors type 2: %d ",errorB);
-  printf("hand count not incrimented \n");
-
-  return 0;
 }

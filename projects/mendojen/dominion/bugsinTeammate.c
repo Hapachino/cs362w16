@@ -14,24 +14,23 @@ unitTest 4: buyCard
 All tests pass.
 
 cardtest1: village
-Bug in incrementing if a card was played during the player's turn.
+Changed function call to match teammates code.
+Bug found when checking for numActions. The player playing the card does not get a +2 increase.
 
 Card Test 2: salvager
-Bug found when checking expected number of coins. Coin count stays at 0. Not incrementing.
-Another bug. Other player's coin count is altered instead.
+My card test 2 was for the salvager card. Partner did not refactor this function, therefore I was unable 
+to incorporate this test.
 
 Card Test3: Smithy
-Bug found when checking handCount. 
+Test fails when checking handCount and playedCardCount. 
 
 Card Test 4:adventurer
-None found with this fixed test.
+Card test execution results in segmentation fault error.
 
 Random tests
 Random test: Smithy
-Bug found when checking handCount (same bug found from the fixed card test above).
+Tests fail when checking handCount(decreased instead of increased), deckCount(should have stayed the same), and playedCardCount(incorrect increase) for current player.
 
 Random test: Adventurer
-Bug found when testing player who plays the adventurer card. deckCount is incremented when
-it should remain unchanged. 
-Another bug found when testing handCount. handCount of the player that played adventurer
-card decreased instead of increased.
+Tests fail when checking current player's handCount (negative), discardCount(increased), and deckCount(decreased).
+For my fixed tests, test hits a segmentation fault when calling adventurer card more than once.

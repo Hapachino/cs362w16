@@ -1,153 +1,135 @@
-/* -----------------------------------------------------------------------
- *  Business requirements
- *  1) Correctly lets a player buy a card 
- *
- * buyCard: unittest4.c dominion.o rngs.o
- *      gcc -o unit4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
- *
- * -----------------------------------------------------------------------
- */
-
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdlib.h>
 
-// set NOISY_TEST to 0 to remove printfs from output
+#define DEBUG 0
 #define NOISY_TEST 1
 
+//Unit test for endTurn function
+//function accepts struct gameState *state 
 
-int main() {
-    int a, result, index, i;
-    int seed = 1000;
-    int numPlayer = 2;
-    int r;
-    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
-    struct gameState G;
-    
+//oracle makes sure returns valid 
+int unitTest(struct gameState *post){
+    srand(time(NULL));
 
-    printf ("TESTING buyCard():\n");
-  
-    memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-	G.coins=1000;
-	printf("Testing when numBuys=0\n");	
-	G.numBuys=0;
-	for (i=0;i<50;i++)
-	{
-		index=rand() % 10;
-		result=buyCard(k[index],&G);
-#if (NOISY_TEST == 1)
-		printf("Player is unable to buy a card");
-		if (result==-1)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-#endif
-	}
+    //define variables
+    int success;
+    struct gameState pre;
+    memcpy(&pre,post,sizeof(struct gameState));
 
-	G.numBuys=100;
-#if (NOISY_TEST == 1)
-	printf("Testing when there are enough buys. \n");
-#endif
-	for (i=0;i<10;i++)
-	{
-		index=rand() % 10;
-		result=buyCard(k[index],&G);
-#if (NOISY_TEST == 1)
-		printf("Player is able to buy a card");
-		if (result==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-#endif
-	}
+    //call function
+    success=endTurn(post);
 
-	
-	G.supplyCount[gardens]=0;
-#if (NOISY_TEST == 1)
-	printf("Testing when supply count of desired card is 0\n ");
-#endif
-	result=buyCard(k[3],&G);
-#if (NOISY_TEST == 1)
-	printf("Player is unable to buy a card");
-	if (result==-1)
-	{
-		printf("....PASS\n");
-	}
-	else{
-		printf("....FAIL\n");
-	}
-#endif
+    //memcmp game state size
+    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
 
-	G.coins=100;
-	G.supplyCount[gardens]=5;
-	G.supplyCount[adventurer]=5;
-	G.supplyCount[council_room]=5;
-	G.supplyCount[feast]=5;
-	G.supplyCount[mine]=5;
-	G.supplyCount[remodel]=5;
-	G.supplyCount[smithy]=5;
-	G.supplyCount[village]=5;
-	G.supplyCount[baron]=5;
-	G.supplyCount[great_hall]=5;
-#if (NOISY_TEST == 1)	
-	printf("Testing when supply count of desired card is not 0\n ");
-#endif
-	for (a=0;a<10;a++)
-	{
-		result=buyCard(k[a],&G);
-#if (NOISY_TEST == 1)
-		printf("Player is able to buy a card");
-		if (result==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-	}
-	printf("Testing when there is not enough coins to purchase card \n ");
-#endif
-	for (a=0;a<10;a++)
-	{
-		G.coins=1;
-		result=buyCard(k[a],&G);
-#if (NOISY_TEST == 1)
-		printf("Player is unable to buy a card");
-		if (result==-1)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-#endif
-	}
-		
-	G.coins=5;
-#if (NOISY_TEST == 1)
-	printf("Testing when player has enough coins\n");
-#endif
-	result=buyCard(k[3],&G);
-#if (NOISY_TEST == 1)
- 	printf("Player is able to buy a card");
-	if (result==0)
-	{
-		printf("....PASS\n");
-	}
-	else{
-		printf("....FAIL\n");
-	}
-#endif 
-	printf("Tests Completed!\n");
+
+    if( post->playedCardCount != 0){
+        #if(NOISY_TEST == 1)
+        printf("played card count is not 0 \n");
+        #endif
+    }
+
+    if(post->handCount[post->whoseTurn] == 0){
+        #if(NOISY_TEST == 1)
+        printf("Hand count was never increased!\n");
+        #endif
+    }
+
+    //check to see if whose turn it is has changed
+    if(post->numPlayers > 1){
+        if( post->whoseTurn != pre.whoseTurn ){
+            #if (NOISY_TEST == 1)
+            printf ("current players turn has not properly changed.\n");
+            #endif
+            return 1;
+        }
+    }
+
+    if (success == -1){
+        #if (NOISY_TEST == 1)
+        printf ("Error in end turn function.\n");
+        #endif
+        return 2;
+    }
+
+    if(post->outpostPlayed != 0){
+		#if (NOISY_TEST ==1)
+    	printf("current player not correctly updated, outposts played greater than 0");
+		#endif
+    }
+    if(post->phase != 0){
+    	#if (NOISY_TEST ==1)
+    	printf("phase correctly updated");
+		#endif
+    }
+
+    if(post->numActions != 1){
+    	#if (NOISY_TEST ==1)
+    	printf("current player not correctly updated, outposts played greater than 0");
+		#endif
+    }
+
+    if(post->numBuys != 1){
+    	#if (NOISY_TEST ==1)
+    	printf("current player not correctly updated, outposts played greater than 0");
+		#endif
+    }
+
     return 0;
+}
+
+
+int main () {
+  //define variables  
+  int i, n, r, p, error,errorA,errorB;
+  errorA=0;
+  errorB=0;
+  //define a gamestate
+  struct gameState G;
+
+  printf ("Testing end turn function.\n");
+
+  printf ("RANDOM TESTS.\n");
+  //create random seed
+  SelectStream(2);
+  PutSeed(3);
+  //for 2000 test cases
+  for (n = 0; n < 2000; n++) {
+    for (i = 0; i < sizeof(struct gameState); i++) {
+      //fill gamestate with random bits between 0-256 using ofset
+      ((char*)&G)[i] = floor(Random() * 256);
+    }
+    p = floor(Random() * 2);
+    G.deckCount[p] = floor(Random() * MAX_DECK);
+    G.discardCount[p] = floor(Random() * MAX_DECK);
+    G.handCount[p] = floor(Random() * MAX_HAND);
+    G.numPlayers = floor(Random() * MAX_PLAYERS);
+    G.whoseTurn = floor(Random() * MAX_PLAYERS);
+    //call function with test input
+    error=unitTest(&G);
+
+    if (error > 0){
+        if(error == 1){
+            errorA++;
+        }else if(error > 1){
+            errorB++;
+        }
+    }
+  }
+
+  printf ("ALL TESTS complete\n");
+   printf ("Errors type 1: %d ",errorA);
+  printf ("Current player has not been changed at end of turn.\n");
+  printf ("Errors type 2: %d ",errorB);
+  printf("function received bad input/found a error returned a 1 \n");
+
+  return 0;
 }

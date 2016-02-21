@@ -1,3 +1,4 @@
+//baron
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
@@ -7,16 +8,15 @@
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
-#include <stdlib.h>
 
 #define DEBUG 0
 #define NOISY_TEST 1
 
-//Unit test for village Card
-//function accepts int currentPlayer,struct gameState *state,int handPos
+// +1 Buy, You may discard an Estate card. 
+// If you do, +4 coins. Otherwise, gain an Estate card.
 
 //oracle makes sure returns valid 
-int unitTest(int player, struct gameState *post){
+int unitTest(int player, struct gameState *post,int choice1){
     srand(time(NULL));
 
     //define variables
@@ -25,7 +25,8 @@ int unitTest(int player, struct gameState *post){
     int handPos= rand();
 
     //call function
-    villageCard(player,post,handPos);
+        baronCard(player,post,choice1);
+
     //memcmp game state size
     if (memcmp(&pre,post, sizeof(struct gameState))!=0){
         #if (NOISY_TEST == 1)
@@ -34,21 +35,39 @@ int unitTest(int player, struct gameState *post){
         exit(1);
     }
     //card specific checks
-    //plus one card- minus village card, hand remains the same
-    if (post->handCount != pre.handCount){
+    //plus one buy
+    if (post->numBuys != pre.numBuys){
         #if (NOISY_TEST == 1) 
-        printf("HandSize changed");
+        printf("Player did not get an additional buy");
         #endif
         return 1;
     }
-    //plus 2 actions
-    if(post->numActions != pre.numActions+2){
-        #if (NOISY_TEST == 1)
-        printf("Not the correct number of actions");
-        #endif
-        return 2;
-    }
+    //if they discard an estate
+    if(post->discard == pre.discard+1){
+        if(post->supplyCount[estate] == pre.supply[estate]-1){
+            if(post->coins != pre.coins+4){
+                #if (NOISY_TEST == 1)
+                printf("player discarded estate but did not");
+                #endif
+                return 2;
+            }
+        }
+        else{
+            #if (NOISY_TEST == 1)
+            printf("card discarded was not an estate");
+            #endif
+            return 2;
+        }
+    }else{
+        //if they don't discard and estate
+        if(post->estateCount != pre.estateCount+1){
+            #if (NOISY_TEST == 1)
+            printf("player didn't discard an estate and did not gain one after");
+            #endif
+            return 2;
 
+        }
+    }
     
     return 0;
 }
@@ -78,8 +97,9 @@ int main () {
     G.discardCount[p] = floor(Random() * MAX_DECK);
     G.handCount[p] = floor(Random() * MAX_HAND);
     G.numPlayers= floor(Random() * MAX_PLAYERS);
+    int choice1=floor(Random() * 1);//boolean yes or no
     //call function with test input
-    error=unitTest(G.numPlayers,&G);
+    error=unitTest(G.numPlayers,&G,choice1);
 
     if (error > 0){
         if(error == 1){

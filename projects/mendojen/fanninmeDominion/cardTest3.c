@@ -1,155 +1,91 @@
-/* -----------------------------------------------------------------------
- *  Business requirements
- *  1) Current player gets 3 cards 
- *  2) 3 cards will only come from current player's pile
- *  3) Other player's state remains unchanged
- *
- * testSmithy: cardtest3.c dominion.o rngs.o
- *      gcc -o card3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
- *
- * -----------------------------------------------------------------------
- */
-
- 
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdlib.h>
 
-// set NOISY_TEST to 0 to remove printfs from output
+#define DEBUG 0
 #define NOISY_TEST 1
 
+//Unit test for Smithy Card
+//function accepts currentPlayer,struct gameState *state,int handPos
+//oracle makes sure returns valid 
+int unitTest(int player, struct gameState *post){
+    srand(time(NULL));
 
-int main() {
-	int seed = 1000;
-    int numPlayer = 2;
-    int r,i;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
-    struct gameState G;
+    //define variables
+    struct gameState pre;
+    memcpy(&pre,post,sizeof(struct gameState));
+    int handPos= rand();
 
-	printf ("TESTING playSmithy():\n");
- 	for (i=0;i<50;i++)
-	{
-		memset(&G, 23, sizeof(struct gameState));   // clear the game state
-		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-		G.handCount[0] = 0;                 // set the number of cards on hand to 5 for player 0
+    //call function
+    smithyCard(player,post, handPos);
 
-	#if (NOISY_TEST == 1)
-		printf("Set starting values:\n handcount=0\n numBuys=0\n coins=0\n playedCardCount=0\n\n");
-		
-		printf("****Testing 1 Smithy play****\n");
-	#endif
-		playSmithy(&G,0);
-	#if (NOISY_TEST == 1)
-		printf("Hand Count = %d, expected = 3", G.handCount[0]);
-		if (G.handCount[0]==3)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("Number of Cards Played = %d, expected = 1", G.playedCardCount);
-		if (G.playedCardCount==1)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("****Testing another Smithy play****\n");
-	#endif
-		playSmithy(&G,2);
-	#if (NOISY_TEST == 1)
-		printf("Hand Count = %d, expected = 6", G.handCount[0]);
-		if (G.handCount[0]==6)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("Number of Cards Played = %d, expected = 2", G.playedCardCount);
-		if (G.playedCardCount==2)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("****Testing another Smithy play****\n");
-	#endif
-		playSmithy(&G,0);
-	#if (NOISY_TEST == 1)
-		printf("Hand Count = %d, expected = 9", G.handCount[0]);
-		if (G.handCount[0]==9)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("Number of Cards Played = %d, expected = 3", G.playedCardCount);	
-		if (G.playedCardCount==3)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-		printf("****Testing another Smithy play****\n");
-	#endif
-		playSmithy(&G,0);
-	#if (NOISY_TEST == 1)
-		printf("Hand Count = %d, expected = 15", G.handCount[0]);
-		if (G.handCount[0]==15)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf("Number of Cards Played = %d, expected = 4", G.playedCardCount);	
-		if (G.playedCardCount==4)
-		{
-			printf("....PASS\n\n"); 
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-	#endif
-		endTurn(&G);
-	#if (NOISY_TEST == 1)
-		printf("****Testing other player's hand****\n");
-		printf("Buys = %d, expected = 1", G.numBuys);
-		if (G.numBuys==1)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf("Hand Count = %d, expected = 0", G.handCount[0]);
-		if (G.handCount[0]==0)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-	#endif	
-	}
-	printf("Testing completed\n");
+    //memcmp game state size
+    if(memcmp(&pre,post, sizeof(struct gameState))!=0){
+        #if (NOISY_TEST == 1)
+        printf("memory mismatch");
+        #endif
+        return 1;
+    }
+    //card specific checks
+    //players handsize should be 3 larger after playing the smithy
+    if(post->handCount != pre.handCount+3){
+        #if (NOISY_TEST == 1)
+        printf("handsize is incorrect");
+        #endif
+        return 2;
+    }
+
     return 0;
+}
+
+int main () {
+  //define variables  
+  int i, n, r, p, error,errorA,errorB;
+  errorA =0;
+  errorB =0;
+  //define a gamestate
+  struct gameState G;
+
+  printf ("Testing smithy Card.\n");
+
+  printf ("RANDOM TESTS.\n");
+  //create random seed
+  SelectStream(2);
+  PutSeed(3);
+  //for 2000 test cases
+  for (n = 0; n < 2000; n++) {
+    for (i = 0; i < sizeof(struct gameState); i++) {
+      //fill gamestate with random bits between 0-256 using ofset
+      ((char*)&G)[i] = floor(Random() * 256);
+    }
+    p = floor(Random() * 2);
+    G.deckCount[p] = floor(Random() * MAX_DECK);
+    G.discardCount[p] = floor(Random() * MAX_DECK);
+    G.handCount[p] = floor(Random() * MAX_HAND);
+    G.numPlayers = floor(Random()* MAX_PLAYERS);
+    //call function with test input
+    error=unitTest(G.numPlayers,&G);
+
+        if (error > 0){
+            if(error == 1){
+                errorA++;
+            }else if(error > 1){
+                errorB++;
+            }
+        }
+    }
+    printf ("ALL Random TESTS Complete\n");
+    printf ("Errors type 1: %d ",errorA);
+    printf ("Memory mismatch.\n");
+    printf ("Errors type 2: %d ",errorB);
+    printf("player did not gain 3 cards \n");
+
+   return 0;
 }

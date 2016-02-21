@@ -1,195 +1,107 @@
-/* -----------------------------------------------------------------------
- *  Business requirements
- *  1) Correctly ends the game 
- *
- * isGameOver: unittest3.c dominion.o rngs.o
- *      gcc -o unit3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
- *
- * -----------------------------------------------------------------------
- */
-
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdlib.h>
 
-// set NOISY_TEST to 0 to remove printfs from output
+#define DEBUG 0
 #define NOISY_TEST 1
 
+//Unit test for full Deck Count function
+//Preconditions:
+//function accepts  int player, int card, struct gameState *state,
+//oracle makes sure returns valid 
+int unitTest(int player, struct gameState *post){
+    srand(time(NULL));
 
-int main() {
-    int a,i, result, index, counter;
-    struct gameState G;
+    //define variables
+    int success;
+    int card;
+    struct gameState pre;
+    memcpy(&pre,post,sizeof(struct gameState));
+    //randomly card int within size limits
+    card= rand()%10;
     
+    //call function
+    success=fullDeckCount(player,card, post);
 
-    printf ("TESTING isGameOver():\n");
-  
-    memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    
-	for (a=0;a<=27;a++) //sets supply count for the kingdom cards to be 5 each
-	{
-		G.supplyCount[a]=5;
-	}
-#if (NOISY_TEST == 1)
-	printf("Set supply count for all 26 supply cards to 5\n");
-	printf("Set province card count to 0\n");
-#endif
-	G.supplyCount[province]=0;
-	result= isGameOver(&G);
-#if (NOISY_TEST == 1)
-	printf("Game over");
-	if (result==1)
-	{
-		printf("....PASS\n");
-	}
-	else{
-		printf("....FAIL\n");
-	}
-	printf("Setting random piles of 3 to 0 of the supply pile\n");
-#endif
-	for (i=0;i<100;i++)
-	{
+    if (success > MAX_DECK){
+        #if (NOISY_TEST == 1)
+        printf ("Error in end turn function.\n");
+        #endif
+        return 1;
+    }
 
-		while (counter!=4)
-		{
-			index=1+rand() % 27;
-			
-			if (G.supplyCount[index]==0)
-			{
-				counter--;
-			}
-			else{
-				G.supplyCount[index]=0;
-			}
-			counter++;
-		}
-		result=isGameOver(&G);
-	#if (NOISY_TEST == 1)
-		printf("Game over");
-		if (result==1)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-	#endif
-		counter=1;
-		for (a=0;a<=27;a++) //resets supply count for the kingdom cards to be 5 each
-		{
-		G.supplyCount[a]=5;
-		}
-	}
-#if (NOISY_TEST == 1)
-	printf("Testing random piles of 2 of the supply pile\n");
-#endif
-	for (i=0;i<100;i++)
-	{
-
-		while (counter!=3)
-		{
-			index=1+rand() % 27;
-			
-			if (G.supplyCount[index]==0)
-			{
-				counter--;
-			}
-			else{
-				G.supplyCount[index]=0;
-			}
-			counter++;
-		}
-		result=isGameOver(&G);
-	#if (NOISY_TEST == 1)
-		printf("Game not over");
-		if (result==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-	#endif
-		counter=1;
-		for (a=0;a<=26;a++) //resets supply count for the kingdom cards to be 5 each
-		{
-		G.supplyCount[a]=5;
-		}
-	}
-#if (NOISY_TEST == 1)
-	printf("Set adventurer, feast, gardens pile count to 0\n");
-#endif
-	G.supplyCount[province]=2;
-	G.supplyCount[adventurer]=0;
-	G.supplyCount[feast]=0;
-	G.supplyCount[gardens]=0;
-	result= isGameOver(&G);
-#if (NOISY_TEST == 1)
-	printf("Game over");
-	if (result==1)
-	{
-		printf("....PASS\n");
-	}
-	else{
-		printf("....FAIL\n");
-	}
-#endif
-	for (a=0;a<=26;a++) //sets supply count for the kingdom cards to be 5 each
-	{
-		G.supplyCount[a]=5;
-	}	
-#if (NOISY_TEST == 1)
-	printf("Reset pile count and set feast and gardens pile count to 0\n");
-#endif
-	G.supplyCount[feast]=0;
-	G.supplyCount[gardens]=0;
-	result= isGameOver(&G);
-#if (NOISY_TEST == 1)
-	printf("Game not over");
-	if (result==0)
-	{
-		printf("....PASS\n");
-	}
-	else{
-		printf("....FAIL\n");
-	}
-#endif
-	G.supplyCount[gardens]=5;
-	
-#if (NOISY_TEST == 1)
-	printf("Set treasure map to 0 to have a total of 3 empty piles\n");
-#endif
-	G.supplyCount[treasure_map]=0;
-	result= isGameOver(&G);
-#if (NOISY_TEST == 1)
-	printf("Game over");
-	if (result==1)
-	{
-		printf("....PASS\n");
-	}
-	else{
-		printf("....FAIL\n");
-	}
-	
-	printf("Set sea hag to 0 to have a total of 3 empty piles\n");
-#endif
-	G.supplyCount[sea_hag]=0;
-	result= isGameOver(&G);
-#if (NOISY_TEST == 1)
-	printf("Game over");
-	if (result==1)
-	{
-		printf("....PASS\n");
-	}
-	else{
-		printf("....FAIL\n");
-	}
-
-#endif	
-	
-    printf("Tests Completed!\n");
-	
+    if (success == -1){
+       #if (NOISY_TEST == 1) 
+       printf ("Error in full deck function.\n");
+        #endif
+        return 2;
+    }
+    //memcmp game state size
+    if (memcmp(&pre,post, sizeof(struct gameState))!=0){
+        #if (NOISY_TEST == 1)
+        printf ("Memory size different.\n");
+        #endif
+        return 3;
+    }
     return 0;
+}
+
+
+int main () {
+  //define variables  
+  int i, n, r, p, error,errorA,errorB,errorC;
+  errorA=0;
+  errorB=0;
+  errorC=0;
+  //define a gamestate
+  struct gameState G;
+
+  printf ("Testing full deck count.\n");
+
+  printf ("RANDOM TESTS.\n");
+  //create random seed
+  SelectStream(2);
+  PutSeed(3);
+  //for 2000 test cases
+  for (n = 0; n < 2000; n++) {
+    for (i = 0; i < sizeof(struct gameState); i++) {
+      //fill gamestate with random bits between 0-256 using ofset
+      ((char*)&G)[i] = floor(Random() * 256);
+    }
+    p = floor(Random() * 2);
+    G.deckCount[p] = floor(Random() * MAX_DECK);
+    G.discardCount[p] = floor(Random() * MAX_DECK);
+    G.handCount[p] = floor(Random() * MAX_HAND);
+    //call function with test input
+    error=unitTest(p,&G);
+
+    if (error > 0){
+        if(error == 1){
+            errorA++;
+        }else if(error == 2){
+            errorB++;
+        }else if(error == 3){
+            errorC++;
+        }
+    }
+
+  }
+
+  printf ("ALL TESTS OK\n");
+  printf ("ALL Random TESTS Complete\n");
+  printf ("Errors type 1: %d ",errorA);
+  printf ("Error in end turn function.\n");
+  printf ("Errors type 2: %d ",errorB);
+  printf ("Error in full deck function.\n");
+  printf ("Errors type 3: %d ",errorC);
+  printf ("Memory size different.\n");
+
+  return 0;
 }

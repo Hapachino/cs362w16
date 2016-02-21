@@ -1,285 +1,151 @@
-/* -----------------------------------------------------------------------
- *  Jennifer Mendoza
- *	CS 325
- *	Description: This is a test program that tests the playSmithy() function.
- *	
- *	Note: Code was taken from the testDrawCard.c file provided in the dominion folder. 
- *	Code can also be found in lecture notes. I included both random and fix tests.
- *	Business requirements
- *  1) Current player gets 3 cards 
- *  2) 3 cards will only come from current player's pile
- *  3) Other player's state remains unchanged
- *
- * randomtestSmithy: randomtestcard.c dominion.o rngs.o
- *      gcc -o card3 -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
- *
- * -----------------------------------------------------------------------
- */
+//baron
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
-#include <stdlib.h>
 #include <time.h>
+#include <stdlib.h>
+#include <math.h>
 
 #define DEBUG 0
 #define NOISY_TEST 1
- 
-void testSmithy(struct gameState *post,int p, int a ) {
 
-	struct gameState pre;
-	memcpy (&pre, post, sizeof(struct gameState));
-	
-	playSmithy(post, 0);
-#if (NOISY_TEST == 1)
-	printf("Testing when player %d plays Smithy card\n",p);
-	if(p==1)
-	{
-		printf("Initial values for player 1 are handCount:%d, discardCount:%d, deckCount:%d\n",pre.handCount[1], pre.discardCount[1], pre.deckCount[1]);
-		printf("Initial values for player 2 are handCount:%d, discardCount:%d, deckCount:%d\n",pre.handCount[2], pre.discardCount[2], pre.deckCount[2]);
-	}
-	else{
-		printf("Initial values for player 2 are handCount:%d, discardCount:%d, deckCount:%d\n",pre.handCount[2], pre.discardCount[2], pre.deckCount[2]);
-		printf("Initial values for player 1 are handCount:%d, discardCount:%d, deckCount:%d\n",pre.handCount[1], pre.discardCount[1], pre.deckCount[1]);
-	}
-	if (p==1)
-	{
-		printf("Testing if player 1 handCount increased");
-		if (pre.handCount[1]<post->handCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[1],post->handCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[1],post->handCount[1]);
-		}
-		
-		printf("Testing player 2 handCount remains unchanged");		
-		if (pre.handCount[2]==post->handCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[2],post->handCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[2],post->handCount[2]);
-		}
-		
-		printf("Testing if player 1 discardCount remains unchanged");
-		if (pre.discardCount[1]==post->discardCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[1],post->discardCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[1],post->discardCount[1]);
-		}
-		
-		printf("Testing player 2 discardCount remains unchanged");		
-		if (pre.discardCount[2]==post->discardCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[2],post->discardCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[2],post->discardCount[2]);
-		}
-		
-		
-		printf("Testing if player 1 deckCount remains unchanged");
-		if (pre.deckCount[1]==post->deckCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[1],post->deckCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[1],post->deckCount[1]);
-		}
-		
-		printf("Testing player 2 deckCount remains unchanged");		
-		if (pre.deckCount[2]==post->deckCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[2],post->deckCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[2],post->deckCount[2]);
-		}
-		
-	}
-	if (p==2)
-	{
-		printf("Testing player 2 handCount increased");
-		if (pre.handCount[2]<post->handCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[2],post->handCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[2],post->handCount[2]);
-		}
-		
-		printf("Testing player 1 handCount remains unchanged");
-		if (pre.handCount[1]==post->handCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[1],post->handCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[1],post->handCount[1]);
-		}
-		
-		
-		printf("Testing if player 2 discardCount remains unchanged");
-		if (pre.discardCount[2]==post->discardCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[2],post->discardCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[2],post->discardCount[2]);
-		}
-		
-		printf("Testing player 1 discardCount remains unchanged");		
-		if (pre.discardCount[1]==post->discardCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[1],post->discardCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[1],post->discardCount[1]);
-		}
-		
-		
-		printf("Testing if player 2 deckCount remains unchanged");
-		if (pre.deckCount[2]==post->deckCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[2],post->deckCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[2],post->deckCount[2]);
-		}
-		
-		printf("Testing player 2 deckCount remains unchanged");		
-		if (pre.deckCount[1]==post->deckCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[1],post->deckCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[1],post->deckCount[1]);
-		}
-	}
-	printf("Testing playedCardCount for player %d.",p);
-	if (post->playedCardCount==1)
-	{
-		printf("....PASSED\n");
-		printf("Number of Cards Played = %d, expected = %d\n", post->playedCardCount, 1);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("Number of Cards Played = %d, expected = %d\n", post->playedCardCount, 1);	
-	}
-#endif
-	endTurn(&post);
-#if (NOISY_TEST == 1)
-	printf("Testing adventurer card supply Count");
-	if (pre.supplyCount[adventurer]==post->supplyCount[adventurer])
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.supplyCount[adventurer],post->supplyCount[adventurer]);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.supplyCount[adventurer],post->supplyCount[adventurer]);
-	}
-	printf("Testing outpost count");
-	if (pre.outpostPlayed==post->outpostPlayed)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.outpostPlayed,post->outpostPlayed);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.outpostPlayed,post->outpostPlayed);
-	}
-	printf("Testing if numActions is unchanged");
-	if (pre.numActions==post->numActions)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.numActions,post->numActions);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.numActions,post->numActions);
-	}
-	printf("Testing if Coin count is unchanged");
-	if (pre.coins==post->coins)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.coins,post->coins);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.coins,post->coins);
-	}
-	printf("Testing if numBuys is unchanged");
-	if (pre.numBuys==post->numBuys)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.numBuys,post->numBuys);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.numBuys,post->numBuys);
-	}	
-	printf("\n\n");
-#endif
+
+//oracle makes sure returns valid 
+int unitTest(int player, struct gameState *post, int choice1){
+    srand(time(NULL));
+
+    //define variables
+    struct gameState pre;
+    memcpy(&pre,post,sizeof(struct gameState));
+
+    //call function
+        baronCard(player,post,choice1);
+
+    //memcmp game state size
+    if (memcmp(&pre,post, sizeof(struct gameState))!=0){
+        #if (NOISY_TEST == 1)
+        printf("Memory mismatch \n");
+        #endif
+        return 1;
+    }
+
+    // +1 Buy, You may discard an Estate card. 
+    // If you do, +4 coins. Otherwise, gain an Estate card.
+    //card specific checks
+
+    //plus one buy
+    if (post->numBuys != pre.numBuys){
+        #if (NOISY_TEST == 1) 
+        printf("Player did not get an additional buy\n");
+        #endif
+        return 2;
+    }
+    //if they discard an estate
+    if(post-> handCount[player] == pre.handCount[player]-1){
+        if(post->supplyCount[estate] == pre.supplyCount[estate]-1){
+            if(post->coins != pre.coins+4){
+                #if (NOISY_TEST == 1)
+                printf("player discarded estate but did not gain coins\n");
+                #endif
+                return 3;
+            }
+        }
+        else{
+            #if (NOISY_TEST == 1)
+            printf("card discarded was not an estate\n");
+            #endif
+            return 4;
+        }
+    }else{
+        //if they don't discard and estate
+        if(choice1 < 1){
+            #if (NOISY_TEST == 1)
+            printf("player choice was to discard an estate but instead they must gain an estate because they have no estates to discard");
+            #endif
+            return 5;
+
+        }
+        if(post->supplyCount[estate] != pre.supplyCount[estate]+1){
+            #if (NOISY_TEST == 1)
+            printf("player didn't discard an estate and did not gain one after \n");
+            #endif
+            return 6;
+        }
+    }
+    
+    return 0;
 }
- 
- 
- 
- 
- 
- 
- int main () {
 
-  int n, p;
+int main () {
+  //define variables  
+  int i, n, r, p,error,errorA,errorB,errorC,errorD,errorE,errorF;
+  errorA =0;
+  errorB =0;
+  errorC =0;
+  errorD =0;
+  errorE =0;
+  errorF =0;
+
+  //define a gamestate
   struct gameState G;
-  time_t t;
-  srand((unsigned)time(&t));
-  printf ("Testing Smithy.\n");
+
+  printf ("Testing village Card.\n");
 
   printf ("RANDOM TESTS.\n");
-
+  //create random seed
   SelectStream(2);
   PutSeed(3);
-
+  //for 2000 test cases
   for (n = 0; n < 2000; n++) {
-	int* k=kingdomCards(1,2,3,4,5,6,7,8,9,10);
-	initializeGame(2,k,1000,&G);
-	p = rand() % 2+1;
-	G.numPlayers=rand() % 3+1;
-    G.deckCount[p] = rand() % MAX_DECK;
-    G.discardCount[p] = rand() % MAX_DECK;
-    G.handCount[p] = rand() % MAX_HAND;
-    testSmithy(&G,p,n);
-  }
+    for (i = 0; i < sizeof(struct gameState); i++) {
+      //fill gamestate with random bits between 0-256 using ofset
+      ((char*)&G)[i] = floor(Random() * 256);
+    }
+    p = floor(Random() * 2);
+    G.handCount[p] = floor(Random() * MAX_HAND);
+    G.numPlayers= floor(Random() * MAX_PLAYERS);
+    G.numBuys = floor(Random() * MAX_HAND);//NEW
+    G.coins = floor(Random() * MAX_DECK);//NEW
+    //intialize arrays to 0
+    for (int i =0; i< G.numPlayers +1; i++){
+    	G.deckCount[i] = floor(Random() * MAX_DECK);
+    	G.discardCount[i] = floor(Random() * MAX_DECK);
+    	G.supplyCount[i]=floor(Random() * MAX_DECK);
+        G.discard[i][ G.discardCount[i] ] = floor(Random() * MAX_DECK);
+        G.discardCount[i]= floor(Random() * MAX_DECK);
+    }
+    int choice1 = floor(Random() * 2);//boolean true or false
+    //call function with test input
+    error=unitTest(G.numPlayers,&G,choice1);
 
-  printf ("ALL TESTS COMPLETE\n");
+    if (error > 0){
+        if(error == 1){
+            errorA++;
+        }else if(error == 2){
+            errorB++;
+        }else if(error == 3){
+            errorC++;
+        }else if(error == 4){
+            errorD++;
+        }else if(error == 5){
+            errorE++;
+        }else if(error == 6){
+            errorF++;
+        }
+
+    }
+  }
+  printf ("ALL Random TESTS Complete\n");
+  printf ("Errors type 1: %d memory mismatch \n",errorA);
+  printf ("Errors type 3: %d player didn't receive extra buy\n",errorB);
+  printf ("Errors type 3: %d discarded but didn't receive coins\n",errorC);
+
+  printf ("Errors type 4: %d estate not discarded\n",errorC);
+  printf ("Errors type 5: %d choice doesn't match action\n",errorD);
+  printf ("Errors type 6: %d didn't gain estate\n",errorE);
+
   return 0;
 }

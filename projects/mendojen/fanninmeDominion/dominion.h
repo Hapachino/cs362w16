@@ -102,8 +102,6 @@ int playCard(int handPos, int choice1, int choice2, int choice3,
 int buyCard(int supplyPos, struct gameState *state);
 /* Buy card with supply index supplyPos */
 
-int gainCard(int supplyPos, struct gameState *state, int toFlag, int player); 
-
 int numHandCards(struct gameState *state);
 /* How many cards current player has in hand */
 
@@ -135,8 +133,15 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 int playAdventurer(struct gameState *state);
 int playSmithy(struct gameState *state, int handPos);
 int playVillage(struct gameState *state, int handPos);
-int playSteward(struct gameState *state, int choice1, int choice2, int choice3, int handPos);
-int playSalvager(struct gameState *state, int handPos, int choice1);
+int playFeast(struct gameState *state, int choice1);
+int playCouncil_Room(struct gameState *state, int handPos);
+void adventurerCard(int currentPlayer, struct gameState *state);
+void feastCard(int currentPlayer,struct gameState *state,int choice1);
+void smithyCard(int currentPlayer,struct gameState *state,int handPos);
+void villageCard(int currentPlayer,struct gameState *state,int handPos);
+void baronCard(int currentPlayer,struct gameState *state, int choice1);
+
+
 
 
 #endif

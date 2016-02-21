@@ -1,451 +1,126 @@
-/* -----------------------------------------------------------------------
- *  Jennifer Mendoza
- *	CS 325
- *	Description: This is a test program that tests the playAdventurer() function.
- *	
- *	Note: Code was taken from the testDrawCard.c file provided in the dominion folder. 
- *	Code can also be found in lecture notes. I included both random and fix tests.
- * 
- *  
- *	Business requirements
- *  1) Current player gets 3 cards 
- *  2) 3 cards will only come from current player's pile
- *  3) Other player's state remains unchanged
- *
- * randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
- *      gcc -o card3 -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
- *
- * -----------------------------------------------------------------------
- */
+//Adventurer
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
-#include <stdlib.h>
 #include <time.h>
+#include <stdlib.h>
+#include <math.h>
 
 #define DEBUG 0
 #define NOISY_TEST 1
- 
-void testAdventurer(struct gameState *post,int p ) {
 
-	struct gameState pre;
-	memcpy (&pre, post, sizeof(struct gameState));
-	
-	playAdventurer(post);
-	drawCard(p,&pre);
-#if (NOISY_TEST == 1)
-	printf("Testing when player %d plays Adventurer card\n",p);
-	if(p==1)
-	{
-		printf("Initial values for player 1 are handCount:%d, discardCount:%d, deckCount:%d\n",pre.handCount[1], pre.discardCount[1], pre.deckCount[1]);
-		printf("Initial values for player 2 are handCount:%d, discardCount:%d, deckCount:%d\n",pre.handCount[2], pre.discardCount[2], pre.deckCount[2]);
-	}
-	else{
-		printf("Initial values for player 2 are handCount:%d, discardCount:%d, deckCount:%d\n",pre.handCount[2], pre.discardCount[2], pre.deckCount[2]);
-		printf("Initial values for player 1 are handCount:%d, discardCount:%d, deckCount:%d\n",pre.handCount[1], pre.discardCount[1], pre.deckCount[1]);
-	}
-	if (p==1)
-	{
-		printf("Testing if player 1 handCount increased");
-		if (pre.handCount[1]<post->handCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[1],post->handCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[1],post->handCount[1]);
-		}
-		
-		printf("Testing player 2 handCount remains unchanged");		
-		if (pre.handCount[2]==post->handCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[2],post->handCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[2],post->handCount[2]);
-		}
-		
-		printf("Testing if player 1 discardCount remains unchanged");
-		if (pre.discardCount[1]==post->discardCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[1],post->discardCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[1],post->discardCount[1]);
-		}
-		
-		printf("Testing player 2 discardCount remains unchanged");		
-		if (pre.discardCount[2]==post->discardCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[2],post->discardCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[2],post->discardCount[2]);
-		}
-		
-		
-		printf("Testing if player 1 deckCount remains unchanged");
-		if (pre.deckCount[1]==post->deckCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[1],post->deckCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[1],post->deckCount[1]);
-		}
-		
-		printf("Testing player 2 deckCount remains unchanged");		
-		if (pre.deckCount[2]==post->deckCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[2],post->deckCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[2],post->deckCount[2]);
-		}
-		
-	}
-	if (p==2)
-	{
-		printf("Testing player 2 handCount increased");
-		if (pre.handCount[2]<post->handCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[2],post->handCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[2],post->handCount[2]);
-		}
-		
-		printf("Testing player 1 handCount remains unchanged");
-		if (pre.handCount[1]==post->handCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[1],post->handCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.handCount[1],post->handCount[1]);
-		}
-		
-		
-		printf("Testing if player 2 discardCount remains unchanged");
-		if (pre.discardCount[2]==post->discardCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[2],post->discardCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[2],post->discardCount[2]);
-		}
-		
-		printf("Testing player 1 discardCount remains unchanged");		
-		if (pre.discardCount[1]==post->discardCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[1],post->discardCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.discardCount[1],post->discardCount[1]);
-		}
-		
-		
-		printf("Testing if player 2 deckCount remains unchanged");
-		if (pre.deckCount[2]==post->deckCount[2])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[2],post->deckCount[2]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[2],post->deckCount[2]);
-		}
-		
-		printf("Testing player 2 deckCount remains unchanged");		
-		if (pre.deckCount[1]==post->deckCount[1])
-		{
-			printf("....PASSED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[1],post->deckCount[1]);
-		}
-		else{
-			printf("....FAILED\n");
-			printf("pre: %d, post:%d\n", pre.deckCount[1],post->deckCount[1]);
-		}
-	}
-	printf("Testing adventurer card supply Count");
-	if (pre.supplyCount[adventurer]==post->supplyCount[adventurer])
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.supplyCount[adventurer],post->supplyCount[adventurer]);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.supplyCount[adventurer],post->supplyCount[adventurer]);
-	}
-	printf("Testing outpost count");
-	if (pre.outpostPlayed==post->outpostPlayed)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.outpostPlayed,post->outpostPlayed);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.outpostPlayed,post->outpostPlayed);
-	}
-	printf("Testing if numActions is unchanged");
-	if (pre.numActions==post->numActions)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.numActions,post->numActions);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.numActions,post->numActions);
-	}
-	printf("Testing if Coin count is unchanged");
-	if (pre.coins==post->coins)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.coins,post->coins);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.coins,post->coins);
-	}
-	printf("Testing if numBuys is unchanged");
-	if (pre.numBuys==post->numBuys)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.numBuys,post->numBuys);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.numBuys,post->numBuys);
-	}
-#endif
-	endTurn(&post);
-#if (NOISY_TEST == 1)
-	printf("Testing adventurer card supply Count");
-	if (pre.supplyCount[adventurer]==post->supplyCount[adventurer])
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.supplyCount[adventurer],post->supplyCount[adventurer]);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.supplyCount[adventurer],post->supplyCount[adventurer]);
-	}
-	printf("Testing outpost count");
-	if (pre.outpostPlayed==post->outpostPlayed)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.outpostPlayed,post->outpostPlayed);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.outpostPlayed,post->outpostPlayed);
-	}
-	printf("Testing if numActions is unchanged");
-	if (pre.numActions==post->numActions)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.numActions,post->numActions);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.numActions,post->numActions);
-	}
-	printf("Testing if Coin count is unchanged");
-	if (pre.coins==post->coins)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.coins,post->coins);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.coins,post->coins);
-	}
-	printf("Testing if numBuys is unchanged");
-	if (pre.numBuys==post->numBuys)
-	{
-		printf("....PASSED\n");
-		printf("pre: %d, post:%d\n", pre.numBuys,post->numBuys);
-	}
-	else{
-		printf("....FAILED\n");
-		printf("pre: %d, post:%d\n", pre.numBuys,post->numBuys);
-	}	
-	printf("\n\n");
-	#endif
+//Unit test for Adventurer Card
+//function accepts: currentplayer, struct gameState *state 
+
+//oracle makes sure returns valid 
+int unitTest(int player,struct gameState *post){
+    srand(time(NULL));
+
+    //define variables
+    struct gameState pre;
+    memcpy(&pre,post,sizeof(struct gameState));
+
+    //call function
+    adventurerCard(player, post);
+
+    //memcmp game state size
+    if(memcmp(&pre,post, sizeof(struct gameState))!=0){
+        #if (NOISY_TEST == 1)
+        printf("gameState memory is wrong\n");
+        #endif
+        return 1;
+    }
+    //card specific checks 
+    if(post->hand[player][post->handCount[player]] < 0){
+        #if (NOISY_TEST==1)
+        printf("invalid hand size\n");
+        #endif
+    }
+    
+    //player hand size should be 2 larger after gaining treasure
+    if(post->handCount != pre.handCount +2){
+        #if (NOISY_TEST == 1)
+        printf("Player did not receive 2 additional cards correctly\n");
+        #endif
+        return 2;
+    }
+    //player should have at least 2 more treasures
+    if(post->coins < pre.coins +2){
+        #if (NOISY_TEST ==1)
+        printf("player did not receive 2 additional coins\n");
+        #endif
+        return 3;
+    }
+
+    return 0;
 }
- 
- 
- 
- 
- 
- 
- int main () {
 
-  int n, p, i;
+//section directly uses code from betterCardTest.c
+int main () {
+  //define variables  
+  int i, n, r, p, error,errorA,errorB,errorC;
+  errorA =0;
+  errorB =0;
+  errorC =0;
+  //define a gamestate
   struct gameState G;
-  time_t t;
-  srand((unsigned)time(&t));
-  printf ("Testing Adventurer.\n");
+
+  printf ("Testing adventurer card.\n");
 
   printf ("RANDOM TESTS.\n");
-
+  //create random seed
   SelectStream(2);
   PutSeed(3);
-
+  //for 2000 test cases
   for (n = 0; n < 2000; n++) {
-	int* k=kingdomCards(1,2,3,4,5,6,7,8,9,10);
-	G.numPlayers=rand() % 3+1;
-	initializeGame(G.numPlayers,k,1000,&G);
-	p = rand() % 2+1;
-	G.numPlayers=rand() % 3+1;
-    G.deckCount[p] = rand() % MAX_DECK;
-    G.discardCount[p] = rand() % MAX_DECK;
-    G.handCount[p] = rand() % MAX_HAND;
-	G.supplyCount[adventurer]=rand()%10;
-    testAdventurer(&G,p);
+    for (i = 0; i < sizeof(struct gameState); i++) {
+      //fill gamestate with random bits between 0-256 using ofset
+      ((char*)&G)[i] = floor(Random() * 256);
+    }
+    p = floor(Random() * 2);
+    G.deckCount[p] = floor(Random() * MAX_DECK);
+    G.discardCount[p] = floor(Random() * MAX_DECK);
+    G.handCount[p] = floor(Random() * MAX_HAND);
+    G.numBuys = floor(Random() * MAX_HAND);//NEW
+    G.coins = floor(Random() * MAX_DECK);//NEW
+    G.numPlayers = floor(Random() * MAX_PLAYERS);
+
+    for (int i =0; i< G.numPlayers +1; i++){
+    	G.deckCount[i] = floor(Random() * MAX_DECK);
+        G.handCount[i]= floor(Random() * MAX_DECK);
+        G.hand[i][G.handCount[i]] = floor(Random() * MAX_HAND);
+    }
+
+    //call function with test input
+    error=unitTest(G.numPlayers,&G);
+
+    if (error > 0){
+        if(error == 1){
+            errorA++;
+        }else if(error == 2){
+            errorB++;
+        }else{
+            errorC++;
+        }
+    }
   }
-	
-    printf ("Fixed tests for adventurer():\n");
-	for (i=0;i<50;i++)
-	{
-		int* k=kingdomCards(1,2,3,4,5,6,7,8,9,10);
-		memset(&G, 23, sizeof(struct gameState));   // clear the game state
-		initializeGame(2, k, 1000, &G); // initialize a new game
-		G.handCount[0]=0;
-	#if (NOISY_TEST == 1)
-		printf ("Playing adventurer card 1 time\n");
-	#endif	
-		playAdventurer(&G); 
-	#if (NOISY_TEST == 1)
-		printf("Handcount: %d\n", G.handCount[0]);
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf ("Playing adventurer card another time\n");
-	#endif	 
-		playAdventurer(&G); 
-	#if (NOISY_TEST == 1)
-		printf("Handcount: %d\n", G.handCount[0]);
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf ("Playing adventurer card another time\n");
-	#endif	
-		playAdventurer(&G); 
-	#if (NOISY_TEST == 1)
-		printf("Handcount: %d\n", G.handCount[0]);
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf ("Playing adventurer card another time\n");
-	#endif	
-		playAdventurer(&G); 
-	#if (NOISY_TEST == 1)
-		printf("Handcount: %d\n", G.handCount[0]);
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf ("Playing adventurer card another time\n");
-	#endif	
-		playAdventurer(&G); 
-	#if (NOISY_TEST == 1)
-		printf("Handcount: %d\n", G.handCount[0]);
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf ("Playing adventurer card another time\n");
-	#endif	 
-		playAdventurer(&G); 
-	#if (NOISY_TEST == 1)
-		printf("Handcount: %d\n", G.handCount[0]);
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf ("Playing adventurer card another time*\n");
-	#endif	
-		playAdventurer(&G); 
-	#if (NOISY_TEST == 1)
-		printf("Handcount: %d\n", G.handCount[0]);
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-	#endif	
-		endTurn(&G);
-	#if (NOISY_TEST == 1)
-		printf("Testing other player's hand\n");
-		printf("Number of Cards Played = %d, expected = 0", G.playedCardCount);	
-		if (G.playedCardCount==0)
-		{
-			printf("....PASS\n");
-		}
-		else{
-			printf("....FAIL\n");
-		}
-		printf("Hand Count = %d, expected = 0", G.handCount[0]);
-		if (G.handCount[0]==0)
-		{
-			printf("....PASS\n\n");
-		}
-		else{
-			printf("....FAIL\n\n");
-		}
-	#endif	
-	}
-  printf ("ALL TESTS COMPLETE\n");
+  //FIXED TESTS needed
+    //fixed test to check branch for if deckCount is 0;
+    //G.deckCount[1]=0;//deckCount currentPlayer
+
+
+  printf ("ALL Random TESTS Complete\n");
+  printf ("Errors type 1: %d ",errorA);
+   printf("gameState memory is wrong\n");
+
+  printf ("Errors type 2: %d ",errorB);
+  printf("Player did not receive 2 additional cards correctly\n");
+
+  printf ("Errors type 3: %d ",errorC);
+  printf("player did not receive 2 additional coins\n");
+
   return 0;
 }

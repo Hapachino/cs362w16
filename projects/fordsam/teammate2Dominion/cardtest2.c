@@ -51,7 +51,7 @@ int testCouncilRoom() {
   memcpy(&preState, &state, sizeof(struct gameState));
   result = playCouncil_Room(&state, HANDPOS, P1);
 
-  /* playCouncilRoom() should draw 4 cards to player's hand
+  /* Should draw 4 cards to player's hand
      NOTE: We subtract one because the Council Room card is discarded */
   testCount += 1;
   passCount += fakeAssert(
@@ -59,7 +59,7 @@ int testCouncilRoom() {
     (state.handCount[P1] == preState.handCount[P1] + 4 - 1)
   );
 
-  /* playCouncilRoom() should draw the 4 cards from the player's deck */
+  /* Should draw the 4 cards from the player's deck */
   testCount += 1;
   passCount += fakeAssert(
     "Should draw the 4 cards from the player's deck",
@@ -69,14 +69,14 @@ int testCouncilRoom() {
     && containsCard(silver, state.hand[P1], state.handCount[P1]))
   );
 
-  /* playCouncilRoom() should provide +1 buy to player */
+  /* Should provide +1 buy to player */
   testCount += 1;
   passCount += fakeAssert(
     "Should provide +1 buy",
     (state.numBuys == preState.numBuys + 1)
   );
 
-  /* playCouncilRoom() should cause other players to draw 1 card */
+  /* Should cause other players to draw 1 card */
   testCount += 1;
   passCount += fakeAssert(
     "Should cause all other players to draw 1 card",
@@ -84,7 +84,7 @@ int testCouncilRoom() {
     && state.handCount[P3] == preState.handCount[P3] + 1)
   );
 
-  /* playCouncilRoom() should draw other players' cards from their decks */
+  /* Should draw other players' cards from their decks */
   testCount += 1;
   passCount += fakeAssert(
     "Should draw other players' cards from their own decks",
@@ -92,7 +92,7 @@ int testCouncilRoom() {
     && containsCard(cutpurse, state.hand[P3], state.handCount[P3]))
   );
 
-  /* playCouncilRoom() should move played card to playedCards */
+  /* Should move played card to playedCards */
   testCount += 1;
   passCount += fakeAssert(
     "Should move played card to playedCards",

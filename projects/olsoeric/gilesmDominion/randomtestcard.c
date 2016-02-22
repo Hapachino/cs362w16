@@ -1,6 +1,6 @@
 /******************
  * Eric Olson
- * CS362_Assignment4
+ * CS362_Assignment5
  * Great Hall Card Function Random Test (Draw 1 Card, +1 Action)
  ******************/
 
@@ -31,7 +31,7 @@ int main(){
     //Setup Scenario:
     gh_pos = scenario_stage(pre, post);  //Stage deck/discard/hand.
     //Have player 0 play great hall card.  
-    great_hall_play(0, post, gh_pos);
+    greatHallEffect(0, post, gh_pos);
     //Check results.
     errors = validate(pre, post, errors);
   }

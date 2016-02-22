@@ -18,6 +18,7 @@ int scenario_stage(struct gameState *pre, struct gameState *post, int treasure1,
 
 int main(){
   struct gameState *pre = malloc(sizeof(struct gameState)), *post = malloc(sizeof(struct gameState));
+  struct infosStruct infos;
   int i, errors = 0, adventurer_pos;
   srand(time(NULL));
   
@@ -31,8 +32,11 @@ int main(){
     //Setup Scenario:
     //Stage deck/discard/hand with at min 2 treasure cards.
     adventurer_pos = scenario_stage(pre, post, ((rand() % 3) + 4), ((rand() % 3) + 4));      
+    infos.drawntreasure = 0;
+    infos.currentPlayer = 0;
+    infos.z = 0;
     //Have player 0 play adventurer card.  Would pass adventurer_pos if adventurer_play used handPos(bug).
-    adventurer_play(0, post);
+    effectAdventure(post, &infos);
     //Check results.
     errors = validate(pre, post, errors);
   }

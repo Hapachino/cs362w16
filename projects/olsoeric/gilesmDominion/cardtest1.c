@@ -1,6 +1,6 @@
 /******************
  * Eric Olson
- * CS362_Assignment3
+ * CS362_Assignment5
  * Smithy Card Function Test
  ******************/
 
@@ -29,7 +29,7 @@ int main(){
   //Setup Scenario:
   basic_setup(pre, post);
   //Have player 0 play smithy card.
-  smithy_play(0, post, 5);
+  smithyEffect(0, post, 5);
   //Check hand went from 6 to 8, deck went from 5 to 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 8, 2, 0, 1);
   
@@ -44,7 +44,7 @@ int main(){
   for (i = 0; i < 10; i++){ pre->discard[0][i] = post->discard[0][i] = rand() % 26; }
   pre->discardCount[0] = post->discardCount[0] = 10;
   //Have player 0 play smithy card.
-  smithy_play(0, post, 5);
+  smithyEffect(0, post, 5);
   //Check hand went from 6 to 8, deck went from 0 to 7, played went from 0 - 1.
   errors = validate(pre, post, errors, 8, 7, 0, 1);
   

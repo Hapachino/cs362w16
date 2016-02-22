@@ -1,6 +1,6 @@
 /******************
  * Eric Olson
- * CS362_Assignment3
+ * CS362_Assignment5
  * Adventurer Card Function Test
  ******************/
 
@@ -17,6 +17,7 @@ void scenario_stage(struct gameState *pre, struct gameState *post, int treasure1
 
 int main(){
   struct gameState *pre = malloc(sizeof(struct gameState)), *post = malloc(sizeof(struct gameState));
+  struct infosStruct infos;
   int i, errors = 0;
   srand(time(NULL));
   
@@ -28,8 +29,12 @@ int main(){
   printf("Running Scenario 1...\n");
   //Setup Scenario:
   scenario_stage(pre, post, copper, copper);
+  //Setup infos for teammates test function:
+  infos.drawntreasure = 0;
+  infos.currentPlayer = 0;
+  infos.z = 0; 
   //Have player 0 play adventurer card.
-  adventurer_play(0, post);
+  effectAdventure(post, &infos);
   //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 7, 1);
   printf("Errors so far %d\n", errors);
@@ -38,8 +43,12 @@ int main(){
   printf("Running Scenario 2...\n");
   //Setup Scenario:
   scenario_stage(pre, post, silver, silver);
+  //Setup infos for teammates test function:
+  infos.drawntreasure = 0;
+  infos.currentPlayer = 0; 
+  infos.z = 0; 
   //Have player 0 play adventurer card.
-  adventurer_play(0, post);
+  effectAdventure(post, &infos);
   //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 7, 1);
   printf("Errors so far %d\n", errors);
@@ -48,8 +57,12 @@ int main(){
   printf("Running Scenario 3...\n");
   //Setup Scenario:
   scenario_stage(pre, post, gold, gold);
+  //Setup infos for teammates test function:
+  infos.drawntreasure = 0;
+  infos.currentPlayer = 0; 
+  infos.z = 0; 
   //Have player 0 play adventurer card.
-  adventurer_play(0, post);
+  effectAdventure(post, &infos);
   //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 7, 1);
   printf("Errors so far %d\n", errors);
@@ -60,8 +73,12 @@ int main(){
   for (i = 0; i < 5; i++){
     //Setup Scenario:
     scenario_stage(pre, post, ((rand() % 3) + 4), ((rand() % 3) + 4));
+    //Setup infos for teammates test function:
+    infos.drawntreasure = 0;
+    infos.currentPlayer = 0; 
+    infos.z = 0; 
     //Have player 0 play adventurer card.
-    adventurer_play(0, post);
+    effectAdventure(post, &infos);
     //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
     errors = validate(pre, post, errors, 7, 1);
     printf("Errors so far %d\n", errors);

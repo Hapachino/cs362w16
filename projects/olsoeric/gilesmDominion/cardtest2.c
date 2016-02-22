@@ -1,6 +1,6 @@
 /******************
  * Eric Olson
- * CS362_Assignment3
+ * CS362_Assignment5
  * Adventurer Card Function Test
  ******************/
 
@@ -17,6 +17,7 @@ void scenario_stage(struct gameState *pre, struct gameState *post, int treasure1
 
 int main(){
   struct gameState *pre = malloc(sizeof(struct gameState)), *post = malloc(sizeof(struct gameState));
+  int tempHand[MAX_HAND];  //Added to match refactored code.
   int i, errors = 0;
   srand(time(NULL));
   
@@ -29,7 +30,7 @@ int main(){
   //Setup Scenario:
   scenario_stage(pre, post, copper, copper);
   //Have player 0 play adventurer card.
-  adventurer_play(0, post);
+  adventurerEffect(0, 0, 0, tempHand, post);
   //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 7, 1);
   printf("Errors so far %d\n", errors);
@@ -39,7 +40,7 @@ int main(){
   //Setup Scenario:
   scenario_stage(pre, post, silver, silver);
   //Have player 0 play adventurer card.
-  adventurer_play(0, post);
+  adventurerEffect(0, 0, 0, tempHand, post);
   //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 7, 1);
   printf("Errors so far %d\n", errors);
@@ -49,7 +50,7 @@ int main(){
   //Setup Scenario:
   scenario_stage(pre, post, gold, gold);
   //Have player 0 play adventurer card.
-  adventurer_play(0, post);
+  adventurerEffect(0, 0, 0, tempHand, post);
   //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 7, 1);
   printf("Errors so far %d\n", errors);
@@ -61,7 +62,7 @@ int main(){
     //Setup Scenario:
     scenario_stage(pre, post, ((rand() % 3) + 4), ((rand() % 3) + 4));
     //Have player 0 play adventurer card.
-    adventurer_play(0, post);
+    adventurerEffect(0, 0, 0, tempHand, post);
     //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
     errors = validate(pre, post, errors, 7, 1);
     printf("Errors so far %d\n", errors);

@@ -106,7 +106,7 @@ int main() {
        }
        
        printf("    Total %d cards in hand & found %d treasure cards,expected 7 & 2 %s\n", G.handCount[0],treasureFound, cardNames[treasure[l]]);
-       if(G.handCount[0] != 7 && treasureFound != 2)
+       if(G.handCount[0] != 7 || treasureFound != 2)
           printf("TEST FAIL\n");
     } //END tresure types
     

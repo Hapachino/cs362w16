@@ -1,152 +1,140 @@
-// Andrew M. Calhoun
-// UNIT TEST - ASSIGNMENT 3
-// unitTest2.c
-// Unit Test for discardCard function.
+/*Jonathan Lagrew
+ *test fullDeckCount()
+ *Notes:
+ *Testing that fullDeckCount works correctly for 2 deck, 2 hand and 2 discard pile cards. 
+ card numbers: 1 estate, 4 copper, 6 gold, province 3, smithy 13, tribute 19, embargo 22
+ */
 
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <time.h>
-#include <stdlib.h>
-#include <math.h>
-#include <stdlib.h>
+#include <stdbool.h>
+#include "rngs.h"
 
-#define DEBUG 0
-#define NOISY_TEST 0
+// set NOISY_TEST to 0 to remove printfs from output
+#define NOISY_TEST 1
 
-/* discardCard for Reference
+int main() {
+    int i;
+    int seed = 1000; // seed for random number
+    int numPlayer = 3;
+    int p, r;
+    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, tribute, embargo};
+    struct gameState G; 
+    int copperCount, estateCount;// copper count and estate count
+    int count;
+    int result;
 
-int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
-{
+    memset(&G, 23, sizeof(struct gameState));   // clear the game state
+    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
-  //if card is not trashed, added to Played pile
-  if (trashFlag < 1)
+#if (NOISY_TEST == 1)
+    printf("\nTESTING fullDeckCount():\n");
+#endif
+
+    for (p = 0; p < numPlayer; p++)// loop through players, for testing set to 2 players, 0 and 1 
     {
-      //add card to played pile
-      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
-      state->playedCardCount++;
+#if (NOISY_TEST == 1)
+        printf("\nTesting for Player %d:\n", p);// player 0 then player 1
+        printf("Adding the following to the\n");
+        printf("deck:         5 coppers\n");
+        printf("hand:         10 golds\n");
+        printf("discard pile: 2 provinces\n");
+        printf("hand:         3 smithys\n");
+        printf("discard pile: 4 tributes\n");
+        printf("deck:         5 embargos\n");
+		printf("Test results:\n");
+#endif
+
+        estateCount = 3; //setting estate count to 3
+        result = fullDeckCount(p, 1, &G); //result returning estate number
+		/* Here deck = hand + discard + deck */
+#if (NOISY_TEST == 1)
+        printf("estate result: %d, expected: %d\n", result, estateCount); 
+#endif
+        assert(result == estateCount);
+
+        copperCount = 7; //start with 2 coppers plus the 5 added
+        result = fullDeckCount(p, 4, &G);
+#if (NOISY_TEST == 1)
+        printf("copper result: %d, expected: %d\n", result, copperCount);
+#endif
+        assert(result == copperCount);
+
+        // Test update of coppers (deck)
+        count = 5;
+        for (i = 0; i < count; i++) {
+            G.deck[p][ G.deckCount[p] ] = copper;
+            G.deckCount[p]++;
+        }
+        copperCount = copperCount + count;
+        result = fullDeckCount(p, 4, &G); // copper card number 4
+#if (NOISY_TEST == 1)
+        printf("updated copper result: %d, expected: %d\n", result, copperCount);
+#endif
+        assert(result == copperCount);
+
+        // Test update of golds (hand)
+        count = 10;
+        for (i = 0; i < count; i++) {
+            G.hand[p][ G.handCount[p] ] = gold;
+            G.handCount[p]++;
+        }
+        result = fullDeckCount(p, 6, &G); // gold card number 6
+#if (NOISY_TEST == 1)
+        printf("gold result: %d, expected: %d\n", result, count);
+#endif
+        assert(result == count);
+
+        count = 2;
+        for (i = 0; i < count; i++) {
+            G.discard[p][ G.discardCount[p] ] = province; // test provine in discard pile
+            G.discardCount[p]++;
+        }
+        result = fullDeckCount(p, 3, &G); // province card number 3
+#if (NOISY_TEST == 1)
+        printf("province result: %d, expected: %d\n", result, count);
+#endif
+        assert(result == count);
+
+        count = 3;
+        for (i = 0; i < count; i++) {
+            G.hand[p][ G.handCount[p] ] = smithy; // test smithy in hand
+            G.handCount[p]++;
+        }
+        result = fullDeckCount(p, 13, &G); // smithy card number 13
+#if (NOISY_TEST == 1)
+        printf("smithy result: %d, expected: %d\n", result, count);
+#endif
+        assert(result == count);
+
+        count = 4;
+        for (i = 0; i < count; i++) {
+            G.discard[p][ G.discardCount[p] ] = tribute; // test tribute in discard pile
+            G.discardCount[p]++;
+        }
+        result = fullDeckCount(p, 19, &G); // tribute card number 19
+#if (NOISY_TEST == 1)
+        printf("tribute result: %d, expected: %d\n", result, count);
+#endif
+        assert(result == count);
+
+        count = 5; // setting embargo count to 5 
+        for (i = 0; i < count; i++) { // test embargo in deck
+            G.deck[p][ G.deckCount[p] ] = embargo;
+            G.deckCount[p]++;
+        }
+        result = fullDeckCount(p, 22, &G); // embargo card number 22
+#if (NOISY_TEST == 1)
+        printf("embargo result: %d, expected: %d\n", result, count);
+#endif
+        assert(result == count);
+
     }
 
-  //set played card to -1
-  state->hand[currentPlayer][handPos] = -1;
+    printf("\nAll tests successful!\n");
 
-  //remove card from player's hand
-  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
-    {
-      //reduce number of cards in hand
-      state->handCount[currentPlayer]--;
-    }
-  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
-    {
-      //reduce number of cards in hand
-      state->handCount[currentPlayer]--;
-    }
-  else
-    {
-      //replace discarded card with last card in hand
-      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
-      //set last card to -1
-      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
-      //reduce number of cards in hand
-      state->handCount[currentPlayer]--;
-    }
-
-  return 0;
-}
-
-*/
-
-int checkDiscardCard(int handPos, int currentPlayer, struct gameState *post, int trashFlag)
-{
-
-    struct gameState *pre = malloc(sizeof(struct gameState));
-    memcpy(pre, post, sizeof(struct gameState));
-    int r;
-
-    r = discardCard(handPos, currentPlayer, post, trashFlag);
-
-    if(trashFlag != 1)
-    {
-        assert(post->playedCards[pre->playedCardCount] == pre->hand[currentPlayer][handPos]);
-        assert(pre->playedCardCount + 1 == post->playedCardCount);
-    }
-
-    assert(post->hand[currentPlayer][handPos] = -1);
-
-    if(handPos == (pre->handCount[currentPlayer] - 1))
-    {
-        assert(pre->handCount[currentPlayer] - 1 == post->handCount[currentPlayer] );
-    }
-    else if (pre->handCount[currentPlayer] == 1)
-    {
-        assert(pre->handCount[currentPlayer] - 1 == post->handCount[currentPlayer]);
-    }
-    else
-    {
-        assert(pre->hand[currentPlayer][(pre->handCount[currentPlayer])] == post->hand[currentPlayer][ (post->handCount[currentPlayer] + 1 ) ] );
-        assert(post->hand[currentPlayer][post->handCount[currentPlayer]] == -1);
-        assert(pre->handCount[currentPlayer] - 1 == post->handCount[currentPlayer] );
-    }
-
-    assert(r==0);
-    free(pre);
     return 0;
-
-}
-
-int main()
-{
-    srand(time(NULL));
-    struct gameState *state = malloc(sizeof(struct gameState));
-    int player = 0, handPos, trash;
-    int k[10] = {adventurer, smithy, great_hall, council_room, baron, minion, mine, village, ambassador, salvager};
-
-    int seed = rand() % 65535;
-
-    initializeGame(2, k, seed, state);
-
-    printf("Testing the Discard Card Function\n");
-
-    // for(i = 0; i < sizeof(state); i++)
-        // printf("Failure Point 1\n");
-       //  int handCountConst = floor(Random() * MAX_HAND);
-        // p=0;
-        handPos = rand() % 10;
-
-        state->deckCount[0] = 50;
-        state->discardCount[0] = 10;
-        state->handCount[0] = 8;
-        state->discard[player][state->discardCount[player]] = 100;
-        state->playedCardCount = rand() % 10;
-        // printf("Failure Point 2\n");
-
-        if(handPos > 0)
-        {
-            state->playedCards[state->playedCardCount] = state->hand[0][handPos];
-        }
-        else
-        {
-            state->playedCards[state->playedCardCount] = state->hand[0][handPos - 1];
-        }
-
-        trash = 0;
-
-        checkDiscardCard(handPos, player, state, trash); // trash = 0 check.
-        printf("All assertions passed #1.\n");
-        trash = 1;
-        handPos = rand() % 10;
-        checkDiscardCard(handPos, player, state, trash); // trash = 1 check.
-        printf("All assertions passed #2.\n");
-        state->handCount[player] = 1;
-        trash = -1;
-        checkDiscardCard(handPos, player, state, trash); // trash = -1 check.
-        printf("All assertions passed #3.\n");
-
-        printf("TESTS OK!\n\n");
-        free(state);
-        exit(0);
-        return 0;
 }

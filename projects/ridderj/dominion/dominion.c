@@ -644,7 +644,7 @@ int getCost(int cardNumber)
 }
 
 
-int adventurerCardFunc(struct gameState *state)
+int adventurerCardFunc(struct gameState *state, int handPos)
 {
          int z = 0;// this is the counter for the temp hand
          int drawntreasure=0;
@@ -657,12 +657,12 @@ int adventurerCardFunc(struct gameState *state)
                shuffle(currentPlayer, state);
             }
             drawCard(currentPlayer, state);
-            cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-2];//top card of hand is most recently drawn card.
+            cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
             if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
                drawntreasure++;
             else{
                 temphand[z]=cardDrawn;
-                state->handCount[currentPlayer]; //this should just remove the top card (the most recently drawn one).
+                state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
                 z++;
             }
          }
@@ -670,6 +670,8 @@ int adventurerCardFunc(struct gameState *state)
             state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
             z=z-1;
          }
+         //discard card from hand
+         discardCard(handPos, currentPlayer, state, 0);
          return 0;
 }
 
@@ -815,7 +817,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
        
        
      case adventurer:
-         adventurerCardFunc(state);
+         adventurerCardFunc(state, handPos);
          return 0;
 
 			

@@ -1,10 +1,8 @@
-/* -----------------------------------------------------------------------
- * test fullDeckCount()
- * 
- *
- * unittest2: unittest2.c dominion.o rngs.o
- *      gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
+/*Jonathan Lagrew
+ *test fullDeckCount()
+ *Notes:
+ *Testing that fullDeckCount works correctly for 2 deck, 2 hand and 2 discard pile cards. 
+ card numbers: 1 estate, 4 copper, 6 gold, province 3, smithy 13, tribute 19, embargo 22
  */
 
 #include "dominion.h"
@@ -20,20 +18,12 @@
 
 int main() {
     int i;
-    int seed = 1000;
-
-    int numPlayer = 2;
+    int seed = 1000; // seed for random number
+    int numPlayer = 3;
     int p, r;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, tribute, embargo};
-
-    // const char *cards[] = {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
-    //     "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
-    //     "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"
-    // };
-
-    struct gameState G;
-    int copperCount, estateCount;
+    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, tribute, embargo};
+    struct gameState G; 
+    int copperCount, estateCount;// copper count and estate count
     int count;
     int result;
 
@@ -41,32 +31,32 @@ int main() {
     r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
 #if (NOISY_TEST == 1)
-    printf("----------------- TESTING fullDeckCount():\n");
+    printf("\nTESTING fullDeckCount():\n");
 #endif
 
-    for (p = 0; p < numPlayer; p++)
+    for (p = 0; p < numPlayer; p++)// loop through players, for testing set to 2 players, 0 and 1 
     {
 #if (NOISY_TEST == 1)
-        printf("\n----------------- Testing for Player %d:\n", p);
-        printf("Adding the following to\n");
-        printf("    deck:         5 coppers\n");
-        printf("    hand:         10 golds\n");
-        printf("    discard pile: 2 provinces\n");
-        printf("    hand:         3 smithys\n");
-        printf("    discard pile: 4 tributes\n");
-        printf("    deck:         5 embargos\n");
+        printf("\nTesting for Player %d:\n", p);// player 0 then player 1
+        printf("Adding the following to the\n");
+        printf("deck:         5 coppers\n");
+        printf("hand:         10 golds\n");
+        printf("discard pile: 2 provinces\n");
+        printf("hand:         3 smithys\n");
+        printf("discard pile: 4 tributes\n");
+        printf("deck:         5 embargos\n");
+		printf("Test results:\n");
 #endif
 
-        // Estates
-        estateCount = 3;
-        result = fullDeckCount(p, 1, &G);
+        estateCount = 3; //setting estate count to 3
+        result = fullDeckCount(p, 1, &G); //result returning estate number
+		/* Here deck = hand + discard + deck */
 #if (NOISY_TEST == 1)
-        printf("estate result: %d, expected: %d\n", result, estateCount);
+        printf("estate result: %d, expected: %d\n", result, estateCount); 
 #endif
         assert(result == estateCount);
 
-        // Coppers
-        copperCount = 7;
+        copperCount = 7; //start with 2 coppers plus the 5 added
         result = fullDeckCount(p, 4, &G);
 #if (NOISY_TEST == 1)
         printf("copper result: %d, expected: %d\n", result, copperCount);
@@ -80,7 +70,7 @@ int main() {
             G.deckCount[p]++;
         }
         copperCount = copperCount + count;
-        result = fullDeckCount(p, 4, &G);
+        result = fullDeckCount(p, 4, &G); // copper card number 4
 #if (NOISY_TEST == 1)
         printf("updated copper result: %d, expected: %d\n", result, copperCount);
 #endif
@@ -92,71 +82,59 @@ int main() {
             G.hand[p][ G.handCount[p] ] = gold;
             G.handCount[p]++;
         }
-        result = fullDeckCount(p, 6, &G);
+        result = fullDeckCount(p, 6, &G); // gold card number 6
 #if (NOISY_TEST == 1)
         printf("gold result: %d, expected: %d\n", result, count);
 #endif
         assert(result == count);
 
-        // Test province (discard)
         count = 2;
         for (i = 0; i < count; i++) {
-            G.discard[p][ G.discardCount[p] ] = province;
+            G.discard[p][ G.discardCount[p] ] = province; // test provine in discard pile
             G.discardCount[p]++;
         }
-        result = fullDeckCount(p, 3, &G);
+        result = fullDeckCount(p, 3, &G); // province card number 3
 #if (NOISY_TEST == 1)
         printf("province result: %d, expected: %d\n", result, count);
 #endif
         assert(result == count);
 
-        // Test smithy (hand)
         count = 3;
         for (i = 0; i < count; i++) {
-            G.hand[p][ G.handCount[p] ] = smithy;
+            G.hand[p][ G.handCount[p] ] = smithy; // test smithy in hand
             G.handCount[p]++;
         }
-        result = fullDeckCount(p, 13, &G);
+        result = fullDeckCount(p, 13, &G); // smithy card number 13
 #if (NOISY_TEST == 1)
         printf("smithy result: %d, expected: %d\n", result, count);
 #endif
         assert(result == count);
 
-        // Test tribute (discard)
         count = 4;
         for (i = 0; i < count; i++) {
-            G.discard[p][ G.discardCount[p] ] = tribute;
+            G.discard[p][ G.discardCount[p] ] = tribute; // test tribute in discard pile
             G.discardCount[p]++;
         }
-        result = fullDeckCount(p, 19, &G);
+        result = fullDeckCount(p, 19, &G); // tribute card number 19
 #if (NOISY_TEST == 1)
         printf("tribute result: %d, expected: %d\n", result, count);
 #endif
         assert(result == count);
 
-        // Test embargo (deck)
-        count = 5;
-        for (i = 0; i < count; i++) {
+        count = 5; // setting embargo count to 5 
+        for (i = 0; i < count; i++) { // test embargo in deck
             G.deck[p][ G.deckCount[p] ] = embargo;
             G.deckCount[p]++;
         }
-        result = fullDeckCount(p, 22, &G);
+        result = fullDeckCount(p, 22, &G); // embargo card number 22
 #if (NOISY_TEST == 1)
         printf("embargo result: %d, expected: %d\n", result, count);
 #endif
         assert(result == count);
 
-        // 27 types of cards
-#if (NOISY_TEST == 1)
-        // printf("Totals of cards by type for Player %d:\n", p);
-        // for (i = 0; i < 27; i++) {
-        //     result = fullDeckCount(p, i, &G);
-        //     printf("Card count for %s: %d\n", cards[i], result);
-        // }
-#endif
     }
 
-    printf("\nAll tests passed!\n");
+    printf("\nAll tests successful!\n");
 
     return 0;
 }

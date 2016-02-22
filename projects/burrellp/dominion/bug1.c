@@ -75,7 +75,7 @@
  card, the player's coin total was not updated correctly. It should have increased by 2 
  but was always decreased by either 1 or 5. Another error only occured for the highest
  player in the game (e.g. player 3 in a 3 player game) - card 499 (the last card) in the 
- hand of one of the otehr players seemed to have changed. After tracing back through the 
+ hand of one of the other players seemed to have changed. After tracing back through the 
  code for playCard(), cardEffect(), and the embargo case in the switch statement, I am at
  a loss for what is causing the errors to occur. I have also reviewed my test conditions 
  closely but have not found an obvious error there either.

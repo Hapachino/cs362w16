@@ -399,7 +399,7 @@ int isGameOver(struct gameState *state) {
 
   //if three supply pile are at 0, the game ends
   j = 0;
-  for (i = 0; i < 25; i++)
+  for (i = 0; i < treasure_map+1; i++)
     {
       if (state->supplyCount[i] == 0)
 	{
@@ -655,11 +655,11 @@ int playSmithy(struct gameState *state, int handPos)
 	}
 
 	//discard card from hand
-	discardCard(handPos, currentPlayer, state, 1);
+	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
  
-int playAdventurer(struct gameState *state)
+int playAdventurer(struct gameState *state, int handPos)
 {
 	int drawntreasure=0;	 
 	int currentPlayer = whoseTurn(state);
@@ -679,10 +679,15 @@ int playAdventurer(struct gameState *state)
 			z++;
 		}
 	}
-	while(z-1>0){
-		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+	while(z-1>=0){
+		//state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+		//mark as played instead of discarding
+		state->playedCards[state->playedCardCount] = temphand[z-1];
+		state->playedCardCount++;
 		z=z-1;
 	}
+	
+	discardCard(handPos, currentPlayer, state, 0);
 	return 0;	 
 }
  
@@ -789,16 +794,16 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int i;
   int j;
   int k;
-  int x;
+  //int x;
   int index;
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
 
   int tributeRevealedCards[2] = {-1, -1};
-  int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
+  //int temphand[MAX_HAND];// moved above the if statement
+  //int drawntreasure=0;
+  //int cardDrawn;
+  //int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -807,7 +812,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-		return playAdventurer(state);
+		return playAdventurer(state, handPos);
 			
     case council_room:
       return playCouncil_Room(state, handPos);

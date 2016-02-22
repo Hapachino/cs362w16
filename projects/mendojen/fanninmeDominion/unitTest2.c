@@ -1,107 +1,205 @@
+/* -----------------------------------------------------------------------
+ *  Business requirements
+ *  1) Correctly sums up the treasure cards
+ *
+ * updateCoins: unittest2.c dominion.o rngs.o
+ *      gcc -o unit2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
+ *
+ * -----------------------------------------------------------------------
+ */
+
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <time.h>
-#include <stdlib.h>
-#include <math.h>
-#include <stdlib.h>
+#include "rngs.h"
 
-#define DEBUG 0
-#define NOISY_TEST 0
+// set NOISY_TEST to 0 to remove printfs from output
+#define NOISY_TEST 1
 
-//Unit test for isgameOver function
-//Preconditions:
-//function accepts struct gameState *state 
-
-//oracle makes sure returns valid 
-int unitTest(struct gameState *post){
-    srand(time(NULL));
-
-    //define variables
-    int success;
-    struct gameState pre;
-    memcpy(&pre,post,sizeof(struct gameState));
-
-    //call function
-    success=isGameOver(post);
-
-    //memcmp game state size
-    if (memcmp(&pre,post, sizeof(struct gameState))!=0){
-        #if (NOISY_TEST == 1)
-        printf ("Error in size of gamestate.\n");
-        #endif
-        return 1;
-        
+int main() {
+    int i;
+    int numPlayer = 2;
+    int maxBonus = 5;
+    int p,handCount;
+    int bonus;
+    struct gameState G;
+    int maxHandCount = 5;
+    // arrays of all coppers, silvers, and golds
+    int coppers[5];
+    int silvers[5];
+    int golds[5];
+	int mixCards1[5]={copper, copper, copper, copper, gold};
+	int mixCards2[5]={copper, copper, copper, silver, gold};
+	int mixCards3[5]={copper, silver, silver, gold, gold};
+	int mixCards4[5]={silver, silver, silver, gold, gold};
+	int mixCards5[5]={copper, silver, gold, gold, gold};
+	int mixCards6[5]={copper, copper, silver, gold, gold};
+	int mixCards7[5]={silver, silver, gold, gold, gold};
+	int mixCards8[5]={copper, gold, gold, gold, gold};
+	
+    for (i = 0; i < 5; i++)
+    {
+        coppers[i] = copper;
+        silvers[i] = silver;
+        golds[i] = gold;
     }
 
-    //assert (success==0);
-    if (success == -1){
-        #if (NOISY_TEST == 1)
-        printf ("Error in playCard function bad exit status.\n");
-        #endif
-        return 2;
-    }
+    printf ("TESTING updateCoins():\n");
+    for (p = 0; p < numPlayer; p++)
+    {
+        for (handCount = 1; handCount <= maxHandCount; handCount++)
+        {
+            for (bonus = 0; bonus <= maxBonus; bonus++)
+            {
+#if (NOISY_TEST == 1)
+                printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
+#endif
+                memset(&G, 23, sizeof(struct gameState));   // clear the game state
+                G.handCount[p] = handCount;                 // set the number of cards on hand
+                memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
+                updateCoins(p, &G, bonus);
+#if (NOISY_TEST == 1)
+                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
+#endif
+                assert(G.coins == handCount * 1 + bonus); // check if the number of coins is correct
 
-    //if stack of Province cards is empty, the game ends
-    if (post->supplyCount[province] < 0){
-        #if (NOISY_TEST == 1)
-        printf ("supply count is negative.\n");
-        #endif
-        return 3;
-    }
+                memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silver
+                updateCoins(p, &G, bonus);
+#if (NOISY_TEST == 1)
+                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
+#endif
+                assert(G.coins == handCount * 2 + bonus); // check if the number of coins is correct
 
-    return 0;
-}
-
-int main () {
-  //define variables  
-  int error, errorA, errorB,errorC;
-  errorB=0;
-  errorA=0; 
-  errorC=0;
-  int i, n, r, p;
-  //define a gamestate
-  struct gameState G;
-
-  printf ("Testing game is over function.\n");
-
-  printf ("RANDOM TESTS.\n");
-  //create random seed
-  SelectStream(2);
-  PutSeed(3);
-  //for 2000 test cases
-  for (n = 0; n < 2000; n++) {
-    for (i = 0; i < sizeof(struct gameState); i++) {
-      //fill gamestate with random bits between 0-256 using ofset
-      ((char*)&G)[i] = floor(Random() * 256);
-    }
-    p = floor(Random() * 2);
-    G.deckCount[p] = floor(Random() * MAX_DECK);
-    G.discardCount[p] = floor(Random() * MAX_DECK);
-    G.handCount[p] = floor(Random() * MAX_HAND);
-    //call function with test input
-    error=unitTest(&G);
-
-    if (error > 0){
-        if(error == 1){
-            errorA++;
-        }else if(error == 2){
-            errorB++;
-        }else{
-            errorC++;
+                memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
+                updateCoins(p, &G, bonus);
+#if (NOISY_TEST == 1)
+                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
+#endif
+                assert(G.coins == handCount * 3 + bonus); // check if the number of coins is correct
+            
+				
+			}
         }
     }
-  }
-  printf ("ALL Random TESTS Complete\n");
-  printf ("Errors type 1: %d ",errorA);
-  printf ("Error memory size wrong.\n");
-  printf ("Errors type 2: %d ",errorB);
-  printf("Error bad return value from function \n");
-  printf ("Errors type 3: %d ",errorC);
-  printf("Error negative supply count \n");
 
-  return 0;
+	p=1;
+#if (NOISY_TEST == 1)
+	printf("\n");
+	printf("The following tests the updateCoins with a mix of treasure cards and no bonus.\n");
+	printf("Testing updateCoins with 4 copper and 1 gold treasure cards.\n");
+#endif
+	memcpy(G.hand[p], mixCards1,sizeof(int) * handCount );
+	updateCoins(p, &G, 0);
+#if (NOISY_TEST == 1)
+	printf("G.coins= %d, expected= 7", G.coins);
+	if (G.coins==7)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	
+	printf("Testing updateCoins with 3 copper, 1 silver, and 1 gold treasure cards.\n");
+#endif
+	memcpy(G.hand[p], mixCards2,sizeof(int) * handCount );
+	updateCoins(p, &G, 0);
+#if (NOISY_TEST == 1)
+	printf("G.coins= %d, expected= 8", G.coins);
+	if (G.coins==8)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	printf("Testing updateCoins with 1 copper, 2 silver, and 2 gold treasure cards.\n");
+#endif
+	memcpy(G.hand[p], mixCards3,sizeof(int) * handCount );
+	updateCoins(p, &G, 0);
+#if (NOISY_TEST == 1)
+	printf("G.coins= %d, expected= 11", G.coins);
+ 	if (G.coins==11)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	
+	printf("Testing updateCoins with 3 silver and 2 gold treasure cards.\n");
+#endif
+	memcpy(G.hand[p], mixCards4,sizeof(int) * handCount );
+	updateCoins(p, &G, 0);
+#if (NOISY_TEST == 1)
+	printf("G.coins= %d, expected= 12", G.coins);
+ 	if (G.coins==12)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}  
+
+	printf("Testing updateCoins with 1 copper, 1 silver, and 3 gold treasure cards.\n");
+#endif
+	memcpy(G.hand[p], mixCards5,sizeof(int) * handCount );
+	updateCoins(p, &G, 0);
+#if (NOISY_TEST == 1)
+	printf("G.coins= %d, expected= 12", G.coins);
+ 	if (G.coins==12)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	
+	printf("Testing updateCoins with 2 copper, 1 silver, and 2 gold treasure cards.\n");
+#endif
+	memcpy(G.hand[p], mixCards6,sizeof(int) * handCount );
+	updateCoins(p, &G, 0);
+#if (NOISY_TEST == 1)
+	printf("G.coins= %d, expected= 10", G.coins);
+ 	if (G.coins==10)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	
+	printf("Testing updateCoins with 2 silver and 3 gold treasure cards.\n");
+#endif
+	memcpy(G.hand[p], mixCards7,sizeof(int) * handCount );
+	updateCoins(p, &G, 0);
+#if (NOISY_TEST == 1)
+	printf("G.coins= %d, expected= 13", G.coins);
+ 	if (G.coins==13)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+	
+	printf("Testing updateCoins with 1 copper and 4 gold treasure cards.\n");
+#endif
+	memcpy(G.hand[p], mixCards8,sizeof(int) * handCount );
+	updateCoins(p, &G, 0);
+#if (NOISY_TEST == 1)
+	printf("G.coins= %d, expected= 13", G.coins);
+ 	if (G.coins==13)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif	
+	printf("Tests Completed!\n");
+
+    return 0;
 }

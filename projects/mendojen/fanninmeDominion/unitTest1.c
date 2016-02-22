@@ -1,108 +1,352 @@
+/* -----------------------------------------------------------------------
+ *  Business requirements
+ *  1) Correctly obtains the cost of the card
+ *
+ * getCost: unittest1.c dominion.o rngs.o
+ *      gcc -o unit1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+ *
+ * -----------------------------------------------------------------------
+ */
+
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include "rngs.h"
 
-#include <time.h>
-#include <stdlib.h>
-#include <math.h>
-#include <stdlib.h>
-
-#define DEBUG 0
-#define NOISY_TEST 0
 // set NOISY_TEST to 0 to remove printfs from output
+#define NOISY_TEST 1
 
-/*code leveraged betterCard function and testUpdateCoins functions heavily.
-Unit test for playCard function
-Preconditions:
-function accepts int handPos, int choice1, int choice2, int choice3, struct gameState *state) */
 
-//oracle makes sure returns valid 
-int unitTest(struct gameState *post){
-    srand(time(NULL));
-
-    //define variables
-    int success;
-    struct gameState pre;
-    memcpy(&pre,post,sizeof(struct gameState));
-
-    //create an array to hold four integer inputs
-    int input[4];
-    //randomly generate 4 ints
-    for(int i=0; i<4; i++){
-        input[i]= rand();
-    }
-
-    //call function
-    success=playCard(input[0],input[1],input[2],input[3], post);
-
-    //memcmp game state size
-    assert (memcmp(&pre,post, sizeof(struct gameState))==0);
-
-    //assert (success==0);
-    if (success == -1){
-        #if (NOISY_TEST == 1)
-        printf ("Error in playCard function bad exit status.\n");
-        #endif
-        return 1;
-    }
-
-    //specific function check 
-    //confirm that actions is one less
-    if (pre.numActions != post->numActions+1){
-        #if (NOISY_TEST == 1)
-        printf("Error action count was not decrimented");
-        #endif    
-        return 2;
-    }
+int main() {
+    int result;
+    printf ("TESTING getCost():\n");
+	result = getCost(curse);
+#if (NOISY_TEST==1)	
+	printf ("Testing curse card cost.\n");
+	printf("Result: %d Expected: 0",result);
+	if (result==0)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(estate);
+#if (NOISY_TEST==1)
+	printf ("Testing estate card cost.\n");
+	printf("Result: %d Expected: 2",result);
+	if (result==2)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(duchy);
+#if (NOISY_TEST==1)
+	printf ("Testing duchy card cost.\n");
+	printf("Result: %d Expected: 5",result);
+	if (result==5)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(province);
+#if (NOISY_TEST==1)	
+	printf ("Testing province card cost.\n");
+	printf("Result: %d Expected: 8",result);
+	if (result==8)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(copper);
+#if (NOISY_TEST==1)	
+	printf ("Testing copper card cost.\n");
+	printf("Result: %d Expected: 0",result);
+	if (result==0)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(silver);
+#if (NOISY_TEST==1)	
+	printf ("Testing silver card cost.\n");
+	printf("Result: %d Expected: 3",result);
+	if (result==3)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(gold);
+#if (NOISY_TEST==1)	
+	printf ("Testing gold card cost.\n");
+	printf("Result: %d Expected: 6",result);
+	if (result==6)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(adventurer);
+#if (NOISY_TEST==1)	
+	printf ("Testing adventurer card cost.\n");
+	printf("Result: %d Expected: 6",result);
+	if (result==6)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(council_room);
+#if (NOISY_TEST==1)	
+	printf ("Testing council room card cost.\n");
+	printf("Result: %d Expected: 5",result);
+	if (result==5)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(feast);
+#if (NOISY_TEST==1)	
+	printf ("Testing feast card cost.\n");
+	printf("Result: %d Expected: 4",result);
+	if (result==4)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(gardens);
+#if (NOISY_TEST==1)	
+	printf ("Testing gardens card cost.\n");
+	printf("Result: %d Expected: 4",result);
+	if (result==4)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(mine);
+#if (NOISY_TEST==1)	
+	printf ("Testing mine card cost.\n");
+	printf("Result: %d Expected: 5",result);
+	if (result==5)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(remodel);
+#if (NOISY_TEST==1)	
+	printf ("Testing remodel card cost.\n");
+	printf("Result: %d Expected: 4",result);
+	if (result==4)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(smithy);
+#if (NOISY_TEST==1)	
+	printf ("Testing smithy card cost.\n");
+	printf("Result: %d Expected: 4",result);
+	if (result==4)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(village);
+#if (NOISY_TEST==1)
+	printf ("Testing village card cost.\n");
+	printf("Result: %d Expected: 3",result);
+	if (result==3)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(baron);
+#if (NOISY_TEST==1)	
+	printf ("Testing baron card cost.\n");
+	printf("Result: %d Expected: 4",result);
+	if (result==4)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(great_hall);
+#if (NOISY_TEST==1)	
+	printf ("Testing great hall card cost.\n");
+	printf("Result: %d Expected: 3",result);
+	if (result==3)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(minion);
+#if (NOISY_TEST==1)	
+	printf ("Testing minion card cost.\n");
+	printf("Result: %d Expected: 5",result);
+	if (result==5)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(steward);
+#if (NOISY_TEST==1)	
+	printf ("Testing steward card cost.\n");
+	printf("Result: %d Expected: 3",result);
+	if (result==3)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(tribute);
+#if (NOISY_TEST==1)	
+	printf ("Testing tribute card cost.\n");
+	printf("Result: %d Expected: 5",result);
+	if (result==5)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(ambassador);
+#if (NOISY_TEST==1)	
+	printf ("Testing ambassador card cost.\n");
+	printf("Result: %d Expected: 3",result);
+	if (result==3)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(cutpurse);
+#if (NOISY_TEST==1)	
+	printf ("Testing cutpurse card cost.\n");
+	printf("Result: %d Expected: 4",result);
+	if (result==4)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(embargo);
+#if (NOISY_TEST==1)	
+	printf ("Testing embargo card cost.\n");
+	printf("Result: %d Expected: 2",result);
+	if (result==2)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(outpost);
+#if (NOISY_TEST==1)
+	printf ("Testing outpost card cost.\n");
+	printf("Result: %d Expected: 5",result);
+	if (result==5)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(salvager);
+#if (NOISY_TEST==1)	
+	printf ("Testing salvager card cost.\n");
+	printf("Result: %d Expected: 4",result);
+	if (result==4)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(sea_hag);
+#if (NOISY_TEST==1)	
+	printf ("Testing sea_hag card cost.\n");
+	printf("Result: %d Expected: 4",result);
+	if (result==4)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	result = getCost(treasure_map);
+#if (NOISY_TEST==1)	
+	printf ("Testing treasure_map card cost.\n");
+	printf("Result: %d Expected: 4",result);
+	if (result==4)
+	{
+		printf("....PASS\n");
+	}
+	else{
+		printf("....FAIL\n");
+	}
+#endif
+	printf("Tests Completed!\n");
+	
     return 0;
-}
-
-
-int main () {
-  //define variables  
-  int i, n, p;
-  int error, errorA, errorB;
-  errorB=0;
-  errorA=0; 
-  //define a gamestate
-  struct gameState G;
-
-  printf ("Testing playCard.\n");
-
-  printf ("RANDOM TESTS.\n");
-  //create random seed
-  SelectStream(2);
-  PutSeed(3);
-  //for 2000 test cases
-  for (n = 0; n < 2000; n++) {
-    for (i = 0; i < sizeof(struct gameState); i++) {
-      //fill gamestate with random bits between 0-256 using ofset
-      ((char*)&G)[i] = floor(Random() * 256);
-    }
-    p = floor(Random() * 2);
-    G.deckCount[p] = floor(Random() * MAX_DECK);
-    G.discardCount[p] = floor(Random() * MAX_DECK);
-    G.handCount[p] = floor(Random() * MAX_HAND);
-
-    //call function with test input
-    error=unitTest(&G);
-
-    if (error > 0){
-        if(error == 1){
-            errorA++;
-        }else if(error > 1){
-            errorB++;
-        }
-    }
-  }
-  printf ("ALL Random TESTS Complete\n");
-  printf ("Errors type 1: %d ",errorA);
-  printf ("Error in playCard function bad exit status.\n");
-  printf ("Errors type 2: %d ",errorB);
-  printf("Error action count was not decrimented \n");
-
-  return 0;
 }

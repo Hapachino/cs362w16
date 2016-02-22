@@ -33,7 +33,7 @@ buyCard: unittest4.c dominion.o rngs.o
 testVillage: cardtest1.c dominion.o rngs.o
 	gcc -o card1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
 	
-testSalvager: cardtest2.c dominion.o rngs.o
+testBaron: cardtest2.c dominion.o rngs.o
 	gcc -o card2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
 	
 testSmithy: cardtest3.c dominion.o rngs.o

@@ -167,8 +167,8 @@ int main() {
          } 
        }
        
-       printf("    Total %d cards in discard deck & %d cards in deck,expected 0 & 3\n", G.discardCount[0],G.deckCount[0]);
-       if(G.handCount[0] != 7 && treasureFound != 2)
+       printf("    Total %d cards in discard deck\n", G.discardCount[0]);
+       if(G.discardCount[0] != 0)
           printf("TEST FAIL\n");
     
     

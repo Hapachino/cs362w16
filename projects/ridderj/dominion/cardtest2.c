@@ -96,7 +96,7 @@ int main() {
 
        
        printf("    Total %d cards in hand,expected 7\n", G.handCount[0]);
-       if(G.handCount[0] != 7);
+       if(G.handCount[0] != 7)
          printf("TEST FAIL\n");
        
        
@@ -207,7 +207,9 @@ int main() {
        
        
        printf("    Total %d smithy cards in hand,expected 0\n", smithyFound);
-       assert(smithyFound == 0);
+       //assert(smithyFound == 0);
+       if(smithyFound != 0)
+          printf("TEST FAIL\n");
       
 
     
@@ -252,7 +254,7 @@ int main() {
        
        
        supplyCountCheck = memcmp(sizeS.supplyCount, G.supplyCount, sizeof(G.supplyCount));
-       printf("    Total memcmp is 0,expected 0\n", supplyCountCheck);
+       printf("    Total memcmp is %d,expected 0\n", supplyCountCheck);
        assert(supplyCountCheck == 0);
     
     

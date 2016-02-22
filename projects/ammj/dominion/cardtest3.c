@@ -158,36 +158,6 @@ struct cardResults* declCardResults() {
 }
 
 /**
- * Function: calcCoins
- * Inputs: array of cards, array element count
- * Outputs: coin calculation
- * Description:  Calculates coins in a given hand
- */
-int calcCoins(int *hand, int handCount){
-
-	int i;
-	int coinCount = 0;
-
-	for(i=0; i < handCount; i++)
-	{
-		if(hand[i] == gold)
-		{
-			coinCount = coinCount + GOLD_VALUE;
-		}
-		else if(hand[i] == silver)
-		{
-			coinCount = coinCount + SILVER_VALUE;
-		}
-		else if(hand[i] == copper)
-		{
-			coinCount = coinCount + COPPER_VALUE;
-		}
-	}
-
-	return coinCount;
-}
-
-/**
  * Function: verifyResults
  * Inputs: struct gameState, struct gameState, struct cardResults
  * Outputs: 0 on successful completion

@@ -229,115 +229,6 @@ void resetResult(struct cardResults* results){
 }
 
 /**
- * Function: cardCount
- * Inputs: card, pile
- * Outputs: total of card in hand
- * Description:  Calculates the frequency of a card in a hand
- */
-int cardCount(int card, int *pile, int pileCount)
-{
-	assert(card >= 0);
-	assert(pileCount >= 0);
-
-	int i;
-	int count = 0;
-
-	for(i = 0; i < pileCount; i++)
-	{
-		if(pile[i] == card)
-			count++;
-	}
-
-	if(DEBUGA)
-		printf("\nCardCount for: %d, Count: %d\n", card, count);
-
-	return count;
-}
-
-/**
- * Function: calcCoins
- * Inputs: array of cards, array element count
- * Outputs: coin calculation
- * Description:  Calculates coins in a given hand
- */
-int calcCoins(int *hand, int handCount){
-
-	// verify we have a hand or return error
-	if(handCount < 0)
-		return -1;
-
-	int i;
-	int coinCount = 0;
-
-	for(i=0; i < handCount; i++)
-	{
-		if(hand[i] == gold)
-		{
-			coinCount = coinCount + GOLD_VALUE;
-		}
-		else if(hand[i] == silver)
-		{
-			coinCount = coinCount + SILVER_VALUE;
-		}
-		else if(hand[i] == copper)
-		{
-			coinCount = coinCount + COPPER_VALUE;
-		}
-	}
-
-	return coinCount;
-}
-
-/**
- * Function: updatePile
- * Inputs: player, count of elements to update, pile type to update, struct gameState
- * Outputs: None
- * Description:  updates a pile of cards to the number of elements requested in count
- */
-int updatePile(int player, int count, int pile, struct gameState *state){
-
-	if(player < 0 || player > MAX_PLAYERS)
-		return -1;
-
-	if(count < 0)
-		return -1;
-
-	int i;
-	int *ptr;
-	int oldCount;
-
-	if(pile == HAND)
-	{
-		oldCount = state->handCount[player];
-		state->handCount[player] = count;
-		ptr = state->hand[player];
-	}
-	else if(pile == DECK)
-	{
-		oldCount = state->deckCount[player];
-		state->deckCount[player] = count;
-		ptr = state->deck[player];
-	}
-	else if(pile == DISCARD)
-	{
-		oldCount = state->discardCount[player];
-		state->discardCount[player] = count;
-		ptr = state->discard[player];
-	}
-
-	for(i = 0; i < count; i++){
-		ptr[i] = random_number(0, treasure_map);
-	}
-
-	//clear values higher than count
-	for(i = count; i < oldCount; i++){
-		ptr[i] = 0;
-	}
-
-	return 0;
-}
-
-/**
  * Function: PrintDecks
  * Inputs: player, activeGame, controlGame
  * Outputs: 0 on successful game completion
@@ -604,7 +495,7 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 
 	// check 1 less estate card
 	// applies to estate in preGame Hand and discard chosen only
-	if(choice == 1)
+	if(choice == 1 && preCount > 0)
 	{
 		if(!(postCount == preCount - 1))
 		{
@@ -757,11 +648,6 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 	}
 
 	verifyGameState(activeGame, controlGame, results);
-
-	return 0;
-}
-
-int setupTest(struct gameState *controlGame, struct gameState *activeGame){
 
 	return 0;
 }

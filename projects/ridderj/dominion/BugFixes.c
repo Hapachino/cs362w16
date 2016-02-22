@@ -107,3 +107,58 @@ Fix 1(Fixes bug 1):
       discardCard(handPos, currentPlayer, state, 0);//LINE 674
 
  -Other bugs fixed in Marco Zamora bug report.
+ 
+ 
+ 
+ 
+/***********************************
+//FROM Jason Ridder(Me)   
+/*********************************** 
+Testing scoreFor()------------------------------------------
+   -Bug found. If there were any cards in the deck card pile,
+   sometimes the score returned would be incorrect.
+
+   Example of failed test:
+   
+      Testing player 0 with 3 province card(s).
+      Amount in location: Deckcards: 2  HandCards: 0 DiscardCards: 1. Point Value: 6
+      Score = 12, expected = 18 TEST FAILED
+  ***********************************/   
+  
+  
+  
+  
+   Fix 1: Changed state->discardCount[player] to state->deckCount[player]
+   
+     for (i = 0; i < state->deckCount[player]; i++) //LINE 444 updated
+     
+ 
+ 
+ 
+ 
+/***********************************
+//FROM Jason Ridder(Me)   
+/***********************************
+Testing isGameOver()------------------------------------------
+   -Bug found on test 4. Function doesn't work correctly with card piles
+   sea_hag and treasure_map run to zero.
+      
+      Test Assert Fail:
+         Testing estate, tribute, and sea_hag
+         Return value = 0, expected = 1
+            TEST FAIL******
+
+         Testing estate, tribute, and treasure_map
+         Return value = 0, expected = 1
+            TEST FAIL******
+    ***********************************/ 
+
+    Fix: There are cards 0-26 in the array, the for loop statement only has
+      25, it should be 27
+
+   Original:
+      for (i = 0; i < 25; i++)  //LINE 402 
+
+   Update:
+       for (i = 0; i < 27; i++)  //LINE 402 
+       

@@ -78,6 +78,12 @@ randomtestadventurer.out: randomtestadventurer
 randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
 	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 
+bugtestadv.out: bugtestadv
+	./bugtestadv > bugtestadv.out
+
+bugtestadv: bugtestadv.c dominion.o rngs.o
+	gcc -o bugtestadv -g bugtestadv.c dominion.o rngs.o $(CFLAGS)
+
 randomtestcard.out: randomtestcard
 	./randomtestcard > randomtestcard.out
 	gcov -b dominion >> randomtestcard.out

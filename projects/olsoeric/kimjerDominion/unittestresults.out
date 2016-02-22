@@ -1,0 +1,104 @@
+|------------------------------------------|
+  Running tests on smithy_play():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on adventurer_play():
+|------------------------------------------|
+Running Scenario 1...
+VAL OF Z IS : 6
+the discard count is : 0
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,4
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 2
+Running Scenario 2...
+VAL OF Z IS : 7
+the discard count is : 0
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 5,5
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 4
+Running Scenario 3...
+VAL OF Z IS : 0
+the discard count is : 0
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 6,6
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 6
+Running 5 Random Scenarios...
+VAL OF Z IS : 6
+the discard count is : 0
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,6
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 8
+VAL OF Z IS : 4
+the discard count is : 0
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 5,5
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 10
+VAL OF Z IS : 9
+the discard count is : 0
+state.handCount failed. (expected=7, actual=7) last 2 in hand = 7,5
+Deck+Discard count failed. (expected=10, actual=11)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 13
+VAL OF Z IS : 4
+the discard count is : 0
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,4
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 15
+VAL OF Z IS : 8
+the discard count is : 0
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,4
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 17
+Tests Complete: adventurer_play() failed 17 tests.
+
+|------------------------------------------|
+  Running tests on council_room_play():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on village_play():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on updateCoins():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on gainCard():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on shuffle():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on discardCard():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+File 'dominion.c'
+Lines executed:30.92% of 608
+Branches executed:24.82% of 419
+Taken at least once:22.67% of 419
+Calls executed:20.41% of 98
+dominion.c:creating 'dominion.c.gcov'
+

@@ -1,6 +1,6 @@
 
-
-
+/***********************************
+//FROM Marco Zamora
 /***********************************
 * Testing Jason Ridder's dominion card functions
 * smithyCardFunc
@@ -18,7 +18,9 @@ for (i = 0; i < 3; i++)
    drawCard(currentPlayer, state);
    }
       drawCard(currentPlayer, state);  //LINE 684 - Removed to fix bug.
-      
+
+/***********************************
+//FROM Marco Zamora      
 /***********************************
 * adventurerCardFunc
 * Bugs:
@@ -36,10 +38,72 @@ for (i = 0; i < 3; i++)
 	after test #12.
 *********************/
 
-Line 662 update from this:
-cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-2]; //LINE 662
+Fix 1:
+   Line 662 update from this:
+   cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-2]; //LINE 662
 
-To this:
-cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]; //LINE 662
+   To this:
+   cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]; //LINE 662
 
-Negative 2 update to negative 1, cardDrawn now take from top of card.
+   Negative 2 update to negative 1, cardDrawn now take from top of card.
+
+Fix 2:
+   Line 665:
+     state->handCount[currentPlayer]; //this should just remove the top card (the most recently drawn one).
+
+   Should be this:
+     state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one). 
+
+
+ /***********************************
+//FROM James Linnenburger    
+/***********************************
+Adventurer Card Test:
+-----------------------------------------------------------------------------
+-------------------------------------------------------------
+TEST 1: At least 2 treasure cards in player's deck
+-------------------------------------------------------------
+Starting hand: [4, 1, 4, 4, 7]
+Starting deck: [4, 4, 1, 1, 4]
+Starting discard: [ ]
+# coin cards: 3
+After adventurer card has been played:
+           Cards in hand: 10 [6 expected]
+           Cards in deck: 0 [1 expected]
+        Cards in discard: 3 [3 expected]
+            Played cards: 0 [0 expected]
+Player's hand: [4, 1, 4, 4, 7, 4, 1, 1, 4, 4]
+Expected hand: [4, 1, 4, 4, 4, 4]
+Player's deck: [ ]
+Expected deck: [4]
+Player's discard: [1, 1, 7]
+Expected discard: [7, 1, 1]
+        Gamestates equal: 0
+-------------------------------------------------------------
+TEST 1 STATUS:  **** FAILURE **** FAILURE **** FAILURE ***
+-------------------------------------------------------------
+-------------------------------------------------------------
+TEST 3: Only 1 treasure available
+-------------------------------------------------------------
+-------------------------------------------------------------
+TEST 4: 0 treasures available
+-------------------------------------------------------------
+
+Bugs discovered in the Adventure card:
+---------------------------------------------------------------------------------------------
+1. Adventurer card was not removed from the player's hand when played. (See test 1 details)
+2. Non treasure cards drawn were not removed from the player's hand.   (See test 1 details)
+3. 3 treasure cards were drawn instead of only 2                       (See test 1 details)
+4. Program hangs when there is only 1 treasure available in the 
+   player's deck/discard.
+*********************/
+
+Fix 1(Fixes bug 1):
+   Added handPost parameter in file dominion.c:
+      int adventurerCardFunc(struct gameState *state, int handPos) //LINE 647
+   Added handPost parameter in file dominion_helpers.h:
+      int adventurerCardFunc(struct gameState *state, int handPos); //LINE 13
+   Added discardCard function so card is removed.
+      discardCard(handPos, currentPlayer, state, 0);//LINE 674
+
+ -Other bugs fixed in Marco Zamora bug report.

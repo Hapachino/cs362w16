@@ -681,7 +681,6 @@ int smithyCardFunc(struct gameState *state, int handPos)
 	{
 	  drawCard(currentPlayer, state);
 	}
-		drawCard(currentPlayer, state);
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;

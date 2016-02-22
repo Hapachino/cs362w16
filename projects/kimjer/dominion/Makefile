@@ -51,7 +51,7 @@ counciltest: dominion.o rngs.o cardFunctions.o counciltest.c
 villagetest: dominion.o rngs.o cardFunctions.o villagetest.c
 	gcc -o villagetest villagetest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 
-unittests: smithytest adventurertest unittest2
+unittests: smithytest adventurertest unittest2 
 	gcc -o smithytest smithytest.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
 	./smithytest &> unittestresult.out
 	gcov -b smithytest.c >> unittestresult.out	
@@ -95,9 +95,24 @@ unittests: smithytest adventurertest unittest2
 
 	gcov -b dominion.c >> unittestresult.out	
 	cat dominion.c.gcov >> unittestresult.out
-	
+
 	gcc -o randomtestcard randomtestcard.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./randomtestcard > randomtestcard.out
+
+	gcov -b dominion.c >> randomtestcard.out
+
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./randomtestadventurer > randomtestadventurer.out
+
+	gcov -b dominion.c >> randomtestadventurer.out
 	
+randomtests: dominion.o cardFunctions.o rngs.o
+	gcc -o randomtestcard.out randomtestcard.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	./randomtestcard.out >> randomhistory.c
+	gcov -b randomtestcard.c >> randomhistory.c
+	gcc -o randomtestcard randomtestcard.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o cardFunctions.o rngs.o $(CFLAGS)
+
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out	

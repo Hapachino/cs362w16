@@ -48,6 +48,18 @@ unittest3: unittest3.c dominion.o rngs.o
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
 
+cardtest1assgn5.out: dominion.o rngs.o
+	gcc -o cardtest1assgn5 -g  cardtest1assgn5.c dominion.o rngs.o $(CFLAGS)
+	./cardtest1assgn5 > cardtest1assgn5.out
+	gcov -b dominion.c >> cardtest1assgn5.out
+	cat dominion.c.gcov >> cardtest1assgn5.out
+
+cardtest5assgn5.out: dominion.o rngs.o
+	gcc -o cardtest5assgn5 -g  cardtest5assgn5.c dominion.o rngs.o $(CFLAGS)
+	./cardtest5assgn5 > cardtest5assgn5.out
+	gcov -b dominion.c >> cardtest5assgn5.out
+	cat dominion.c.gcov >> cardtest5assgn5.out	
+
 unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 	./cardtest1 &>  unittestresults.out
 	./cardtest2 >>  unittestresults.out

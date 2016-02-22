@@ -1,117 +1,199 @@
-/******************************************************************************
- * Author: Mark Giles
- * Filename: randomtestcard.c
- * Date Created: 2/13/2016
- * Last Modified: 2/13/2016
- * Description: This program performs random tests on the effects of the 
- *   village card in the dominion card game as implemented in the dominion.c
- *   file. The random tests attempt to reach maximum boundary and path coverage
- *   testing by automatically generating combinations of player hands and 
- *   calling the villageEffect function to compare expected results against 
- *   actual results.
- *****************************************************************************/
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <time.h>
-#include <string.h>
+/******************
+ * Eric Olson
+ * CS362_Assignment4
+ * Great Hall Card Function Random Test (Draw 1 Card, +1 Action)
+ ******************/
 
 #include "dominion.h"
-#include "dominion_helpers.h"
 #include "rngs.h"
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <string.h>
 
-int main(int argc, char *argv[]) {
-	struct gameState state,		// initialized game state for testing
-					 backup;	// backup game state for comparisons
-	// array of kingdom cards for game initialization
-	int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, 
-							cutpurse, sea_hag, tribute, smithy};
-	int randomSeed = 10000,
-		numTests = 1000,
-		numPlayers = 2,
-		isValidDraw = 1,
-		isValidActions = 1,
-		isValidDiscard = 1,
-		currentPlayer = 0,
-		handpos,
-		i = 0,
-		j = 0,
-		numPassed = 0,
-		numFailed = 0;
 
-	for (i = 0; i < numTests; i++) {
-		// reset validation check to 1, 0 if test fails
-		isValidDraw = 1;
-		isValidActions = 1;
-		isValidDiscard = 1;
-		// setup working copy of game
-		initializeGame(numPlayers, kingdomCards, randomSeed, &state);
-		// randomize number of cards in player's hand
-		state.handCount[currentPlayer] = (rand() % 10) + 1;
-		// randomize position of village card and place it in hand
-		handpos = rand() % state.handCount[currentPlayer];
-		// randomize the player's deck count
-		state.deckCount[currentPlayer] = rand() % 5;
-		// fill in the rest of the cards in the player's hand
-		for (j = 0; j < state.handCount[currentPlayer]; j++) {
-			if (j != handpos)
-				state.hand[currentPlayer][j] = rand() % 26;
-			else
-				state.hand[currentPlayer][j] = village;
-		}
-		// copy game state to backup for error detection
-		memcpy(&backup, &state, sizeof(struct gameState));
-		// call village card effect
-		villageEffect(currentPlayer, &state, handpos);
-		// check drawcard component
-		if (state.handCount[currentPlayer] != (backup.handCount[currentPlayer]))
-			isValidDraw = 0;
-		if (state.deckCount[currentPlayer] != backup.deckCount[currentPlayer] - 1) {
-			isValidDraw = 0;
-		}
-		if (state.hand[currentPlayer][state.handCount[currentPlayer] - 1] == -1) {
-			isValidDraw = 0;
-		}
-		// check additional actions
-		if (state.numActions != backup.numActions + 2) {
-			isValidActions = 0;
-		}	
-		// check village card is discarded
-		if (state.playedCards[state.playedCardCount - 1] != village) {
-			isValidDiscard = 0;
-		}	
-		// print test conditions if the test failed
-		if (isValidDraw == 0 || isValidActions == 0 || isValidDiscard == 0) {
-			printf("TEST %i\n", i + 1);
-			printf("Function Used: villageEffect(%i, &state, %i);\n", currentPlayer, handpos);
-			printf("Position of village card: %i\n", handpos);
-			printf("Number of Cards in Hand: %i\n", backup.handCount[currentPlayer]);
-			printf("Starting deck count: %i\n", backup.deckCount[currentPlayer]);
-			printf("Cards in hand: ");
-			for (j = 0; j < backup.handCount[currentPlayer]; j++) {
-				printf("%i, ", backup.hand[currentPlayer][j]);
-			}
-			printf("\n");
-			printf("Random Seed: %i\n", randomSeed);
-			printf("Failed Item(s): \n");
-			if (isValidDraw == 0)
-				printf("Invalid draw card operation\n");
-			if (isValidActions == 0)
-				printf("Invalid number of actions\n");
-			if (isValidDiscard == 0)
-				printf("Invalid discard operation\n");	
-			numFailed++;
-		} else {
-			numPassed++;
-		}
-	
-		randomSeed++;
-	}
+int validate(struct gameState *pre, struct gameState *post, int errors);
+void basic_setup(struct gameState *pre, struct gameState *post);
+int scenario_stage(struct gameState *pre, struct gameState *post);
 
-	printf("\nTotal Tests: %i\n", numTests);
-	printf("Total Passed: %i\n", numPassed);
-	printf("Total Failed: %i\n", numFailed);
+int main(){
+  struct gameState *pre = malloc(sizeof(struct gameState)), *post = malloc(sizeof(struct gameState));
+  int i, errors = 0, gh_pos;
+  srand(time(NULL));
+  
+  printf("\n|------------------------------------------|\n");
+  printf("  Running tests on great_hall_play():\n");
+  printf("|------------------------------------------|\n");
+  
+  /***** SCENARIO 1(Randoms) *****/
+  printf("Running 250,000 Random Scenarios...\n");
+  for (i = 0; i < 250000; i++){
+    //Setup Scenario:
+    gh_pos = scenario_stage(pre, post);  //Stage deck/discard/hand.
+    //Have player 0 play great hall card.  
+    great_hall_play(0, post, gh_pos);
+    //Check results.
+    errors = validate(pre, post, errors);
+  }
 
-	return 0;
+  
+  //Report Findings
+  if (errors) { printf("Tests Complete: great_hall_play() failed %d tests.\n\n", errors); }
+  else { printf("Tests Complete: No errors found.\n\n"); }
+
+  return 0;  
+}
+  
+int scenario_stage(struct gameState *pre, struct gameState *post){
+  int decksize, discardsize, handsize, gh_pos = -1, i;
+
+  basic_setup(pre, post);
+  //Clear out hand/deck/discard for random assignment.
+  memset(post->deck[0], 0, MAX_DECK * sizeof(int));
+  memset(post->hand[0], 0, 5 * sizeof(int));
+  memset(post->discard[0], 0, MAX_DECK * sizeof(int));
+  
+  //Randomize deck
+  decksize = rand() % MAX_DECK;
+  post->deckCount[0] = decksize;
+  for (i = 0; i < decksize; i++){
+     post->deck[0][i] = rand() % 27;
+  }
+  
+  //Randomize discard (with at minimum 10 total deck/discard cards)
+  discardsize = rand() % MAX_DECK;
+  if (decksize + discardsize < 10) { discardsize = 10; }  //To ensure at least 10 cards in deck/hand combined.
+  post->discardCount[0] = discardsize;
+  for (i = 0; i < discardsize; i++){
+     post->discard[0][i] = rand() %27;
+  }
+  
+  //Randomize hand
+  handsize = rand() % (MAX_HAND - 1);  //To allow room for 1 great_hall card to be added.
+  post->handCount[0] = handsize;
+  for (i = 0; i < handsize; i++){
+     post->hand[0][i] = rand() % 27;
+     if (post->hand[0][i] == great_hall) { gh_pos = i; }  //Identify where adventurer card is assigned.
+  }
+  if (gh_pos == -1) {
+     post->hand[0][handsize] = great_hall;  //Add a new Great Hall card if one wasn't randomly assigned.
+     post->handCount[0]++;
+     gh_pos = handsize;
+  }
+  
+  //Make sure pre == post.
+  memcpy(pre, post, sizeof(struct gameState));
+
+  return gh_pos;  //So we know which card to play.
+}
+  
+  
+void basic_setup(struct gameState *pre, struct gameState *post){
+  int i, j, try, k[10] = { 0 };
+  //Clear any previous data.
+  memset(pre, 0, sizeof(struct gameState));
+  memset(post, 0, sizeof(struct gameState));
+  
+  //randomize kingdom cards & initalize a game.
+  k[0] = adventurer;
+  for (i = 1; i < 10; i++) {
+    do{
+      //Pick random kingdom card.
+      try = ((rand() % 20) + 7);
+      for (j = 0; j <= i; j++) {
+        if (k[j] == try) { break; }  //If already used, break and try another random kingdom card.
+        if (j == i) { k[i] = try; }  //If no duplicates found, assigned random kingdom card to array.
+      }
+    } while (k[i] == 0);      
+  }
+  if (initializeGame(2, k, ((rand() % 500) + 1), post) != 0) { printf( "Initalization of game failed.\n"); }
+  
+  //Ensure player 0 has adventurer card in hand.
+  post->hand[0][5] = adventurer;
+  post->handCount[0]++;
+  
+  //And create identical copies of gamestate before test.
+  memcpy(pre, post, sizeof(struct gameState));
+}
+  
+int validate(struct gameState *pre, struct gameState *post, int errors){
+  int i;
+  
+  //Check pre vs post gameState's to ensure intended changes occured, and no unintended changes occured.
+  if (pre->numPlayers != post->numPlayers){ 
+    printf("state.numPlayers failed. (expected=%d, actual=%d)\n", pre->numPlayers, post->numPlayers);
+    errors++;   
+  }
+  for (i = 0; i < treasure_map + 1; i++) {
+    if (pre->supplyCount[i] != post->supplyCount[i]){ 
+      printf("state.supplyCount[%d] failed. (expected=%d, actual=%d)\n", 
+	     i, pre->supplyCount[i], post->supplyCount[i]);
+      errors++;  
+    }
+    if (pre->embargoTokens[i] != post->embargoTokens[i]){ 
+      printf("state.embargoTokens[%d] failed. (expected=%d, actual=%d)\n", 
+	     i, pre->embargoTokens[i], post->embargoTokens[i]);
+      errors++;  
+    }
+  }
+  if (pre->outpostPlayed != post->outpostPlayed){ 
+    printf("state.outpost->layed failed. (expected=%d, actual=%d)\n", pre->outpostPlayed, post->outpostPlayed);
+    errors++;  
+  }
+  if (pre->outpostTurn != post->outpostTurn){ 
+    printf("state.outpost->urn failed. (expected=%d, actual=%d)\n", pre->outpostTurn, post->outpostTurn);
+    errors++;  
+  }
+  if (pre->whoseTurn != post->whoseTurn){ 
+    printf("state.whoseTurn failed (expected=%d, actual=%d).\n", pre->whoseTurn, post->whoseTurn);
+    errors++;  
+  }
+  if (pre->phase != post->phase){ 
+    printf("state.phase failed. (expected=%d, actual=%d)\n", pre->phase, post->phase);
+    errors++;  
+  }
+  //Make sure actions was increased by 1.
+  if (pre->numActions != post->numActions - 1){ 
+    printf("state.numActions failed. (expected=%d, actual=%d)\n", pre->numActions + 1, post->numActions);
+    errors++;  
+  }
+  if (pre->coins != post->coins){ 
+    printf("state.coins failed. (expected=%d, actual=%d)\n", pre->coins, post->coins);
+    errors++;  
+  }
+  if (pre->numBuys != post->numBuys){ 
+    printf("state.numBuys failed. (expected=%d, actual=%d)\n", pre->numBuys, post->numBuys);
+    errors++;  
+  }
+  //Actually check if player drew 1 card (and played 1):
+  if (pre->handCount[0] != post->handCount[0]){ 
+    printf("state.handCount failed. (expected=%d, actual=%d)\n", pre->handCount[0] + 1, post->handCount[0]);
+    errors++;  
+  }
+  if (pre->handCount[1] != post->handCount[1]){ 
+    printf("state.handCount[1] failed. (expected=%d, actual=%d)\n", pre->handCount[1], post->handCount[1]);
+    errors++;
+  }
+  //Ensure 1 cards removed from deck/discard.
+  if (pre->deckCount[0] + pre->discardCount[0] != post->deckCount[0] + post->discardCount[0] + 1){ 
+    printf("Deck+Discard count failed. (expected=%d, actual=%d)\n",pre->deckCount[0] + pre->discardCount[0] - 1,
+	   post->deckCount[0] + post->discardCount[0]);
+    errors++;
+  }
+  if (pre->deckCount[1] != post->deckCount[1]){ 
+    printf("state.deckCount[1] failed. (expected=%d, actual=%d)\n", pre->deckCount[1], post->deckCount[1]);
+    errors++;
+  }
+  if (pre->discardCount[1] != post->discardCount[1]){ 
+    printf("state.discardCount[1] failed. (expected=%d, actual=%d)\n", 
+	   pre->discardCount[1], post->discardCount[1]);
+    errors++;
+  }
+  //Ensure great_hall card moved to played after use.
+  if (post->playedCardCount != pre->playedCardCount + 1){ 
+    printf("state.playedCardCount failed. (expected=%d, actual=%d)\n", pre->playedCardCount + 1, post->playedCardCount);
+    errors++;
+  }
+
+  return errors;
 }

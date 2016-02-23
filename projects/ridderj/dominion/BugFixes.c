@@ -160,5 +160,53 @@ Testing isGameOver()------------------------------------------
       for (i = 0; i < 25; i++)  //LINE 402 
 
    Update:
-       for (i = 0; i < 27; i++)  //LINE 402 
+       for (i = 0; i < 27; i++)  //LINE 402
        
+       
+       
+/***********************************
+//FROM Jason Ridder(Me)   
+/***********************************
+Testing village card------------------------------------------
+   TEST 1: Increase current players hand by 1 card.
+   -No bugs found
+
+   TEST 2: Actions increased by 2.
+   -No bugs found
+   
+   TEST 3: Increase current players hand +1 card and +2 actions with different player sizes.
+   - Bugs found.
+      -No bugs found when only 2 players, actions increase not correct when > 2 players.
+      
+            Testing with 2 players
+               Current Actions 3 ,expected 3
+               Total 5 cards in hand,expected 5
+            Testing with 3 players
+               Current Actions 4 ,expected 3
+                  TEST FAIL
+               Total 5 cards in hand,expected 5
+            Testing with 4 players
+               Current Actions 5 ,expected 3
+                  TEST FAIL
+               Total 5 cards in hand,expected 5
+   
+   TEST 4: Play village card when players deck is empty.
+   - Bugs found.
+       -Same action bug found in test 3. Having empty deck using village card
+         show no bugs.
+         
+            Testing with 2 players
+               Current deck count 4, hand count 5, and actions 3;expected 4,5,&3
+            Testing with 3 players
+               Current deck count 4, hand count 5, and actions 4;expected 4,5,&3
+                    TEST FAIL
+            Testing with 4 players
+               Current deck count 4, hand count 5, and actions 5;expected 4,5,&3
+                     TEST FAIL
+    ***********************************/
+
+Updated line 700
+From:
+state->numActions = state->numActions + state->numPlayers;
+To:
+state->numActions = state->numActions + 2;  

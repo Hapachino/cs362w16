@@ -332,7 +332,7 @@ int main() {
              
              
              supplyCountCheck = memcmp(sizeS.supplyCount, G.supplyCount, sizeof(G.supplyCount));
-             printf("    Total memcmp is 0,expected 0\n", supplyCountCheck);
+             printf("    Total memcmp is %d,expected 0\n", supplyCountCheck);
              assert(supplyCountCheck == 0);
         
 

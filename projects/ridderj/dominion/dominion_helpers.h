@@ -10,7 +10,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state,
 int gainCard(int supplyPos, struct gameState *state, int toFlag, int player);
 int getCost(int cardNumber);
 
-int adventurerCardFunc(struct gameState *state);
+int adventurerCardFunc(struct gameState *state, int handPos);
 int smithyCardFunc(struct gameState *state, int handPos);
 int villageCardFunc(struct gameState *state, int handPos);
 int cutpurseCardFunc(struct gameState *state, int handPos);

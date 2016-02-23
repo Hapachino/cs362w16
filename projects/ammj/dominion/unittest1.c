@@ -19,6 +19,7 @@
 #include <time.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "dominion_cards.h"
 #include "unittest.h"
 #include "rngs.h"
 

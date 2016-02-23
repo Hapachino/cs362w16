@@ -1,11 +1,8 @@
 /* -----------------------------------------------------------------------
- *isGameOver() Unit Testing file
- *Author: James Linnenburger - Oregon State CS362 Spring 2016
- *
- *testUnit1: unittest1.c dominion.o rngs.o
- *	gcc -0 unittest1 dominion.o rngs.o unittest1.c $(CFLAGS)
- *
- *
+ * Testing fullDeckCount()
+ Basic requirements of fullDeckCount()
+   1)Count how many of one card are in all of
+      the decks.
  * -----------------------------------------------------------------------
  */
 
@@ -13,272 +10,82 @@
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <assert.h>
 #include "rngs.h"
+#include <math.h>
 
 
-
-//Determine if two gameStates are identical or not: Return 1 if identical, 0 if not
-int statesAreEqual(struct gameState *g1, struct gameState *g2)
-{
-    int i,j ;
-
-    if(g1->numPlayers != g2->numPlayers) return 0;
-    //for(i = 0; i < treasure_map+1; i++)
-    //    if(g1->supplyCount[i] != g2->supplyCount[i]) return 0;
-    for(i = 0; i < treasure_map+1; i++)
-        if(g1->embargoTokens[i] != g2->embargoTokens[i]) return 0;
-    if(g1->outpostPlayed != g2->outpostPlayed) return 0;
-    if(g1->outpostTurn != g2->outpostTurn) return 0;
-    if(g1->whoseTurn != g2->whoseTurn) return 0;
-    if(g1->phase != g2->phase) return 0;
-    if(g1->numActions != g2->numActions) return 01;
-    if(g1->coins != g2->coins) return 0;
-    if(g1->numBuys != g2->numBuys) return 0;
-    for(i = 0; i < MAX_PLAYERS; i++)
-    {
-        if(g1->handCount[i] != g2->handCount[i]) return 0;
-        if(g1->deckCount[i] != g2->deckCount[i]) return 0;
-        if(g1->discardCount[i] != g2->discardCount[i]) return 0;
-
-        for(j = 0; j < MAX_HAND; j++)
-            if(g1->hand[i][j] != g2->hand[i][j]) return 0;
-
-        for(j = 0; j < MAX_DECK; j++)
-            if(g1->deck[i][j] != g2->deck[i][j]) return 0;
+int main() {
+    int i;
+    int j;
+    //Used to print out correct name of card being tested in printf statement.
+    const char* cardNames[] =
+    {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
+      "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
+     "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map" };
+    
+    int nameCards[MAX_HAND][MAX_HAND];
+    int deckCards;
+    int handCards;
+    int discardCards;
+    int seed = 1000;
+    int allCards;
+    int numPlayer = 2;
+    int p, r;
+    int count; //keeps return number for fullDeckCount(p, allCards, &G)
+     int k[10] = {adventurer, council_room, feast, gardens, mine
+                , remodel, smithy, village, baron, great_hall};
+    struct gameState G;
+    int totalCards = 5;
+    //Make Array called nameCards, that holds decks full of same card name
+    for (i = 0; i < MAX_HAND; i++) {
+       for (j = 0; j < MAX_HAND; j++) {
+      nameCards[i][j] = i;
+       }
     }
+    
+    printf ("TESTING fullDeckCount( ):\n");    
+    
+    for (p = 0; p < numPlayer; p++){
+       
+       for (allCards = 0; allCards <= 26; allCards++){
+         for (deckCards = 0; deckCards <= totalCards; deckCards++){
+          
+          for (handCards = 0; handCards <= totalCards; handCards++){
+             
+             for (discardCards = 0; discardCards <= totalCards; discardCards++){
+                  
+                  
+                
+                      printf("Testing player %d with %d %s card(s).\nAmount in location: Deckcards: %d  HandCards: %d DiscardCards: %d.\n", p, deckCards + handCards + discardCards, cardNames[allCards], deckCards, handCards, discardCards);
+                      
+                      memset(&G, 40, sizeof(struct gameState));   // clear the game state
+                      r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+                      
+                      
+                      
+                      G.deckCount[p] = deckCards;                 // set the number of cards deckCard
+                      memcpy(G.deck[p], nameCards[allCards], sizeof(int) * deckCards); // set all the cards to current test card "nameCards"      
+                      
+                      G.handCount[p] = handCards;                 // set the number of cards on handCount
+                      memcpy(G.hand[p], nameCards[allCards], sizeof(int) * handCards); // set all the cards to current test card "nameCards"
+                      
+                      G.discardCount[p] =discardCards;                 // set the number of cards on discardCount
+                      memcpy(G.discard[p], nameCards[allCards], sizeof(int) * discardCards); // set all the cards to current test card "nameCards"
 
-    for(i = 0; i < MAX_DECK; i++)
-        if(g1->playedCards[i] != g2->playedCards[i]) return 0;
-
-    if(g1->playedCardCount != g2->playedCardCount) return 0;
-
-    return 1;
-}
-
-// set NOISY_TEST to 0 to remove printfs from output or to 2 for FAIL output only
-#define NOISY_TEST 0
-int main()
-{
-    int i,k,m,  endgame = 0;
-    int pass = 0, fail = 0;
-    int seed = 500;
-    srand(seed);
-    struct gameState state, begin;
-
-    printf ("\n\nTESTING isGameOver():\n---------------------------------------------------------------------------\n");
-    endgame = 0;
-
-
-    //load 10 kingdom cards into each stack
-    for(i = curse; i <= treasure_map; i++)
-    {
-        begin.supplyCount[i] = 10;
-    }
-
-    //test 0 stacks with 0
-    memcpy(&state, &begin, sizeof(struct gameState));     //establish a cloned game state
-    printf("Testing 0 supply counts empty....");
-    if(isGameOver(&state) != 0 || statesAreEqual(&state, &begin) != 1)
-    {
- #if (NOISY_TEST == 1 || NOISY_TEST == 2)
-            printf("***FAILED*** ");
-            fail++;
-#endif
-    }
-    else
-    {
- #if (NOISY_TEST == 1)
-            printf("---PASSED---");
-            pass++;
-#endif
-    }
-printf("Test results: [%d fails]  [%d passes]\n", fail, pass);
-
-    //test 1 stack has zeros
-    fail = 0;
-    pass = 0;
-    printf("Testing 1 supply count empty....");
-    for(i = 0; i < 27; i++)
-    {
-
-        memcpy(&state, &begin, sizeof(struct gameState));     //establish a cloned game state
-        state.supplyCount[i] = 0; //zero out 1 of the supply cards;
-        if(isGameOver(&state) != 0 && i != province)
-        {
-#if (NOISY_TEST == 1 || NOISY_TEST == 2)
-            printf("***FAILED*** ");
-            printf("isGameOver(): %d (should be: %d) provinces[%d]  supplyCounts[%d, ", isGameOver(&state), endgame, state.supplyCount[province],state.supplyCount[curse]);
-            for(j = duchy; j <= treasure_map; j++)
-            {
-                printf("%d, ", state.supplyCount[j]);
-            }
-            printf("\b\b]\n");
-            fail++;
-#endif
-        }
-
-        else
-        {
-            if(statesAreEqual(&state, &begin) == 1)  //make sure the states have not changed
-
-            {
-                pass++;
-#if (NOISY_TEST == 1)
-                printf("------------ ");
-                printf("isGameOver(): %d (should be: %d) provinces[%d]  supplyCounts[%d, ", isGameOver(&state), endgame, state.supplyCount[province],state.supplyCount[curse]);
-                for(j = duchy; j <= treasure_map; j++)
-                {
-                    printf("%d, ", state.supplyCount[j]);
-                }
-                printf("\b\b]\n");
-#endif
-            }
-
-            else
-            {
-                fail++;
-#if (NOISY_TEST == 1 || NOISY_TEST == 2)
-                printf("***FAILED*** ");
-                printf("State Change Error. (%d)", i);
-#endif
-            }
-
-        }
-
-    }
-    printf("Test results: [%d fails]  [%d passes]\n", fail, pass);
-
-
-    //test 2 stack has zeros
-    fail = 0;
-    pass = 0;
-    printf("Testing 2 supply count empty....");
-    for(i = 0; i < 27; i++)
-    {
-        for(k=0; k < 27; k++)
-        {
-            if(k != i)
-            {
-                memcpy(&state, &begin, sizeof(struct gameState));     //establish a cloned game state
-                state.supplyCount[i] = 0; //zero out 1 of the supply cards;
-                state.supplyCount[k] = 0; //zero out 1 of the supply cards;
-
-                if(isGameOver(&state) != 0 && i != province && k != province)
-                {
-#if (NOISY_TEST == 1 || NOISY_TEST == 2)
-                    printf("***FAILED*** ");
-                    printf("isGameOver(): %d (should be: %d) provinces[%d]  supplyCounts[%d, ", isGameOver(&state), endgame, state.supplyCount[province],state.supplyCount[curse]);
-                    for(j = duchy; j <= treasure_map; j++)
-                    {
-                        printf("%d, ", state.supplyCount[j]);
-                    }
-                    printf("\b\b]\n");
-                    fail++;
-#endif
-                }
-
-                else
-                {
-                    if(statesAreEqual(&state, &begin) == 1)  //make sure the states have not changed
-
-                    {
-                        pass++;
-#if (NOISY_TEST == 1)
-                        printf("------------ ");
-                        printf("isGameOver(): %d (should be: %d) provinces[%d]  supplyCounts[%d, ", isGameOver(&state), endgame, state.supplyCount[province],state.supplyCount[curse]);
-                        for(j = duchy; j <= treasure_map; j++)
-                        {
-                            printf("%d, ", state.supplyCount[j]);
-                        }
-                        printf("\b\b]\n");
-#endif
-                    }
-
-                    else
-                    {
-                        fail++;
-#if (NOISY_TEST == 1 || NOISY_TEST == 2)
-                        printf("***FAILED*** ");
-                        printf("State Change Error. (%d)", i);
-#endif
-                    }
-
-                }
-            }
-        }
-    }
-    printf("Test results: [%d fails]  [%d passes]\n", fail, pass);
-
-    //test 3 stack has zeros
-    fail = 0;
-    pass = 0;
-    printf("Testing 3 supply count empty....");
-    for(i = 0; i < 27; i++)
-    {
-        for(k=0; k < 27; k++)
-        {
-            if(k != i)
-            {
-                for(m=0; m < 27; m++)
-                {
-                    if(m != i && m != k)
-                    {
-                        memcpy(&state, &begin, sizeof(struct gameState));     //establish a cloned game state
-                        state.supplyCount[i] = 0; //zero out 1 of the supply cards;
-                        state.supplyCount[k] = 0; //zero out 1 of the supply cards;
-                        state.supplyCount[m] = 0; //zero out 1 of the supply cards;
-
-                        if(isGameOver(&state) != 1) //should always be game over now
-                        {
-#if (NOISY_TEST == 1 || NOISY_TEST == 2)
-                            printf("***FAILED*** ");
-                            printf("isGameOver(): %d (should be: %d) provinces[%d]  supplyCounts[%d, ", isGameOver(&state), endgame, state.supplyCount[province],state.supplyCount[curse]);
-                            for(j = duchy; j <= treasure_map; j++)
-                            {
-                                printf("%d, ", state.supplyCount[j]);
-                            }
-                            printf("\b\b]\n");
-#endif
-                            fail++;
-
-                        }
-
-                        else
-                        {
-                            if(statesAreEqual(&state, &begin) == 1)  //make sure the states have not changed
-
-                            {
-                                pass++;
-#if (NOISY_TEST == 1)
-                                printf("------------ ");
-                                printf("isGameOver(): %d (should be: %d) provinces[%d]  supplyCounts[%d, ", isGameOver(&state), endgame, state.supplyCount[province],state.supplyCount[curse]);
-                                for(j = duchy; j <= treasure_map; j++)
-                                {
-                                    printf("%d, ", state.supplyCount[j]);
-                                }
-                                printf("\b\b]\n");
-#endif
-                            }
-
-                            else
-                            {
-                                fail++;
-#if (NOISY_TEST == 1 || NOISY_TEST == 2)
-                                printf("***FAILED*** ");
-                                printf("State Change Error. (%d)", i);
-#endif
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-    }
-    printf("Test results: [%d fails]  [%d passes]\n          >>>>> Testing isGameOver() Complete <<<<<\n\n", fail, pass);
-
+                      
+                      
+                      
+                      count = fullDeckCount(p, allCards, &G);
+                      printf("Count = %d, expected = %d\n", count, deckCards + handCards + discardCards);
+                      assert(count == (deckCards + handCards + discardCards)); // check if the number of coins is correct
+                 
+             } //END discardCards
+          } //END handCards
+         } //END deckCards
+       } //END allCards
+    } // END player
+     printf("All tests passed!\n");
 
     return 0;
 }

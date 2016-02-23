@@ -1,6 +1,5 @@
-/*
-todo: figure out how to pass in by address in initI
-*/
+//villagetest
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -66,6 +65,7 @@ void func(int *x)
 }
 
 int main() {
+
 	srand(time(NULL));
 	int i, j, ret;
 	struct gameState *g;
@@ -73,8 +73,8 @@ int main() {
 	g = newGame();
 	int k[NUMCARDS]; 
 	int n;
-	int handCount, deckCount, discardCount;
-	int handCountExp, deckCountExp, discardCountExp;
+	int handCount, deckCount, discardCount, actionCount;
+	int handCountExp, deckCountExp, discardCountExp, actionCountExp;
 
 	//Make sure draw card is working correctly
 	for(n=0; n < 2000; n++)
@@ -122,11 +122,9 @@ int main() {
 		for(i = 0; i < numPlayers; i++)
 		{
 			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards);
+
+			numCards = rand()%(MAX_HAND/3);
+
 
 			for(j = 0; j < numCards; j++)
 			{
@@ -134,6 +132,7 @@ int main() {
 			}
 			g->deckCount[i] = numCards;
 		}
+		deckCount = g->deckCount[numPlayers-1];
 
 		//randomized player discard counts
 		for(i = 0; i < numPlayers; i++)
@@ -151,7 +150,7 @@ int main() {
 			}
 			g->discardCount[i] = numCards;
 		}
-
+		discardCount = g->discardCount[numPlayers-1];
 		//initialize infosStruct
 		infos.drawntreasure = 0;
 		infos.drawntreasure = 0;
@@ -171,35 +170,32 @@ int main() {
 
 		//get gameState values before calling drawCard()
 		handCount = g->handCount[numPlayers-1];
-		deckCount = g->deckCount[numPlayers-1];
-		discardCount = g->discardCount[numPlayers-1];
-
 		//handle case when deckCount is 0
 		if(deckCount == 0)
 		{
-			deckCount = discardCount;
-			discardCount = 0;
-			g->deckCount[numPlayers-1] = g->discardCount[numPlayers-1];
-			g->discardCount[numPlayers-1] = 0;
+			deckCountExp = discardCount;
+			deckCountExp--; //because draw card
+			discardCountExp = 0;
 		}
 		else //discardCount is not affected
 		{
 			discardCountExp = discardCount;
+			deckCountExp = deckCount - 1;
 		}
-
+		
 		handCountExp = handCount + 1;
-		deckCountExp = deckCount - 1;
+
 		drawCard(numPlayers-1, g);
 
 		handCount = g->handCount[numPlayers-1];
 		deckCount = g->deckCount[numPlayers-1];
 		discardCount = g->discardCount[numPlayers-1];
+
 		ASSERT2(handCountExp, handCount, "handCount after drawCard()");
 		ASSERT2(deckCountExp, deckCount, "deckCount after drawCard()");
 		ASSERT2(discardCountExp, discardCount, "discardCount after drawCard()");
 	}
 	puts("drawCard(): PASSED");
-	
 	//make sure player has two more cards after effectAdventurer
 	for(n=0; n < 2000; n++)
 	{
@@ -215,6 +211,12 @@ int main() {
 		//randomize number of players
 		int numPlayers = (rand()%MAX_PLAYERS)+1;
 		g->numPlayers = numPlayers;
+		//randomly select current player
+		do
+		{
+			infos.currentPlayer = rand()%MAX_PLAYERS;
+		}
+		while(infos.currentPlayer >= numPlayers);
 
 		//randomize unused properties
 		g->outpostPlayed = rand();
@@ -246,18 +248,28 @@ int main() {
 		for(i = 0; i < numPlayers; i++)
 		{
 			int numCards;
+			int coinCount = 0;
 			do
 			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards);
 
-			for(j = 0; j < numCards; j++)
-			{
-				g->deck[i][j] = rand()%15;
+			numCards = rand()%(MAX_HAND/3);
+				for(j = 0; j < numCards; j++)
+				{
+					int coin = rand()%15;
+					if(coin == copper)
+						coinCount++;
+					if(coin == silver)
+						coinCount++;
+					if(coin == gold)
+						coinCount++;
+					g->deck[i][j] = coin;
+				}
 			}
+			while(coinCount < 2);
 			g->deckCount[i] = numCards;
 		}
+		deckCount = g->deckCount[infos.currentPlayer];
+		
 
 		//randomized player discard counts
 		for(i = 0; i < numPlayers; i++)
@@ -275,6 +287,7 @@ int main() {
 			}
 			g->discardCount[i] = numCards;
 		}
+		discardCount = g->discardCount[infos.currentPlayer];
 
 		//initialize infosStruct
 		infos.drawntreasure = 0;
@@ -286,37 +299,94 @@ int main() {
 		infos.handPos = 0; //not used
 		infos.i = 0; //not used either
 
-		//randomly select current player
-		do
-		{
-			infos.currentPlayer = rand()%MAX_PLAYERS;
-		}
-		while(infos.currentPlayer >= numPlayers);
-
+		//get gameState values before calling drawCard()
+		handCount = g->handCount[infos.currentPlayer];
 		//handle case when deckCount is 0
 		if(deckCount == 0)
 		{
-			deckCount = discardCount;
-			discardCount = 0;
-			g->deckCount[numPlayers-1] = g->discardCount[numPlayers-1];
-			g->discardCount[numPlayers-1] = 0;
+			deckCountExp = discardCount;
+			deckCountExp--; //because draw card
+			discardCountExp = 0;
 		}
-		else //discardCount is not affected (in drawCard())
+		else //discardCount is not affected
 		{
 			discardCountExp = discardCount;
+			deckCountExp = deckCount - 1;
 		}
+				//printf("hand count is %d\n", handCount);
+		handCountExp = handCount;
+		actionCount = g->numActions;
+		actionCountExp = actionCount + 2;
+		effectVillage(g, &infos);
 
+
+		actionCount = g->numActions;
 		handCount = g->handCount[infos.currentPlayer];
-		handCountExp = handCount + 2;
-		ret = effectAdventure(g, &infos);
-		handCount = g->handCount[infos.currentPlayer];
-		ASSERT2(handCountExp, handCount, "adventurer");
+		//printf("hand count is %d\n", handCount);
+		ASSERT2(handCountExp, handCount, "handCount");
+		ASSERT2(actionCountExp, actionCount, "actionCount");
 	}
-	puts("effectAdventure(): Passed");
+	puts("effectVillage(): Passed");
 	return 0; 
 }
 
+/*
+int effectVillage(struct gameState *state, struct infosStruct *infos)
+{
 
+  int currentPlayer= infos->currentPlayer;
+
+  int handPos = infos->handPos;
+  //+1 Card
+  drawCard(currentPlayer, state);
+
+  //+2 Actions
+  state->numActions = state->numActions + 2;
+
+  //discard played card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  return 0;
+}
+*/
+
+/*
+int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+{
+  //if card is not trashed, added to Played pile 
+  if (trashFlag < 1)
+  {
+    //add card to played pile
+    state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+    state->playedCardCount++;
+  }
+	
+  //set played card to -1
+  state->hand[currentPlayer][handPos] = -1;
+	
+  //remove card from player's hand
+  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+  {
+    //reduce number of cards in hand
+    state->handCount[currentPlayer]--;
+  }
+  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+  {
+    //reduce number of cards in hand
+    state->handCount[currentPlayer]--;
+  }
+  else 	
+  {
+    //replace discarded card with last card in hand
+    state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+    //set last card to -1
+    state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+    //reduce number of cards in hand
+    state->handCount[currentPlayer]--;
+  }
+	
+  return 0;
+}
+*/
 // int drawCard(int player, struct gameState *state)
 // {	
 //	 int count;

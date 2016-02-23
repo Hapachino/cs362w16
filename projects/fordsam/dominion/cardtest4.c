@@ -1,4 +1,7 @@
-/* Test the playSmithy() function */
+/* Test the Smithy card
+   NOTE: Smithy should:
+     * Draw three cards from the player's deck and add them to their hand.
+*/
 #include <stdio.h>
 #include <string.h>
 #include "dominion.h"
@@ -8,7 +11,7 @@
 #define P2 1
 #define HANDPOS 2
 
-int testPlaySmithy() {
+int testSmithy() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -82,6 +85,6 @@ int testPlaySmithy() {
 }
 
 int main() {
-  testPlaySmithy();
+  testSmithy();
   return 0;
 }

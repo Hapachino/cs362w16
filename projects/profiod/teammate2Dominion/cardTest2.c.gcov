@@ -1,0 +1,78 @@
+        -:    0:Source:cardTest2.c
+        -:    0:Graph:cardTest2.gcno
+        -:    0:Data:cardTest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for Adventure Card
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	Current player should receive exactly 2 cards
+        -:    6: *	2.	2 cards should come from his own pile
+        -:    7: *	3.	No state change should occur
+        -:    8: *
+        -:    9: * cardTest2: cardTest2.c dominion.o rngs.o
+        -:   10: *      gcc -o cardTest2 -g cardTest2.c dominion.o rngs.o $(FLAGS)
+        -:   11: *
+        -:   12: */
+        -:   13:
+        -:   14:#include "dominion.h"
+        -:   15:#include "dominion_helpers.h"
+        -:   16:#include <string.h>
+        -:   17:#include <stdio.h>
+        -:   18:#include <assert.h>
+        -:   19:#include "rngs.h"
+        -:   20:
+        -:   21://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   22:#define NOISY_TEST 1
+        -:   23:
+        1:   24:int main() {
+        1:   25:    int i = 0, p = 0;
+        1:   26:    int handPos = 0;
+        1:   27:    int seed = 1000;
+        1:   28:    int numPlayer = 2;
+        -:   29:    int new_game;
+        -:   30:    int hand_count, deck_count, player_turn, smithy_count;
+        -:   31:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   32:                 remodel, smithy, village, baron, great_hall};
+        -:   33:    struct gameState G;
+        -:   34:
+        1:   35:    printf("TESTING Adventurer Card\n");
+        -:   36:    //clear the game state
+        1:   37:    memset(&G, 23, sizeof(struct gameState));
+        -:   38:    //initialize a new game
+        1:   39:    new_game = initializeGame(numPlayer, k, seed, &G);
+        -:   40:
+        1:   41:    hand_count = G.handCount[p];
+        1:   42:    deck_count = G.deckCount[p];
+        1:   43:    player_turn = G.whoseTurn;
+        -:   44:
+        -:   45:    //play adventurer card
+        1:   46:    playAdventurer(&G);
+        -:   47:
+        -:   48:#if (NOISY_TEST == 1)
+        -:   49:    //hand should have +1 cards
+        1:   50:    if(G.handCount[p] == hand_count + 2)
+        1:   51:        printf("TEST PASSED\n");
+        -:   52:    else
+    #####:   53:        printf("TEST FAILED\n");
+        -:   54:    //deck should have -2 cards
+        1:   55:    if(G.deckCount[p] == deck_count - 2)
+        1:   56:        printf("TEST PASSED\n");
+        -:   57:    else
+    #####:   58:        printf("TEST FAILED\n");
+        -:   59:    //player's turn should not change
+        1:   60:    if(G.whoseTurn == player_turn)
+        1:   61:        printf("TEST PASSED\n");
+        -:   62:    else
+    #####:   63:        printf("TEST FAILED\n");
+        -:   64:#endif
+        -:   65:
+        1:   66:    hand_count = G.handCount[p];
+        1:   67:    deck_count = G.deckCount[p];
+        1:   68:    player_turn = G.whoseTurn;
+        -:   69:
+        1:   70:    printf("\nAll tests passed: Adventurer Card\n");
+        -:   71:
+        1:   72:    return 0;
+        -:   73:}

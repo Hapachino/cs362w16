@@ -1,0 +1,55 @@
+Noverse Bug Reporting Template
+==============================
+
+Title: Smithy card was not found in played cards pile   
+
+Class: Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date: 2/22/2016          
+Reported By: Juan Solis  
+Email: solisj@oregonstate.edu      
+
+
+Product:   dominion.c/smithyEffect()            Version:
+Platform:    C                                  Version:
+Browser:                                        Version:
+URL:        
+
+Is it reproducible: Yes
+
+Description
+===========
+After playing the smithy card, the card should be added to the playedCards array.
+
+
+Steps to Produce/Reproduce
+--------------------------
+1) Run smithyEffect()
+2) Check the gameState.playedCards[] for the smithy card
+
+
+Expected Results
+----------------
+The smithy card to be found in the playedCards array
+
+
+Actual Results
+--------------
+Checking that the smithy card was added to the played cards pile...
+Failed! Smithy card was not found in played cards pile!
+
+
+Workarounds
+-----------
+none
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+The call to discardCard() in the smithyEffect() function has the trashflag set to '1'. It should be set to '0'.

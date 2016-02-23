@@ -96,6 +96,8 @@
 #include "unittest.h"
 #include "rngs.h"
 
+#define PRINTPASS 0
+
 #define GOLD_VALUE 3
 #define SILVER_VALUE 2
 #define COPPER_VALUE 1
@@ -189,97 +191,6 @@ struct cardResults* declCardResults() {
   struct cardResults* result = malloc(sizeof(struct cardResults));
   initCardResults(result);
   return result;
-}
-
-/**
- * Function: getCardType
- * Inputs: card
- * Outputs: type of card
- * Description:  converts a card to it's type: action, treasure, victory, dead
- */
-char* getCardType(int card){
-	char *cardType = (char*)malloc(20 * sizeof(char));
-
-	// if cards is a treasure card
-	if(card >= 4 && card <= 6)
-		cardType = "Treasure";
-	else if((card >= 1 && card <=3) || card == gardens)
-		cardType = "Victory";
-	else if((card >= 7 && card <=9) || (card >= 11))
-		cardType = "Action";
-	else if(card == great_hall)
-		cardType = "Action Victory";
-	else
-		cardType = "Dead";
-
-	return cardType;
-
-}
-
-/**
- * Function: updatePile
- * Inputs: player, count of elements to update, pile type to update, struct gameState
- * Outputs: None
- * Description:  updates a pile of cards to the number of elements requested in count
- */
-int updatePile(int player, int count, int pile, struct gameState *state){
-
-	int i;
-	int *ptr;
-	int oldCount;
-
-	if(pile == HAND)
-	{
-		oldCount = state->handCount[player];
-		state->handCount[player] = count;
-		ptr = state->hand[player];
-	}
-	else if(pile == DECK)
-	{
-		oldCount = state->deckCount[player];
-		state->deckCount[player] = count;
-		ptr = state->deck[player];
-	}
-	else if(pile == DISCARD)
-	{
-		oldCount = state->discardCount[player];
-		state->discardCount[player] = count;
-		ptr = state->discard[player];
-	}
-
-	for(i = 0; i < count; i++){
-		ptr[i] = random_number(0, treasure_map);
-	}
-
-	//clear values higher than count
-	for(i = count; i < oldCount; i++){
-		ptr[i] = 0;
-	}
-
-	return 0;
-}
-
-/**
- * Function: getDeckFrequencies
- * Inputs: array of cards, count of elements in array, array to hold frequencies,
- * 	count of elements in frequency array
- * Outputs: 0 on completion
- * Description:  counts the frequency of cards in a deck and stores the value in the
- * 	frequency array passed to the function.
- */
-int getDeckFrequencies(int *card, int cardCount, int *cardFrequencies, int cardFreqCount){
-
-	int i, j;
-	for(i = 0; i < cardFreqCount; i++)
-	{
-		for(j = 0; j < cardCount; j++)
-		{
-			if(card[j] == i)
-				cardFrequencies[i]++;
-		}
-	}
-
-	return 0;
 }
 
 /**
@@ -506,10 +417,14 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 						controlGame->numActions, actions);
 
 			} else {
-				printf("TEST%d PASS: Reported total Actions: %d, Expected total Actions: %d "
+
+				if(PRINTPASS){
+					printf("TEST%d PASS: Reported total Actions: %d, Expected total Actions: %d "
 						"(Control: %d, Bonus Actions Calculated: %d)\n",
 						result->testNum, activeGame->numActions, controlGame->numActions + actions,
 						controlGame->numActions, actions);
+				}
+
 				assert(activeGame->numActions == controlGame->numActions + actions);
 			}
 
@@ -521,8 +436,10 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 
 			} else {
 				assert(result->coinBonus == coins);
-				printf("TEST%d PASS: Reported Bonus Coins: %d, Expected: %d\n",
-						result->testNum, result->coinBonus, coins);
+				if(PRINTPASS){
+					printf("TEST%d PASS: Reported Bonus Coins: %d, Expected: %d\n",
+							result->testNum, result->coinBonus, coins);
+				}
 			}
 
 			// Tribute card is put on top of the played pile
@@ -534,10 +451,13 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 						controlGame->playedCardCount);
 			} else {
 				assert(activeGame->playedCardCount == controlGame->playedCardCount + 1);
-				printf("TEST%d PASS: Reported playedCardCount: %d, Expected: %d "
-						"(Control: %d, Cards Played: 1)\n", result->testNum,
-						activeGame->playedCardCount, controlGame->playedCardCount + 1,
-						controlGame->playedCardCount);
+
+				if(PRINTPASS){
+					printf("TEST%d PASS: Reported playedCardCount: %d, Expected: %d "
+							"(Control: %d, Cards Played: 1)\n", result->testNum,
+							activeGame->playedCardCount, controlGame->playedCardCount + 1,
+							controlGame->playedCardCount);
+				}
 			}
 
 			// check playedCard made it onto the played pile
@@ -547,16 +467,22 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 						result->testNum, activeGame->playedCards[activeGame->playedCardCount - 1], tribute);
 			} else {
 				assert(activeGame->playedCards[activeGame->playedCardCount - 1]);
-				printf("TEST%d PASS: Reported last playedCard: %d, Expected: %d\n",
-						result->testNum, activeGame->playedCards[activeGame->playedCardCount - 1], tribute);
+
+				if(PRINTPASS){
+					printf("TEST%d PASS: Reported last playedCard: %d, Expected: %d\n",
+							result->testNum, activeGame->playedCards[activeGame->playedCardCount - 1], tribute);
+				}
 			}
 
 			// check all playedCards in control Game still in playedCards
 			for(m = 0; m < controlGame->playedCardCount; i++)
 			{
 				assert(activeGame->playedCards[m] == controlGame->playedCards[m]);
-				printf("TEST%d PASS: All Played cards in control Game still in played cards in ActiveGame\n",
-						result->testNum);
+
+				if(PRINTPASS){
+					printf("TEST%d PASS: All Played cards in control Game still in played cards in ActiveGame\n",
+							result->testNum);
+				}
 			}
 
 			// NEXT PLAYER CHECKS
@@ -571,10 +497,13 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 
 			} else{
 				assert(activeGame->discardCount[nextPlayer] == controlGame->discardCount[nextPlayer] + revCardCount);
-				printf("TEST%d PASS: Reported discardCount: %d, Expected: %d "
-						"(Control: %d + Revealed Card(s): %d)\n", result->testNum,
-						activeGame->discardCount[nextPlayer], controlGame->discardCount[nextPlayer] + revCardCount,
-						controlGame->discardCount[curPlayer], revCardCount);
+
+				if(PRINTPASS){
+					printf("TEST%d PASS: Reported discardCount: %d, Expected: %d "
+							"(Control: %d + Revealed Card(s): %d)\n", result->testNum,
+							activeGame->discardCount[nextPlayer], controlGame->discardCount[nextPlayer] + revCardCount,
+							controlGame->discardCount[curPlayer], revCardCount);
+				}
 			}
 
 			// revealed card count removed from deck
@@ -595,10 +524,13 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 			else
 			{
 				assert(activeGame->deckCount[nextPlayer] == nextDeckCount);
-				printf("TEST%d PASS: Reported deckCount: %d, Expected: %d "
-						"(Control: %d - Revealed Card(s): %d (Expected may include Discard: %d)\n",
-						result->testNum, activeGame->deckCount[nextPlayer], nextDeckCount,
-						controlGame->deckCount[nextPlayer], revCardCount, controlGame->discardCount[nextPlayer]);
+
+				if(PRINTPASS){
+					printf("TEST%d PASS: Reported deckCount: %d, Expected: %d "
+							"(Control: %d - Revealed Card(s): %d (Expected may include Discard: %d)\n",
+							result->testNum, activeGame->deckCount[nextPlayer], nextDeckCount,
+							controlGame->deckCount[nextPlayer], revCardCount, controlGame->discardCount[nextPlayer]);
+				}
 			}
 
 			// revealed cards physically added to discard pile
@@ -622,6 +554,13 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 				else
 				{
 					assert(activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 1] == conRevCards[0]);
+
+					if(PRINTPASS){
+						printf("TEST%d PASS: Reported Last Discard: %d, Expected: %d "
+									"(Control: Second Revealed Card: %d)\n", result->testNum,
+									activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 1],
+									conRevCards[0], conRevCards[0]);
+					}
 				}
 
 				// check card removed
@@ -647,27 +586,36 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 					else
 					{
 						assert(activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 1] == conRevCards[1]);
-						printf("TEST%d PASS: Reported Last Discard: %d, Expected: %d "
-								"(Control: Second Revealed Card: %d)\n", result->testNum,
-								activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 1],
-								conRevCards[1], conRevCards[1]);
+
+						if(PRINTPASS){
+							printf("TEST%d PASS: Reported Last Discard: %d, Expected: %d "
+									"(Control: Second Revealed Card: %d)\n", result->testNum,
+									activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 1],
+									conRevCards[1], conRevCards[1]);
+						}
 					}
 
 					// check the second card
 					if(!((activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 2] == conRevCards[0])))
 					{
-						printf("TEST%d FAIL: Reported Second Last Discard: %d, Expected: %d "
-								"(Control: First Revealed Card: %d)\n", result->testNum,
-								activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 2],
-								conRevCards[0], conRevCards[0]);
+
+						if(PRINTPASS){
+							printf("TEST%d FAIL: Reported Second Last Discard: %d, Expected: %d "
+									"(Control: First Revealed Card: %d)\n", result->testNum,
+									activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 2],
+									conRevCards[0], conRevCards[0]);
+						}
 					}
 					else
 					{
 						assert(activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 2] == conRevCards[0]);
-						printf("TEST%d PASS: Reported Second Last Discard: %d, Expected: %d "
-								"(Control: First Revealed Card: %d)\n", result->testNum,
-								activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 2],
-								conRevCards[0], conRevCards[0]);
+
+						if(PRINTPASS){
+							printf("TEST%d PASS: Reported Second Last Discard: %d, Expected: %d "
+									"(Control: First Revealed Card: %d)\n", result->testNum,
+									activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 2],
+									conRevCards[0], conRevCards[0]);
+						}
 					}
 
 				}
@@ -688,11 +636,13 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 					}
 					else
 					{
-						printf("TEST%d PASS: Reported Last Cards on Discard: %d, %d, Expected: %d, %d "
-								"(Expected cards are not respective positions)\n", result->testNum,
-								activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 1],
-								activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 2],
-								conRevCards[0], conRevCards[1]);
+						if(PRINTPASS){
+							printf("TEST%d PASS: Reported Last Cards on Discard: %d, %d, Expected: %d, %d "
+									"(Expected cards are not respective positions)\n", result->testNum,
+									activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 1],
+									activeGame->discard[nextPlayer][activeGame->discardCount[nextPlayer] - 2],
+									conRevCards[0], conRevCards[1]);
+						}
 					}
 
 				}
@@ -733,10 +683,13 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 
 			} else {
 				assert(activeGame->handCount[curPlayer] == controlGame->handCount[curPlayer] - 1 + cardsDrawn);
-				printf("TEST%d PASS: Reported handCount: %d, Expected: %d "
-						"(Control: %d - 1 + Bonus Cards: %d)\n",
-						result->testNum, activeGame->handCount[curPlayer], controlGame->handCount[curPlayer] - 1 + cardsDrawn,
-						controlGame->handCount[curPlayer], cards);
+
+				if(PRINTPASS){
+					printf("TEST%d PASS: Reported handCount: %d, Expected: %d "
+							"(Control: %d - 1 + Bonus Cards: %d)\n",
+							result->testNum, activeGame->handCount[curPlayer], controlGame->handCount[curPlayer] - 1 + cardsDrawn,
+							controlGame->handCount[curPlayer], cards);
+				}
 			}
 
 			// check the original cards are still in the hand
@@ -788,10 +741,13 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 						} else {
 							assert(activeGame->hand[curPlayer][activeGame->handCount[curPlayer] - 1 - cards + m] ==
 									controlGame->deck[curPlayer][controlGame->deckCount[curPlayer] - 1 - m]);
-							printf("TEST%d PASS: Value in hand Index where tribute was: %d card: %d, Expected: %d\n",
-									result->testNum, activeGame->handCount[curPlayer] - 1 - cards + m,
-									activeGame->hand[curPlayer][activeGame->handCount[curPlayer] - 1 - cards + m],
-									controlGame->deck[curPlayer][controlGame->deckCount[curPlayer] - 1 - m]);
+
+							if(PRINTPASS){
+								printf("TEST%d PASS: Value in hand Index where tribute was: %d card: %d, Expected: %d\n",
+										result->testNum, activeGame->handCount[curPlayer] - 1 - cards + m,
+										activeGame->hand[curPlayer][activeGame->handCount[curPlayer] - 1 - cards + m],
+										controlGame->deck[curPlayer][controlGame->deckCount[curPlayer] - 1 - m]);
+							}
 						}
 
 					}
@@ -824,10 +780,13 @@ void cardTest4(int printVal, int seed, struct cardResults *result){
 						} else {
 							assert(activeGame->hand[curPlayer][activeGame->handCount[curPlayer] - 1 - cards + m] ==
 									controlGame->deck[curPlayer][controlGame->deckCount[curPlayer] - 1 - m]);
-							printf("TEST%d PASS: HandCount Index: %d card: %d, Expected: %d\n",
-									result->testNum, activeGame->handCount[curPlayer] - 1 - cards + m,
-									activeGame->hand[curPlayer][activeGame->handCount[curPlayer] - 1 - cards + m],
-									controlGame->deck[curPlayer][controlGame->deckCount[curPlayer] - 1 - m]);
+
+							if(PRINTPASS){
+								printf("TEST%d PASS: HandCount Index: %d card: %d, Expected: %d\n",
+										result->testNum, activeGame->handCount[curPlayer] - 1 - cards + m,
+										activeGame->hand[curPlayer][activeGame->handCount[curPlayer] - 1 - cards + m],
+										controlGame->deck[curPlayer][controlGame->deckCount[curPlayer] - 1 - m]);
+							}
 						}
 
 					}

@@ -5,6 +5,12 @@ randomtestcard
 Testing Steward card:
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=4, effect=0, trash1pos=3, trash2pos=0
 ***************************************
@@ -15,18 +21,52 @@ PARAMS: player=0, handPos=4, effect=0, trash1pos=0, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=4, effect=0, trash1pos=3, trash2pos=0
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=2, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=2, handPos=1, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=2, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=2, handPos=3, effect=0, trash1pos=4, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
-PARAMS: player=0, handPos=4, effect=0, trash1pos=1, trash2pos=0
+PARAMS: player=1, handPos=0, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=4, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
@@ -35,8 +75,20 @@ PARAMS: player=0, handPos=4, effect=0, trash1pos=0, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=4, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=4, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
@@ -45,16 +97,42 @@ PARAMS: player=2, handPos=3, effect=0, trash1pos=4, trash2pos=0
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=1, effect=0, trash1pos=4, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=3, handPos=3, effect=0, trash1pos=4, trash2pos=0
 ***************************************
 
 *************** FAILURE ***************.
-problem: option 3-->incorrect count for trash cards.
-PARAMS: player=0, handPos=3, effect=0, trash1pos=1, trash2pos=0
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=3, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=4, effect=0, trash1pos=1, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=1, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=2, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=4, effect=0, trash1pos=3, trash2pos=0
 ***************************************
@@ -66,12 +144,32 @@ PARAMS: player=1, handPos=3, effect=0, trash1pos=0, trash2pos=4
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
-PARAMS: player=0, handPos=4, effect=0, trash1pos=1, trash2pos=0
+PARAMS: player=2, handPos=4, effect=0, trash1pos=0, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=4, effect=0, trash1pos=3, trash2pos=2
 ***************************************
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
-PARAMS: player=2, handPos=4, effect=0, trash1pos=0, trash2pos=1
+PARAMS: player=0, handPos=1, effect=0, trash1pos=2, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=4, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=3, trash2pos=2
 ***************************************
 
 *************** FAILURE ***************.
@@ -81,17 +179,43 @@ PARAMS: player=1, handPos=4, effect=0, trash1pos=0, trash2pos=2
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=1, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=3, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
 PARAMS: player=0, handPos=4, effect=0, trash1pos=0, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
-problem: option 3-->incorrect count for trash cards.
-PARAMS: player=0, handPos=3, effect=0, trash1pos=1, trash2pos=0
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=3, handPos=2, effect=0, trash1pos=4, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=2, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
-PARAMS: player=0, handPos=4, effect=0, trash1pos=1, trash2pos=0
+PARAMS: player=0, handPos=2, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=2, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
@@ -101,8 +225,42 @@ PARAMS: player=0, handPos=3, effect=0, trash1pos=0, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=1, handPos=1, effect=0, trash1pos=2, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
-PARAMS: player=0, handPos=3, effect=0, trash1pos=1, trash2pos=0
+PARAMS: player=1, handPos=0, effect=0, trash1pos=1, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=1, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=3, effect=0, trash1pos=2, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=3, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
@@ -112,7 +270,61 @@ PARAMS: player=1, handPos=3, effect=0, trash1pos=2, trash2pos=0
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
-PARAMS: player=3, handPos=3, effect=0, trash1pos=1, trash2pos=0
+PARAMS: player=0, handPos=1, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=1, effect=0, trash1pos=4, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=4, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=3, handPos=4, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=1, handPos=1, effect=0, trash1pos=2, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=3, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=1, handPos=1, effect=0, trash1pos=2, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=2, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=4, effect=0, trash1pos=2, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
@@ -122,13 +334,52 @@ PARAMS: player=2, handPos=3, effect=0, trash1pos=0, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=4, effect=0, trash1pos=3, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=2, handPos=3, effect=0, trash1pos=4, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=1, handPos=1, effect=0, trash1pos=2, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=1, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=4, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=2, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
@@ -142,6 +393,12 @@ PARAMS: player=1, handPos=3, effect=0, trash1pos=1, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=1, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=4, effect=0, trash1pos=3, trash2pos=0
 ***************************************
@@ -153,13 +410,35 @@ PARAMS: player=3, handPos=2, effect=0, trash1pos=1, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=3, handPos=0, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
 PARAMS: player=0, handPos=4, effect=0, trash1pos=0, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
-problem: option 3-->incorrect count for trash cards.
-PARAMS: player=0, handPos=4, effect=0, trash1pos=1, trash2pos=0
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=4, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=3, effect=0, trash1pos=2, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=2, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
@@ -173,6 +452,33 @@ PARAMS: player=2, handPos=4, effect=0, trash1pos=1, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=1, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=1, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=4, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=2, handPos=2, effect=0, trash1pos=3, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=2, handPos=3, effect=0, trash1pos=4, trash2pos=0
 ***************************************
@@ -183,14 +489,51 @@ PARAMS: player=1, handPos=3, effect=0, trash1pos=0, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=3, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
 PARAMS: player=3, handPos=4, effect=0, trash1pos=0, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=3, effect=0, trash1pos=2, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=2, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=3, handPos=1, effect=0, trash1pos=2, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=2, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=3, handPos=2, effect=0, trash1pos=4, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=3, trash2pos=2
 ***************************************
 
 *************** FAILURE ***************.
@@ -201,6 +544,16 @@ PARAMS: player=2, handPos=4, effect=0, trash1pos=1, trash2pos=3
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
 PARAMS: player=1, handPos=3, effect=0, trash1pos=1, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=3, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
@@ -214,8 +567,8 @@ PARAMS: player=3, handPos=3, effect=0, trash1pos=0, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
-problem: option 3-->incorrect count for trash cards.
-PARAMS: player=0, handPos=3, effect=0, trash1pos=1, trash2pos=0
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=2, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
@@ -225,8 +578,69 @@ PARAMS: player=2, handPos=3, effect=0, trash1pos=1, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=3, handPos=2, effect=0, trash1pos=3, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=1, handPos=3, effect=0, trash1pos=2, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=2, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=3, handPos=4, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=1, effect=0, trash1pos=2, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=4, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=2, handPos=2, effect=0, trash1pos=3, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=4, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=1, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=1, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=2, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=1, handPos=4, effect=0, trash1pos=2, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
@@ -240,8 +654,8 @@ PARAMS: player=1, handPos=3, effect=0, trash1pos=1, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
-problem: option 3-->incorrect count for second trash card.
-PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=0
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=4, effect=0, trash1pos=2, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
@@ -250,8 +664,56 @@ PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=0
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=4, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=2, handPos=2, effect=0, trash1pos=4, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=4, effect=0, trash1pos=3, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=2, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=4, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=1, effect=0, trash1pos=3, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
@@ -260,23 +722,118 @@ PARAMS: player=1, handPos=3, effect=0, trash1pos=1, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=2, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=3, handPos=0, effect=0, trash1pos=1, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=4, effect=0, trash1pos=3, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
-PARAMS: player=0, handPos=4, effect=0, trash1pos=1, trash2pos=0
+PARAMS: player=1, handPos=0, effect=0, trash1pos=1, trash2pos=4
 ***************************************
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
-PARAMS: player=3, handPos=4, effect=0, trash1pos=3, trash2pos=0
+PARAMS: player=1, handPos=0, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=2, handPos=4, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=4, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=1, handPos=1, effect=0, trash1pos=2, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=2, handPos=1, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=4, effect=0, trash1pos=1, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=1, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=1, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=3, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=1, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=1, handPos=4, effect=0, trash1pos=2, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=0, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=4, effect=0, trash1pos=2, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
@@ -285,8 +842,24 @@ PARAMS: player=2, handPos=4, effect=0, trash1pos=1, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=4, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=2, handPos=3, effect=0, trash1pos=4, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=1, handPos=1, effect=0, trash1pos=2, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=1, trash2pos=2
 ***************************************
 
 *************** FAILURE ***************.
@@ -296,7 +869,23 @@ PARAMS: player=1, handPos=3, effect=0, trash1pos=2, trash2pos=1
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=1, effect=0, trash1pos=2, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=1, handPos=4, effect=0, trash1pos=1, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
 PARAMS: player=1, handPos=3, effect=0, trash1pos=0, trash2pos=4
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=2, handPos=3, effect=0, trash1pos=4, trash2pos=2
 ***************************************
 
 *************** FAILURE ***************.
@@ -305,23 +894,57 @@ PARAMS: player=0, handPos=4, effect=0, trash1pos=0, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=4, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=3, handPos=0, effect=0, trash1pos=1, trash2pos=3
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=2, handPos=3, effect=0, trash1pos=4, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=2, effect=0, trash1pos=3, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
 problem: option 3-->incorrect count for second trash card.
 PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
-problem: option 3-->incorrect count for trash cards.
-PARAMS: player=3, handPos=4, effect=0, trash1pos=1, trash2pos=0
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=3, handPos=0, effect=0, trash1pos=4, trash2pos=2
 ***************************************
 
 *************** FAILURE ***************.
-problem: option 3-->incorrect count for trash cards.
-PARAMS: player=2, handPos=4, effect=0, trash1pos=1, trash2pos=0
+problem: option 3-->incorrect count for first trash card.
+problem: option 3-->incorrect count for second trash card.
+PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=1
 ***************************************
 
 *************** FAILURE ***************.
 problem: option 3-->incorrect count for second trash card.
-PARAMS: player=0, handPos=3, effect=0, trash1pos=4, trash2pos=1
+PARAMS: player=1, handPos=4, effect=0, trash1pos=2, trash2pos=1
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=2, handPos=0, effect=0, trash1pos=3, trash2pos=2
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=0, handPos=4, effect=0, trash1pos=2, trash2pos=3
 ***************************************
 
 *************** FAILURE ***************.
@@ -334,8 +957,23 @@ problem: option 3-->incorrect count for first trash card.
 PARAMS: player=1, handPos=4, effect=0, trash1pos=0, trash2pos=2
 ***************************************
 
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=2, trash2pos=3
+***************************************
 
-1000 test cases, 65 failed test cases.
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for trash cards.
+PARAMS: player=2, handPos=2, effect=0, trash1pos=1, trash2pos=0
+***************************************
+
+*************** FAILURE ***************.
+problem: option 3-->incorrect count for first trash card.
+PARAMS: player=1, handPos=0, effect=0, trash1pos=2, trash2pos=1
+***************************************
+
+
+1000 test cases, 184 failed test cases.
 
 **********
 
@@ -355,13 +993,13 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-    86072:    8:int compare( const void* a, const void* b )
+    86133:    8:int compare( const void* a, const void* b )
         -:    9:{
-    86072:   10:	if (*(int*) a > *(int*) b)
-    14102:   11:		return 1;
-    71970:   12:	if (*(int*) a < *(int*) b)
-    18128:   13:		return -1;
-    53842:   14:	return 0;
+    86133:   10:	if (*(int*) a > *(int*) b)
+    14184:   11:		return 1;
+    71949:   12:	if (*(int*) a < *(int*) b)
+    18079:   13:		return -1;
+    53870:   14:	return 0;
         -:   15:}
         -:   16:
     #####:   17:struct gameState* newGame()
@@ -1751,20 +2389,20 @@ Creating 'dominion.c.gcov'
      1676: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
         -: 1402:	{
         -: 1403:		//reduce number of cards in hand
-      266: 1404:		state->handCount[currentPlayer]--;
-     1410: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
+      208: 1404:		state->handCount[currentPlayer]--;
+     1468: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
         -: 1406:	{
         -: 1407:		//reduce number of cards in hand
     #####: 1408:		state->handCount[currentPlayer]--;
         -: 1409:	} else
         -: 1410:	{
         -: 1411:		//replace discarded card with last card in hand
-     1410: 1412:		state->hand[currentPlayer][handPos] =
-     1410: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
+     1468: 1412:		state->hand[currentPlayer][handPos] =
+     1468: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
         -: 1414:		//set last card to -1
-     1410: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+     1468: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1416:		//reduce number of cards in hand
-     1410: 1417:		state->handCount[currentPlayer]--;
+     1468: 1417:		state->handCount[currentPlayer]--;
         -: 1418:	}
         -: 1419:
      1676: 1420:	return 0;
@@ -1854,18 +2492,18 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-function compare called 86072 returned 100% blocks executed 100%
-    86072:    8:int compare( const void* a, const void* b )
+function compare called 86133 returned 100% blocks executed 100%
+    86133:    8:int compare( const void* a, const void* b )
         -:    9:{
-    86072:   10:	if (*(int*) a > *(int*) b)
+    86133:   10:	if (*(int*) a > *(int*) b)
 branch  0 taken 16% (fallthrough)
 branch  1 taken 84%
-    14102:   11:		return 1;
-    71970:   12:	if (*(int*) a < *(int*) b)
+    14184:   11:		return 1;
+    71949:   12:	if (*(int*) a < *(int*) b)
 branch  0 taken 25% (fallthrough)
 branch  1 taken 75%
-    18128:   13:		return -1;
-    53842:   14:	return 0;
+    18079:   13:		return -1;
+    53870:   14:	return 0;
         -:   15:}
         -:   16:
 function newGame called 0 returned 0% blocks executed 0%
@@ -3689,12 +4327,12 @@ branch  1 taken 40%
         -: 1399:
         -: 1400:	//remove card from player's hand
      1676: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
-branch  0 taken 16% (fallthrough)
-branch  1 taken 84%
+branch  0 taken 12% (fallthrough)
+branch  1 taken 88%
         -: 1402:	{
         -: 1403:		//reduce number of cards in hand
-      266: 1404:		state->handCount[currentPlayer]--;
-     1410: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
+      208: 1404:		state->handCount[currentPlayer]--;
+     1468: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -: 1406:	{
@@ -3703,12 +4341,12 @@ branch  1 taken 100%
         -: 1409:	} else
         -: 1410:	{
         -: 1411:		//replace discarded card with last card in hand
-     1410: 1412:		state->hand[currentPlayer][handPos] =
-     1410: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
+     1468: 1412:		state->hand[currentPlayer][handPos] =
+     1468: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
         -: 1414:		//set last card to -1
-     1410: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+     1468: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1416:		//reduce number of cards in hand
-     1410: 1417:		state->handCount[currentPlayer]--;
+     1468: 1417:		state->handCount[currentPlayer]--;
         -: 1418:	}
         -: 1419:
      1676: 1420:	return 0;

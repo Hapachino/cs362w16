@@ -10,18 +10,18 @@
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-function compare called 86072 returned 100% blocks executed 100%
-    86072:    8:int compare( const void* a, const void* b )
+function compare called 86133 returned 100% blocks executed 100%
+    86133:    8:int compare( const void* a, const void* b )
         -:    9:{
-    86072:   10:	if (*(int*) a > *(int*) b)
+    86133:   10:	if (*(int*) a > *(int*) b)
 branch  0 taken 16% (fallthrough)
 branch  1 taken 84%
-    14102:   11:		return 1;
-    71970:   12:	if (*(int*) a < *(int*) b)
+    14184:   11:		return 1;
+    71949:   12:	if (*(int*) a < *(int*) b)
 branch  0 taken 25% (fallthrough)
 branch  1 taken 75%
-    18128:   13:		return -1;
-    53842:   14:	return 0;
+    18079:   13:		return -1;
+    53870:   14:	return 0;
         -:   15:}
         -:   16:
 function newGame called 0 returned 0% blocks executed 0%
@@ -1845,12 +1845,12 @@ branch  1 taken 40%
         -: 1399:
         -: 1400:	//remove card from player's hand
      1676: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
-branch  0 taken 16% (fallthrough)
-branch  1 taken 84%
+branch  0 taken 12% (fallthrough)
+branch  1 taken 88%
         -: 1402:	{
         -: 1403:		//reduce number of cards in hand
-      266: 1404:		state->handCount[currentPlayer]--;
-     1410: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
+      208: 1404:		state->handCount[currentPlayer]--;
+     1468: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -: 1406:	{
@@ -1859,12 +1859,12 @@ branch  1 taken 100%
         -: 1409:	} else
         -: 1410:	{
         -: 1411:		//replace discarded card with last card in hand
-     1410: 1412:		state->hand[currentPlayer][handPos] =
-     1410: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
+     1468: 1412:		state->hand[currentPlayer][handPos] =
+     1468: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
         -: 1414:		//set last card to -1
-     1410: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+     1468: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1416:		//reduce number of cards in hand
-     1410: 1417:		state->handCount[currentPlayer]--;
+     1468: 1417:		state->handCount[currentPlayer]--;
         -: 1418:	}
         -: 1419:
      1676: 1420:	return 0;

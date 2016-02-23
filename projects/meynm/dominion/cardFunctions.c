@@ -23,14 +23,14 @@ void playSmithy( int currentPlayer, struct gameState *state, int handPos )
 	}
 
 	//discard card from hand
-	discardCard( currentPlayer, handPos, state, 1 );
+	discardCard(handPos, currentPlayer, state, 0 );
 	return;
 }
 
 // draw cards until 2 treasure cards have been drawn
 void playAdventurer( int currentPlayer, struct gameState *state )
 {
-	int drawntreasure, cardDrawn, z;
+	int drawntreasure = 0, cardDrawn, z = 0;
 	int temphand[MAX_HAND];
 	//keep drawing cards until 2 treasure cards are drawn
 	while ( drawntreasure < 2 )
@@ -50,7 +50,8 @@ void playAdventurer( int currentPlayer, struct gameState *state )
 		{
 			temphand[z] = cardDrawn;
 			//remove the top card
-			state->handCount[currentPlayer--];
+			state->handCount[currentPlayer]--;
+			z++;
 			//z needs to be incremented
 		}
 	}

@@ -1164,7 +1164,7 @@ int runAdventurer(struct gameState *state, int drawntreasure, int currentPlayer,
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == silver || cardDrawn == gold) //refactor to remove cardDrawn == copper
+	if (cardDrawn == copper ||cardDrawn == silver || cardDrawn == gold)  
 	  drawntreasure++;  
 	else{
 	  temphand[z]=cardDrawn;
@@ -1190,9 +1190,10 @@ int runCouncilRm(struct gameState *state, int currentPlayer, int handPos)
 	{
 	  drawCard(currentPlayer, state); 
 				
-      //+1 Buy
-      state->numBuys++; //refactor so buy is included in for loop and occurs multiple times
 	}		
+      //+1 Buy
+      state->numBuys++; 
+
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
 	{

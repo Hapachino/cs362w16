@@ -65,12 +65,11 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("Local URLs being allowed");
 	   assertTrue(urlVal.isValid("http://127.0.0.1"));
 	   assertFalse(urlVal.isValid("http://localhost")); //Should be true, possible bug
-
 	   
 	   // Test for fragments not allowed.
 	   System.out.println("No Fragments Test");
 	   urlVal = new UrlValidator(UrlValidator.NO_FRAGMENTS);
-	   assertFalse(urlVal.isValid("http://www.bigdog/time.php")); //Should be ture, possible bug
+	   assertFalse(urlVal.isValid("http://www.bigdog/time.php")); //Should be true, possible bug
 	   assertFalse(urlVal.isValid("http://http://www.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.comwww.google.com"));
 	    
    	   // Test for 2 slashes in paths (allowed).
@@ -78,7 +77,85 @@ public class UrlValidatorTest extends TestCase {
 	   urlVal = new UrlValidator(UrlValidator.ALLOW_2_SLASHES);
 	   assertTrue(urlVal.isValid("http://www.example.com//blog"));
 	   assertTrue(urlVal.isValid("http://www.example.com//blog//index.php")); 
-	    	   
+	
+	   // Test basic URLs with hostname
+	   System.out.println("Basic URL Test");
+	   urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   assertTrue(urlVal.isValid("https://www.google.com"));
+	   assertFalse(urlVal.isValid("https://www.google.&(@*$A@(')"));
+	   assertTrue(urlVal.isValid("https://www.amazon.com"));
+	   assertFalse(urlVal.isValid("http://www.amazon.rocks"));	//Should be true, possible bug
+	   assertTrue(urlVal.isValid("http://amazon.com"));
+	   assertTrue(urlVal.isValid("http://espn.go.com"));
+	   assertTrue(urlVal.isValid("http://eecs.oregonstate.edu"));
+	   assertTrue(urlVal.isValid("http://eecs.oregonstate.edu/students"));
+	   assertTrue(urlVal.isValid("http://eecs.oregonstate.edu/current%20students"));
+	   assertTrue(urlVal.isValid("http://eecs.oregonstate.edu/index.html"));
+	   assertTrue(urlVal.isValid("http://eecs.oregonstate.edu/index.html#calendar"));
+	   
+	   // Test URL with query
+	   System.out.println("URL With Query Test");
+	   urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   assertFalse(urlVal.isValid("http://www.foo.gov/somefolder?name=bar"));				//Should be true, possible bug
+	   assertFalse(urlVal.isValid("http://www.foo.gov/somefolder?name=bar&name2=bar2"));	//Should be true, possible bug
+	   assertFalse(urlVal.isValid("http://www.foo.gov/somefolder?name=bar;name2=bar2"));  	//Should be true, possible bug
+	   assertFalse(urlVal.isValid("http://www.foo.gov/somefolder?1=2&2=3"));			  	//Should be true, possible bug
+	   assertFalse(urlVal.isValid("http://foo.gov/somefolder?name=bar+name2=bar2"));
+	   assertFalse(urlVal.isValid("http://foo.gov/somefolder?name=bar,name2=bar2"));
+	   assertFalse(urlVal.isValid("http://foo.gov/somefolder?name=bar?name2=bar2"));
+	   assertFalse(urlVal.isValid("http://foo.gov/somefolder??name=bar&name2=bar2"));
+	   
+	   // Test URL with ports
+	   System.out.println("URL With Port Test");
+	   urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   assertTrue(urlVal.isValid("http://www.apple.com:80"));
+	   assertFalse(urlVal.isValid("http://www.apple.com:35912"));	//Should be true, possible bug
+	   assertFalse(urlVal.isValid("http://www.apple.com:ABCD"));
+	   assertFalse(urlVal.isValid("http://www.apple.com:?"));
+	   assertFalse(urlVal.isValid("http://www.apple.com:/somefolder"));
+
+	   // Test URL with username/password
+	   System.out.println("URL With Authentication Token Test");
+	   urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   assertFalse(urlVal.isValid("http://user:password@mail.google.com"));
+
+	   // Test URL with IP address
+	   System.out.println("URL With IP Address Test");
+	   urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   assertTrue(urlVal.isValid("http://5.5.5.5"));
+	   assertTrue(urlVal.isValid("http://5.5.5.5:80"));
+	   assertFalse(urlVal.isValid("http://5.5.5.5:13000"));						//Should be true, possible bug
+	   assertTrue(urlVal.isValid("http://5.5.5.256"));							//Should be false, possible bug
+	   assertTrue(urlVal.isValid("http://0.0.0.0"));
+	   assertTrue(urlVal.isValid("http://5.5.5.5/folder"));
+	   assertTrue(urlVal.isValid("http://5.5.5.5:80/folder"));
+	   assertFalse(urlVal.isValid("http://5.5.5.5/folder?name=foo"));			//Should be true, possible bug
+	   assertFalse(urlVal.isValid("http://5.5.5.5/folder?name=foo&name2=bar"));	//Should be true, possible bug
+	   
+	   // Test FTP scheme
+	   System.out.println("FTP Scheme Test");
+	   urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   assertFalse(urlVal.isValid("ftp://user1:pass@foo.com"));				//Should be true, possible bug
+	   assertFalse(urlVal.isValid("ftp://user1@foo.com"));					//Should be true, possible bug
+	   assertFalse(urlVal.isValid("ftp://@foo.com"));						//Should be true, possible bug
+	   assertTrue(urlVal.isValid("ftp://foo.com"));
+	   assertTrue(urlVal.isValid("ftp://foo.com/folder1/folder2/folder3"));
+	   assertFalse(urlVal.isValid("ftp://foo.com?name=bar"));
+	   assertTrue(urlVal.isValid("ftp://foo.com/folder;type=a"));
+	   assertTrue(urlVal.isValid("ftp://foo.com/folder;type=z"));			//Should be false, possible bug
+	   assertTrue(urlVal.isValid("ftp://foo.com:20/folder"));				
+	   assertFalse(urlVal.isValid("ftp://foo.com:20000/folder"));			//Should be true, possible bug
+	   
+	   // Test Mailto scheme
+	   // All mailto schemes return false - bug?
+	   /*
+	   System.out.println("Mailto Scheme Test");
+	   urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   assertTrue(urlVal.isValid("mailto:name@company.com"));
+	   assertTrue(urlVal.isValid("mailto:foo@bar"));
+	   assertFalse(urlVal.isValid("mailto:www.google.com"));
+	   assertTrue(urlVal.isValid("mailto:name@company.com:25000"));
+	   */
    }
    
    

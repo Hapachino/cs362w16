@@ -26,10 +26,10 @@ int main()
 
 	// basic test with 2 players using newly initialized game state
 	g = newGameState( 2 );
-	player = 0;
+	player = 1;
 	g->hand[player][g->handCount[player]] = smithy;
 	handPos = ( g->handCount[player] )++;
-	fprintf( stdout, "Standard game with 2 players: Player 0 plays Smithy: " );
+	fprintf( stdout, "Standard game with 2 players: Player 1 plays Smithy: " );
 	if (testSmithy( g, player, handPos ))
 	{
 		fprintf( stdout, "FAIL\n" );
@@ -173,8 +173,11 @@ int testSmithy( struct gameState *g, int player, int handPos )
 	// new hand count should be old count + 3 new cards - 1 for the smithy
 	if (pre->discardCount[player] + pre->deckCount[player] >= 3)
 	{
-		if (post->handCount[player] != 2 + pre->handCount[player])
+		if (post->handCount[player] != 2 + pre->handCount[player]) {
+			printf("Player has wrong hand count.\nPost- hand count: %d\nExpected: %d",
+					post->handCount[player], 2 + pre->handCount[player]);
 			failFlag = 1;
+		}
 	}
 	preCardCount = pre->deckCount[player] + pre->discardCount[player] + pre->handCount[player];
 	postCardCount = post->deckCount[player] + post->discardCount[player] + post->handCount[player];

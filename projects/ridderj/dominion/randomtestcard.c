@@ -72,7 +72,7 @@ int main() {
     //printf ("TESTING cutpurse card:%d \n\n", INT_MAX);
     
    
-    while(countNum < 500000){ //Stops testing after a certain number of attemtps
+    while(countNum < 20000){ //Stops testing after a certain number of attemtps
     if(DEBUG3)
        
       printf("\nTEST START---------------------------------\n");
@@ -108,7 +108,7 @@ int main() {
           handRandom = floor((Random()*100));
           for (i = 0; i < handRandom; i++) {
             randomNum = floor(Random()*27);
-            if(randomNum != estate) { //make sure inital hand never gets an estate, it will be added later
+            if(randomNum == estate) { //make sure inital hand never gets an estate, it will be added later
                G.hand[G.whoseTurn][i] = 2;//just make it a duchy card
             } else { G.hand[G.whoseTurn][i] = randomNum; }
           }
@@ -237,17 +237,17 @@ int main() {
                printf("Number of buys = %d,expected %d\n",G.numBuys, (numBuysRandom+1));
                assert( G.numBuys == (numBuysRandom+1));        
                
-               printf("Estate Supply Count = %d ,expected %d\n", G.supplyCount[estate], supplyRandomEstate);
+               printf("Estate Supply Count = %d ,expected %d\n", G.supplyCount[estate], supplyRandomEstate-1);
                //assert( G.supplyCount[estate] == 10);
-               if(G.supplyCount[estate] != supplyRandomEstate)
+               if(G.supplyCount[estate] != supplyRandomEstate-1)
                    printf("TEST FAIL\n");
                
                printf("Deck Supply Count = %d ,expected %d\n", G.deckCount[G.whoseTurn], deckRandom);
                assert(G.deckCount[G.whoseTurn] == deckRandom);
                
-               printf("Hand Supply Count = %d ,expected %d\n", G.handCount[G.whoseTurn], handRandom+1);
+               printf("Hand Supply Count = %d ,expected %d\n", G.handCount[G.whoseTurn], handRandom);
                //assert(G.handCount[G.whoseTurn] == handRandom-1);
-               if(G.handCount[G.whoseTurn] != handRandom+1)
+               if(G.handCount[G.whoseTurn] != handRandom)
                   printf("TEST FAIL\n");
                
                

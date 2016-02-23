@@ -1,0 +1,72 @@
+Noverse Bug Reporting Template
+==============================
+
+Title: isGameOver() is not checking the seahag and treasuremap card supply piles. 
+
+Class: Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date: 2/22/2016          
+Reported By: Juan Solis  
+Email: solisj@oregonstate.edu      
+
+
+Product:   dominion.c/isGameOver()              Version:
+Platform:    C                                  Version:
+Browser:                                        Version:
+URL:        
+
+Is it reproducible: Yes
+
+Description
+===========
+The isGameOver() function only checks supply piles for cards 0-24. Cards 25 and 26 are seahag and treasuremap.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Run isGameOver() with the following combination of 3 depleted supply piles: 
+
+	gameState.supplyCount[<anycard other than seahag and treasure_map>] = 0;
+	gameState.supplyCount[<anycard other than seahag and treasure_map>] = 0;
+	gameState.supplyCount[<seahag or treasure_map>] = 0;
+	
+
+
+Expected Results
+----------------
+isGameover() to return 1
+
+
+Actual Results (Small excerpt fomr unit test)
+---------------------------------------------------------------------------------------------------------------------------
+Testing three depleted supply piles- Cards depleted: remodel, council_room, and sea_hag 
+isGameover = 0, Expected = 1
+---------------------------------------------------------------------------------------------------------------------------
+Testing three depleted supply piles- Cards depleted: remodel, council_room, and treasure_map 
+isGameover = 0, Expected = 1
+---------------------------------------------------------------------------------------------------------------------------
+Testing three depleted supply piles- Cards depleted: remodel, feast, and sea_hag 
+isGameover = 0, Expected = 1
+---------------------------------------------------------------------------------------------------------------------------
+Testing three depleted supply piles- Cards depleted: remodel, feast, and treasure_map 
+isGameover = 0, Expected = 1
+---------------------------------------------------------------------------------------------------------------------------
+Testing three depleted supply piles- Cards depleted: remodel, gardens, and sea_hag 
+isGameover = 0, Expected = 1
+---------------------------------------------------------------------------------------------------------------------------
+Testing three depleted supply piles- Cards depleted: remodel, gardens, and treasure_map 
+isGameover = 0, Expected = 1
+---------------------------------------------------------------------------------------------------------------------------
+
+Workarounds
+-----------
+none
+
+
+Attachments
+-----------
+
+
+Other Information
+-----------------

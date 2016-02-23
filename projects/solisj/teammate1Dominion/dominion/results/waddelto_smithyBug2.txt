@@ -1,0 +1,55 @@
+Noverse Bug Reporting Template
+==============================
+
+Title: Smithy card is not incrementing the playedCardsCount by 1
+
+Class: Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date: 2/22/2016          
+Reported By: Juan Solis  
+Email: solisj@oregonstate.edu      
+
+
+Product:   dominion.c/smithyEffect()            Version:
+Platform:    C                                  Version:
+Browser:                                        Version:
+URL:        
+
+Is it reproducible: Yes
+
+Description
+===========
+After playing the smithy card, the playedCardsCount is not incrementing by 1
+
+
+Steps to Produce/Reproduce
+--------------------------
+1) Run smithyEffect()
+2) Check the gameState.playedCardsCount
+
+
+Expected Results
+----------------
+The playedCardsCount to be increased by 1
+
+
+Actual Results
+--------------
+Testing that player[1] playedCardCount has increased by 1..
+playedCardCount = 0, Expected = 1
+
+
+Workarounds
+-----------
+none
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+The call to discardCard() in the smithyEffect() function has the trashflag set to '1'. It should be set to '0'.

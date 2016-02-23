@@ -657,7 +657,7 @@ int adventurerCardFunc(struct gameState *state, int handPos)
                shuffle(currentPlayer, state);
             }
             drawCard(currentPlayer, state);
-            cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+            cardDrawn = state->hand[currentPlayer][(state->handCount[currentPlayer])-1];//top card of hand is most recently drawn card.
             if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
                drawntreasure++;
             else{
@@ -697,7 +697,7 @@ int villageCardFunc(struct gameState *state, int handPos)
    drawCard(currentPlayer, state);
       
    //+2 Actions
-   state->numActions = state->numActions + state->numPlayers;
+   state->numActions = state->numActions + 2;
       
    //discard played card from hand
    discardCard(handPos, currentPlayer, state, 0);
@@ -718,7 +718,7 @@ int cutpurseCardFunc(struct gameState *state, int handPos)
    updateCoins(currentPlayer, state, 2);
       for (i = 0; i < state->numPlayers; i++)
 	{
-	  if (i != currentPlayer || i != 3)
+	  if (i != currentPlayer)
 	    {
 	      for (j = 0; j < state->handCount[i]; j++)
 		{
@@ -996,7 +996,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	    }
 	    if (supplyCount(estate, state) > 0){
 	      gainCard(estate, state, 0, currentPlayer);
-	      state->supplyCount[estate]--;//Decrement estates
+
 	      if (supplyCount(estate, state) == 0){
 		isGameOver(state);
 	      }
@@ -1013,7 +1013,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       else{
 	if (supplyCount(estate, state) > 0){
 	  gainCard(estate, state, 0, currentPlayer);//Gain an estate
-	  state->supplyCount[estate]--;//Decrement Estates
+
 	  if (supplyCount(estate, state) == 0){
 	    isGameOver(state);
 	  }

@@ -55,6 +55,7 @@ Fix 2:
      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one). 
 
 
+
  /***********************************
 //FROM James Linnenburger    
 /***********************************
@@ -160,5 +161,140 @@ Testing isGameOver()------------------------------------------
       for (i = 0; i < 25; i++)  //LINE 402 
 
    Update:
-       for (i = 0; i < 27; i++)  //LINE 402 
+       for (i = 0; i < 27; i++)  //LINE 402
        
+       
+       
+/***********************************
+//FROM Jason Ridder(Me)   
+/***********************************
+Testing village card------------------------------------------
+   TEST 1: Increase current players hand by 1 card.
+   -No bugs found
+
+   TEST 2: Actions increased by 2.
+   -No bugs found
+   
+   TEST 3: Increase current players hand +1 card and +2 actions with different player sizes.
+   - Bugs found.
+      -No bugs found when only 2 players, actions increase not correct when > 2 players.
+      
+            Testing with 2 players
+               Current Actions 3 ,expected 3
+               Total 5 cards in hand,expected 5
+            Testing with 3 players
+               Current Actions 4 ,expected 3
+                  TEST FAIL
+               Total 5 cards in hand,expected 5
+            Testing with 4 players
+               Current Actions 5 ,expected 3
+                  TEST FAIL
+               Total 5 cards in hand,expected 5
+   
+   TEST 4: Play village card when players deck is empty.
+   - Bugs found.
+       -Same action bug found in test 3. Having empty deck using village card
+         show no bugs.
+         
+            Testing with 2 players
+               Current deck count 4, hand count 5, and actions 3;expected 4,5,&3
+            Testing with 3 players
+               Current deck count 4, hand count 5, and actions 4;expected 4,5,&3
+                    TEST FAIL
+            Testing with 4 players
+               Current deck count 4, hand count 5, and actions 5;expected 4,5,&3
+                     TEST FAIL
+    ***********************************/
+
+Updated line 700 - Fixed number of actions give out.
+From:
+state->numActions = state->numActions + state->numPlayers;
+To:
+state->numActions = state->numActions + 2;  
+
+
+
+
+
+
+/***********************************
+//FROM Jason Ridder(Me)   
+/***********************************
+Testing cutpurse card------------------------------------------
+   TEST 1:Current player +2 treasure
+      -No bugs.
+      
+   TEST 2:Each other player discards a Copper card
+      - Would take 1 copper card away from current player actually playing
+        cutpurse card.This isn't suppose to happen. There was only one
+        situation where current player wouldn't have
+        copper taken away, that was when four players were playing and player 4
+        used it.
+        
+         Player 4 playing cutpurse card
+            Player 1 had 5 copper card, expected 4
+               TEST FAILED
+            Player 2 had 5 copper card, expected 4
+               TEST FAILED
+            Player 3 had 5 copper card, expected 4
+               TEST FAILED
+            Current player 1 copper card, expected 1
+
+      -Also wouldn't ever take away a copper card from every other player, no matter
+         how many players where playing.
+   
+   TEST 3:If other players don't have a copper, hands should remain the same.
+       -No bugs.
+   
+   TEST 4: Card supply is uneffected when played.
+       -No bugs.
+    ***********************************/
+    
+ Updated line 721.
+ From:
+ if (i != currentPlayer || i != 3)
+ To:
+ if (i != currentPlayer)
+    
+ This fixed problems with Current player not having correct copper cards. Still
+ problems with other players.
+ 
+ -Discard problem with cardtest4.c on line 174. Oracle wasn't counting copper cards
+ correctly. Cutpurse card working correctly now. I notified my teammates that my
+ bug report was incorrect.
+ 
+ 
+ /***********************************
+//FROM Jason Ridder(Me)   
+/***********************************
+ /* -----------------------------------------------------------------------
+ * Testing baron card
+ * -----------------------------------------------------------------------
+ */
+ 
+ /*
+TEST START---------------------------------
+CARD: 1
+CHOICE: 0
+TEST NUM: 1 Deck: 80 Hand: 90 Discard: 58 Player 1
+GET ESTATE CARD---
+Coins = 0 ,expected 0
+Number of buys = 2,expected 2
+Estate Supply Count = 38 ,expected 39
+TEST FAIL
+Hand Supply Count = 90 ,expected 90
+Discard Supply Count = 59 ,expected 59
+/***********************************/
+
+
+Fix: Supply count of estate card is already handeled in the function
+gainCard. 
+
+Removed:
+state->supplyCount[estate]--;//Decrement estates
+// FROM LINE 999 and 1016
+
+
+After fixing the "state->supplyCount[estate]--;" I went on to fix other bugs that my
+randomtestcard.c found but ended up figuring out that my orcale for testing when an
+estate start isn't found in players hand, had many things wrong with it. 

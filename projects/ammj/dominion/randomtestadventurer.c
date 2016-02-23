@@ -175,59 +175,6 @@ struct cardResults* declCardResults() {
 }
 
 /**
- * Function: calcCoins
- * Inputs: array of cards, array element count
- * Outputs: coin calculation
- * Description:  Calculates coins in a given hand
- */
-int calcCoins(int *hand, int handCount){
-
-	int i;
-	int coinCount = 0;
-
-	for(i=0; i < handCount; i++)
-	{
-		if(hand[i] == gold)
-		{
-			coinCount = coinCount + GOLD_VALUE;
-		}
-		else if(hand[i] == silver)
-		{
-			coinCount = coinCount + SILVER_VALUE;
-		}
-		else if(hand[i] == copper)
-		{
-			coinCount = coinCount + COPPER_VALUE;
-		}
-	}
-
-	return coinCount;
-}
-
-/**
- * Function: calcCoinsCards
- * Inputs: array of cards, array element count
- * Outputs: treasure Card summation
- * Description:  Calculates treasureCards in a given hand
- */
-int calcCoinCards(int *hand, int handCount){
-
-	int i;
-	int cardCount = 0;
-
-	for(i=0; i < handCount; i++)
-	{
-		if(hand[i] == gold || hand[i] == silver || hand[i] == copper)
-		{
-			cardCount++;
-		}
-
-	}
-
-	return cardCount;
-}
-
-/**
  * Function: PrintDecks
  * Inputs: player, activeGame, controlGame
  * Outputs: 0 on successful game completion
@@ -301,52 +248,6 @@ int printDecks(int player, struct gameState* activeGame, struct gameState* contr
 				printf(", ");
 		}
 		printf("]");
-	}
-
-	return 0;
-}
-
-/**
- * Function: updatePile
- * Inputs: player, count of elements to update, pile type to update, struct gameState
- * Outputs: None
- * Description:  updates a pile of cards to the number of elements requested in count
- */
-int updatePile(int player, int count, int pile, struct gameState *state){
-
-	int i;
-	int *ptr;
-	int oldCount;
-	int k[18] = {estate, province, copper, baron, mine, silver, gold, duchy, silver, adventurer, gold, gardens,
-			mine, silver, silver, gold, silver, council_room};
-
-	if(pile == HAND)
-	{
-		oldCount = state->handCount[player];
-		state->handCount[player] = count;
-		ptr = state->hand[player];
-	}
-	else if(pile == DECK)
-	{
-		oldCount = state->deckCount[player];
-		state->deckCount[player] = count;
-		ptr = state->deck[player];
-	}
-	else if(pile == DISCARD)
-	{
-		oldCount = state->discardCount[player];
-		state->discardCount[player] = count;
-		ptr = state->discard[player];
-	}
-
-	for(i = 0; i < count; i++){
-		//ptr[i] = random_number(0, treasure_map);
-		ptr[i] = k[random_number(0, sizeof(k)/sizeof(int))];
-	}
-
-	//clear values higher than count
-	for(i = count; i < oldCount; i++){
-		ptr[i] = 0;
 	}
 
 	return 0;
@@ -547,7 +448,7 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 	int discardGold = 0;
 	char discardResult[] = "PASS";
 
-	for(i = nonCoinCards; i < activeGame->discardCount[curPlayer]; i++)
+	for(i = nonCoinCards + 1; i < activeGame->discardCount[curPlayer]; i++)
 	{
 
 		if(!(activeGame->discard[curPlayer][i] != copper))
@@ -569,13 +470,14 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 			results->testsPassed++;
 
 	}
+
 	printf("Test %d: %s: Coins discarded: Gold: %d, Silver: %d, Copper: %d\n", results->testNum, discardResult,
 			discardGold, discardSilver, discardCopper);
 
 	// all added cards added to the hand should only be coins
 	if(addedCards > 0){
 
-		start = controlGame->handCount[curPlayer] - addedCards;
+		start = activeGame->handCount[curPlayer] - addedCards;
 		end = start + addedCards - 1;
 
 		for(i = start; i < end; i++)
@@ -695,8 +597,11 @@ void randomtestadventurer(int printVal, int seed, struct cardResults *result){
 	memcpy(activeGame, controlGame, sizeof(struct gameState));
 
 	// play the card
+	printf("Configuration: DeckCount: %d, DiscardCount: %d, handCount: %d\n", result->deckCount, result->discardCount, result->handCount);
 	r = playAdventurer(activeGame);
+
 	assert(r == 0);
+
 	result->deckCount = random_number(0, 50);
 	result->testsPassed++;
 

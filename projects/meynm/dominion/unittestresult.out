@@ -59,7 +59,7 @@ Testing fullDeckCount():
 cardtest1
 
 Testing Smithy card:
-Standard game with 2 players: Player 0 plays Smithy: FAIL
+Standard game with 2 players: Player 1 plays Smithy: FAIL
 Standard game with 4 players: Player 2 plays Smithy: FAIL
 Standard game with 3 players: Player 1 plays Smithy: FAIL
 game with 3 players, current player has to reshuffle: FAIL
@@ -90,7 +90,10 @@ Testing Mine card:
 	parameters: player=1, handPos=5, trashPos=0, gainCard=5
 	FAIL
 
-4 players, player 3 exchanges copper in p.3 for treasure map. Mine in p.2: pass
+4 players, player 3 exchanges copper in p.3 for treasure map. Mine in p.2: 
+	problem: unexpected return value
+	parameters: player=3, handPos=2, trashPos=3, gainCard=26
+	FAIL
 
 3 players, player 0 exchanges silver in p.4 for gold. Mine in p.0: 
 	problem: postconditions not met:
@@ -102,10 +105,13 @@ Testing Mine card:
 	parameters: player=0, handPos=0, trashPos=9, gainCard=6
 	FAIL
 
-4 players, player 2 exchanges copper in p.1 for gold. Mine in p.4: pass
+4 players, player 2 exchanges copper in p.1 for gold. Mine in p.4: 
+	problem: unexpected return value
+	parameters: player=2, handPos=4, trashPos=1, gainCard=6
+	FAIL
 
 
-5 tests, 3 failures
+5 tests, 5 failures
 
 **********
 
@@ -117,11 +123,500 @@ Testing Steward card:
 
 Test 1: Player 3 chooses to draw 2 cards: pass
 Test 2: Player 0 chooses 2 coins: pass
-Test 3: Player 1 puts 2 cards in trash: pass
+Test 3: Player 1 puts 2 cards in trash: 	FAIL
 
 Doing random tests...
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=4, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=4, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=1, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=2, handPos=0, effect=3, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=1, handPos=2, effect=0, trash1pos=5, trash2pos=6: FAIL
+player=0, handPos=3, effect=0, trash1pos=5, trash2pos=6: FAIL
 
-1003 tests, 0 failures.
+1003 tests, 490 failures.
 
 **********
 
@@ -141,13 +636,13 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-   779832:    8:int compare( const void* a, const void* b )
+   781426:    8:int compare( const void* a, const void* b )
         -:    9:{
-   779832:   10:	if (*(int*) a > *(int*) b)
-    24701:   11:		return 1;
-   755131:   12:	if (*(int*) a < *(int*) b)
-   197614:   13:		return -1;
-   557517:   14:	return 0;
+   781426:   10:	if (*(int*) a > *(int*) b)
+    26425:   11:		return 1;
+   755001:   12:	if (*(int*) a < *(int*) b)
+   198500:   13:		return -1;
+   556501:   14:	return 0;
         -:   15:}
         -:   16:
     #####:   17:struct gameState* newGame()
@@ -352,9 +847,9 @@ Creating 'dominion.c.gcov'
    461598:  216:		card = floor( Random() * state->deckCount[player] );
    461598:  217:		newDeck[newDeckPos] = state->deck[player][card];
    461598:  218:		newDeckPos++;
-  1601550:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+  1595710:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
         -:  220:		{
-  1139952:  221:			state->deck[player][i] = state->deck[player][i + 1];
+  1134112:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
    461598:  223:		state->deckCount[player]--;
         -:  224:	}
@@ -467,9 +962,9 @@ Creating 'dominion.c.gcov'
     #####:  331:	return state->hand[currentPlayer][handPos];
         -:  332:}
         -:  333:
-   237021:  334:int supplyCount( int card, struct gameState *state )
+   237023:  334:int supplyCount( int card, struct gameState *state )
         -:  335:{
-   237021:  336:	return state->supplyCount[card];
+   237023:  336:	return state->supplyCount[card];
         -:  337:}
         -:  338:
    300000:  339:int fullDeckCount( int player, int card, struct gameState *state )
@@ -738,11 +1233,11 @@ Creating 'dominion.c.gcov'
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-    95823:  605:int drawCard( int player, struct gameState *state )
+    96618:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    95823:  609:	if (state->deckCount[player] <= 0)
+    96618:  609:	if (state->deckCount[player] <= 0)
         -:  610:	{    //Deck is empty
         -:  611:
         -:  612:		//Step 1 Shuffle the discard pile back into a deck
@@ -787,20 +1282,20 @@ Creating 'dominion.c.gcov'
         -:  651:
         -:  652:	else
         -:  653:	{
-    95820:  654:		int count = state->handCount[player];    //Get current hand count for player
+    96615:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
         -:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    95820:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    95820:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    95820:  663:		state->deckCount[player]--;
-    95820:  664:		state->handCount[player]++;    //Increment hand count
+    96615:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    96615:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    96615:  663:		state->deckCount[player]--;
+    96615:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    95822:  667:	return 0;
+    96617:  667:	return 0;
         -:  668:}
         -:  669:
    443948:  670:int getCost( int cardNumber )
@@ -1512,58 +2007,58 @@ Creating 'dominion.c.gcov'
     #####: 1376:	return -1;
         -: 1377:}
         -: 1378:
-     1993: 1379:int discardCard( int handPos, int currentPlayer, struct gameState *state, int trashFlag )
+     1996: 1379:int discardCard( int handPos, int currentPlayer, struct gameState *state, int trashFlag )
         -: 1380:{
         -: 1381:
         -: 1382:	//if card is not trashed, added to Played pile
-     1993: 1383:	if (trashFlag < 1)
+     1996: 1383:	if (trashFlag < 1)
         -: 1384:	{
         -: 1385:		//add card to played pile
-     1006: 1386:		state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
-     1006: 1387:		state->playedCardCount++;
+     1016: 1386:		state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
+     1016: 1387:		state->playedCardCount++;
         -: 1388:
         -: 1389:		// I think this was missing before
-     2012: 1390:		state->discard[currentPlayer][state->discardCount[currentPlayer]] =
-     1006: 1391:				state->hand[currentPlayer][handPos];
-     1006: 1392:		state->discardCount[currentPlayer]++;
+     2032: 1390:		state->discard[currentPlayer][state->discardCount[currentPlayer]] =
+     1016: 1391:				state->hand[currentPlayer][handPos];
+     1016: 1392:		state->discardCount[currentPlayer]++;
         -: 1393:
         -: 1394:
         -: 1395:	}
         -: 1396:
         -: 1397:	//set played card to -1
-     1993: 1398:	state->hand[currentPlayer][handPos] = -1;
+     1996: 1398:	state->hand[currentPlayer][handPos] = -1;
         -: 1399:
         -: 1400:	//remove card from player's hand
-     1993: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
+     1996: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
         -: 1402:	{
         -: 1403:		//reduce number of cards in hand
        87: 1404:		state->handCount[currentPlayer]--;
-     1906: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
+     1909: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
         -: 1406:	{
         -: 1407:		//reduce number of cards in hand
     #####: 1408:		state->handCount[currentPlayer]--;
         -: 1409:	} else
         -: 1410:	{
         -: 1411:		//replace discarded card with last card in hand
-     1906: 1412:		state->hand[currentPlayer][handPos] =
-     1906: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
+     1909: 1412:		state->hand[currentPlayer][handPos] =
+     1909: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
         -: 1414:		//set last card to -1
-     1906: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+     1909: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1416:		//reduce number of cards in hand
-     1906: 1417:		state->handCount[currentPlayer]--;
+     1909: 1417:		state->handCount[currentPlayer]--;
         -: 1418:	}
         -: 1419:
-     1993: 1420:	return 0;
+     1996: 1420:	return 0;
         -: 1421:}
         -: 1422:
-    36425: 1423:int gainCard( int supplyPos, struct gameState *state, int toFlag, int player )
+    36427: 1423:int gainCard( int supplyPos, struct gameState *state, int toFlag, int player )
         -: 1424:{
         -: 1425:	//Note: supplyPos is enum of choosen card
         -: 1426:
         -: 1427:	//check if supply pile is empty (0) or card is not used in game (-1)
-    36425: 1428:	if (supplyCount( supplyPos, state ) < 1)
+    36427: 1428:	if (supplyCount( supplyPos, state ) < 1)
         -: 1429:	{
-    14221: 1430:		return -1;
+    14222: 1430:		return -1;
         -: 1431:	}
         -: 1432:
         -: 1433:	//added card for [whoseTurn] current player:
@@ -1571,24 +2066,24 @@ Creating 'dominion.c.gcov'
         -: 1435:	// toFlag = 1 : add to deck
         -: 1436:	// toFlag = 2 : add to hand
         -: 1437:
-    22204: 1438:	if (toFlag == 1)
+    22205: 1438:	if (toFlag == 1)
         -: 1439:	{
       260: 1440:		state->deck[player][state->deckCount[player]] = supplyPos;
       260: 1441:		state->deckCount[player]++;
-    21944: 1442:	} else if (toFlag == 2)
+    21945: 1442:	} else if (toFlag == 2)
         -: 1443:	{
       283: 1444:		state->hand[player][state->handCount[player]] = supplyPos;
       283: 1445:		state->handCount[player]++;
         -: 1446:	} else
         -: 1447:	{
-    21661: 1448:		state->discard[player][state->discardCount[player]] = supplyPos;
-    21661: 1449:		state->discardCount[player]++;
+    21662: 1448:		state->discard[player][state->discardCount[player]] = supplyPos;
+    21662: 1449:		state->discardCount[player]++;
         -: 1450:	}
         -: 1451:
         -: 1452:	//decrease number in supply pile
-    22204: 1453:	state->supplyCount[supplyPos]--;
+    22205: 1453:	state->supplyCount[supplyPos]--;
         -: 1454:
-    22204: 1455:	return 0;
+    22205: 1455:	return 0;
         -: 1456:}
         -: 1457:
     18559: 1458:int updateCoins( int player, struct gameState *state, int bonus )
@@ -1640,18 +2135,18 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-function compare called 779832 returned 100% blocks executed 100%
-   779832:    8:int compare( const void* a, const void* b )
+function compare called 781426 returned 100% blocks executed 100%
+   781426:    8:int compare( const void* a, const void* b )
         -:    9:{
-   779832:   10:	if (*(int*) a > *(int*) b)
+   781426:   10:	if (*(int*) a > *(int*) b)
 branch  0 taken 3% (fallthrough)
 branch  1 taken 97%
-    24701:   11:		return 1;
-   755131:   12:	if (*(int*) a < *(int*) b)
+    26425:   11:		return 1;
+   755001:   12:	if (*(int*) a < *(int*) b)
 branch  0 taken 26% (fallthrough)
 branch  1 taken 74%
-   197614:   13:		return -1;
-   557517:   14:	return 0;
+   198500:   13:		return -1;
+   556501:   14:	return 0;
         -:   15:}
         -:   16:
 function newGame called 0 returned 0% blocks executed 0%
@@ -1917,11 +2412,11 @@ branch  1 taken 9% (fallthrough)
 call    0 returned 100%
    461598:  217:		newDeck[newDeckPos] = state->deck[player][card];
    461598:  218:		newDeckPos++;
-  1601550:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+  1595710:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
 branch  0 taken 71%
 branch  1 taken 29% (fallthrough)
         -:  220:		{
-  1139952:  221:			state->deck[player][i] = state->deck[player][i + 1];
+  1134112:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
    461598:  223:		state->deckCount[player]--;
         -:  224:	}
@@ -2065,10 +2560,10 @@ call    0 never executed
     #####:  331:	return state->hand[currentPlayer][handPos];
         -:  332:}
         -:  333:
-function supplyCount called 237021 returned 100% blocks executed 100%
-   237021:  334:int supplyCount( int card, struct gameState *state )
+function supplyCount called 237023 returned 100% blocks executed 100%
+   237023:  334:int supplyCount( int card, struct gameState *state )
         -:  335:{
-   237021:  336:	return state->supplyCount[card];
+   237023:  336:	return state->supplyCount[card];
         -:  337:}
         -:  338:
 function fullDeckCount called 300000 returned 100% blocks executed 100%
@@ -2441,12 +2936,12 @@ branch  1 never executed
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-function drawCard called 95823 returned 100% blocks executed 100%
-    95823:  605:int drawCard( int player, struct gameState *state )
+function drawCard called 96618 returned 100% blocks executed 100%
+    96618:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    95823:  609:	if (state->deckCount[player] <= 0)
+    96618:  609:	if (state->deckCount[player] <= 0)
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
         -:  610:	{    //Deck is empty
@@ -2498,20 +2993,20 @@ branch  1 taken 67%
         -:  651:
         -:  652:	else
         -:  653:	{
-    95820:  654:		int count = state->handCount[player];    //Get current hand count for player
+    96615:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
         -:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    95820:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    95820:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    95820:  663:		state->deckCount[player]--;
-    95820:  664:		state->handCount[player]++;    //Increment hand count
+    96615:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    96615:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    96615:  663:		state->deckCount[player]--;
+    96615:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    95822:  667:	return 0;
+    96617:  667:	return 0;
         -:  668:}
         -:  669:
 function getCost called 443948 returned 100% blocks executed 97%
@@ -3449,38 +3944,38 @@ call    0 never executed
     #####: 1376:	return -1;
         -: 1377:}
         -: 1378:
-function discardCard called 1993 returned 100% blocks executed 89%
-     1993: 1379:int discardCard( int handPos, int currentPlayer, struct gameState *state, int trashFlag )
+function discardCard called 1996 returned 100% blocks executed 89%
+     1996: 1379:int discardCard( int handPos, int currentPlayer, struct gameState *state, int trashFlag )
         -: 1380:{
         -: 1381:
         -: 1382:	//if card is not trashed, added to Played pile
-     1993: 1383:	if (trashFlag < 1)
-branch  0 taken 50% (fallthrough)
-branch  1 taken 50%
+     1996: 1383:	if (trashFlag < 1)
+branch  0 taken 51% (fallthrough)
+branch  1 taken 49%
         -: 1384:	{
         -: 1385:		//add card to played pile
-     1006: 1386:		state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
-     1006: 1387:		state->playedCardCount++;
+     1016: 1386:		state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
+     1016: 1387:		state->playedCardCount++;
         -: 1388:
         -: 1389:		// I think this was missing before
-     2012: 1390:		state->discard[currentPlayer][state->discardCount[currentPlayer]] =
-     1006: 1391:				state->hand[currentPlayer][handPos];
-     1006: 1392:		state->discardCount[currentPlayer]++;
+     2032: 1390:		state->discard[currentPlayer][state->discardCount[currentPlayer]] =
+     1016: 1391:				state->hand[currentPlayer][handPos];
+     1016: 1392:		state->discardCount[currentPlayer]++;
         -: 1393:
         -: 1394:
         -: 1395:	}
         -: 1396:
         -: 1397:	//set played card to -1
-     1993: 1398:	state->hand[currentPlayer][handPos] = -1;
+     1996: 1398:	state->hand[currentPlayer][handPos] = -1;
         -: 1399:
         -: 1400:	//remove card from player's hand
-     1993: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
+     1996: 1401:	if (handPos == ( state->handCount[currentPlayer] - 1 ))    //last card in hand array is played
 branch  0 taken 4% (fallthrough)
 branch  1 taken 96%
         -: 1402:	{
         -: 1403:		//reduce number of cards in hand
        87: 1404:		state->handCount[currentPlayer]--;
-     1906: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
+     1909: 1405:	} else if (state->handCount[currentPlayer] == 1)    //only one card in hand
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -: 1406:	{
@@ -3489,29 +3984,29 @@ branch  1 taken 100%
         -: 1409:	} else
         -: 1410:	{
         -: 1411:		//replace discarded card with last card in hand
-     1906: 1412:		state->hand[currentPlayer][handPos] =
-     1906: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
+     1909: 1412:		state->hand[currentPlayer][handPos] =
+     1909: 1413:				state->hand[currentPlayer][( state->handCount[currentPlayer] - 1 )];
         -: 1414:		//set last card to -1
-     1906: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+     1909: 1415:		state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1416:		//reduce number of cards in hand
-     1906: 1417:		state->handCount[currentPlayer]--;
+     1909: 1417:		state->handCount[currentPlayer]--;
         -: 1418:	}
         -: 1419:
-     1993: 1420:	return 0;
+     1996: 1420:	return 0;
         -: 1421:}
         -: 1422:
-function gainCard called 36425 returned 100% blocks executed 100%
-    36425: 1423:int gainCard( int supplyPos, struct gameState *state, int toFlag, int player )
+function gainCard called 36427 returned 100% blocks executed 100%
+    36427: 1423:int gainCard( int supplyPos, struct gameState *state, int toFlag, int player )
         -: 1424:{
         -: 1425:	//Note: supplyPos is enum of choosen card
         -: 1426:
         -: 1427:	//check if supply pile is empty (0) or card is not used in game (-1)
-    36425: 1428:	if (supplyCount( supplyPos, state ) < 1)
+    36427: 1428:	if (supplyCount( supplyPos, state ) < 1)
 call    0 returned 100%
 branch  1 taken 39% (fallthrough)
 branch  2 taken 61%
         -: 1429:	{
-    14221: 1430:		return -1;
+    14222: 1430:		return -1;
         -: 1431:	}
         -: 1432:
         -: 1433:	//added card for [whoseTurn] current player:
@@ -3519,13 +4014,13 @@ branch  2 taken 61%
         -: 1435:	// toFlag = 1 : add to deck
         -: 1436:	// toFlag = 2 : add to hand
         -: 1437:
-    22204: 1438:	if (toFlag == 1)
+    22205: 1438:	if (toFlag == 1)
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
         -: 1439:	{
       260: 1440:		state->deck[player][state->deckCount[player]] = supplyPos;
       260: 1441:		state->deckCount[player]++;
-    21944: 1442:	} else if (toFlag == 2)
+    21945: 1442:	} else if (toFlag == 2)
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
         -: 1443:	{
@@ -3533,14 +4028,14 @@ branch  1 taken 99%
       283: 1445:		state->handCount[player]++;
         -: 1446:	} else
         -: 1447:	{
-    21661: 1448:		state->discard[player][state->discardCount[player]] = supplyPos;
-    21661: 1449:		state->discardCount[player]++;
+    21662: 1448:		state->discard[player][state->discardCount[player]] = supplyPos;
+    21662: 1449:		state->discardCount[player]++;
         -: 1450:	}
         -: 1451:
         -: 1452:	//decrease number in supply pile
-    22204: 1453:	state->supplyCount[supplyPos]--;
+    22205: 1453:	state->supplyCount[supplyPos]--;
         -: 1454:
-    22204: 1455:	return 0;
+    22205: 1455:	return 0;
         -: 1456:}
         -: 1457:
 function updateCoins called 18559 returned 100% blocks executed 82%

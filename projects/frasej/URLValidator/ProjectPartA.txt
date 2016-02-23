@@ -1,4 +1,8 @@
-﻿#Explain testIsValid function:
+﻿Jennifer Frase
+Yunsik Choi
+Charles Hardes
+
+#Explain testIsValid function:
 
 
 Parts of urls such as scheme (testUrlScheme), authority (testUrlAuthority), port, path, and query are prepared as pairs of contents and boolean values with indicating they are valid or invalid.

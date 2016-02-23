@@ -119,35 +119,7 @@ struct cardResults* declCardResults() {
   return result;
 }
 
-/**
- * Function: calcCoins
- * Inputs: array of cards, array element count
- * Outputs: coin calculation
- * Description:  Calculates coins in a given hand
- */
-int calcCoins(int *hand, int handCount){
 
-	int i;
-	int coinCount = 0;
-
-	for(i=0; i < handCount; i++)
-	{
-		if(hand[i] == gold)
-		{
-			coinCount = coinCount + GOLD_VALUE;
-		}
-		else if(hand[i] == silver)
-		{
-			coinCount = coinCount + SILVER_VALUE;
-		}
-		else if(hand[i] == copper)
-		{
-			coinCount = coinCount + COPPER_VALUE;
-		}
-	}
-
-	return coinCount;
-}
 
 /**
  * Function: verifyResults
@@ -164,6 +136,7 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 	// verify the handCount went up by 2 (3 added - 1 played)
 	int countAvailCards = controlGame->deckCount[curPlayer] + controlGame->discardCount[curPlayer];
 	int addedCards = 0;
+	int deckCheck = 0;
 	int discardCheck = 0;
 
 	if(countAvailCards >= result->cardsToAdd)
@@ -172,35 +145,71 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 		addedCards = countAvailCards;
 
 	// smithy should be removed after play and 3 or less cards added
-	assert(activeGame->handCount[curPlayer] == controlGame->handCount[curPlayer] + addedCards - 1);
-	result->testsPassed++;
+	// TODO:  refactored
+	if(!(activeGame->handCount[curPlayer] == controlGame->handCount[curPlayer] + addedCards - 1))
+	{
+		printf("FAIL:  Post HandCount Result: %d, Expected: %d\n", activeGame->handCount[curPlayer],controlGame->handCount[curPlayer] + addedCards - 1);
+		result->testsFailed++;
+	} else {
+		assert(activeGame->handCount[curPlayer] == controlGame->handCount[curPlayer] + addedCards - 1);
+		result->testsPassed++;
+	}
 
 
 	// smithy should be added to the top of the played pile
-	assert(activeGame->playedCardCount >= 1);
-	result->testsPassed++;
+	if(!(activeGame->playedCardCount == controlGame->playedCardCount + 1))
+	{
+		printf("FAIL:  Post PlayedCardCount Result: %d, Expected: %d\n", activeGame->playedCardCount,controlGame->playedCardCount + 1);
+		result->testsFailed++;
+	} else {
+		assert(activeGame->playedCardCount == controlGame->playedCardCount + 1);
+		result->testsPassed++;
+	}
 
-	assert(activeGame->playedCards[activeGame->playedCardCount - 1] == smithy);
-	result->testsPassed++;
+	if(!(activeGame->playedCards[activeGame->playedCardCount - 1] == smithy))
+	{
+		printf("FAIL:  Post Last PlayedCard Result: %d, Expected: %d\n", activeGame->playedCards[activeGame->playedCardCount - 1], smithy);
+		result->testsFailed++;
+	} else {
+		assert(activeGame->playedCards[activeGame->playedCardCount - 1] == smithy);
+		result->testsPassed++;
+	}
 
-	// verify all cards discarded that were not added to hand
+	// verify all cards from discard were not added to hand
 	if(controlGame->deckCount[curPlayer] >= result->cardsToAdd)
 	{
 		// the post deck - the predeck = cards pulled
-		// cards pulled - 2 should equal the post discard
-		discardCheck = controlGame->deckCount[curPlayer] - activeGame->deckCount[curPlayer] - addedCards +
-				controlGame->discardCount[curPlayer];
+		deckCheck = controlGame->deckCount[curPlayer] - addedCards;
+		discardCheck = controlGame->discardCount[curPlayer];
 	}
 	else
 	{
-		// if the deck was shuffled we have all cards - 2 - postdeckCount
+		// if the deck was shuffled we have all cards - addedCards - postdeckCount
 		// should equal post discard
-		discardCheck = controlGame->deckCount[curPlayer] +
-				controlGame->discardCount[curPlayer] - addedCards -
-				activeGame->deckCount[curPlayer];
+		deckCheck = controlGame->deckCount[curPlayer] +
+				controlGame->discardCount[curPlayer] - addedCards;
+		discardCheck = 0;
 	}
-	assert(activeGame->discardCount[curPlayer] == discardCheck);
-	result->testsPassed++;
+
+	// refactored into two seperate values - original version was calculating remaining cards
+	// incorrectly
+	if(!(activeGame->discardCount[curPlayer] == discardCheck))
+	{
+		printf("FAIL:  Post Deck Count: %d, Expected: %d\n", activeGame->discardCount[curPlayer], discardCheck);
+		result->testsFailed++;
+	} else {
+		assert(activeGame->discardCount[curPlayer] == discardCheck);
+		result->testsPassed++;
+	}
+
+	if(!(activeGame->deckCount[curPlayer] == deckCheck))
+	{
+		printf("FAIL:  Post Deck Count: %d, Expected: %d\n", activeGame->deckCount[curPlayer], deckCheck);
+		result->testsFailed++;
+	} else {
+		assert(activeGame->deckCount[curPlayer] == deckCheck);
+		result->testsPassed++;
+	}
 
 	// control actions updated to match activeGame to verify nothing else changed
 	memcpy(controlGame->hand[curPlayer], activeGame->hand[curPlayer], sizeof(controlGame->hand[curPlayer]));
@@ -321,6 +330,7 @@ void cardtest1(int printVal, int seed, struct cardResults *result){
 	// test case where smithy is the first card played
 	printf("\nTEST FOR SMITHY FIRST CARD PLAYED\n");
 
+	// refactored for Janel's code
 	r = playSmithy(result->advPos, activeGame);
 	assert(r == 0);
 	result->testsPassed++;
@@ -347,7 +357,8 @@ void cardtest1(int printVal, int seed, struct cardResults *result){
 	// copy the data into the controlGame before running the function
 	memcpy(controlGame, activeGame, sizeof(struct gameState));
 
-    r = playSmithy(result->advPos, activeGame);
+	// refactored for Janel's code
+  r = playSmithy(result->advPos, activeGame);
 	assert(r == 0);
 	result->testsPassed++;
 
@@ -433,7 +444,7 @@ int main(int argc, char *argv[]){
 
 	printf("\nSTARTING: Smithy (cardtest1)\n");
 	cardtest1(printVal, seed, result);
-	//printResults(result->testsPassed, result->testsFailed);
+
 	free(result);
 	printf("\nFINISHED: Smithy (cardtest1)\n");
 

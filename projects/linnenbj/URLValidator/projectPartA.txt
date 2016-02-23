@@ -1,0 +1,78 @@
+James Linnenburger
+CS362 - Final Project - Part A
+
+Explain testIsValid Function of UrlValidator test code:
+---------------------------------------------------------------------------------------------------
+
+This method first makes sure that the URLs "http://www.google.com" and "http://www.google.com/"
+are valid URLs to make sure that the isvalid method is working.  It then systematically constructs
+URLs to test by concatenating values from 5 different arrays (UrlScheme, UrlAuthority, UrlPort, 
+path & Urlquery). Using this process, it builds (almost...see below) every possible permutation 
+of urls choosing one from each of the 5 categories.  As it builds the url, it builds the expected 
+outcome of validation by anding together all of the individual components expected results.
+
+Once the url has been built, it is converted into a String object to be passed into isValid.
+Any valid url is printed to the console, and an assertion is checked to make sure that the
+isValid result matches the expected result.
+
+Optional "Noisy Test" print statements (defaulting to false) will print out either a '.' or 'X'
+depending on if the specific test was a pass or a fail (when printStatus == true).  When 
+printIndex == true, then it will instead print out the index values for each of the component parts 
+of that specific url that is being tested.
+
+
+
+Give how many total number of urls it is testing:
+--------------------------------------------------------------------------------------------------
+This method builds every possible permutation from the following lists:
+
+   testUrlScheme: 9 items   (only the first 8 actually get included though)
+testUrlAuthority: 19 items
+     testUrlPort: 7 items
+        testpath: 10 items
+    testUrlQuery: 3 itmes
+
+This makes: 8 * 19 * 7 * 10 * 3 = 31,920.
+
+***Note: the testUrlScheme does not ever use the last item in the list because of the way the
+         testPartsIndextoString() method determines the return value.  maxIndex is true as soon as
+         testUrlScheme gets to the 9th item, this forces a false return and the do-while loop exits
+         before any urls with the last item in the testUrlScheme list is able to be tested.
+
+
+explain how it is building all the urls:
+--------------------------------------------------------------------------------------------------
+The urls are being built by concatenating pieces from the 5 categories listed above.  Each of those
+categories store an array of pairs of values.  The first value in the pair is the string literal,
+the second is the boolean of whether or not that part is valid for a url. It starts
+by taking the 0th item from each of the arrays, and then cycles through by incrementing the last
+index by 1 (Kind of like counting, but with each place having a different base value).
+
+Example: This shows the index of values from the first several urls and a segment in the middle.
+
+Scheme	auth.	port	path	query
+-------------------------------------
+   0	  0	 0	 0	  0
+   0	  0	 0 	 0 	  1
+   0	  0	 0 	 0 	  2
+   0	  0	 0 	 1 	  0
+   0	  0	 0 	 1 	  1
+     .
+     . 
+     .
+   3	  18	 6 	 9 	  1
+   3	  18	 6 	 9 	  2
+   4	  0	 0 	 0 	  0
+
+
+Give an example of valid url being tested and an invalid url being tested by testIsValid() method:
+--------------------------------------------------------------------------------------------------
+Valid Examples:
+1. "http://go.au:65535/test1/?action=view"
+2. "h3t://255.255.255.255"
+3. "ftp://www.google.com/test1/file"
+
+Invalid Examples:
+1. "3ht://go.au:65535/test1/?action=view"
+2. "h3t://255.255.255.255:-1/test1//file?action=edit&mode=up"
+3. "1.2.3"

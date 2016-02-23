@@ -41,9 +41,10 @@ public class UrlValidatorTest extends TestCase {
    public void testManualTest()
    {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
-	   
-	   
+	   String inURL = "http://www.amazon.com"; 
+	   System.out.println(inURL + " "+ urlVal.isValid(inURL));
+	   inURL = "something.com";
+	   System.out.println(inURL + " "+ urlVal.isValid(inURL));
    }
    
    

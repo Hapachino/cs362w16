@@ -1,0 +1,18 @@
+File: ProjectPartA.txt
+Author: Chris Trana
+CS 362
+
+The testIsValid method takes arrays of URL parts (scheme, authority, port, path, query) and then grabs a piece of a potential URL from each array and combines them together to creat a URL to test.
+
+Each of the 5 parts are stored with valid/invalid flag to indicate whether the part of the URL being added is valid or not.  The method then loops over the each URL part and checks the valid/invalid flag.  If any one part of the URL is invalid it will set the expected result to invalid itneh last line fo the loop "expected &- part[index].valid;"
+
+It will then compare the returned value with the value that is returned by the isValid method of the UrlValidator class.  If the values match the test passes.
+
+It is testing 35910 URLS.
+
+Example Valid url: 
+http://www.google.com:80/test1?action=view
+Example Invalid url: 
+http://www.google.com:-1/test1?action=view
+
+I do not think that the test is at all different from what we are attempting to write in class.  They identify what needs to be tested, devise a way to randomize the test cases, and then know when the test should pass or fail when compared to the results of the method under test.

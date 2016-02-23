@@ -1,0 +1,12 @@
+
+|------------------------------------------|
+  Running test on adventurer_play():
+|------------------------------------------|
+Running Test Scenario...
+VAL OF Z IS : 26
+the discard count is : 0
+state.handCount failed. (expected=6, actual=-1)
+Deck+Discard count failed. (expected=18, actual=26)
+state.playedCardCount failed. (expected=1, actual=0)
+Tests Complete: adventurer_play() failed 3 tests.
+

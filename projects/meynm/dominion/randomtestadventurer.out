@@ -14,10 +14,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=9
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -76,14 +81,10 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -102,6 +103,7 @@ params: numPlayers=3, player=1, deck count=10, hand count=6
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -171,10 +173,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -196,12 +203,11 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -211,6 +217,8 @@ params: numPlayers=3, player=1, deck count=10, hand count=5
 *************** FAILURE ***************.
 problem: player hand count is incorrect.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
@@ -223,10 +231,6 @@ params: numPlayers=3, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -261,6 +265,8 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=1, deck count=10, hand count=8
 ***************************************
 
@@ -271,10 +277,16 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 params: numPlayers=3, player=1, deck count=10, hand count=5
@@ -300,8 +312,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=8
 ***************************************
 
@@ -313,14 +323,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-params: numPlayers=2, player=0, deck count=10, hand count=5
-***************************************
-
-*************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -329,6 +331,25 @@ params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+params: numPlayers=2, player=0, deck count=10, hand count=5
+***************************************
+
+*************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -352,10 +373,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -385,6 +410,9 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -399,11 +427,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -480,10 +511,17 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -501,6 +539,9 @@ params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -527,6 +568,11 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=1, deck count=10, hand count=5
 ***************************************
 
@@ -541,11 +587,6 @@ params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -585,12 +626,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-params: numPlayers=2, player=0, deck count=10, hand count=5
-***************************************
-
-*************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -600,6 +635,21 @@ params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+params: numPlayers=2, player=0, deck count=10, hand count=5
+***************************************
+
+*************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -622,10 +672,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -661,6 +716,9 @@ params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -713,6 +771,8 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=9
 ***************************************
 
@@ -725,11 +785,11 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -768,6 +828,9 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -780,6 +843,10 @@ params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -805,6 +872,11 @@ params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -836,6 +908,8 @@ params: numPlayers=4, player=2, deck count=22, hand count=20
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -879,14 +953,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=9
 ***************************************
 
 *************** FAILURE ***************.
 problem: player hand count is incorrect.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -896,10 +971,18 @@ params: numPlayers=2, player=1, deck count=18, hand count=5
 *************** FAILURE ***************.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -921,7 +1004,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
@@ -935,11 +1017,13 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -948,6 +1032,7 @@ params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -967,16 +1052,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
 problem: player hand count is incorrect.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1004,13 +1088,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1032,10 +1117,16 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1076,7 +1167,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
@@ -1096,6 +1186,9 @@ params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1132,6 +1225,7 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -1149,12 +1243,12 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1175,16 +1269,28 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
 problem: player hand count is incorrect.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1204,6 +1310,7 @@ params: numPlayers=3, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1228,12 +1335,6 @@ params: numPlayers=4, player=2, deck count=10, hand count=5
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=4, player=1, deck count=10, hand count=5
 ***************************************
 
@@ -1243,6 +1344,10 @@ params: numPlayers=2, player=1, deck count=15, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1289,6 +1394,8 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -1301,10 +1408,13 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1327,6 +1437,8 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
@@ -1337,12 +1449,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1365,12 +1479,11 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1424,6 +1537,7 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -1435,10 +1549,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=1, deck count=14, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1472,6 +1590,7 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -1484,10 +1603,12 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 params: numPlayers=3, player=1, deck count=10, hand count=5
@@ -1532,6 +1653,10 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=2, deck count=10, hand count=9
 ***************************************
 
@@ -1541,10 +1666,13 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1564,12 +1692,13 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1603,6 +1732,7 @@ params: numPlayers=3, player=1, deck count=10, hand count=5
 *************** FAILURE ***************.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
@@ -1614,9 +1744,6 @@ params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1633,6 +1760,7 @@ params: numPlayers=2, player=1, deck count=19, hand count=6
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1662,10 +1790,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1696,10 +1828,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1718,7 +1855,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
@@ -1733,6 +1869,10 @@ params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1769,10 +1909,16 @@ params: numPlayers=2, player=1, deck count=10, hand count=5
 *************** FAILURE ***************.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1793,6 +1939,9 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
@@ -1805,10 +1954,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1854,10 +2007,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=17, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1874,10 +2032,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1904,6 +2066,9 @@ params: numPlayers=2, player=1, deck count=10, hand count=5
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
@@ -1919,6 +2084,10 @@ params: numPlayers=2, player=1, deck count=16, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1950,8 +2119,6 @@ params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -1991,12 +2158,12 @@ params: numPlayers=3, player=0, deck count=10, hand count=5
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2019,6 +2186,8 @@ params: numPlayers=4, player=1, deck count=11, hand count=8
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2074,6 +2243,8 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -2085,6 +2256,9 @@ params: numPlayers=4, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2128,14 +2302,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=17, hand count=6
 ***************************************
 
@@ -2168,6 +2334,8 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -2178,12 +2346,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2230,10 +2400,12 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2266,10 +2438,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2287,11 +2464,11 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=12, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2320,10 +2497,12 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2346,10 +2525,12 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2367,6 +2548,23 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+params: numPlayers=2, player=0, deck count=10, hand count=5
+***************************************
+
+*************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -2374,16 +2572,6 @@ params: numPlayers=2, player=0, deck count=10, hand count=5
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-params: numPlayers=2, player=0, deck count=10, hand count=5
-***************************************
-
-*************** FAILURE ***************.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2410,10 +2598,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2454,6 +2646,7 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=5
 ***************************************
 
@@ -2472,9 +2665,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=7
 ***************************************
 
@@ -2486,10 +2676,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 params: numPlayers=3, player=2, deck count=10, hand count=5
@@ -2524,6 +2719,7 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
@@ -2535,12 +2731,11 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2588,6 +2783,11 @@ params: numPlayers=2, player=1, deck count=10, hand count=5
 problem: player hand count is incorrect.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=7
 ***************************************
 
@@ -2611,6 +2811,9 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -2620,12 +2823,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2647,6 +2852,9 @@ params: numPlayers=3, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2680,6 +2888,9 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
@@ -2692,8 +2903,6 @@ params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2722,6 +2931,9 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -2738,11 +2950,11 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2771,7 +2983,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
@@ -2781,8 +2992,6 @@ params: numPlayers=4, player=2, deck count=18, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2807,10 +3016,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2831,6 +3045,9 @@ params: numPlayers=3, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2869,6 +3086,7 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=12, hand count=5
 ***************************************
 
@@ -2879,10 +3097,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2913,6 +3136,8 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
@@ -2924,15 +3149,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-params: numPlayers=2, player=0, deck count=10, hand count=5
-***************************************
-
-*************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2943,6 +3159,25 @@ params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+params: numPlayers=2, player=0, deck count=10, hand count=5
+***************************************
+
+*************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2953,6 +3188,11 @@ params: numPlayers=4, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -2978,11 +3218,11 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3009,6 +3249,9 @@ params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3036,8 +3279,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=11, hand count=5
 ***************************************
 
@@ -3049,13 +3290,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3073,10 +3315,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3105,10 +3351,13 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=19, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3132,15 +3381,12 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3152,14 +3398,10 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3179,12 +3421,10 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=9
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3204,10 +3444,7 @@ params: numPlayers=2, player=1, deck count=10, hand count=5
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-params: numPlayers=3, player=1, deck count=10, hand count=5
-***************************************
-
-*************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3217,6 +3454,11 @@ params: numPlayers=3, player=1, deck count=10, hand count=5
 *************** FAILURE ***************.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+params: numPlayers=3, player=1, deck count=10, hand count=5
+***************************************
+
+*************** FAILURE ***************.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3227,10 +3469,6 @@ params: numPlayers=4, player=3, deck count=10, hand count=5
 
 *************** FAILURE ***************.
 problem: player hand count is incorrect.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3252,6 +3490,9 @@ params: numPlayers=4, player=1, deck count=10, hand count=7
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3282,9 +3523,6 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
@@ -3302,12 +3540,12 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=2, deck count=10, hand count=7
 ***************************************
 
 *************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3330,6 +3568,10 @@ params: numPlayers=2, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3359,10 +3601,14 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3382,6 +3628,8 @@ params: numPlayers=3, player=1, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3417,6 +3665,7 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=1, deck count=11, hand count=5
 ***************************************
 
@@ -3432,24 +3681,28 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
-params: numPlayers=3, player=0, deck count=10, hand count=5
-***************************************
-
-*************** FAILURE ***************.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
-problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 params: numPlayers=3, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+params: numPlayers=3, player=0, deck count=10, hand count=5
+***************************************
+
+*************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3469,10 +3722,16 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3500,10 +3759,15 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=0, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3540,10 +3804,17 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=2, player=0, deck count=10, hand count=8
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3564,6 +3835,12 @@ params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
@@ -3592,6 +3869,8 @@ problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
+problem: Player has gained or lost cards.
 params: numPlayers=4, player=3, deck count=10, hand count=5
 ***************************************
 
@@ -3603,6 +3882,7 @@ params: numPlayers=3, player=2, deck count=10, hand count=5
 ***************************************
 
 *************** FAILURE ***************.
+problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 problem: Player has gained or lost cards.
 params: numPlayers=3, player=2, deck count=10, hand count=5
@@ -3631,13 +3911,13 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-  1481363:    8:int compare( const void* a, const void* b )
+  1481005:    8:int compare( const void* a, const void* b )
         -:    9:{
-  1481363:   10:	if (*(int*) a > *(int*) b)
-   671784:   11:		return 1;
-   809579:   12:	if (*(int*) a < *(int*) b)
-   306497:   13:		return -1;
-   503082:   14:	return 0;
+  1481005:   10:	if (*(int*) a > *(int*) b)
+   671305:   11:		return 1;
+   809700:   12:	if (*(int*) a < *(int*) b)
+   305747:   13:		return -1;
+   503953:   14:	return 0;
         -:   15:}
         -:   16:
     #####:   17:struct gameState* newGame()
@@ -3842,9 +4122,9 @@ Creating 'dominion.c.gcov'
     31885:  216:		card = floor( Random() * state->deckCount[player] );
     31885:  217:		newDeck[newDeckPos] = state->deck[player][card];
     31885:  218:		newDeckPos++;
-    93208:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+   111163:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
         -:  220:		{
-    61323:  221:			state->deck[player][i] = state->deck[player][i + 1];
+    79278:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
     31885:  223:		state->deckCount[player]--;
         -:  224:	}
@@ -4228,11 +4508,11 @@ Creating 'dominion.c.gcov'
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-    37648:  605:int drawCard( int player, struct gameState *state )
+    37513:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    37648:  609:	if (state->deckCount[player] <= 0)
+    37513:  609:	if (state->deckCount[player] <= 0)
         -:  610:	{    //Deck is empty
         -:  611:
         -:  612:		//Step 1 Shuffle the discard pile back into a deck
@@ -4277,20 +4557,20 @@ Creating 'dominion.c.gcov'
         -:  651:
         -:  652:	else
         -:  653:	{
-    37165:  654:		int count = state->handCount[player];    //Get current hand count for player
+    37030:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
         -:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    37165:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    37165:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    37165:  663:		state->deckCount[player]--;
-    37165:  664:		state->handCount[player]++;    //Increment hand count
+    37030:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    37030:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    37030:  663:		state->deckCount[player]--;
+    37030:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    37512:  667:	return 0;
+    37377:  667:	return 0;
         -:  668:}
         -:  669:
     #####:  670:int getCost( int cardNumber )
@@ -5093,11 +5373,11 @@ Creating 'dominion.c.gcov'
         -: 1467:	{
     25310: 1468:		if (state->hand[player][i] == copper)
         -: 1469:		{
-    11733: 1470:			state->coins += 1;
-    13577: 1471:		} else if (state->hand[player][i] == silver)
+    12753: 1470:			state->coins += 1;
+    12557: 1471:		} else if (state->hand[player][i] == silver)
         -: 1472:		{
       472: 1473:			state->coins += 2;
-    13105: 1474:		} else if (state->hand[player][i] == gold)
+    12085: 1474:		} else if (state->hand[player][i] == gold)
         -: 1475:		{
       436: 1476:			state->coins += 3;
         -: 1477:		}
@@ -5130,18 +5410,18 @@ Creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-function compare called 1481363 returned 100% blocks executed 100%
-  1481363:    8:int compare( const void* a, const void* b )
+function compare called 1481005 returned 100% blocks executed 100%
+  1481005:    8:int compare( const void* a, const void* b )
         -:    9:{
-  1481363:   10:	if (*(int*) a > *(int*) b)
+  1481005:   10:	if (*(int*) a > *(int*) b)
 branch  0 taken 45% (fallthrough)
 branch  1 taken 55%
-   671784:   11:		return 1;
-   809579:   12:	if (*(int*) a < *(int*) b)
+   671305:   11:		return 1;
+   809700:   12:	if (*(int*) a < *(int*) b)
 branch  0 taken 38% (fallthrough)
 branch  1 taken 62%
-   306497:   13:		return -1;
-   503082:   14:	return 0;
+   305747:   13:		return -1;
+   503953:   14:	return 0;
         -:   15:}
         -:   16:
 function newGame called 0 returned 0% blocks executed 0%
@@ -5407,11 +5687,11 @@ branch  1 taken 10% (fallthrough)
 call    0 returned 100%
     31885:  217:		newDeck[newDeckPos] = state->deck[player][card];
     31885:  218:		newDeckPos++;
-    93208:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
-branch  0 taken 66%
-branch  1 taken 34% (fallthrough)
+   111163:  219:		for (i = card; i < state->deckCount[player] - 1; i++)
+branch  0 taken 71%
+branch  1 taken 29% (fallthrough)
         -:  220:		{
-    61323:  221:			state->deck[player][i] = state->deck[player][i + 1];
+    79278:  221:			state->deck[player][i] = state->deck[player][i + 1];
         -:  222:		}
     31885:  223:		state->deckCount[player]--;
         -:  224:	}
@@ -5931,12 +6211,12 @@ branch  1 never executed
     #####:  602:	return 0;
         -:  603:}
         -:  604:
-function drawCard called 37648 returned 100% blocks executed 100%
-    37648:  605:int drawCard( int player, struct gameState *state )
+function drawCard called 37513 returned 100% blocks executed 100%
+    37513:  605:int drawCard( int player, struct gameState *state )
         -:  606:{
         -:  607:	int count;
         -:  608:	int deckCounter;
-    37648:  609:	if (state->deckCount[player] <= 0)
+    37513:  609:	if (state->deckCount[player] <= 0)
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
         -:  610:	{    //Deck is empty
@@ -5988,20 +6268,20 @@ branch  1 taken 72%
         -:  651:
         -:  652:	else
         -:  653:	{
-    37165:  654:		int count = state->handCount[player];    //Get current hand count for player
+    37030:  654:		int count = state->handCount[player];    //Get current hand count for player
         -:  655:		int deckCounter;
         -:  656:		if (DEBUG)
         -:  657:		{    //Debug statements
         -:  658:			printf( "Current hand count: %d\n", count );
         -:  659:		}
         -:  660:
-    37165:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
-    37165:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
-    37165:  663:		state->deckCount[player]--;
-    37165:  664:		state->handCount[player]++;    //Increment hand count
+    37030:  661:		deckCounter = state->deckCount[player];    //Create holder for the deck count
+    37030:  662:		state->hand[player][count] = state->deck[player][deckCounter - 1];    //Add card to the hand
+    37030:  663:		state->deckCount[player]--;
+    37030:  664:		state->handCount[player]++;    //Increment hand count
         -:  665:	}
         -:  666:
-    37512:  667:	return 0;
+    37377:  667:	return 0;
         -:  668:}
         -:  669:
 function getCost called 0 returned 0% blocks executed 0%
@@ -7047,18 +7327,18 @@ branch  0 taken 83%
 branch  1 taken 17% (fallthrough)
         -: 1467:	{
     25310: 1468:		if (state->hand[player][i] == copper)
-branch  0 taken 46% (fallthrough)
-branch  1 taken 54%
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
         -: 1469:		{
-    11733: 1470:			state->coins += 1;
-    13577: 1471:		} else if (state->hand[player][i] == silver)
-branch  0 taken 3% (fallthrough)
-branch  1 taken 97%
+    12753: 1470:			state->coins += 1;
+    12557: 1471:		} else if (state->hand[player][i] == silver)
+branch  0 taken 4% (fallthrough)
+branch  1 taken 96%
         -: 1472:		{
       472: 1473:			state->coins += 2;
-    13105: 1474:		} else if (state->hand[player][i] == gold)
-branch  0 taken 3% (fallthrough)
-branch  1 taken 97%
+    12085: 1474:		} else if (state->hand[player][i] == gold)
+branch  0 taken 4% (fallthrough)
+branch  1 taken 96%
         -: 1475:		{
       436: 1476:			state->coins += 3;
         -: 1477:		}

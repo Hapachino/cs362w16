@@ -60,7 +60,6 @@ int main() {
         memcpy(&copyG, &G, sizeof(struct gameState));
         prevActions = G.numActions;
         cardEffect(village, 0, 0, 0, &G, 0, &zero);
-        playVillage(&G, p);
         printf("Checking if Player drew a card successfully ... \n");
         if (G.handCount[p] != 1)
         {

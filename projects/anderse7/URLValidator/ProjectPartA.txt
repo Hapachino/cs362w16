@@ -1,0 +1,28 @@
+CS 362, Winter 2016
+Project Part A
+Group Members: Eric Anderson, Matthew Ailes, and Michael Byrne
+
+The testIsValid function of the UrlValidator code loops through a set of test urls based on the concatenation of a “testUrlScheme” e.g. http: or ftp:, a “testUrlAuthority” or domain names (both on the web and local, a “testUrlPort” e.g. port 80, a “testPath” e.g a file or url path, a “testUrlPathOptions” the ending portion of a path, and finally a few “testUrlQueries” that simulate “GET” operations.  It does this by looping through the indexes of the ResultPair array until it has put every combination of URL possible based on the test case entry for each testUrl list.
+
+There are 1890 urls being tested.
+
+To describe how it tests these 1890 urls, lets build an example url.  The ResultPair array is an array of arrays. The first index of the ResultPair array (testPartsIndexIndex) it looks at is the testUrlScheme.  For index 0 of the testUrlScheme array, we read in “http://“ and an indication that the test should assert as true.  We now have the first part of our url;
+	http:
+It next loops to the second array within the ResultPair array, testUrlAuthority.  Like the testUrlScheme array, index 0 contains, “www.google.com” and an indication that this address is expected to be valid.  We now have the second part of our URL;
+	http://www.google.com
+The third array, testUrlPort contains a port address to be appended to the url.  In our example, index 0 contains “:80” for port 80.  Again this is assumed to be a valid port and thus should assert true.  Our url now contains;
+	http://www.google.com:80
+The next few parts are optional and will accumulate as we iterate through the array.  The first optional part is the testPath. For index 0, we return, “/test1” (also assumed to be true or valid). this is appended to our url string as;
+	http://www.google.com:80/test1
+At this point we have a valid url and it will be tested and well as printed out to the console.  To create a more full path, the function will iterate through t he testUrlOption array and append “/“ or additional path content, for example;
+	http://www.google.com:80/test1/
+Finally, and also optionally, the function iterates through the testUrlQuery and appends either “?action=view” or “?action=edit&mode=up” or “” to the full url.  Each of these are valid and should assert as such.  With this addition, we have a complete URL to test.  In our example a testable URL may be;
+	http://www.google.com:80/test1//?action=edit&mode=up
+Depending on the true or false value with each result pair, we expect that the url will either assert true or assert false.
+
+An example of a valid url being tested is “http://www.google.com:80/test1”  an example of an invalid url being tested is “1.2.3.4.5:-1”
+
+The concepts of this type of testing a similar to our unit and card tests in that we describe what an expected outcome is and we test to prove that we get the expected outcome, each time we test for it.  It is unlike our unit and card tests in that we were able to randomize our tests in ways that would be much more difficult to achieve here.  Admittedly, we could randomize the combinations of appendages to a default URL, but at least part of the url (the scheme) has to structured to have something we can call a URL.
+We find that the complexity here is more than our unit and card testing in that this tests for both valid and invalid content.  This is not to say that we couldn’t have had both positive and negative testing. Just that the concept wasn’t introduced at the time we wrote our initial tests.
+Most importantly, like our uint and card tests, the URL validation tests are not exhaustive, upper case characters are not tested for, other characters “$,5,6,&,*” are not tested for, some repeated characters “—-“ are not tested and many more. In some case one might conclude that the URL test is more simplistic than our testing as adding a test is as simple as adding an additional ResultPair.
+Having spent hours reading and URLValidator, these tests not only are real world, but are used in the real world.  Given our learnings about the types of testing one can perform, white box, black box, human, automated, bounds etc.  It seems clear to our team, that we will encounter testing frameworks and unit tests that will be very similar to UrlValidator.

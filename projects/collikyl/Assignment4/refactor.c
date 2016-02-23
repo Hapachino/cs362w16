@@ -1,0 +1,6 @@
+//4 Errors introduced...
+//
+//1. Smithy discards card first, violating rule mentioned in my documentation...
+//2. Adventurer doesn't discard itself. 
+//3. Village discards wrong card.
+//4.  Salvager no longer trashes card.

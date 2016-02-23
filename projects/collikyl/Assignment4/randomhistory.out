@@ -1,0 +1,21 @@
+File 'randomtestadventurer.c'
+Lines executed:82.96% of 270
+Branches executed:98.61% of 144
+Taken at least once:77.08% of 144
+Calls executed:68.13% of 91
+randomtestadventurer.c:creating 'randomtestadventurer.c.gcov'
+
+File 'randomtestcard.c'
+Lines executed:92.12% of 203
+Branches executed:95.12% of 82
+Taken at least once:85.37% of 82
+Calls executed:90.00% of 80
+randomtestcard.c:creating 'randomtestcard.c.gcov'
+
+File 'dominion.c'
+Lines executed:17.18% of 582
+Branches executed:15.59% of 417
+Taken at least once:8.63% of 417
+Calls executed:11.70% of 94
+dominion.c:creating 'dominion.c.gcov'
+

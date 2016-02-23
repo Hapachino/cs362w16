@@ -1,0 +1,61 @@
+﻿Project Part A: Review of Existing Test Cases
+
+
+Team Members
+* Juan Solis: <solisj@oregonstate.edu>
+* Myles Chatman <chatmanm@oregonstate.edu>
+* Todd Waddell <waddelto@oregonstate.edu>
+
+
+
+
+1. Explain testIsValid Function of UrlValidator test code. (What does it do?)
+        The function testIsValid makes two function calls. First, it calls testIsValid(Object[] testObjects, long options). The first parameter is an object array of test objects that will be used to form test URLS and the second parameter is the options that specify which URL schemes will be considered valid.  Next, it asserts that isValid() is correctly returning true by testing two known valid URLS. In a do while loop, it builds URLS to be tested by combining different parts of the URL from the testURL parts objects. Should any part of the URL return false, the Boolean “expected” will also change to false. (It is set to true at the start of each loop iteration.) All the different URL parts are converted to a string to form a completed URL and passed to isValid(), which stores the result in a Boolean variable. It will print to the console any URLS that have returned true by isValid. Next, it asserts that any URLS that have returned true also match the expected result.  The function also contains an if printStatus option that is used to check the testIsValid() function itself. If printStatus is enabled, it will print the character ‘.’ if the result matched the expected value or an ‘x’ if it does not. Lastly, it calls on setup() which will reset the testPartsIndexes to 0.
+
+
+1. How many total number of URLs are being tested? 
+        Schemes: 8 
+        Authority: 19
+        Port: 7
+        Path: 10
+        Query: 3
+Total possible combinations =  8 * 19 * 7 * 10 * 3 = 31,920 URLs being tested. 
+
+
+
+
+
+
+        
+
+
+
+
+
+
+1. Explain how it is building all the urls. 
+        testPartsIndex contains the indexes of each of the 5 different parts of the URL(scheme, authority, port, path, and query). The function testIsValid() will iterate through the different combinations of each URL part by using the indexes in testPartsIndex which correspond to the specific resultPair for each URL part(scheme, authority, port, path, and query). The resultPair consists of the string for the URL part to be tested and a boolean. The while condition of the do while loop calls the incrementTestPartsIndex function which will correctly adjust the part indexes until every possible combination of scheme, authority, port, path, and query has been constructed into a full URL to be tested. At the start of every URL to be constructed, the “expected” variable is set to true. As each new URL part is added to the URL string to be tested, it checks it against the boolean from the resultPair with an AND bitwise operation. Should any part be false, the “expected” variable will be set as false. 
+
+
+
+
+1. Give an example of valid URL being tested. 
+        An example of a valid URL being tested is "http://go.com”.
+
+
+        
+
+
+1. Give an example of an invalid URL being tested. 
+        An example of an invalid URL being tested is “http://256.256.256.256:80/test1//file”.
+
+
+        
+
+
+1. Do you think testIsValid() is very different than the unit tests and card tests that we wrote in terms of concepts & complexity? 
+
+
+Conceptually, testIsValid() isn’t very different than the tests we’ve written for Dominion.  Though, it’s worth mentioning, that testIsValid() does not use random testing, it uses combinatorial testing. 
+
+In terms of complexity, yes I’d say it’s notably more complex than Dominion. Dominion is a very simple program that primarily uses integer variables and switches. UrlValidator uses a number of bitwise operators and a number of external libraries. In addition, there are a larger range of potential inputs across multiple components of a URL. This raises the computational complexity quite a bit.

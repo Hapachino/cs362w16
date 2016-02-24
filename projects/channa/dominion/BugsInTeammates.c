@@ -115,17 +115,79 @@ teammate1Dominion - Andrew Calhoun
 teammate2Dominion - Jonathan Lagrew
 
 	unittest1: updateCoins()
+		All tests passed.
 
 	unittest2: fullDeckCount()
+		All tests passed.
 
 	unittest3: isGameOver()
+		All tests passed.
 
 	unittest4: scoreFor()
+		***Bug found***
+		2/2 tests failed.
+		Scores do not equal expected values:
+
+		----------------- Test 1 - Player 0:
+		Adding the following to discard:
+		    1 duchy
+		    2 provinces
+		    5 great halls
+		    4 gardens
+		    2 curses
+		deckCount: 5
+		discardCount: 14
+		handCount: 5
+		Player 0 score: 22, expected: 29
+
+		----------------- Test 2 - Player 1:
+		No changes and all cards in deck:
+		deckCount: 10
+		discardCount: 0
+		handCount: 0
+		Player 1 score: 0, expected: 3
 
 	cardtest1: smithy
+		Changes in my test to match teammate's refactored code:
+			- changed playSmithy(p, &G, 5); to playSmithy(&G, 5);
+
+		***Possible bug found***
+			Given a deck of 10 cards, an empty discard pile, and a hand of 6 cards that includes smithy,
+			3 cards are correctly drawn from the deck and added to the hand. However, the played smithy
+			card is not added to the discard pile which remains empty. Whether or not this is an actual
+			bug is up for debate as discussed here: https://piazza.com/class/iip31fywxe72b0?cid=103
+
+			It is unclear if discardCard() should be true to its name and actually put a card in the
+			discard pile as it may be the case that this happens in endTurn() instead.
 
 	cardtest2: adventurer
+		Changes in my test to match teammate's refactored code:
+			- changed playAdventurer(&testG, p); to playAdventurer(&testG);
+
+		***Bug found***
+			The adventurer card works correctly when there are treasure cards at the top of the deck.
+			However, when the treasure cards are interspersed through the deck or at the bottom of the deck,
+			the number of cards in the discard pile is one fewer than expected.
 
 	cardtest3: cutpurse
+		Changes in my test to match teammate's refactored code:
+			- changed playCutpurse(p, &testG, 5); to cardEffect(cutpurse, 0, 0, 0, &testG, 5, 0);
+
+		***Bug found***
+			3/4 tests passed.
+			3 tests passed: 4 hands with coppers, 3 hands with coppers, 2 hands with coppers.
+			1 test failed: One of the players has zero coppers.
+			Check if satisfied condition for revealing cards
+			(j == handCount):
+			j = 9, handCount: 10
+			----------------- TEST FAILED!
+
+			Playing the cutpurse card when all players have coppers in their hands results in all tests passing.
+			Each other player correctly discards a copper.
+
+			A bug appears when one of the players has a hand with no coppers.
+			In this case, the player with no coppers to discard should be revealing his hand. The code to reveal cards
+			in the hand is executed when (j == state->handCount[i]). However, j does not increment enough to satisfy
+			that condition.
 
 	cardtest4: remodel

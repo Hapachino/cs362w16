@@ -14,5 +14,5 @@ To play:
   example:  playdom 3
 
 
-added herrickl and mcleodki directories:
+added herrickl and mcleodki directories (from the cs362w16/projects/imhoffr directory):
   mkdir mcleodki && cp -R ../mcleodki/dominion mcleodki/

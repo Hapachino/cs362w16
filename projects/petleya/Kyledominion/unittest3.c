@@ -1,96 +1,67 @@
-/*********************************************************************
-** Program Filename: unittest3.c
-** Author: Kyle Johnson
-** Date: 2/2/2016
-** Description: implementation file for isGameOver() testing
-*********************************************************************/
-
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
 #include "rngs.h"
+#include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
-int testIsGameOver(struct gameState *G)
-{
-	int noSupply;
-	int card;
-	int result = isGameOver(G);
-	
-	if(G->supplyCount[province] == 0)
-	{
-		if(result != 1)
-			printf("FAILED - function call failed\n");
-	}
-	else
-	{
-		printf("PASSED - function call did not fail\n");
-		return 0;
-	}
-	
-	noSupply = 0;
-	for(card = 0; card <= treasure_map; card++)
-	{
-		if(G->supplyCount[card] == 0)
-			noSupply++;
-	}
-	
-	if(noSupply >= 3 && result !=1)
-		printf("FAILED - 3 supply piles are empty and game should be over\n");
-	else
-		printf("PASSED - game is over with 3 empty supply piles\n");
-	
-	return 0;
-}
+//testing gainCard
 
-int main()
-{
-	struct gameState G;
-	int provinces;
-	int i, j, k, l;
-	
-	SelectStream(2);
-	PutSeed(3);
-	printf("----------------- Testing isGameOver(): ----------------\n");
-	//test that game ends when province pile is empty
-	for(provinces = 0; provinces < 3; provinces++)
-	{
-		for (i = 0; i < sizeof(struct gameState); i++)
-			((char*)&G)[i] = floor(Random() * 256);
-		
-		G.supplyCount[province] = provinces;
-		testIsGameOver(&G);
+int main(){
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
+	initializeGame(2, k, 88, &G);
+	memcpy(&testG, &G, sizeof(struct gameState));
+	G.supplyCount[3] = 0;
+	int rval = gainCard(3, &G, 1, 2);
+	if(rval != -1){
+		printf("Fail: function did not detect and empty card pile\n");
 	}
-	//reset deck supply
-	for(j = 0; j <= treasure_map; j++)
-		G.supplyCount[j] = 5;
-	
-	//50 random tests for 0-3 empty piles
-	for (l = 0; l < 50; l++)
-	{
-		k = floor(Random() * 3 + 1);
-		
-		if (k == 1)
-			G.supplyCount[copper] = 0;
-		else if (k == 2)
-		{
-			G.supplyCount[copper] = 0;
-			G.supplyCount[silver] = 0;
+	G = testG;
+	int deckNum = G.deckCount[2];
+	deckNum = deckNum +1;
+	gainCard(4, &G, 1, 2);
+	if(G.deckCount[2] == deckNum){
+		if(G.deck[2][deckNum-1] == 4){
+			printf("Pass: card added to deck successfully\n");
 		}
-		else
-		{
-			G.supplyCount[copper] = 0;
-			G.supplyCount[silver] = 0;
-			G.supplyCount[gold] = 0;
-		}
-
-		testIsGameOver(&G);
+		else{
+			printf("Fail: wrong card added to the deck %d\n", G.deck[2][deckNum]);
+		}	
 	}
-	
-	
-	printf ("testing completed for isGameOver\n");
-	
+	else{
+		printf("Fail: deckCount not adjusted\n");
+	}
+	int handNum = G.handCount[2];
+	gainCard(5, &G, 2, 2);
+	if(G.handCount[2] == (handNum + 1)){
+		if(G.hand[2][handNum] == 5){
+			printf("Pass: card added to hand successfully\n");
+		}
+		else{
+			printf("Fail: wrong card added to hand\n");
+		}
+	}
+	else{
+		printf("Fail: The handCount was not increased\n");
+	}
+	int disNum = G.discardCount[1];
+	int supNum = G.supplyCount[6];
+	gainCard(6, &G, 0, 1);
+	if(G.discardCount[1] == disNum + 1){
+		if(G.discard[1][disNum] == 6){
+			printf("Pass: card added to discard pile successfully\n");
+		}
+		else{
+			printf("Fail: wrong card added to discard\n");
+		}
+	}
+	else{
+		printf("Fail: The handCount was not increased\n");
+	}
+	if(G.supplyCount[6] != supNum -1){
+		printf("Fail: The supply of card was not decreased\n");
+	}
 	return 0;
 }

@@ -8,7 +8,7 @@
 //testing updateCoins
 
 int main () {
-	struct gameState G
+	struct gameState G;
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
 	initializeGame(2, k, 98, &G);

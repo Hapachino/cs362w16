@@ -82,83 +82,8 @@ Test method changes:
  Other Information
  -----------------
 
- ==============================
- BUG 2
- ==============================
-
-Title: Smithy card incorrect post playment placement.
-
-Class: "Logic Error"
-
-Date: 2/24/16
-Reported By: Justin Siddon
-Email: siddonj@oregonstate.edu
-
-
-Product: Dominion                       Version: 1.0
-Platform: Ubuntu                      Version: 12.04
-Browser: None                        Version:
-URL:
-
-Is it reproducible: Yes
-
-Description
-===========
-The 'smithyCard' function places the played smithy card directly into the 'discard' pile.
-Instead it should be placed into the 'played' card pile then discarded at the end of the
-player's turn.
-
-
-Steps to Produce/Reproduce
---------------------------
-Initialize a game of dominion
-Execute the 'smithyCard' function.
-Review the size of the discard pile and compare it to the size of the played pile.
-
-
-
-Expected Results
-----------------
-Player whom played smithy card to have 1 more card in played card pile, and no
-additional cards in discard pile.
-
-
-Actual Results
---------------
-Discard will have 1 more card after calling method, played will have no additional
-cards after calling method.
-
-
-Workarounds
------------
-Decrement move the top discard card directly into the players played pile after
-calling the 'smithyCard' function.
-
-
-Attachments (Code Causing Error)
------------
-// Smithy Card implementation
-int smithyCard (struct gameState *state, int handPos) {
-    int i;
-    int currentPlayer = whoseTurn(state);
-      //+3 Cards
-      for (i = 0; i < 3; i++)
-  {
-    drawCard(currentPlayer, state);
-  }
-
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
-}
-
-
-Other Information
------------------
-
-
 ==============================
-BUG 3
+BUG 2
 ==============================
 
 Title: Adventurer incorrect amount of treasures added to players hand.
@@ -217,7 +142,7 @@ Other Information
 
 
 ==============================
-BUG 4
+BUG 3
 ==============================
 
 Title: Adventurer doesn't validate the players card as an 'adventurer'.
@@ -422,7 +347,7 @@ Other Information
 BUG 3
 ==============================
 
-Title: Village doesn't incorrectly subtracts player's buy total.
+Title: Village incorrectly subtracts player's buy total.
 
 Class: "Logic Error"
 

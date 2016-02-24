@@ -137,7 +137,7 @@ int main() {
     // 14, 25, and 12 should be drawn and added to hand
     // 7 and 21 should stay in the deck
     // smithy should be added to discard
-    playSmithy(p, &G, 5);
+    playSmithy(&G, 5);
 
     // Check pile counts
     printf("----------------- AFTER PLAY SMITHY\n");

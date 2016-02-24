@@ -132,7 +132,7 @@ int main() {
 
     // Play cutpurse
     p = 0;
-    playCutpurse(p, &testG, 5);
+    cardEffect(cutpurse, 0, 0, 0, &testG, 5, 0);
 
     // Check pile counts
     printf("----------------- AFTER PLAY CUTPURSE\n");
@@ -311,7 +311,7 @@ int cutpurseDiscard(int numPlayer, int testNum, int handNum, bool *pass) {
 
     // Play cutpurse
     p = 0;
-    playCutpurse(p, &testG, 5);
+    cardEffect(cutpurse, 0, 0, 0, &testG, 5, 0);
 
     // Check pile counts
     printf("----------------- AFTER PLAY CUTPURSE\n");

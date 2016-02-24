@@ -3,7 +3,9 @@ CS 362
 Winter 2016
 Assignment 5: BugsInTeammates.c
 
+/**********************************
 teammate1Dominion - Andrew Calhoun
+**********************************/
 
 	unittest1: updateCoins()
 		All tests passed.
@@ -110,9 +112,31 @@ teammate1Dominion - Andrew Calhoun
 		Changes in my test to match teammate's refactored code:
 			- changed playRemodel(state, p, 1, toTest[i], 0); to cardEffect(remodel, 1, toTest[i], 0, state, 0, 0);
 
-		
+		***Bug found***
+			choice1 is the card to trash
+			choice2 is the card to gain
+			Remodel makes the player trash a card to gain a card costing up to 2 more coins than the trashed card.
+			A successful trash for gain returns 0. If unsuccessful, it returns -1.
 
+			Most of the tests failed. Here are a few examples:
+				choice1 cost: 2, choice2 cost: 2
+				Result: -1, Expected: 0
+
+				choice1 cost: 2, choice2 cost: 3
+				Result: -1, Expected: 0
+
+				choice1 cost: 2, choice2 cost: 4
+				Result: 0, Expected: 0
+
+				choice1 cost: 2, choice2 cost: 5
+				Result: 0, Expected: -1
+
+				choice1 cost: 2, choice2 cost: 6
+				Result: 0, Expected: -1
+
+/**********************************
 teammate2Dominion - Jonathan Lagrew
+**********************************/
 
 	unittest1: updateCoins()
 		All tests passed.
@@ -191,3 +215,27 @@ teammate2Dominion - Jonathan Lagrew
 			that condition.
 
 	cardtest4: remodel
+		Changes in my test to match teammate's refactored code:
+			- changed playRemodel(state, p, 1, toTest[i], 0); to cardEffect(remodel, 1, toTest[i], 0, state, 0, 0);
+
+		***Bug found***
+			choice1 is the card to trash
+			choice2 is the card to gain
+			Remodel makes the player trash a card to gain a card costing up to 2 more coins than the trashed card.
+			A successful trash for gain returns 0. If unsuccessful, it returns -1.
+
+			Most of the tests failed. Here are a few examples:
+				choice1 cost: 2, choice2 cost: 2
+				Result: -1, Expected: 0
+
+				choice1 cost: 2, choice2 cost: 3
+				Result: -1, Expected: 0
+
+				choice1 cost: 2, choice2 cost: 4
+				Result: 0, Expected: 0
+
+				choice1 cost: 2, choice2 cost: 5
+				Result: 0, Expected: -1
+
+				choice1 cost: 2, choice2 cost: 6
+				Result: 0, Expected: -1

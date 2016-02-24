@@ -44,7 +44,7 @@ int main() {
                 testsPassed++;
             } else {
                 printf("No. Test Failed.\n");
-                printf("test: %d\tclean: %d\n", cleanGame.handCount[player],testGame.handCount[player]);
+                printf("clean: %d\ttest: %d\n", cleanGame.handCount[player],testGame.handCount[player]);
             }
             testsRun++;
             printf("---- Did other player's hand change?\n");

@@ -1,21 +1,2009 @@
-File 'randomtestcard.c'
-Lines executed:91.26% of 206
-Branches executed:95.12% of 82
-Taken at least once:84.15% of 82
-Calls executed:88.75% of 80
-randomtestcard.c:creating 'randomtestcard.c.gcov'
+---------- Testing Card: Great Hall --------------
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
 
-File 'randomtestcard.c'
-Lines executed:92.23% of 206
-Branches executed:95.12% of 82
-Taken at least once:85.37% of 82
-Calls executed:90.00% of 80
-randomtestcard.c:creating 'randomtestcard.c.gcov'
-
-File 'randomtestcard.c'
-Lines executed:92.23% of 206
-Branches executed:95.12% of 82
-Taken at least once:85.37% of 82
-Calls executed:90.00% of 80
-randomtestcard.c:creating 'randomtestcard.c.gcov'
+---- 12000 Passed ---- 1000 Failed ------
+---------- Testing Great Hall Card Complete ------
+Coverage starts below:
+File 'dominion.c'
+Lines executed:20.40% of 652
+dominion.c:creating 'dominion.c.gcov'
 

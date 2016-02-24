@@ -218,6 +218,8 @@ int remodelTrash(struct gameState *state, int p, int controlCard, int trashCard,
         // Put card to trash in hand
         state->hand[p][1] = trashCard;
 
+        //displayDeck(state, p);
+
         // game state
         // player
         // card to trash: int choice1 = trashCard (testG.hand[p][1])
@@ -299,7 +301,7 @@ int remodelTrash(struct gameState *state, int p, int controlCard, int trashCard,
             }
         }
 
-        displayDeck(state, p);
+        //displayDeck(state, p);
     }
 
     if (pass) {

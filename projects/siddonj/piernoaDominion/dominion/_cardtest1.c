@@ -48,7 +48,12 @@ void testPlaySmithy() {
 
   // Set player 1's first card in hand to be smithy card.
   testGame->hand[testGame->whoseTurn][0] = smithy;
-  playSmithy(testGame, testGame->whoseTurn, 0);         // First card is smithy;
+
+  int r = 0;
+  //int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+
+  cardEffect(smithy, 1,1,1, testGame, 0 ,&r);
+  //playSmithy(testGame, testGame->whoseTurn, 0);         // First card is smithy;
 
   handSizeIncrease = numHandCards(testGame) - playerHandSize;       // Find amount players hand size increased by.
   actionDecrease = playerActions - testGame->numActions;

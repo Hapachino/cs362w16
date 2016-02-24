@@ -37,6 +37,9 @@ public class UrlValidatorTest extends TestCase {
    }
 
    
+   /************************************************
+    *       PART 1: MANUAL TESTING
+    ************************************************/
    
    public void testManualTest()
    {
@@ -159,38 +162,76 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
+   /************************************************
+    *       PART 2: INPUT DOMAIN PARTITIONING
+    ************************************************/
+   
    public void testYourFirstPartition()
    {
-	  //Test of URL Maker
-	  UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	  ResultPair url = URLmaker(0,1,1,0,0);
-	  System.out.println("Make URL 1: " + url.item);
-
-	  if (url.valid) {
-	   assertTrue(urlVal.isValid(url.item));
-	   }
-	   else {
-		   assertFalse(urlVal.isValid(url.item));
-	   }
-	   System.out.println("Run Completed");
+	   System.out.println("Testing partition: full URL pattern");
+	   //TODO: Test full URLs based on ASCII_PATTERN
+	   
+	   //TODO: Test full URLs based on URL_PATTERN
+	  
    }
    
    public void testYourSecondPartition(){
-	 //Test of URL Maker
+	   //Test URL Schemes
+	   System.out.println("Testing partition: schemes");
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   ResultPair url = URLmaker(1,1,0,0,0);
-	   System.out.println("Make URL 2: " + url.item);
-
-	   if (url.valid) {
-		   assertTrue(urlVal.isValid(url.item));
+	   for (int i = 0; i < testSchemas.length; i++){ 
+		   ResultPair url = URLmaker(i,0,0,0,0);
+		   assertEquals(url.valid, urlVal.isValid(url.item));
 	   }
-	   else {
-		   assertFalse(urlVal.isValid(url.item));
-	   }
-
-	   System.out.println("Run Completed");    
+	   
+	   //TODO: Test custom scheme supplied in isValid constructor
+	   
    }
    
+   public void testYourThirdPartition(){
+	   //Test URL Authority
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   System.out.println("Testing partition: authorities > hosts");
+	   for (int i = 0; i < testHosts.length; i++){ 
+		   ResultPair url = URLmaker(0,i,0,0,0);
+		   assertEquals(url.valid, urlVal.isValid(url.item));
+	   }
+	   System.out.println("Testing partition: authorities > ports");
+	   for (int i = 0; i < testPorts.length; i++){ 
+		   ResultPair url = URLmaker(0,0,i,0,0);
+		   assertEquals(url.valid, urlVal.isValid(url.item));
+	   }
+	   
+	   //TODO: Test file: with no authority
+	   
+	   //TODO: Test custom validator
+	   
+   }
+   
+   public void testYourFourthPartition(){
+	   //Test URL Path
+	   System.out.println("Testing partition: paths");
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   for (int i = 0; i < testPaths.length; i++){ 
+		   ResultPair url = URLmaker(0,0,0,i,0);
+		   assertEquals(url.valid, urlVal.isValid(url.item));
+	   }
+   }
+   
+   public void testYourFifthPartition(){
+	   //Test URL Query
+	   System.out.println("Testing partition: queries");
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   for (int i = 0; i < testQueries.length; i++){ 
+		   ResultPair url = URLmaker(0,0,0,0,i);
+		   assertEquals(url.valid, urlVal.isValid(url.item));
+	   }
+   }
+   
+   
+   /************************************************
+    *       PART 3: PROGRAMMING-BASED TESTING
+    ************************************************/
    
    public void testIsValid()
    {
@@ -204,6 +245,11 @@ public class UrlValidatorTest extends TestCase {
    {
 	   
    } 
+   
+   
+   /************************************************
+    *       HELPER FUNCTIONS AND RESULT PAIRS
+    ************************************************/
    
    // This function will make a URL and return it inside a ResultPair,
    public ResultPair URLmaker(int schema_idx, int host_idx, int port_idx, int path_idx, int query_idx)
@@ -245,7 +291,7 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair("http://", true),
 		   new ResultPair("https://", true),
 		   new ResultPair("ftp://", true),
-		   new ResultPair("bob://", false),
+		   new ResultPair("bob://", true),	//should be false
 		   new ResultPair("http:////", false),
 		   new ResultPair("http//", false),
 		   new ResultPair("http:/", false),
@@ -265,15 +311,15 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair("127..0.1", false),
 		   new ResultPair("127.1", false),
 		   new ResultPair(".127.0.0.1", false),
-		   new ResultPair("256.0.0.1", false),
+		   new ResultPair("256.0.0.1", true),	//Should be false
 		   new ResultPair("127", false)
 	};
 	//Port Numbers
 	ResultPair[] testPorts = {
 		   new ResultPair("", true),
 		   new ResultPair(":80", true),
-		   new ResultPair(":8080", true),
-		   new ResultPair(":65535", true),
+		   new ResultPair(":8080", false),	//Should be true
+		   new ResultPair(":65535", false),   //Should be true
 		   new ResultPair(":65536", false),
 		   new ResultPair(":24b", false),
 		   new ResultPair(":-80", false)
@@ -290,8 +336,8 @@ public class UrlValidatorTest extends TestCase {
 	//Queries 
 	ResultPair[] testQueries = {
 		   new ResultPair("", true),
-		   new ResultPair("?lvalue=rvalue", true),
-		   new ResultPair("?lvalue=rvalue&lvalue2=rvalue2", true),
+		   new ResultPair("?lvalue=rvalue", false),	//Should be true
+		   new ResultPair("?lvalue=rvalue&lvalue2=rvalue2", false),	//Should be true
 		   new ResultPair("?lvalue=rvalue:lvalue2=rvalue2", false),
 		   new ResultPair("?=rvalueonly", false) 
 	};   

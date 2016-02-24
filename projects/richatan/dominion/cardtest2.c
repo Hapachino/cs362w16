@@ -248,19 +248,11 @@ int main () {
  	- Cards added to player's hand are treasure
 	- Cards added to player's discard are extras
 	- No bonus coins
-
--------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------
-NOTICE: Test disabled because of bug in current code causing infinite loop.
-When deck is empty, adventurer code does not add discard pile to deck before shuffle.
--------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------
 */
+
 	printf("*** Testing 1 treasure in deck + 1 in discard ***\n");
-	//printf("Errors: ");
-	printf("Test disabled because of infinite loop\n");
-	printf("Result: FAIL\n\n");
-	/*
+	printf("Errors: ");
+	
 	//Setup card options
 	choice1 = -1;
 	choice2 = -1;
@@ -406,9 +398,9 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 		printf("\nCurrent player's hand count: %d, Expected: %d", g->handCount[whoseTurn(g)], pre->handCount[whoseTurn(g)] + 1);
 		failed = 1;		
 	}
-	if ( (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] != TREASURE) && (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2] != TREASURE) ){
+	if ( (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] != TREASURE) && (g->hand[whoseTurn(g)][0] != TREASURE) ){
 		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 1, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1], TREASURE);
-		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 2, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2], TREASURE);
+		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 2, g->hand[whoseTurn(g)][0], TREASURE);
 		failed = 1;		
 	}
 	//Check extra cards added to discard and treasure removed
@@ -434,7 +426,7 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 		printf("none");
 		printf("\nResult: PASS\n\n");
 	}
-	*/
+
 
 //---Test adventurer with 1 treasure card in deck (only 1 treasure total)
 //---(all choices = -1, no bonus)
@@ -452,18 +444,10 @@ When deck is empty, adventurer code does not add discard pile to deck before shu
 	- Cards added to player's discard are extras
 	- No bonus coins
 
--------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------
-NOTICE: Test disabled because of bug in current code causing infinite loop. 
-While loop does not have exit condition for case when only 1 treasure exists.
--------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------
 */
 	printf("*** Testing 1 treasure card in deck ***\n");
-	//printf("Errors: ");
-	printf("Test disabled because of infinite loop\n");
-	printf("Result: FAIL\n");
-	/*
+	printf("Errors: ");
+
 	//Setup card options
 	choice1 = -1;
 	choice2 = -1;
@@ -642,7 +626,6 @@ While loop does not have exit condition for case when only 1 treasure exists.
 		printf("none");
 		printf("\nResult: PASS\n");
 	}
-	*/
 
 	return 0;
 }

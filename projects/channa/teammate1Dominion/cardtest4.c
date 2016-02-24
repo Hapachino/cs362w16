@@ -223,7 +223,7 @@ int remodelTrash(struct gameState *state, int p, int controlCard, int trashCard,
         // card to trash: int choice1 = trashCard (testG.hand[p][1])
         // card to gain : int choice2 = toTest[]
         // remodel index: int handPos = 0 (testG.hand[p][0])
-        result = playRemodel(state, p, 1, toTest[i], 0);
+        result = cardEffect(remodel, 1, toTest[i], 0, state, 0, 0);
 
         printf("\nchoice1 cost: %d, choice2 cost: %d\n", getCost(trashCard), getCost(toTest[i]));
         printf("Result: %d, Expected: %d\n", result, expected[i]);

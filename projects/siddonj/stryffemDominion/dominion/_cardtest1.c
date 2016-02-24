@@ -48,7 +48,9 @@ void testPlaySmithy() {
 
   // Set player 1's first card in hand to be smithy card.
   testGame->hand[testGame->whoseTurn][0] = smithy;
-  playSmithy(testGame, testGame->whoseTurn, 0);         // First card is smithy;
+
+  
+  smithyCard(0, testGame->whoseTurn, testGame);         // First card is smithy;
 
   handSizeIncrease = numHandCards(testGame) - playerHandSize;       // Find amount players hand size increased by.
   actionDecrease = playerActions - testGame->numActions;

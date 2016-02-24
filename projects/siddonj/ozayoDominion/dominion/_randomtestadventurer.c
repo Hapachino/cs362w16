@@ -182,7 +182,7 @@ void testRandomCard() {
     printf("Deck Size - %d, Discard Size - %d ", testGame->deckCount[testPlayer], testGame->discardCount[testPlayer]);   // Print game condition tests are executing against.
     printf("Num Actions - %d, Num Buys - %d\n", testGame->numActions, testGame->numBuys);
 
-    int successfullyPlayed = playAdventurer(state, statePlayer);   // Play adventurer.
+    int successfullyPlayed = adventurerCard(state);   // Play adventurer.
 
     // TEST - Playing adventurer fails when player has 0 adventurer cards in hand.
     int numAdventurerCardsHand = 0;

@@ -144,7 +144,7 @@ void testRandomCard() {
     int statePlayer = state->whoseTurn;                                 // Create player variable.
     int testPlayer = testGame->whoseTurn;                               // Create player variable.
 
-    playSmithy(state, statePlayer, smithyIndex);
+    smithyCard(state, statePlayer, smithyIndex);
 
     printf("\nGAME STATE: ");
     printf("Players - %d, Whose Turn - %d ", testGame->numPlayers, testGame->whoseTurn);

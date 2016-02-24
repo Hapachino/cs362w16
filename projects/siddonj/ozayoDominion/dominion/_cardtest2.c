@@ -48,7 +48,7 @@ void testPlayAdventurer() {
 
   // Set player 1's first card in hand to be adventurer card.
   testGame->hand[testGame->whoseTurn][0] = adventurer;
-  playAdventurer(testGame, testGame->whoseTurn);         // First card is adventurer;
+  adventurerCard(testGame);         // First card is adventurer;
 
 
   // See if any other players handsize increased, don't include player that played adventurer.
@@ -175,7 +175,7 @@ void testPlayAdventurer() {
   // Initialize new game.
   // Initialize game with valid game values.
   memcpy(testGame, state, sizeof(struct gameState));            // Clean out previous state.
-  int failPlay = playAdventurer(testGame, testGame->whoseTurn);   // Don't put adventurer card in player 1's hand.
+  int failPlay = adventurerCard(testGame);   // Don't put adventurer card in player 1's hand.
 
   if(failPlay == -1) {    // Should return error.
     printf(PLAYADVENTURER_PASS);
@@ -207,7 +207,7 @@ void testPlayAdventurer() {
   testGame->hand[testGame->whoseTurn][0] = adventurer;    // Turn first card in hand to adventurer.
   testGame->handCount[testGame->whoseTurn] = 1;                                // Set hand total to only 1.
 
-  failPlay = playAdventurer(testGame, testGame->whoseTurn);          // Play adventurer with empty deck.
+  failPlay = adventurerCard(testGame);          // Play adventurer with empty deck.
 
   if(failPlay == 0) {    // Should be successful.
     printf(PLAYADVENTURER_PASS);
@@ -250,7 +250,7 @@ void testPlayAdventurer() {
   testGame->deck[testGame->whoseTurn][0] = copper;              // Set first card in deck to copper.
   testGame->hand[testGame->whoseTurn][0] = adventurer;          // Turn first card in hand to adventurer.
 
-  failPlay = playAdventurer(testGame, testGame->whoseTurn);          // Play adventurer with 1 copper in deck.
+  failPlay = adventurerCard(testGame);          // Play adventurer with 1 copper in deck.
 
   if(failPlay == 0) {    // Should be successful.
     printf(PLAYADVENTURER_PASS);

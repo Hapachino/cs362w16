@@ -50,7 +50,9 @@ void testPlayRemodel() {
   testGame->hand[testGame->whoseTurn][1] = adventurer;
   int gardensDiscardCount = 0;
 
-  playRemodel(testGame, testGame->whoseTurn, 0, 1, 1);      // Trying to buy gardens by trashing a adventurer.
+  int r = 0;
+  //playRemodel(testGame, testGame->whoseTurn, 0, 1, 1);      // Trying to buy gardens by trashing a adventurer.
+  cardEffect(remodel, 1,1,1, testGame, 0 ,&r);
 
   // See if any other players handsize increased, don't include player that played remodel.
   for(i = 1; i < numPlayers; i++) {
@@ -220,7 +222,9 @@ void testPlayRemodel() {
   testGame->hand[testGame->whoseTurn][0] = remodel;
   testGame->hand[testGame->whoseTurn][1] = copper;
 
-  int succussfulRemodel = playRemodel(testGame, testGame->whoseTurn, 0, 1, 7);      // Trying to buy adventurer by trashing a copper.
+  r = 0;
+  //cardEffect(remodel, 1,7,1, testGame, 0 ,&r);
+  int succussfulRemodel = cardEffect(remodel, 1,7,1, testGame, 0 ,&r);      // Trying to buy adventurer by trashing a copper.
 
   if(testGame->handCount[testGame->whoseTurn] == state->handCount[state->whoseTurn]) {    // Make sure hand count stays the same.
     printf(PLAYREMODEL_PASS);
@@ -260,7 +264,8 @@ void testPlayRemodel() {
   testGame->hand[testGame->whoseTurn][0] = remodel;
   testGame->hand[testGame->whoseTurn][1] = gardens;
 
-  succussfulRemodel = playRemodel(testGame, testGame->whoseTurn, 0, 1, 9);      // Trying to buy feast by trashing a garden.
+
+  succussfulRemodel = cardEffect(remodel, 1,9,1, testGame, 0 ,&r);      // Trying to buy feast by trashing a garden.
 
   if(testGame->handCount[testGame->whoseTurn] == state->handCount[state->whoseTurn]-2) {    // Make sure hand count stays the same.
     printf(PLAYREMODEL_PASS);

@@ -52,3 +52,20 @@ Bugs fixed in dominion.c
 	Failure(s) Reported: not found in testing
 	Code Changes to Fix: In runMine() switch all choice 1 to choice 2 and vice versa
 	   
+7.	Bug Description: Adventurer causes infinite loop if less than 2 treasures exist
+	Found By: unit tests
+	Failure(s) Reported: segmentation fault
+	Code Changes to Fix: In runAdventurer(), added shuffle count check to while loop.
+		Entire deck has been revealed when 2nd shuffle occurs and loop can exit with
+		less than 2 treasures. Removed call to shuffle because shuffle is already
+		performed by drawCard and shuffle in Adventurer did not incorporate discard
+		pile; replaced with shuffleCount increment.
+		
+8.	Bug Description: gainCard() does not return error for invalid toFlag
+	Found By: unit tests
+	Failure(s) Reported: if toFlag equals anything besides 1 or 2, treated as 0
+	Code Changes to Fix: In gainCard() changed else statement to else if (toFlag == 0)
+	  and added else condition to handle other toFlag values (return -1)
+	  
+	  
+	  

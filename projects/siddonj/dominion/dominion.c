@@ -1285,10 +1285,29 @@ int playAdventurer(struct gameState *state, int currentPlayer) {
   int drawnTreasure = 0;
   int temphand[MAX_HAND];
   int z = 0;// this is the counter for the temp hand
+  int i = 0;
+  int advenPos;
+  int shuffleCount = 0;
+
+  // Find hand position of adventurer
+  for(i = 0; i < state->handCount; i++) {
+    if (state->hand[currentPlayer][i] == adventurer) {
+      advenPos = i;       // Get adventurer position.
+      break;
+    }
+    return -1;            // No adventurer in hand so don't let them play one!
+  }
+
+  discardCard(advenPos, currentPlayer, state, 0);      // Discard played adventurer card.
 
   while(drawnTreasure < 2){
     if (state->deckCount[currentPlayer] < 1){//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
+      if(shuffleCount != 1) {
+        shuffleCount = 1;
+      } else {
+        return 0;
+      }
     }
 
     drawCard(currentPlayer, state);
@@ -1308,14 +1327,16 @@ int playAdventurer(struct gameState *state, int currentPlayer) {
     z = z - 1;
   }
 
+  state->numActions = state->numActions-1;
+
   return 0;
 }
-
+// choice1 is card to trash, choice2 is card to buy
 int playRemodel(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2) {
   int j = state->hand[currentPlayer][choice1];  //store card we will trash
   int i;  // C99 compile error linux.
 
-  if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+  if ( (getCost(state->hand[currentPlayer][choice1]) + 2) < getCost(choice2) )
   {
     return -1;
   }
@@ -1330,7 +1351,7 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
   {
     if (state->hand[currentPlayer][i] == j)
     {
-      discardCard(i, currentPlayer, state, 0);
+      discardCard(i, currentPlayer, state, 1);
       break;
     }
   }
@@ -1339,6 +1360,11 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
 }
 
 int playVillage(struct gameState *state, int currentPlayer, int handPos) {
+  // Make sure card is village.
+  if(state->hand[currentPlayer][handPos] != village) {
+    return -1;
+  }
+
   //+1 Card
   drawCard(currentPlayer, state);
 

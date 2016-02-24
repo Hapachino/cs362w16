@@ -431,7 +431,7 @@ int scoreFor (int player, struct gameState *state) {
     }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };
@@ -1162,26 +1162,26 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
 
   //if card is not trashed, added to Played pile
   if (trashFlag < 1)
-    {
+  {
       //add card to played pile
       state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
       state->playedCardCount++;
-    }
+  }
 
   //set played card to -1
   state->hand[currentPlayer][handPos] = -1;
 
   //remove card from player's hand
   if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
-    {
+  {
       //reduce number of cards in hand
       state->handCount[currentPlayer]--;
-    }
+  }
   else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
-    {
+  {
       //reduce number of cards in hand
       state->handCount[currentPlayer]--;
-    }
+  }
   else
     {
       //replace discarded card with last card in hand
@@ -1267,13 +1267,15 @@ int playCouncil_Room(struct gameState *state, int handPos);
 int playSmithy(struct gameState *state, int currentPlayer, int handPos) {
   int i;  // C99 compile error on linux.
   // Draw cards.
-  for (i = 0; i <= 3; i++)
+  for (i = 0; i < 3; i++)
   {
     drawCard(currentPlayer, state);
   }
 
   // Discard card from hand.
   discardCard(handPos, currentPlayer, state, 0);
+
+  state->numActions = state->numActions-1;// Decrement actions.
 
   return 0;
 }
@@ -1310,7 +1312,7 @@ int playAdventurer(struct gameState *state, int currentPlayer) {
 }
 
 int playRemodel(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2) {
-  int j = state->hand[currentPlayer][choice2];  //store card we will trash
+  int j = state->hand[currentPlayer][choice1];  //store card we will trash
   int i;  // C99 compile error linux.
 
   if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
@@ -1321,7 +1323,7 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
   gainCard(choice2, state, 0, currentPlayer);
 
   //discard card from hand
-  discardCard(handPos, currentPlayer, state, 1);
+  discardCard(handPos, currentPlayer, state, 0);
 
   //discard trashed card
   for (i = 0; i < state->handCount[currentPlayer]; i++)
@@ -1340,8 +1342,8 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos) {
   //+1 Card
   drawCard(currentPlayer, state);
 
-  //+4 Actions
-  state->numActions = state->numActions + 4;
+  //+2 Actions
+  state->numActions = state->numActions + 2;
 
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);
@@ -1360,10 +1362,7 @@ int playGreatHall(struct gameState *state, int currentPlayer, int handPos) {
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
 
-  //+1 Card
-  drawCard(currentPlayer, state);
-
-  return -1;
+  return 0;
 }
 
 //end of dominion.c

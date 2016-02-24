@@ -12,3 +12,7 @@ Assignment 3:
 To play:
   use 'playdom' followed by a space and a number.
   example:  playdom 3
+
+
+added herrickl and mcleodki directories:
+  mkdir mcleodki && cp -R ../mcleodki/dominion mcleodki/

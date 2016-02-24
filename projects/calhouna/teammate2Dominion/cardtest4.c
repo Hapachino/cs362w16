@@ -1,161 +1,306 @@
-/*Jonathan Lagrew
- *cardtest4.c
- *test playCouncil_Room()
- *Notes:
- *Council Room is an Action card from the Base set. It is a terminal card draw, meaning it 
- *provides +Cards but no +Action. It is also an interactive card but not an attack, 
- *the huge benefit to you is counterbalanced by a pretty nice benefit to your opponent,
- *making them draw a card. It is extremely good when paired with a handsize attack such as Militia!
- */
- /*
- * Basic Requirements of Council_Room:
- * 1. Current player should receive a total of 4 cards from the deck. 
- * 2. Current player's buys should increase by 1. 
- * 3. No state change should occur for other players.
- * 4. No state change should occur to the victory drawnCard piles and kingdom card piles.
- * 5. Current player should be the same before and after the test.
- * 6. Number of actions should stay the same before and after the test. 
- * 7. Number of coins should stay the same before and after the test. 
- */
+// Andrew M. Calhoun
+// CARD TEST - ASSIGNMENT 3
+// CardTest4.c
+// Unit Test for card function - MINION.
 
-/*
- * Include the following lines in your makefile:
- *
- * cardtest4: cardtest4.c dominion.o rngs.o
- *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
- */
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
+#include <time.h>
+#include <stdlib.h>
 #include <math.h>
-#define MAX_HAND_TEST 200//setting max hand test value to 200
-#define MAX_DECK_TEST 200//setting max deck test value to 200
-#define TESTCARD "Council_Room"
+#include <stdlib.h>
+#include <string.h>
 
-int testPlayCouncil_Room(struct gameState *after, int handPos)
+#define DEBUG 0
+#define NOISY_TEST 1
+#define TESTCARD "minion"
+
+/*-------------------------------
+// PLAY MINION
+//-------------------------------
+
+int playMinion(struct gameState *state, int choice1, int choice2, int currentPlayer, int handPos)
 {
-	
-	int p = after->whoseTurn;//initialize whoseTurn stored as p 
-	struct gameState before;
-	memcpy(&before, after, sizeof(struct gameState));
-	
-	playCouncil_Room(after, handPos);
-	
-	//drawing 4 cards and discard council_room. Net gain = 3;
-	before.handCount[p] = before.handCount[p] + 3;
-	if(before.handCount[p] != after->handCount[p])
+
+    int i, j;
+
+
+      //+1 action
+      state->numActions--;
+
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+
+      if (choice1)		//+2 coins *** REFACTORED: -2 coins.
 	{
-		printf("ERROR 1: Player %d didn't gain 3 cards in hand after card was played! Before count: %d After count: %d\n", p, before.handCount[p], after->handCount[p]);
+	  state->coins = state->coins - 2;
 	}
-	//numBuys is incremented by 1
-	before.numBuys++;
-	if(before.numBuys != after->numBuys)
+
+      else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
 	{
-		printf("ERROR 2: After card played, player did not get an additional buy. Before buys: %d, After buys: %d.\n", before.numBuys, after->numBuys);
-	}
-	//every other player should have an extra card in their deck
-	int i;
-	for(i = 0; i < before.numPlayers; i ++)
-	{
-		if(i != p)
+
+//	  //discard hand ** COMMENTED OUT FOR REFACTORING
+//	  while(numHandCards(state) > 0)
+//	    {
+//	      discardCard(handPos, currentPlayer, state, 0);
+//	    }
+
+	  //draw 4 *** REFACTORED TO DRAW 3
+	  for (i = 0; i < 3; i++)
+	    {
+	      drawCard(currentPlayer, state);
+	    }
+
+	  //other players discard hand and redraw if hand size > 4 *** REFACTOR: They not only get to keep their cards, they get 3 MORE!
+	  for (i = 0; i < state->numPlayers; i++)
+	    {
+	      if (i != currentPlayer)
 		{
-			before.handCount[i]++;
-			
-			if(before.handCount[i] != after->handCount[i])
+		  if ( state->handCount[i] > 4 )
+		    {
+		    //  //discard hand
+		    //  while( state->handCount[i] > 0 )
+			// {
+			//  discardCard(handPos, i, state, 0);
+			// }
+
+		      //draw 4 ** REFACTOR: 3
+		      for (j = 0; j < 3; j++)
 			{
-				printf("ERROR 3: Player %d didn't recieve a card! Before count: %d After count: %d\n", i, before.handCount[i], after->handCount[i]);
+			  drawCard(i, state);
 			}
+		    }
 		}
+	    }
+
 	}
-	//testing buys
-	if(before.numBuys != after->numBuys)
-		printf("ERROR: Buys has changed from %i, to %i", before.numBuys, after->numBuys);
-	
-	//testing player
-	if(before.whoseTurn != after->whoseTurn)
-		printf("ERROR: Current player has changed from %i to %i", before.whoseTurn, after->whoseTurn);
-	
-	//testing coins
-	if(before.coins != after->coins)
-		printf("ERROR: Coins changed from %i to %i", before.coins, after->coins);
-	
-	return 0;
+      return 0;
+
 }
 
-int main()//main for generating random tests 
-{
-	int p;
-	int numTests = 250;//250 tests
-	struct gameState G;
-	int handPos;
-	int numPlayers;
-	int maxPlayers = 5;
-	int i, j, m, n, q, r, s;
-	
-	//generates random tests
-	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
-	
-	SelectStream(2);
-	PutSeed(3);
-	
-	for(s = 0; s < numTests; s++)
-	{
-		for(numPlayers = 2; numPlayers < maxPlayers; numPlayers++)
-		{
-			for(p = 0; p < numPlayers; p++)
-			{
-				for (i = 0; i < sizeof(struct gameState); i++) { //from the lessons, random gameState
-					((char*)&G)[i] = floor(Random() * 256);
-				}
-				
-				G.whoseTurn = p;
-				G.numPlayers = numPlayers;
-				
-				//filling in random cards based on lecture 11 and 12 Random Testing 
-				//give cards to all players
-				for(j = 0; j < numPlayers; j++)
-				{
-					//filling in random cards based on lecture 11 and 12 Random Testing 
-					G.handCount[j] = floor(Random() * MAX_HAND_TEST)+1;//need at least one council room in our hand
-					G.deckCount[j] = floor(Random() * MAX_DECK_TEST);//from lecture 11 to generate random deck 
-					G.discardCount[j] = floor(Random() * MAX_DECK_TEST);//from lecture 11 to generate random discard 
-					
-					for(m = 0; m < G.handCount[j]; m++)
-					{
-						G.hand[j][m] = floor(Random() * treasure_map) + 1;
-					}
-					
-					for(r = 0; r < G.discardCount[j]; r++)
-					{
-						G.discard[j][r] = floor(Random() * treasure_map) + 1;
-					}
+*/
 
-					for(n = 0; n < G.deckCount[j]; n++)
-					{
-						G.deck[j][n] = floor(Random() * treasure_map) + 1;
-					}
-				}
-				//only current player has played cards
-				G.playedCardCount = floor(Random() * MAX_DECK_TEST);
-				for(q = 0; q < G.playedCardCount; q++)
-				{
-					G.playedCards[q] = floor(Random() * treasure_map) + 1;
-				}
-				//setting buys to 1 
-				G.numBuys = 1;
-				//puts card in random hand position
-				handPos = floor(Random() * G.handCount[p]);
-				G.hand[p][handPos] = council_room;
-				//run test function
-				testPlayCouncil_Room(&G, handPos);
-				
-			}
-		}
-	}
-	
-	printf("Play Council_Room testing has concluded.\n\n");
+int main()
+{
+    // The minion card has been changed drastically, thus it should fail on most accounts -- tests will find failure points and point them out.
+
+   int i, thisPlayer, handPos = 0, seed = 65535, numPlayer = 2, kCardCount, choice1, choice2, allTestsPassed = 1;
+	int k[10] = {adventurer, smithy, great_hall, council_room, salvager, gardens, mine, remodel, village, ambassador };
+	struct gameState state, testState;
+
+
+   // memset(&state, 0, sizeof(struct gameState)); // Ensure we have a clean slate.
+    initializeGame(numPlayer, k, seed, &testState);
+
+    memcpy(&state, &testState, sizeof(struct gameState));
+
+    testState.coins = 10;
+    state.coins = 10;
+    testState.numActions = 1;
+
+    thisPlayer = 0;
+    // playMinion(&testState, 0, 0, thisPlayer, 0);
+
+    // assert(state.supplyCount[duchy] == 8);  // Making sure the supplies are proper, if not,
+                                            // please reload original or refactored code
+//                                            // that does not adjust values...
+//
+//    printf("TEST #1: Checking card supplies...\n");
+//    for(i = 0; i < 26; i++)
+//    {
+//        kCardCount = testState.supplyCount[i];
+//        printf("Card: %d\n", testState.supplyCount[i]);
+//        assert(testState.supplyCount[i] == kCardCount);
+//
+//    }
+//
+//    printf("All kingdom and victory cards check out.\n");
+
+    printf("TEST #1: Minion Card - choice1 = 1, choice 2 = 0\n");
+    choice1 = 1;
+    choice2 = 0;
+
+    playMinion(&testState, choice1, choice2, thisPlayer, handPos);
+
+    printf("Checking to see if action was added...");
+    if(testState.numActions == state.numActions + 1)
+    {
+        printf("TEST #1: Action Test passed!\n\n");
+    }
+    else
+    {
+        printf("TEST #1: Action Test failed!\n");
+        printf("Expected: %d\n", state.numActions + 1);
+        printf("Result: %d\n\n", testState.numActions);
+        allTestsPassed = 0;
+       // assert(testState.numActions == state.numActions + 1); // This will break.
+    }
+
+    printf("Checking to see if 2 coins were added...\n");
+    if(testState.coins == state.coins + 2)
+    {
+        printf("TEST #1: Coin Test passed!\n");
+    }
+    else
+    {
+        printf("TEST #1: Coin Test failed!\n That dirty minion stole or forgot to give us coins!\n");
+        printf("Expected: %d\n", state.coins + 2);
+        printf("Result: %d\n\n", testState.coins);
+        allTestsPassed = 0;
+    }
+
+    /* printf("Discard Count: %d\n", testState.discardCount[thisPlayer]);
+    printf("Discards: %d\n", testState.discard[thisPlayer][i]);
+
+    if(testState.discardCount[thisPlayer] != state.discardCount[thisPlayer])
+    {
+        printf("TEST #1: Discard Test Failed.\n");
+        allTestsPassed = 0;
+    }
+    else
+    {
+        printf("TEST #1: Discard Test Passed.\n");
+    }
+    */
+
+
+    printf("TEST #1: Previous Hand Count: %d\n", state.handCount[thisPlayer]);
+    printf("TEST #1: Current Hand Count: %d\n", testState.handCount[thisPlayer]);
+
+    if(state.handCount[thisPlayer] == testState.handCount[thisPlayer] + 1)
+    {
+        printf("TEST #1: Hand Count Test passed.\n\n");
+    }
+    else
+    {
+        printf("TEST #1: Hand Count Test failed.\n\n");
+        allTestsPassed = 0;
+    }
+
+    printf("Checking to see if other players drew cards. (Should Not if Choice 1 was Picked)\n");
+
+    for(i=1; i<numPlayer; i++)
+    {
+        printf("Number of Cards in Hand for Player %d: %d\n", (i+1), testState.handCount[i]);
+        if(testState.handCount[i] > state.handCount[i])
+        {
+            printf("TEST #1: Player Draw Test failed.\n\n");
+            allTestsPassed = 0;
+        }
+        else
+        {
+            printf("TEST #1: Player Draw Test passed.\n\n");
+        }
+    }
+
+    printf("Resetting values...\n\n");
+
+    memcpy(&testState, &state, sizeof(struct gameState));
+
+
+
+    testState.coins = state.coins = 10;
+    testState.numActions = state.numActions = 1;
+    choice1 = 0;
+    choice2 = 1;
+
+    state.handCount[1] = 5;
+    testState.handCount[1] = 5;
+
+    printf("MINION TEST #2: Checking Choice 2...\n");
+    playMinion(&testState, choice1, choice2, thisPlayer, handPos);
+
+    printf("Checking to see if action was added...\n");
+
+    if(testState.numActions == state.numActions + 1)
+    {
+        printf("TEST #2: Action Test Passed!\n\n");
+    }
+    else
+    {
+        printf("TEST #2: Test failed!\n");
+        printf("Expected: %d\n", state.numActions + 1);
+        printf("Result: %d\n\n", testState.numActions);
+        allTestsPassed = 0;
+       // assert(testState.numActions == state.numActions + 1); // This will break.
+    }
+
+    // endTurn(&testState);
+
+    printf("Testing to see if 2 coins were added... (UPDATED FOR CORRECTNESS)\n");
+
+    if(state.coins == testState.coins)
+    {
+        printf("TEST #2: Coin Test passed!\n\n");
+    }
+    else
+    {
+        printf("TEST #2: Test failed!\n");
+        printf("Expected: %d\n", state.coins + 2);
+        printf("Result: %d\n\n", testState.coins);
+        allTestsPassed = 0;
+    }
+
+    /* printf("TEST #2: Checking discard. Should be greater than 0.\n");
+     if(testState.discardCount[thisPlayer] > state.discardCount[thisPlayer])
+    {
+        printf("TEST #2: Discard Test passed.\n\n");
+    }
+    else
+    {
+        printf("TEST #2: Test failed.\n\n");
+        allTestsPassed = 0;
+    }
+
+    */
+
+    printf("TEST #2: Checking to see that 4 cards were drawn for player 1\n\n");
+    if(testState.handCount[thisPlayer] <= state.handCount[thisPlayer])
+    {
+        printf("TEST #2: Draw Test passed!\n\n");
+    }
+    else
+    {
+        printf("TEST #2: Draw Test failed!\n");
+        printf("Expected: %d\n", state.handCount[thisPlayer] -1);
+        printf("Result: %d\n\n", testState.handCount[thisPlayer]);
+        allTestsPassed = 0;
+    }
+
+    printf("TEST #2: Checking Hand Counts for other Players.\n");
+    for(i = 1; i < numPlayer; i++)
+    {
+        printf("Player %d: Hand Count: %d\n", 2, testState.handCount[1]);
+        if(testState.handCount[1] > 4)
+        {
+            printf("TEST #2: Other Player Hand Count Test failed!\n");
+            printf("Expected: 4\n");
+            printf("Result %d\n\n", testState.handCount[1]);
+        }
+        else
+        {
+            printf("TEST #2: Other Player Hand Count Test Passed.\n\n");
+            printf("Expected: 4\n");
+            printf("Result: %d\n", testState.handCount[1]);
+
+        }
+    }
+
+    // refactored bug should increase number of cards to 6/7, but it does not.
+
+
+    if(allTestsPassed)
+    {
+        printf("All tests passed. Function works perfectly!\n");
+    }
+    else
+    {
+        printf("One or more tests failed! Please review results and revise code.\n");
+    }
+
 	return 0;
 }

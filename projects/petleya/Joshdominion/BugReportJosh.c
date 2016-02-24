@@ -1,5 +1,34 @@
 Bug report on Josh's:
 
+Bug 1:
+file: dominion.c
+function: adventurer
+description: two tests found errors in the adventurer function
+	cardtest4:
+		expected: two treasure cards to be added to hand and the players hand to increase by 1 because two cards are added and 		one is discard.
+		actual: players hand not increased correctly
+	randomtestadventurer:
+		expected: two treasure cards are added to the players hand. No drawn treasure cards are discarded. Players hand is 			increase by one.
+		actual: some treasure cards are being discarded. The hand count is not changing and the incorrect number of treasure 			cards are added.
+
+Bug 2:
+file: dominion.c
+function: smithy
+discription: randomcardtest found some errors with the smithy function.
+	randomcardtest:
+		expected: current players hand to increase by 2 since 3 are added and 1 is discarded. Other players hands are not 			effected.
+		actual: the other players hand count is increased. the other players deck and discard piles are also effected.
+		
+Bug 3:
+file: dominion.c
+function: steward
+	description: cardtest3 found an error with the steward function
+	expected: handcount to increase by one. Coins increases by 2.
+	actual: hand count not adjusted correctly.
+
+
+results from tests for Josh's code: 
+
 unittest1 on updateCoins:
 	no errors
 unittest2 on discardCard:

@@ -1,198 +1,147 @@
-/* -----------------------------------------------------------------------
- * test scoreFor()
- * 
- *
- * unittest4: unittest4.c dominion.o rngs.o
- *      gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
- */
+// Andrew M. Calhoun
+// UNIT TEST - ASSIGNMENT 3
+// unitTest4.c
+// Unit Test for checkEndTurn function.
 
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <stdbool.h>
-#include "rngs.h"
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdlib.h>
 
-// set NOISY_TEST to 0 to remove printfs from output
+#define DEBUG 0
 #define NOISY_TEST 1
 
-int main() {
-    int i;
-    int seed = 1000;
 
-    int numPlayer = 2;
-    int p, r;
-    int k[10] = {adventurer, great_hall, feast, gardens, mine
-               , remodel, smithy, village, tribute, embargo};
+/*
 
-    // const char *cards[] = {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room",
-    //     "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
-    //     "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"
-    // };
+int endTurn(struct gameState *state) {
+  int k;
+  int i;
+  int currentPlayer = whoseTurn(state);
 
-    struct gameState G;
-    // Count of cards to buy
-    int estateCount, duchyCount, provinceCount, ghCount, gardensCount, curseCount;
-    // Test function calculation
-    int result;
-    // Correct calculation
-    int score;
-    // For keeping track of gardens effect
-    int deck_discard_hand;
-    // Check for pass/fail
-    bool pass = true;
-    int failed = 0;
+  //Discard hand
+  for (i = 0; i < state->handCount[currentPlayer]; i++){
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = state->hand[currentPlayer][i];//Discard
+    state->hand[currentPlayer][i] = -1;//Set card to -1
+  }
+  state->handCount[currentPlayer] = 0;//Reset hand count
 
-    memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+  //Code for determining the player
+  if (currentPlayer < (state->numPlayers - 1)){
+    state->whoseTurn = currentPlayer + 1;//Still safe to increment
+  }
+  else{
+    state->whoseTurn = 0;//Max player has been reached, loop back around to player 1
+  }
 
-    // TESTING PLAYER 0
-    p = 0;
+  state->outpostPlayed = 0;
+  state->phase = 0;
+  state->numActions = 1;
+  state->coins = 0;
+  state->numBuys = 1;
+  state->playedCardCount = 0;
+  state->handCount[state->whoseTurn] = 0;
 
-#if (NOISY_TEST == 1)
-    printf("----------------- TESTING scoreFor():\n");
-    printf("\n----------------- Test 1 - Player %d:\n", p);
-    printf("Adding the following to discard:\n");
-    printf("    1 duchy\n");
-    printf("    2 provinces\n");
-    printf("    5 great halls\n");
-    printf("    4 gardens\n");
-    printf("    2 curses\n");
-#endif
+  //int k; move to top
+  //Next player draws hand
+  for (k = 0; k < 5; k++){
+    drawCard(state->whoseTurn, state);//Draw a card
+  }
 
-    // From initializeGame()
-    estateCount = 3;
+  //Update money
+  updateCoins(state->whoseTurn, state , 0);
 
-    // Buy duchy
-    duchyCount = 1;
-    G.discard[p][ G.discardCount[p] ] = duchy;
-    G.discardCount[p]++;
+  return 0;
+}
 
-    // Buy province
-    provinceCount = 2;
-    for (i = 0; i < provinceCount; i++) {
-        G.discard[p][ G.discardCount[p] ] = province;
-        G.discardCount[p]++;
-    }
-    
-    // Buy great_hall
-    ghCount = 5;
-    for (i = 0; i < ghCount; i++) {
-        G.discard[p][ G.discardCount[p] ] = great_hall;
-        G.discardCount[p]++;
-    }
+*/
 
-    // Buy gardens
-    gardensCount = 4;
-    for (i = 0; i < gardensCount; i++) {
-        G.discard[p][ G.discardCount[p] ] = gardens;
-        G.discardCount[p]++;
-    }
+int checkEndTurn(struct gameState *post)
+{
+    int k, i, j;
+    int currentPlayer = whoseTurn(post);
+    struct gameState pre;
+    memcpy(&pre, post, sizeof(struct gameState));
 
-    // Buy curse
-    curseCount = 2;
-    for (i = 0; i < curseCount; i++) {
-        G.discard[p][ G.discardCount[p] ] = curse;
-        G.discardCount[p]++;
+    printf("Assertions to ensure cards are discarded properly at end of each turn.\n");
+
+    for(i=0; i<pre.handCount[currentPlayer]; i++)
+    {
+        pre.discard[currentPlayer][pre.discardCount[currentPlayer]++] = pre.hand[currentPlayer][i];
+        assert(pre.discard[currentPlayer][pre.discardCount[currentPlayer]++] == post->discard[currentPlayer][post->discardCount[currentPlayer]++]);
+        assert(post->discard[currentPlayer][post->discardCount[currentPlayer]++] != pre.hand[currentPlayer][i]);
+
+       //  printf("%d\n%d\n", pre.hand[currentPlayer][i], post->hand[currentPlayer][i]);
+
+        pre.hand[currentPlayer][i] = -1;//Set card to -1
+        assert(pre.hand[currentPlayer][i] = post->hand[currentPlayer][i] - 2);
+
+        assert(post->hand[currentPlayer][i] + 1 >= pre.hand[currentPlayer][i]);
+
+        printf("Post Turn End: %d\n Pre Turn End: %d\n", post->handCount[currentPlayer], pre.handCount[currentPlayer]);
+        post->handCount[currentPlayer] = pre.handCount[currentPlayer] = 0;
+
+        assert(post->handCount[currentPlayer] == pre.handCount[currentPlayer]); // These should match.
+
     }
 
-#if (NOISY_TEST == 1)
-    // 27 types of cards
-    // printf("Totals of cards by type for Player %d:\n", p);
-    // for (i = 0; i < 27; i++) {
-    //     result = fullDeckCount(p, i, &G);
-    //     printf("Card count for %s: %d\n", cards[i], result);
-    // }
-#endif
+    printf("Discard Assertions passed.\n");
 
-    // Test scoreFor()
-    result = scoreFor(p, &G);
-    
-    // Calculate correct score
-    score = 0;
-    score = score + (curseCount * -1);
-    score = score + estateCount;
-    score = score + (duchyCount * 3);
-    score = score + (provinceCount * 6);
-    score = score + ghCount;
-#if (NOISY_TEST == 1)
-    printf("deckCount: %d\n", G.deckCount[p]);
-    printf("discardCount: %d\n", G.discardCount[p]);
-    printf("handCount: %d\n", G.handCount[p]);
-#endif
-    deck_discard_hand = G.deckCount[p] + G.discardCount[p] + G.handCount[p];
-    score = score + (deck_discard_hand / 10 * gardensCount);
+    printf("Player Counts -- makes sure player is properly selected.\n");
 
-    // Verify
-#if (NOISY_TEST == 1)
-    printf("Player %d score: %d, expected: %d\n", p, result, score);
-#endif
-    // Assert here halts program execution
-    // assert(result == score);
-    if (result != score) {
-        pass = false;
-        failed++;
+    if (currentPlayer < (post->numPlayers - 1))
+    {
+        post->whoseTurn = currentPlayer + 1;//Still safe to increment
+        assert(post->whoseTurn - (currentPlayer + 1) == pre.whoseTurn);
+    }
+    else{
+        pre.whoseTurn = post->whoseTurn = 0;//Max player has been reached, loop back around to player 1
+        assert(pre.whoseTurn == post->whoseTurn);
     }
 
-    // TESTING PLAYER 1
-    p = 1;
+    printf("Player Turn Counter Works Correctly\n");
 
-#if (NOISY_TEST == 1)
-    // 27 types of cards
-    // printf("Test 2\nTotals of cards by type for Player %d:\n", p);
-    // for (i = 0; i < 27; i++) {
-    //     result = fullDeckCount(p, i, &G);
-    //     printf("Card count for %s: %d\n", cards[i], result);
-    // }
-#endif
+    printf("Assertion Tests for Outposts, Action Counts, and Coins. All Should Be Equal.\n");
 
-    // Test scoreFor()
-    result = scoreFor(p, &G);
+    assert(pre.outpostPlayed == post->outpostPlayed);
+    assert(pre.phase == post->phase);
+    assert(pre.numActions == post->numActions);
+    assert(pre.coins == post->coins);
+    assert(post->numBuys == pre.numBuys);
+    assert(post->playedCardCount == pre.playedCardCount);
+    assert(pre.handCount[post->whoseTurn] == post->handCount[pre.whoseTurn]);
 
-    // From initializeGame()
-    curseCount = 0;
-    estateCount = 3;
-    duchyCount = 0;
-    provinceCount = 0;
-    ghCount = 0;
-    gardensCount = 0;
+    printf("All assertions passed.\n");
 
-    // Calculate correct score
-    score = 0;
-    score = score + (curseCount * -1);
-    score = score + estateCount;
-    score = score + (duchyCount * 3);
-    score = score + (provinceCount * 6);
-    score = score + ghCount;
-#if (NOISY_TEST == 1)
-    printf("\n----------------- Test 2 - Player %d:\n", p);
-    printf("No changes and all cards in deck:\n");
-    printf("deckCount: %d\n", G.deckCount[p]);
-    printf("discardCount: %d\n", G.discardCount[p]);
-    printf("handCount: %d\n", G.handCount[p]);
-#endif
-    deck_discard_hand = G.deckCount[p] + G.discardCount[p] + G.handCount[p];
-    score = score + (deck_discard_hand / 10 * gardensCount);
-
-    // Verify
-#if (NOISY_TEST == 1)
-    printf("Player %d score: %d, expected: %d\n", p, result, score);
-#endif
-    // Assert here halts program execution
-    // assert(result == score);
-    if (result != score) {
-        pass = false;
-        failed++;
-    }
-
-    if (pass) {
-        printf("\nAll tests passed!\n");
-    }
-    else {
-        printf("\n%d/2 test(s) failed!\n", failed);
-    }
+     //int k; move to top
+  //Next player draws hand
+  for (k = 0; k < 5; k++){
+    j = drawCard(pre.whoseTurn, &pre);//Draw a card
+    i = drawCard(post->whoseTurn, post);
+    assert(j == i); // Broken -- is there a way to properly test this without destroying the program?
+  }
 
     return 0;
+}
+
+
+int main()
+{
+    srand(time(NULL));
+    int seed = rand() % 65535;
+    int k[10] = { adventurer, smithy, village, baron, great_hall, council_room, salvager, sea_hag, gardens, mine };
+    struct gameState *state = malloc(sizeof(struct gameState));
+
+    initializeGame(2, k, seed, state);
+
+    checkEndTurn(state);
+
+    return 0;
+
 }

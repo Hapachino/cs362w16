@@ -1,91 +1,124 @@
-Nancy Chan
-CS 362
-Winter 2016
-Assignment 3: coverage1.c
+Andrew M. Calhoun
+calhouna@oregonstate.edu
+CS 362 - Assignment 3
+coverage1.c
 
-Aggregate coverage for all 8 test files:
-Lines executed:37.04% of 575
-Branches executed:47.96% of 417
-Taken at least once:36.21% of 417
-Calls executed:21.05% of 95
+Tests require expansion, even though many of them have decent coverage. There is likely a variety of cases that I did not consider when I first set up the tests and began the testing.
 
-cardtest1:
-	100% statement coverage of playSmithy()
-	branch coverage: function playSmithy called 1 returned 100% blocks executed 100%
+----- unitTest1.c ------
+updateCoin() function
 
-cardtest2:
-	statements not covered in playAdventurer():
-		-: 1258:      //if the deck is empty we need to shuffle discard and add to deck
-	#####: 1259:      shuffle(currentPlayer, state);
-		6: 1274:  while(z-1>=0)
-		-: 1275:  {
-	#####: 1276:    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-	#####: 1277:    z=z-1;
-		-: 1278:  }
-	I did not use an empty deck in any of the tests here so shuffle was never called. The bug I introduced
-	made it so that the counter z does not increment correctly. As a result, z, which was intialized to 0,
-	stays at 0 and the while conditiion cannot be met for the following two lines below it to execute.
-	
-	branch coverage: function playAdventurer called 3 returned 100% blocks executed 86%
-	Not all branches were taken because 1) I did not use an empty deck at any point, 2) the only treasure
-	card used was copper (so silver and gold were not tested), and 3) I introduced a bug affecting the
-	z counter.
+Lines executed:74.58% of 118
+unitTest1.c:creating 'unitTest1.c.gcov'
 
-	boundary coverage: I checked the boundaries of different placements of coppers in the deck (top of the deck,
-	bottom of the deck, and interspersed through the deck).
+flip3 ~/cs362/assignment3 389% gcov -b unitTest1
+File 'unitTest1.c'
+Lines executed:74.58% of 118
+Branches executed:100.00% of 36
+Taken at least once:66.67% of 36
+Calls executed:78.26% of 46
+unitTest1.c:creating 'unitTest1.c.gcov'
 
-cardtest3:
-	statements not covered in playCutpurse():
-	#####: 1327:          for (k = 0; k < state->handCount[i]; k += 2)
-		-: 1328:          {
-	#####: 1329:            if (DEBUG)
-		-: 1330:              printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
-		-: 1331:          } 
-	#####: 1332:          break;
-	Although I did have a test involving a hand with no copper that should have resulted in the player
-	revealing the cards in their hand, the condition required for the for loop to execute: 
-	if (j == state->handCount[i]) was not satisfied. j would increase to state->handCount[i] - 1 but not
-	state->handCount[i]. We do not see j reaching state->handCount[i] because the outer for loop condition:
-	j < state->handCount[i] prevents us from evaluating if (j == state->handCount[i]) again once we have
-	examined all the cards.
+Implications: While a good amount of the code is executed and the branches are all covered, there are likely areas that are being missed or need to be further investigated to make sure there are no underlying
+bugs that I have missed based on the creation of my tests. Because there is perfect branch coverage, it may mean that I need to expand my branching for this test, as everything was done in a fairly straight
+forward manner and I relied on assertions rather than if/else statements for testing. However, if there were any bugs detected or miscalculations, the program would abort, rather than complete.
 
-	branch coverage: function playCutpurse called 4 returned 100% blocks executed 74%
-	The branch not taken is the same code block described above in statement coverage.
+----- unitTest2.c -----
+discardCard() function
 
-	boundary coverage: I checked the boundaries of having enough coppers to discard as well as
-	having no coppers to discard.
+File 'unitTest2.c'
+Lines executed:95.92% of 49
+Branches executed:91.67% of 24
+Taken at least once:54.17% of 24
+Calls executed:68.00% of 25
+unitTest2.c:creating 'unitTest2.c.gcov'
 
-cardtest4:
-	100% statement coverage of playRemodel()
-	branch coverage: function playRemodel called 50 returned 100% blocks executed 100%
-	boundary coverage: I checked the boundaries of attempting to trash cards to gain cards that
-	had a value of less than + 2 the value of the trashed card, exactly + 2 the value of the
-	trashed card, and more than + 2 the value of the trashed card.
+Implications: The suite is either complete and there is little issue with the discardCard() function. The test is very streamlined, and may actually not cover a set of parameters that need to be investigated. However, the
+tests are based on assertions and if they were unsuccessful, the program would abort. Not all branches are taken either, as I was focusing on making sure discard counts were correct.
 
-unittest1:
-	100% statement coverage of updateCoins()
-	branch coverage: function updateCoins called 63 returned 100% blocks executed 100%
-	boundary coverage: I tested the boundaries by using different combinations of coins.
-	I would start with coppers and gradually replace them with silvers and golds until
-	they were all silver or all gold instead of all copper.
+----- unitTest3.c -----
+buyCard() function
 
-unittest2:
-	100% statement coverage of fullDeckCount()
-	branch coverage: function fullDeckCount called 20 returned 100% blocks executed 100%
 
-unittest3:
-	100% statement coverage of isGameOver()
-	branch coverage: function isGameOver called 9 returned 100% blocks executed 100%
-	boundary coverage: I tested the boundaries by using an empty province pile, an almost
-	empty province pile, and different numbers of other supply piles to check the minimum
-	numbers and types of empty piles that would cause the game to be over.
+File 'unitTest3.c'
+Lines executed:97.44% of 39
+Branches executed:100.00% of 18
+Taken at least once:66.67% of 18
+Calls executed:76.00% of 25
+unitTest3.c:creating 'unitTest3.c.gcov'
 
-unittest4:
-	100% statement coverage of scoreFor()
+Implications:  This is either a very complete or limited test, basaed on a If a player does not have the coins to purchase the card, the purchase is rejected, and if they do, it is allowed. The function is very
+straight forward, so there really should not be much in the way of variance. Either the player can buy a card with their allocated coins/gold or they cannot. Again, this uses assertions, so if anything went awry,
+then the program should abort. There are likely forced-failure cases which might be worth looking into.
 
-	branch coverage: function scoreFor called 2 returned 100% blocks executed 73%
-	For scoreFor(), I tested 2 players' scores. Player 1's victory cards included
-	estate, duchy, province, great hall, gardens, and curse. Player 2's victory cards
-	included only the default estate. Not all branches were taken because I only
-	focused on adding cards to Player 1's discard pile and letting cards remain in
-	Player 2's deck but scoreFor() checks player's decks, discard piles, and hands.
+----- unitTest4.c -----
+endTurn() Function
+
+File 'unitTest4.c'
+Lines executed:95.45% of 44
+Branches executed:94.44% of 36
+Taken at least once:52.78% of 36
+Calls executed:50.00% of 30
+unitTest4.c:creating 'unitTest4.c.gcov'
+
+Implications: The endTurn function is well balanced and works okay. However, only 50% of the calls were executed. There may need to be expansion of tests to ensure that every potential test case is covered and the
+function is seen as "bug-free".
+
+----- cardTest1.c ----
+playAdventurer() function
+
+Lines executed:88.06% of 67
+Branches executed:84.62% of 26
+Taken at least once:69.23% of 26
+Calls executed:92.31% of 26
+cardTest1.c:creating 'cardTest1.c.gcov'
+
+Implications: We have decent, but not great coverage here. There is definite room for improvement and likely places where things need to be expanded or streamlined to ensure that we get better coverage. However, most of the calls were executed
+and that shows there is at least a fair amount of things being found. The lines not being executed may also have to do with the fact of the refactored bugs and branches not being met under any condition with the current seed setting. Given there
+is a heavy amount of branching in this particular file. There are likely other bugs that are not being founded in this coverage test.
+
+----- cardTest2.c -----
+playSmithy() function
+
+File 'cardTest2.c'
+Lines executed:84.43% of 122
+Branches executed:100.00% of 64
+Taken at least once:60.94% of 64
+Calls executed:59.26% of 54
+cardTest2.c:creating 'cardTest2.c.gcov'
+
+Implications: Most of the code and all of the branches are being executed, but slightly less than 60% of the calls are. This means there needs to be an expansion of the test cases to ensure that more calls are met
+and that gives us the informaiton we need to properly debug the code.
+
+----- cardTest3.c -----
+playVillage() function
+
+Lines executed:73.17% of 41
+Branches executed:100.00% of 20
+Taken at least once:55.00% of 20
+Calls executed:50.00% of 24
+cardTest3.c:creating 'cardTest3.c.gcov'
+
+Implications: There are a number of lines that are not being taken, but all branches are covered at least once. Half the calls are likely not being executed as they are on branches that are not being covered as the
+requirements are not being met. This is likely due to the extensive branching I wrote into my test cases. However, this also means I may need to narrow down my test cases in the future to be more effective, as only
+half of the 24 calls are being run. This means we are missing half of the potential bugs and test results on a regular basis.
+
+------ cardTest4.c ------
+playMinion() function
+
+
+Lines executed:79.79% of 94
+Branches executed:100.00% of 26
+Taken at least once:57.69% of 26
+Calls executed:73.21% of 56
+cardTest4.c:creating 'cardTest4.c.gcov'
+
+Implications: Again, we have decent coverage, but there are areas where it can be improved. An expansion of test cases might help to ensure that more calls are executed and more lines are run over with the coverage. Again, the lines
+not executed very well may be part of branches not followed because the conditions are not met and thus cannot be pursued.
+
+
+Overall Implications: By reviewing the coverage files, I found many of my suspicions were correct. AS I focused on making sure that the functions were processed correctly and functioning to the standards of the
+game rules, I generally did not account for wilder cases. As we refactored in certain bugs, many tests were guaranteed to fail over time. When calls are not made, it is generally because the conditions required to make them
+are not met or there is a bug hiding somewhere that prevents the call from being made. Reviewing the code will help me find areas in which to improve my test suite, generally by having more expansive cases and making
+subtle in program adjustments to make sure that as much of the files is covered as possible.
+

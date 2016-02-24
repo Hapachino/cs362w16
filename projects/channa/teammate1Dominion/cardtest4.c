@@ -299,7 +299,7 @@ int remodelTrash(struct gameState *state, int p, int controlCard, int trashCard,
             }
         }
 
-        // displayDeck(state, p);
+        displayDeck(state, p);
     }
 
     if (pass) {

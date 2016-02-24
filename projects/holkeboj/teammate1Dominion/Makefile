@@ -1,17 +1,109 @@
-randomtest.out:
-gcc dominion.h dominion.c dominion_helpers.h rngs.c interface.c randomtestadventurer.c -o run -lm -Wall -fpic -fprofile-arcs -ftest-coverage
-gcc dominion.h dominion.c dominion_helpers.h rngs.c interface.c randomtestcard.c -o run2 -lm -Wall -fpic -fprofile-arcs -ftest-coverage
+CFLAGS = -Wall -fpic -coverage -lm
 
-./run>randomtestadventurer.out
-./run2>>randomtestresults.out
+rngs.o: rngs.h rngs.c
+	gcc -c rngs.c -g  $(CFLAGS)
 
+dominion.o: dominion.h dominion.c rngs.o
+	gcc -c dominion.c -g  $(CFLAGS)
 
-gcov -b randomtestadventurer.gcda > randomhistory.out
-gcov -b randomtestcard.gcda >> randomhistory.out
-gcov -b dominion.gcda >> randomhistory.out
+playdom: dominion.o playdom.c
+	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 
-gcov -b randomtestadventurer.gcda > randomcoverage.out
-gcov -b randomtestcard.gcda >> randomcoverage.out
-gcov -b dominion.gcda >> randomcoverage.out
+testDrawCard: testDrawCard.c dominion.o rngs.o
+	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
-rm *.gcda *.gcov *.gcno
+badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
+	gcc -o badTestDrawCard -g  badTestDrawCard.c dominion.o rngs.o $(CFLAGS)
+
+testBuyCard: testDrawCard.c dominion.o rngs.o
+	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
+
+testAll: dominion.o testSuite.c
+	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
+
+interface.o: interface.h interface.c
+	gcc -c interface.c -g  $(CFLAGS)
+
+runtests: testDrawCard 
+	./testDrawCard &> unittestresult.out
+	gcov dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
+
+unittest1: unittest1.c dominion.o rngs.o
+	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
+
+unittest2: unittest2.c dominion.o rngs.o
+	gcc -o unittest2 -g unittest2.c dominion.o rngs.o $(CFLAGS)
+
+unittest3: unittest3.c dominion.o rngs.o
+	gcc -o unittest3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
+
+unittest4: unittest4.c dominion.o rngs.o
+	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
+
+cardtest1: cardtest1.c dominion.o rngs.o
+	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o $(CFLAGS)
+
+cardtest2: cardtest2.c dominion.o rngs.o
+	gcc -o cardtest2 -g cardtest2.c dominion.o rngs.o $(CFLAGS)
+
+cardtest3: cardtest3.c dominion.o rngs.o
+	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o $(CFLAGS)
+
+cardtest4: cardtest4.c dominion.o rngs.o
+	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+buildAllTests:
+	make unittest1
+	make unittest2
+	make unittest3
+	make unittest4
+	make cardtest1
+	make cardtest2
+	make cardtest3
+	make cardtest4
+
+runAllTests:
+	./unittest1
+	./unittest2
+	./unittest3
+	./unittest4
+	./cardtest1
+	./cardtest2
+	./cardtest3
+	./cardtest4
+
+unittestresults.out: buildAllTests
+	cat /dev/null > unittestresults.out
+	make runAllTests >> unittestresults.out
+	echo "Coverage starts below:" >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	#cat dominion.c.gcov >> unittestresults.out
+
+randomtestadventurer.out: randomtestadventurer
+	rm -f dominion.gcda
+	cat /dev/null > randomtestadventurer.out
+	./randomtestadventurer >> randomtestadventurer.out
+	echo "Coverage starts below:" >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+
+randomtestcard.out: randomtestcard
+	rm -f dominion.gcda
+	cat /dev/null > randomtestcard.out
+	./randomtestcard >> randomtestcard.out
+	echo "Coverage starts below:" >> randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
+
+player: player.c interface.o
+	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+
+all: playdom player testDrawCard testBuyCard badTestDrawCard
+
+clean:
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

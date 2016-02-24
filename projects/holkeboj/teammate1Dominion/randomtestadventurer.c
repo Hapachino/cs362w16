@@ -147,16 +147,16 @@ void checkAdventurer(int player, struct gameState testGame, int *testsRun, int *
     localTestsRun++;
     
     // check for game state changes
-    // if (testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]) {
-    //     // printf("Test Passed.\n");
-    //     localTestsPassed++;
-    // } else {
-    //         printf("---- Was player %d's discard pile unaffected?\n", otherPlayer);
-    //     printf("Test Failed.\n");
-    // }
+    if (testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]) {
+        // printf("Test Passed.\n");
+        localTestsPassed++;
+    } else {
+            printf("---- Was player %d's discard pile unaffected?\n", otherPlayer);
+        printf("Test Failed.\n");
+    }
     localTestsRun++;
-    assert(testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]);
-    localTestsPassed++;
+    // assert(testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]);
+    // localTestsPassed++;
 
     // if (testGame.whoseTurn == cleanGame.whoseTurn) {
     //     // printf("No, it didn't change.  Test Passed.\n");
@@ -166,7 +166,7 @@ void checkAdventurer(int player, struct gameState testGame, int *testsRun, int *
     //     printf("Yes, it changed. Test Failed.\n");
     // }
     localTestsRun++;
-    assert(testGame.discardCount[otherPlayer] == cleanGame.discardCount[otherPlayer]);
+    assert(testGame.whoseTurn == cleanGame.whoseTurn);
     localTestsPassed++;
 
     // if (testGame.numPlayers == cleanGame.numPlayers) {

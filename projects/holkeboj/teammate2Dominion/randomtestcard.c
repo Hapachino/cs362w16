@@ -89,28 +89,28 @@ void checkGreatHall(int player, struct gameState testGame, int *testsRun, int *t
 
     // test conditions for Great Hall
     // Since we also discard a card, count should not change
-    // if (testGame.handCount[player] == cleanGame.handCount[player]) {
-    //     // printf("Test Passed.\n");
-    //     localTestsPassed++;
-    // } else {
-    //     printf("---- Did player %d draw 1 card?\n", player);
-    //     printf("Test Failed.\n");
-    // }
+    if (testGame.handCount[player] == cleanGame.handCount[player]) {
+        // printf("Test Passed.\n");
+        localTestsPassed++;
+    } else {
+        printf("---- Did player %d draw 1 card?\n", player);
+        printf("Test Failed.\n");
+    }
     localTestsRun++;
-    assert(testGame.handCount[player] == cleanGame.handCount[player]);
-    localTestsPassed++;
+    // assert(testGame.handCount[player] == cleanGame.handCount[player]);
+    // localTestsPassed++;
     
     
-    // if (testGame.numActions == cleanGame.numActions + 1) {
-    //     // printf("Test Passed\n");
-    //     localTestsPassed++;
-    // } else {
-    //     printf("---- Did player %d gain one action?\n",player);
-    //     printf("Test Failed.\n");
-    // }
+    if (testGame.numActions == cleanGame.numActions + 1) {
+        // printf("Test Passed\n");
+        localTestsPassed++;
+    } else {
+        printf("---- Did player %d gain one action?\n",player);
+        printf("Test Failed.\n");
+    }
     localTestsRun++;
-    assert(testGame.numActions == cleanGame.numActions + 1);
-    localTestsPassed++;
+    // assert(testGame.numActions == cleanGame.numActions + 1);
+    // localTestsPassed++;
     
     if (testGame.discardCount[player] == cleanGame.discardCount[player] + 1) {
         // printf("Test Passed.\n");

@@ -120,7 +120,7 @@ int main() {
     
         printf("----------------- After playAdventurer\n");
 
-        playAdventurer(&testG, p);
+        playAdventurer(&testG, p, 0, 0, 0, 0);
 
         displayDeck(&testG, p);
 

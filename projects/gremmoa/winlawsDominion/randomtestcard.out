@@ -1,0 +1,4 @@
+----------------- Test #: 1 ----------------
+Testing handPos = 1, handSize = 3, card1 = 23, card2 = 20, card3 = 22, card4 = -1, card = -1
+--- Current Player ---
+hand count = 6, expected = 5

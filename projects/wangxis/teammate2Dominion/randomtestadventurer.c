@@ -1,88 +1,113 @@
-/* -----------------------------------------------------------------------
- * Testing adventurer card - using random tester.
- *
- * Include the following lines in your makefile:
- *
- * random1: randometestadventurer.c dominion.o rngs.o
- *      gcc -o randomtest1 -g  randomtest1.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
- */
-
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
 
-int main() {
-    int seed;
-	int numPlayers;
-    int p, player, round, i;
-	int topCard;
-	int treasureCount;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
-    struct gameState oldGame;
-	struct gameState newGame;
-    int maxHandCount = 5;
-    int failCount = 0;
-    int passCount = 0;
-	int testCount = 0;
-	int MAXRUN = 100;
-    printf ("<< TESTING - adventurer - using random tester  >>\n");
-	
-	for(testCount = 0; testCount < MAXRUN; testCount++)
-	{	
-	//generate random seed
-	seed = rand() % 100000;
-	// generate random number of players    		
-	numPlayers = rand() % 3 + 2;
-	
-	printf("Test #%d - seed:%d \n", testCount, seed);
- 	
-	for(p = 0; p < maxHandCount; p++)
-	{
-		memset(&oldGame, 23, sizeof(struct gameState));         //clear the game state
-		memset(&newGame, 23, sizeof(struct gameState));         //clear the game state
-		initializeGame(numPlayers, k, seed, &newGame);
-		for(round = 0; round < 2; round++)
-		{
-			for(player = 0; player < numPlayers; player++)
-			{
-				memcpy(&oldGame, &newGame, sizeof(struct gameState));
-				adventurerCard(player, &newGame);
-				
-				// check if the last two cards are treasure cards
-				treasureCount = 0;
-				for(i = 0; i < 2; i++)
-				{
-					topCard = newGame.hand[player][newGame.handCount[player] - (i + 1)];
-					if(topCard == copper || topCard == silver || topCard == gold)
-					{
-						treasureCount++;				
-					}
-				} 
-				if((newGame.handCount[player] == oldGame.handCount[player] + 2) && (newGame.deckCount[player] == oldGame.deckCount[player] - 2) && treasureCount == 2)
-				{
-					passCount++;
-				}
-				else
-				{
-					printf("Failed - \t player %d\n", player);
-					printf("\t expected deckCount: %d - actual deckCount: %d\n", oldGame.deckCount[player] - 2, newGame.deckCount[player]);
-					printf("\t expected handCount: %d - actual handCount: %d\n", oldGame.handCount[player] + 2, newGame.handCount[player]);
-					printf("\t expected treasureCount for last two cards: %d - actual treasureCount: %d\n", 2, treasureCount);
-					failCount++;
-				}
 
-			}	
-		}		
-	}
-	}
-	printf("\n < < < < RESULTS > > > >\n\n");
-    printf("\t Number of cases passed: %d\n", passCount);
-    printf("\t Number of cases failed: %d\n\n", failCount);
+int checkAdventurerCard(int p, struct gameState *post);
+int checkAdventurerCard(int p, struct gameState *post) {
+  post->whoseTurn = p;
+  struct gameState pre;
+  memcpy (&pre, post, sizeof(struct gameState));
 
-    return 0;
+
+  int r, i, cardDrawn;
+  int z = 0;
+  int temphand[MAX_HAND];
+  int handPos = rand() % pre.handCount[p];
+  adventurerCard(p, post);
+  int drawntreasure = 0;
+  while(drawntreasure < 2)
+  {
+   
+    if (pre.deckCount[p] < 1) {
+    
+      for(i = 0; i < pre.discardCount[p]; i++){
+        pre.deck[p][i] = pre.discard[p][i];//Move to deck
+        pre.deckCount[p]++;
+        pre.discard[p][i] = -1;
+        pre.discardCount[p]--;
+      }
+      shuffle(p, &pre);
+    }
+    drawCard(p, &pre);
+    cardDrawn = pre.hand[p][pre.handCount[p]-1];//top card of hand is most recently drawn card.
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+      drawntreasure++;
+    else {
+      temphand[z]=cardDrawn;
+      pre.handCount[p]--; //remove the top card (the most recently drawn one).
+      z++;
+    }
+  }
+      while(z-1>=0) {
+        pre.discard[p][pre.discardCount[p]++] = temphand[z-1]; // discard all cards in play that have been drawn
+        z -= 1;
+      }
+  discardCard(handPos, p, &pre, 0);
+  if (memcmp(&pre, post, sizeof(struct gameState)) == 0)
+  {
+    printf("Testing adventurerCard() passed");
+  } else {
+    printf("Testing adventurerCard() failed");
+  }
+  return 0;
+}
+
+int main () {
+
+  srand(time(NULL));
+ 
+  int i, n, p;
+
+ int handRandom, deckRandom, discardRandom, playedRandom;
+  struct gameState G;
+
+  printf ("Testing adverturerCard.\n");
+
+  printf ("RANDOM TESTS.\n");
+
+  SelectStream(2);
+  PutSeed(3);
+
+  for (n = 0; n < 2000; n++) {
+    for (i = 0; i < sizeof(struct gameState); i++) {
+      ((char*)&G)[i] = floor(Random() * 256);
+    }
+    p = floor(Random() * 2);
+     handRandom = rand() % MAX_HAND + 1;
+        G.handCount[p] = handRandom;
+        for (i = 0; i < handRandom; i++) 
+        {
+            G.hand[p][i] = rand() % 27;
+        }
+        
+        deckRandom = rand() % MAX_DECK;
+        G.deckCount[p] = deckRandom;
+        for (i = 0; i < deckRandom; i++) 
+        {
+            G.deck[p][i] = rand() % 27;
+        }
+ 
+        discardRandom = rand () % MAX_DECK + 1;
+        G.discardCount[p] = discardRandom;
+        for (i = 0; i < discardRandom; i++) 
+        {
+            G.discard[p][i] = rand() % 27;
+        }
+        playedRandom = rand () % MAX_DECK;
+        G.playedCardCount = playedRandom;
+        for (i = 0; i < playedRandom; i++) 
+        {
+            G.playedCards[i] = rand() % 27;
+        }
+    checkAdventurerCard(p, &G);
+  }
+
+  return 0;
 }

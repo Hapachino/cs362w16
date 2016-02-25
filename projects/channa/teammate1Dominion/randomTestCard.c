@@ -110,7 +110,7 @@ int main() {
         // card to trash: int choice1 = trashIndex
         // card to gain : int choice2 = gainCard
         // remodel index: int handPos = 0 (testG.hand[p][0])
-        result = cardEffect(remodel, 1, toTest[i], 0, &state, 0, 0);
+        result = cardEffect(remodel, 1, toTest[i], 0, &testG, 0, 0);
 
         expected = trashOK(trashCard, gainCard);
 

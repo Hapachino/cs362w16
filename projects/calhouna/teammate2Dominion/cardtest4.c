@@ -35,49 +35,49 @@ int playMinion(struct gameState *state, int choice1, int choice2, int currentPla
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
 
-      if (choice1)		//+2 coins *** REFACTORED: -2 coins.
-	{
-	  state->coins = state->coins - 2;
-	}
+      if (choice1)      //+2 coins *** REFACTORED: -2 coins.
+    {
+      state->coins = state->coins - 2;
+    }
 
-      else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
-	{
+      else if (choice2)     //discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
+    {
 
-//	  //discard hand ** COMMENTED OUT FOR REFACTORING
-//	  while(numHandCards(state) > 0)
-//	    {
-//	      discardCard(handPos, currentPlayer, state, 0);
-//	    }
+//    //discard hand ** COMMENTED OUT FOR REFACTORING
+//    while(numHandCards(state) > 0)
+//      {
+//        discardCard(handPos, currentPlayer, state, 0);
+//      }
 
-	  //draw 4 *** REFACTORED TO DRAW 3
-	  for (i = 0; i < 3; i++)
-	    {
-	      drawCard(currentPlayer, state);
-	    }
+      //draw 4 *** REFACTORED TO DRAW 3
+      for (i = 0; i < 3; i++)
+        {
+          drawCard(currentPlayer, state);
+        }
 
-	  //other players discard hand and redraw if hand size > 4 *** REFACTOR: They not only get to keep their cards, they get 3 MORE!
-	  for (i = 0; i < state->numPlayers; i++)
-	    {
-	      if (i != currentPlayer)
-		{
-		  if ( state->handCount[i] > 4 )
-		    {
-		    //  //discard hand
-		    //  while( state->handCount[i] > 0 )
-			// {
-			//  discardCard(handPos, i, state, 0);
-			// }
+      //other players discard hand and redraw if hand size > 4 *** REFACTOR: They not only get to keep their cards, they get 3 MORE!
+      for (i = 0; i < state->numPlayers; i++)
+        {
+          if (i != currentPlayer)
+        {
+          if ( state->handCount[i] > 4 )
+            {
+            //  //discard hand
+            //  while( state->handCount[i] > 0 )
+            // {
+            //  discardCard(handPos, i, state, 0);
+            // }
 
-		      //draw 4 ** REFACTOR: 3
-		      for (j = 0; j < 3; j++)
-			{
-			  drawCard(i, state);
-			}
-		    }
-		}
-	    }
+              //draw 4 ** REFACTOR: 3
+              for (j = 0; j < 3; j++)
+            {
+              drawCard(i, state);
+            }
+            }
+        }
+        }
 
-	}
+    }
       return 0;
 
 }
@@ -89,8 +89,8 @@ int main()
     // The minion card has been changed drastically, thus it should fail on most accounts -- tests will find failure points and point them out.
 
    int i, thisPlayer, handPos = 0, seed = 65535, numPlayer = 2, kCardCount, choice1, choice2, allTestsPassed = 1;
-	int k[10] = {adventurer, smithy, great_hall, council_room, salvager, gardens, mine, remodel, village, ambassador };
-	struct gameState state, testState;
+    int k[10] = {adventurer, smithy, great_hall, council_room, salvager, gardens, mine, remodel, village, ambassador };
+    struct gameState state, testState;
 
 
    // memset(&state, 0, sizeof(struct gameState)); // Ensure we have a clean slate.
@@ -124,7 +124,8 @@ int main()
     choice1 = 1;
     choice2 = 0;
 
-    playMinion(&testState, choice1, choice2, thisPlayer, handPos);
+     cardEffect(minion, choice1, choice2, 0, &testState, handPos, 0);
+
 
     printf("Checking to see if action was added...");
     if(testState.numActions == state.numActions + 1)
@@ -212,7 +213,7 @@ int main()
     testState.handCount[1] = 5;
 
     printf("MINION TEST #2: Checking Choice 2...\n");
-    playMinion(&testState, choice1, choice2, thisPlayer, handPos);
+    cardEffect(minion, choice1, choice2, 0, &testState, handPos, 0);
 
     printf("Checking to see if action was added...\n");
 
@@ -302,5 +303,5 @@ int main()
         printf("One or more tests failed! Please review results and revise code.\n");
     }
 
-	return 0;
+    return 0;
 }

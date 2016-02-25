@@ -28,133 +28,40 @@ int playAdventurer(struct gameState *state, int currentPlayer, int cardDrawn, in
 {
 
       while(drawntreasure<2){
-	if (state->deckCount[currentPlayer] <=1)
+    if (state->deckCount[currentPlayer] <=1)
         {//if the deck is empty we need to shuffle discard and add to deck *** REFACTOR to <= will cause additional shuffling.
-	  shuffle(currentPlayer, state);
+      shuffle(currentPlayer, state);
         }
         drawCard(currentPlayer, state);
         cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-	  drawntreasure+=2; // The adventurer should not make off with your treasure. Originally had this put as --, but it actually caused the game to freeze. Opted to give the player more coins. Changes seeded outcomes.
-	else{
-	  temphand[z]=cardDrawn;
-	  state->handCount[currentPlayer]++; //this should just remove the top card (the most recently drawn one).
-	  z++;
-	}
+      drawntreasure+=2; // The adventurer should not make off with your treasure. Originally had this put as --, but it actually caused the game to freeze. Opted to give the player more coins. Changes seeded outcomes.
+    else{
+      temphand[z]=cardDrawn;
+      state->handCount[currentPlayer]++; //this should just remove the top card (the most recently drawn one).
+      z++;
+    }
       }
       while(z-1>=0){
-	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-	z=z-1;
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    z=z-1;
       }
       return 0;
 }
 
 */
 
-int checkPlayAdventurer(struct gameState *state, int currentPlayer, int cardDrawn, int drawnTreasure, int temphand[], int z)
+int checkPlayAdventurer(struct gameState *state, int currentPlayer)
 {
-    int preDraw, failTest = 0;
-    // int x;
-    struct gameState testState;
-    memcpy(&testState, state, sizeof(struct gameState));
-
-    printf("\nChecking Drawn Treasure.\nDrawn Treasure: %d\n", drawnTreasure);
-
-    printf("Initiating randomized deckCount: 1-5\n");
-    state->deckCount[currentPlayer] = rand() % 3;
-
-    printf("Deck Count: %d\n", state->deckCount[currentPlayer]);
-
-    preDraw = drawnTreasure;
-
-    while(drawnTreasure < 2)   // less than two drawn treasure...
-    {
-        if(state->deckCount[currentPlayer] <= 1)
-        {
-            shuffle(currentPlayer, &testState);
-            if(state->deckCount[currentPlayer] == 0)
-            {
-                printf("Deck shuffled at 0 properly. Test Passed.\n");
-            }
-            else
-            {
-                printf("Deck shuffled at 1. Test Failed.\n");
-                failTest = 1;
-            }
-            drawCard(currentPlayer, &testState);
-            cardDrawn = testState.hand[currentPlayer][state->handCount[currentPlayer]-1];
-            if(cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-            {
-                drawnTreasure+=2;   // will add too much treasure. Will always fail.
-                if(preDraw++ == drawnTreasure)
-                {
-                    printf("Treasure Draw Check Passed");
-                }
-                else
-                {
-                    printf("Treasure Draw Check Failed.");
-                    failTest = 1;
-                }
-
-
-            }
-            else
-            {
-                temphand[z] = cardDrawn;
-                testState.handCount[currentPlayer]++;
-                z++;
-            }
-
-        }
-
-        else
-        {
-            printf("No shuffle. Test Passed.\n");
-            break;
-            // shuffled = 0;
-        }
-    }
-
-    printf("Testing Coins. Should only add 1\n\n");
-    if(testState.coins == state->coins++)
-    {
-        printf("State Coin Test passed.\n");
-    }
-    else
-    {
-        printf("State Coin Test failed.\n");
-        failTest = 1;
-    }
-
-
-    printf("Previous Hand Count: %d\n", state->handCount[currentPlayer]);
-    printf("Current Hand Count: %d\n", testState.handCount[currentPlayer]);
-
-    while(z-1>=0){
-	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-	z=z-1;
-    }
-
-    return failTest;
-}
-
-int main()
-{
-    // Set up the test harness.
-
-    srand(time(NULL));
-    int x, i, testSuiteSuccess = 0, testSuiteFailure = 0, testsRun = 0;
-    int seed = 1000; // Perhaps having a set seed would standardize testing, but we need ALL situations tested, even those we don't anticipate.
-    int k[10] = { adventurer, smithy, village, baron, great_hall, council_room, salvager, sea_hag, gardens, mine };
+    int i, preDraw, failTest = 0;
+      int k[10] = { adventurer, smithy, village, baron, great_hall, council_room, salvager, sea_hag, gardens, mine };
     // const char *cards[] = { "curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room", "feast", "gardens", "mine", "remodel", "smithy", "village", "baron",
     // "great_hall", "minion", "steward", "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map" };
     int randomCard = 0; //rand() % 10;
     int z = 0;
     int drawnTreasure = rand() % 3;
-
-    struct gameState *post = malloc(sizeof(struct gameState));
     int temphand[MAX_HAND];
-    initializeGame(2, k, seed, post);
+    int cardDrawn = rand() % 27;
 
     for(i=0; i < MAX_HAND; i++)
     {
@@ -168,10 +75,65 @@ int main()
         }
     }
 
+    // int x;
+    struct gameState testState;
+    memcpy(&testState, state, sizeof(struct gameState));
+
+    printf("\nChecking Drawn Treasure.\nDrawn Treasure: %d\n", drawnTreasure);
+
+    printf("Initiating randomized deckCount: 1-5\n");
+    state->deckCount[currentPlayer] = rand() % 3;
+
+    printf("Deck Count: %d\n", state->deckCount[currentPlayer]);
+
+    if(drawnTreasure>=2)
+    {
+        if(testState.handCount[currentPlayer] == state->handCount[currentPlayer]++)
+         printf("Deck Draw Test Passed.");
+        else
+        {
+            printf("Deck draw tests failed.");
+            failTest = 1;
+        }
+    }
+
+    if(testState.coins == state->coins++)
+    {
+        printf("Coin test passed.");
+    }
+    else
+    {
+        printf("Test failed. Expected Coins: %d   Coins Held: %d\n", state->coins++, testState.coins);
+        failTest = 1;
+    }
+
+    printf("Previous Hand Count: %d\n", state->handCount[currentPlayer]);
+    printf("Current Hand Count: %d\n", testState.handCount[currentPlayer]);
+
+    while(z-1>=0){
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    z=z-1;
+    }
+
+    return failTest;
+}
+
+int main()
+{
+    // Set up the test harness.
+
+    srand(time(NULL));
+    int k[10] = { adventurer, smithy, village, baron, great_hall, council_room, salvager, sea_hag, gardens, mine };
+    int x, i, testSuiteSuccess = 0, testSuiteFailure = 0, testsRun = 0;
+    int seed = 1000; // Perhaps having a set seed would standardize testing, but we need ALL situations tested, even those we don't anticipate.
+  
+    struct gameState *post = malloc(sizeof(struct gameState));
+    initializeGame(2, k, seed, post);
+
     printf("Testing Adventurer!\n");
     for(i=0; i < 20; i++)
     {
-        x = checkPlayAdventurer(post, 0, randomCard, drawnTreasure, temphand, z);
+        x = checkPlayAdventurer(post, 0);
         if(x)
         {
             printf("One or More Assertion and Gameplay Tests Failed.\n");

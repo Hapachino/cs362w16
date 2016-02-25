@@ -33,7 +33,7 @@ enum CARD
    feast, /* choice1 is supply # of card gained) */
    gardens,
    mine, /* choice1 is hand# of money to trash, choice2 is supply# of
-	    money to put in hand */
+      money to put in hand */
    remodel, /* choice1 is hand# of card to remodel, choice2 is supply# */
    smithy,
    village,
@@ -81,14 +81,13 @@ struct gameState {
 struct gameState* newGame();
 
 int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
-		  int k8, int k9, int k10);
+      int k8, int k9, int k10);
 
 int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
-		   struct gameState *state);
+       struct gameState *state);
 /* Responsible for initializing all supplies, and shuffling deck and
    drawing starting hands for all players.  Check that 10 cards selected
    are in fact (different) kingdom cards, and that numPlayers is valid.
-
 Cards not in game should initialize supply position to -1 */
 
 int shuffle(int player, struct gameState *state);
@@ -96,7 +95,7 @@ int shuffle(int player, struct gameState *state);
  empty */
 
 int playCard(int handPos, int choice1, int choice2, int choice3,
-	     struct gameState *state);
+       struct gameState *state);
 /* Play card with index handPos from current player's hand */
 
 int buyCard(int supplyPos, struct gameState *state);
@@ -130,15 +129,23 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+int playSmithy(int currentPlayer, struct gameState *state, int handPos);
+/* +3 Cards */
 
-// Functions for the cards that were taken from the card switch and turned into individual functions.
-// Had to factor in all potential variables that were in the hand to ensure proper execution. Otherwise undeclareds and
-// other errors were rampant.
+int playAdventurer (struct gameState *state, int currentPlayer);
+/* Reveal cards from your deck until you reveal 2 Treasure cards.
+Put those Treasure cards into your hand and discard the other revealed cards. */
 
-int playAdventurer(struct gameState *state, int currentPlayer, int cardDrawn, int drawntreasure, int tempHand[], int z); // The adventurer is actually a pretty complicated card with a lot going on...
-int playCouncRoom(struct gameState *state, int currentPlayer, int handPos);
-int playMinion(struct gameState *state, int choice1, int choice2, int currentPlayer, int handPos); // Minion has two choices. These would be booleans in C++, but we are using 1 or 0 int here. Otherwise, it's not too different than other cards.
-int playSmithy(struct gameState *state, int currentPlayer, int handPos);
-int playVillage(struct gameState *state, int currentPlayer, int handPos);
+int playCutpurse(int currentPlayer, struct gameState *state, int handPos);
+/* +2 Coins
+Each other player discards a Copper card (or reveals a hand with no Copper). */
+
+int playRemodel(struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos);
+/* Trash a card from your hand.
+Gain a card costing up to 2 coins more than the trashed card. */
+
+int playSea_Hag(struct gameState *state, int currentPlayer);
+/* Each other player discards the top card of his deck,
+then gains a Curse card, putting it on top of his deck. */
 
 #endif

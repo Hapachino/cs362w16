@@ -27,7 +27,7 @@ enum CARD
    silver,
    gold,
 
-   adventurer,
+   adventurer, //7
    /* If no/only 1 treasure found, stop when full deck seen */
    council_room,
    feast, /* choice1 is supply # of card gained) */
@@ -43,7 +43,7 @@ enum CARD
    great_hall,
    minion, /* choice1:  1 = +2 coin, 2 = redraw */
    steward, /* choice1: 1 = +2 card, 2 = +2 coin, 3 = trash 2 (choice2,3) */
-   tribute,
+   tribute, //19
 
    ambassador, /* choice1 = hand#, choice2 = number to return to supply */
    cutpurse,
@@ -51,7 +51,7 @@ enum CARD
    outpost,
    salvager, /* choice1 = hand# to trash */
    sea_hag,
-   treasure_map
+   treasure_map //26
   };
 
 struct gameState {
@@ -79,6 +79,8 @@ struct gameState {
    unless specified for other return, return 0 on success */
 
 struct gameState* newGame();
+
+struct gameState newRandomGame();
 
 int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
 		  int k8, int k9, int k10);

@@ -30,6 +30,15 @@ testSmithy: testSmithy.c dominion.o rngs.o refactor.o
 testAdv: testAdv.c dominion.o rngs.o refactor.o
 	gcc -o testAdv -g testAdv.c dominion.o rngs.o refactor.o $(CFLAGS)
 
+testScore: testScore.c dominion.o rngs.o refactor.o
+	gcc -o testScore -g testScore.c dominion.o rngs.o refactor.o $(CFLAGS)
+	
+testSalvager: testSalvager.c dominion.o rngs.o refactor.o
+	gcc -o testSalvager -g testSalvager.c dominion.o rngs.o refactor.o $(CFLAGS)	
+
+t1cardtest1: t1cardtest1.c dominion.o rngs.o refactor.o
+	gcc -o t1cardtest1 -g t1cardtest1.c dominion.o rngs.o refactor.o $(CFLAGS)
+
 cardtest1: cardtest1.c dominion.o rngs.o refactor.o
 	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o refactor.o $(CFLAGS)
 	

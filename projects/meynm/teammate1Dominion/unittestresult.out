@@ -1,0 +1,316 @@
+Beginning test of drawCard() function with 2 players.
+Player 1 has 10 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 9 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 8 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 7 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 6 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 5 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 4 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 3 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 2 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 1 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 0 card(s) remaining in deck.
+Error in call to drawCard().
+Beginning test of drawCard() function with 3 players.
+Player 1 has 10 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 9 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 8 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 7 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 6 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 5 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 4 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 3 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 2 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 1 card(s) remaining in deck.
+drawCard() PASSED all tests for player 1, who drew card.
+drawCard() PASSED all tests for players who did not draw a card.
+Player 1 has 0 card(s) remaining in deck.
+Error in call to drawCard().
+Starting test for player attempting to buy cards without any buys available.
+PASS for all tests where player has no buys.
+PASS for all tests where player has no buys.
+PASS for all tests where player has no buys.
+PASS for all tests where player has no buys.
+PASS for all tests where player has no buys.
+PASS for all tests where player has no buys.
+PASS for all tests where player has no buys.
+PASS for all tests where player has no buys.
+PASS for all tests where player has no buys.
+Starting test for player attempting to buy cards without any coins available.
+PASS for all tests where player has no coins.
+PASS for all tests where player has no coins.
+PASS for all tests where player has no coins.
+PASS for all tests where player has no coins.
+PASS for all tests where player has no coins.
+PASS for all tests where player has no coins.
+PASS for all tests where player has no coins.
+PASS for all tests where player has no coins.
+PASS for all tests where player has no coins.
+Starting test for player attempting to buy cards that are not available.
+PASS. buyCard() failed when supplyCount for card 13 was 0.
+PASS for all tests where card 13 is not available.
+PASS. buyCard() failed when supplyCount for card 7 was 0.
+PASS for all tests where card 7 is not available.
+PASS. buyCard() failed when supplyCount for card 8 was 0.
+PASS for all tests where card 8 is not available.
+PASS. buyCard() failed when supplyCount for card 9 was 0.
+PASS for all tests where card 9 is not available.
+PASS. buyCard() failed when supplyCount for card 10 was 0.
+PASS for all tests where card 10 is not available.
+PASS. buyCard() failed when supplyCount for card 11 was 0.
+PASS for all tests where card 11 is not available.
+PASS. buyCard() failed when supplyCount for card 12 was 0.
+PASS for all tests where card 12 is not available.
+PASS. buyCard() failed when supplyCount for card 14 was 0.
+PASS for all tests where card 14 is not available.
+PASS. buyCard() failed when supplyCount for card 15 was 0.
+PASS for all tests where card 15 is not available.
+Running test for game with 2 players.
+Running tests for instance where player does buy card.
+buyCard() PASSED all tests for player 1, who bought card 13.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 7.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 8.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 9.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 10.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 11.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 12.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 14.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 15.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 13.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 7.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 8.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 9.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 10.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 11.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 12.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 14.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 15.
+buyCard() PASSED all tests for players who did not buy a card.
+Running test for game with 3 players.
+Running tests for instance where player does buy card.
+buyCard() PASSED all tests for player 1, who bought card 13.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 7.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 8.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 9.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 10.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 11.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 12.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 14.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 15.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 13.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 7.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 8.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 9.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 10.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 11.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 12.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 14.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 15.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 13.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 7.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 8.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 9.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 10.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 11.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 12.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 14.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 15.
+buyCard() PASSED all tests for players who did not buy a card.
+Running test for game with 4 players.
+Running tests for instance where player does buy card.
+buyCard() PASSED all tests for player 1, who bought card 13.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 7.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 8.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 9.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 10.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 11.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 12.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 14.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 1, who bought card 15.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 13.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 7.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 8.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 9.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 10.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 11.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 12.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 14.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 2, who bought card 15.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 13.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 7.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 8.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 9.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 10.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 11.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 12.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 14.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 3, who bought card 15.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 4, who bought card 13.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 4, who bought card 7.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 4, who bought card 8.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 4, who bought card 9.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 4, who bought card 10.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 4, who bought card 11.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 4, who bought card 12.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 4, who bought card 14.
+buyCard() PASSED all tests for players who did not buy a card.
+buyCard() PASSED all tests for player 4, who bought card 15.
+buyCard() PASSED all tests for players who did not buy a card.
+Beginning tests for discardCard().
+PASS all tests for player 1 in 2 player game.
+PASS all tests for player 2 in 2 player game.
+PASS all tests for non-discarding players in 2 player game.
+PASS all tests for player 1 in 3 player game.
+PASS all tests for player 2 in 3 player game.
+PASS all tests for player 3 in 3 player game.
+PASS all tests for non-discarding players in 3 player game.
+PASS all tests for player 1 in 4 player game.
+PASS all tests for player 2 in 4 player game.
+PASS all tests for player 3 in 4 player game.
+PASS all tests for player 4 in 4 player game.
+PASS all tests for non-discarding players in 4 player game.
+Beginning test for special case where trash flag is set to 1.
+PASS all tests for discarding player in 2 person game.
+PASS all tests for non-discarding players in 2 person game.
+PASS all tests for discarding player in 3 person game.
+PASS all tests for non-discarding players in 3 person game.
+PASS all tests for discarding player in 4 person game.
+PASS all tests for non-discarding players in 4 person game.
+Beginning test for special case where player has only one card in hand.
+PASS all tests for discarding player in 2 person game.
+PASS all tests for non-discarding players in 2 person game.
+PASS all tests for discarding player in 3 person game.
+PASS all tests for non-discarding players in 3 person game.
+PASS all tests for discarding player in 4 person game.
+PASS all tests for non-discarding players in 4 person game.
+Beginning unit testing for updateCoins().
+Testing with no treasure cards and no bonus.
+PASS all tests for condition with no treasure cards and no bonus.
+Testing with no treasure cards and random bonus.
+PASS all tests for condition with no treasure cards and random bonus.
+Testing for only gold treasure cards in hand with random bonus.
+PASS all tests with only gold coins and random bonus.
+Testing for only silver treasure cards in hand with random bonus.
+PASS all tests with only silver coins and random bonus.
+Testing for only copper treasure cards in hand with random bonus.
+PASS all tests with only copper coins and random bonus.
+Testing mixes of coin types.
+PASS test with gold and silver coins.
+PASS test with gold and copper coins.
+PASS test with silver and copper coins.
+PASS test with gold, silver, and copper coins.

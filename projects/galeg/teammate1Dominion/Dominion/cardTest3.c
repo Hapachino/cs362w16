@@ -1,122 +1,99 @@
-// Scott Williams
-// cardTest3.c
-// Unit Test for card function: playVillage()
+/*
+ * cardtest3.c
+ *
+ 
+ */
+
+/*
+ * Include the following lines in your makefile:
+ *
+ * cardtest1: cardtest1.c dominion.o rngs.o
+ *      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+ */
 
 
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <time.h>
-#include <stdlib.h>
-#include <math.h>
+#include "rngs.h"
 #include <stdlib.h>
 
-#define DEBUG 0
-#define NOISY_TEST 1
 #define TESTCARD "village"
 
-/*
-int playVillage(struct gameState *state, int currentPlayer, int handPos)
-{
-      //+1 Card
-      drawCard(currentPlayer, state);
+int main() {
+    int newCards = 0;
+    int discarded = 1;
+    int xtraCoins = 0;
+    int shuffledCards = 0;
+    int drawnCard1 = 0;
+    int drawnCard2 = 0;
 
-      //+2 Actions
-      state->numActions = state->numActions + 2;
+    int i, j, m;
+    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int remove1, remove2;
+    int seed = 645;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+    int otherPlayer = 1;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
 
-      //discard played card from hand
-      // discardCard(handPos, currentPlayer, state, 0);
-      return 0;
-}
-*/
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
 
-int main()
-{
-	int i, thisPlayer, seed = 65535, numPlayer = 2, kCardCount, allTestsPassed = 1;
-	int k[10] = {adventurer, smithy, great_hall, council_room, salvager, gardens, mine, remodel, village, ambassador };
-	struct gameState state, testState;
+	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 
+	// ----------- TEST 1: play village card --------------
+	printf("TEST 1: = Play village card\n");
 
-   // memset(&state, 0, sizeof(struct gameState)); // Ensure we have a clean slate.
-    initializeGame(numPlayer, k, seed, &testState);
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+	cardEffect(village, choice1, choice2, choice3, &testG, handpos, &bonus);
 
-    memcpy(&state, &testState, sizeof(struct gameState));
+	//If there is something left in the deck, the number of new cards should be 1
+	printf("drawn card count = %d, expected = %d\n", (G.deckCount[thisPlayer] + G.discardCount[thisPlayer]) - (testG.deckCount[thisPlayer] + testG.discardCount[thisPlayer]), 1);
+	assert((G.deckCount[thisPlayer] + G.discardCount[thisPlayer]) - (testG.deckCount[thisPlayer] + testG.discardCount[thisPlayer]) == 1);
 
+	xtraCoins = 0;
 
-    thisPlayer = 0;
-	playVillage(&testState, thisPlayer, 0);
+	newCards = G.deckCount[thisPlayer] - testG.deckCount[thisPlayer];
 
+	//The - 1 accounts for the fact that village is discarded.
+	printf("hand count before hand = %d, newCards = %d, discarded = %d\n", G.handCount[thisPlayer], newCards, discarded);
+	printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
+	assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] + newCards - 1);
 
-    printf("TEST #1: Assert that each victory card has 8 cards in the supply, if not, abort program.\nPotential issue is base game is modified. Please reload base files if game has been altered.");
-	assert(testState.supplyCount[estate] == 8);
-	assert(testState.supplyCount[duchy] == 8);
-	assert(testState.supplyCount[province] == 8);
+	printf("G.deckCount = %d ", G.deckCount[thisPlayer]);
+	printf("deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards);
+	assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer] - newCards);
 
-	// Make sure kingdom cards are properly supplied.
-	for(i = 0; i < 10; i++)
-	{
-		kCardCount = testState.supplyCount[k[i]];
-		printf("k[%d] count: %d\n", i, kCardCount);
-		// assert(kCardCount = testState.supplyCount[k[i]]);
-		if(kCardCount != testState.supplyCount[k[i]])
-        {
-            allTestsPassed = 0;
-        }
-	}
+	printf("discard count = %d, expected = %d\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer]);
+	assert(testG.discardCount[thisPlayer] == G.discardCount[thisPlayer]);
 
-	if(allTestsPassed)
-        printf("Kingdom Card Supplies All Correct\n");
-    else
-        printf("Incorrect number of kingdom cards. Please correct or reload base game files.\n");
+	//add 2 because Village does that
+	printf("actions remaining = %d, expected = %d\n", testG.numActions, G.numActions + 2);
+	assert(testG.numActions == G.numActions + 2);
 
+	printf("coins = %d, expected = %d\n", testG.coins, G.coins + xtraCoins);
+	assert(testG.coins == G.coins + xtraCoins);
 
-	printf("TEST #2: Testing Num Action and Card Draw Increases...\n");
-	if(testState.handCount[thisPlayer] == state.handCount[thisPlayer] + 1)
-    {
-        printf("TEST #2: Cards Drawn Properly Increased.\n");
-    }
-	// assert(testState.handCount[thisPlayer] == state.handCount[thisPlayer] + 1);
-	else
-    {
-        printf("TEST #2: Cards Drawn Not Properly Increased.\n");
-        printf("Expected: %d\n", state.handCount[thisPlayer] +1);
-        printf("Result: %d\n\n", testState.handCount[thisPlayer]);
-        allTestsPassed = 0;
-    }
+	printf("kept should be of type treasure\n");
 
-    if(testState.numActions == state.numActions + 2)
-    {
-        printf("TEST #2: Number of actions are properly increased.\n");
-    }
-    else
-    {
-        printf("TEST #2: Number of Actions not Properly Increased.\n");
-        printf("Expected: %d\n", state.numActions + 2);
-        printf("Result: %d\n\n", testState.numActions);
-        allTestsPassed = 0;
-    }
+	printf("Other Player's handcount,deckcount, should be unchanged:");
 
-	// assert(testState.numActions == state.numActions + 2);
+	printf("hand count = %d, expected = %d\n", testG.handCount[otherPlayer], G.handCount[otherPlayer] );
+	assert(testG.handCount[otherPlayer] == G.handCount[otherPlayer]);
 
-	printf("TEST #3: Discard Test\n");
+	printf("deck count = %d, expected = %d\n", testG.deckCount[otherPlayer], G.deckCount[otherPlayer] );
+	assert(testG.deckCount[otherPlayer] == G.deckCount[otherPlayer]);
 
-	if(testState.discardCount[thisPlayer] == state.discardCount[thisPlayer] + 1)
-    {
-        printf("Test #3: Discard Test Passed.\n\n");
-    }
-    else
-    {
-        printf("TEST #3: Discard Test Failed!\nExpected: %d\n", state.discardCount[thisPlayer] + 1);
-        printf("Result: %d\n\n", testState.discardCount[thisPlayer]);
-        allTestsPassed = 0;
-    }
+	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
 
-    if(allTestsPassed) printf("All tests passed!");
-    else printf("One or more tests failed, please review results and revise code.\n\n");
 
 	return 0;
-
 }
+
+

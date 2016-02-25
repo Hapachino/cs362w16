@@ -1,0 +1,9 @@
+drawCard(): PASSED
+effectAdventure(): Passed
+File 'dominion.c'
+Lines executed:35.71% of 588
+Branches executed:25.42% of 417
+Taken at least once:23.98% of 417
+Calls executed:17.71% of 96
+Creating 'dominion.c.gcov'
+

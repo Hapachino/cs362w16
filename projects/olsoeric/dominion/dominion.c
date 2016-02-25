@@ -663,7 +663,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      adventurer_play(currentPlayer, state);
+      adventurer_play(currentPlayer, state, handPos);
       return 0;
 			
     case council_room:
@@ -792,7 +792,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case village:
-      village_play(handPos, state, currentPlayer);
+      village_play(currentPlayer, state, handPos);
       return 0;
 		
     case baron:
@@ -1244,30 +1244,31 @@ void smithy_play(int currentPlayer, struct gameState *state, int handPos){
   }
       
   //discard card from hand.
-  discardCard(handPos, currentPlayer, state, 1);
+  discardCard(handPos, currentPlayer, state, 0);
 }
 
 
 /*Refactored function for play of Adventurer card.
  *Draws cards until 2 treasures found, rest discarded.*/
-void adventurer_play(int currentPlayer, struct gameState *state){
+void adventurer_play(int currentPlayer, struct gameState *state, int handPos){
   int drawntreasure = 0;
   int cardDrawn;
   int temphand[MAX_HAND];
   int z = 0;
+  int max_cards = state->deckCount[currentPlayer] + state->discardCount[currentPlayer];
 
-  while(drawntreasure<2){
+  while(drawntreasure<2 && max_cards > 0){
+    max_cards--;
     if (state->deckCount[currentPlayer] < 1){//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];//top card of hand is most recently drawn card.
-    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == silver) { drawntreasure++; }
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) { drawntreasure++; }
     else{
       temphand[z]=cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
       //Check added to avoid seg faults when playing adventurer and fewer then 2 treasures bug.
-      if (state->handCount[0] <= 0) { return; }
       z++;
     }
   }
@@ -1275,6 +1276,9 @@ void adventurer_play(int currentPlayer, struct gameState *state){
     state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z-1]; // discard all cards in play that have been drawn
     z = z-1;
   }
+
+  //discard card from hand.
+  discardCard(handPos, currentPlayer, state, 0);
 }
 
 
@@ -1289,7 +1293,7 @@ void council_room_play(int currentPlayer, struct gameState *state, int handPos){
   }
       
   //+1 Buy
-  state->numActions++;
+  state->numBuys++;
       
   //Each other player draws a card
   for (i = 0; i < state->numPlayers; i++){
@@ -1310,7 +1314,7 @@ void village_play(int currentPlayer, struct gameState *state, int handPos){
   drawCard(currentPlayer, state);
     
   //+2 Actions
-  state->numActions == state->numActions + 2;
+  state->numActions = state->numActions + 2;
      
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);
@@ -1326,7 +1330,7 @@ void cutpurse_play(int currentPlayer, struct gameState *state, int handPos){
   for (i = 0; i < state->numPlayers; i++){
     if (i != currentPlayer){
       for (j = 0; j < state->handCount[i]; j++){
-        if (state->hand[i][j] = copper){
+        if (state->hand[i][j] == copper){
           discardCard(j, i, state, 0);
           break;
         }

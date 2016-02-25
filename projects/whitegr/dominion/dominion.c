@@ -1353,7 +1353,7 @@ int adventurerCard(int choice1, int choice2, int choice3, struct gameState *stat
 	
    int z=0;
    int cardDrawn;
-   int drawntreasure=0;
+   int drawntreasure=1;
    int currentPlayer = whoseTurn(state);
    int temphand[MAX_HAND];
 	

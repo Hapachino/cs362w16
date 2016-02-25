@@ -39,48 +39,51 @@ int main()
 	int k[10] = {adventurer, smithy, great_hall, council_room, salvager, gardens, mine, remodel, village, ambassador };
 	struct gameState state, testState;
 
-    // memset(&state, 0, sizeof(struct gameState)); // Ensure we have a clean slate.
+
+   // memset(&state, 0, sizeof(struct gameState)); // Ensure we have a clean slate.
     initializeGame(numPlayer, k, seed, &testState);
 
     memcpy(&state, &testState, sizeof(struct gameState));
 
 
     thisPlayer = 0;
+	
 
-    printf("TEST #1: Assert that each victory card has 8 cards in the supply, if not, abort program.\nPotential issue is base game is modified. Please reload base files if game has been altered.\n\n");
-	assert(testState.supplyCount[estate] == 8);
-	assert(testState.supplyCount[duchy] == 8);
-	assert(testState.supplyCount[province] == 8);
 
-	// Make sure kingdom cards are properly supplied.
-	for(i = 0; i < 10; i++)
-	{
-		kCardCount = testState.supplyCount[k[i]];
-		printf("k[%d] count: %d\n", i, kCardCount);
-		// assert(kCardCount = testState.supplyCount[k[i]]);
-		if(kCardCount != testState.supplyCount[k[i]])
+  printf("TEST #1: Assert that each victory card has 8 cards in the supply, if not, abort program.\nPotential issue is base game is modified. Please reload base files if game has been altered.\n\n");
+    assert(testState.supplyCount[estate] == 8);
+    assert(testState.supplyCount[duchy] == 8);
+    assert(testState.supplyCount[province] == 8);
+
+    // Make sure kingdom cards are properly supplied.
+    for(i = 0; i < 10; i++)
+    {
+        kCardCount = testState.supplyCount[k[i]];
+        printf("k[%d] count: %d\n", i, kCardCount);
+        // assert(kCardCount = testState.supplyCount[k[i]]);
+        if(kCardCount != testState.supplyCount[k[i]])
         {
             allTestsPassed = 0;
         }
-	}
+    }
 
-	if(allTestsPassed)
+    if(allTestsPassed)
         printf("Kingdom Card Supplies All Correct\n");
     else
         printf("Incorrect number of kingdom cards. Please correct or reload base game files.\n");
 
 
-    playVillage(&testState, thisPlayer);
+     cardEffect(village, 0, 0, 0, &testState, 0, 0);
 
     // drawCard(thisPlayer, &testState);
 
-	printf("TEST #2: Testing Num Action Increases\n");
-//	if(testState.handCount[thisPlayer] == state.handCount[thisPlayer])
+    printf("TEST #2: Testing Num Action Increases\n");
+//  if(testState.handCount[thisPlayer] == state.handCount[thisPlayer])
 //    {
 //        printf("TEST #2: Cards Drawn Properly Increased.\n");
 //    }
-//	// assert(testState.handCount[thisPlayer] == state.handCount[thisPlayer] + 1);
-//	else
+//  // assert(testState.handCount[thisPlayer] == state.handCount[thisPlayer] + 1);
+//  else
 //    {
 //        printf("TEST #2: Cards Drawn Not Properly Increased.\n");
 //        printf("Expected: %d\n", state.handCount[thisPlayer]);
@@ -100,12 +103,12 @@ int main()
         allTestsPassed = 0;
     }
 
-	// assert(testState.numActions == state.numActions + 2);
+    // assert(testState.numActions == state.numActions + 2);
 
-	printf("TEST #3: Discard Test\n");
+    printf("TEST #3: Discard Test\n");
 
 
-	if(testState.handCount[thisPlayer] == state.handCount[thisPlayer])
+    if(testState.handCount[thisPlayer] == state.handCount[thisPlayer])
     {
         printf("Test #3: Discard Test Passed. Card properly disposed of.\n\n");
     }
@@ -119,6 +122,6 @@ int main()
     if(allTestsPassed) printf("All tests passed!\n");
     else printf("One or more tests failed, please review results and revise code.\n\n");
 
-	return 0;
+    return 0;
 
 }

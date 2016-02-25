@@ -95,8 +95,9 @@ int unitTest(int handPos, struct gameState *post, int p) {
   int r, j, victoryCount, victoryCount2, kingdomCount, kingdomCount2;
 
   // run fucntion
-  playVillage(handPos, post);
+//  playVillage(handPos, post);
   // cardEffect(village, 0, 0, 0, post, handPos, 0);
+ villageCard(post, p, handPos);
 
   // count victory cards post function call
   victoryCount = getVictoryCount(&pre);

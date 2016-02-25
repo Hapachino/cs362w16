@@ -91,7 +91,9 @@ int unitTest(int handPos, struct gameState *post, int p) {
   int r, j, victoryCount, victoryCount2, kingdomCount, kingdomCount2;
 
   // run fucntion
-  playCouncil_room(handPos, post);
+  // int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+
+  cardEffect(council_room, 0, 0, 0, post, handPos, 0);
 
   // count victory cards post function call
   victoryCount = getVictoryCount(&pre);

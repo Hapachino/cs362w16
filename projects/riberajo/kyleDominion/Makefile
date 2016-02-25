@@ -31,14 +31,14 @@ randomtestresults.out:
 	make clean; make randomtests; make randomtestcardout; make randomtestadventurerout;
 
 tests: randomtestcard.c cardtest4.c cardtest3.c cardtest2.c cardtest1.c unittest4.c unittest3.c unittest2.c unittest1.c dominion.o rngs.o
-	# gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
-	# gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
-	# gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
-	# gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
-	# gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
-	# gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
-	# gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
 	gcc -o randomtestcard -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
 
 randomtests: randomtestcard.c randomtestadventurer.c dominion.o rngs.o

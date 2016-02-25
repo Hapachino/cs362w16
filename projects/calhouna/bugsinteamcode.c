@@ -25,8 +25,7 @@ Bug Observation:
     All assertions passed.
 
     cardTest1:
-    When running testCard1, which deals with the adventurer, I noticed that -- while not consistent, sometimes the card failed to shuffle properly or shuffled on 1. Coin states also did not always update
-    correctly.
+    Nancy's implementation did not contain any bugs that my tests caught.
     cardTest2:
     The test always ends with a segmentation fault.
 
@@ -62,6 +61,9 @@ Bug Observation:
         Tracepoint 1 was set at dominion.c, line 528
         The error appears to occur in the drawCard function.
 
+    Removed a false positive. Nancy's code works fine with my tests once the issue of the segment fault was resolved.
+
+
 
     testCard3:
 
@@ -77,6 +79,10 @@ Bug Observation:
     testCard4:
 
         Updated tests and reviewed Minion Code. Found no bugs in Nancy's implementation. Found one arithmetic error in my code, and updated it for correctness.
+
+    randomTestAdventurer:
+
+        Ran a 1000 test case implementation. No errors found.
 
 Observations - Jon Lagrew
 
@@ -105,10 +111,7 @@ Observations - Jon Lagrew
     cardTest1:
     playAdventurer():
 
-    Jon has a similar bug to mine, where the treasureDrawn is not calculate properly and coins are not added properly.
-
-    Pre was 1 more than Post values. This is because the bug I wrote into the refactored function does not discard the last card in the temp array. It appears to have approximately
-    a 50/50 failure rate. Sometimes it passes all the tests, sometimes it doesn't, given what the seed is.
+    Jon's does not properly draw a card if the proper conditions are met. (drawnTreasure > 2)
 
     cardTest2:
     playSmithy():
@@ -122,3 +125,12 @@ Observations - Jon Lagrew
     cardTest4():
     playMinion():
     No issues found in Jon's version of Minion.
+
+    randomCardTest:
+    playVillage():
+    Finds no issues with Jon's. Confirmed from CardTest 3.
+
+    RandomTestAdventurer:
+    playAdventurer()
+    This identified the error, as causing too many cards to be drawn for the handCount and thus causing a failure.
+    Further refactored my code to identify the exact issue -- results are always one greater than they should be.

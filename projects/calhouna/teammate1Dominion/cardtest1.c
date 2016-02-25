@@ -82,9 +82,11 @@ int checkPlayAdventurer(struct gameState *state, int currentPlayer)
     printf("\nChecking Drawn Treasure.\nDrawn Treasure: %d\n", drawnTreasure);
 
     printf("Initiating randomized deckCount: 1-5\n");
-    state->deckCount[currentPlayer] = rand() % 3;
+    state->deckCount[currentPlayer] = rand() % 4;
 
     printf("Deck Count: %d\n", state->deckCount[currentPlayer]);
+
+    playAdventurer(&testState, currentPlayer);
 
     if(drawnTreasure>=2)
     {
@@ -126,7 +128,7 @@ int main()
     int k[10] = { adventurer, smithy, village, baron, great_hall, council_room, salvager, sea_hag, gardens, mine };
     int x, i, testSuiteSuccess = 0, testSuiteFailure = 0, testsRun = 0;
     int seed = 1000; // Perhaps having a set seed would standardize testing, but we need ALL situations tested, even those we don't anticipate.
-  
+
     struct gameState *post = malloc(sizeof(struct gameState));
     initializeGame(2, k, seed, post);
 

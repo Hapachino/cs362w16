@@ -102,7 +102,7 @@ int main(int argc, char *argv[]){
     int handCards4[10] =     { gardens, province, province, province, province, province, province, province, province, province };
     int discardCards4[10] =  { gardens, province, province, province, province, province, province, province, province, province };
     int deckCards4[10] =     { province, province, province, province, province, province, province, province, province, province };
-    scoreForTest(170, handCards4, discardCards4, deckCards4);
+    scoreForTest(174, handCards4, discardCards4, deckCards4);
 
     printf("\nTest 5\n");
 

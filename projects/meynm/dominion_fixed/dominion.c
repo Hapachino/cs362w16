@@ -478,6 +478,7 @@ int scoreFor( int player, struct gameState *state )
 		if (state->hand[player][i] == gardens)
 		{
 			gardensCards++;
+			totalCards++;
 		};
 
 	}
@@ -516,6 +517,7 @@ int scoreFor( int player, struct gameState *state )
 		if (state->discard[player][i] == gardens)
 		{
 			gardensCards++;
+			totalCards++;
 			//score = score + ( fullDeckCount( player, 0, state ) / 10 );
 		};
 
@@ -556,18 +558,21 @@ int scoreFor( int player, struct gameState *state )
 			if (state->deck[player][i] == gardens)
 			{
 				gardensCards++;
+				totalCards++;
 				//score = score + ( fullDeckCount( player, 0, state ) / 10 );
 			};
 
 	}
-/*
+
 	for( i = 0; i < gardensCards; i++){
 		score += totalCards / 10;
 	}
-*/
+/*
 	if(gardensCards > 0) {
 		score += totalCards / 10;
 	}
+
+	*/
 	return score;
 }
 

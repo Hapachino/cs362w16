@@ -1,6 +1,6 @@
 /*
 ** Name: Andrew Michael Calhoun
-** Date: 2/5/2014 
+** Date: 2/5/2014
 ** CS 362 - Assignment 4
 ** randomtestadventurer.c
 */
@@ -55,7 +55,7 @@ int main()
 	int i, j, a;
 
 	struct gameState state;
-	struct gameState testState; 
+	struct gameState testState;
 
 	int k[10] = { adventurer, salvager, smithy, village, minion, mine, gardens, council_room, great_hall, sea_hag };
 
@@ -63,13 +63,13 @@ int main()
 	int handPos = 0, shuffledCards = 0, z = 0, temphand[MAX_HAND];
 	int thisPlayer = 0, numPlayers = 2, seed = 29365;
 	int drawnTreasure;
-	int totalSuccesses, totalFailures; 
+	int totalSuccesses, totalFailures;
 	int successBool;
 
 	const char* cardNames[] = {"curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer",
 							    "council_room", "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion",
 								"steward", "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map"};
-	
+
 
 	initializeGame(numPlayers, k, seed, &state);
 
@@ -93,7 +93,7 @@ int main()
 		drawnTreasure = 0;
 
 		for(j=0; j < temphand[MAX_HAND]; j++)
-		{	
+		{
 			temphand[j] = random() % 27;
 			if(temphand[j] == 4 || temphand[j] == 5 || temphand[j] == 6)
 				drawnTreasure++;
@@ -151,7 +151,7 @@ int main()
 			successBool = 0;
 		}
 
-		playAdventurer(&testState, thisPlayer, 0, drawnTreasure, temphand, z);
+		playAdventurer(&testState);
 
 		printf("\nCards in hand for player 1 are: ");
 		for(j=0; j<testState.handCount[thisPlayer]; j++)
@@ -168,7 +168,7 @@ int main()
 
 
 	//	playAdventurer(&testState, thisPlayer, 0, drawnTreasure, temphand, z);
-		
+
 		printf("\nEnd Turn Cards for Player 1: ");
 
 		for(j=0; j<testState.handCount[thisPlayer]; j++)
@@ -220,6 +220,7 @@ int main()
 		if(testState.handCount[thisPlayer] != state.handCount[thisPlayer] + newCards - discarded)
 		{
 			printf("\nFailed test, Player 1 hand count is incorrect.\n");
+			printf("Expected: %d,   Result: %d\n", testState.handCount[thisPlayer], state.handCount[thisPlayer] + newCards - discarded);
 			successBool = 0;
 		}
 
@@ -260,7 +261,7 @@ int main()
 
 	}
 
-	//printf("Testing seed: %d", seed); // 29365 for debugging purposes. Had to find one that had consistent test failures. 
+	//printf("Testing seed: %d", seed); // 29365 for debugging purposes. Had to find one that had consistent test failures.
 	printf("Testing complete for %s.\n", TESTCARD);
 	printf("Total Tests: %d\n", numTests);
 	printf("Total Successful: %d\n", totalSuccesses);

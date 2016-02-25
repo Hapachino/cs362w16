@@ -51,13 +51,14 @@ int playAdventurer(struct gameState *state, int currentPlayer, int cardDrawn, in
 
 */
 
-int checkPlayAdventurer(struct gameState *state, int currentPlayer)
+int checkPlayAdventurer(struct gameState *state)
 {
     int i, preDraw, failTest = 0;
       int k[10] = { adventurer, smithy, village, baron, great_hall, council_room, salvager, sea_hag, gardens, mine };
     // const char *cards[] = { "curse", "estate", "duchy", "province", "copper", "silver", "gold", "adventurer", "council_room", "feast", "gardens", "mine", "remodel", "smithy", "village", "baron",
     // "great_hall", "minion", "steward", "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map" };
     int randomCard = 0; //rand() % 10;
+    int currentPlayer = 0;
     int z = 0;
     int drawnTreasure = rand() % 3;
     int temphand[MAX_HAND];
@@ -82,24 +83,26 @@ int checkPlayAdventurer(struct gameState *state, int currentPlayer)
     printf("\nChecking Drawn Treasure.\nDrawn Treasure: %d\n", drawnTreasure);
 
     printf("Initiating randomized deckCount: 1-5\n");
-    state->deckCount[currentPlayer] = rand() % 3;
+    state->deckCount[currentPlayer] = rand() % 4;
 
     printf("Deck Count: %d\n", state->deckCount[currentPlayer]);
+
+    playAdventurer(state);
 
     if(drawnTreasure>=2)
     {
         if(testState.handCount[currentPlayer] == state->handCount[currentPlayer]++)
-         printf("Deck Draw Test Passed.");
+         printf("Deck Draw Test Passed.\n");
         else
         {
-            printf("Deck draw tests failed.");
+            printf("Deck draw tests failed.\n");
             failTest = 1;
         }
     }
 
     if(testState.coins == state->coins++)
     {
-        printf("Coin test passed.");
+        printf("Coin test passed.\n");
     }
     else
     {
@@ -109,11 +112,6 @@ int checkPlayAdventurer(struct gameState *state, int currentPlayer)
 
     printf("Previous Hand Count: %d\n", state->handCount[currentPlayer]);
     printf("Current Hand Count: %d\n", testState.handCount[currentPlayer]);
-
-    while(z-1>=0){
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-    z=z-1;
-    }
 
     return failTest;
 }
@@ -126,14 +124,14 @@ int main()
     int k[10] = { adventurer, smithy, village, baron, great_hall, council_room, salvager, sea_hag, gardens, mine };
     int x, i, testSuiteSuccess = 0, testSuiteFailure = 0, testsRun = 0;
     int seed = 1000; // Perhaps having a set seed would standardize testing, but we need ALL situations tested, even those we don't anticipate.
-  
+
     struct gameState *post = malloc(sizeof(struct gameState));
     initializeGame(2, k, seed, post);
 
     printf("Testing Adventurer!\n");
     for(i=0; i < 20; i++)
     {
-        x = checkPlayAdventurer(post, 0);
+        x = checkPlayAdventurer(post);
         if(x)
         {
             printf("One or More Assertion and Gameplay Tests Failed.\n");

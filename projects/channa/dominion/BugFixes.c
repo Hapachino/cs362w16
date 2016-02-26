@@ -24,12 +24,36 @@ assisted in fixing bugs in the tests.
 /**********************************
 teammate2Dominion - Jonathan Lagrew
 **********************************/
-
 Bug 1: scoreFor()
-I used GDB to set a breakpoint at the scoreFor() function. Jonathan's bug report mentioned fullDeckCount() using the
-number of curses and not accounting for the number of gardens. With this information, I stepped through the scoreFor()
-function and printed out "fullDeckCount(player, 0, state)". The number printed was indeed the number of curses and not
-the number of gardens.
+	I used GDB to set a breakpoint at the scoreFor() function. Jonathan's bug report mentioned fullDeckCount() using the
+	number of curses and not accounting for the number of gardens. With this information, I stepped through the scoreFor()
+	function and printed "fullDeckCount(player, 0, state)". The number printed was indeed the number of curses and not
+	the number of gardens. I changed the code to "fullDeckCount(player, 10, state)" in 3 places (3 for loops: hand,
+	discard, and deck), 10 being the card index for gardens. Printing "fullDeckCount(player, 10, state)" gave the number
+	of gardens this time.
+
+	However, the changes did not enable the code to pass the tests. I noticed that the for loops for the discard and deck 
+	used the same conditions: "i < state->discardCount[player]". I changed the conditon for the deck to be "i < state->deckCount[player]".
+	This solved the problem of computing victory points from the deck when the discardCount and deckCount were not equal.
+
+	In GDB, printing "fullDeckCount(player, 10, state) / 10" revealed that this always evaluated to 0 because the numerator
+	would be the number of gardens (4) divided by the denominator 10. Thus, gardens was having no effect on the score.
+
+	According to: http://dominioncg.wikia.com/wiki/Gardens, the gardens card "does nothing until the end of the game, when it is worth
+	1 victory point per 10 cards in your Deck (counting all of your cards – your Discard pile and hand are part of your Deck at that point).
+	Round down; if you have 39 cards, Gardens is worth 3 victory points."
+
+	Removing gardens from the 3 for loops in scoreFor() and adding the following code to adhere to the logic of gardens fixed the bug:
+
+	  // Number of gardens
+	  gardens_count = fullDeckCount(player, 10, state);
+	  // All cards in deck (discard and hand are part of the deck at this point)
+	  allDeck_count = state->handCount[player] + state->discardCount[player] + state->deckCount[player];
+	  // Gardens is worth 1 VP for every 10 cards in your deck (rounded down)
+	  gardens_effect = (allDeck_count / 10) * gardens_count;
+
+	  // Add gardens effect
+	  score = score + gardens_effect;
 
 Bug 2: smithy
 

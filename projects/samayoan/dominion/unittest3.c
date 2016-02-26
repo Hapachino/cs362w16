@@ -45,12 +45,12 @@ void discardCardTest(int totalHandCount, int handPos, int player, int trashFlag)
 
     assert(state.hand[player][handPos] != sea_hag);
 
-    // If we are discarding the one and only hard in the hand, it should be reset to -1.
-    // If we are discarding the last card, it should also be reset to -1.
+    // If we are discarding the one and only hard in the hand, it should be reset to 99.
+    // If we are discarding the last card, it should also be reset to 99.
     // Otherwise it should be the smithy card
     if (totalHandCount == 1 || handPos == totalHandCount - 1){
         // Only the hand should be affected.
-        assert(state.hand[player][handPos] == -1);
+        assert(state.hand[player][handPos] == 99);
     }
     else {
         // Only the hand should be affected.

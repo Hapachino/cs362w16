@@ -1,0 +1,8 @@
+-------------------------------------
+START of the unittest1
+-------------------------------------
+PASS when all supply count is 1
+PASS when any one supply is set to 0
+PASS when any two supplies are set to 0
+PASS when any three supplies are set to 0
+-------------------------------------

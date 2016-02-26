@@ -1,5 +1,5 @@
-/* Randomly test the playAdventurer() function
-   NOTE: playAdventurer() should:
+/* Randomly test the Adventurer card
+   NOTE: Adventurer should:
      * Draw cards from the player's deck until two treasure cards are drawn.
      * Discard all drawn cards that are not treasure cards.
      * Move the played card to the playedCards pile.
@@ -18,12 +18,12 @@
 #define TEST_ITERATIONS 10
 #define OUTPUT_MAX 200
 
-/* TODO: Tweak probabilities (e.g. tresure card)? */
+/* TODO: Tweak probabilities (e.g. treasure cards)? */
 
 /* Generates a random game state that's catered to this context (avoiding the
    randomization of parts of the game state which have no impact on this
    particular function's behavior) */
-void generateGameState(struct gameState *state) {
+void generateGameState(int *handPos, struct gameState *state) {
   int i = 0, j = 0;
 
   /* Set the gameState to all zeros to clear any previous state */
@@ -52,13 +52,16 @@ void generateGameState(struct gameState *state) {
     }
 
     /* Replace one of the cards in the current player's hand with CARD to make
-    sure they have it */
+       sure they have it */
     if (i == state->whoseTurn) {
       if (state->handCount[i] == 0) {
         /* Set the handCount to 1 if they had 0 cards */
         state->handCount[i] = 1;
       }
-      state->hand[i][(rand() % state->handCount[i])] = CARD;
+
+      /* Replace a random card in the hand with CARD */
+      *handPos = rand() % state->handCount[i];
+      state->hand[i][*handPos] = CARD;
     }
 
     /* Populate the deck with 0-17 cards */
@@ -108,8 +111,8 @@ int playerTreasureToDraw(struct gameState *state) {
   return count;
 }
 
-/* Randomly test the playAdventurer() function */
-int randomlyTestPlayAdventurer() {
+/* Randomly test the Adventurer card */
+int randomlyTestAdventurer() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -121,6 +124,7 @@ int randomlyTestPlayAdventurer() {
   int status = 0;
   int i = 0, j = 0;
   int p = 0;
+  int handPos = 0;
   int numTreasureToDraw = 0;
   int playerCardCount = 0;
   int addedCards = 0;
@@ -129,7 +133,7 @@ int randomlyTestPlayAdventurer() {
   /* Generate a game state for each iteration and test it */
   for (i = 0; i < TEST_ITERATIONS; i++) {
     /* Generate a random gameState (zeroing out any previous state first) */
-    generateGameState(&state);
+    generateGameState(&handPos, &state);
     memcpy(&preState, &state, sizeof(struct gameState));
 
     /* Initialize some necessary variables before proceeding */
@@ -224,7 +228,7 @@ int randomlyTestPlayAdventurer() {
     snprintf(
       output, OUTPUT_MAX,
       "treasure cards in player's hand = %d, expected = %d",
-      p, treasureCardsInHand(p, &state),
+      treasureCardsInHand(p, &state),
       (treasureCardsInHand(p, &preState) + addedCards)
     );
     passCount += fakeAssert(
@@ -315,7 +319,7 @@ int randomlyTestPlayAdventurer() {
        whether all of the drawn cards are discarded.  We can't predict the
        order of the cards when they're shuffled(), so we can't make assertions
        about what the deck or discard pile should look like when
-       playAdventurer() finishees. */
+       Adventurer finishes. */
     testCount += 1;
     snprintf(
       output, OUTPUT_MAX,
@@ -373,6 +377,6 @@ int randomlyTestPlayAdventurer() {
 
 int main() {
   srand(time(NULL));
-  randomlyTestPlayAdventurer();
+  randomlyTestAdventurer();
   return 0;
 }

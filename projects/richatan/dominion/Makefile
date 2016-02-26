@@ -83,7 +83,6 @@ unittestresults.out: testHelpers.o dominion.o rngs.o
 	echo -e "\t\tCode Coverage" >> unittestresults.out
 	echo "-------------------------------------------------" >> unittestresults.out
 	gcov ./dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
 
 randomtestadventurer.out: testHelpers.o dominion.o rngs.o
 	echo "-----------------------------------------------------------" > randomtestadventurer.out

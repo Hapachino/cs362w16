@@ -50,7 +50,7 @@ unittestresults.out: testHelpers.o dominion.o rngs.o
 	echo "unittest3.c: buyCard()" >> unittestresults.out
 	gcc -o unittest3 unittest3.c test_helpers.o dominion.o rngs.o $(CFLAGS)
 	./unittest3 >> unittestresults.out
-	echo "-------------------------------------------------" >> unittestresults.out
+	echo "-----------------------------player--------------------" >> unittestresults.out
 
 	echo "unittest4.c: getWinners()" >> unittestresults.out
 	gcc -o unittest4 unittest4.c test_helpers.o dominion.o rngs.o $(CFLAGS)
@@ -97,7 +97,19 @@ randomtestadventurer.out: testHelpers.o dominion.o rngs.o
 	echo -e "\t\tCode Coverage" >> randomtestadventurer.out
 	echo "-----------------------------------------------------------" >> randomtestadventurer.out
 	gcov ./dominion.c >> randomtestadventurer.out
-	
+
+cardtest1assgn5.out: dominion.o rngs.o
+	gcc -o cardtest1assgn5 -g  cardtest1assgn5.c dominion.o rngs.o $(CFLAGS)
+	./cardtest1assgn5 > cardtest1assgn5.out
+	gcov -b dominion.c >> cardtest1assgn5.out
+	cat dominion.c.gcov >> cardtest1assgn5.out
+
+cardtest3assgn5.out: dominion.o rngs.o
+	gcc -o cardtest3assgn5 -g  cardtest3assgn5.c dominion.o rngs.o $(CFLAGS)
+	./cardtest3assgn5 > cardtest3assgn5.out
+	gcov -b dominion.c >> cardtest3assgn5.out
+	cat dominion.c.gcov >> cardtest3assgn5.out	
+
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 

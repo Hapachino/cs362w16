@@ -53,9 +53,9 @@ unittests: dominion.o rngs.o unittest1.c unittest2.c unittest3.c unittest4.c car
 	gcc -o unittest3 unittest3.c dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest4 unittest4.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest1 cardtest1.c dominion.o rngs.o $(CFLAGS)
-	gcc -o cardtest2 cardtest2.c dominion.o rngs.o $(CFLAGS)
+	#gcc -o cardtest2 cardtest2.c dominion.o rngs.o $(CFLAGS)
 	gcc -g -o cardtest3 cardtest3.c dominion.o rngs.o $(CFLAGS)
-	gcc -g -o cardtest4 cardtest4.c dominion.o rngs.o $(CFLAGS)
+	make cardtest4
 	
 rununittests:
 	./unittest1 >> unittestresults.out
@@ -86,3 +86,6 @@ randomtestcard.out: dominion.o rngs.o randomtestcard.c
 	./randomtestcard >> randomtestcard.out
 	gcov -b dominion.c >> randomtestcard.out
 	cat dominion.c.gcov >> randomtestcard.out
+	
+cardtest4: dominion.o rngs.o cardtest4.c
+	gcc -g -o cardtest4 cardtest4.c dominion.o rngs.o $(CFLAGS)

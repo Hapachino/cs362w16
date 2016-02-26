@@ -1,0 +1,97 @@
+        -:    0:Source:unitTest1.c
+        -:    0:Graph:unitTest1.gcno
+        -:    0:Data:unitTest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for updateCoins function
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	For each copper card, add 1 coin
+        -:    6: *	2.	For each silver card, add 2 coins
+        -:    7: *	3.	For each gold card, add 3 coins
+        -:    8: *	4.	Add the bonus to the coin count
+        -:    9: *
+        -:   10: * unitTest1: unitTest1.c dominion.o rngs.o
+        -:   11: *      gcc -o unitTest1 -g unitTest1.c dominion.o rngs.o $(FLAGS)
+        -:   12: *
+        -:   13: */
+        -:   14:
+        -:   15:#include "dominion.h"
+        -:   16:#include "dominion_helpers.h"
+        -:   17:#include <string.h>
+        -:   18:#include <stdio.h>
+        -:   19:#include <assert.h>
+        -:   20:#include "rngs.h"
+        -:   21:
+        -:   22://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   23:#define NOISY_TEST 1
+        -:   24:
+        1:   25:int main() {
+        -:   26:    int i, p, new_game;
+        1:   27:    int seed = 1000;
+        1:   28:    int numPlayer = 2;
+        1:   29:    int maxBonus = 5;
+        -:   30:    int bonus;
+        -:   31:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   32:                 remodel, smithy, village, baron, great_hall};
+        -:   33:    struct gameState G;
+        -:   34:    int handCount;
+        1:   35:    int maxHandCount = 5;
+        -:   36:    int copper_coins[MAX_HAND];
+        -:   37:    int silver_coins[MAX_HAND];
+        -:   38:    int gold_coins[MAX_HAND];
+        -:   39:
+      501:   40:    for(i = 0; i < MAX_HAND; ++i) {
+      500:   41:        copper_coins[i] = copper;
+      500:   42:        silver_coins[i] = silver;
+      500:   43:        gold_coins[i] = gold;
+        -:   44:    }
+        -:   45:
+        1:   46:    printf("TESTING updateCoins()\n");
+        3:   47:    for(p = 0; p < numPlayer; ++p) {
+       10:   48:        for(handCount = 1; handCount < maxHandCount; ++handCount) {
+       48:   49:            for(bonus = 0; bonus < maxBonus; ++bonus) {
+        -:   50:                //clear the game state
+       40:   51:                memset(&G, 23, sizeof(struct gameState));
+        -:   52:                //initialize a new game
+       40:   53:                new_game = initializeGame(numPlayer, k, seed, &G);
+        -:   54:                //set number of cards on hand
+        -:   55:                //will loop through for every 5 hands
+       40:   56:                G.handCount[p] = handCount;
+        -:   57:
+        -:   58:                //set all cards to copper
+       40:   59:                memcpy(G.hand[p], copper_coins, sizeof(int) * handCount);
+       40:   60:                updateCoins(p, &G, bonus);
+        -:   61:#if (NOISY_TEST == 1)
+       40:   62:                printf("----------------------\nCOPPER\n");
+       40:   63:                printf("Coins before bonus + bonus coins = Total (%d + %d = %d) - Expected coins = %d\n",
+        -:   64:                       G.coins - bonus, bonus, G.coins, handCount * 1 + bonus);
+        -:   65:#endif
+        -:   66:
+        -:   67:                //set all cards to silver
+       40:   68:                memcpy(G.hand[p], silver_coins, sizeof(int) * handCount);
+       40:   69:                updateCoins(p, &G, bonus);
+        -:   70:#if (NOISY_TEST == 1)
+       40:   71:                printf("SILVER\n");
+       40:   72:                printf("Coins before bonus + bonus coins = Total (%d + %d = %d) - Expected coins = %d\n",
+       40:   73:                       G.coins - bonus, bonus, G.coins, handCount * 2 + bonus);
+        -:   74:#endif
+        -:   75:
+        -:   76:                //set all cards to gold
+       40:   77:                memcpy(G.hand[p], gold_coins, sizeof(int) * handCount);
+       40:   78:                updateCoins(p, &G, bonus);
+        -:   79:#if (NOISY_TEST == 1)
+       40:   80:                printf("GOLD\n");
+       40:   81:                printf("Coins before bonus + bonus coins = Total (%d + %d = %d) - Expected coins = %d\n",
+       40:   82:                       G.coins - bonus, bonus, G.coins, handCount * 3 + bonus);
+        -:   83:#endif
+        -:   84:
+        -:   85:            }
+        -:   86:        }
+        -:   87:    }
+        -:   88:
+        1:   89:    printf("\nAll tests passed: updateCoins()\n");
+        -:   90:
+        1:   91:    return 0;
+        -:   92:}

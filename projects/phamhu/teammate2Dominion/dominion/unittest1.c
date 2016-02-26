@@ -1,5 +1,6 @@
 /* -----------------------------------------------------------------------
- * Unit test to test getCost() function.
+ * Testing updateCoins() method - using testUpdateCoins.c as the base code.
+ *
  * Include the following lines in your makefile:
  *
  * unittest1: unittest1.c dominion.o rngs.o
@@ -13,114 +14,90 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include <stdlib.h>
-#include <time.h>
-
-int getRealCost(int i);
-//Return the cost of card i
 
 int main() {
-
-  srand(time(NULL));
-  int i, p, randomCard;
-  int k[10] = {adventurer, council_room, feast, gardens, mine
+    int i;
+    int seed = rand() % 1000;
+    int numPlayer = 2;
+    int maxBonus = 10;
+    int p, r, handCount;
+    int bonus;
+    int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
-  struct gameState G;
-  int numPlayers = 2;
+    struct gameState G;
+    int maxHandCount = 5;
+    int failCount = 0;
+    int passCount = 0;
+    // arrays of all coppers, silvers, and golds
+    int coppers[MAX_HAND];
+    int silvers[MAX_HAND];
+    int golds[MAX_HAND];
+    for (i = 0; i < MAX_HAND; i++)
+    {
+        coppers[i] = copper;
+        silvers[i] = silver;
+        golds[i] = gold;
+    }
 
-
-  int seed = rand() % + 9999;
-  int handRandom, deckRandom;
-  printf ("Testing getCost().\n");
-
-  for (p = 0; p < numPlayers; p++) 
-  {
-    memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    assert(initializeGame(numPlayers, k, seed, &G) == 0);
-        printf("Testing player %d hand card cost\n", p );
-        handRandom = rand() % MAX_HAND;
-        G.handCount[p] = handRandom;
-        for (i = 0; i < handRandom; i++) 
+    printf ("<< TESTING unittest1 - updateCoins() >>\n");
+    for (p = 0; p < numPlayer; p++)
+    {
+        for (handCount = 1; handCount <= maxHandCount; handCount++)
         {
-            randomCard = rand() % 27;
-            G.hand[p][i] = randomCard;
-            assert(getCost(G.hand[p][i]) == getRealCost(randomCard));
-        }
-        printf("Testing player %d deck card cost\n", p );
-        deckRandom = rand() % MAX_DECK;
-        G.deckCount[p] = deckRandom;
-        for (i = 0; i < deckRandom; i++) 
-        {
-            randomCard = rand() % 27;
-            G.deck[p][i] = randomCard;
-            assert(getCost(G.deck[p][i]) == getRealCost(randomCard));
-        }
+            for (bonus = 0; bonus <= maxBonus; bonus++)
+            {
+                printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
+                memset(&G, 23, sizeof(struct gameState));   // clear the game state
+                r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+                G.handCount[p] = handCount;                 // set the number of cards on hand
+                memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
+                updateCoins(p, &G, bonus);
+            	printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
+
+                if (G.coins == handCount * 1 + bonus) // check if the number of coins is correct
+		{
+//			printf("Copper coins passed\n");
+			passCount++;
+		}
+		else
+		{
+			printf("Copper coins failed\n");
+			failCount++;
+		}
+                memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silver
+                updateCoins(p, &G, bonus);
+                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
  
-  }
-  printf("All test passed for getCost() \n");
-  return 0;
-}
+               	if (G.coins == handCount * 2 + bonus) // check if the number of coins is correct
+		{
+//			printf("Silver coins passed\n");
+			passCount++;
+		}
+		else
+		{
+			printf("Silver coins failed\n");
+			failCount++;
+		}
 
-int getRealCost(int i)
-{
-    if (i == curse) {
-            return 0;
-        } else if (i == estate) {
-            return 2;
-        } else if (i == duchy) {
-            return 5;
-        } else if (i == province) {
-            return 8;
-        } else if (i == copper) {
-            return 0;
-        } else if (i == silver) {
-            return 3;
-        } else if (i == gold) {
-            return 6;
-        } else if (i == adventurer) {
-            return 6;
-        } else if (i == council_room) {
-            return 5;
-        } else if (i == feast) {
-            return 4;
-        } else if (i == gardens) {
-            return 4;
-        } else if (i == mine) {
-            return 5;
-        } else if (i == remodel) {
-            return 4;
-        } else if (i == smithy) {
-            return 4;
-        } else if (i == village) {
-            return 3;
-        } else if (i == baron) {
-            return 4;
-        } else if (i == great_hall) {
-            return 3;
-        } else if (i == minion) {
-            return 5;
-        } else if (i == steward) {
-            return 3;
-        } else if (i == tribute) {
-            return 5;
-        } else if (i == ambassador) {
-            return 3;
-        } else if (i == cutpurse) {
-            return 4;
-        } else if (i == embargo) {
-            return 2;
-        } else if (i == outpost) {
-            return 5;
-        } else if (i == salvager) {
-            return 4;
-        } else if (i == sea_hag) {
-            return 4;
-        } else if (i == treasure_map) {
-            return 4;
-        } else {
-            return -1;
+                memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
+                updateCoins(p, &G, bonus);
+                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
+                if (G.coins == handCount * 3 + bonus) // check if the number of coins is correct
+		{
+//			printf("Gold coins passed\n");
+			passCount++;
+		}
+		else
+		{
+			printf("Gold coins failed\n");
+			failCount++;
+		}		
+            }
         }
-}
+    }
 
-    
-        
+    printf("Number of cases passed: %d\n", passCount);
+    printf("Number of cases failed: %d\n", failCount);
+
+    return 0;
+}

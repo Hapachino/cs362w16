@@ -1,5 +1,5 @@
-/* Test the playMine() function
-   NOTE: playMine() should:
+/* Test the Mine card
+   NOTE: Mine should:
      * Trash a treasure card for a treasure card costing up to 3 coins more.
        * The new treasure card should be added to the player's hand.
      * Move the played card to the playedCards pile.
@@ -11,12 +11,13 @@
 
 #define P1 0
 #define P2 1
-#define HANDPOS 1
-#define COPPERPOS 2
+#define HANDPOS 0
+#define COPPERPOS 1
+#define COPPER2POS 2
 #define BARONPOS 3
 #define ESTATEPOS 4
 
-int testPlayMine() {
+int testMine() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -35,8 +36,8 @@ int testPlayMine() {
   state.deck[P1][3] = gardens;
   state.deck[P1][4] = cutpurse;
   state.deckCount[P1] = 5;
-  state.hand[P1][0] = copper;
-  state.hand[P1][1] = mine;
+  state.hand[P1][0] = mine;
+  state.hand[P1][1] = copper;
   state.hand[P1][2] = copper;
   state.hand[P1][3] = baron;
   state.hand[P1][4] = estate;
@@ -51,7 +52,7 @@ int testPlayMine() {
   state.supplyCount[silver] = 10;
   memcpy(&initialState, &state, sizeof(struct gameState));
 
-  /* Test playMine() using a non-treasure card for choice1 */
+  /* Test using a non-treasure card for choice1 */
   printf("----- Test: choice1 = estate, choice2 = silver\n");
   memcpy(&preState, &state, sizeof(struct gameState));
   result = playMine(HANDPOS, ESTATEPOS, silver, &state);
@@ -70,7 +71,7 @@ int testPlayMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a non-treasure card for choice1 */
+  /* Test using a non-treasure card for choice1 */
   printf("\n----- Test: choice1 = baron, choice2 = silver\n");
   memcpy(&preState, &state, sizeof(struct gameState));
   result = playMine(HANDPOS, BARONPOS, silver, &state);
@@ -89,8 +90,7 @@ int testPlayMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice 1 and a non-card for
-     choice2 */
+  /* Test using a treasure card for choice 1 and a non-card for choice2 */
   printf("\n----- Test: choice1 = copper, choice2 = treasure_map + 999\n");
   memcpy(&initialState, &state, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
@@ -110,8 +110,7 @@ int testPlayMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice 1 and a non-card for
-     choice2 */
+  /* Test using a treasure card for choice 1 and a non-card for choice2 */
   printf("\n----- Test: choice1 = copper, choice2 = curse - 999\n");
   memcpy(&initialState, &state, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
@@ -131,8 +130,8 @@ int testPlayMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice1 and a non-treasure card
-     for choice 2 */
+  /* Test using a treasure card for choice1 and a non-treasure card for
+     choice 2 */
   printf("\n----- Test: choice1 = copper, choice2 = estate\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
@@ -152,8 +151,8 @@ int testPlayMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice1 and a treasure card
-     that's more than 3 coins more expensive */
+  /* Test using a treasure card for choice1 and a treasure card that's more
+     than 3 coins more expensive */
   printf("\n----- Test: choice1 = copper, choice2 = gold\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
@@ -173,8 +172,8 @@ int testPlayMine() {
     (result == -1)
   );
 
-  /* Test playMine() using a treasure card for choice1 and a treasure card
-     that's up to 3 coins more (silver) */
+  /* Test using a treasure card for choice1 and a treasure card that's up to
+     3 coins more (silver) */
   printf("\n----- Test: choice1 = copper, choice2 = silver\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
   memcpy(&preState, &state, sizeof(struct gameState));
@@ -202,8 +201,7 @@ int testPlayMine() {
   testCount += 1;
   passCount += fakeAssert(
     "Should only affect one instance of choice1 card",
-    (containsCard(copper, state.hand[P1], state.handCount[P1])
-    && state.playedCardCount == 2)
+    (state.hand[P1][COPPER2POS] == copper)
   );
 
   /* Should not affect other players */
@@ -233,6 +231,6 @@ int testPlayMine() {
 }
 
 int main() {
-  testPlayMine();
+  testMine();
   return 0;
 }

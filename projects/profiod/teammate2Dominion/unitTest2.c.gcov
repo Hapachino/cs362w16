@@ -1,0 +1,75 @@
+        -:    0:Source:unitTest2.c
+        -:    0:Graph:unitTest2.gcno
+        -:    0:Data:unitTest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Unit test for isGameOver function
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *  1.	if the stack of province cards is empty, game is over
+        -:    6: *	2.	if three supply piles are empty, the game is over
+        -:    7: *	3.	if neither of these are true, the game continues
+        -:    8: *
+        -:    9: * unitTest2: unitTest2.c dominion.o rngs.o
+        -:   10: *      gcc -o unitTest2 -g unitTest2.c dominion.o rngs.o $(FLAGS)
+        -:   11: *
+        -:   12: */
+        -:   13:
+        -:   14:#include "dominion.h"
+        -:   15:#include "dominion_helpers.h"
+        -:   16:#include <string.h>
+        -:   17:#include <stdio.h>
+        -:   18:#include <assert.h>
+        -:   19:#include "rngs.h"
+        -:   20:
+        -:   21://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   22:#define NOISY_TEST 1
+        -:   23:
+        1:   24:int main() {
+        -:   25:    int i, p, new_game, isOver;
+        1:   26:    int seed = 1000;
+        1:   27:    int numPlayer = 1;
+        -:   28:    int copper_coins, silver_coins, gold_coins;
+        -:   29:    int province_count;
+        -:   30:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   31:                 remodel, smithy, village, baron, great_hall};
+        -:   32:    struct gameState G;
+        -:   33:
+        1:   34:    printf("TESTING isGameOver()\n");
+        2:   35:    for(p = 0; p < numPlayer; ++p) {
+        -:   36:        //tests if three supply piles are empty
+        6:   37:        for(copper_coins = 0; copper_coins < 5; ++copper_coins) {
+       30:   38:            for(silver_coins = 0; silver_coins < 5; ++silver_coins) {
+      150:   39:                for(gold_coins = 0; gold_coins < 5; ++gold_coins) {
+      750:   40:                    for(province_count = 0; province_count < 5; ++province_count) {
+        -:   41:                        //clear the game state
+      625:   42:                        memset(&G, 23, sizeof(struct gameState));
+        -:   43:                        //initialize a new game
+      625:   44:                        new_game = initializeGame(numPlayer, k, seed, &G);
+        -:   45:                        //set game state
+      625:   46:                        G.supplyCount[province] = province_count;
+      625:   47:                        G.supplyCount[copper] = copper_coins;
+      625:   48:                        G.supplyCount[silver] = silver_coins;
+      625:   49:                        G.supplyCount[gold] = gold_coins;
+        -:   50:
+        -:   51:                        //test if game is over
+      625:   52:                        isOver = isGameOver(&G);
+        -:   53:#if (NOISY_TEST == 1)
+      625:   54:                        printf("----------------------\nProvince = %d, Copper coins = %d, Silver coins = %d, Gold coins = %d\n",
+        -:   55:                               province_count, copper_coins, silver_coins, gold_coins);
+      625:   56:                        if(isOver)
+      129:   57:                            printf("Game over = YES\n");
+        -:   58:                        else
+      496:   59:                            printf("Game over = NO\n");
+        -:   60:#endif
+        -:   61:                    }
+        -:   62:                }
+        -:   63:            }
+        -:   64:        }
+        -:   65:    }
+        -:   66:
+        1:   67:    printf("\nAll tests passed: isGameOver()\n");
+        -:   68:
+        1:   69:    return 0;
+        -:   70:}

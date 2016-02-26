@@ -510,7 +510,7 @@ int scoreFor( int player, struct gameState *state )
 		};
 		if (state->discard[player][i] == great_hall)
 		{
-			//score = score + 1;
+			score = score + 1;
 			score = score + 0;
 			totalCards++;
 		};

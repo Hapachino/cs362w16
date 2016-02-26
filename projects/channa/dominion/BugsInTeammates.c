@@ -6,6 +6,7 @@ Assignment 5: BugsInTeammates.c
 /**********************************
 teammate1Dominion - Andrew Calhoun
 **********************************/
+Number of bugs found: 7 (including 1 that may or may not be a bug)
 
 	unittest1: updateCoins()
 		All tests passed.
@@ -134,9 +135,89 @@ teammate1Dominion - Andrew Calhoun
 				choice1 cost: 2, choice2 cost: 6
 				Result: 0, Expected: -1
 
+	randomtestadventurer:
+		Changes in my test to match teammate's refactored code:
+			- changed playAdventurer(&testG, p); to playAdventurer(&testG, p, 0, 0, 0, 0);
+
+		***Bug found***
+			After playing the adventurer card, the deck count, discard count, and hand count are all incorrect.
+			A segmentation fault occurs during Random Deck Test 2.
+
+			----------------- Random Deck Test 1
+			----------------- Initial counts
+			DECK
+			Position 0, Card: 13
+			Position 1, Card: 4
+			Position 2, Card: 11
+			Position 3, Card: 21
+			Position 4, Card: 6
+			Position 5, Card: 6
+			Position 6, Card: 12
+			Position 7, Card: 21
+			Position 8, Card: 22
+			Position 9, Card: 4
+			DISCARD
+			HAND
+			Position 0, Card: 1
+			Position 1, Card: 1
+			Position 2, Card: 1
+			Position 3, Card: 1
+			Position 4, Card: 1
+			----------------- After playAdventurer
+			DECK
+			Position 0, Card: 13
+			Position 1, Card: 4
+			Position 2, Card: 11
+			Position 3, Card: 21
+			Position 4, Card: 6
+			Position 5, Card: 6
+			Position 6, Card: 12
+			Position 7, Card: 21
+			Position 8, Card: 22
+			Deck count: 9, Expected: 5
+			----------------- TEST FAILED!
+			DISCARD
+			Discard count: 0, Expected: 3
+			----------------- TEST FAILED!
+			HAND
+			Position 0, Card: 1
+			Position 1, Card: 1
+			Position 2, Card: 1
+			Position 3, Card: 1
+			Position 4, Card: 1
+			Position 5, Card: 4
+			Hand count: 6, Expected: 7
+			----------------- TEST FAILED!
+
+	randomtestcard:
+		Changes in my test to match teammate's refactored code:
+			- changed playRemodel(&testG, p, trashIndex, gainCard, 0); to cardEffect(remodel, 1, toTest[i], 0, &testG, 0, 0);
+
+		***Bug found***
+			Sometimes, playing the remodel card results in a correct return value. Other times, remodel does a trash for gain
+			when the card to gain has a value that is more than 2 coins the value of the card being trashed. Additionally,
+			remodel may fail to trash a card to gain a card that the player is eligible to gain.
+
+			Random Test 30
+			choice1 cost: 3, choice2 cost: 6
+			Result: 0, Expected: -1
+
+			Random Test 993
+			choice1 cost: 6, choice2 cost: 3
+			Result: -1, Expected: 0
+			
+			Random Test 994
+			choice1 cost: 5, choice2 cost: 4
+			Result: -1, Expected: 0
+
+			Random Test 995
+			choice1 cost: 5, choice2 cost: 3
+			Result: 0, Expected: 0
+
 /**********************************
 teammate2Dominion - Jonathan Lagrew
 **********************************/
+Number of bugs found: 8 (including 2 that may or may not be a bugs)
 
 	unittest1: updateCoins()
 		All tests passed.
@@ -239,3 +320,124 @@ teammate2Dominion - Jonathan Lagrew
 
 				choice1 cost: 2, choice2 cost: 6
 				Result: 0, Expected: -1
+
+	randomtestadventurer:
+		Changes in my test to match teammate's refactored code:
+			- changed playAdventurer(&testG, p); to playAdventurer(&testG);
+
+		***Bug found***
+			Discard count and hand count are incorrect when there are no treasures in the deck.
+			----------------- Random Deck Test 2
+			----------------- Initial counts
+			DECK
+			Position 0, Card: 14
+			Position 1, Card: 10
+			Position 2, Card: 11
+			Position 3, Card: 22
+			Position 4, Card: 11
+			Position 5, Card: 12
+			Position 6, Card: 13
+			Position 7, Card: 14
+			Position 8, Card: 11
+			Position 9, Card: 10
+			DISCARD
+			HAND
+			Position 0, Card: 1
+			Position 1, Card: 1
+			Position 2, Card: 1
+			Position 3, Card: 1
+			Position 4, Card: 1
+			----------------- After playAdventurer
+			DECK
+			Deck count: 0, Expected: 0
+			DISCARD
+			Position 0, Card: 1
+			Position 1, Card: 1
+			Position 2, Card: 1
+			Position 3, Card: 1
+			Position 4, Card: 1
+			Position 5, Card: 1
+			Position 6, Card: 14
+			Position 7, Card: 10
+			Position 8, Card: 11
+			Position 9, Card: 22
+			Position 10, Card: 11
+			Position 11, Card: 12
+			Position 12, Card: 13
+			Position 13, Card: 14
+			Position 14, Card: 11
+			Discard count: 15, Expected: 10
+			----------------- TEST FAILED!
+			HAND
+			Hand count: -1, Expected: 5
+			----------------- TEST FAILED!
+
+		***Possible bug found***
+			Discard count is off by one.
+			----------------- Random Deck Test 1
+			----------------- Initial counts
+			DECK
+			Position 0, Card: 13
+			Position 1, Card: 4
+			Position 2, Card: 11
+			Position 3, Card: 21
+			Position 4, Card: 6
+			Position 5, Card: 6
+			Position 6, Card: 12
+			Position 7, Card: 21
+			Position 8, Card: 22
+			Position 9, Card: 4
+			DISCARD
+			HAND
+			Position 0, Card: 1
+			Position 1, Card: 1
+			Position 2, Card: 1
+			Position 3, Card: 1
+			Position 4, Card: 1
+			----------------- After playAdventurer
+			DECK
+			Position 0, Card: 13
+			Position 1, Card: 4
+			Position 2, Card: 11
+			Position 3, Card: 21
+			Position 4, Card: 6
+			Deck count: 5, Expected: 5
+			DISCARD
+			Position 0, Card: 12
+			Position 1, Card: 21
+			Discard count: 2, Expected: 3
+			----------------- TEST FAILED!
+			HAND
+			Position 0, Card: 1
+			Position 1, Card: 1
+			Position 2, Card: 1
+			Position 3, Card: 1
+			Position 4, Card: 1
+			Position 5, Card: 4
+			Position 6, Card: 6
+			Hand count: 7, Expected: 7
+
+	randomtestcard:
+		Changes in my test to match teammate's refactored code:
+			- changed playRemodel(&testG, p, trashIndex, gainCard, 0); to cardEffect(remodel, 1, toTest[i], 0, &testG, 0, 0);
+
+		***Bug found***
+			Sometimes, playing the remodel card results in a correct return value. Other times, remodel does a trash for gain
+			when the card to gain has a value that is more than 2 coins the value of the card being trashed. Additionally,
+			remodel may fail to trash a card to gain a card that the player is eligible to gain.
+
+			Random Test 30
+			choice1 cost: 3, choice2 cost: 6
+			Result: 0, Expected: -1
+
+			Random Test 993
+			choice1 cost: 6, choice2 cost: 3
+			Result: -1, Expected: 0
+			
+			Random Test 994
+			choice1 cost: 5, choice2 cost: 4
+			Result: -1, Expected: 0
+
+			Random Test 995
+			choice1 cost: 5, choice2 cost: 3
+			Result: 0, Expected: 0

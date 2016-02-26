@@ -16,6 +16,8 @@
  */
 
 
+import java.util.regex.Pattern;
+
 import junit.framework.TestCase;
 
 
@@ -149,16 +151,6 @@ public class UrlValidatorTest extends TestCase {
 	   assertTrue(urlVal.isValid("ftp://foo.com:20/folder"));				
 	   assertFalse(urlVal.isValid("ftp://foo.com:20000/folder"));			//Should be true, possible bug
 	   
-	   // Test Mailto scheme
-	   // All mailto schemes return false - bug?
-	   /*
-	   System.out.println("Mailto Scheme Test");
-	   urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
-	   assertTrue(urlVal.isValid("mailto:name@company.com"));
-	   assertTrue(urlVal.isValid("mailto:foo@bar"));
-	   assertFalse(urlVal.isValid("mailto:www.google.com"));
-	   assertTrue(urlVal.isValid("mailto:name@company.com:25000"));
-	   */
    }
    
    
@@ -166,46 +158,115 @@ public class UrlValidatorTest extends TestCase {
     *       PART 2: INPUT DOMAIN PARTITIONING
     ************************************************/
    
-   public void testYourFirstPartition()
-   {
+   public void testYourFirstPartition(){
 	   System.out.println("Testing partition: full URL pattern");
-	   //TODO: Test full URLs based on ASCII_PATTERN
+	   
+	   //Test full URLs based on ASCII_PATTERN
+	   /*Notes: According to RFC3986 the following ASCII characters are allowed in a URL: 
+	    *   Reserved characters - ! # $ % & ' ( ) * + , / : ; = ? @ [ ] 
+	    *   Unreserved characters - all alpha, all digits, and - . _ ~
+	    *   No other characters are allowed unless they are encoded using %
+	    *   Authority further restricts the hostname to alphanumeric with . and - only
+	    */
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   //valid, unreserved chars (in authority)
+	   String url = "http://www.123-abc.456-xyz.com";	
+	   assertTrue(urlVal.isValid(url));
+	   //invalid, unreserved chars (in authority)
+	   url = "http://www.123_abc~456_xyz.com";	
+	   assertFalse(urlVal.isValid(url));
+	   //valid, unreserved chars (in path)
+	   url = "http://www.oregonstate.edu/~user_first.last-name";	
+	   assertTrue(urlVal.isValid(url));
+	   //invalid chars
+	   url = "http://www<google>com";	
+	   assertFalse(urlVal.isValid(url));
+	   //invalid chars
+	   url = "http://www google com";
+	   assertFalse(urlVal.isValid(url));
+	   //invalid non-printable chars, 8=backspace, 27=escape
+	   url = "http://www" + (char)8 + "google" + (char)27 + "com";	
+	   assertFalse(urlVal.isValid(url));
+	   //invalid extended ASCII chars (cafe with accent)
+	   url = "http://www.caf" + (char)130 + ".com";	
+	   assertFalse(urlVal.isValid(url));
+	   //encoded characters (in authority)
+	   url = "http://www.my%20company.com";	
+	   assertFalse(urlVal.isValid(url));
+	   //encoded characters (in path), %20=space
+	   url = "http://www.mycompany.com/my%20file";	
+	   assertTrue(urlVal.isValid(url));
+	   //encoded characters (in path), %E9=accented e
+	   url = "http://www.mycompany.com/caf%E9";	
+	   assertTrue(urlVal.isValid(url));
+   	   
 	   
 	   //TODO: Test full URLs based on URL_PATTERN
 	  
    }
    
    public void testYourSecondPartition(){
-	   //Test URL Schemes
 	   System.out.println("Testing partition: schemes");
+	   
+	   //Test valid and invalid URL schemes
+	   System.out.println("Testing partition: schemes > standard");
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   for (int i = 0; i < testSchemas.length; i++){ 
 		   ResultPair url = URLmaker(i,0,0,0,0);
 		   assertEquals(url.valid, urlVal.isValid(url.item));
 	   }
 	   
-	   //TODO: Test custom scheme supplied in isValid constructor
+	   //Test custom schemes supplied in isValid constructor
+	   System.out.println("Testing partition: schemes > custom");
+	   String[] mySchemes = {"foo", "boo", "moo"};
+	   UrlValidator customUrlVal = new UrlValidator(mySchemes);
+	   assertTrue(customUrlVal.isValid("foo://www.google.com"));
+	   assertTrue(customUrlVal.isValid("boo://www.google.com"));
+	   assertTrue(customUrlVal.isValid("moo://www.google.com"));
+	   assertFalse(customUrlVal.isValid("zoo://www.google.com"));
+	   assertFalse(customUrlVal.isValid("http://www.google.com"));
+	   assertFalse(customUrlVal.isValid("https://www.google.com"));
+	   assertFalse(customUrlVal.isValid("ftp://www.google.com"));
 	   
    }
    
    public void testYourThirdPartition(){
-	   //Test URL Authority
+	   System.out.println("Testing partition: authorities");
+	   
+	   //Test valid and invalid URL hosts
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   System.out.println("Testing partition: authorities > hosts");
 	   for (int i = 0; i < testHosts.length; i++){ 
 		   ResultPair url = URLmaker(0,i,0,0,0);
 		   assertEquals(url.valid, urlVal.isValid(url.item));
 	   }
+	   
+	   //Test valid and invalid URL ports
 	   System.out.println("Testing partition: authorities > ports");
 	   for (int i = 0; i < testPorts.length; i++){ 
 		   ResultPair url = URLmaker(0,0,i,0,0);
 		   assertEquals(url.valid, urlVal.isValid(url.item));
 	   }
 	   
-	   //TODO: Test file: with no authority
-	   
-	   //TODO: Test custom validator
-	   
+	   //Test no authority when using file: scheme
+	   System.out.println("Testing partition: authorities > none with file: scheme");
+	   assertTrue(urlVal.isValid("file:///myfile.txt"));
+	   assertTrue(urlVal.isValid("file:///folder/myfile.txt"));
+	   assertFalse(urlVal.isValid("file://localhost/myfile.txt"));
+	   	   	   
+	   //Test custom validator
+	   //Regex: hostname = 1-5 digits, port = 1-3 letters, separated by :
+	   System.out.println("Testing partition: authorities > custom");
+	   RegexValidator myAuthorityRegex = new RegexValidator("^[0-9]{1,5}:[a-zA-z]{1,3}$");
+	   UrlValidator customUrlVal = new UrlValidator(myAuthorityRegex, UrlValidator.ALLOW_ALL_SCHEMES);
+	   assertTrue(customUrlVal.isValid("http://123:abc"));
+	   assertTrue(customUrlVal.isValid("http://12345:a"));
+	   assertFalse(customUrlVal.isValid("http://123456:a"));
+	   assertFalse(customUrlVal.isValid("http://123:abcd"));
+	   assertFalse(customUrlVal.isValid("http://123:80"));
+	   assertFalse(customUrlVal.isValid("http://abc:a"));
+	   assertTrue(customUrlVal.isValid("http://www.google.com"));	//should be false
+	   	   
    }
    
    public void testYourFourthPartition(){

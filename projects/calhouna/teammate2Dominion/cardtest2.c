@@ -109,7 +109,7 @@ int main()
 //    if(!allTestsPassed) printf("Some cards do not have the proper supply. Please see reference materials or restore base game files for proper output.\n");
 
     thisPlayer=0;
-    printf("Player 1 Test -- GIVING SMITHY\n");
+    printf("Player 1 Test -- GIVING SMITHY");
 
     testState.hand[thisPlayer][testState.handCount[thisPlayer]] = smithy;
     testState.handCount[thisPlayer]++;
@@ -167,7 +167,15 @@ int main()
     printf("Smithy Granted Hand Count: %d\n", testState.handCount[thisPlayer]);
     printf("Pre-Smithy Granted Hand Count: %d\n", state.handCount[thisPlayer]);
 
-    playSmithy(&testState, thisPlayer);
+    playSmithy(&testState, 0);
+
+    for(i=0; i < testState.handCount[thisPlayer]; i++)
+    {
+        printf("Position %d, card: %d\n", i, testState.hand[thisPlayer][i]);
+
+    }
+
+    printf("\n\n");
 
     if(testState.handCount[thisPlayer] == state.handCount[thisPlayer] + 4) // Should fail, bug gives only two cards. Test also factors in the fact that Smithy Card is granted.
     {
@@ -199,18 +207,6 @@ int main()
         printf("Discard test and check failed.\n");
         allTestsPassed=0;
     }
-
-    printf("Checking expected seed state.\n");
-
-    int seedDeckExpect[] = { 4, 4, 4, 4, 4 };
-    for(i=0; i < testState.deckCount[thisPlayer]; i++)
-    {
-        printf("Position %d Deck Card: %d\n", i, testState.deck[thisPlayer][i]);
-       if(seedDeckExpect[i] != testState.deck[thisPlayer][i]) allTestsPassed=0;
-    }
-
-    if(allTestsPassed) printf("Seed Deck Test Passed. State is not corrupted.\n");
-    else printf("Test failed. Please check code or revise seed.\n");
 
     printf("Checking hand and seed state.\n");
 

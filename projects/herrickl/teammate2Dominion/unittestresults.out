@@ -1,0 +1,951 @@
+make[1]: Entering directory `/nfs/stak/students/h/herrickl/term5/groupwork/teammate2Dominion'
+./cardtest1
+-------Beginning tests on the Smithy card.-------
+
+1. Did player 1's hand change:
+Failed. Hand count is 5 + 3 - 1 = 6
+
+2. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+
+3. Did player 1's deck change - 3:
+Failed. Deck count is 5 - 3 = 3
+
+4. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+5. Did player 1's discard pile change - 1:
+Failed. Discard count is 0 - 1 = 0
+
+6. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 1 = 0
+
+7. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+8. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+9. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+10. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+11. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+12. Did the number of actions change + 0':
+Passed. Numbers of actions is 1 + 0 = 1
+
+13. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+14. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+15. Did the played card count change + 1':
+Passed. Played card count is 0 + 1 = 1
+
+-------Completed tests on the Smithy card.-------
+./cardtest2
+-------Beginning tests on the Adventurer card.-------
+
+1. Did player 1's hand change:
+Passed. Hand count is 5 > 8
+
+2. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+3. Did player 1's deck change:
+Failed. Deck count is 5 - (0 + 2) = 2
+
+4. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+5. Did player 1's discard pile change:
+Passed. Discard count is 0 - 1 <= 0
+
+6. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+7. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+8. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+9. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+10. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+11. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+12. Did the number of actions change + 0':
+Passed. Numbers of actions is 1 + 0 = 1
+
+13. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+14. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+15. Did the played card count change + 1':
+Failed. Played card count is 0 + 1 = 0
+
+16. Did the played 1 draw 2 treasure cards':
+Failed. Played card count is 36 + 2 = 39
+
+-------Completed tests on the Adventurer card.-------
+./cardtest3
+-------Beginning tests on the Village card.-------
+
+1. Did player 1's hand change:
+Passed. Hand count is 5 + 1 - 1 = 5
+
+2. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+
+3. Did player 1's deck change - 3:
+Failed. Deck count is 5 - 3 = 4
+
+4. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+5. Did player 1's discard pile change - 1:
+Failed. Discard count is 0 - 1 = 0
+
+6. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+7. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+8. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+9. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+10. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+11. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+12. Did the number of actions change + 2':
+Failed. Phase is 1 + 2 = 2
+
+13. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+14. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+15. Did the played card count change + 1':
+Passed. Played card count is 0 + 1 = 1
+
+-------Completed tests on the Village card.-------
+./cardtest4
+-------Beginning tests on the Outpost card.-------
+
+1. Did player 1's hand change:
+Failed. Hand count is 5 = 4
+
+2. Did player 2's hand change:
+Passed.  Hand count is 0 = 0
+
+3. Did player 1's deck change - 4:
+Passed. Deck count is 5 = 5
+
+4. Did player 2's deck change:
+Passed. Deck count is 10 = 10
+
+5. Did player 1's discard pile change:
+Failed. Discard count is 0 = 0
+
+6. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+7. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+8. Did the outpost played change + 1:
+Failed. Outpost played is 0 + 1 = 2
+
+9. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+10. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+11. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+12. Did the number of actions change + 0':
+Failed. Phase is 1 + 1 = 1
+
+13. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+14. Did the number of buys change':
+Passed. Number of buys is 1 = 1
+
+15. Did the played card count change':
+Passed. Played card count is 0 + 1= 1
+
+-------Completed tests on the Outpost card.-------
+./unittest1
+-------Beginning tests on the discardCard function.-------
+---Testing player 1 flag = 0---
+
+1. Did player 1's hand change:
+Passed. Hand count is 5 - 1 = 4
+
+2. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+3. Did player 1's deck change:
+Passed. Deck count is 5 = 5
+
+4. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+5. Did player 1's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+6. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 = 0
+
+7. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+8. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+9. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+10. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+11. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+12. Did the number of actions change:
+Passed. Numbers of actions is 1 = 1
+
+13. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+14. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+15. Did the played card count change + 1':
+Passed. Played card count is 0 + 1 = 1
+---Testing player 2 flag = 0---
+
+16. Did player 1's hand change:
+Passed. Hand count is 5 = 5
+
+17. Did player 2's hand change:
+Passed.  Hand count is 0 - 1 = -1
+18. Did player 1's deck change:
+Passed. Deck count is 5 = 5
+
+19. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+20. Did player 1's discard pile change - 0:
+Passed. Discard count is 0 = 0
+
+21. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+22. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+23. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+24. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+25. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+26. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+27. Did the number of actions change:
+Passed. Numbers of actions is 1 = 1
+
+28. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+29. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+30. Did the played card count change + 1':
+Passed. Played card count is 0 + 1 = 1
+---Testing player 1 flag = 1---
+
+31. Did player 1's hand change:
+Passed. Hand count is 5 - 1 = 4
+
+32. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+33. Did player 1's deck change:
+Passed. Deck count is 5 = 5
+
+34. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+35. Did player 1's discard pile change - 0:
+Failed. Discard count is 0 - 1 = 0
+
+36. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 = 0
+
+37. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+38. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+39. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+40. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+41. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+42. Did the number of actions change:
+Passed. Numbers of actions is 1 = 1
+
+43. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+44. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+45. Did the played card count change + 0':
+Passed. Played card count is 0 + 0 = 0
+---Testing player 2 flag = 1---
+
+46. Did player 1's hand change:
+Passed. Hand count is 5 = 5
+
+47. Did player 2's hand change:
+Passed.  Hand count is 0 - 1 = -1
+48. Did player 1's deck change:
+Passed. Deck count is 5 = 5
+
+49. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+50. Did player 1's discard pile change - 0:
+Passed. Discard count is 0 = 0
+
+51. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 1 = 0
+
+52. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+53. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+54. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+55. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+56. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+57. Did the number of actions change:
+Passed. Numbers of actions is 1 = 1
+
+58. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+59. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+60. Did the played card count change + 0':
+Passed. Played card count is 0 + 0 = 0
+
+-------Completed tests on the discardCard card.-------
+./unittest2
+-------Beginning tests on the Draw Card card.-------
+---Testing player 0---
+
+1. Did player 1's hand change:
+Passed. Hand count is 5 + 1 = 6
+
+2. Did player 1's deck change:
+Passed. Deck count is 5 - 1 = 4
+
+4. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+5. Did player 1's discard pile change:
+Passed. Discard count is 0 = 0
+
+6. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 = 0
+
+7. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+8. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+9. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+10. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+11. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+12. Did the number of actions change:
+Passed. Numbers of actions is 1 = 1
+
+13. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+14. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+15. Did the played card count change':
+Passed. Played card count is 0 + 0 = 0
+---Testing player 1---
+
+16. Did player 1's hand change:
+Passed. Hand count is 5 = 5
+
+17. Did player 2's hand change:
+Passed.  Hand count is 0 + 1 = 1
+18. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 9
+
+19. Did player 1's discard pile change:
+Passed. Discard count is 0 = 0
+
+20. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 = 0
+
+21. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+22. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+23. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+24. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+25. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+26. Did the number of actions change:
+Passed. Numbers of actions is 1 = 1
+
+27. Did the coins change + 0':
+Passed. Coins are 4 + 0 = 4
+
+28. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+29. Did the played card count change':
+Passed. Played card count is 0 + 0 = 0
+
+-------Completed tests on the Draw Card card.-------
+./unittest3
+-------Beginning tests on the Update Coins card.-------
+
+1. Did the coins change + 0':
+Passed. Coins are 4 = 4
+
+2. Did player 1's hand change:
+Passed. Hand count is 5 = 5
+
+3. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+4. Did player 1's deck change:
+Passed. Deck count is 5 = 5
+
+5. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+6. Did player 1's discard pile change:
+Passed. Discard count is 0 = 0
+
+7. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 = 0
+
+8. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+9. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+10. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+11. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+12. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+13. Did the number of actions change':
+Passed. Numbers of actions is 1 = 1
+
+14. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+15. Did the played card count change':
+Passed. Played card count is 0 + 0 = 0
+
+-------Completed tests on the Update Coins card.-------
+./unittest4
+-------Beginning tests on the Gain Card card.-------
+Testing player 1 with gain card flag set to 0
+
+1. Did player 1's hand change:
+Passed.  Hand count is 5 - 0 = 5
+
+2. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+
+3. Did player 1's deck change - 0:
+Passed. Deck count is 5 - 0 = 5
+
+4. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+5. Did player 1's discard pile change + 1:
+Passed. Discard count is 0 + 1 = 1
+
+6. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+7. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+8. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+9. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+10. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+11. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+12. Did the number of actions change + 2':
+Passed. Numbers of actions is 1 + 2 = 1
+
+13. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+14. Did the played card count change + 1':
+Passed. Played card count is 0 + 0 = 0
+Testing player 1 with gain card flag set to 1
+
+15. Did player 1's hand change:
+Passed.  Hand count is 5 - 0 = 5
+
+16. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+
+17. Did player 1's deck change + 1:
+Passed. Deck count is 5 + 1 = 6
+
+18. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+19. Did player 1's discard pile change + 1:
+Passed. Discard count is 0 - 0 = 0
+
+20. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+21. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+22. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+23. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+24. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+25. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+26. Did the number of actions change + 2':
+Passed. Numbers of actions is 1 + 2 = 1
+
+27. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+28. Did the played card count change + 1':
+Passed. Played card count is 0 + 0 = 0
+Testing player 1 with gain card flag set to 2
+
+29. Did player 1's hand change + 1:
+Passed. Hand count is 5 + 1= 6
+
+30. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+
+31. Did player 1's deck change:
+Passed. Deck count is 5  = 5
+
+32. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+33. Did player 1's discard pile change + 1:
+Passed. Discard count is 0 - 0 = 0
+
+34. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+35. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+36. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+37. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+38. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+39. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+40. Did the number of actions change + 2':
+Passed. Numbers of actions is 1 + 2 = 1
+
+41. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+42. Did the played card count change + 1':
+Passed. Played card count is 0 + 0 = 0
+Testing player 2 with gain card flag set to 0
+
+43. Did player 1's hand change:
+Passed.  Hand count is 5 - 0 = 5
+
+44. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+
+45. Did player 1's deck change - 0:
+Passed. Deck count is 5 - 0 = 5
+
+46. Did player 2's deck change - 0:
+Passed. Deck count is 10 - 0 = 10
+
+47. Did player 1's discard pile change + 1:
+Passed. Discard count is 0 - 0 = 0
+
+48. Did player 2's discard pile change +1:
+Passed. Discard count is 0 + 1 = 1
+
+49. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+50. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+51. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+52. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+53. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+54. Did the number of actions change + 2':
+Passed. Numbers of actions is 1 + 2 = 1
+
+55. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+56. Did the played card count change + 1':
+Passed. Played card count is 0 + 0 = 0
+Testing player 2 with gain card flag set to 1
+
+57. Did player 1's hand change:
+Passed.  Hand count is 5 - 0 = 5
+
+58. Did player 2's hand change:
+Passed.  Hand count is 0 - 0 = 0
+
+59. Did player 1's deck change + 0:
+Passed. Deck count is 5 = 5
+
+60. Did player 2's deck change + 1:
+Passed. Deck count is 10 + 1 = 11
+
+61. Did player 1's discard pile change + 1:
+Passed. Discard count is 0 - 0 = 0
+
+62. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+63. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+64. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+65. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+66. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+67. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+68. Did the number of actions change + 2':
+Passed. Numbers of actions is 1 + 2 = 1
+
+69. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+70. Did the played card count change + 1':
+Passed. Played card count is 0 + 0 = 0
+Testing player 2 with gain card flag set to 2
+
+71. Did player 1's hand change + 0:
+Passed. Hand count is 5 = 5
+
+72. Did player 2's hand change + 1:
+Passed.  Hand count is 0 + 1 = 1
+73. Did player 1's deck change - 0:
+Passed. Deck count is 5 = 5
+
+74. Did player 2's deck change - 1:
+Passed. Deck count is 10 - 1 = 10
+
+75. Did player 1's discard pile change + 1:
+Passed. Discard count is 0 - 0 = 0
+
+76. Did player 2's discard pile change - 0:
+Passed. Discard count is 0 - 0 = 0
+
+77. Did the number of players change - 0:
+Passed. Player count is 2 - 0 = 2
+
+78. Did the outpost played change - 0:
+Passed. Outpost played is 0 - 0 = 0
+
+79. Did the outpost turn change - 0:
+Passed. Outpost turn is 0 = 0
+
+80. Did whose turn it is not chage:
+Passed. Player's turn is 0 = 0
+
+81. Did the phase change + 0':
+Passed. Phase is 0 + 0 = 0
+
+82. Did the number of actions change + 2':
+Passed. Numbers of actions is 1 + 2 = 1
+
+83. Did the number of buys change + 0':
+Passed. Number of buys is 1 + 0 = 1
+
+84. Did the played card count change + 1':
+Passed. Played card count is 0 + 0 = 0
+
+-------Completed tests on the Gain Card card.-------
+make[1]: Leaving directory `/nfs/stak/students/h/herrickl/term5/groupwork/teammate2Dominion'
+-------Code Coverage-------
+make[1]: Entering directory `/nfs/stak/students/h/herrickl/term5/groupwork/teammate2Dominion'
+gcov -f -b dominion.c
+Function 'compare'
+Lines executed:83.33% of 6
+Branches executed:100.00% of 4
+Taken at least once:75.00% of 4
+No calls
+
+Function 'supplyCount'
+Lines executed:100.00% of 2
+No branches
+No calls
+
+Function 'fullDeckCount'
+Lines executed:0.00% of 9
+Branches executed:0.00% of 12
+Taken at least once:0.00% of 12
+No calls
+
+Function 'whoseTurn'
+Lines executed:100.00% of 2
+No branches
+No calls
+
+Function 'handCard'
+Lines executed:0.00% of 3
+No branches
+Calls executed:0.00% of 1
+
+Function 'numHandCards'
+Lines executed:0.00% of 2
+No branches
+Calls executed:0.00% of 1
+
+Function 'isGameOver'
+Lines executed:0.00% of 10
+Branches executed:0.00% of 8
+Taken at least once:0.00% of 8
+No calls
+
+Function 'scoreFor'
+Lines executed:0.00% of 24
+Branches executed:0.00% of 42
+Taken at least once:0.00% of 42
+Calls executed:0.00% of 3
+
+Function 'getWinners'
+Lines executed:0.00% of 24
+Branches executed:0.00% of 22
+Taken at least once:0.00% of 22
+Calls executed:0.00% of 2
+
+Function 'getCost'
+Lines executed:0.00% of 30
+Branches executed:0.00% of 28
+Taken at least once:0.00% of 28
+No calls
+
+Function 'gardensFun'
+Lines executed:0.00% of 2
+No branches
+No calls
+
+Function 'discardCard'
+Lines executed:84.62% of 13
+Branches executed:100.00% of 6
+Taken at least once:66.67% of 6
+No calls
+
+Function 'outpostFun'
+Lines executed:100.00% of 5
+No branches
+Calls executed:100.00% of 2
+
+Function 'gainCard'
+Lines executed:92.31% of 13
+Branches executed:100.00% of 6
+Taken at least once:83.33% of 6
+Calls executed:100.00% of 1
+
+Function 'buyCard'
+Lines executed:0.00% of 18
+Branches executed:0.00% of 6
+Taken at least once:0.00% of 6
+Calls executed:0.00% of 4
+
+Function 'updateCoins'
+Lines executed:81.82% of 11
+Branches executed:100.00% of 8
+Taken at least once:75.00% of 8
+No calls
+
+Function 'shuffle'
+Lines executed:93.75% of 16
+Branches executed:100.00% of 8
+Taken at least once:87.50% of 8
+Calls executed:100.00% of 2
+
+Function 'drawCard'
+Lines executed:36.00% of 25
+Branches executed:33.33% of 6
+Taken at least once:16.67% of 6
+Calls executed:0.00% of 1
+
+Function 'villageFun'
+Lines executed:100.00% of 6
+No branches
+Calls executed:100.00% of 3
+
+Function 'smithyFun'
+Lines executed:100.00% of 6
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+Calls executed:100.00% of 3
+
+Function 'endTurn'
+Lines executed:0.00% of 20
+Branches executed:0.00% of 6
+Taken at least once:0.00% of 6
+Calls executed:0.00% of 3
+
+Function 'adventurerFun'
+Lines executed:66.67% of 18
+Branches executed:66.67% of 12
+Taken at least once:41.67% of 12
+Calls executed:66.67% of 3
+
+Function 'cardEffect'
+Lines executed:10.71% of 224
+Branches executed:15.68% of 185
+Taken at least once:7.03% of 185
+Calls executed:16.13% of 62
+
+Function 'playCard'
+Lines executed:0.00% of 14
+Branches executed:0.00% of 10
+Taken at least once:0.00% of 10
+Calls executed:0.00% of 3
+
+Function 'initializeGame'
+Lines executed:83.87% of 62
+Branches executed:95.65% of 46
+Taken at least once:78.26% of 46
+Calls executed:100.00% of 5
+
+Function 'initTestGame'
+Lines executed:0.00% of 60
+Branches executed:0.00% of 44
+Taken at least once:0.00% of 44
+Calls executed:0.00% of 4
+
+Function 'kingdomCards'
+Lines executed:0.00% of 13
+No branches
+No calls
+
+Function 'newGame'
+Lines executed:0.00% of 3
+No branches
+No calls
+
+File 'dominion.c'
+Lines executed:26.52% of 641
+Branches executed:25.38% of 461
+Taken at least once:17.79% of 461
+Calls executed:27.18% of 103
+dominion.c:creating 'dominion.c.gcov'
+
+make[1]: Leaving directory `/nfs/stak/students/h/herrickl/term5/groupwork/teammate2Dominion'

@@ -33,7 +33,7 @@ buyCard: unittest4.c dominion.o rngs.o
 testVillage: cardtest1.c dominion.o rngs.o
 	gcc -o card1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
 	
-testBaron: cardtest2.c dominion.o rngs.o
+testSalvager: cardtest2.c dominion.o rngs.o
 	gcc -o card2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
 	
 testSmithy: cardtest3.c dominion.o rngs.o
@@ -53,6 +53,9 @@ randomtestSmithy: randomtestcard.c dominion.o rngs.o
 	
 randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
 	gcc -o randomadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestFeast: refactoredCardTest.c dominion.o rngs.o
+	gcc -o testFeast -g  refactoredCardTest.c dominion.o rngs.o $(CFLAGS)
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out

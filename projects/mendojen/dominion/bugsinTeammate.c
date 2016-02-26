@@ -207,3 +207,32 @@ discardCount increased
 deckCount decreased
 
 
+
+Bug 5 Description- feast card function
+===========
+Test on feastCard seemed like it hit an infinite loop. The test executed but once it called feastCard, the test did 
+not stop.
+
+Steps to Produce/Reproduce
+--------------------------
+Use the following to reproduce error
+	int* k=kingdomCards(1,2,3,4,5,6,7,8,9,10);
+	G.numPlayers=rand() % 3+1;
+	initializeGame(G.numPlayers,k,1000,&G);
+	p = rand() % 2+1;
+	G.numPlayers=rand() % 3+1;
+    G.deckCount[p] = rand() % MAX_DECK;
+    G.discardCount[p] = rand() % MAX_DECK;
+    G.handCount[p] = rand() % MAX_HAND;
+	G.supplyCount[feast]=rand()%10;
+	feastCard(p,G,0); <- infinite loop here
+	
+Expected Results
+----------------
+Test will execute and display handCount, deckCount, playedCardCount, discardCount, and supplyCount.
+
+
+Actual Results
+--------------
+Test ran and does not end after several minutes. I aborted the test.
+

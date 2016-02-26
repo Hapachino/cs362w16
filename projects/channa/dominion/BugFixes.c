@@ -24,13 +24,13 @@ assisted in fixing bugs in the tests.
 /**********************************
 teammate2Dominion - Jonathan Lagrew
 **********************************/
-Bug 1: scoreFor()
-	I used GDB to set a breakpoint at the scoreFor() function. Jonathan's bug report mentioned fullDeckCount() using the
-	number of curses and not accounting for the number of gardens. With this information, I stepped through the scoreFor()
-	function and printed "fullDeckCount(player, 0, state)". The number printed was indeed the number of curses and not
-	the number of gardens. I changed the code to "fullDeckCount(player, 10, state)" in 3 places (3 for loops: hand,
-	discard, and deck), 10 being the card index for gardens. Printing "fullDeckCount(player, 10, state)" gave the number
-	of gardens this time.
+Bug 1: scoreFor() - "Scores do not equal the expected values."
+
+	Jonathan's bug report mentioned fullDeckCount() using the number of curses and not accounting for the number of gardens. 
+	I used GDB to set a breakpoint at the scoreFor() function. I stepped through the scoreFor() function and printed 
+	"fullDeckCount(player, 0, state)". The number printed was indeed the number of curses and not the number of gardens.
+	I changed the code to "fullDeckCount(player, 10, state)" in 3 places (3 for loops: hand, discard, and deck), 10 being the
+	card index for gardens. Printing "fullDeckCount(player, 10, state)" gave the number of gardens this time.
 
 	However, the changes did not enable the code to pass the tests. I noticed that the for loops for the discard and deck 
 	used the same conditions: "i < state->discardCount[player]". I changed the conditon for the deck to be "i < state->deckCount[player]".
@@ -55,6 +55,14 @@ Bug 1: scoreFor()
 	  // Add gardens effect
 	  score = score + gardens_effect;
 
-Bug 2: smithy
+Bug 2: smithy - "The test found that the wrong amount of the player's cards after playing the smithy card. Instead of 
+	3 cards there should of been 4. This also affected the deckCount and discard pile for the counts."
 
-Bug 3: adventurer
+	I used GDB to set a breakpoint at playSmithy. As I stepped through the function, I saw that "drawCard(currentPlayer, state);"
+	was called 4 times instead of 3 times, resulting in an extra card being drawn. I fixed the bug by changing the "<=" to "<" in
+	"for (i = 0; i <= 3; i++)".
+
+	Continuing to step through the function, I saw that the trash flag had been set in discardCard(handPos, currentPlayer, state, 1);
+	which was not correct as smithy should be discarded after play, not trashed. Fixing the flag only required changing the 1 to a 0.
+
+Bug 3: adventurer - "...non-treasure cards that are drawn after the card is played are not properly accounted for."

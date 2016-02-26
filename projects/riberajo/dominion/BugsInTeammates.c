@@ -15,11 +15,6 @@ Kyle's Bug list ----------------------------------------------------------------
   Player 1 Errors
   - discard count mismatch - Expected 0 (stached deck) - actual 1
 
-  ** Bug #3 Test village room - **
-  FAIL: action count mismatch
-  FAIL: discard count mismatch - expected 2: actual 3
-  Expected: 3   Actual:  2
-  
    ** Bug #4 - scoreFor function - **
      - score not computed correctly
      FAIL TEST: Scores did not compute correctly
@@ -38,10 +33,6 @@ Ava's Bug List -----------------------------------------------------------------
     FAIL: Handcount mismatch - actual + 1
     FAIL: deck count mismatch - actual -5
     FAIL: discard count mismatch - actual + 4
-
-  ** Bug #3  - Test village card - **
-   - Handcount mismatch: expected 3 actual 2
-   - Added card wasn't copper (stached deck/hand) - actual 5
 
     Player 2 state change error
     - Handcount actual -1

@@ -66,3 +66,22 @@ Bug 2: smithy - "The test found that the wrong amount of the player's cards afte
 	which was not correct as smithy should be discarded after play, not trashed. Fixing the flag only required changing the 1 to a 0.
 
 Bug 3: adventurer - "...non-treasure cards that are drawn after the card is played are not properly accounted for."
+
+	I used GDB to set a breakpoint at playAdventurer. The code that deals with non-treasure cards that are drawn is:
+
+		 while(z-1>=0)
+		  {
+		    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+		    z=z-1;
+		  }
+
+	In GDB, I set a watch on the variable "z" and noticed that it did not change after its initialization to 0.
+	This made it so that the while condition could never hold true and thus, the code for handling non-treasure cards drawn
+	was never executed. I fixed the bug by adding a statement in the else block to increment z:
+
+		else
+	    {
+	      temphand[z]=cardDrawn;
+	      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+	      z++;
+	    }

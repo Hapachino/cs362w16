@@ -1,3 +1,94 @@
+<< TESTING unittest1 - updateCoins() >>
+Number of cases passed: 330
+Number of cases failed: 0
+<< TESTING unittest2 - drawCard() >>
+Number of cases passed: 200
+Number of cases failed: 0
+<< TESTING unittest3 - buyCard() >>
+Number of cases passed: 10
+Number of cases failed: 190
+<< TESTING unittest4 - isGameOver() >>
+Number of cases passed: 96
+Number of cases failed: 4
+<< TESTING cardtest1 - smithy  >>
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 2 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 7 handCount: 2
+Player 0
+Old - deckCount: 2 handCount: 7
+New - deckCount: 0 handCount: 8
+Player 1
+Old - deckCount: 7 handCount: 2
+New - deckCount: 4 handCount: 4
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 2 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 7 handCount: 2
+Player 0
+Old - deckCount: 2 handCount: 7
+New - deckCount: 0 handCount: 8
+Player 1
+Old - deckCount: 7 handCount: 2
+New - deckCount: 4 handCount: 4
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 2 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 7 handCount: 2
+Player 0
+Old - deckCount: 2 handCount: 7
+New - deckCount: 0 handCount: 8
+Player 1
+Old - deckCount: 7 handCount: 2
+New - deckCount: 4 handCount: 4
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 2 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 7 handCount: 2
+Player 0
+Old - deckCount: 2 handCount: 7
+New - deckCount: 0 handCount: 8
+Player 1
+Old - deckCount: 7 handCount: 2
+New - deckCount: 4 handCount: 4
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 2 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 7 handCount: 2
+Player 0
+Old - deckCount: 2 handCount: 7
+New - deckCount: 0 handCount: 8
+Player 1
+Old - deckCount: 7 handCount: 2
+New - deckCount: 4 handCount: 4
+Number of cases passed: 0
+Number of cases failed: 20
+<< TESTING cardtest2 - adventurer  >>
+Number of cases passed: 15
+Number of cases failed: 5
+<< TESTING cardtest3 - village  >>
+Number of cases passed: 20
+Number of cases failed: 0
+<< TESTING cardtest4 - councilRoom  >>
+Number of cases passed: 0
+Number of cases failed: 20
+File 'dominion.c'
+Lines executed:35.00% of 580
+Branches executed:34.53% of 417
+Taken at least once:26.38% of 417
+Calls executed:22.11% of 95
+dominion.c:creating 'dominion.c.gcov'
+
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda

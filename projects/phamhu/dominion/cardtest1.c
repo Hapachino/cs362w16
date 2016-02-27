@@ -40,11 +40,11 @@ int main() {
 			{
 				memcpy(&oldGame, &newGame, sizeof(struct gameState));
 				smithyCard(smithy, player, &newGame);
-/*
+
 				printf("Player %d\n", player);
 				printf("Old - deckCount: %d handCount: %d\n", oldGame.deckCount[player], oldGame.handCount[player]);
 				printf("New - deckCount: %d handCount: %d\n", newGame.deckCount[player], newGame.handCount[player]);
-*/
+
 				if((newGame.handCount[player] == oldGame.handCount[player] + 3) && (newGame.deckCount[player] == oldGame.deckCount[player] - 3))
 				{
 					passCount++;

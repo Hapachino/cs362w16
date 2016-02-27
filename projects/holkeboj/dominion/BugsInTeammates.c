@@ -1,4 +1,10 @@
 /*
+Jack Holkeboer
+Oregon State University
+holkeboj@onid.oregonstate.edu
+CS362
+Assignment 5
+
 I ran the following tests against both teammates' code:
 make unittestresults.out (unit tests and card tests)
 make randomtestadventurer.out (random test of Adventurer card)
@@ -15,30 +21,7 @@ areas where the test results for my code diverged from those for my teammates.
 Teammate 1: Kyle Collins (collikyl)
 ************************************
 
-Bug 1: in function discardCard()
-********************************************************************************
-*** The player who plays the discardCard() function does not discard a card. ***
-********************************************************************************
-Look at the results in unittestresults.out for the discardCard() function.
-You will see that for every permutation, the player who is passed to the function
-does not discard a card.  We can tell because their discardCount is unaffected.
-This is how it is tested in my file unittest3.c:
-
-    printf("---- Did player %d discard a card?\n", player);
-    if (testGame.discardCount[player] == cleanGame.discardCount[player] + 1) {
-        printf("Test Passed.\n");
-        testsPassed++;
-    } else {
-        printf("Test Failed.\n");
-        printf("Pre: %d\tPost: %d\n",cleanGame.discardCount[player],testGame.discardCount[player]);
-    }
-    testsRun++;
-                
-(I believe this is a problem with the code as it was given to us.)
-
-How to reproduce: discard a card, then check if the player's discardCount has increased.
-
-Bug 2: 
+Bug 1: 
 ********************************************************************************
 *** Adventurer does not always give player two treasure cards ***
 ********************************************************************************

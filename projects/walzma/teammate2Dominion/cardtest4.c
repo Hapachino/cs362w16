@@ -1,252 +1,452 @@
 /*
-*  Unit Test for remodel
-*
-* Business Requirements:
-*
-*	1. Current player should pick a card from their hand (choice1)
-*   2. Current player should pick a card from a valid supply (choice2)
-*   3. If choice1 cost + 2 is <= choice2:
-*		choice 1 should be trashed
-*		choice 2 added to discard pile
-*   4. Otherwise nothing should happen (no change in gameState, player doesnt use an action)
-*   5. If successfull the only parts of gameState that should change are handCount, discardCount, cardsPlayedCount, cardsPlayed, supplyCount of choice2
-*
-* cardTest4: cardTest4.c dominion.o rngs.o
-*      gcc -o cardTest4 -g cardTest4.c dominion.o rngs.o $(FLAGS)
-*
+Card Test for Remodel card
 */
 
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
 
-void checkState(struct gameState pre, struct gameState post, int currentPlayer, int choice1, int choice2){
-	int i;
-	//assert(pre.numPlayers == post.numPlayers); //number of players
-	if (pre.numPlayers != post.numPlayers)
-	{
-		printf("Num Players Changed TEST FAILED\n");
-	}
-	for (i = 0; i < treasure_map; i++)
-	{
-		//assert(pre.supplyCount[i] == post.supplyCount[i]);
-		if (pre.supplyCount[i] != post.supplyCount[i])
-		{
-			printf("Supply Counts Changed TEST FAILED\n");
-		}
-		//assert(pre.embargoTokens[i] == post.embargoTokens[i]);
-		if (pre.embargoTokens[i] != post.embargoTokens[i])
-		{
-			printf("Embargo Tokens Changed TEST FAILED\n");
-		}
-	}
-	//assert(pre.outpostPlayed == post.outpostPlayed);
-	if (pre.outpostPlayed != post.outpostPlayed)
-	{
-		printf("outpost played changed TEST FAILED\n");
-	}
-	//assert(pre.outpostTurn == post.outpostTurn);
-	if (pre.outpostTurn != post.outpostTurn)
-	{
-		printf("outpost turn changed TEST FAILED\n");
-	}
-	//assert(pre.whoseTurn == post.whoseTurn);
-	if (pre.whoseTurn != post.whoseTurn)
-	{
-		printf("whose turn changed TEST FAILED\n");
-	}
-	//assert(pre.phase == post.phase);
-	if (pre.phase != post.phase)
-	{
-		printf("phase changed TEST FAILED\n");
-	}
-	//assert(pre.numActions == post.numActions);
-	if (pre.numActions != post.numActions)
-	{
-		printf("num actions changed TEST FAILED\n");
-	}
-	//assert(pre.coins == post.coins);
-	if (pre.coins != post.coins)
-	{
-		printf("num coins changed TEST FAILED\n");
-	}
-	//assert(pre.numBuys == post.numBuys);
-	if (pre.numBuys != post.numBuys)
-	{
-		printf("num buys changed TEST FAILED\n");
-	}
-	//assert(pre.deckCount[currentPlayer] == post.deckCount[currentPlayer]);
-	if (pre.deckCount[currentPlayer] != post.deckCount[currentPlayer])
-	{
-		printf("deck count changed TEST FAILED\n");
-	}
+#define DEBUG 0
 
-	//not a valid remodel choice based on cost or supply count is 0
-	if ( (getCost(choice1) + 2 < getCost(choice2)) || (supplyCount(choice2, &pre) < 1) )
-	{
-		//nothing should change in gameState
-		for (i = 0; i < treasure_map; i++)
-		{
-			//assert(pre.supplyCount[i] == post.supplyCount[i]);
-			if (pre.supplyCount[i] != post.supplyCount[i])
-			{
-				printf("Invalid remodel supply count changed TEST FAILED\n");
-			}
-			//assert(pre.embargoTokens[i] == post.embargoTokens[i]);
-			if (pre.embargoTokens[i] != post.embargoTokens[i])
-			{
-				printf("Invalid remodel embargo tokens changed TEST FAILED\n");
-			}
-		}
-		//assert(pre.handCount[currentPlayer] == post.handCount[currentPlayer]);
-		if (assert(pre.handCount[currentPlayer] != post.handCount[currentPlayer]))
-		{
-			printf("Invalid remodel hand count changed TEST FAILED\n");
-		}
-		//assert(pre.discardCount[currentPlayer] == post.discardCount[currentPlayer]);
-		if (pre.discardCount[currentPlayer] != post.discardCount[currentPlayer])
-		{
-			printf("Invalid remodel discard count changed TEST FAILED\n");
-		}
-	}
-	else
-	{
-		//choice 2 supply count should go down by 1
-		for (i = 0; i < treasure_map; i++)
-		{
-			if (i == choice2)
-			{
-				//assert(pre.supplyCount[i] - 1 == post.supplyCount[i]);
-				//printf("Pre supply count %d for card %d\n", supplyCount(choice2, &pre), choice2);
-				//printf("Post supply count %d for card %d\n", supplyCount(choice2, &post), choice2);
-				//assert(supplyCount(choice2, &pre) - 1 == supplyCount(choice2, &post));
-				if (supplyCount(choice2, &pre) - 1 != supplyCount(choice2, &post))
-				{
-					printf("Valid Remodel Supply Count of choice2 did not decrement correctly TEST FAILED\n");
-				}
-			}
-			else
-			{
-				//assert(pre.supplyCount[i] == post.supplyCount[i]);
-				if (pre.supplyCount[i] != post.supplyCount[i])
-				{
-					printf("Valid Remodel Supply count that was not choice 2 changed TEST FAILED\n");
-				}
-			}			
-			//assert(pre.embargoTokens[i] == post.embargoTokens[i]);
-			if (pre.embargoTokens[i] != post.embargoTokens[i])
-			{
-				printf("Valid Remodel Embardo Tokens changed TEST FAILED\n");
-			}
-		}
-		//assert(pre.handCount[currentPlayer] - 2 == post.handCount[currentPlayer]);					//should remove remodel from hand + trashed card from hand
-		if (pre.handCount[currentPlayer] - 2 != post.handCount[currentPlayer])
-		{
-			printf("Incorrect number of cards in hand after valid remodel TEST FAILED\n");
-		}
-		//assert(pre.discardCount[currentPlayer] + 1 == post.discardCount[currentPlayer]);			//should discard remodel
-		if (pre.discardCount[currentPlayer] + 1 != post.discardCount[currentPlayer])
-		{
-			printf("Incorrect number of discard after valid remodel TEST FAILED\n");
-		}
-		//assert(post.discard[currentPlayer][post.discardCount[currentPlayer] - 1] == remodel);		//checks top of discard remodel
-		if (post.discard[currentPlayer][post.discardCount[currentPlayer] - 1] != remodel)
-		{
-			printf("Last discard card not Remodel after valid remodel TEST FAILED\n");
-		}
-		//assert(pre.playedCardCount + 1 == post.playedCardCount);									//should have played 1 card
-		if (pre.playedCardCount + 1 != post.playedCardCount)
-		{
-			printf("Card Played Count did not increment correctly after valid remodel TEST FAILED\n");
-		}
-		//assert(post.playedCards[post.playedCardCount - 1] == remodel);								//checks if the last card played is remodel
-		if (post.playedCards[post.playedCardCount - 1] != remodel)
-		{
-			printf("Last played card is not remodel TEST FAILED\n");
-		}
-		
-	}
-}
 
 int main() {
+	printf("\n-------------Card Test #4: Testing remodel card-------------\n\n");
 
-	int n, p, j, m, randCard, handPos, choice1, choice2, r;
-	int k[10] = { adventurer, council_room, feast, gardens, mine
-		, remodel, smithy, village, baron, great_hall };
-	struct gameState G;
-	struct gameState pre;
+	//initialize variables for card test
+	int i, numPlayers, handPos, choice1, choice2, randomSeed;
+	int choice3 = 0, bonus = 0;
+	int currentPlayer = 0, success = 0, error1 = 0, error2 = 0, playedCardsCorrection = 0;
+	struct gameState pre, post;
+	int kCards[10] = {adventurer, remodel, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 	
-	int seed = 1000;
+	//seed random number generator and create random values (within boundaries for numPlayers and randomSeed
 	srand(time(NULL));
-	SelectStream(2);
-	PutSeed(3);
-
-	printf("Running cardtest4 for play_Remodel()\n");
-
-	for (n = 0; n < 20; n++) {
-
-		p = rand() % 4 + 1;									//random player amount
-		memset(&G, 23, sizeof(struct gameState));			// clear the game state
-		r = initializeGame(p, k, seed, &G);	         		// initialize a new game
-					
-		j = rand() % p;										//pick a random current player
-		G.whoseTurn = j;
-
-		//set up current player's hand, deck, discard, and playedCards with random cards
-		G.handCount[j] = rand() % 10 + 2;					//create a hand for a player with at least 2 cards one for remodel and one to use remodel on
-		for (m = 0; m < G.handCount[j]; m++)
-		{
-			randCard = rand() % 10;							// random card from list of cards
-			G.hand[j][m] = k[randCard];
+	numPlayers = (rand() % 3) + 2;
+	randomSeed = (rand() % 100);
+	
+	
+	
+	//Test Case 1: Current player exchanges a card for another costing exactly 2 coins more which has positive supply
+	printf("\nCASE 1: Current player exchanges a card for another costing exactly 2 coins more which has positive supply\n");
+	//initialize game state and copy to second game state
+	initializeGame(numPlayers, kCards, randomSeed, &post);
+	handPos = 0, choice1 = 1, choice2 = duchy;
+	//set card in handPos to Remodel, choice1 to silver
+	post.hand[currentPlayer][handPos] = remodel;
+	post.hand[currentPlayer][choice1] = silver;
+	
+	memcpy(&pre, &post, sizeof(struct gameState));
+	//check remodel
+	if (cardEffect(remodel, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(remodel,...) threw an error state.\n");
+		success = -1;
+	}
+	
+	//Check that currentPlayer handCount decreased by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel)
+	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]-2) {
+		printf("Failed test case 1a: handCount of currentPlayer did not decrease by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel)\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 1a: handCount of currentPlayer successfully decreased by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel).\n");
+	}
+	//Check that remodel card added to played pile
+	if  (post.playedCards[pre.playedCardCount] == remodel) {
+		printf("Passed test case 1b: Remodel card successfully added to the played card pile.\n");
+		success = -1;
+	}
+	else {
+		printf("Failed test case 1b: Remodel card was not successfully added to the played card pile\n");
+	}
+	//Check that choice2 card added to discard
+	if (post.discard[currentPlayer][0] != choice2) {
+		printf("Failed test case 1c: card added to discard pile was not choice2.\n");
+	}
+	else {
+		printf("Passed test case 1c: choice2 successfully added to discard pile.\n");
+	}
+	//Check that choice2 supply decremented
+	if (post.supplyCount[choice2] != pre.supplyCount[choice2]-1) {
+		printf("Failed test case 1d: choice2 supplyCount did not decrement by 1.\n");
+	}
+	else {
+		printf("Passed test case 1d: choice2 supplyCount successfully decremented by 1.\n");
+	}
+	//Check where choice1 card went (should be trashed)
+	if (post.discard[currentPlayer][post.discardCount[currentPlayer]-1] == pre.hand[currentPlayer][choice1]) {
+		printf("Failed test case 1e: choice1 card added to discard rather than trashed.\n");
+	}
+	else if (post.playedCards[post.playedCardCount-1] == pre.hand[currentPlayer][choice1]) {
+		printf("Failed test case 1e: choice1 card added to playedCards rather than trashed.\n");
+		playedCardsCorrection = 1;
+	}
+	else {
+		printf("Passed test case 1e: choice1 card successfully trashed.\n");
+	}
+		//Check that playedCardCount incremented correctly
+	if  (post.playedCardCount != pre.playedCardCount + 1 + playedCardsCorrection) {
+		printf("Failed test case 1f: playedCardCount not incremented appropriately\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 1f: playedCardCount successfully incremented.\n");
+	}
+	//Check that other player's handCount and discardCount were not changed
+	for (i = 1; i < numPlayers; i++) {
+		if (post.discardCount[i] != pre.discardCount[i]) {
+			error1 = -1;
 		}
-		G.deckCount[j] = rand() % 51 + 10;	     			// creates a random deck of up to 10 - 50 cards
-		for (m = 0; m < G.deckCount[j]; m++)
-		{
-			randCard = rand() % 10;							// random card from list of cards
-			G.deck[j][m] = k[randCard];
+		if (post.handCount[i] != pre.handCount[i]) {
+			error2 = -1;
 		}
-		G.discardCount[j] = rand() % 50;					// create random discard
-		for (m = 0; m < G.discardCount[j]; m++)
-		{
-			randCard = rand() % 10;							// random card from list of cards
-			G.discard[j][m] = k[randCard];
+	}
+	if (error1 == -1) {
+		printf("Failed test case 1g: at least one other player's discard count changed.\n");
+	}
+	else {
+		printf("Passed test case 1g: No other player's discard count was affected.\n");
+	}
+	if (error2 == -1) {
+		printf("Failed test case 1h: at least one other player's hand count changed.\n");
+	}
+	else {
+		printf("Passed test case 1h: No other player's hand count was affected.\n");
+	}
+	if (success == 0) {
+		printf("Test case 1 successfully passed.\n");
+	}
+	else {
+		printf("Test case 1 completed with errors.\n");
+	}
+	
+	
+	
+	
+	
+	
+	//Test Case 2: Current player exchanges a card for another costing more than 2 coins more than trashed card
+	printf("\nCASE 2: Current player exchanges a card for another costing more than 2 coins more than trashed card\n");
+	//initialize game state and copy to second game state
+	initializeGame(numPlayers, kCards, randomSeed, &post);
+	handPos = 0, choice1 = 1, choice2 = adventurer, playedCardsCorrection = 0;
+	//set card in handPos to Remodel, choice1 to copper
+	post.hand[currentPlayer][handPos] = remodel;
+	post.hand[currentPlayer][choice1] = copper;
+
+	memcpy(&pre, &post, sizeof(struct gameState));
+	//check remodel
+	if (cardEffect(remodel, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(remodel,...) threw an error state.\n");
+		success = -1;
+	}
+	
+	//Check that currentPlayer handCount decreased by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel)
+	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]-2) {
+		printf("Failed test case 2a: handCount of currentPlayer did not decrease by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel)\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 2a: handCount of currentPlayer successfully decreased by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel).\n");
+	}
+	//Check that remodel card added to played pile
+	if  (post.playedCards[pre.playedCardCount] == remodel) {
+		printf("Passed test case 2b: Remodel card successfully added to the played card pile.\n");
+		success = -1;
+	}
+	else {
+		printf("Failed test case 2b: Remodel card was not successfully added to the played card pile\n");
+	}
+	//Check that choice2 card added to discard
+	if (post.discard[currentPlayer][0] == choice2) {
+		printf("Failed test case 2c: choice2 added to discard even though too expensive.\n");
+	}
+	else {
+		printf("Passed test case 2c: choice2 was too expensive, so not added to discard pile.\n");
+	}
+	//Check where choice1 card went (should be trashed)
+	if (post.discard[currentPlayer][post.discardCount[currentPlayer]-1] == pre.hand[currentPlayer][choice1]) {
+		printf("Failed test case 2d: choice1 card added to discard rather than trashed.\n");
+	}
+	else if (post.playedCards[post.playedCardCount-1] == pre.hand[currentPlayer][choice1]) {
+		printf("Failed test case 2d: choice1 card added to playedCards rather than trashed.\n");
+		playedCardsCorrection = 1;
+	}
+	else {
+		printf("Passed test case 2d: choice1 card successfully trashed.\n");
+	}
+		//Check that playedCardCount incremented correctly
+	if  (post.playedCardCount != pre.playedCardCount + 1 + playedCardsCorrection) {
+		printf("Failed test case 2e: playedCardCount not incremented appropriately\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 2e: playedCardCount successfully incremented.\n");
+	}
+	//Check that other player's handCount and discardCount were not changed
+	for (i = 1; i < numPlayers; i++) {
+		if (post.discardCount[i] != pre.discardCount[i]) {
+			error1 = -1;
 		}
-		G.playedCardCount = rand() % 50;
-		for (m = 0; m < G.playedCardCount; m++)
-		{
-			randCard = rand() % 10;							// random card from list of cards
-			G.playedCards[m] = k[randCard];
+		if (post.handCount[i] != pre.handCount[i]) {
+			error2 = -1;
 		}
+	}
+	if (error1 == -1) {
+		printf("Failed test case 2f: at least one other player's discard count changed.\n");
+	}
+	else {
+		printf("Passed test case 2f: No other player's discard count was affected.\n");
+	}
+	if (error2 == -1) {
+		printf("Failed test case 2g: at least one other player's hand count changed.\n");
+	}
+	else {
+		printf("Passed test case 2g: No other player's hand count was affected.\n");
+	}
+	if (success == 0) {
+		printf("Test case 2 successfully passed.\n");
+	}
+	else {
+		printf("Test case 2 completed with errors.\n");
+	}
+	
+	
+	
+	
+	//Test Case 3: Current player exchanges a card for another costing 1 coin more than trashed card
+	printf("\nCASE 3: Current player exchanges a card for another costing 1 coin more than trashed card\n");
+	//initialize game state and copy to second game state
+	initializeGame(numPlayers, kCards, randomSeed, &post);
+	handPos = 0, choice1 = 1, choice2 = smithy, playedCardsCorrection = 0;
+	//set card in handPos to Remodel, choice1 to silver
+	post.hand[currentPlayer][handPos] = remodel;
+	post.hand[currentPlayer][choice1] = silver;
+	post.supplyCount[choice2] = 0;
 		
-		//insert remodel into random spot in hand so we know its hand pos
-		handPos = rand() % G.handCount[j];
-		G.hand[j][handPos] = remodel;
-
-		//pick a random card from hand for choice1
-		choice1 = rand() % G.handCount[j];
-		while (choice1 == handPos)							//make sure its not the remodel we added
-		{
-			choice1 = rand() % G.handCount[j];
+	memcpy(&pre, &post, sizeof(struct gameState));
+	//check remodel
+	if (cardEffect(remodel, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(remodel,...) threw an error state.\n");
+		success = -1;
+	}
+		
+	//Check that currentPlayer handCount decreased by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel)
+	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]-2) {
+		printf("Failed test case 3a: handCount of currentPlayer did not decrease by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel)\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 3a: handCount of currentPlayer successfully decreased by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel).\n");
+	}
+	//Check that remodel card added to played pile
+	if  (post.playedCards[pre.playedCardCount] == remodel) {
+		printf("Passed test case 3b: Remodel card successfully added to the played card pile.\n");
+		success = -1;
+	}
+	else {
+		printf("Failed test case 3b: Remodel card was not successfully added to the played card pile\n");
+	}
+	//Check that choice2 card added to discard
+	if (post.discard[currentPlayer][pre.discardCount[currentPlayer]] != choice2) {
+		printf("Failed test case 3c: choice2 not added to discard even though it should have been.\n");
+	}
+	else {
+		printf("Passed test case 3c: choice2 successfully added to discard pile.\n");
+	}
+	//Check that choice2 supply decremented
+	if (post.supplyCount[choice2] != pre.supplyCount[choice2]-1) {
+		printf("Failed test case 3d: choice2 supplyCount did not decrement even though card should have been gained.\n");
+	}
+	else {
+		printf("Passed test case 3d: choice2 supplyCount successfully decremented.\n");
+	}
+	//Check where choice1 card went (should be trashed)
+	if (post.discard[currentPlayer][post.discardCount[currentPlayer]-1] == pre.hand[currentPlayer][choice1]) {
+		printf("Failed test case 3e: choice1 card added to discard rather than trashed.\n");
+	}
+	else if (post.playedCards[post.playedCardCount-1] == pre.hand[currentPlayer][choice1]) {
+		printf("Failed test case 3e: choice1 card added to playedCards rather than trashed.\n");
+		playedCardsCorrection = 1;
+	}
+	else {
+		printf("Passed test case 3e: choice1 card successfully trashed.\n");
+	}
+		//Check that playedCardCount incremented correctly
+	if  (post.playedCardCount != pre.playedCardCount + 1 + playedCardsCorrection) {
+		printf("Failed test case 3f: playedCardCount not incremented appropriately\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 3f: playedCardCount successfully incremented.\n");
+	}
+	//Check that other player's handCount and discardCount were not changed
+	for (i = 1; i < numPlayers; i++) {
+		if (post.discardCount[i] != pre.discardCount[i]) {
+			error1 = -1;
 		}
-		//pick a random card from kingdom supply for choice2
-		choice2 = k[rand() % 10];
-
-
-		//have player play remodel
-		memcpy(&pre, &G, sizeof(struct gameState));				// save a copy of current gamestate
-		//printf("\nPlaying Remodel as Player %d Iteration %d choice1 cost %d choice2 cost %d hand %d deck %d discard %d played %d \n", j, n + 1, getCost(choice1), getCost(choice2), G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
-		play_Remodel(j, &G, choice1, choice2, handPos);
-		//printf("Played  Remodel as Player %d Iteration %d choice1 cost %d choice2 cost %d hand %d deck %d discard %d played %d \n", j, n + 1, getCost(choice1), getCost(choice2), G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
-		checkState(pre, G, j, choice1, choice2);
+		if (post.handCount[i] != pre.handCount[i]) {
+			error2 = -1;
+		}
+	}
+	if (error1 == -1) {
+		printf("Failed test case 3g: at least one other player's discard count changed.\n");
+	}
+	else {
+		printf("Passed test case 3g: No other player's discard count was affected.\n");
+	}
+	if (error2 == -1) {
+		printf("Failed test case 3h: at least one other player's hand count changed.\n");
+	}
+	else {
+		printf("Passed test case 3h: No other player's hand count was affected.\n");
+	}
+	if (success == 0) {
+		printf("Test case 3 successfully passed.\n");
+	}
+	else {
+		printf("Test case 3 completed with errors.\n");
+	}
+	
+	
+	
+	
+	
+	
+	//Test Case 4: Current player exchanges the remodel card being played for another card costing exactly 2 coins more (zero supply)
+	printf("\nCASE 4: Current player exchanges a card for another costing exactly 2 coins more which has zero supply\n");
+	//initialize game state and copy to second game state
+	initializeGame(numPlayers, kCards, randomSeed, &post);
+	handPos = 0, choice1 = 1, choice2 = duchy;
+	//set card in handPos to Remodel, choice1 to silver, and supply of choice2 = 0
+	post.hand[currentPlayer][handPos] = remodel;
+	post.hand[currentPlayer][choice1] = silver;
+	post.supplyCount[choice2] = 0;
+	
+	memcpy(&pre, &post, sizeof(struct gameState));
+	//check remodel
+	if (cardEffect(remodel, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(remodel,...) threw an error state.\n");
+		success = -1;
+	}
+	
+	//Check that currentPlayer handCount decreased by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel)
+	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]-2) {
+		printf("Failed test case 4a: handCount of currentPlayer did not decrease by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel)\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 4a: handCount of currentPlayer successfully decreased by 2 (+0 because added card went to discard and -2 for trashed card and playing remodel).\n");
+	}
+	//Check that remodel card added to played pile
+	if  (post.playedCards[pre.playedCardCount] == remodel) {
+		printf("Passed test case 4b: Remodel card successfully added to the played card pile.\n");
+		success = -1;
+	}
+	else {
+		printf("Failed test case 4b: Remodel card was not successfully added to the played card pile\n");
+	}
+	//Check that choice2 card not added to discard
+	if ((post.discard[currentPlayer][0] == choice2) && (post.discardCount[currentPlayer] == pre.discardCount[currentPlayer]+1)){
+		printf("Failed test case 4c: choice2 added to discard pile even though supply was empty.\n");
+	}
+	else {
+		printf("Passed test case 4c: choice2 not added to discard pile since supply was empty.\n");
+	}
+	//Check that choice2 supply is zero
+	if (post.supplyCount[choice2] != 0) {
+		printf("Failed test case 4d: choice2 supplyCount is not zero.\n");
+	}
+	else {
+		printf("Passed test case 4d: choice2 supplyCount is zero.\n");
+	}
+	//Check where choice1 card went (should be trashed)
+	if (post.discard[currentPlayer][post.discardCount[currentPlayer]-1] == pre.hand[currentPlayer][choice1]) {
+		printf("Failed test case 4e: choice1 card added to discard rather than trashed.\n");
+	}
+	else if (post.playedCards[post.playedCardCount-1] == pre.hand[currentPlayer][choice1]) {
+		printf("Failed test case 4e: choice1 card added to playedCards rather than trashed.\n");
+		playedCardsCorrection = 1;
+	}
+	else {
+		printf("Passed test case 4e: choice1 card successfully trashed.\n");
+	}
+		//Check that playedCardCount incremented correctly
+	if  (post.playedCardCount != pre.playedCardCount + 1 + playedCardsCorrection) {
+		printf("Failed test case 4f: playedCardCount not incremented appropriately\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 4f: playedCardCount successfully incremented.\n");
+	}
+	//Check that other player's handCount and discardCount were not changed
+	for (i = 1; i < numPlayers; i++) {
+		if (post.discardCount[i] != pre.discardCount[i]) {
+			error1 = -1;
+		}
+		if (post.handCount[i] != pre.handCount[i]) {
+			error2 = -1;
+		}
+	}
+	if (error1 == -1) {
+		printf("Failed test case 4g: at least one other player's discard count changed.\n");
+	}
+	else {
+		printf("Passed test case 4g: No other player's discard count was affected.\n");
+	}
+	if (error2 == -1) {
+		printf("Failed test case 4h: at least one other player's hand count changed.\n");
+	}
+	else {
+		printf("Passed test case 4h: No other player's hand count was affected.\n");
+	}
+	if (success == 0) {
+		printf("Test case 4 successfully passed.\n");
+	}
+	else {
+		printf("Test case 4 completed with errors.\n");
 	}
 
-	printf("Finished running cardtest4 for play_Remodel()\n");
 
+
+
+
+/*	
+	printf("Prior to playing remodel:\ncurrentPlayer = %d\ncard in handPos = %d\nremodel = %d\ncard at choice1 = %d\nsilver = %d\nchoice2 = %d\nduchy = %d\nhandCount = %d\nplayedCardCount = %d\ndiscardCount = %d\nhand contains ", currentPlayer, post.hand[currentPlayer][handPos], remodel, post.hand[currentPlayer][choice1], silver, choice2, duchy, post.handCount[currentPlayer], post.playedCardCount, post.discardCount[currentPlayer]);
+	for (i = 0; i < post.handCount[currentPlayer]-1; i++) {
+		printf("%d, ", post.hand[currentPlayer][i]);
+	}
+	printf("%d\ndiscard pile contains: ", post.hand[currentPlayer][i]);
+	for (i = 0; i < post.discardCount[currentPlayer]-1; i++) {
+		printf("%d, ", post.discard[currentPlayer][i]);
+	}
+	printf("%d\nplayed card pile contains: ", post.discard[currentPlayer][i]);
+	for (i = 0; i < post.playedCardCount-1; i++) {
+		printf("%d, ", post.playedCards[i]);
+	}
+	printf("%d\n\n", post.playedCards[i]);
+*/	
+/*	
+	printf("After playing remodel:\ncurrentPlayer = %d\ncard in handPos = %d\nremodel = %d\ncard at choice1 = %d\nsilver = %d\nchoice2 = %d\nduchy = %d\nhandCount = %d\nplayedCardCount = %d\ndiscardCount = %d\nhand contains ", currentPlayer, post.hand[currentPlayer][handPos], remodel, post.hand[currentPlayer][choice1], silver, choice2, duchy, post.handCount[currentPlayer], post.playedCardCount, post.discardCount[currentPlayer]);
+	for (i = 0; i < post.handCount[currentPlayer]-1; i++) {
+		printf("%d, ", post.hand[currentPlayer][i]);
+	}
+	printf("%d\ndiscard pile contains: ", post.hand[currentPlayer][i]);
+	for (i = 0; i < post.discardCount[currentPlayer]-1; i++) {
+		printf("%d, ", post.discard[currentPlayer][i]);
+	}
+	printf("%d\nplayed card pile contains: ", post.discard[currentPlayer][i]);
+	for (i = 0; i < post.playedCardCount-1; i++) {
+		printf("%d, ", post.playedCards[i]);
+	}
+	printf("%d\n\n", post.playedCards[i]);
+*/
+	
+	printf("\n\n-------------Card Test #4 Complete -------------\n\n\n");
 	return 0;
 }

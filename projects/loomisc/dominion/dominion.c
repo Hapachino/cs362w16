@@ -667,13 +667,13 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-		  return playAdventurer(state);
+		  return playAdventurer(state, handPos);
 			
     case council_room:
 		  return playCouncil_Room(state, handPos);
 			
     case feast:
-		  return playFeast(state, choice1);
+		  return playFeast(state, choice1, handPos);
 			
     case gardens:
       return -1;
@@ -1145,6 +1145,11 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     }
   else 	
     {
+	  if(trashFlag == 0){
+		  //move card to discard pile
+		  state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][handPos];
+		  state->discardCount[currentPlayer]++;
+	  }
       //replace discarded card with last card in hand
       state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
       //set last card to -1
@@ -1152,6 +1157,8 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
       //reduce number of cards in hand
       state->handCount[currentPlayer]--;
     }
+	
+	
 	
   return 0;
 }
@@ -1223,7 +1230,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-int playAdventurer(struct gameState *state){
+int playAdventurer(struct gameState *state, int handPos){
 	int currentPlayer = whoseTurn(state);
 	int temphand[MAX_HAND];// moved above the if statement
 	int drawntreasure=0;
@@ -1248,6 +1255,9 @@ int playAdventurer(struct gameState *state){
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 		z=z-1;
 	}
+	
+	discardCard(handPos, currentPlayer, state, 0);
+	
 	return 0;
 }
 
@@ -1278,7 +1288,7 @@ int playVillage(struct gameState *state, int handPos){
 	return 0;
 }
 	
-int playFeast(struct gameState *state, int choice1){
+int playFeast(struct gameState *state, int choice1, int handPos){
 	int i;
 	int x;
 	int currentPlayer = whoseTurn(state);
@@ -1327,6 +1337,8 @@ int playFeast(struct gameState *state, int choice1){
 		temphand[i] = -1;
 	}
 	//Reset Hand
+	
+	discardCard(handPos, currentPlayer, state, 1);	//trash card
 	
 	return 0;
 }

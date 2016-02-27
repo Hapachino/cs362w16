@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 #define TESTCARD "adventurer"
-#define NUM_TESTS 2000
+#define NUM_TESTS 500
 
 int cardsForPlayer(int, struct gameState *);
 void checkAdventurer(int, struct gameState *, int);
@@ -58,6 +58,7 @@ int cardsForPlayer(int thisPlayer, struct gameState *G)
 {
 
 	int j, numTreasure, thisCard;
+	numTreasure = 0;
     int deckCards = floor(Random() * MAX_DECK);
     G->discardCount[thisPlayer] = 0;
     int handCards = floor(Random() * MAX_HAND);
@@ -117,7 +118,7 @@ void checkAdventurer(int thisPlayer, struct gameState *G, int treasureBefore)
         otherPlayer = 1;
 
     // call adventurerCard on testG
-    result = playAdventurer(currentPlayer, &testG);
+    result = playAdventurer(thisPlayer, &testG);
 
     // count treasures on testG after call
     for (i = 0; i < testG.handCount[thisPlayer]; i++)

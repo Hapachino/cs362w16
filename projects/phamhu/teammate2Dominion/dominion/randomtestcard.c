@@ -1,93 +1,97 @@
+/* -----------------------------------------------------------------------
+ * Testing council room card - using random tester.
+ *
+ * Include the following lines in your makefile:
+ *
+ * random2: randometestcard.c dominion.o rngs.o
+ *      gcc -o randomtest2 -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
+ * -----------------------------------------------------------------------
+ */
+
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include <math.h>
-#include <stdlib.h>
-#include <time.h>
 
+int main() {
+    int seed;
+	int numPlayers;
+    int p, player, round;
+	int otherPlayers;
+    int otherDrawCount;
+	int k[10] = {adventurer, council_room, feast, gardens, mine
+               , remodel, smithy, village, baron, great_hall};
+    struct gameState oldGame;
+	struct gameState newGame;
+    int maxHandCount = 5;
+    int failCount = 0;
+    int passCount = 0;
+	int testCount = 0;
+	int MAXRUN = 100;
+    printf ("<< TESTING - council room card - using random tester  >>\n");
+	
+	for(testCount = 0; testCount < MAXRUN; testCount++)
+	{	
+	//generate random seed
+	seed = rand() % 100000;
+	// generate random number of players    		
+	numPlayers = rand() % 3 + 2;
+	printf("Test #%d - seed:%d \n", testCount, seed);
+ 	
+	for(p = 0; p < maxHandCount; p++)
+	{
+		memset(&oldGame, 23, sizeof(struct gameState));         //clear the game state
+		memset(&newGame, 23, sizeof(struct gameState));         //clear the game state
+		initializeGame(numPlayers, k, seed, &newGame);
+		for(round = 0; round < 2; round++)
+		{
+			for(player = 0; player < numPlayers; player++)
+			{
+				otherDrawCount = 0;
+				memcpy(&oldGame, &newGame, sizeof(struct gameState));
+				//councilRoomCard(council_room, player, &newGame);
+				playCard(council_room, -1, -1, -1, &newGame);
 
-int checkSmithyCard(int p, struct gameState *post);
-int checkSmithyCard(int p, struct gameState *post) {
- struct gameState pre;
-  post->whoseTurn = p;
-  memcpy (&pre, post, sizeof(struct gameState));
+				// count number of players whom drew a card
+				for (otherPlayers = 0; otherPlayers < numPlayers; otherPlayers++)
+				{
+					if(otherPlayers != player)
+					{
+						if(newGame.handCount[otherPlayers] == oldGame.handCount[otherPlayers] + 1)
+						{
+							otherDrawCount++;
+						}
+					}
+				}
 
+				if((newGame.numBuys == oldGame.numBuys + 1) &&
+					(newGame.handCount[player] == oldGame.handCount[player] + 4) &&
+					(otherDrawCount == numPlayers - 1) &&
+					(newGame.deckCount[player] == oldGame.deckCount[player] - 4)	
+				  )
+				{
+					passCount++;
+				}
+				else
+				{
+					printf("Failed - \t player %d\n", player);
+					printf("\t expected buy: %d - actual buy: %d\n", oldGame.numBuys + 1, newGame.numBuys);
+					printf("\t expected handCount: %d - actual handCount: %d\n", oldGame.handCount[player] + 4, newGame.handCount[player]);
+					printf("\t expected deckCount: %d - actual deckCount: %d\n", oldGame.deckCount[player] - 4, newGame.deckCount[player]);	
+//					printf("\t expected playedCardCount: %d - actual playedCardCount: %d\n", oldGame.playedCardCount, newGame.playedCardCount);
+					printf("\t expected number of other players whom drew a card: %d - actual count: %d\n", numPlayers - 1, otherDrawCount);
+					failCount++;
+				}
 
-  int r;
-  
-  int handPos = rand() % pre.handCount[p];
-  r = smithyCard(post, handPos);
-  int drawNum = 0;
+			}	
+		}		
+	}
+	}
+	printf("\n < < < < RESULTS > > > >\n\n");
+    printf("\t Number of cases passed: %d\n", passCount);
+    printf("\t Number of cases failed: %d\n\n", failCount);
 
-  while(drawNum < 3)
-  {
-    drawCard(p, &pre);
-    drawNum++;  
-  }
-   
-  assert (r == 0);
-  discardCard(handPos, p, &pre, 0);
-   
-  if (memcmp(&pre, post, sizeof(struct gameState)) == 0) {
-    printf("Testing smithyCard() passed");
-  } else {
-    printf("Testing smithyCard() failed");
-  }
-  return 0;
-}
-
-int main () {
-
-  srand(time(NULL));
- 
-  int i, n, p;
-
- int handRandom, deckRandom, discardRandom, playedRandom;
-  struct gameState G;
-
-  printf ("Testing smithyCard.\n");
-
-  printf ("RANDOM TESTS.\n");
-
-  SelectStream(2);
-  PutSeed(3);
-
-  for (n = 0; n < 2000; n++) {
-    for (i = 0; i < sizeof(struct gameState); i++) {
-      ((char*)&G)[i] = floor(Random() * 256);
-    }
-    p = floor(Random() * 2);
-     handRandom = rand() % MAX_HAND + 1;
-        G.handCount[p] = handRandom;
-        for (i = 0; i < handRandom; i++) 
-        {
-            G.hand[p][i] = rand() % 27;
-        }
-        
-        deckRandom = rand() % MAX_DECK;
-        G.deckCount[p] = deckRandom;
-        for (i = 0; i < deckRandom; i++) 
-        {
-            G.deck[p][i] = rand() % 27;
-        }
- 
-        discardRandom = rand () % MAX_DECK + 1;
-        G.discardCount[p] = discardRandom;
-        for (i = 0; i < discardRandom; i++) 
-        {
-            G.discard[p][i] = rand() % 27;
-        }
-        playedRandom = rand () % MAX_DECK;
-        G.playedCardCount = playedRandom;
-        for (i = 0; i < playedRandom; i++) 
-        {
-            G.playedCards[i] = rand() % 27;
-        }
-    checkSmithyCard(p, &G);
-  }
-
-  return 0;
+    return 0;
 }

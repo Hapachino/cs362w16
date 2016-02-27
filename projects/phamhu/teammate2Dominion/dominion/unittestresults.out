@@ -1,3 +1,1898 @@
+<< TESTING unittest1 - updateCoins() >>
+Test player 0 with 1 treasure card(s) and 0 bonus.
+G.coins = 1, expected = 1
+G.coins = 2, expected = 2
+G.coins = 3, expected = 3
+Test player 0 with 1 treasure card(s) and 1 bonus.
+G.coins = 2, expected = 2
+G.coins = 3, expected = 3
+G.coins = 4, expected = 4
+Test player 0 with 1 treasure card(s) and 2 bonus.
+G.coins = 3, expected = 3
+G.coins = 4, expected = 4
+G.coins = 5, expected = 5
+Test player 0 with 1 treasure card(s) and 3 bonus.
+G.coins = 4, expected = 4
+G.coins = 5, expected = 5
+G.coins = 6, expected = 6
+Test player 0 with 1 treasure card(s) and 4 bonus.
+G.coins = 5, expected = 5
+G.coins = 6, expected = 6
+G.coins = 7, expected = 7
+Test player 0 with 1 treasure card(s) and 5 bonus.
+G.coins = 6, expected = 6
+G.coins = 7, expected = 7
+G.coins = 8, expected = 8
+Test player 0 with 1 treasure card(s) and 6 bonus.
+G.coins = 7, expected = 7
+G.coins = 8, expected = 8
+G.coins = 9, expected = 9
+Test player 0 with 1 treasure card(s) and 7 bonus.
+G.coins = 8, expected = 8
+G.coins = 9, expected = 9
+G.coins = 10, expected = 10
+Test player 0 with 1 treasure card(s) and 8 bonus.
+G.coins = 9, expected = 9
+G.coins = 10, expected = 10
+G.coins = 11, expected = 11
+Test player 0 with 1 treasure card(s) and 9 bonus.
+G.coins = 10, expected = 10
+G.coins = 11, expected = 11
+G.coins = 12, expected = 12
+Test player 0 with 1 treasure card(s) and 10 bonus.
+G.coins = 11, expected = 11
+G.coins = 12, expected = 12
+G.coins = 13, expected = 13
+Test player 0 with 2 treasure card(s) and 0 bonus.
+G.coins = 2, expected = 2
+G.coins = 4, expected = 4
+G.coins = 6, expected = 6
+Test player 0 with 2 treasure card(s) and 1 bonus.
+G.coins = 3, expected = 3
+G.coins = 5, expected = 5
+G.coins = 7, expected = 7
+Test player 0 with 2 treasure card(s) and 2 bonus.
+G.coins = 4, expected = 4
+G.coins = 6, expected = 6
+G.coins = 8, expected = 8
+Test player 0 with 2 treasure card(s) and 3 bonus.
+G.coins = 5, expected = 5
+G.coins = 7, expected = 7
+G.coins = 9, expected = 9
+Test player 0 with 2 treasure card(s) and 4 bonus.
+G.coins = 6, expected = 6
+G.coins = 8, expected = 8
+G.coins = 10, expected = 10
+Test player 0 with 2 treasure card(s) and 5 bonus.
+G.coins = 7, expected = 7
+G.coins = 9, expected = 9
+G.coins = 11, expected = 11
+Test player 0 with 2 treasure card(s) and 6 bonus.
+G.coins = 8, expected = 8
+G.coins = 10, expected = 10
+G.coins = 12, expected = 12
+Test player 0 with 2 treasure card(s) and 7 bonus.
+G.coins = 9, expected = 9
+G.coins = 11, expected = 11
+G.coins = 13, expected = 13
+Test player 0 with 2 treasure card(s) and 8 bonus.
+G.coins = 10, expected = 10
+G.coins = 12, expected = 12
+G.coins = 14, expected = 14
+Test player 0 with 2 treasure card(s) and 9 bonus.
+G.coins = 11, expected = 11
+G.coins = 13, expected = 13
+G.coins = 15, expected = 15
+Test player 0 with 2 treasure card(s) and 10 bonus.
+G.coins = 12, expected = 12
+G.coins = 14, expected = 14
+G.coins = 16, expected = 16
+Test player 0 with 3 treasure card(s) and 0 bonus.
+G.coins = 3, expected = 3
+G.coins = 6, expected = 6
+G.coins = 9, expected = 9
+Test player 0 with 3 treasure card(s) and 1 bonus.
+G.coins = 4, expected = 4
+G.coins = 7, expected = 7
+G.coins = 10, expected = 10
+Test player 0 with 3 treasure card(s) and 2 bonus.
+G.coins = 5, expected = 5
+G.coins = 8, expected = 8
+G.coins = 11, expected = 11
+Test player 0 with 3 treasure card(s) and 3 bonus.
+G.coins = 6, expected = 6
+G.coins = 9, expected = 9
+G.coins = 12, expected = 12
+Test player 0 with 3 treasure card(s) and 4 bonus.
+G.coins = 7, expected = 7
+G.coins = 10, expected = 10
+G.coins = 13, expected = 13
+Test player 0 with 3 treasure card(s) and 5 bonus.
+G.coins = 8, expected = 8
+G.coins = 11, expected = 11
+G.coins = 14, expected = 14
+Test player 0 with 3 treasure card(s) and 6 bonus.
+G.coins = 9, expected = 9
+G.coins = 12, expected = 12
+G.coins = 15, expected = 15
+Test player 0 with 3 treasure card(s) and 7 bonus.
+G.coins = 10, expected = 10
+G.coins = 13, expected = 13
+G.coins = 16, expected = 16
+Test player 0 with 3 treasure card(s) and 8 bonus.
+G.coins = 11, expected = 11
+G.coins = 14, expected = 14
+G.coins = 17, expected = 17
+Test player 0 with 3 treasure card(s) and 9 bonus.
+G.coins = 12, expected = 12
+G.coins = 15, expected = 15
+G.coins = 18, expected = 18
+Test player 0 with 3 treasure card(s) and 10 bonus.
+G.coins = 13, expected = 13
+G.coins = 16, expected = 16
+G.coins = 19, expected = 19
+Test player 0 with 4 treasure card(s) and 0 bonus.
+G.coins = 4, expected = 4
+G.coins = 8, expected = 8
+G.coins = 12, expected = 12
+Test player 0 with 4 treasure card(s) and 1 bonus.
+G.coins = 5, expected = 5
+G.coins = 9, expected = 9
+G.coins = 13, expected = 13
+Test player 0 with 4 treasure card(s) and 2 bonus.
+G.coins = 6, expected = 6
+G.coins = 10, expected = 10
+G.coins = 14, expected = 14
+Test player 0 with 4 treasure card(s) and 3 bonus.
+G.coins = 7, expected = 7
+G.coins = 11, expected = 11
+G.coins = 15, expected = 15
+Test player 0 with 4 treasure card(s) and 4 bonus.
+G.coins = 8, expected = 8
+G.coins = 12, expected = 12
+G.coins = 16, expected = 16
+Test player 0 with 4 treasure card(s) and 5 bonus.
+G.coins = 9, expected = 9
+G.coins = 13, expected = 13
+G.coins = 17, expected = 17
+Test player 0 with 4 treasure card(s) and 6 bonus.
+G.coins = 10, expected = 10
+G.coins = 14, expected = 14
+G.coins = 18, expected = 18
+Test player 0 with 4 treasure card(s) and 7 bonus.
+G.coins = 11, expected = 11
+G.coins = 15, expected = 15
+G.coins = 19, expected = 19
+Test player 0 with 4 treasure card(s) and 8 bonus.
+G.coins = 12, expected = 12
+G.coins = 16, expected = 16
+G.coins = 20, expected = 20
+Test player 0 with 4 treasure card(s) and 9 bonus.
+G.coins = 13, expected = 13
+G.coins = 17, expected = 17
+G.coins = 21, expected = 21
+Test player 0 with 4 treasure card(s) and 10 bonus.
+G.coins = 14, expected = 14
+G.coins = 18, expected = 18
+G.coins = 22, expected = 22
+Test player 0 with 5 treasure card(s) and 0 bonus.
+G.coins = 5, expected = 5
+G.coins = 10, expected = 10
+G.coins = 15, expected = 15
+Test player 0 with 5 treasure card(s) and 1 bonus.
+G.coins = 6, expected = 6
+G.coins = 11, expected = 11
+G.coins = 16, expected = 16
+Test player 0 with 5 treasure card(s) and 2 bonus.
+G.coins = 7, expected = 7
+G.coins = 12, expected = 12
+G.coins = 17, expected = 17
+Test player 0 with 5 treasure card(s) and 3 bonus.
+G.coins = 8, expected = 8
+G.coins = 13, expected = 13
+G.coins = 18, expected = 18
+Test player 0 with 5 treasure card(s) and 4 bonus.
+G.coins = 9, expected = 9
+G.coins = 14, expected = 14
+G.coins = 19, expected = 19
+Test player 0 with 5 treasure card(s) and 5 bonus.
+G.coins = 10, expected = 10
+G.coins = 15, expected = 15
+G.coins = 20, expected = 20
+Test player 0 with 5 treasure card(s) and 6 bonus.
+G.coins = 11, expected = 11
+G.coins = 16, expected = 16
+G.coins = 21, expected = 21
+Test player 0 with 5 treasure card(s) and 7 bonus.
+G.coins = 12, expected = 12
+G.coins = 17, expected = 17
+G.coins = 22, expected = 22
+Test player 0 with 5 treasure card(s) and 8 bonus.
+G.coins = 13, expected = 13
+G.coins = 18, expected = 18
+G.coins = 23, expected = 23
+Test player 0 with 5 treasure card(s) and 9 bonus.
+G.coins = 14, expected = 14
+G.coins = 19, expected = 19
+G.coins = 24, expected = 24
+Test player 0 with 5 treasure card(s) and 10 bonus.
+G.coins = 15, expected = 15
+G.coins = 20, expected = 20
+G.coins = 25, expected = 25
+Test player 1 with 1 treasure card(s) and 0 bonus.
+G.coins = 1, expected = 1
+G.coins = 2, expected = 2
+G.coins = 3, expected = 3
+Test player 1 with 1 treasure card(s) and 1 bonus.
+G.coins = 2, expected = 2
+G.coins = 3, expected = 3
+G.coins = 4, expected = 4
+Test player 1 with 1 treasure card(s) and 2 bonus.
+G.coins = 3, expected = 3
+G.coins = 4, expected = 4
+G.coins = 5, expected = 5
+Test player 1 with 1 treasure card(s) and 3 bonus.
+G.coins = 4, expected = 4
+G.coins = 5, expected = 5
+G.coins = 6, expected = 6
+Test player 1 with 1 treasure card(s) and 4 bonus.
+G.coins = 5, expected = 5
+G.coins = 6, expected = 6
+G.coins = 7, expected = 7
+Test player 1 with 1 treasure card(s) and 5 bonus.
+G.coins = 6, expected = 6
+G.coins = 7, expected = 7
+G.coins = 8, expected = 8
+Test player 1 with 1 treasure card(s) and 6 bonus.
+G.coins = 7, expected = 7
+G.coins = 8, expected = 8
+G.coins = 9, expected = 9
+Test player 1 with 1 treasure card(s) and 7 bonus.
+G.coins = 8, expected = 8
+G.coins = 9, expected = 9
+G.coins = 10, expected = 10
+Test player 1 with 1 treasure card(s) and 8 bonus.
+G.coins = 9, expected = 9
+G.coins = 10, expected = 10
+G.coins = 11, expected = 11
+Test player 1 with 1 treasure card(s) and 9 bonus.
+G.coins = 10, expected = 10
+G.coins = 11, expected = 11
+G.coins = 12, expected = 12
+Test player 1 with 1 treasure card(s) and 10 bonus.
+G.coins = 11, expected = 11
+G.coins = 12, expected = 12
+G.coins = 13, expected = 13
+Test player 1 with 2 treasure card(s) and 0 bonus.
+G.coins = 2, expected = 2
+G.coins = 4, expected = 4
+G.coins = 6, expected = 6
+Test player 1 with 2 treasure card(s) and 1 bonus.
+G.coins = 3, expected = 3
+G.coins = 5, expected = 5
+G.coins = 7, expected = 7
+Test player 1 with 2 treasure card(s) and 2 bonus.
+G.coins = 4, expected = 4
+G.coins = 6, expected = 6
+G.coins = 8, expected = 8
+Test player 1 with 2 treasure card(s) and 3 bonus.
+G.coins = 5, expected = 5
+G.coins = 7, expected = 7
+G.coins = 9, expected = 9
+Test player 1 with 2 treasure card(s) and 4 bonus.
+G.coins = 6, expected = 6
+G.coins = 8, expected = 8
+G.coins = 10, expected = 10
+Test player 1 with 2 treasure card(s) and 5 bonus.
+G.coins = 7, expected = 7
+G.coins = 9, expected = 9
+G.coins = 11, expected = 11
+Test player 1 with 2 treasure card(s) and 6 bonus.
+G.coins = 8, expected = 8
+G.coins = 10, expected = 10
+G.coins = 12, expected = 12
+Test player 1 with 2 treasure card(s) and 7 bonus.
+G.coins = 9, expected = 9
+G.coins = 11, expected = 11
+G.coins = 13, expected = 13
+Test player 1 with 2 treasure card(s) and 8 bonus.
+G.coins = 10, expected = 10
+G.coins = 12, expected = 12
+G.coins = 14, expected = 14
+Test player 1 with 2 treasure card(s) and 9 bonus.
+G.coins = 11, expected = 11
+G.coins = 13, expected = 13
+G.coins = 15, expected = 15
+Test player 1 with 2 treasure card(s) and 10 bonus.
+G.coins = 12, expected = 12
+G.coins = 14, expected = 14
+G.coins = 16, expected = 16
+Test player 1 with 3 treasure card(s) and 0 bonus.
+G.coins = 3, expected = 3
+G.coins = 6, expected = 6
+G.coins = 9, expected = 9
+Test player 1 with 3 treasure card(s) and 1 bonus.
+G.coins = 4, expected = 4
+G.coins = 7, expected = 7
+G.coins = 10, expected = 10
+Test player 1 with 3 treasure card(s) and 2 bonus.
+G.coins = 5, expected = 5
+G.coins = 8, expected = 8
+G.coins = 11, expected = 11
+Test player 1 with 3 treasure card(s) and 3 bonus.
+G.coins = 6, expected = 6
+G.coins = 9, expected = 9
+G.coins = 12, expected = 12
+Test player 1 with 3 treasure card(s) and 4 bonus.
+G.coins = 7, expected = 7
+G.coins = 10, expected = 10
+G.coins = 13, expected = 13
+Test player 1 with 3 treasure card(s) and 5 bonus.
+G.coins = 8, expected = 8
+G.coins = 11, expected = 11
+G.coins = 14, expected = 14
+Test player 1 with 3 treasure card(s) and 6 bonus.
+G.coins = 9, expected = 9
+G.coins = 12, expected = 12
+G.coins = 15, expected = 15
+Test player 1 with 3 treasure card(s) and 7 bonus.
+G.coins = 10, expected = 10
+G.coins = 13, expected = 13
+G.coins = 16, expected = 16
+Test player 1 with 3 treasure card(s) and 8 bonus.
+G.coins = 11, expected = 11
+G.coins = 14, expected = 14
+G.coins = 17, expected = 17
+Test player 1 with 3 treasure card(s) and 9 bonus.
+G.coins = 12, expected = 12
+G.coins = 15, expected = 15
+G.coins = 18, expected = 18
+Test player 1 with 3 treasure card(s) and 10 bonus.
+G.coins = 13, expected = 13
+G.coins = 16, expected = 16
+G.coins = 19, expected = 19
+Test player 1 with 4 treasure card(s) and 0 bonus.
+G.coins = 4, expected = 4
+G.coins = 8, expected = 8
+G.coins = 12, expected = 12
+Test player 1 with 4 treasure card(s) and 1 bonus.
+G.coins = 5, expected = 5
+G.coins = 9, expected = 9
+G.coins = 13, expected = 13
+Test player 1 with 4 treasure card(s) and 2 bonus.
+G.coins = 6, expected = 6
+G.coins = 10, expected = 10
+G.coins = 14, expected = 14
+Test player 1 with 4 treasure card(s) and 3 bonus.
+G.coins = 7, expected = 7
+G.coins = 11, expected = 11
+G.coins = 15, expected = 15
+Test player 1 with 4 treasure card(s) and 4 bonus.
+G.coins = 8, expected = 8
+G.coins = 12, expected = 12
+G.coins = 16, expected = 16
+Test player 1 with 4 treasure card(s) and 5 bonus.
+G.coins = 9, expected = 9
+G.coins = 13, expected = 13
+G.coins = 17, expected = 17
+Test player 1 with 4 treasure card(s) and 6 bonus.
+G.coins = 10, expected = 10
+G.coins = 14, expected = 14
+G.coins = 18, expected = 18
+Test player 1 with 4 treasure card(s) and 7 bonus.
+G.coins = 11, expected = 11
+G.coins = 15, expected = 15
+G.coins = 19, expected = 19
+Test player 1 with 4 treasure card(s) and 8 bonus.
+G.coins = 12, expected = 12
+G.coins = 16, expected = 16
+G.coins = 20, expected = 20
+Test player 1 with 4 treasure card(s) and 9 bonus.
+G.coins = 13, expected = 13
+G.coins = 17, expected = 17
+G.coins = 21, expected = 21
+Test player 1 with 4 treasure card(s) and 10 bonus.
+G.coins = 14, expected = 14
+G.coins = 18, expected = 18
+G.coins = 22, expected = 22
+Test player 1 with 5 treasure card(s) and 0 bonus.
+G.coins = 5, expected = 5
+G.coins = 10, expected = 10
+G.coins = 15, expected = 15
+Test player 1 with 5 treasure card(s) and 1 bonus.
+G.coins = 6, expected = 6
+G.coins = 11, expected = 11
+G.coins = 16, expected = 16
+Test player 1 with 5 treasure card(s) and 2 bonus.
+G.coins = 7, expected = 7
+G.coins = 12, expected = 12
+G.coins = 17, expected = 17
+Test player 1 with 5 treasure card(s) and 3 bonus.
+G.coins = 8, expected = 8
+G.coins = 13, expected = 13
+G.coins = 18, expected = 18
+Test player 1 with 5 treasure card(s) and 4 bonus.
+G.coins = 9, expected = 9
+G.coins = 14, expected = 14
+G.coins = 19, expected = 19
+Test player 1 with 5 treasure card(s) and 5 bonus.
+G.coins = 10, expected = 10
+G.coins = 15, expected = 15
+G.coins = 20, expected = 20
+Test player 1 with 5 treasure card(s) and 6 bonus.
+G.coins = 11, expected = 11
+G.coins = 16, expected = 16
+G.coins = 21, expected = 21
+Test player 1 with 5 treasure card(s) and 7 bonus.
+G.coins = 12, expected = 12
+G.coins = 17, expected = 17
+G.coins = 22, expected = 22
+Test player 1 with 5 treasure card(s) and 8 bonus.
+G.coins = 13, expected = 13
+G.coins = 18, expected = 18
+G.coins = 23, expected = 23
+Test player 1 with 5 treasure card(s) and 9 bonus.
+G.coins = 14, expected = 14
+G.coins = 19, expected = 19
+G.coins = 24, expected = 24
+Test player 1 with 5 treasure card(s) and 10 bonus.
+G.coins = 15, expected = 15
+G.coins = 20, expected = 20
+G.coins = 25, expected = 25
+Number of cases passed: 330
+Number of cases failed: 0
+<< TESTING unittest2 - drawCard() >>
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Player - 0 - Old stuff
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 4 handCount: 6
+Player - 1 - Old stuff
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 9 handCount: 1
+Number of cases passed: 200
+Number of cases failed: 0
+<< TESTING unittest3 - buyCard() >>
+Player 1 - oldhand
+numBuy: 1 supply: 8 coin: 3
+ - new hand
+numBuy: 0 supply: 7 coin: 1
+Player 1 - oldhand
+numBuy: 1 supply: 8 coin: 3
+ - new hand
+numBuy: 0 supply: 7 coin: 0
+Player 0 - oldhand
+numBuy: 1 supply: 8 coin: 3
+ - new hand
+numBuy: 0 supply: 7 coin: 1
+Player 1 - oldhand
+numBuy: 1 supply: 10 coin: 3
+ - new hand
+numBuy: 0 supply: 9 coin: 0
+Player 1 - oldhand
+numBuy: 1 supply: 10 coin: 3
+ - new hand
+numBuy: 0 supply: 9 coin: 0
+Player 1 - oldhand
+numBuy: 1 supply: 8 coin: 3
+ - new hand
+numBuy: 0 supply: 7 coin: 0
+Player 0 - oldhand
+numBuy: 1 supply: 8 coin: 3
+ - new hand
+numBuy: 0 supply: 7 coin: 1
+Player 0 - oldhand
+numBuy: 1 supply: 40 coin: 3
+ - new hand
+numBuy: 0 supply: 39 coin: 0
+Player 1 - oldhand
+numBuy: 1 supply: 10 coin: 3
+ - new hand
+numBuy: 0 supply: 9 coin: 3
+Player 0 - oldhand
+numBuy: 1 supply: 10 coin: 3
+ - new hand
+numBuy: 0 supply: 9 coin: 0
+Number of cases passed: 10
+Number of cases failed: 190
+<< TESTING unittest4 - isGameOver() >>
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 8 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: 8
+New province count: 7 Last supply: 7
+Game is not over
+Old province count: 7 Last supply: 10
+New province count: 6 Last supply: 9
+Game is not over
+Old province count: 6 Last supply: 7
+New province count: 6 Last supply: 6
+Game is not over
+Old province count: 6 Last supply: 8
+New province count: 5 Last supply: 7
+Game is not over
+Old province count: 5 Last supply: 10
+New province count: 4 Last supply: 9
+Game is not over
+Old province count: 4 Last supply: -1
+New province count: 3 Last supply: -1
+Game is not over
+Old province count: 3 Last supply: -1
+New province count: 3 Last supply: -1
+Game is not over
+Old province count: 3 Last supply: 8
+New province count: 3 Last supply: 7
+Game is not over
+Old province count: 3 Last supply: 10
+New province count: 3 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: 8
+New province count: 7 Last supply: 7
+Game is not over
+Old province count: 7 Last supply: 8
+New province count: 6 Last supply: 7
+Game is not over
+Old province count: 6 Last supply: 8
+New province count: 6 Last supply: 7
+Game is not over
+Old province count: 6 Last supply: -1
+New province count: 5 Last supply: -1
+Game is not over
+Old province count: 5 Last supply: 10
+New province count: 4 Last supply: 9
+Game is not over
+Old province count: 4 Last supply: 10
+New province count: 4 Last supply: 9
+Game is not over
+Old province count: 4 Last supply: 40
+New province count: 4 Last supply: 39
+Game is not over
+Old province count: 4 Last supply: -1
+New province count: 3 Last supply: -1
+Game is not over
+Old province count: 3 Last supply: 9
+New province count: 3 Last supply: 8
+Game is not over
+Old province count: 3 Last supply: 8
+New province count: 3 Last supply: 7
+Game is not over
+Old province count: 8 Last supply: 8
+New province count: 6 Last supply: 6
+Game is not over
+Old province count: 6 Last supply: 46
+New province count: 5 Last supply: 45
+Game is not over
+Old province count: 5 Last supply: -1
+New province count: 4 Last supply: -1
+Game is not over
+Old province count: 4 Last supply: -1
+New province count: 4 Last supply: -1
+Game is not over
+Old province count: 4 Last supply: 8
+New province count: 4 Last supply: 7
+Game is not over
+Old province count: 4 Last supply: 10
+New province count: 4 Last supply: 9
+Game is not over
+Old province count: 4 Last supply: 8
+New province count: 4 Last supply: 7
+Game is not over
+Old province count: 4 Last supply: -1
+New province count: 3 Last supply: -1
+Game is not over
+Old province count: 3 Last supply: 30
+New province count: 3 Last supply: 29
+Game is not over
+Old province count: 3 Last supply: -1
+New province count: 2 Last supply: -1
+Game is not over
+Old province count: 8 Last supply: 8
+New province count: 7 Last supply: 7
+Game is not over
+Old province count: 7 Last supply: 10
+New province count: 6 Last supply: 9
+Game is not over
+Old province count: 6 Last supply: 46
+New province count: 5 Last supply: 45
+Game is not over
+Old province count: 5 Last supply: 10
+New province count: 4 Last supply: 9
+Game is not over
+Old province count: 4 Last supply: 10
+New province count: 3 Last supply: 9
+Game is not over
+Old province count: 3 Last supply: 10
+New province count: 2 Last supply: 9
+Game is not over
+Old province count: 2 Last supply: 8
+New province count: 1 Last supply: 7
+Game is over
+Old province count: 1 Last supply: -1
+New province count: 0 Last supply: -1
+Game is over
+Old province count: 0 Last supply: 10
+New province count: 0 Last supply: 9
+Fail
+Game is over
+Old province count: 0 Last supply: 10
+New province count: 0 Last supply: 9
+Fail
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 8 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 8 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 8 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: -1
+New province count: 7 Last supply: -1
+Game is not over
+Old province count: 7 Last supply: 8
+New province count: 6 Last supply: 7
+Game is not over
+Old province count: 6 Last supply: 46
+New province count: 6 Last supply: 45
+Game is not over
+Old province count: 6 Last supply: 9
+New province count: 6 Last supply: 8
+Game is not over
+Old province count: 6 Last supply: 8
+New province count: 6 Last supply: 7
+Game is not over
+Old province count: 6 Last supply: 30
+New province count: 6 Last supply: 29
+Game is not over
+Old province count: 6 Last supply: 8
+New province count: 5 Last supply: 7
+Game is not over
+Old province count: 8 Last supply: 8
+New province count: 8 Last supply: 7
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 8 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 7 Last supply: 9
+Game is not over
+Old province count: 7 Last supply: -1
+New province count: 7 Last supply: -1
+Game is not over
+Old province count: 7 Last supply: -1
+New province count: 7 Last supply: -1
+Game is not over
+Old province count: 7 Last supply: 7
+New province count: 6 Last supply: 6
+Game is not over
+Old province count: 6 Last supply: 7
+New province count: 6 Last supply: 6
+Game is not over
+Old province count: 6 Last supply: 8
+New province count: 5 Last supply: 7
+Game is not over
+Old province count: 5 Last supply: 10
+New province count: 4 Last supply: 9
+Game is not over
+Old province count: 4 Last supply: 10
+New province count: 3 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: -1
+New province count: 7 Last supply: -1
+Game is not over
+Old province count: 7 Last supply: -1
+New province count: 6 Last supply: -1
+Game is not over
+Old province count: 6 Last supply: 10
+New province count: 5 Last supply: 9
+Game is not over
+Old province count: 5 Last supply: 10
+New province count: 4 Last supply: 9
+Game is not over
+Old province count: 4 Last supply: 10
+New province count: 3 Last supply: 9
+Game is not over
+Old province count: 3 Last supply: 9
+New province count: 3 Last supply: 8
+Game is not over
+Old province count: 3 Last supply: -1
+New province count: 2 Last supply: -1
+Game is not over
+Old province count: 2 Last supply: 8
+New province count: 1 Last supply: 7
+Game is over
+Old province count: 1 Last supply: 10
+New province count: 0 Last supply: 9
+Game is over
+Old province count: 0 Last supply: 10
+New province count: 0 Last supply: 9
+Fail
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 7 Last supply: 9
+Game is not over
+Old province count: 7 Last supply: -1
+New province count: 6 Last supply: -1
+Game is not over
+Old province count: 6 Last supply: -1
+New province count: 5 Last supply: -1
+Game is not over
+Old province count: 5 Last supply: 10
+New province count: 5 Last supply: 9
+Game is not over
+Old province count: 5 Last supply: -1
+New province count: 4 Last supply: -1
+Game is not over
+Old province count: 4 Last supply: 8
+New province count: 3 Last supply: 7
+Game is not over
+Old province count: 3 Last supply: -1
+New province count: 2 Last supply: -1
+Game is not over
+Old province count: 2 Last supply: 8
+New province count: 1 Last supply: 7
+Game is over
+Old province count: 1 Last supply: 40
+New province count: 0 Last supply: 39
+Game is over
+Old province count: 0 Last supply: 8
+New province count: 0 Last supply: 7
+Fail
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 8 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: -1
+New province count: 8 Last supply: -1
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 8 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: 8
+New province count: 8 Last supply: 7
+Game is not over
+Old province count: 8 Last supply: 7
+New province count: 8 Last supply: 6
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 8 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: 9
+New province count: 8 Last supply: 8
+Game is not over
+Old province count: 8 Last supply: -1
+New province count: 7 Last supply: -1
+Game is not over
+Old province count: 7 Last supply: -1
+New province count: 6 Last supply: -1
+Game is not over
+Old province count: 6 Last supply: 10
+New province count: 6 Last supply: 9
+Game is not over
+Old province count: 8 Last supply: 10
+New province count: 7 Last supply: 9
+Game is not over
+Old province count: 7 Last supply: -1
+New province count: 7 Last supply: -1
+Game is not over
+Old province count: 7 Last supply: 8
+New province count: 6 Last supply: 7
+Game is not over
+Old province count: 6 Last supply: 8
+New province count: 5 Last supply: 7
+Game is not over
+Old province count: 5 Last supply: -1
+New province count: 4 Last supply: -1
+Game is not over
+Old province count: 4 Last supply: 10
+New province count: 3 Last supply: 9
+Game is not over
+Old province count: 3 Last supply: 7
+New province count: 2 Last supply: 6
+Game is not over
+Old province count: 2 Last supply: -1
+New province count: 2 Last supply: -1
+Game is not over
+Old province count: 2 Last supply: -1
+New province count: 1 Last supply: -1
+Game is over
+Old province count: 1 Last supply: 10
+New province count: 0 Last supply: 9
+Number of cases passed: 96
+Number of cases failed: 4
+<< TESTING cardtest1 - smithy  >>
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 1 handCount: 8
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Player 0
+Old - deckCount: 0 handCount: 8
+New - deckCount: 0 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 1 handCount: 8
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Player 0
+Old - deckCount: 0 handCount: 8
+New - deckCount: 0 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 1 handCount: 8
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Player 0
+Old - deckCount: 0 handCount: 8
+New - deckCount: 0 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 1 handCount: 8
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Player 0
+Old - deckCount: 0 handCount: 8
+New - deckCount: 0 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Player 0
+Old - deckCount: 5 handCount: 5
+New - deckCount: 1 handCount: 8
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Player 0
+Old - deckCount: 0 handCount: 8
+New - deckCount: 0 handCount: 7
+Player 1
+Old - deckCount: 10 handCount: 0
+New - deckCount: 10 handCount: 0
+Number of cases passed: 0
+Number of cases failed: 20
+<< TESTING cardtest2 - adventurer  >>
+Old stuff - player 0
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 1 handCount: 8
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Old stuff - player 0
+deckCount: 0 handCount: 7
+New stuff
+deckCount: 0 handCount: 6
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Old stuff - player 0
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 1 handCount: 8
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Old stuff - player 0
+deckCount: 0 handCount: 7
+New stuff
+deckCount: 0 handCount: 6
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Old stuff - player 0
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 1 handCount: 8
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Old stuff - player 0
+deckCount: 0 handCount: 7
+New stuff
+deckCount: 0 handCount: 6
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Old stuff - player 0
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 1 handCount: 8
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Old stuff - player 0
+deckCount: 0 handCount: 7
+New stuff
+deckCount: 0 handCount: 6
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Old stuff - player 0
+deckCount: 5 handCount: 5
+New stuff
+deckCount: 1 handCount: 8
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Old stuff - player 0
+deckCount: 0 handCount: 7
+New stuff
+deckCount: 0 handCount: 6
+Old stuff - player 1
+deckCount: 10 handCount: 0
+New stuff
+deckCount: 10 handCount: 0
+Number of cases passed: 0
+Number of cases failed: 20
+<< TESTING cardtest3 - village  >>
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 0
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 action: 1
+Old stuff - player 1
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+New stuff
+deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 action: 1
+Number of cases passed: 0
+Number of cases failed: 20
+<< TESTING cardtest4 - councilRoom  >>
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 0
+Old - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 5 handCount: 5  playedCardCount: 0 discardCount: 0 numBuys: 1
+Player 1
+Old - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+New - deckCount: 10 handCount: 0  playedCardCount: 0 discardCount: 0 numBuys: 1
+Number of cases passed: 0
+Number of cases failed: 20
+File 'dominion.c'
+Lines executed:35.74% of 596
+Branches executed:35.76% of 425
+Taken at least once:26.35% of 425
+Calls executed:21.78% of 101
+dominion.c:creating 'dominion.c.gcov'
+
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda

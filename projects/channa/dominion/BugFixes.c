@@ -69,19 +69,19 @@ Bug 3: adventurer - "...non-treasure cards that are drawn after the card is play
 
 	I used GDB to set a breakpoint at playAdventurer. The code that deals with non-treasure cards that are drawn is:
 
-		 while(z-1>=0)
-		  {
+		while(z-1>=0)
+		{
 		    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 		    z=z-1;
-		  }
+		}
 
 	In GDB, I set a watch on the variable "z" and noticed that it did not change after its initialization to 0.
 	This made it so that the while condition could never hold true and thus, the code for handling non-treasure cards drawn
 	was never executed. I fixed the bug by adding a statement in the else block to increment z:
 
 		else
-	    {
-	      temphand[z]=cardDrawn;
-	      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-	      z++;
-	    }
+		{
+			temphand[z]=cardDrawn;
+			state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+			z++;
+		}

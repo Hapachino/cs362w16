@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 		memcpy(&backup, &state, sizeof(struct gameState));
 		
 		// call village card effect
-		adventurerEffect(currentPlayer, 0, 0, temphand, &state);
+		adventurer_play(currentPlayer, &state);
 		// check two cards are added to hand
 		if (state.handCount[currentPlayer] != backup.handCount[currentPlayer] + 2) {
 			isValidDraw = 0;

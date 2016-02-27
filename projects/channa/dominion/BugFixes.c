@@ -6,20 +6,20 @@ Assignment 5: BugFixes.c
 /**********************************
 teammate1Dominion - Andrew Calhoun
 **********************************/
-At first, Andrew's tests were reporting bugs for adventurer and smithy. However, when I examined Andrew's
-adventurer test, I discovered that his test was only testing an internal implementation of adventurer and
-not my implementation. By setting a breakpoint at my adventurer function in my dominion.c, it confirmed
-my suspicions that my code was not actually being executed in his test since there were no calls to my function
-either directly with playAdventurer() nor indirectly with the cardEffect function.
+	At first, Andrew's tests were reporting bugs for adventurer and smithy. However, when I examined Andrew's
+	adventurer test, I discovered that his test was only testing an internal implementation of adventurer and
+	not my implementation. By setting a breakpoint at my adventurer function in my dominion.c, it confirmed
+	my suspicions that my code was not actually being executed in his test since there were no calls to my function
+	either directly with playAdventurer() nor indirectly with the cardEffect function.
 
-Andrew's smithy test was resulting in a segmentation fault. Upon closer inspection, I learned that his call
-to my smithy function had not been changed to match my refactored implementation. The parameter order needed
-to be corrected. Once corrected, the segmentation fault no longer occurred. There was one last remaining issue
-in which a conditional statement in his test needed to be corrected as well. Once corrected, expected values
-equaled actual values from my smithy function.
+	Andrew's smithy test was resulting in a segmentation fault. Upon closer inspection, I learned that his call
+	to my smithy function had not been changed to match my refactored implementation. The parameter order needed
+	to be corrected. Once corrected, the segmentation fault no longer occurred. There was one last remaining issue
+	in which a conditional statement in his test needed to be corrected as well. Once corrected, expected values
+	equaled actual values from my smithy function.
 
-In summary, Andrew's test suite did not find any bugs in my code. Rather than fixing bugs in my code, I instead
-assisted in fixing bugs in the tests.
+	In summary, Andrew's test suite did not find any bugs in my code. Rather than fixing bugs in my code, I instead
+	assisted in fixing bugs in the tests.
 
 /**********************************
 teammate2Dominion - Jonathan Lagrew
@@ -45,15 +45,15 @@ Bug 1: scoreFor() - "Scores do not equal the expected values."
 
 	Removing gardens from the 3 for loops in scoreFor() and adding the following code to adhere to the logic of gardens fixed the bug:
 
-	  // Number of gardens
-	  gardens_count = fullDeckCount(player, 10, state);
-	  // All cards in deck (discard and hand are part of the deck at this point)
-	  allDeck_count = state->handCount[player] + state->discardCount[player] + state->deckCount[player];
-	  // Gardens is worth 1 VP for every 10 cards in your deck (rounded down)
-	  gardens_effect = (allDeck_count / 10) * gardens_count;
+		// Number of gardens
+		gardens_count = fullDeckCount(player, 10, state);
+		// All cards in deck (discard and hand are part of the deck at this point)
+		allDeck_count = state->handCount[player] + state->discardCount[player] + state->deckCount[player];
+		// Gardens is worth 1 VP for every 10 cards in your deck (rounded down)
+		gardens_effect = (allDeck_count / 10) * gardens_count;
 
-	  // Add gardens effect
-	  score = score + gardens_effect;
+		// Add gardens effect
+		score = score + gardens_effect;
 
 Bug 2: smithy - "The test found that the wrong amount of the player's cards after playing the smithy card. Instead of 
 	3 cards there should of been 4. This also affected the deckCount and discard pile for the counts."

@@ -38,6 +38,7 @@ int main() {
         // randomly pick a player
         G.numActions = 0;
         thisPlayer = floor(Random() * 2);
+        G.whoseTurn = thisPlayer;
         // make sure player hand has village to play
         do
         {
@@ -87,7 +88,7 @@ void cardsForPlayers(struct gameState *G)
 
 void checkVillage(int thisPlayer, struct gameState *G, int handPos) {
     int otherPlayer;
-    int result;
+    int result = 0;
     int discardCount = 0;
     struct gameState testG;
     memcpy (&testG, G, sizeof(struct gameState));
@@ -97,7 +98,7 @@ void checkVillage(int thisPlayer, struct gameState *G, int handPos) {
     else
         otherPlayer = 1;
 
-    result = cardEffect(village, 0, 0, 0, testG, handPos, 0); // play village card on current player
+    cardEffect(village, 0, 0, 0, &testG, handPos, 0); // play village card on current player
 
     // do to G what we think village should do
     drawCard(thisPlayer, G);

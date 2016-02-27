@@ -1,0 +1,60 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:    Dominion/Minion  Didn't properly discard other players' hands
+
+Class:  Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:           2/21/16
+Reported By:   Todd Waddell
+Email:      waddelto@oregonstate.edu
+
+
+Product:    Dominion/Minion     Version:
+Platform:                       Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Yes / Occasionally / One Time / No
+
+Description
+===========
+Minion, path 2, fails to properly discard other players' hands when
+handcount >= 5.
+
+
+
+Steps to Produce/Reproduce
+--------------------------
+Run Minion with path 2, check discardCount and discardPile.
+
+
+Expected Results
+----------------
+If other players have handCount >= 5, those cards should be discarded and
+discardCount[otherPlayers] should be incremented.
+
+
+
+Actual Results
+--------------
+Probably related to bug in discard Function wherein cards are improperly
+put in the playedCard pile instead of the discard pile. 
+
+
+Workarounds
+-----------
+none
+
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+
+

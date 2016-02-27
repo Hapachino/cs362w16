@@ -38,6 +38,7 @@ int main() {
         // randomly pick a player
         G.numActions = 0;
         thisPlayer = floor(Random() * 2);
+        G.whoseTurn = thisPlayer;
         // make sure player hand has village to play
         do
         {
@@ -97,8 +98,7 @@ void checkVillage(int thisPlayer, struct gameState *G, int handPos) {
     else
         otherPlayer = 1;
 
-    result = cardEffect(village, 0, 0, 0, testG, handPos, 0); // play village card on current player
-
+    result = cardEffect(village, 0, 0, 0, &testG, handPos, 0); // play village card on current player
     // do to G what we think village should do
     drawCard(thisPlayer, G);
     G->numActions += 2;
@@ -110,7 +110,7 @@ void checkVillage(int thisPlayer, struct gameState *G, int handPos) {
     printf("Village returned successfully - return value %d, expected %d\n", result, 0);
     assert (result == 0); // village returned correctly
     printf("Number of actions incremented properly - actions %d, expected %d\n", testG.numActions, G->numActions);
-    // assert (testG.numActions == G->numActions);
+    assert (testG.numActions == G->numActions);
     if (testG.numActions != G->numActions) // replace assert since it always catches bug
         printf("Failure: incorrect number of actions added\n");
 

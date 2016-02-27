@@ -3,9 +3,11 @@
     Assignment 5 - teammate 1 bug report (Jeannine Amm)
 
 
-Tests consisted of a game state initialized with two players and then copied to a test game state before each test.
+Unit & card tests consisted of a game state initialized with two players and then copied to a test game state before each test.
 The modified test game state was then checked against the original game state to check for discrepancies between
-expected and actual attributes.
+expected and actual attributes. Random tests involved a completely randomized game state, with necessary attributes initialized
+randomly as needed.
+
 
 unittest1.c - all tests passed
 unittest2.c - all tests passed
@@ -32,5 +34,26 @@ cardtest2.c:
 
 cardtest3.c - all tests passed
 cardtest4.c - all tests passed
+randomtestadventurer.c:
+    playAdventurer():
+    BUGS:
+        see cardtest2.c, playAdventurer1;
+
+    TEST OUTPUT:
+    Random testing adventurer:
+
+     >>>>> TEST 1 <<<<<
+    Adventurer returned successfully - return value 0, expected 0
+    Current player received 2 treasures - received 2, expected 2
+    Cards added to discard - discard pile 16, expected 17
+    Failure: discard not incremented properly
+    No state change to other player:
+         Other player deck count - actual 72, expected 72
+         Other player hand count - actual 190, expected 190
+         Other player discard count - actual 0, expected 0
+    Testing for identical game states...
+    Failure: game states are not identical
+
+randomtestcard.c - all test passed
 
 */

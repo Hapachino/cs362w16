@@ -1,326 +1,140 @@
+/******************************************************************************
+ * Author: Mark Giles
+ * Filename: randomtestcard.c
+ * Date Created: 2/13/2016
+ * Last Modified: 2/13/2016
+ * Description: This program performs random tests on the effects of the 
+ *   adventurer card in the dominion card game as implemented in the dominion.c
+ *   file. The random tests attempt to reach maximum boundary and path coverage
+ *   testing by automatically generating combinations of player hands and 
+ *   calling the adventurerEffect function to compare expected results against 
+ *   actual results.
+ *****************************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include "dominion.h"
-#include "rngs.h"
 #include <math.h>
-#include "assert.h"
-#define YES 1
-#define NO 0 
-#define NUMCARDS 10
+#include <time.h>
+#include <string.h>
 
-void ASSERT2(int expVal, int realVal, char *s) 
-{	
-	if(expVal != realVal) 
-	{
-		printf("FAIL - %s\n", s);
-		printf("EXPECTED value is %d; got %d", expVal, realVal);
-		assert(expVal == realVal);
-		exit(1);
-	}
-}
+#include "dominion.h"
+#include "dominion_helpers.h"
+#include "rngs.h"
 
-int isUnique(int k[]) {
-	int i, j;
-	for(i = 0; i < NUMCARDS; i++)
-	{
-		for(j = 1; j < NUMCARDS; j++)
-		{	
-			if(j!=i && k[i] == k[j])
-				return NO;	
-		}	
-	}
-	return YES;
-}
-
-void makeK(int k[])
-{
-	int i;
-	for(i = 0; i < NUMCARDS; i++)
-	{
-		k[i] = rand()%NUMCARDS;
-	}
-}	
-
-void initI(struct infosStruct *infos) 
-{
-	int i;
-
-	(*infos).drawntreasure = 0;
-	(*infos).drawntreasure = 0;
-	(*infos).cardDrawn = 0; //random
-	for(i = 0; i < MAX_HAND; i++)
-		(*infos).temphand[i] = 0; //rand()%MAX_HAND
-	(*infos).z = 0;
-	(*infos).handPos = 0; //not used
-	(*infos).i = 0; //not used either
-	(*infos).currentPlayer = 0;
-}
-
-void func(int *x) 
-{
-	*x = 5;
-}
-
-int main() {
-
-	srand(time(NULL));
-	int i, j, ret;
-	struct gameState *g;
+int main(int argc, char *argv[]) {
+	struct gameState state,		// initialized game state for testing
+					 backup;	// backup game state for comparisons
 	struct infosStruct infos;
-	g = newGame();
-	int k[NUMCARDS]; 
-	int n;
-	int handCount, deckCount, discardCount;
-	int handCountExp, deckCountExp, discardCountExp;
+	// array of kingdom cards for game initialization
+	int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, 
+							cutpurse, sea_hag, tribute, smithy};
+	infos.drawntreasure = 0;
+	infos.cardDrawn = 0;
+	infos.z = 0;
+	infos.handPos = 0;
+	infos.i = 0;
+	int randomSeed = 10000,
+		numTests = 1000,
+		numPlayers = 2,
+		isValidDraw = 1,
+		isValidDiscard = 1,
+		numNonTreasure = 0,
+		treasurePos = 0,
+		numRemoved = -1,
+		treasureCount = 0,
+		currentPlayer = 0,
+		i = 0,
+		j = 0,
+		numPassed = 0,
+		numFailed = 0,
+		temphand[MAX_HAND];
 
-	//Make sure draw card is working correctly
-	for(n=0; n < 2000; n++)
-	{
-		//make unique kingdom cards
-		do 
-		{
-			makeK(k);
+	for (i = 0; i < numTests; i++) {
+		// reset validation check to 1, 0 if test fails
+		isValidDraw = 1;
+		isValidDiscard = 1;
+		numNonTreasure = 0;
+		// setup working copy of game
+		initializeGame(numPlayers, kingdomCards, randomSeed, &state);
+		// randomize number of cards in player's hand
+		state.handCount[currentPlayer] = (rand() %10) + 1;
+		// fill in the player's hand
+		for (j = 0; j < state.handCount[currentPlayer]; j++) {
+			state.hand[currentPlayer][j] = rand() % 26;
 		}
-		while(!isUnique(k));
 
-		initializeGame(2, k, 3, g);
-
-		//randomize number of players
-		int numPlayers = (rand()%MAX_PLAYERS)+1;
-		g->numPlayers = numPlayers;
-
-		//randomize unused properties
-		g->outpostPlayed = rand();
-		g->outpostTurn = rand();
-		g->whoseTurn = rand(); //this may be important
-		g->phase = rand();
-		g->numActions = rand();
-		g->coins = rand();
-		g->numBuys = rand();
-
-		//randomized player hands
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = floor(rand()%(MAX_HAND/3));
+		// read from the end of the deck bachwards until two treasure cards are found
+		for (j = state.deckCount[currentPlayer] - 1; j >= 0; j--) {
+			if (state.deck[currentPlayer][i] == copper ||
+				state.deck[currentPlayer][i] == silver ||
+				state.deck[currentPlayer][i] == gold) {
+				treasureCount++;
+			} else {
+				numNonTreasure++;
 			}
-			while(numCards < 13);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->hand[i][j] = rand()%15;
+			if (treasureCount == 2) {
+				treasurePos = j;
+				break;
 			}
-			g->handCount[i] = numCards;
 		}
-
-		//randomized player decks
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-
-			numCards = rand()%(MAX_HAND/3);
-
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->deck[i][j] = rand()%15;
-			}
-			g->deckCount[i] = numCards;
+		// copy game state to backup for error detection
+		memcpy(&backup, &state, sizeof(struct gameState));
+		
+		// call village card effect
+		effectAdventure(&state, &infos);
+		// check two cards are added to hand
+		if (state.handCount[currentPlayer] != backup.handCount[currentPlayer] + 2) {
+			isValidDraw = 0;
 		}
-		deckCount = g->deckCount[numPlayers-1];
-
-		//randomized player discard counts
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards == 0 && g->deckCount[i] == 0);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->discard[i][j] = rand()%15;
-			}
-			g->discardCount[i] = numCards;
+		// ensure two additional cards are treasure cards
+		if (!(state.hand[currentPlayer][backup.handCount[currentPlayer] + 1] == copper ||
+			state.hand[currentPlayer][backup.handCount[currentPlayer] + 1] == silver ||
+			state.hand[currentPlayer][backup.handCount[currentPlayer] + 1] == gold)) {
+			isValidDraw = 0;
 		}
-		discardCount = g->discardCount[numPlayers-1];
-		//initialize infosStruct
-		infos.drawntreasure = 0;
-		infos.drawntreasure = 0;
-		infos.cardDrawn = 0; //random
-		for(i = 0; i < MAX_HAND; i++)
-			infos.temphand[i] = rand(); //rand()%MAX_HAND
-		infos.z = 0;
-		infos.handPos = 0; //not used
-		infos.i = 0; //not used either
-
-		//randomly select current player
-		do
-		{
-			infos.currentPlayer = rand()%MAX_PLAYERS;
-		}
-		while(infos.currentPlayer >= numPlayers);
-
-		//get gameState values before calling drawCard()
-		handCount = g->handCount[numPlayers-1];
-		//handle case when deckCount is 0
-		if(deckCount == 0)
-		{
-			deckCountExp = discardCount;
-			deckCountExp--; //because draw card
-			discardCountExp = 0;
-		}
-		else //discardCount is not affected
-		{
-			discardCountExp = discardCount;
-			deckCountExp = deckCount - 1;
+		if (!(state.hand[currentPlayer][backup.handCount[currentPlayer]] == copper ||
+			state.hand[currentPlayer][backup.handCount[currentPlayer]] == silver ||
+			state.hand[currentPlayer][backup.handCount[currentPlayer]] == gold)) {
+			isValidDraw = 0;
 		}
 		
-		handCountExp = handCount + 1;
+		// ensure non-treasure cards are discarded
+		if (state.discardCount[currentPlayer] != backup.discardCount[currentPlayer] + numNonTreasure) {
+			isValidDiscard = 0;
+		}
 
-		drawCard(numPlayers-1, g);
-
-		handCount = g->handCount[numPlayers-1];
-		deckCount = g->deckCount[numPlayers-1];
-		discardCount = g->discardCount[numPlayers-1];
-
-		ASSERT2(handCountExp, handCount, "handCount after drawCard()");
-		ASSERT2(deckCountExp, deckCount, "deckCount after drawCard()");
-		ASSERT2(discardCountExp, discardCount, "discardCount after drawCard()");
-
+		// print test conditions if the test failed
+		if (isValidDraw == 0 || isValidDiscard == 0 || 1 == 1) {
+			printf("TEST %i\n", i + 1);
+			printf("Function Used: adventurerEffect(%i, 0, temphand[], &state);\n", currentPlayer);
+			printf("Position of second treasure card: %i\n", treasurePos);
+			printf("Cards in starting hand: \n");
+			for (j = 0; j < backup.handCount[currentPlayer]; j++) {
+				printf("%i, ", backup.hand[currentPlayer][j]);
+			}
+			printf("\n");
+			printf("Cards in ending hand: \n");
+			for (j = 0; j < state.handCount[currentPlayer]; j++) {
+				printf("%i, ", state.hand[currentPlayer][j]);
+			}
+			printf("\n");
+			printf("Random Seed: %i\n", randomSeed);
+			printf("Failed Item(s): \n");
+			if (isValidDraw == 0)
+				printf("Invalid draw operation\n");
+			if (isValidDiscard == 0)
+				printf("Invalid discard operation\n");	
+			numFailed++;
+		} else {
+			numPassed++;
+		}
+	
+		randomSeed++;
 	}
-	puts("drawCard(): PASSED");
-	//make sure player has two more cards after effectAdventurer
-	for(n=0; n < 2000; n++)
-	{
-		//make unique kingdom cards
-		do 
-		{
-			makeK(k);
-		}
-		while(!isUnique(k));
 
-		initializeGame(2, k, 3, g);
+	printf("\nTotal Tests: %i\n", numTests);
+	printf("Total Passed: %i\n", numPassed);
+	printf("Total Failed: %i\n", numFailed);
 
-		//randomize number of players
-		int numPlayers = (rand()%MAX_PLAYERS)+1;
-		g->numPlayers = numPlayers;
-		//randomly select current player
-		do
-		{
-			infos.currentPlayer = rand()%MAX_PLAYERS;
-		}
-		while(infos.currentPlayer >= numPlayers);
-
-		//randomize unused properties
-		g->outpostPlayed = rand();
-		g->outpostTurn = rand();
-		g->whoseTurn = rand(); //this may be important
-		g->phase = rand();
-		g->numActions = rand();
-		g->coins = rand();
-		g->numBuys = rand();
-
-		//randomized player hands
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = floor(rand()%(MAX_HAND/3));
-			}
-			while(numCards < 13);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->hand[i][j] = rand()%15;
-			}
-			g->handCount[i] = numCards;
-		}
-
-		//randomized player decks
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			int coinCount = 0;
-			do
-			{
-
-			numCards = rand()%(MAX_HAND/3);
-				for(j = 0; j < numCards; j++)
-				{
-					int coin = rand()%15;
-					if(coin == copper)
-						coinCount++;
-					if(coin == silver)
-						coinCount++;
-					if(coin == gold)
-						coinCount++;
-					g->deck[i][j] = coin;
-				}
-			}
-			while(coinCount < 2);
-			g->deckCount[i] = numCards;
-		}
-		deckCount = g->deckCount[infos.currentPlayer];
-		
-
-		//randomized player discard counts
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards == 0 && g->deckCount[i] == 0);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->discard[i][j] = rand()%15;
-			}
-			g->discardCount[i] = numCards;
-		}
-		discardCount = g->discardCount[infos.currentPlayer];
-
-		//initialize infosStruct
-		infos.drawntreasure = 0;
-		infos.drawntreasure = 0;
-		infos.cardDrawn = 0; //random
-		for(i = 0; i < MAX_HAND; i++)
-			infos.temphand[i] = rand(); //rand()%MAX_HAND
-		infos.z = 0;
-		infos.handPos = 0; //not used
-		infos.i = 0; //not used either
-
-		//get gameState values before calling drawCard()
-		handCount = g->handCount[infos.currentPlayer];
-		//handle case when deckCount is 0
-		if(deckCount == 0)
-		{
-			deckCountExp = discardCount;
-			deckCountExp--; //because draw card
-			discardCountExp = 0;
-		}
-		else //discardCount is not affected
-		{
-			discardCountExp = discardCount;
-			deckCountExp = deckCount - 1;
-		}
-
-		handCountExp = handCount + 2;
-		ret = effectAdventure(g, &infos);
-		handCount = g->handCount[infos.currentPlayer];
-		deckCount = g->deckCount[infos.currentPlayer];
-		discardCount = g->discardCount[infos.currentPlayer];
-		ASSERT2(handCountExp, handCount, "handCount" );
-	}
-	puts("effectAdventure(): Passed");
-	return 0; 
+	return 0;
 }

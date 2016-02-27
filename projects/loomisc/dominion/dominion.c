@@ -1230,9 +1230,9 @@ int playAdventurer(struct gameState *state){
 	int cardDrawn;
 	int z = 0;// this is the counter for the temp hand
 	while(drawntreasure<2){
-		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+		if (state->deckCount[currentPlayer] <1)//if the deck is empty we need to shuffle discard and add to deck
 			shuffle(currentPlayer, state);
-		}
+		
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
 		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
@@ -1243,7 +1243,7 @@ int playAdventurer(struct gameState *state){
 			z++;
 		}
 	}
-	state->handCount[currentPlayer] = state->handCount[currentPlayer] - z;
+	
 	while(z-1>=0){
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 		z=z-1;
@@ -1255,7 +1255,7 @@ int playSmithy(struct gameState *state, int handPos){
 	int i;
 	int currentPlayer = whoseTurn(state);
 	//+3 Cards
-	for (i = 3; i >= 0; i--){
+	for (i = 0; i < 3; i++){
 		drawCard(currentPlayer, state);
 	}
 	
@@ -1271,7 +1271,7 @@ int playVillage(struct gameState *state, int handPos){
 	drawCard(currentPlayer, state);
 	
 	//+2 Actions
-	state->numActions++;
+	state->numActions = state->numActions + 2;
 	
 	//discard played card from hand
 	discardCard(handPos, currentPlayer, state, 0);
@@ -1302,6 +1302,12 @@ int playFeast(struct gameState *state, int choice1){
 			if (DEBUG)
 				printf("Cards Left: %d\n", supplyCount(choice1, state));
 		}
+		else if (state->coins < getCost(choice1)){
+			printf("That card is too expensive!\n");
+
+			if (DEBUG)
+				printf("Coins: %d < %d\n", state->coins, getCost(choice1));
+	}
 		else{
 			
 			if (DEBUG)
@@ -1338,7 +1344,8 @@ int playCouncil_Room(struct gameState *state, int handPos){
 	
 	//Each other player draws a card
 	for (i = 0; i < state->numPlayers; i++){
-	      drawCard(i, state);
+		if ( i != currentPlayer )
+			drawCard(i, state);
 	}
 	
 	//put played card in played card pile

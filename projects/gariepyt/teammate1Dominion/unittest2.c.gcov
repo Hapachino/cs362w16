@@ -1,0 +1,86 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2:**Unit test 2: discardCard()
+        -:    3:**Written by: Tom Gariepy
+        -:    4:**CS 325 Winter 2016
+        -:    5:*/
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <stdio.h>
+        -:   11:#include <assert.h>
+        -:   12:#include "rngs.h"
+        -:   13:
+        -:   14:/*int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)*/
+        -:   15:
+        1:   16:int main(int argc, char const *argv[]) {
+        1:   17:    int seed = 1000;
+        1:   18:    int numPlayer = 2;
+        -:   19:    int p, r, d, handCount, playedCount, playedResult, curFlag;
+        -:   20:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        1:   21:               , remodel, smithy, village, baron, great_hall};
+        -:   22:    struct gameState G;
+        1:   23:    int maxHandCount = 5;
+        -:   24:
+        -:   25:    int cards[MAX_HAND];
+        -:   26:    int i;
+      501:   27:    for (i = 0; i < MAX_HAND; i++)
+        -:   28:    {
+      500:   29:        cards[i] = adventurer;
+        -:   30:    }
+        -:   31:
+        1:   32:    printf ("TESTING discardCard():\n");
+        3:   33:    for (p = 0; p < numPlayer; p++) {
+       12:   34:    	for(handCount=1; handCount <= maxHandCount; handCount++) {
+       80:   35:    		for(playedCount=0; playedCount <= 6; playedCount++) {
+      350:   36:    			for(curFlag=0; curFlag < 4; curFlag++) {
+      280:   37:    				printf("Test player %d with %d in hand, %d in played, and %d flag\n",p, handCount, playedCount, curFlag);
+      280:   38:    				memset(&G, 23, sizeof(struct gameState));
+      280:   39:    				r = initializeGame(numPlayer, k, seed, &G);
+        -:   40:
+      280:   41:    				G.handCount[p] = handCount;
+        -:   42:    				// memcpy(G.hand[p], cards, sizeof(int) * handCount);
+        -:   43:
+      280:   44:    				G.playedCardCount = playedCount;
+        -:   45:    				// memcpy(G.playedCards[p], cards, sizeof(int) * playedCount);
+        -:   46:
+        -:   47:    				int x;
+     1120:   48:    				for (x = 0; x < handCount; x++) {
+      840:   49:    					G.hand[p][x] = k[x];
+        -:   50:    				}
+     1120:   51:    				for (x = 0; x < playedCount; x++) {
+      840:   52:    					G.playedCards[x] = k[x];
+        -:   53:    				}
+        -:   54:
+      280:   55:    				d = discardCard(handCount/2, p, &G, curFlag);
+        -:   56:
+      280:   57:    				if (curFlag < 1) {
+       70:   58:    					playedResult = playedCount + 1;
+        -:   59:    				}
+        -:   60:    				else {
+      210:   61:    					playedResult = playedCount;
+        -:   62:    				}
+        -:   63:
+      280:   64:    				printf("G.handCount = %d, expected = %d\n", G.handCount[p], handCount - 1);
+      280:   65:    				printf("G.playedCardCount = %d, expected = %d\n", G.playedCardCount, playedResult);
+        -:   66:
+      560:   67:    				if (G.handCount[p] == handCount - 1 && G.playedCardCount == playedResult) {
+      280:   68:    					printf("The counts are correct\n");
+        -:   69:    				}
+        -:   70:    				else {
+    #####:   71:    					printf("The counts are not correct\n");
+        -:   72:    				}
+        -:   73:
+        -:   74:    			}
+        -:   75:    		}
+        -:   76:    	}
+        -:   77:    
+        -:   78:    }
+        -:   79:
+        1:   80:	return 0;
+        -:   81:}

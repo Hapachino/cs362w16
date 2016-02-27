@@ -654,12 +654,15 @@ int councilRoomFunc(int currentPlayer, struct gameState *state, int handPos)
 	}
 			
       //+1 Buy
-      state->numBuys--;
+      state->numBuys++;
 			
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
 	{
-	  drawCard(i, state);
+	   if ( i != currentPlayer )
+	    {
+	      drawCard(i, state);
+	    }
 	}
 			
       //put played card in played card pile
@@ -675,13 +678,13 @@ int adventurerFunc(struct gameState *state, int currentPlayer)
     int cardDrawn;
     int z = 0;// this is the counter for the temp hand
     
-      while(drawntreasure<3){
+      while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == copper || cardDrawn == silver)
+	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 	  drawntreasure++;
 	else{
 	  temphand[z]=cardDrawn;
@@ -757,7 +760,7 @@ int remodelFunc(struct gameState *state, int currentPlayer, int choice1, int cho
       //discard trashed card
       for (i = 0; i < state->handCount[currentPlayer]; i++)
 	{
-	  if (state->hand[currentPlayer][i] != j)
+	  if (state->hand[currentPlayer][i] == j)
 	    {
 	      discardCard(i, currentPlayer, state, 0);			
 	      break;
@@ -772,7 +775,7 @@ int smithyFunc(struct gameState *state, int currentPlayer, int handPos)
     int i; 
     
     //+3 Cards
-      for (i = 1; i < 3; i++)
+      for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}

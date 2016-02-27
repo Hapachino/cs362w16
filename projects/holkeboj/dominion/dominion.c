@@ -650,9 +650,7 @@ int smithy_card(int handPos, int currentPlayer, struct gameState *state) {
     int i;
     // +3 Cards
     for (i = 0; i < 3; i++) {
-        if (handPos != 2) { // bug - this condition shouldn't be here
-            drawCard(currentPlayer, state);
-        }
+        drawCard(currentPlayer, state);
     }
     
     //discard card from hand

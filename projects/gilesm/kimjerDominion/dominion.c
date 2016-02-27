@@ -1,7 +1,6 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
-#include "cardFunctions.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -1195,15 +1194,13 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     state->handCount[currentPlayer]--;
   }
   else 	
-  {
     //replace discarded card with last card in hand
     state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
     //set last card to -1
-    state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
-    //reduce number of cards in hand
-    state->handCount[currentPlayer]--;
-  }
-	
+	state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+	// reduce number of cards in hand
+	state->handCount[currentPlayer]--;
+
   return 0;
 }
 

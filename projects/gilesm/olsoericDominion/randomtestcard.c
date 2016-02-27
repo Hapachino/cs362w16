@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 		// copy game state to backup for error detection
 		memcpy(&backup, &state, sizeof(struct gameState));
 		// call village card effect
-		villageEffect(currentPlayer, &state, handpos);
+		village_play(currentPlayer, &state, handpos);
 		// check drawcard component
 		if (state.handCount[currentPlayer] != (backup.handCount[currentPlayer]))
 			isValidDraw = 0;

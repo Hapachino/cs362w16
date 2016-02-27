@@ -1,85 +1,73 @@
-Janel Buckingham
-CS 362 Winter 2016
-Assignment 3
+/*
+Jeannine Amm
+CS362w16
+Assignment2: refactor.c
 
-I did not add new bugs this week, so all below was previously documented for assignment2
+Instructions: Pick five cards implemented in dominion.c.  Choose 3 cards of your
+choice and smithy and adventurer cards are mandatory.  Refactor the code so that
+ these cards are implemented in their own functions, rather than as part of the
+ switch statement in cardEffect.  You should call the functions for these cards
+ in the appropriate place in cardEffect.  Your implementation of at least 4 of
+ these 5 cards should be incorrect in some way, i.e. introduce subtle bugs that
+ are hard to catch in your changes.
 
-Added 5 new functions to dominion.h/dominion.c:
-int playAdventurer(int currentPlayer, struct gameState *state);
-int playSmithy(int currentPlayer, struct gameState *state, int handPos);
-int playCutpurse(int currentPlayer, struct gameState *state, int handPos);
-int playRemodel(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2);
-int playMine(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2);
+Program structure Changes:
+	New header file created dominion_cards.h with the following card function declarations:
+		int playSmithy(int handPos, struct gameState *state);
+		int playAdventurer(struct gameState *state);
+		int playEmbargo(int choice1, int handPos, struct gameState *state);
+		int playAmbassador(int choice1, int choice2, int handPos,
+				struct gameState *state);
+		int playSteward(int choice1, int choice2, int choice3, int handPos,
+				struct gameState *state);
+	Removed any playCard declarations from dominion.h
 
-For each of these, the code was removed from the switch statement in cardEffect(), but they are each called 
-from the case within the switch statement where they originally were implemented.  For example, 
+Refactored Functions and function calls:
 
-	case adventurer:
-		return playAdventurer(currentPlayer, state);
-		
-	instead of 
-	
-	case adventurer:
-		// implementation
-		return 0;
-		
-By having the switch statement return the return value of each of these functions (like 
-'return playAdventurer(currentPlayer, state);' above), I was able to preserve the original return statements
-in the switch statement.
+	playAdventurer function refactor contained in dominion.c:
+		cardEffect() changes:
+			- code under switch smithy moved to playAdventurer().
+			- function called from switch smithy using return playAdventurer();.
+		moved from cardEffect declarations into function:
+			- int z, cardDrawn, drawntreasure;
+			- int temphand[MAX_HAND];
+		additional statements added to function playAdventurer():
+			- int player = whoseTurn(state);
 
+	playSmithy function refactor contained in dominion.c:
+		cardEffect() changes:
+			- code under switch smithy moved to playSmithy
+			- function called from switch smithy using return playSmithy();.
+		additional statements added to function playSmithy():
+			- int i;
+			- int player = whoseTurn(state);
 
-Introduced the following bugs:
+	playEmbargo function refactor contained in dominion.c:
+		cardEffect() changes:
+			function called from switch embargo using return playEmbargo();.
+		additional statements added to function:
+			int player = whoseTurn(state);
 
-in playAdventurer:
-	Changed this line:
-		while(z-1>=0){
-	To this:
-		while(z-1>0){
-	This introduces an off-by-one error that will prevent the final card in the temp array from
-	being copied to the played card array and therefore being unintentionally removed entirely 
-	from play.
-	
-in playSmithy:
-	Changed this line:
-		for (i = 0; i < 3; i++)
-	To this:
-		for (i = 0; i <= 3; i++)
-	Which will result in an extra card drawn 
-      
-	Changed this line:
-		discardCard(handPos, currentPlayer, state, 0);
-	To this:
-	    discardCard(handPos, currentPlayer, state, 1);
-	Which will raise the flag to permanently trash the discarded card instead of moving it to
-	played cards array.
-	
-in playCutpurse:
-	Changed this line:
-		discardCard(j, i, state, 0);
-	To this:
-		discardCard(i, j, state, 0);
-	Which sends the currentPlayer as the handPos parameter and visa versa
-	
-in playRemodel:
-	Removed the break statement from
-		for (i = 0; i < state->handCount[currentPlayer]; i++)
-		{
-		  if (state->hand[currentPlayer][i] == j)
-			{
-			  discardCard(i, currentPlayer, state, 0);			
-			  break;
-			}
-		}
-	which will remove all matching conditions in the loop instead of just the first one.
-	
-in playMine:
-	Changed this line:
-		if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
-	To this:
-		if (state->hand[currentPlayer][choice1] > copper || state->hand[currentPlayer][choice1] > gold)
-	Which will cause the function to return an error from a valid input
+	playAmbassador function refactor contained in dominion.c:
+		cardEffect() changes:
+			- function called from switch ambassador using return playAmbassador();.
+		additional statements added to function:
+			- int j = 0;
+			- int i;
+			- int player = whoseTurn(state);
 
+	playSteward function refactor contained in dominion.c:
+		cardEffect() changes:
+			- function called from switch steward using return playSteward();.
+		additional statements added to function:
+			- int player = whoseTurn(state);
 
-	
-	
-	
+Bugs Introduced:
+Adventurer: Add z--; before cards in tempHand discarded.  Should discard one less
+	card.
+playSmithy: added updateCoins(player, state, 1) to add a coin;
+Ambassador: Changed toFlag in call to GainCard to 2.  Should add card to hand
+	instead of discard pile.
+Steward: Set trashFlag to 1 in call to discardCard()
+
+*/

@@ -82,7 +82,7 @@ int main(int argc, char *argv[]){
     int handCards[10] =     { estate, duchy, province, estate, empty, empty, empty, empty, empty, empty };
     int discardCards[10] =  { great_hall, tribute, estate, gardens, empty, empty, empty, empty, empty };
     int deckCards[10] =     { gardens, empty, empty, empty, empty, empty, empty, empty, empty, empty };
-    scoreForTest(12, handCards, discardCards, deckCards);
+    scoreForTest(13, handCards, discardCards, deckCards);
 
     printf("\nTest 2\n");
     int handCards2[10] =     { province, province, province, province, province, province, province, province, province, province };

@@ -16,6 +16,7 @@
  */
 
 
+import java.util.Random;
 import java.util.regex.Pattern;
 
 import junit.framework.TestCase;
@@ -296,10 +297,21 @@ public class UrlValidatorTest extends TestCase {
    
    public void testIsValid()
    {
+	   // Exercise isValid using random testing
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   Random ran = new Random();
+
 	   for(int i = 0;i<10000;i++)
-	   {
-		   
-	   }
+	   {	   
+			int schemaIndex = ran.nextInt(testSchemas.length);
+			int hostIndex = ran.nextInt(testHosts.length);
+			int portIndex = ran.nextInt(testPorts.length);
+			int pathIndex = ran.nextInt(testPaths.length);
+			int queryIndex = ran.nextInt(testQueries.length);
+			ResultPair url = URLmaker(schemaIndex, hostIndex, portIndex, pathIndex, queryIndex);
+			System.out.println(String.format("Generated url: %s. is valid: %s", url.item, url.valid));
+			assertEquals(url.valid, urlVal.isValid(url.item));
+		}
    }
    
    public void testAnyOtherUnitTest()

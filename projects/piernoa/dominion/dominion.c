@@ -441,7 +441,7 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
       }
 
       //score from deck
-      for (i = 0; i < state->deckCount[player]; i++)
+      for (i = 0; i < state->discardCount[player]; i++)
       {
         if (state->deck[player][i] == curse) { score = score - 1; };
         if (state->deck[player][i] == estate) { score = score + 1; };

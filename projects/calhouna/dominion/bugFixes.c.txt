@@ -1,0 +1,64 @@
+/* Andrew M. Calhoun
+   CS362 - Winter 2016
+   Assignment 5
+  
+
+
+***** TEAM MATE 1 - Nancy Chan ******
+
+Erroneously, I refactored Nancy's code instead of my own, and found errors in my own testing suite. I went ahead and corrected them, as the hotly debated bug
+regarding discardCard(); seemed to throw some of my tests into disarray and caused failures, even when the code was refactored to correctness for both 
+the adventurer and smithy cards. I discovered a segfault in Nancy's code when I was testing my case against her code, but this was mainly due to the ordering
+of the parameters rather than anything inherently incorrect with her code. 
+
+I went back, and redid my tests, correcting my error. These can be found in her directory (teammate1Dominion), and Jon's as well (teammate2Dominion). Once these tests were properly refactored to their specifications, they still worked fine. I went back and redid my cardTest1, which was built on an internal implementation, and that
+like wise worked out okay, so the tests were maintainable with minimal effort.
+
+BUG 1: Adventurer
+	The error that Nancy found occurred because of the cards reshuffling at 1 and less than 1. Once the <= was changed to a <, the error and miscalculations seemed
+	to stop. Additionally, rather than giving additional coins (drawnTreasure += 2), once this was corrected to drawnTreasure++, the error stopped.
+
+	These were likewise corrected in my random tests. I have opted to ignore the discard errors due to the persistent problem that has been addressed on Piazza.
+
+BUG 2: Smithy
+	The smithy card was not drawing an accurate number of cards. I refactored the code from i++ to i++, and the error was corrected.
+
+BUG 3: Cutpurse
+	I discovered the cause of this bug was the 'reveal' was under an if conditional that would only work if the debug condition was on. Once this conditional
+	was removed, the card worked fine.
+
+	I found one small error in Nancy's tests, that caused one test to fail after everything else was fixed. The number of cards in the hand was being undercounted. 	Once I replaced the for loop's i < testG.* to i <= testG -- the issue resolved.
+
+BUG 4: Remodel
+	I've played with the remodel card extensively, and could not find out why the discards were not working correctly -- though I think this may have been 	associated with the persistent bug that has been discussed on Piazza.
+	
+
+I found/coud correct no other errors outside of the universal error described below. 
+
+
+*** TEAM MATE 2 - Jonathan Lagrew ******
+
+	playSmithy():
+		Once I corrected the error in my smithy card code, the issues that Jon ran into resolved. This involved undoing the original refactoring
+		where the card incrementer was prefix (++i) than suffix (i++)
+
+	playAdventurer():
+		I had difficulty isolating the bug that Jonathan mentioned. When running his tests, I failed consistently, but was looking at the implementation
+		of Adventurer before and after I fixed the bugs introduced by myself, and was still unable to fix the issue. After spending some time refactoring
+		Jon's tests, I concluded that his tests might have been incorrect, especially after I reviewed the function of the adventurer card on the
+		Dominion Wiki.
+		
+
+	playVillage():
+		The error was caused by the discardCard functionality being disabled. Once that was re-enabled, the error disappeared.
+		
+
+
+
+
+**** UNIVERSAL ERRORS / BUGS ******
+
+Both Nancy and Jon found an issue with the implentation of the scoreFor() function. Originally, I went through the code and tried to create a brute force work around, whherein I actually probably wasted several hours running in circles. I then printed out the code and then did a handtrace and noticed in the fullDeckCount, it went about calculating the total deck count (handCount, deckCount, discardCount) in a way that was both inefficient and was unoptimized from a big-O standpoint. Given we
+already have variable types and internal members within our states that already do these counts, the fullDeckCount() function was redundant and inefficient. I removed
+the card parameter from the function and replaced the code to add up the state->****count[thisPlayer] variables and return the value. It achieved the same results and
+reduced the fullDeckCount from O(n) to O(1) by replacing the for loops with the integrated state->****count[thisPlayer]-style statements. It returned the same result, reduced the function from roughly 20 lines to approximately 5. 

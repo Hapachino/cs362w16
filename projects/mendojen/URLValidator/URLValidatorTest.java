@@ -267,9 +267,9 @@ public class UrlValidatorTest extends TestCase {
 	   }
 	   System.out.println("****Manual Tests Completed****");
    }
-   
-   public class RandomUrlValidatorTest extends TestCase {
 
+   //Randomized Testing   
+   public class RandomUrlValidatorTest extends TestCase {
    private boolean printStatus = false;
    private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
@@ -283,6 +283,8 @@ public class UrlValidatorTest extends TestCase {
    }
 
    }
+
+   //Partition testing
    public void testYourFirstPartition()
    {
 	   

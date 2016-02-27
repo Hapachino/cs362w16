@@ -1,366 +1,137 @@
+/******************************************************************************
+ * Author: Mark Giles
+ * Description: Unit tests for the gainCard function in dominion.c. This 
+ *   file utilizes the function gainCard and dominion supporting files to 
+ *   execute the function and check for error conditions.
+ * File Name: unittest3.c
+ * Date Created: 1/31/2016
+ *****************************************************************************/#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
 #include "rngs.h"
-#include <time.h>
-#include <stdlib.h>
-#define NUMCARDS 10
-#define NUMTRIALS 1000000
-
-int* getUniqueCards() 
-{
-	return kingdomCards(5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
-}
-
-void ASSERT2(int testVal, int assVal, char *s) 
-{	
-	if(assVal != testVal) 
-	{
-		printf("FAIL - %s\n", s);
-		printf("ASSERTED value is %d; got %d", assVal, testVal);
-		assert(assVal == testVal);
-		exit(1);
-	}
-}
-
-int cardsAreUnique(int k[]) 
-{
-	int i, j;
-	//check selected kingdom cards are different (from dominion.c)
-	for (i = 0; i < NUMCARDS; i++)
-	{
-		for (j = 0; j < NUMCARDS; j++)
-		{
-			if (j != i && k[j] == k[i])
-			{
-				return -1;
-			}
-		}
-	}
-	return 0;
-}
-
-int cardsAreCorrectVals(int k[]) {
-	int i;
-	for(i = 0; i < NUMCARDS; i++) 
-	{
-		if(k[i] > treasure_map || k[i] < adventurer) {
-			return -1;
-		}
-	}
-	return 0;
-}
-
-int test1(int seed) 
-{
-	int i, j;
-	int *k = (int*)malloc(sizeof(int)*NUMCARDS);
-
-	int numPlayers = (rand()% 3) + 2;
-	int ret = -1;
-
-	struct gameState *G = newGame();
-//	struct gameState *Gcpy = newGame();
-	//repeat until you get return val 0 in initializeGame, i.e. all kingdom cards are unique
-
-	printf("TEST #1: Kingdom cards random testing\n");
-	printf("\t should return 0 if unique; -1 if non-unique\n");
-	for(i = 0; i < NUMTRIALS; i++)
-	{
-		for(j = 0; j < NUMCARDS; j++) {
-			k[j] = (rand()%15);
-		}
-		ret = initializeGame(numPlayers, k, seed, G);
-		int cret = cardsAreUnique(k);
-		if(cret == 0) {
-			ASSERT2(ret, 0, "FAIL when cards are unique");
-		}
-		else {
-			ASSERT2(ret, -1, "FAIL when cards are non-unique");
-		}
-	}
-
-	printf("PASS\n");
-	printf("------------------\n");
-	free(G);
-	free(k);
-}
-
-int test2(int seed) {
-	struct gameState *G = newGame();
-	//struct gameState *Gcpy = newGame();
-	int i;
-	int numPlayers;
-	int ret;
-	int *k = getUniqueCards();
-	printf("TEST #2: Number of players random testing\n");
-	printf("\t should return 0 if 2 - 4; -1 otherwise\n");
-	//random testing for number of players
-	for(i = 0; i < NUMTRIALS; i++) {
-		numPlayers = rand();
-		ret = initializeGame(numPlayers, k, seed, G);
-		if((numPlayers == 1) || (numPlayers == 2) || (numPlayers == 3) || (numPlayers == 4))
-		{
-			ASSERT2(ret, 0, "FAIL");
-		}
-		else
-		{
-			ASSERT2(ret, -1, "FAIL");
-		}
-	}
-	printf("PASS\n");
-	printf("----------------------\n");
-	free(G);
-	free(k);
-}
-
-int test3a(int seed) {
-	int ret;
-	int numPlayers;
-	int curseCount, estateCount, duchyCount, provinceCount, copperCount, silverCount = 40, goldCount = 30;
-	struct gameState *G = newGame();
-	int *k = getUniqueCards();
-
-	//Test when players are 2
-	numPlayers = 2;
-	ret = initializeGame(numPlayers, k, seed, G);
-	curseCount = G->supplyCount[curse];
-	estateCount = G->supplyCount[estate];
-	duchyCount = G->supplyCount[duchy];
-	provinceCount = G->supplyCount[province];
-	copperCount = G->supplyCount[copper];
-	silverCount = G->supplyCount[silver];
-	goldCount = G->supplyCount[gold];
-	ASSERT2(curseCount, 10, "curseCount");
-	ASSERT2(estateCount, 8, "estateCount");
-	ASSERT2(duchyCount, 8, "duchyCount");
-	ASSERT2(provinceCount, 8, "provinceCount");
-	ASSERT2(copperCount, (60 - (7 * numPlayers)), "copperCount");
-	ASSERT2(silverCount, 40, "silverCount");
-	ASSERT2(goldCount, 30, "goldCount");
-
-	free(G);
-	free(k);
-}
-
-int test3b(int seed) {
-	int ret;
-	int numPlayers;
-	int curseCount, estateCount, duchyCount, provinceCount, copperCount, silverCount = 40, goldCount = 30;
-	struct gameState *G = newGame();
-	int *k = getUniqueCards();
-	//Test when players are 3
-
-	numPlayers = 3;
-	ret = initializeGame(numPlayers, k, seed, G);
-	curseCount = G->supplyCount[curse];
-	estateCount = G->supplyCount[estate];
-	duchyCount = G->supplyCount[duchy];
-	provinceCount = G->supplyCount[province];
-	copperCount = G->supplyCount[copper];
-	silverCount = G->supplyCount[silver];
-	goldCount = G->supplyCount[gold];
-	ASSERT2(curseCount, 20, "curseCount");
-	ASSERT2(estateCount, 12, "estateCount");
-	ASSERT2(duchyCount, 12, "duchyCount");
-	ASSERT2(provinceCount, 12, "provinceCount");
-	ASSERT2(copperCount, (60 - (7 * numPlayers)), "copperCount");
-	ASSERT2(silverCount, 40, "silverCount");
-	ASSERT2(goldCount, 30, "goldCount");
-
-	free(G);
-	free(k);
-}
-
-int test3c(int seed) {
-	int ret;
-	int numPlayers;
-	int curseCount, estateCount, duchyCount, provinceCount, copperCount, silverCount = 40, goldCount = 30;
-	struct gameState *G = newGame();
-	int *k = getUniqueCards();
-
-	//Test when players are 4
-	numPlayers = 4;
-	ret = initializeGame(numPlayers, k, seed, G);
-	curseCount = G->supplyCount[curse];
-	estateCount = G->supplyCount[estate];
-	duchyCount = G->supplyCount[duchy];
-	provinceCount = G->supplyCount[province];
-	copperCount = G->supplyCount[copper];
-	silverCount = G->supplyCount[silver];
-	goldCount = G->supplyCount[gold];
-	ASSERT2(curseCount, 30, "curseCount");
-	ASSERT2(estateCount, 12, "estateCount");
-	ASSERT2(duchyCount, 12, "duchyCount");
-	ASSERT2(provinceCount, 12, "provinceCount");
-	ASSERT2(copperCount, (60 - (7 * numPlayers)), "copperCount");
-	ASSERT2(silverCount, 40, "silverCount");
-	ASSERT2(goldCount, 30, "goldCount");
-	free(G);
-	free(k);
-}
-
-int test4(int seed) 
-{
-	int i, j, t, x;
-	int *k = (int*)malloc(sizeof(int)*NUMCARDS);
-	int *supplyCount = (int*)malloc(sizeof(int)*NUMCARDS);
-	int trialCount = 100;
-	int numPlayers = (rand()% 3) + 2;
-	int ret = -1;
-	int rand1;
-	struct gameState *G = newGame();
-
-	//initialize supplyCount 
-	for(i = 0; i < NUMCARDS; i++) 
-	{
-		supplyCount[i] = -1;
-	}
-	while(t < trialCount)
-	{
-		for(j = 0; j < NUMCARDS; j++) {
-			rand1 = (rand()%15);
-			k[j] = rand1;
-		}
-
-		for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
-		{
-			for (j = 0; j < NUMCARDS; j++)           		//loop chosen cards
-			{
-				if (k[j] == i)
-				{
-					//check if card is a 'Victory' Kingdom card
-					if (k[j] == great_hall || k[j] == gardens)
-					{
-						if (numPlayers == 2)
-						{ 
-							supplyCount[i] = 8; 
-						}
-						else
-						{
-							supplyCount[i] = 12;
-						}
-					}
-					else
-					{
-						supplyCount[i] = 10;
-					}
-					break;
-				}
-			}
-		}
-		ret = initializeGame(numPlayers, k, seed, G);
-		int cret = cardsAreUnique(k);
-		if(cret == 0) 
-		{
-			t++;
-			for(x = 0; x < NUMCARDS; x++) 
-			{
-				if(supplyCount[x] == -1) 
-				{
-					ASSERT2(k[x], -1, "when initializing supplyCount (-1)");				
-				}
-				else 
-				{
-					ASSERT2(k[x], supplyCount[x], "when initializing supplyCount");
-				}
-			}
-		}
-	}
-
-
-	printf("PASS\n");
-	printf("------------------\n");
-	free(G);
-	free(k);
-	return 0;
-}
-
-int test5(int seed) {
-	int i,j;
-	int *k = getUniqueCards();
-	int numPlayers ;
-	struct gameState *G;
-	struct gameState *Gcpy;
-	G = newGame();
-	Gcpy = newGame();
-	numPlayers = 2;
-
-	initializeGame(numPlayers, k, seed, Gcpy);
-	//set player decks
-	for (i = 0; i < numPlayers; i++)
-	{
-		G->deckCount[i] = 0;
-		for (j = 0; j < 3; j++)
-		{
-		  G->deck[i][j] = estate;
-		  G->deckCount[i]++;
-		}
-		for (j = 3; j < 10; j++)
-		{
-		  G->deck[i][j] = copper;
-		  G->deckCount[i]++;		
-		}
-	}
-
-	for (i = 0; i < numPlayers; i++)
-	{
-		for (j = 0; j < 10; j++)
-		{
-			printf("G: %d, copy: %d\n", G->deck[i][j],Gcpy->deck[i][j]);
-
-			ASSERT2(Gcpy->deck[i][j], G->deck[i][j], "when initializing player decks");
-		}
-	}
-	return 0;
-}
+#include "interface.h"
+#include "testTools.c"
 
 int main() {
-	srand(time(NULL));
-	int seed = rand() + 1;
-		//declaring the reusable variables
-	int *k = (int*)malloc(sizeof(int)*NUMCARDS);
+	struct gameState state,			// running instance of game
+					 stateOriginal;	// backup copy of game to detect changes
+	int i = 0,						// iteration variable for loop counting
+		numPlayers = 2,				// number of players in game
+		randomSeed = 10000,			// seed for random generation
+		validationCheck = 1;		// used to determine pass or fail
+	// initial array of kingdom cards
+	int kingdomCards[10] = {adventurer, gardens, village, minion, mine, cutpurse,
+							sea_hag, remodel, smithy};
+	
+	// Initializing game and backup copy of game
+	initializeGame(numPlayers, kingdomCards, randomSeed, &state);
 
-	printf("-------------------------------------------------------\n");
-	printf("START OF UNIT TEST 3 - INITIALIZEGAME\n\n");
+	/**************************************************************************
+	 * TEST CONDITION - Successful use of function gainCard
+	 *************************************************************************/
+	// PERFORMING OPERATIONS TO MEET TEST CONDITION
+	memcpy(&stateOriginal, &state, sizeof(struct gameState));
+	state.supplyCount[smithy] = 10;
+	gainCard(smithy, &state, 1, state.whoseTurn);
 
-	//testing for unique kingdom cards
-	test1(seed);
+	// DISPLAY
+	printf("***************************************************************************\n");
+	printf("* TESTING FUNCTION: gainCard\n");
+	printf("* CONDITION: Successful use of function gainCard.\n");
+	printf("***************************************************************************\n");
+	printf("\n  EXECUTING: gainCard(smithy, &state, 1, state.whoseTurn)\n\n");
 
-	//testing for number of players
-	test2(seed);
+	printf("  TEST: gainCard with toFlag = 1 increments the player's deck count by 1...\n");
+	validationCheck = 1;
+	if (state.deckCount[state.whoseTurn] != stateOriginal.deckCount[state.whoseTurn] + 1)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
 
-	//testing for supply count
-	//when 2 players
-	printf("TEST #3a: Supply cards: 3 players\n");
-	printf("\t curse = 10, estate|province|duchy = 8\n");
-	test3a(seed);
-	printf("PASS\n");
-	printf("------------------\n");
+	printf("  TEST: gainCard with toFlag = 1 adds the card to the top of the player's deck...\n");
+	validationCheck = 1;
+	if (state.deck[state.whoseTurn][state.deckCount[state.whoseTurn] - 1] != smithy)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
 
-	//when 3 players
-	printf("TEST #3b: Supply cards: 3 players\n");
-	printf("\t curse = 20, estate|province|duchy = 12\n");
-	test3b(seed);
-	printf("PASS\n");
-	printf("------------------\n");
+	printf("  TEST: supply count for smithy decremented by 1, all other positions remain the same...\n");
+	validationCheck = 1;
+	for (i = 0; i < 28; i++) {
+		if (i == smithy) {
+			if (state.supplyCount[i] != stateOriginal.supplyCount[i] - 1) {
+				validationCheck = 0;
+			}
+		} else if (state.supplyCount[i] != stateOriginal.supplyCount[i]) {
+			validationCheck = 0;
+		}
+	}
+	printTestResult(validationCheck, -999, -999);
 
-	//when 4 players
-	printf("TEST #3c: Supply cards: 4 players\n");
-	printf("\t curse = 30, estate|province|duchy = 12\n");
-	test3c(seed);
-	printf("PASS\n");
-	printf("------------------\n");
+	// reset game state
+	memcpy(&state, &stateOriginal, sizeof(struct gameState));
+	// add card to the player's hand
+	gainCard(smithy, &state, 2, state.whoseTurn);
+	printf("  EXECUTING: gainCard(smithy, &state, 2, state.whoseTurn)\n\n");
+	
+	printf("  TEST: gainCard with toFlag = 3 increments the player's hand count by 1...\n");
+	validationCheck = 1;
+	if (state.handCount[state.whoseTurn] != stateOriginal.handCount[state.whoseTurn] + 1)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
+	
+	printf("  TEST: gainCard with toFlag = 3 adds the card to the top of the player's hand...\n");
+	validationCheck = 1;
+	if (state.hand[state.whoseTurn][state.handCount[state.whoseTurn] - 1] != smithy)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
 
-	//testing for correct kingdom card values
-	printf("TEST #4: Kingdom cards correct values\n");
-	printf("\t should return 8, 10, 12 depending on number of players; -1 for unselected card\n");
-	//test4(seed);
-	//test5(seed);
+	// ensure there are smithy cards available in supply count
+	state.supplyCount[smithy] = 10;
+	gainCard(smithy, &state, 3, state.whoseTurn);
+	printf("  EXECUTING: gainCard(smithy, &state, 3, state.whoseTurn)\n\n");
 
-	printf("\nEND OF UNIT TEST 3 - INITIALIZEGAME\n");
-	printf("---------------------------------------------------\n");
+	printf("  TEST: gainCard with toFlag = 3 increments the player's discard count by 1...\n");
+	validationCheck = 1;
+	if (state.discardCount[state.whoseTurn] != stateOriginal.discardCount[state.whoseTurn] + 1)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
+	
+	printf("  TEST: gainCard with toFlag = 3 adds the card to the top of the player's discard...\n");
+	validationCheck = 1;
+	if (state.discard[state.whoseTurn][state.discardCount[state.whoseTurn] - 1] != smithy)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
+
+	printf("  TEST: All changes are for current player, player 2's discard should be unchanged...\n");
+	validationCheck = 1;
+	if (isDiscardSame(&state, &stateOriginal, state.whoseTurn + 1) == 0)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
+
+	printf("  TEST: All changes are for current player, player 2's hand should be unchanged...\n");
+	validationCheck = 1;
+	if (isHandSame(&state, &stateOriginal, state.whoseTurn + 1) == 0)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
+
+	printf("  TEST: All changes are for current player, player 2's deck should be unchanged...\n");
+	validationCheck = 1;
+	if (isDeckSame(&state, &stateOriginal, state.whoseTurn + 1) == 0)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
+
+	// setting supply count to zero
+	stateOriginal.supplyCount[smithy] = 0;
+	memcpy(&state, &stateOriginal, sizeof(struct gameState));
+	gainCard(smithy, &state, 1, state.whoseTurn);
+
+	printf("  TEST: gainCard with supply count for card set to zero should not change state at all...\n");
+	validationCheck = 1;
+	if (memcmp(&state, &stateOriginal, sizeof(struct gameState)) != 0)
+		validationCheck = 0;
+	printTestResult(validationCheck, -999, -999);
+	
 	return 0;
 }

@@ -73,16 +73,16 @@ rununittests:
 	./unittest3
 	./unittest4
 
-randomtestcard:
+randomtestcard: randomtestcard.c dominion.o rngs.o
 	gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
 
-randomtestadventurer:
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
 	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 
-runrandomtestcard:
+runrandomtestcard: randomtestcard
 	./randomtestcard
 
-runrandomtestadventurer:
+runrandomtestadventurer: randomtestcard
 	./randomtestadventurer
 
 codecoverage:

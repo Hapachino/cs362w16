@@ -16,4 +16,21 @@ The testing of the village card was in many ways similar to the adventurer card 
 
 No bugs were able to be detected during in these tests. 
 
-I
+IdrawCard(): PASSED
+effectVillage(): Passed
+File 'randomtestcard.c'
+Lines executed:86.88% of 160
+Branches executed:95.00% of 80
+Taken at least once:90.00% of 80
+Calls executed:92.73% of 55
+Creating 'randomtestcard.c.gcov'
+
+drawCard(): PASSED
+effectVillage(): Passed
+File 'randomtestcard.c'
+Lines executed:86.88% of 160
+Branches executed:95.00% of 80
+Taken at least once:91.25% of 80
+Calls executed:92.73% of 55
+Creating 'randomtestcard.c.gcov'
+

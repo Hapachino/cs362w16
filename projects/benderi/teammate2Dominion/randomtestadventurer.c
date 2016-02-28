@@ -84,7 +84,7 @@ void randomTestAdventurer(int *success, int *failure)
     }
 
     //play Adventurer card
-    playAdventurer(&testG, thisPlayer);
+    adventurerCard(&testG);
     //playAdventurer(thisPlayer, &testG);
 
     //verify that at least 2 new treasure cards were added to hand

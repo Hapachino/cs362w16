@@ -1,15 +1,17 @@
 /*
-*  Unit Test for Smithy Card
+*  Unit Test for council_room
 *
 * Business Requirements:
 *
-*	1. Current player should recieve 3 cards
-*   2. Drawn cards should come from his deck
-*   3. gameState should change for players hand, deck, playedCards, and playedCard 
-*   4. No other changes to gameState
-*  
-* cardTest1: cardTest1.c dominion.o rngs.o
-*      gcc -o cardTest1 -g cardTest1.c dominion.o rngs.o $(FLAGS)
+*	1. Current player should draw 4 cards
+*   2. All cards drawn from the deck making the deck count go down 4 cards
+*   3. All other players should draw 1 card
+*	4. Each other players deck should be decremented by 1
+*   5. Current player should get 1 more buy
+*	6. The only parts of gameState that should change are handCount, deckCount, cardsPlayedCount, cardsPlayed
+*
+* cardTest3: cardTest3.c dominion.o rngs.o
+*      gcc -o cardTest3 -g cardTest3.c dominion.o rngs.o $(FLAGS)
 *
 */
 
@@ -73,20 +75,39 @@ void checkState(struct gameState pre, struct gameState post, int currentPlayer){
 	{
 		printf("num coins changed TEST FAILED\n");
 	}
-	//assert(pre.numBuys == post.numBuys);
-	if (pre.numBuys != post.numBuys)
+	//assert(pre.numBuys + 1 == post.numBuys);  //should add one buy
+	if (pre.numBuys + 1 != post.numBuys)
 	{
-		printf("num buys changed TEST FAILED\n");
+		printf("Num buys is incorrect TEST FAILED\n");
 	}
-	//assert(pre.handCount[currentPlayer] + 2 == post.handCount[currentPlayer]);    //should draw 3 cards into hand but smithy was removed for net gain of 2
-	if (pre.handCount[currentPlayer] + 2 != post.handCount[currentPlayer])
+	for (i = 0; i < pre.numPlayers; i++)
 	{
-		printf("Hand Count incorrect after play TEST FAILED\n");
-	}
-	//assert(pre.deckCount[currentPlayer] - 3 == post.deckCount[currentPlayer]);    //should remove 3 cards from deck
-	if (pre.deckCount[currentPlayer] - 3 != post.deckCount[currentPlayer])
-	{
-		printf("Deck Count incorrect after play TEST FAILED\n");
+		if (i == currentPlayer)
+		{
+			//assert(pre.handCount[currentPlayer] + 3 == post.handCount[currentPlayer]);    //should draw 4 cards into hand but counclin room was removed for net gain of 3
+			if (pre.handCount[currentPlayer] + 3 != post.handCount[currentPlayer])
+			{
+				printf("Current Player hand count incorrect TEST FAILED\n");
+			}
+			//assert(pre.deckCount[currentPlayer] - 4 == post.deckCount[currentPlayer]);    //should remove 4 cards from deck
+			if (pre.deckCount[currentPlayer] - 4 != post.deckCount[currentPlayer])
+			{
+				printf("Current player deck count incorrect TEST FAILED\n");
+			}
+		}
+		else
+		{
+			//assert(pre.handCount[i] + 1 == post.handCount[i]);    //should draw 1
+			if (pre.handCount[i] + 1 != post.handCount[i])
+			{
+				printf("Non current players hand count is incorrect TEST FAILED\n");
+			}
+			//assert(pre.deckCount[i] - 1 == post.deckCount[i]);    //should remove 1 card from deck
+			if (pre.deckCount[i] - 1 != post.deckCount[i])
+			{
+				printf("Non current players deck count is incorrect TEST FAILED\n");
+			}
+		}
 	}
 	//assert(pre.discardCount[currentPlayer] == post.discardCount[currentPlayer]);  //should add nothing to discard
 	if (pre.discardCount[currentPlayer] != post.discardCount[currentPlayer])
@@ -96,15 +117,15 @@ void checkState(struct gameState pre, struct gameState post, int currentPlayer){
 	//assert(pre.playedCardCount + 1 == post.playedCardCount); //should have played 1 card
 	if (pre.playedCardCount + 1 != post.playedCardCount)
 	{
-		printf("Played card Count incorrect after play TEST FAILED\n");
+		printf("Played card Count incorrect TEST FAILED\n");
 	}
-	//assert(pre.playedCards[pre.playedCardCount - 1] == post.playedCards[pre.playedCardCount - 1]);    //checks the card before the last card is the same to see only 1 card being played
+	//assert(pre.playedCards[pre.playedCardCount - 1] == post.playedCards[pre.playedCardCount - 1]);         //checks the card before the last card is the same to see only 1 card being played
 	if (pre.playedCards[pre.playedCardCount - 1] != post.playedCards[pre.playedCardCount - 1])
 	{
 		printf("Last card played in pre is not second last card in post TEST FAILED\n");
 	}
-	//assert(post.playedCards[post.playedCardCount - 1] == smithy);									   //checks if the last card played is a smithy
-	if (post.playedCards[post.playedCardCount - 1] != smithy)
+	//assert(post.playedCards[post.playedCardCount - 1] == council_room);									   //checks if the last card played is a council room
+	if (post.playedCards[post.playedCardCount - 1] != council_room)
 	{
 		printf("Last card played is not correct TEST FAILED\n");
 	}
@@ -118,42 +139,33 @@ int main() {
 		, remodel, smithy, village, baron, great_hall };
 	struct gameState G;
 	struct gameState pre;
-	
+
 	srand(time(NULL));
 	SelectStream(2);
 	PutSeed(3);
 
-	printf("Running cardtest1 for play_smithy()\n");
-
+	printf("Running cardtest3 for play_Council_room()\n");
 
 	for (n = 0; n < 20; n++) {
-		for (i = 0; i < sizeof(struct gameState); i++) { 
+		for (i = 0; i < sizeof(struct gameState); i++) {
 			((char*)&G)[i] = floor(Random() * 256);
 		}
-		
+
 		p = rand() % 4 + 1;  //random player amount
-		int handPos[p]; //create an array of positions of smithy for each player
+		int handPos[p]; //create an array of positions of council room for each player
 
 		G.numPlayers = p;
 
-		//set up each players hands decks discards and playerd cards as well as put a smithy in their hand
+		//set up each players hands decks discards and playerd cards as well as put a council room in their hand
 		for (j = 0; j < p; j++)
 		{
-			G.handCount[j] = rand() % MAX_DECK + 1;
-			while (G.handCount[j] > 498)                       //this is to make sure handCount is not too large since it will overflow in a real game there is only 500 max for everything combined
-			{
-				G.handCount[j] = rand() % MAX_DECK + 1;
-			}
+			G.handCount[j] = rand() % 10 + 1;					//create a hand for a player
 			for (m = 0; m < G.handCount[j]; m++)
 			{
 				randCard = rand() % 10;							// random card from list of cards
 				G.hand[j][m] = k[randCard];
 			}
-			G.deckCount[j] = rand() % MAX_DECK + 1;
-			while (G.deckCount[j] < 3)                       //this is to make sure deckCount is not too small since it will overflow in a real game there is only 500 max for everything combined
-			{
-				G.deckCount[j] = rand() % MAX_DECK + 1;
-			}
+			G.deckCount[j] = rand() % 51 + 10;	     			//creates a random deck of up to 10 - 50 cards to make sure there is enough to draw
 			for (m = 0; m < G.deckCount[j]; m++)
 			{
 				randCard = rand() % 10;							// random card from list of cards
@@ -165,28 +177,32 @@ int main() {
 				randCard = rand() % 10;							// random card from list of cards
 				G.discard[j][m] = k[randCard];
 			}
-			G.playedCardCount = rand() % MAX_DECK;				//removed the plus 1 so it never hits 500
+			G.playedCardCount = rand() % 50	;			
 			for (m = 0; m < G.playedCardCount; m++)
 			{
 				randCard = rand() % 10;							// random card from list of cards
 				G.playedCards[m] = k[randCard];
 			}
 
-			//insert smithy card into random spot in hand so we know its hand pos
+			//insert council room into random spot in hand so we know its hand pos
 			handPos[j] = rand() % G.handCount[j];
-			G.hand[j][handPos[j]] = smithy;
+			G.hand[j][handPos[j]] = council_room;
 
-			//have player play smithy card
+		}
+
+		//have each player play their council_room
+		for (j = 0; j < p; j++)
+		{
+			//have player play council_room
 			G.whoseTurn = j;
 			memcpy(&pre, &G, sizeof(struct gameState));				// save a copy of current gamestate
-			//printf("\n Playing Smithy Card as Player %d Iteration %d Current Counts: Hand %d , Deck %d , Discard %d , Played %d \n", j, n + 1, G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
-			play_Smithy(G.whoseTurn, &G, handPos[j]);
-			//printf("Played   Smithy Card as Player %d Iteration %d Current Counts: Hand %d , Deck %d , Discard %d , Played %d \n", j, n + 1, G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
-			checkState(pre, G, j);										// check new gamestate vs old using modified checkState
+			//printf("\n Playing Council Room as Player %d Iteration %d Current Counts: Hand %d , Deck %d , Discard %d , Played %d \n", j, n + 1, G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
+			CouncilRoomEffect(j, handPos[j], &G);
+			//printf("Played   Council Room as Player %d Iteration %d Current Counts: Hand %d , Deck %d , Discard %d , Played %d \n", j, n + 1, G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
+			checkState(pre, G, j);
 		}
 	}
-
-	printf("Finished running cardtest1 for play_smithy()\n");
-
 	return 0;
+
+	printf("Finished running cardtest3 for play_Council_room()\n");
 }

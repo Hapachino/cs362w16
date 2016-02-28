@@ -180,7 +180,7 @@ int main() {
 			G.whoseTurn = j;
 			memcpy(&pre, &G, sizeof(struct gameState));				// save a copy of current gamestate
 			//printf("\n Playing Smithy Card as Player %d Iteration %d Current Counts: Hand %d , Deck %d , Discard %d , Played %d \n", j, n + 1, G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
-			play_Smithy(G.whoseTurn, &G, handPos[j]);
+			playSmithy(&G, handPos[j]);
 			//printf("Played   Smithy Card as Player %d Iteration %d Current Counts: Hand %d , Deck %d , Discard %d , Played %d \n", j, n + 1, G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
 			checkState(pre, G, j);										// check new gamestate vs old using modified checkState
 		}

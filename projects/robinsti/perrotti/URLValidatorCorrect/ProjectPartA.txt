@@ -1,0 +1,36 @@
+Members:
+Isaiah Fentress
+Will Thomas
+Timothy Robinson
+
+Class:
+CS362 - Winter 2016
+
+testIsValid() Explanation:
+So it looks like testIsValid() is passed the testObjects which looks like an array of values. It creates 
+an instance of the UrlValidator object which will be used with the testObjects. The UrlValidator object 
+is tested using known valid Urls, to ensure basic functionality (http://www.google.com). A while loop 
+is then used to create a StringBuffer, which starts parsing the testObjects.
+
+Each indexed item is assigned to a ResultPair array (or object?), and is then appended to the String 
+Buffer, which is then converted to an actual url string. This is run through the URL Validator, and 
+the result is asserted against the expected result.
+
+The function then iterates with incrementTestPartsIndex, which iterates through various permutations 
+of the URL by cycling the elements in the array in different combinations.
+
+Total URLs Tested: 35,910
+
+Example Invalid URL: http/1.2.3.4.5:65a/..?action=view
+
+Example Valid URL: http://www.google.com:65636/test1?action=edit&mode=up
+
+Similarity to Unit and Card Tests: The test case presented here covers much more of the URL program 
+than a simple unit or card test. The unit and card tests we wrote focused on the correctness of one 
+small part of a program, where this test by nature covers the entire program. This seems similar to 
+how things should be run in the real world. This ensures that a small change somewhere doesn’t break 
+the overall big picture of the program. However, in my experience this hasn’t been the case on the 
+projects I’ve worked on. In my current role the development teams are stretched thin, and seem to be 
+focused on ensuring that the new piece of code they are pushing to production works in an isolated 
+instance, but not spending the time to go back and update general test cases for the entire program. 
+This has resulted in small bugs being introduced to seemingly unrelated items. 

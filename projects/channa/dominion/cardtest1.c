@@ -165,7 +165,7 @@ int main() {
     }
 
     // Verify
-    int check2[] = {smithy};
+    int check2[] = {};
     count = sizeof(check2)/sizeof(check2[0]);
 
     printf("Discard count: %d, Expected: %d\n", G.discardCount[p], count);

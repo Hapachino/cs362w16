@@ -17,6 +17,11 @@ state->numActions = state->numBuys + 2;
 is corrected to
 state->numActions = state->numActions + 2;
 
+Card Test2:
+feastCard
+Test on feastCard seemed like it hit an infinite loop. The test executed but once it called feastCard, the test did not stop.
+
+the variable x which it the condition of the loop was set to zero after gaining a card solving the infinite loop.
 
 Card Test3: Smithy
 Test fails when checking handCount and playedCardCount. 
@@ -46,3 +51,5 @@ Fix:
     state->hand[currentPlayer][state->handCount[currentPlayer]]
 changed to
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer-1]];
+
+

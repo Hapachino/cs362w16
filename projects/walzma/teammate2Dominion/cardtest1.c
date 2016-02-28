@@ -1,192 +1,281 @@
 /*
-*  Unit Test for Smithy Card
-*
-* Business Requirements:
-*
-*	1. Current player should recieve 3 cards
-*   2. Drawn cards should come from his deck
-*   3. gameState should change for players hand, deck, playedCards, and playedCard 
-*   4. No other changes to gameState
-*  
-* cardTest1: cardTest1.c dominion.o rngs.o
-*      gcc -o cardTest1 -g cardTest1.c dominion.o rngs.o $(FLAGS)
-*
+Card Test for Smithy card
 */
 
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
 
-void checkState(struct gameState pre, struct gameState post, int currentPlayer){
-	int i;
-	//assert(pre.numPlayers == post.numPlayers); //number of players
-	if (pre.numPlayers != post.numPlayers)
-	{
-		printf("Num Players Changed TEST FAILED\n");
-	}
-	for (i = 0; i < treasure_map; i++)
-	{
-		//assert(pre.supplyCount[i] == post.supplyCount[i]);
-		if (pre.supplyCount[i] != post.supplyCount[i])
-		{
-			printf("Supply Counts Changed TEST FAILED\n");
-		}
-		//assert(pre.embargoTokens[i] == post.embargoTokens[i]);
-		if (pre.embargoTokens[i] != post.embargoTokens[i])
-		{
-			printf("Embargo Tokens Changed TEST FAILED\n");
-		}
-	}
-	//assert(pre.outpostPlayed == post.outpostPlayed);
-	if (pre.outpostPlayed != post.outpostPlayed)
-	{
-		printf("outpost played changed TEST FAILED\n");
-	}
-	//assert(pre.outpostTurn == post.outpostTurn);
-	if (pre.outpostTurn != post.outpostTurn)
-	{
-		printf("outpost turn changed TEST FAILED\n");
-	}
-	//assert(pre.whoseTurn == post.whoseTurn);
-	if (pre.whoseTurn != post.whoseTurn)
-	{
-		printf("whose turn changed TEST FAILED\n");
-	}
-	//assert(pre.phase == post.phase);
-	if (pre.phase != post.phase)
-	{
-		printf("phase changed TEST FAILED\n");
-	}
-	//assert(pre.numActions == post.numActions);
-	if (pre.numActions != post.numActions)
-	{
-		printf("num actions changed TEST FAILED\n");
-	}
-	//assert(pre.coins == post.coins);
-	if (pre.coins != post.coins)
-	{
-		printf("num coins changed TEST FAILED\n");
-	}
-	//assert(pre.numBuys == post.numBuys);
-	if (pre.numBuys != post.numBuys)
-	{
-		printf("num buys changed TEST FAILED\n");
-	}
-	//assert(pre.handCount[currentPlayer] + 2 == post.handCount[currentPlayer]);    //should draw 3 cards into hand but smithy was removed for net gain of 2
-	if (pre.handCount[currentPlayer] + 2 != post.handCount[currentPlayer])
-	{
-		printf("Hand Count incorrect after play TEST FAILED\n");
-	}
-	//assert(pre.deckCount[currentPlayer] - 3 == post.deckCount[currentPlayer]);    //should remove 3 cards from deck
-	if (pre.deckCount[currentPlayer] - 3 == post.deckCount[currentPlayer])
-	{
-		printf("Deck Count incorrect after play TEST FAILED\n");
-	}
-	//assert(pre.discardCount[currentPlayer] == post.discardCount[currentPlayer]);  //should add nothing to discard
-	if (pre.discardCount[currentPlayer] == post.discardCount[currentPlayer])
-	{
-		printf("Discard count changed TEST FAILED\n");
-	}
-	//assert(pre.playedCardCount + 1 == post.playedCardCount); //should have played 1 card
-	if (pre.playedCardCount + 1 != post.playedCardCount)
-	{
-		printf("Played card Count incorrect after play TEST FAILED\n");
-	}
-	//assert(pre.playedCards[pre.playedCardCount - 1] == post.playedCards[pre.playedCardCount - 1]);    //checks the card before the last card is the same to see only 1 card being played
-	if (pre.playedCards[pre.playedCardCount - 1] != post.playedCards[pre.playedCardCount - 1])
-	{
-		printf("Last card played in pre is not second last card in post TEST FAILED\n");
-	}
-	//assert(post.playedCards[post.playedCardCount - 1] == smithy);									   //checks if the last card played is a smithy
-	if (post.playedCards[post.playedCardCount - 1] != smithy)
-	{
-		printf("Last card played is not correct TEST FAILED\n");
-	}
-}
+#define DEBUG 0
 
 
 int main() {
+	printf("\n-------------Card Test #1: Testing smithy card-------------\n\n");
 
-	int i, n, p, j, m, randCard;
-	int k[10] = { adventurer, council_room, feast, gardens, mine
-		, remodel, smithy, village, baron, great_hall };
-	struct gameState G;
-	struct gameState pre;
+	//initialize variables for card test
+	int i, numPlayers, handPos, randomSeed;
+	int choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+	int currentPlayer = 0, success = 0, error1 = 0, error2 = 0;
+	struct gameState pre, post;
+	int kCards[10] = {adventurer, remodel, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 	
+	//seed random number generator and create random values (within boundaries for numPlayers, handPos, and randomSeed
 	srand(time(NULL));
-	SelectStream(2);
-	PutSeed(3);
-
-	printf("Running cardtest1 for play_smithy()\n");
-
-
-	for (n = 0; n < 20; n++) {
-		for (i = 0; i < sizeof(struct gameState); i++) { 
-			((char*)&G)[i] = floor(Random() * 256);
+	numPlayers = (rand() % 3) + 2;
+	handPos = (rand() % 5);
+	randomSeed = (rand() % 100);
+	
+	
+	
+	//Test Case 1: Current player has more than 3 cards in their deck
+	printf("\nCASE 1: Current player has more than 3 cards in their deck\n");
+	//initialize game state and copy to second game state
+	initializeGame(numPlayers, kCards, randomSeed, &post);
+	//set card in handPos to Smithy
+	post.hand[currentPlayer][handPos] = smithy;
+	memcpy(&pre, &post, sizeof(struct gameState));
+	//check smithyEffect
+	if (cardEffect(smithy, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(smithy,...) threw an error state.\n");
+		success = -1;
+	}
+	//Check that currentPlayer handCount increased by 2 (+3 for drawn cards and -1 for playing smithy)
+	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]+2) {
+		printf("Failed test case 1a: handCount of currentPlayer not increased by 2 (+3 for drawn cards and -1 for playing smithy)\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 1a: Successfully increased handCount of currentPlayer by 2 (+3 for drawn cards and -1 for playing smithy).\n");
+	}
+	//Check that smithy card added to played pile
+	if  (post.playedCards[pre.playedCardCount] != smithy) {
+		printf("Failed test case 1b: Smithy card was not successfully added to the played card pile\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 1b: Smithy card successfully added to the played card pile.\n");
+	}
+	//Check that playedCardCount incremented by 1
+	if  (post.playedCardCount != pre.playedCardCount + 1) {
+		printf("Failed test case 1c: playedCardCount not incremented by 1\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 1c: playedCardCount successfully incremented by 1.\n");
+	}
+	//Check that deckCount decremented by 3
+	if  (post.deckCount[currentPlayer] != pre.deckCount[currentPlayer] - 3) {
+		printf("Failed test case 1d: deckCount for currentPlayer not decremented by 3\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 1d: deckCount for currentPlayer successfully decremented by 3.\n");
+	}
+	//Check that other player's deckCount and handCount were not changed
+	for (i = 1; i < numPlayers; i++) {
+		if (post.deckCount[i] != pre.deckCount[i]) {
+			error1 = -1;
 		}
-		
-		p = rand() % 4 + 1;  //random player amount
-		int handPos[p]; //create an array of positions of smithy for each player
-
-		G.numPlayers = p;
-
-		//set up each players hands decks discards and playerd cards as well as put a smithy in their hand
-		for (j = 0; j < p; j++)
-		{
-			G.handCount[j] = rand() % MAX_DECK + 1;
-			while (G.handCount[j] > 498)                       //this is to make sure handCount is not too large since it will overflow in a real game there is only 500 max for everything combined
-			{
-				G.handCount[j] = rand() % MAX_DECK + 1;
-			}
-			for (m = 0; m < G.handCount[j]; m++)
-			{
-				randCard = rand() % 10;							// random card from list of cards
-				G.hand[j][m] = k[randCard];
-			}
-			G.deckCount[j] = rand() % MAX_DECK + 1;
-			while (G.deckCount[j] < 3)                       //this is to make sure deckCount is not too small since it will overflow in a real game there is only 500 max for everything combined
-			{
-				G.deckCount[j] = rand() % MAX_DECK + 1;
-			}
-			for (m = 0; m < G.deckCount[j]; m++)
-			{
-				randCard = rand() % 10;							// random card from list of cards
-				G.deck[j][m] = k[randCard];
-			}
-			G.discardCount[j] = rand() % MAX_DECK + 1;
-			for (m = 0; m < G.discardCount[j]; m++)
-			{
-				randCard = rand() % 10;							// random card from list of cards
-				G.discard[j][m] = k[randCard];
-			}
-			G.playedCardCount = rand() % MAX_DECK;				//removed the plus 1 so it never hits 500
-			for (m = 0; m < G.playedCardCount; m++)
-			{
-				randCard = rand() % 10;							// random card from list of cards
-				G.playedCards[m] = k[randCard];
-			}
-
-			//insert smithy card into random spot in hand so we know its hand pos
-			handPos[j] = rand() % G.handCount[j];
-			G.hand[j][handPos[j]] = smithy;
-
-			//have player play smithy card
-			G.whoseTurn = j;
-			memcpy(&pre, &G, sizeof(struct gameState));				// save a copy of current gamestate
-			//printf("\n Playing Smithy Card as Player %d Iteration %d Current Counts: Hand %d , Deck %d , Discard %d , Played %d \n", j, n + 1, G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
-			play_Smithy(G.whoseTurn, &G, handPos[j]);
-			//printf("Played   Smithy Card as Player %d Iteration %d Current Counts: Hand %d , Deck %d , Discard %d , Played %d \n", j, n + 1, G.handCount[j], G.deckCount[j], G.discardCount[j], G.playedCardCount);
-			checkState(pre, G, j);										// check new gamestate vs old using modified checkState
+		if (post.handCount[i] != pre.handCount[i]) {
+			error2 = -1;
 		}
 	}
-
-	printf("Finished running cardtest1 for play_smithy()\n");
-
+	if (error1 == -1) {
+		printf("Failed test case 1e: at least one other player's deck count changed.\n");
+	}
+	else {
+		printf("Passed test case 1e: No other player's deck count was affected.\n");
+	}
+	if (error2 == -1) {
+		printf("Failed test case 1f: at least one other player's hand count changed.\n");
+	}
+	else {
+		printf("Passed test case 1f: No other player's hand count was affected.\n");
+	}
+	if (success == 0) {
+		printf("Test case 1 successfully passed.\n");
+	}
+	else {
+		printf("Test case 1 completed with errors.\n");
+	}
+	
+	
+	
+	
+	//Test Case 2: Current player has fewer than 3 cards in their deck, but more than 3 cards in their combined deck and discard pile
+	printf("\nCASE 2: Current player has fewer than 3 cards in their deck, but more than 3 cards in their combined deck and discard pile\n");
+	success = 0, error1 = 0, error2 = 0;
+	
+	//initialize game state and copy to second game state
+	initializeGame(numPlayers, kCards, randomSeed, &post);
+	//set card in handPos to Smithy
+	post.hand[currentPlayer][handPos] = smithy;
+	//add cards from deck to discard till 1 card remains in deck
+	for (i = 1; i < post.deckCount[currentPlayer]; i++) {
+		post.discard[currentPlayer][post.discardCount[currentPlayer]] = post.deck[currentPlayer][i];
+		post.deck[currentPlayer][i] = -1;
+		post.discardCount[currentPlayer]++;
+	}
+	post.deckCount[currentPlayer] = 1;
+	//copy game state
+	memcpy(&pre, &post, sizeof(struct gameState));
+	//check smithyEffect
+	if (cardEffect(smithy, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(smithy,...) threw an error state.\n");
+		success = -1;
+	}
+	//Check that currentPlayer handCount increased by 2 (+3 for drawn cards and -1 for playing smithy)
+	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]+2) {
+		printf("Failed test case 2a: handCount of currentPlayer not increased by 2 (+3 for drawn cards and -1 for playing smithy)\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 2a: Successfully increased handCount of currentPlayer by 2 (+3 for drawn cards and -1 for playing smithy).\n");
+	}
+	//Check that smithy card added to played pile
+	if  (post.playedCards[pre.playedCardCount] != smithy) {
+		printf("Failed test case 2b: Smithy card was not successfully added to the played card pile\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 2b: Smithy card successfully added to the played card pile.\n");
+	}
+	//Check that playedCardCount incremented by 1
+	if  (post.playedCardCount != pre.playedCardCount + 1) {
+		printf("Failed test case 2c: playedCardCount not incremented by 1\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 2c: playedCardCount successfully incremented by 1.\n");
+	}
+	//Check that deckCount equals (discardCount + deckCount - 3)
+	if  (post.deckCount[currentPlayer] != (pre.deckCount[currentPlayer] + pre.discardCount[currentPlayer] - 3)) {
+		printf("Failed test case 2d: deckCount for currentPlayer does not equal the total number of cards in currentPlayer's deck and discard pile prior to smithy being played minus 3\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 2d: deckCount for currentPlayer successfully recalculated (equals the total number of cards in currentPlayer's deck and discard pile prior to smithy being played minus 3).\n");
+	}
+	//Check that other player's deckCount and handCount were not changed
+	for (i = 1; i < numPlayers; i++) {
+		if (post.deckCount[i] != pre.deckCount[i]) {
+			error1 = -1;
+		}
+		if (post.handCount[i] != pre.handCount[i]) {
+			error2 = -1;
+		}
+	}
+	if (error1 == -1) {
+		printf("Failed test case 2e: at least one other player's deck count changed.\n");
+	}
+	else {
+		printf("Passed test case 2e: No other player's deck count was affected.\n");
+	}
+	if (error2 == -1) {
+		printf("Failed test case 2f: at least one other player's hand count changed.\n");
+	}
+	else {
+		printf("Passed test case 2f: No other player's hand count was affected.\n");
+	}
+	if (success == 0) {
+		printf("Test case 2 successfully passed.\n");
+	}
+	else {
+		printf("Test case 2 completed with errors.\n");
+	}
+	
+	
+	
+	
+	//Test Case 3: Current player has 1 card combined in their deck and discard pile
+	printf("\nCASE 3: Current player has 1 card combined in their deck and discard pile\n");
+	success = 0, error1 = 0, error2 = 0;
+	
+	//initialize game state and copy to second game state
+	initializeGame(numPlayers, kCards, randomSeed, &post);
+	//set card in handPos to Smithy
+	post.hand[currentPlayer][handPos] = smithy;
+	//add cards from deck to hand till 1 card remains in deck (no cards in discard)
+	for (i = 1; i < post.deckCount[currentPlayer]; i++) {
+		post.hand[currentPlayer][post.handCount[currentPlayer]] = post.deck[currentPlayer][i];
+		post.deck[currentPlayer][i] = -1;
+		post.handCount[currentPlayer]++;
+	}
+	post.deckCount[currentPlayer] = 1;
+	//copy game state
+	memcpy(&pre, &post, sizeof(struct gameState));
+	//check smithyEffect
+	if (cardEffect(smithy, choice1, choice2, choice3, &post, handPos, &bonus) == 1) {
+		printf("Failed function: cardEffect(smithy,...) threw an error state.\n");
+		success = -1;
+	}
+	//Check that currentPlayer handCount remained constant (only 1 card to draw and played smithy)
+	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]) {
+		printf("Failed test case 3a: handCount of currentPlayer did not remain constant (only 1 card to draw and played smithy)\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 3a: Successfully maintained handCount of currentPlayer (only 1 card to draw and played smithy).\n");
+	}
+	//Check that smithy card added to played pile
+	if  (post.playedCards[pre.playedCardCount] != smithy) {
+		printf("Failed test case 3b: Smithy card was not successfully added to the played card pile\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 3b: Smithy card successfully added to the played card pile.\n");
+	}
+	//Check that playedCardCount incremented by 1
+	if  (post.playedCardCount != pre.playedCardCount + 1) {
+		printf("Failed test case 3c: playedCardCount not incremented by 1\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 3c: playedCardCount successfully incremented.\n");
+	}
+	//Check that deckCount equals 0 (since we drew all cards)
+	if  (post.deckCount[currentPlayer] != 0) {
+		printf("Failed test case 3d: deckCount for currentPlayer does not equal 0\n");
+		success = -1;
+	}
+	else {
+		printf("Passed test case 3d: deckCount for currentPlayer successfully set to 0.\n");
+	}
+	//Check that other player's deckCount and handCount were not changed
+	for (i = 1; i < numPlayers; i++) {
+		if (post.deckCount[i] != pre.deckCount[i]) {
+			error1 = -1;
+		}
+		if (post.handCount[i] != pre.handCount[i]) {
+			error2 = -1;
+		}
+	}
+	if (error1 == -1) {
+		printf("Failed test case 3e: at least one other player's deck count changed.\n");
+	}
+	else {
+		printf("Passed test case 3e: No other player's deck count was affected.\n");
+	}
+	if (error2 == -1) {
+		printf("Failed test case 3f: at least one other player's hand count changed.\n");
+	}
+	else {
+		printf("Passed test case 3f: No other player's hand count was affected.\n");
+	}
+	if (success == 0) {
+		printf("Test case 3 successfully passed.\n");
+	}
+	else {
+		printf("Test case 3 completed with errors.\n");
+	}
+	
+	
+	printf("\n\n-------------Card Test #1 Complete -------------\n\n\n");
 	return 0;
 }

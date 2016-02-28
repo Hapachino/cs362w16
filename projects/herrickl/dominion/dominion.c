@@ -659,7 +659,7 @@ int c_smithy(int currentPlayer, struct gameState *state, int handPos){
     drawCard(currentPlayer, state);
   }
   //discard card from hand
-  discardCard(handPos,currentPlayer,state,1);
+  discardCard(handPos,currentPlayer,state,0);
 
   return 0;
 }
@@ -677,7 +677,7 @@ int c_village(int currentPlayer, struct gameState *state, int handPos, int nextP
   //+2 Actions
   state->numActions = state->numActions + 2;
   //discard played card from hand
-  discardCard(handPos, nextPlayer, state, 0);
+  discardCard(handPos, currentPlayer, state, 0);
 
   return 0;
 }
@@ -704,6 +704,7 @@ int c_cutpurse(int currentPlayer, struct gameState *state, int handPos){
         //if has copper, discard it
         if(state->hand[i][j] == copper){
           discardCard(j, i, state, 0);
+          break;
         }
         //if no copper
         if( j == state->handCount[i]){
@@ -740,7 +741,7 @@ int c_adventurer(int drawntreasure, struct gameState *state, int currentPlayer, 
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
     //if card is treassure
-    if (cardDrawn == copper && cardDrawn == silver && cardDrawn == gold){
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
       drawntreasure++;
     }
     //if card is not treassure
@@ -751,7 +752,7 @@ int c_adventurer(int drawntreasure, struct gameState *state, int currentPlayer, 
     }
   }
   //discard all drawn cards
-  while(z-1>=0){
+  while(z-1>=0 && z <= MAX_HAND){
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
   }
@@ -774,7 +775,7 @@ int c_council_room(int currentPlayer, struct gameState *state, int handPos){
   state->numBuys++;      
   //Each other player draws a card
   for (i = 0; i < state->numPlayers; i++){
-    if ( i == currentPlayer ){
+    if ( i != currentPlayer ){
       drawCard(i, state);
     }
   }      

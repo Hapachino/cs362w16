@@ -109,3 +109,18 @@ discovered the following:
 
 The likely problem is the following line in adventurerCard():   
 "  while(drawntreasure<4){" which should be "(drawntreasure<3)"
+
+
+Bug 3: while unit testing the isGameOver() function I 
+discovered the following bug: 
+     a.  isGameOver fails to identify certain game over
+         conditions. This occurs when three supply 
+         piles are emptied, if any of the empty 
+         supply piles is card #25 or 26 (sea_hag or
+         treasure_map).
+
+Suspect the following line in isGameOver():
+"for (i = 0; i < 25; i++)" should instead be
+"... i<27; ..." or better yet, less than some 
+constant. 
+

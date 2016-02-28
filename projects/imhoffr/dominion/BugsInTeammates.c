@@ -1,4 +1,10 @@
-/**
+/*********************
+ Regina Imhoff
+ CS 362
+ imhoffr@oregonstate.edu
+ Assignment 5
+ 
+ 
 # Bugs in Lynn Herrick's Code
  
 ## Village
@@ -544,4 +550,4 @@ Card Tests:
  No errors found.  
  
  
-*/
+ *********************/

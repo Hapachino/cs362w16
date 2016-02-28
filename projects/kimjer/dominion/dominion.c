@@ -526,9 +526,9 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
 
 int drawCard(int player, struct gameState *state)
 {	
-  int count;
-  int deckCounter;
-  if (state->deckCount[player] <= 0){//Deck is empty
+  int count = 0;
+  int deckCounter = 0;
+  if (state->deckCount[player] == 0){//Deck is empty
     //Step 1 Shuffle the discard pile back into a deck
     int i;
     //Move discard to deck
@@ -1309,11 +1309,6 @@ int effectAdventure(struct gameState *state, struct infosStruct *infos)
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
       z++;
     }
-  }
-  while(z-1>=0)
-  {
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-    z=z-1;
   }
   return 0;  
 }

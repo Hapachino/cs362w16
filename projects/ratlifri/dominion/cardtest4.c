@@ -203,7 +203,9 @@ int main () {
 	testG.discard[player][3] = province;
 	testG.discard[player][4] = province;
 
-    cardEffectMine(0, &testG, 4, copper, silver);
+    printf("\n");
+    printf("setup:\n");
+    printf("\n");
 	printHand(0, &testG);
 	printDeck(0, &testG);
 	printPlayed(0, &testG);
@@ -212,6 +214,11 @@ int main () {
 	printDeck(1, &testG);
 	printPlayed(1, &testG);
     printDiscard(1, &testG);
+    printf("\n");
+    printf("test:\n");
+    printf("\n");
+
+    cardEffectMine(0, &testG, 4, copper, silver);
     testnum++;
 	count = 4;
 	r = testG.handCount[0];
@@ -230,7 +237,7 @@ int main () {
         printf("FAIL: expected %d, result %d\n", count, r);
     testnum++;
 	count = 1;
-	r = testG.playedCards[0];
+	r = testG.playedCardCount;
     printf("test %d: mine p0 played           ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
@@ -261,14 +268,14 @@ int main () {
         printf("pass: expected %d, result %d\n", count, r);
     else
         printf("FAIL: expected %d, result %d\n", count, r);
-    testnum++;
-	count = 0;
-	r = testG.playedCards[1];
-    printf("test %d: mine p1 played           ", testnum);
-    if( r == count )
-        printf("pass: expected %d, result %d\n", count, r);
-    else
-        printf("FAIL: expected %d, result %d\n", count, r);
+    /* testnum++; */
+	/* count = 0; */
+	/* r = testG.playedCardCount; */
+    /* printf("test %d: mine p1 played           ", testnum); */
+    /* if( r == count ) */
+    /*     printf("pass: expected %d, result %d\n", count, r); */
+    /* else */
+    /*     printf("FAIL: expected %d, result %d\n", count, r); */
     testnum++;
 	count = 5;
 	r = testG.discardCount[1];
@@ -278,5 +285,15 @@ int main () {
     else
         printf("FAIL: expected %d, result %d\n", count, r);
 
+    printf("\n");
+	printHand(0, &testG);
+	printDeck(0, &testG);
+	printPlayed(0, &testG);
+    printDiscard(0, &testG);
+	printHand(1, &testG);
+	printDeck(1, &testG);
+	/* printPlayed(1, &testG); */
+    printDiscard(1, &testG);
+ 
     return 0;
 }

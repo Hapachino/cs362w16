@@ -124,4 +124,7 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard 
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.gch *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+
+cleanprogs: 
+	rm -f unittest1 unittest2 unittest3 unittest4 smithytest randomtestcard villagetest randomtestadventurer

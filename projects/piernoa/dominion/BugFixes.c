@@ -72,9 +72,6 @@ My Bugs:
 
 /* * * * * * * * * * * * * *  Adventurer: * * * * * * * * * * * * * * * * * * */
 
-    - while(z-1<=0) instaed of while(z-1>=0)
-
-
   code before
   while(drawntreasure<2){
     if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck

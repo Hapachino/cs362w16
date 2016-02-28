@@ -19,8 +19,6 @@ Bugs found by Teammate 1 (Rishi Bhandarkar):
 	
 	Bug 4: scoreFor() method calculates scores incorrectly
 	Fix: In "//score from deck" section of code, changed the for loop to "for (i = 0; i < state->deckCount[player]; i++)."
-	
-	Bug 5: discardCard() method fails to properly account for a discarded card if the card is the first, middle, or last card in player's hand.
 
 
 

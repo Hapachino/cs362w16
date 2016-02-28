@@ -1,7 +1,6 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
-#include "cardFunctions.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -107,13 +106,14 @@ int main() {
 	handCountBefore = G.handCount[curPlayer];
 	deckCountBefore = G.deckCount[curPlayer];
 
+//int smithyEffect(int currentPlayer, struct gameState *state, int handpos)
 	printf("discard count %d\n", G.discardCount[0]);
-	effectSmithy(&G, &infos);
+	smithy_play(infos.currentPlayer, &G, infos.handPos);
 
     handCountAfter = G.handCount[curPlayer];
     deckCountAfter = G.deckCount[curPlayer];
-    printf("%d, %d\n", handCountBefore, handCountAfter);
-    printf("%d, %d\n", deckCountBefore, deckCountAfter);
+    printf("Hand count before: %d; hand count after: %d\n", handCountBefore, handCountAfter);
+    printf("Deck count before: %d; deck count after: %d\n", deckCountBefore, deckCountAfter);
 
 
  //check state of other player(s)
@@ -150,7 +150,6 @@ int main() {
     	assert(Gcopy.deck[p4][i] == G.deck[p4][i]);
     }
 
-
     // for(i = 0; i < G.handCount[p1]; i++)
     // {
     // 	assert(Gcopy.hand[p1][i] == G.hand[p1][i]);
@@ -175,6 +174,8 @@ int main() {
     }
 	return 0;
 }
+
+
 
 
 int drawCard2(int player, struct gameState *state)

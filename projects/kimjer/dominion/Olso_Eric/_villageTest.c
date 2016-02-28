@@ -94,11 +94,12 @@ int main() {
 	numActions1 = G.numActions;
 	numHand1 = G.handCount[p1];
 	numDeck1 = G.deckCount[p1];
-	villageEffect(infos.currentPlayer, &G, infos.handPos);
+	village_play(infos.currentPlayer, &G, infos.handPos);
 
 	numHand2 = G.handCount[p1];
 	numDeck2 = G.deckCount[p1];
 	numActions2 = G.numActions;	
+	
 	printf("%d  %d", numActions1, numActions2);
 	assert(numActions1 +2 == numActions2);
 	assert(numDeck1 -1 == numDeck2);
@@ -111,7 +112,7 @@ int main() {
 	infos.currentPlayer = 0;
 	numHand1 = G.handCount[p2];
 	numDeck1 = G.deckCount[p2];
-	villageEffect(infos.currentPlayer, &G, infos.handPos);
+	village_play(infos.currentPlayer, &G, infos.handPos);
 
 	numHand2 = G.handCount[p2];
 	numDeck2 = G.deckCount[p2];
@@ -122,7 +123,7 @@ int main() {
 	infos.currentPlayer = 0;
 	numHand1 = G.handCount[p3];
 	numDeck1 = G.deckCount[p3];
-	villageEffect(infos.currentPlayer, &G, infos.handPos);
+	village_play(infos.currentPlayer, &G, infos.handPos);
 
 	numHand2 = G.handCount[p3];
 	numDeck2 = G.deckCount[p3];
@@ -133,7 +134,7 @@ int main() {
 	infos.currentPlayer = 0;
 	numHand1 = G.handCount[p4];
 	numDeck1 = G.deckCount[p4];
-	villageEffect(infos.currentPlayer, &G, infos.handPos);
+	village_play(infos.currentPlayer, &G, infos.handPos);
 
 	numHand2 = G.handCount[p4];
 	numDeck2 = G.deckCount[p4];

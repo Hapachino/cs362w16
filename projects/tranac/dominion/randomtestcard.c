@@ -49,7 +49,8 @@ int main() {
 		
 		printf("Random Tests # %d\n", i + 1);
 		seed = rand(); 
-
+		
+		//from lecture
 		for (m = 0; m < sizeof(struct gameState); m++) {
 			((char*)&G)[m] = floor(Random() * 256);
 		}

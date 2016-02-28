@@ -1,0 +1,60 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:    Dominion/Minion Failed to discard current hand
+
+Class:  Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:    2/21/16       
+Reported By:   Todd Waddell
+Email:      waddelto@oregonstate.edu
+
+
+Product:    Dominion/Minion     Version:
+Platform:                       Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Yes 
+
+Description
+===========
+in 5000 tests of minion path 2, minion failed to properly discard current
+player's hand
+
+
+
+Steps to Produce/Reproduce
+--------------------------
+Run minion with path 2, check discardCount and discardPile for current hand
+
+
+Expected Results
+----------------
+DiscardCount[currentPlayer] should increase by handCount[currentPlayer].
+DiscardPile[currentPlayer] array should contain cards from hand.
+
+
+
+Actual Results
+--------------
+At least one bug is discard function.  Instead of putting cards into
+discard pile, discard puts into played card pile, which essentially trashes
+them. 
+
+
+Workarounds
+-----------
+none
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+
+

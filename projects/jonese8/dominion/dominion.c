@@ -443,7 +443,7 @@ int scoreFor (int player, struct gameState *state) {
     }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };
@@ -1164,7 +1164,7 @@ int runAdventurer(struct gameState *state, int drawntreasure, int currentPlayer,
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == copper ||cardDrawn == silver || cardDrawn == gold)  
+	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)  
 	  drawntreasure++;  
 	else{
 	  temphand[z]=cardDrawn;
@@ -1216,14 +1216,8 @@ int runSmithy(struct gameState *state, int currentPlayer, int handPos, int nextP
 {
     int i;
 /*+3 Cards   */
-      for (i = 0; i < 3; i++) //refactor to provide the next player an extra card on iteration 3
+      for (i = 0; i < 3; i++)
 	{
-	  if (i == 2)
-	  {
-		   drawCard(currentPlayer, state);
-		   drawCard(nextPlayer, state);
-	  }	
-	  else	  
 	  drawCard(currentPlayer, state);
 	}
       //discard card from hand
@@ -1265,8 +1259,8 @@ int runSteward(struct gameState *state, int currentPlayer, int choice1, int choi
       else
 	{
 	  //trash 2 cards in hand
-	  discardCard(choice2, currentPlayer, state, 0);//refactor so that cards are discarded to deck instead of trash
-	  discardCard(choice3, currentPlayer, state, 0);
+	  discardCard(choice2, currentPlayer, state, 1);
+	  discardCard(choice3, currentPlayer, state, 1);
 	}
 			
       //discard card from hand

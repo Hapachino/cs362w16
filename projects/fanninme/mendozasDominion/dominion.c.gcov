@@ -1,8 +1,8 @@
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda
-        -:    0:Runs:51
-        -:    0:Programs:51
+        -:    0:Runs:57
+        -:    0:Programs:57
         -:    1:#include "dominion.h"
         -:    2:#include "dominion_helpers.h"
         -:    3:#include "rngs.h"
@@ -233,15 +233,15 @@
     #####:  228:  return 0;
         -:  229:}
         -:  230:
-    34000:  231:int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
+    38000:  231:int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
         -:  232:{	
         -:  233:  int card;
-    34000:  234:  int coin_bonus = 0; 		//tracks coins gain from actions
+    38000:  234:  int coin_bonus = 0; 		//tracks coins gain from actions
         -:  235:
         -:  236:  //check if it is the right phase
-    34000:  237:  if (state->phase != 0)
+    38000:  237:  if (state->phase != 0)
         -:  238:    {
-    34000:  239:      return -1;
+    38000:  239:      return -1;
         -:  240:    }
         -:  241:	
         -:  242:  //check if player has enough actions
@@ -326,26 +326,26 @@
     #####:  321:  return state->supplyCount[card];
         -:  322:}
         -:  323:
-    34000:  324:int fullDeckCount(int player, int card, struct gameState *state) {
+    38000:  324:int fullDeckCount(int player, int card, struct gameState *state) {
         -:  325:  int i;
-    34000:  326:  int count = 0;
+    38000:  326:  int count = 0;
         -:  327:
-  8469723:  328:  for (i = 0; i < state->deckCount[player]; i++)
+  9466161:  328:  for (i = 0; i < state->deckCount[player]; i++)
         -:  329:    {
-  8435723:  330:      if (state->deck[player][i] == card) count++;
+  9428161:  330:      if (state->deck[player][i] == card) count++;
         -:  331:    }
         -:  332:
-  8569734:  333:  for (i = 0; i < state->handCount[player]; i++)
+  9577938:  333:  for (i = 0; i < state->handCount[player]; i++)
         -:  334:    {
-  8535734:  335:      if (state->hand[player][i] == card) count++;
+  9539938:  335:      if (state->hand[player][i] == card) count++;
         -:  336:    }
         -:  337:
-  8352474:  338:  for (i = 0; i < state->discardCount[player]; i++)
+  9335118:  338:  for (i = 0; i < state->discardCount[player]; i++)
         -:  339:    {
-  8318474:  340:      if (state->discard[player][i] == card) count++;
+  9297118:  340:      if (state->discard[player][i] == card) count++;
         -:  341:    }
         -:  342:
-    34000:  343:  return count;
+    38000:  343:  return count;
         -:  344:}
         -:  345:
     #####:  346:int whoseTurn(struct gameState *state) {
@@ -392,31 +392,31 @@
     #####:  387:  return 0;
         -:  388:}
         -:  389:
-    34000:  390:int isGameOver(struct gameState *state) {
+    38000:  390:int isGameOver(struct gameState *state) {
         -:  391:  int i;
         -:  392:  int j;
         -:  393:	
         -:  394:  //if stack of Province cards is empty, the game ends
-    34000:  395:  if (state->supplyCount[province] == 0)
+    38000:  395:  if (state->supplyCount[province] == 0)
         -:  396:    {
     #####:  397:      return 1;
         -:  398:    }
         -:  399:
         -:  400:  //if three supply pile are at 0, the game ends
-    34000:  401:  j = 0;
-   884000:  402:  for (i = 0; i < 25; i++)
+    38000:  401:  j = 0;
+   988000:  402:  for (i = 0; i < 25; i++)
         -:  403:    {
-   850000:  404:      if (state->supplyCount[i] == 0)
+   950000:  404:      if (state->supplyCount[i] == 0)
         -:  405:	{
     #####:  406:	  j++;
         -:  407:	}
         -:  408:    }
-    34000:  409:  if ( j >= 3)
+    38000:  409:  if ( j >= 3)
         -:  410:    {
     #####:  411:      return 1;
         -:  412:    }
         -:  413:
-    34000:  414:  return 0;
+    38000:  414:  return 0;
         -:  415:}
         -:  416:
     #####:  417:int scoreFor (int player, struct gameState *state) {

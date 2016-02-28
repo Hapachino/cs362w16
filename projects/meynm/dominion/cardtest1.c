@@ -196,13 +196,15 @@ int testSmithy( struct gameState *g, int player, int handPos )
 		}
 		for (j = 0; j < post->deckCount[player]; j++)
 		{
-			i++;
+
 			postCards[i] = post->deck[player][j];
+			i++;
 		}
 		for (j = 0; j < post->discardCount[player]; j++)
 		{
-			i++;
+
 			postCards[i] = post->discard[player][j];
+			i++;
 		}
 		// put every card in pre player's possession in preCards
 		for (i = 0; i < pre->handCount[player]; i++)
@@ -211,13 +213,13 @@ int testSmithy( struct gameState *g, int player, int handPos )
 		}
 		for (j = 0; j < pre->deckCount[player]; j++)
 		{
-			i++;
 			preCards[i] = pre->deck[player][j];
+			i++;
 		}
 		for (j = 0; j < pre->discardCount[player]; j++)
 		{
-			i++;
 			preCards[i] = post->discard[player][j];
+			i++;
 		}
 		qsort( (void*) ( postCards ), postCardCount, sizeof(int), compare );
 		qsort( (void*) ( preCards ), preCardCount, sizeof(int), compare );
@@ -232,13 +234,6 @@ int testSmithy( struct gameState *g, int player, int handPos )
 	// test the parts of the game state that should not have changed
 	if (memcmp( post, pre, (void*) &post->hand[player][0] - (void*) post ) != 0)
 		failFlag = 1;
-
-	if (memcmp( &post->playedCards, &pre->playedCards,
-			(void*) &post->playedCardCount - (void*) &post->discardCount[post->numPlayers - 1] )
-			!= 0)
-	{
-		failFlag = 1;
-	}
 
 	// test other players' game state data
 	for (i = 0; i < pre->numPlayers; i++)    // for each player

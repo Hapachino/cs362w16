@@ -1,89 +1,146 @@
+// Scott Williams
+// unitTest4.c
+// Unit Test for checkEndTurn function.
 
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdlib.h>
 
-// set NOISY_TEST to 0 to remove printfs from output
+#define DEBUG 0
 #define NOISY_TEST 1
 
-int main() {
-    int i;
-    int seed = 1000;
-    int numPlayer = 2;
-    int maxBonus = 10;
-    int p, r, handCount;
-    int bonus;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
-    struct gameState G, testG;
-    int maxHandCount = 5;
-    int deckSize = 0;
-    int player1 = 0;
-    int result = 0;
 
-    initializeGame(numPlayer, k, seed, &G);
+/*
 
-    printf ("TESTING buyCard():\n");
-    printf("notes: successful = 0, failed to buy = -1.\n");
+int endTurn(struct gameState *state) {
+  int k;
+  int i;
+  int currentPlayer = whoseTurn(state);
 
-    //This function works by using state->coins, and state->numBuys to do it's work
-    //Thus, there is no reason to test more than one player
-    
-    printf("Try to buy a silver with 3 coins, and 1 buy.\n");
-    memcpy(&testG, &G, sizeof(struct gameState));
-    testG.coins = 3;
-    testG.numBuys = 1;
-    result = buyCard(silver, &testG);
-    printf("buyCard() was successful = %d, expected = %d\n", result, 0);
-    assert(result == 0);
-    printf("coins remaining = %d, expected = %d\n", testG.coins, 0);
-    assert(testG.coins == 0);
-    printf("buys remaining = %d, expected = %d\n", testG.numBuys, 0);
-    assert(testG.numBuys == 0);
-    printf("last card is of type: %d, expected: %d\n", testG.hand[player1][testG.handCount[player1] - 1], silver);
-    assert(testG.hand[player1][testG.handCount[player1] - 1] == silver);
+  //Discard hand
+  for (i = 0; i < state->handCount[currentPlayer]; i++){
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = state->hand[currentPlayer][i];//Discard
+    state->hand[currentPlayer][i] = -1;//Set card to -1
+  }
+  state->handCount[currentPlayer] = 0;//Reset hand count
 
-    printf("Try to buy a silver with 2 coins, and 1 buy.\n");
-    memcpy(&testG, &G, sizeof(struct gameState));
-    testG.coins = 2;
-    testG.numBuys = 1;
-    result = buyCard(silver, &testG);
-    printf("buyCard() was successful = %d, expected = %d\n", result, -1);
-    assert(result == -1);
-    printf("coins remaining = %d, expected = %d\n", testG.coins, 2);
-    assert(testG.coins == 2);
-    printf("buys remaining = %d, expected = %d\n", testG.numBuys, 1);
-    assert(testG.numBuys == 1);
+  //Code for determining the player
+  if (currentPlayer < (state->numPlayers - 1)){
+    state->whoseTurn = currentPlayer + 1;//Still safe to increment
+  }
+  else{
+    state->whoseTurn = 0;//Max player has been reached, loop back around to player 1
+  }
 
-    printf("Try to buy a silver with 3 coins, and 0 buys.\n");
-    memcpy(&testG, &G, sizeof(struct gameState));
-    testG.coins = 3;
-    testG.numBuys = 0;
-    result = buyCard(silver, &testG);
-    printf("buyCard() was successful = %d, expected = %d\n", result, -1);
-    assert(result == -1);
-    printf("coins remaining = %d, expected = %d\n", testG.coins, 3);
-    assert(testG.coins == 3);
-    printf("buys remaining = %d, expected = %d\n", testG.numBuys, 0);
-    assert(testG.numBuys == 0);
+  state->outpostPlayed = 0;
+  state->phase = 0;
+  state->numActions = 1;
+  state->coins = 0;
+  state->numBuys = 1;
+  state->playedCardCount = 0;
+  state->handCount[state->whoseTurn] = 0;
 
-    printf("Try to buy a silver with 3 coins, and 1 buy and no silvers left.\n");
-    memcpy(&testG, &G, sizeof(struct gameState));
-    testG.coins = 3;
-    testG.numBuys = 1;
-    testG.supplyCount[silver] = 0;
-    result = buyCard(silver, &testG);
-    printf("buyCard() was successful = %d, expected = %d\n", result, -1);
-    assert(result == -1);
-    printf("coins remaining = %d, expected = %d\n", testG.coins, 3);
-    assert(testG.coins == 3);
-    printf("buys remaining = %d, expected = %d\n", testG.numBuys, 1);
-    assert(testG.numBuys == 1);
+  //int k; move to top
+  //Next player draws hand
+  for (k = 0; k < 5; k++){
+    drawCard(state->whoseTurn, state);//Draw a card
+  }
 
-    printf("\nAll tests passed!\n\n\n");
+  //Update money
+  updateCoins(state->whoseTurn, state , 0);
+
+  return 0;
+}
+
+*/
+
+int checkEndTurn(struct gameState *post)
+{
+    int k, i, j;
+    int currentPlayer = whoseTurn(post);
+    struct gameState pre;
+    memcpy(&pre, post, sizeof(struct gameState));
+
+    printf("Assertions to ensure cards are discarded properly at end of each turn.\n");
+
+    for(i=0; i<pre.handCount[currentPlayer]; i++)
+    {
+        pre.discard[currentPlayer][pre.discardCount[currentPlayer]++] = pre.hand[currentPlayer][i];
+        assert(pre.discard[currentPlayer][pre.discardCount[currentPlayer]++] == post->discard[currentPlayer][post->discardCount[currentPlayer]++]);
+        assert(post->discard[currentPlayer][post->discardCount[currentPlayer]++] != pre.hand[currentPlayer][i]);
+
+       //  printf("%d\n%d\n", pre.hand[currentPlayer][i], post->hand[currentPlayer][i]);
+
+        pre.hand[currentPlayer][i] = -1;//Set card to -1
+        assert(pre.hand[currentPlayer][i] = post->hand[currentPlayer][i] - 2);
+
+        assert(post->hand[currentPlayer][i] + 1 >= pre.hand[currentPlayer][i]);
+
+        printf("Post Turn End: %d\n Pre Turn End: %d\n", post->handCount[currentPlayer], pre.handCount[currentPlayer]);
+        post->handCount[currentPlayer] = pre.handCount[currentPlayer] = 0;
+
+        assert(post->handCount[currentPlayer] == pre.handCount[currentPlayer]); // These should match.
+
+    }
+
+    printf("Discard Assertions passed.\n");
+
+    printf("Player Counts -- makes sure player is properly selected.\n");
+
+    if (currentPlayer < (post->numPlayers - 1))
+    {
+        post->whoseTurn = currentPlayer + 1;//Still safe to increment
+        assert(post->whoseTurn - (currentPlayer + 1) == pre.whoseTurn);
+    }
+    else{
+        pre.whoseTurn = post->whoseTurn = 0;//Max player has been reached, loop back around to player 1
+        assert(pre.whoseTurn == post->whoseTurn);
+    }
+
+    printf("Player Turn Counter Works Correctly\n");
+
+    printf("Assertion Tests for Outposts, Action Counts, and Coins. All Should Be Equal.\n");
+
+    assert(pre.outpostPlayed == post->outpostPlayed);
+    assert(pre.phase == post->phase);
+    assert(pre.numActions == post->numActions);
+    assert(pre.coins == post->coins);
+    assert(post->numBuys == pre.numBuys);
+    assert(post->playedCardCount == pre.playedCardCount);
+    assert(pre.handCount[post->whoseTurn] == post->handCount[pre.whoseTurn]);
+
+    printf("All assertions passed.\n");
+
+     //int k; move to top
+  //Next player draws hand
+  for (k = 0; k < 5; k++){
+    j = drawCard(pre.whoseTurn, &pre);//Draw a card
+    i = drawCard(post->whoseTurn, post);
+    assert(j == i); // Broken -- is there a way to properly test this without destroying the program?
+  }
 
     return 0;
+}
+
+
+int main()
+{
+    srand(time(NULL));
+    int seed = rand() % 65535;
+    int k[10] = { adventurer, smithy, village, baron, great_hall, council_room, salvager, sea_hag, gardens, mine };
+    struct gameState *state = malloc(sizeof(struct gameState));
+
+    initializeGame(2, k, seed, state);
+
+    checkEndTurn(state);
+
+    return 0;
+
 }

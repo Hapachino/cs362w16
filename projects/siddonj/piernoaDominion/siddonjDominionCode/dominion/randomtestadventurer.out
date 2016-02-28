@@ -1,0 +1,5830 @@
+Smithy Test
+
+fail 1: expected 37, got 38
+fail 6: expected 37, got 38
+fail 1: expected 466, got 467
+fail 6: expected 466, got 467
+fail 1: expected 359, got 360
+fail 2: expected 359, got 360 
+fail 1: expected 334, got 335
+fail 6: expected 334, got 335
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 296, got 297
+fail 6: expected 296, got 297
+fail 1: expected 299, got 300
+fail 2: expected 299, got 300 
+fail 1: expected 153, got 154
+fail 6: expected 153, got 154
+fail 1: expected 371, got 372
+fail 2: expected 371, got 372 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 250, got 251
+fail 6: expected 250, got 251
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 329, got 330
+fail 6: expected 329, got 330
+fail 1: expected 99, got 100
+fail 2: expected 99, got 100 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 41, got 42
+fail 2: expected 41, got 42 
+fail 1: expected 334, got 335
+fail 6: expected 334, got 335
+fail 1: expected 164, got 165
+fail 6: expected 164, got 165
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 200, got 201
+fail 6: expected 200, got 201
+fail 1: expected 445, got 446
+fail 2: expected 445, got 446 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 486, got 487
+fail 6: expected 486, got 487
+fail 1: expected 272, got 273
+fail 6: expected 272, got 273
+fail 1: expected 450, got 451
+fail 6: expected 450, got 451
+fail 1: expected 416, got 417
+fail 6: expected 416, got 417
+fail 1: expected 274, got 275
+fail 6: expected 274, got 275
+fail 1: expected 272, got 273
+fail 2: expected 272, got 273 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 46, got 47
+fail 6: expected 46, got 47
+fail 1: expected 9, got 10
+fail 6: expected 9, got 10
+fail 1: expected 432, got 433
+fail 2: expected 432, got 433 
+fail 1: expected 331, got 332
+fail 6: expected 331, got 332
+fail 1: expected 19, got 20
+fail 2: expected 19, got 20 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 148, got 149
+fail 6: expected 148, got 149
+fail 1: expected 451, got 452
+fail 6: expected 451, got 452
+fail 1: expected 342, got 343
+fail 2: expected 342, got 343 
+fail 1: expected 364, got 365
+fail 2: expected 364, got 365 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 202, got 203
+fail 2: expected 202, got 203 
+fail 1: expected 289, got 290
+fail 2: expected 289, got 290 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 174, got 175
+fail 2: expected 174, got 175 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 155, got 156
+fail 6: expected 155, got 156
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 143, got 144
+fail 6: expected 143, got 144
+fail 1: expected 489, got 490
+fail 6: expected 489, got 490
+fail 1: expected 339, got 340
+fail 6: expected 339, got 340
+fail 1: expected 160, got 161
+fail 6: expected 160, got 161
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 139, got 140
+fail 2: expected 139, got 140 
+fail 1: expected 296, got 297
+fail 6: expected 296, got 297
+fail 1: expected 473, got 474
+fail 6: expected 473, got 474
+fail 1: expected 281, got 282
+fail 2: expected 281, got 282 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 474, got 475
+fail 2: expected 474, got 475 
+fail 1: expected 94, got 95
+fail 2: expected 94, got 95 
+fail 1: expected 195, got 196
+fail 6: expected 195, got 196
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 252, got 253
+fail 6: expected 252, got 253
+fail 1: expected 205, got 206
+fail 6: expected 205, got 206
+fail 1: expected 25, got 26
+fail 6: expected 25, got 26
+fail 1: expected 23, got 24
+fail 6: expected 23, got 24
+fail 1: expected 419, got 420
+fail 6: expected 419, got 420
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 433, got 434
+fail 6: expected 433, got 434
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 148, got 149
+fail 6: expected 148, got 149
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 145, got 146
+fail 6: expected 145, got 146
+fail 1: expected 288, got 289
+fail 6: expected 288, got 289
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 498, got 499
+fail 6: expected 498, got 499
+fail 1: expected 388, got 389
+fail 2: expected 388, got 389 
+fail 1: expected 338, got 339
+fail 6: expected 338, got 339
+fail 1: expected 201, got 202
+fail 2: expected 201, got 202 
+fail 1: expected 334, got 335
+fail 6: expected 334, got 335
+fail 1: expected 385, got 386
+fail 6: expected 385, got 386
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 273, got 274
+fail 6: expected 273, got 274
+fail 1: expected 220, got 221
+fail 6: expected 220, got 221
+fail 1: expected 324, got 325
+fail 6: expected 324, got 325
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 90, got 91
+fail 6: expected 90, got 91
+fail 1: expected 322, got 323
+fail 6: expected 322, got 323
+fail 1: expected 318, got 319
+fail 6: expected 318, got 319
+fail 1: expected 97, got 98
+fail 6: expected 97, got 98
+fail 1: expected 361, got 362
+fail 2: expected 361, got 362 
+fail 1: expected 336, got 337
+fail 2: expected 336, got 337 
+fail 1: expected 335, got 336
+fail 2: expected 335, got 336 
+fail 1: expected 265, got 266
+fail 2: expected 265, got 266 
+fail 1: expected 321, got 322
+fail 2: expected 321, got 322 
+fail 1: expected 281, got 282
+fail 2: expected 281, got 282 
+fail 1: expected 490, got 491
+fail 6: expected 490, got 491
+fail 1: expected 204, got 205
+fail 2: expected 204, got 205 
+fail 1: expected 218, got 219
+fail 6: expected 218, got 219
+fail 1: expected 416, got 417
+fail 2: expected 416, got 417 
+fail 1: expected 427, got 428
+fail 2: expected 427, got 428 
+fail 1: expected 127, got 128
+fail 6: expected 127, got 128
+fail 1: expected 294, got 295
+fail 6: expected 294, got 295
+fail 1: expected 274, got 275
+fail 6: expected 274, got 275
+fail 1: expected 259, got 260
+fail 6: expected 259, got 260
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 384, got 385
+fail 6: expected 384, got 385
+fail 1: expected 152, got 153
+fail 2: expected 152, got 153 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 22, got 23
+fail 2: expected 22, got 23 
+fail 1: expected 388, got 385
+fail 2: expected 388, got 385 
+fail 1: expected 38, got 39
+fail 6: expected 38, got 39
+fail 1: expected 457, got 458
+fail 6: expected 457, got 458
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 73, got 74
+fail 2: expected 73, got 74 
+fail 1: expected 59, got 60
+fail 6: expected 59, got 60
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 87, got 88
+fail 6: expected 87, got 88
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 202, got 203
+fail 2: expected 202, got 203 
+fail 1: expected 463, got 464
+fail 6: expected 463, got 464
+fail 1: expected 228, got 229
+fail 6: expected 228, got 229
+fail 1: expected 354, got 355
+fail 2: expected 354, got 355 
+fail 1: expected 107, got 108
+fail 6: expected 107, got 108
+fail 1: expected 288, got 289
+fail 6: expected 288, got 289
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 389, got 390
+fail 6: expected 389, got 390
+fail 1: expected 321, got 322
+fail 6: expected 321, got 322
+fail 1: expected 471, got 472
+fail 6: expected 471, got 472
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 187, got 188
+fail 6: expected 187, got 188
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 310, got 311
+fail 2: expected 310, got 311 
+fail 1: expected 436, got 437
+fail 6: expected 436, got 437
+fail 1: expected 269, got 270
+fail 6: expected 269, got 270
+fail 1: expected 404, got 405
+fail 6: expected 404, got 405
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 333, got 334
+fail 6: expected 333, got 334
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 375, got 376
+fail 2: expected 375, got 376 
+fail 1: expected 255, got 256
+fail 6: expected 255, got 256
+fail 1: expected 340, got 341
+fail 2: expected 340, got 341 
+fail 1: expected 231, got 232
+fail 6: expected 231, got 232
+fail 1: expected 28, got 29
+fail 6: expected 28, got 29
+fail 1: expected 267, got 268
+fail 6: expected 267, got 268
+fail 1: expected 270, got 271
+fail 6: expected 270, got 271
+fail 1: expected 441, got 442
+fail 6: expected 441, got 442
+fail 1: expected 62, got 63
+fail 6: expected 62, got 63
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 48, got 49
+fail 6: expected 48, got 49
+fail 1: expected 223, got 224
+fail 6: expected 223, got 224
+fail 1: expected 306, got 307
+fail 2: expected 306, got 307 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 457, got 458
+fail 6: expected 457, got 458
+fail 1: expected 361, got 362
+fail 2: expected 361, got 362 
+fail 1: expected 137, got 138
+fail 2: expected 137, got 138 
+fail 1: expected 74, got 75
+fail 6: expected 74, got 75
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 186, got 187
+fail 6: expected 186, got 187
+fail 1: expected 342, got 343
+fail 6: expected 342, got 343
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 73, got 74
+fail 6: expected 73, got 74
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 52, got 53
+fail 2: expected 52, got 53 
+fail 1: expected 65, got 66
+fail 2: expected 65, got 66 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 501, got 502
+fail 6: expected 501, got 502
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 241, got 242
+fail 6: expected 241, got 242
+fail 1: expected 31, got 32
+fail 6: expected 31, got 32
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 222, got 223
+fail 6: expected 222, got 223
+fail 1: expected 191, got 192
+fail 6: expected 191, got 192
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 442, got 443
+fail 6: expected 442, got 443
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 65, got 66
+fail 2: expected 65, got 66 
+fail 1: expected 10, got 11
+fail 6: expected 10, got 11
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 76, got 77
+fail 6: expected 76, got 77
+fail 1: expected 433, got 434
+fail 2: expected 433, got 434 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 469, got 470
+fail 6: expected 469, got 470
+fail 1: expected 230, got 231
+fail 6: expected 230, got 231
+fail 1: expected 42, got 43
+fail 6: expected 42, got 43
+fail 1: expected 271, got 272
+fail 2: expected 271, got 272 
+fail 1: expected 14, got 15
+fail 6: expected 14, got 15
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 103, got 104
+fail 2: expected 103, got 104 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 114, got 115
+fail 2: expected 114, got 115 
+fail 1: expected 181, got 182
+fail 6: expected 181, got 182
+fail 1: expected 262, got 263
+fail 2: expected 262, got 263 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 347, got 348
+fail 6: expected 347, got 348
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 391, got 392
+fail 6: expected 391, got 392
+fail 1: expected 333, got 334
+fail 6: expected 333, got 334
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 368, got 369
+fail 2: expected 368, got 369 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 475, got 476
+fail 6: expected 475, got 476
+fail 1: expected 250, got 251
+fail 6: expected 250, got 251
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 4, got 5
+fail 2: expected 4, got 5 
+fail 1: expected 235, got 236
+fail 6: expected 235, got 236
+fail 1: expected 57, got 58
+fail 6: expected 57, got 58
+fail 1: expected 329, got 330
+fail 6: expected 329, got 330
+fail 1: expected 183, got 184
+fail 2: expected 183, got 184 
+fail 1: expected 275, got 276
+fail 6: expected 275, got 276
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 175, got 176
+fail 6: expected 175, got 176
+fail 1: expected 9, got 10
+fail 6: expected 9, got 10
+fail 1: expected 73, got 74
+fail 6: expected 73, got 74
+fail 1: expected 160, got 161
+fail 6: expected 160, got 161
+fail 1: expected 444, got 445
+fail 6: expected 444, got 445
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 21, got 22
+fail 6: expected 21, got 22
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 348, got 349
+fail 2: expected 348, got 349 
+fail 1: expected 419, got 420
+fail 6: expected 419, got 420
+fail 1: expected 103, got 104
+fail 6: expected 103, got 104
+fail 1: expected 3, got 4
+fail 2: expected 3, got 4 
+fail 1: expected 479, got 480
+fail 2: expected 479, got 480 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 286, got 287
+fail 6: expected 286, got 287
+fail 1: expected 427, got 428
+fail 2: expected 427, got 428 
+fail 1: expected 29, got 30
+fail 6: expected 29, got 30
+fail 1: expected 37, got 38
+fail 2: expected 37, got 38 
+fail 1: expected 286, got 287
+fail 6: expected 286, got 287
+fail 1: expected 429, got 430
+fail 6: expected 429, got 430
+fail 1: expected 129, got 130
+fail 2: expected 129, got 130 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 46, got 47
+fail 6: expected 46, got 47
+fail 1: expected 466, got 467
+fail 2: expected 466, got 467 
+fail 1: expected 35, got 36
+fail 6: expected 35, got 36
+fail 1: expected 412, got 413
+fail 6: expected 412, got 413
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 246, got 247
+fail 6: expected 246, got 247
+fail 1: expected 473, got 474
+fail 6: expected 473, got 474
+fail 1: expected 80, got 81
+fail 6: expected 80, got 81
+fail 1: expected 407, got 408
+fail 2: expected 407, got 408 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 207, got 208
+fail 6: expected 207, got 208
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 295, got 296
+fail 6: expected 295, got 296
+fail 1: expected 122, got 123
+fail 6: expected 122, got 123
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 369, got 370
+fail 6: expected 369, got 370
+fail 1: expected 479, got 480
+fail 6: expected 479, got 480
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 81, got 82
+fail 6: expected 81, got 82
+fail 1: expected 194, got 195
+fail 6: expected 194, got 195
+fail 1: expected 83, got 84
+fail 6: expected 83, got 84
+fail 1: expected 166, got 167
+fail 6: expected 166, got 167
+fail 1: expected 79, got 80
+fail 6: expected 79, got 80
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 342, got 343
+fail 6: expected 342, got 343
+fail 1: expected 151, got 152
+fail 2: expected 151, got 152 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 221, got 222
+fail 6: expected 221, got 222
+fail 1: expected 200, got 201
+fail 6: expected 200, got 201
+fail 1: expected 462, got 463
+fail 6: expected 462, got 463
+fail 1: expected 388, got 389
+fail 2: expected 388, got 389 
+fail 1: expected 464, got 465
+fail 6: expected 464, got 465
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 340, got 341
+fail 2: expected 340, got 341 
+fail 1: expected 351, got 352
+fail 6: expected 351, got 352
+fail 1: expected 7, got 8
+fail 6: expected 7, got 8
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 420, got 421
+fail 6: expected 420, got 421
+fail 1: expected 131, got 132
+fail 6: expected 131, got 132
+fail 1: expected 372, got 373
+fail 6: expected 372, got 373
+fail 1: expected 130, got 131
+fail 6: expected 130, got 131
+fail 1: expected 160, got 161
+fail 2: expected 160, got 161 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 302, got 303
+fail 6: expected 302, got 303
+fail 1: expected 34, got 35
+fail 2: expected 34, got 35 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 14, got 15
+fail 6: expected 14, got 15
+fail 1: expected 65, got 66
+fail 6: expected 65, got 66
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 233, got 234
+fail 6: expected 233, got 234
+fail 1: expected 326, got 327
+fail 6: expected 326, got 327
+fail 1: expected 152, got 153
+fail 2: expected 152, got 153 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 392, got 393
+fail 2: expected 392, got 393 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 478, got 479
+fail 2: expected 478, got 479 
+fail 1: expected 414, got 415
+fail 6: expected 414, got 415
+fail 1: expected 148, got 149
+fail 2: expected 148, got 149 
+fail 1: expected 204, got 205
+fail 6: expected 204, got 205
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 95, got 96
+fail 6: expected 95, got 96
+fail 1: expected 355, got 356
+fail 2: expected 355, got 356 
+fail 1: expected 499, got 500
+fail 6: expected 499, got 500
+fail 1: expected 245, got 246
+fail 2: expected 245, got 246 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 221, got 222
+fail 6: expected 221, got 222
+fail 1: expected 388, got 389
+fail 2: expected 388, got 389 
+fail 1: expected 29, got 30
+fail 6: expected 29, got 30
+fail 1: expected 373, got 374
+fail 2: expected 373, got 374 
+fail 1: expected 439, got 440
+fail 2: expected 439, got 440 
+fail 1: expected 367, got 368
+fail 6: expected 367, got 368
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 4, got 5
+fail 6: expected 4, got 5
+fail 1: expected 371, got 372
+fail 6: expected 371, got 372
+fail 1: expected 314, got 315
+fail 2: expected 314, got 315 
+fail 1: expected 485, got 486
+fail 6: expected 485, got 486
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 42, got 43
+fail 6: expected 42, got 43
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 136, got 137
+fail 6: expected 136, got 137
+fail 1: expected 434, got 435
+fail 2: expected 434, got 435 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 75, got 76
+fail 6: expected 75, got 76
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 168, got 169
+fail 2: expected 168, got 169 
+fail 1: expected 395, got 396
+fail 6: expected 395, got 396
+fail 1: expected 89, got 90
+fail 6: expected 89, got 90
+fail 1: expected 307, got 308
+fail 6: expected 307, got 308
+fail 1: expected 334, got 335
+fail 6: expected 334, got 335
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 433, got 434
+fail 6: expected 433, got 434
+fail 1: expected 345, got 346
+fail 6: expected 345, got 346
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 102, got 103
+fail 6: expected 102, got 103
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 432, got 433
+fail 6: expected 432, got 433
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 103, got 104
+fail 2: expected 103, got 104 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 352, got 353
+fail 6: expected 352, got 353
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 358, got 359
+fail 2: expected 358, got 359 
+fail 1: expected 323, got 324
+fail 6: expected 323, got 324
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 97, got 98
+fail 2: expected 97, got 98 
+fail 1: expected 206, got 207
+fail 2: expected 206, got 207 
+fail 1: expected 477, got 478
+fail 6: expected 477, got 478
+fail 1: expected 38, got 39
+fail 6: expected 38, got 39
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 32, got 33
+fail 6: expected 32, got 33
+fail 1: expected 359, got 360
+fail 6: expected 359, got 360
+fail 1: expected 13, got 14
+fail 6: expected 13, got 14
+fail 1: expected 418, got 419
+fail 6: expected 418, got 419
+fail 1: expected 260, got 261
+fail 6: expected 260, got 261
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 344, got 345
+fail 6: expected 344, got 345
+fail 1: expected 427, got 428
+fail 6: expected 427, got 428
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 164, got 165
+fail 6: expected 164, got 165
+fail 1: expected 477, got 478
+fail 2: expected 477, got 478 
+fail 1: expected 181, got 182
+fail 6: expected 181, got 182
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 477, got 478
+fail 6: expected 477, got 478
+fail 1: expected 496, got 497
+fail 6: expected 496, got 497
+fail 1: expected 168, got 169
+fail 2: expected 168, got 169 
+fail 1: expected 433, got 434
+fail 2: expected 433, got 434 
+fail 1: expected 224, got 225
+fail 6: expected 224, got 225
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 76, got 77
+fail 2: expected 76, got 77 
+fail 1: expected 444, got 445
+fail 2: expected 444, got 445 
+fail 1: expected 104, got 105
+fail 6: expected 104, got 105
+fail 1: expected 157, got 158
+fail 2: expected 157, got 158 
+fail 1: expected 445, got 446
+fail 2: expected 445, got 446 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 151, got 152
+fail 6: expected 151, got 152
+fail 1: expected 17, got 18
+fail 6: expected 17, got 18
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 10, got 11
+fail 6: expected 10, got 11
+fail 1: expected 210, got 211
+fail 2: expected 210, got 211 
+fail 1: expected 285, got 286
+fail 2: expected 285, got 286 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 453, got 454
+fail 6: expected 453, got 454
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 219, got 220
+fail 6: expected 219, got 220
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 274, got 275
+fail 6: expected 274, got 275
+fail 1: expected 31, got 32
+fail 6: expected 31, got 32
+fail 1: expected 477, got 478
+fail 2: expected 477, got 478 
+fail 1: expected 366, got 367
+fail 6: expected 366, got 367
+fail 1: expected 179, got 180
+fail 6: expected 179, got 180
+fail 1: expected 79, got 80
+fail 2: expected 79, got 80 
+fail 1: expected 315, got 316
+fail 6: expected 315, got 316
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 81, got 82
+fail 6: expected 81, got 82
+fail 1: expected 84, got 85
+fail 6: expected 84, got 85
+fail 1: expected 450, got 451
+fail 6: expected 450, got 451
+fail 1: expected 246, got 247
+fail 6: expected 246, got 247
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 90, got 91
+fail 2: expected 90, got 91 
+fail 1: expected 455, got 456
+fail 6: expected 455, got 456
+fail 1: expected 205, got 206
+fail 2: expected 205, got 206 
+fail 1: expected 181, got 182
+fail 6: expected 181, got 182
+fail 1: expected 339, got 340
+fail 6: expected 339, got 340
+fail 1: expected 49, got 50
+fail 6: expected 49, got 50
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 377, got 378
+fail 2: expected 377, got 378 
+fail 1: expected 400, got 401
+fail 6: expected 400, got 401
+fail 1: expected 338, got 339
+fail 6: expected 338, got 339
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 148, got 149
+fail 6: expected 148, got 149
+fail 1: expected 192, got 193
+fail 6: expected 192, got 193
+fail 1: expected 89, got 90
+fail 6: expected 89, got 90
+fail 1: expected 104, got 105
+fail 6: expected 104, got 105
+fail 1: expected 327, got 328
+fail 6: expected 327, got 328
+fail 1: expected 364, got 365
+fail 6: expected 364, got 365
+fail 1: expected 287, got 288
+fail 6: expected 287, got 288
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 254, got 255
+fail 6: expected 254, got 255
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 219, got 220
+fail 2: expected 219, got 220 
+fail 1: expected 486, got 487
+fail 2: expected 486, got 487 
+fail 1: expected 112, got 113
+fail 6: expected 112, got 113
+fail 1: expected 236, got 237
+fail 2: expected 236, got 237 
+fail 1: expected 432, got 433
+fail 2: expected 432, got 433 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 421, got 422
+fail 6: expected 421, got 422
+fail 1: expected 468, got 469
+fail 6: expected 468, got 469
+fail 1: expected 223, got 224
+fail 6: expected 223, got 224
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 309, got 310
+fail 6: expected 309, got 310
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 305, got 306
+fail 2: expected 305, got 306 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 278, got 279
+fail 2: expected 278, got 279 
+fail 1: expected 439, got 440
+fail 6: expected 439, got 440
+fail 1: expected 448, got 449
+fail 2: expected 448, got 449 
+fail 1: expected 49, got 50
+fail 2: expected 49, got 50 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 353, got 354
+fail 6: expected 353, got 354
+fail 1: expected 244, got 245
+fail 6: expected 244, got 245
+fail 1: expected 38, got 39
+fail 2: expected 38, got 39 
+fail 1: expected 494, got 495
+fail 6: expected 494, got 495
+fail 1: expected 89, got 90
+fail 6: expected 89, got 90
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 148, got 149
+fail 6: expected 148, got 149
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 463, got 464
+fail 6: expected 463, got 464
+fail 1: expected 346, got 347
+fail 6: expected 346, got 347
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 143, got 144
+fail 6: expected 143, got 144
+fail 1: expected 59, got 60
+fail 6: expected 59, got 60
+fail 1: expected 272, got 273
+fail 6: expected 272, got 273
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 400, got 401
+fail 6: expected 400, got 401
+fail 1: expected 232, got 233
+fail 2: expected 232, got 233 
+fail 1: expected 282, got 283
+fail 6: expected 282, got 283
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 99, got 100
+fail 6: expected 99, got 100
+fail 1: expected 449, got 450
+fail 6: expected 449, got 450
+fail 1: expected 90, got 91
+fail 2: expected 90, got 91 
+fail 1: expected 186, got 187
+fail 2: expected 186, got 187 
+fail 1: expected 152, got 153
+fail 6: expected 152, got 153
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 32, got 33
+fail 2: expected 32, got 33 
+fail 1: expected 23, got 24
+fail 2: expected 23, got 24 
+fail 1: expected 83, got 84
+fail 2: expected 83, got 84 
+fail 1: expected 50, got 51
+fail 2: expected 50, got 51 
+fail 1: expected 32, got 33
+fail 6: expected 32, got 33
+fail 1: expected 334, got 335
+fail 2: expected 334, got 335 
+fail 1: expected 7, got 8
+fail 2: expected 7, got 8 
+fail 1: expected 276, got 277
+fail 6: expected 276, got 277
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 266, got 267
+fail 6: expected 266, got 267
+fail 1: expected 382, got 383
+fail 6: expected 382, got 383
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 479, got 480
+fail 6: expected 479, got 480
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 106, got 107
+fail 6: expected 106, got 107
+fail 1: expected 26, got 27
+fail 6: expected 26, got 27
+fail 1: expected 88, got 89
+fail 6: expected 88, got 89
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 162, got 163
+fail 2: expected 162, got 163 
+fail 1: expected 19, got 20
+fail 2: expected 19, got 20 
+fail 1: expected 394, got 395
+fail 6: expected 394, got 395
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 331, got 332
+fail 2: expected 331, got 332 
+fail 1: expected 70, got 71
+fail 6: expected 70, got 71
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 135, got 136
+fail 6: expected 135, got 136
+fail 1: expected 146, got 147
+fail 2: expected 146, got 147 
+fail 1: expected 379, got 380
+fail 6: expected 379, got 380
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 384, got 385
+fail 6: expected 384, got 385
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 437, got 438
+fail 6: expected 437, got 438
+fail 1: expected 34, got 35
+fail 6: expected 34, got 35
+fail 1: expected 442, got 443
+fail 2: expected 442, got 443 
+fail 1: expected 276, got 277
+fail 6: expected 276, got 277
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 141, got 142
+fail 6: expected 141, got 142
+fail 1: expected 261, got 262
+fail 2: expected 261, got 262 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 95, got 96
+fail 6: expected 95, got 96
+fail 1: expected 422, got 423
+fail 6: expected 422, got 423
+fail 1: expected 388, got 389
+fail 6: expected 388, got 389
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 291, got 292
+fail 6: expected 291, got 292
+fail 1: expected 121, got 122
+fail 2: expected 121, got 122 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 251, got 252
+fail 6: expected 251, got 252
+fail 1: expected 194, got 195
+fail 6: expected 194, got 195
+fail 1: expected 205, got 206
+fail 2: expected 205, got 206 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 45, got 46
+fail 2: expected 45, got 46 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 280, got 281
+fail 6: expected 280, got 281
+fail 1: expected 66, got 67
+fail 6: expected 66, got 67
+fail 1: expected 89, got 90
+fail 2: expected 89, got 90 
+fail 1: expected 310, got 311
+fail 6: expected 310, got 311
+fail 1: expected 287, got 288
+fail 2: expected 287, got 288 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 75, got 76
+fail 2: expected 75, got 76 
+fail 1: expected 14, got 15
+fail 2: expected 14, got 15 
+fail 1: expected 336, got 337
+fail 6: expected 336, got 337
+fail 1: expected 378, got 379
+fail 6: expected 378, got 379
+fail 1: expected 155, got 156
+fail 6: expected 155, got 156
+fail 1: expected 26, got 27
+fail 6: expected 26, got 27
+fail 1: expected 303, got 304
+fail 6: expected 303, got 304
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 443, got 444
+fail 2: expected 443, got 444 
+fail 1: expected 283, got 284
+fail 2: expected 283, got 284 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 381, got 382
+fail 6: expected 381, got 382
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 260, got 261
+fail 2: expected 260, got 261 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 256, got 257
+fail 6: expected 256, got 257
+fail 1: expected 130, got 131
+fail 2: expected 130, got 131 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 339, got 340
+fail 6: expected 339, got 340
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 381, got 382
+fail 6: expected 381, got 382
+fail 1: expected 395, got 396
+fail 6: expected 395, got 396
+fail 1: expected 140, got 141
+fail 2: expected 140, got 141 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 217, got 218
+fail 2: expected 217, got 218 
+fail 1: expected 286, got 287
+fail 6: expected 286, got 287
+fail 1: expected 170, got 171
+fail 6: expected 170, got 171
+fail 1: expected 358, got 359
+fail 6: expected 358, got 359
+fail 1: expected 426, got 427
+fail 6: expected 426, got 427
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 224, got 225
+fail 6: expected 224, got 225
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 487, got 488
+fail 6: expected 487, got 488
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 353, got 354
+fail 2: expected 353, got 354 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 15, got 16
+fail 6: expected 15, got 16
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 500, got 501
+fail 2: expected 500, got 501 
+fail 1: expected 219, got 220
+fail 6: expected 219, got 220
+fail 1: expected 7, got 8
+fail 2: expected 7, got 8 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 211, got 212
+fail 2: expected 211, got 212 
+fail 1: expected 493, got 494
+fail 2: expected 493, got 494 
+fail 1: expected 174, got 175
+fail 6: expected 174, got 175
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 440, got 441
+fail 6: expected 440, got 441
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 473, got 474
+fail 2: expected 473, got 474 
+fail 1: expected 379, got 380
+fail 6: expected 379, got 380
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 370, got 371
+fail 2: expected 370, got 371 
+fail 1: expected 313, got 314
+fail 6: expected 313, got 314
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 291, got 292
+fail 6: expected 291, got 292
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 51, got 52
+fail 2: expected 51, got 52 
+fail 1: expected 277, got 278
+fail 2: expected 277, got 278 
+fail 1: expected 53, got 54
+fail 2: expected 53, got 54 
+fail 1: expected 93, got 94
+fail 2: expected 93, got 94 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 13, got 14
+fail 6: expected 13, got 14
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 285, got 286
+fail 6: expected 285, got 286
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 251, got 252
+fail 2: expected 251, got 252 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 163, got 164
+fail 2: expected 163, got 164 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 128, got 129
+fail 6: expected 128, got 129
+fail 1: expected 317, got 318
+fail 6: expected 317, got 318
+fail 1: expected 489, got 490
+fail 2: expected 489, got 490 
+fail 1: expected 123, got 124
+fail 2: expected 123, got 124 
+fail 1: expected 242, got 243
+fail 2: expected 242, got 243 
+fail 1: expected 155, got 156
+fail 6: expected 155, got 156
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 230, got 231
+fail 6: expected 230, got 231
+fail 1: expected 212, got 213
+fail 6: expected 212, got 213
+fail 1: expected 311, got 312
+fail 6: expected 311, got 312
+fail 1: expected 370, got 371
+fail 2: expected 370, got 371 
+fail 1: expected 384, got 385
+fail 6: expected 384, got 385
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 307, got 308
+fail 6: expected 307, got 308
+fail 1: expected 48, got 49
+fail 2: expected 48, got 49 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 366, got 367
+fail 2: expected 366, got 367 
+fail 1: expected 235, got 236
+fail 6: expected 235, got 236
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 199, got 200
+fail 6: expected 199, got 200
+fail 1: expected 342, got 343
+fail 2: expected 342, got 343 
+fail 1: expected 78, got 79
+fail 6: expected 78, got 79
+fail 1: expected 252, got 253
+fail 2: expected 252, got 253 
+fail 1: expected 295, got 296
+fail 6: expected 295, got 296
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 392, got 393
+fail 6: expected 392, got 393
+fail 1: expected 135, got 136
+fail 6: expected 135, got 136
+fail 1: expected 10, got 11
+fail 6: expected 10, got 11
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 231, got 232
+fail 6: expected 231, got 232
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 450, got 451
+fail 2: expected 450, got 451 
+fail 1: expected 207, got 208
+fail 2: expected 207, got 208 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 92, got 93
+fail 2: expected 92, got 93 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 79, got 80
+fail 6: expected 79, got 80
+fail 1: expected 291, got 292
+fail 2: expected 291, got 292 
+fail 1: expected 246, got 247
+fail 6: expected 246, got 247
+fail 1: expected 484, got 485
+fail 6: expected 484, got 485
+fail 1: expected 497, got 498
+fail 6: expected 497, got 498
+fail 1: expected 324, got 325
+fail 2: expected 324, got 325 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 411, got 412
+fail 6: expected 411, got 412
+fail 1: expected 109, got 110
+fail 6: expected 109, got 110
+fail 1: expected 169, got 170
+fail 6: expected 169, got 170
+fail 1: expected 501, got 502
+fail 6: expected 501, got 502
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 321, got 322
+fail 2: expected 321, got 322 
+fail 1: expected 252, got 253
+fail 6: expected 252, got 253
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 90, got 91
+fail 6: expected 90, got 91
+fail 1: expected 270, got 271
+fail 6: expected 270, got 271
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 343, got 344
+fail 2: expected 343, got 344 
+fail 1: expected 47, got 48
+fail 2: expected 47, got 48 
+fail 1: expected 80, got 81
+fail 6: expected 80, got 81
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 372, got 373
+fail 6: expected 372, got 373
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 133, got 134
+fail 6: expected 133, got 134
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 213, got 214
+fail 2: expected 213, got 214 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 242, got 243
+fail 6: expected 242, got 243
+fail 1: expected 30, got 31
+fail 6: expected 30, got 31
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 256, got 257
+fail 2: expected 256, got 257 
+fail 1: expected 427, got 428
+fail 6: expected 427, got 428
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 64, got 65
+fail 2: expected 64, got 65 
+fail 1: expected 59, got 60
+fail 6: expected 59, got 60
+fail 1: expected 266, got 267
+fail 2: expected 266, got 267 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 259, got 260
+fail 6: expected 259, got 260
+fail 1: expected 79, got 80
+fail 2: expected 79, got 80 
+fail 1: expected 314, got 315
+fail 6: expected 314, got 315
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 377, got 378
+fail 6: expected 377, got 378
+fail 1: expected 120, got 121
+fail 6: expected 120, got 121
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 433, got 434
+fail 6: expected 433, got 434
+fail 1: expected 428, got 429
+fail 6: expected 428, got 429
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 146, got 147
+fail 6: expected 146, got 147
+fail 1: expected 127, got 128
+fail 2: expected 127, got 128 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 386, got 387
+fail 6: expected 386, got 387
+fail 1: expected 315, got 316
+fail 6: expected 315, got 316
+fail 1: expected 194, got 195
+fail 6: expected 194, got 195
+fail 1: expected 250, got 251
+fail 2: expected 250, got 251 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 273, got 274
+fail 6: expected 273, got 274
+fail 1: expected 154, got 155
+fail 6: expected 154, got 155
+fail 1: expected 334, got 335
+fail 6: expected 334, got 335
+fail 1: expected 427, got 428
+fail 6: expected 427, got 428
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 491, got 492
+fail 6: expected 491, got 492
+fail 1: expected 363, got 364
+fail 6: expected 363, got 364
+fail 1: expected 389, got 390
+fail 6: expected 389, got 390
+fail 1: expected 114, got 115
+fail 2: expected 114, got 115 
+fail 1: expected 17, got 18
+fail 2: expected 17, got 18 
+fail 1: expected 389, got 390
+fail 6: expected 389, got 390
+fail 1: expected 406, got 407
+fail 6: expected 406, got 407
+fail 1: expected 492, got 493
+fail 6: expected 492, got 493
+fail 1: expected 22, got 23
+fail 2: expected 22, got 23 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 333, got 334
+fail 6: expected 333, got 334
+fail 1: expected 194, got 195
+fail 6: expected 194, got 195
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 226, got 227
+fail 6: expected 226, got 227
+fail 1: expected 79, got 80
+fail 6: expected 79, got 80
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 168, got 169
+fail 6: expected 168, got 169
+fail 1: expected 258, got 259
+fail 2: expected 258, got 259 
+fail 1: expected 139, got 140
+fail 2: expected 139, got 140 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 204, got 205
+fail 6: expected 204, got 205
+fail 1: expected 366, got 367
+fail 6: expected 366, got 367
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 477, got 478
+fail 6: expected 477, got 478
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 377, got 378
+fail 6: expected 377, got 378
+fail 1: expected 83, got 84
+fail 6: expected 83, got 84
+fail 1: expected 35, got 36
+fail 6: expected 35, got 36
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 297, got 298
+fail 2: expected 297, got 298 
+fail 1: expected 93, got 94
+fail 6: expected 93, got 94
+fail 1: expected 406, got 407
+fail 6: expected 406, got 407
+fail 1: expected 4, got 5
+fail 6: expected 4, got 5
+fail 1: expected 244, got 245
+fail 6: expected 244, got 245
+fail 1: expected 10, got 11
+fail 2: expected 10, got 11 
+fail 1: expected 333, got 334
+fail 6: expected 333, got 334
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 18, got 19
+fail 6: expected 18, got 19
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 176, got 177
+fail 2: expected 176, got 177 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 8, got 9
+fail 2: expected 8, got 9 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 92, got 93
+fail 6: expected 92, got 93
+fail 1: expected 27, got 28
+fail 6: expected 27, got 28
+fail 1: expected 470, got 471
+fail 6: expected 470, got 471
+fail 1: expected 5, got 6
+fail 6: expected 5, got 6
+fail 1: expected 291, got 292
+fail 2: expected 291, got 292 
+fail 1: expected 86, got 87
+fail 6: expected 86, got 87
+fail 1: expected 297, got 298
+fail 6: expected 297, got 298
+fail 1: expected 401, got 402
+fail 6: expected 401, got 402
+fail 1: expected 310, got 311
+fail 6: expected 310, got 311
+fail 1: expected 261, got 262
+fail 6: expected 261, got 262
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 115, got 116
+fail 6: expected 115, got 116
+fail 1: expected 333, got 334
+fail 6: expected 333, got 334
+fail 1: expected 352, got 353
+fail 6: expected 352, got 353
+fail 1: expected 170, got 171
+fail 6: expected 170, got 171
+fail 1: expected 274, got 275
+fail 6: expected 274, got 275
+fail 1: expected 167, got 168
+fail 6: expected 167, got 168
+fail 1: expected 302, got 303
+fail 6: expected 302, got 303
+fail 1: expected 32, got 33
+fail 2: expected 32, got 33 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 378, got 379
+fail 2: expected 378, got 379 
+fail 1: expected 487, got 488
+fail 6: expected 487, got 488
+fail 1: expected 51, got 52
+fail 6: expected 51, got 52
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 156, got 157
+fail 6: expected 156, got 157
+fail 1: expected 97, got 98
+fail 2: expected 97, got 98 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 459, got 460
+fail 6: expected 459, got 460
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 274, got 275
+fail 2: expected 274, got 275 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 304, got 305
+fail 2: expected 304, got 305 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 61, got 62
+fail 6: expected 61, got 62
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 334, got 335
+fail 2: expected 334, got 335 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 486, got 487
+fail 6: expected 486, got 487
+fail 1: expected 83, got 84
+fail 6: expected 83, got 84
+fail 1: expected 19, got 20
+fail 6: expected 19, got 20
+fail 1: expected 118, got 119
+fail 6: expected 118, got 119
+fail 1: expected 22, got 23
+fail 6: expected 22, got 23
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 71, got 72
+fail 6: expected 71, got 72
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 66, got 67
+fail 6: expected 66, got 67
+fail 1: expected 446, got 447
+fail 2: expected 446, got 447 
+fail 1: expected 6, got 7
+fail 2: expected 6, got 7 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 463, got 464
+fail 2: expected 463, got 464 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 343, got 344
+fail 2: expected 343, got 344 
+fail 1: expected 74, got 75
+fail 6: expected 74, got 75
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 91, got 92
+fail 6: expected 91, got 92
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 449, got 450
+fail 6: expected 449, got 450
+fail 1: expected 237, got 238
+fail 6: expected 237, got 238
+fail 1: expected 75, got 76
+fail 6: expected 75, got 76
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 478, got 479
+fail 2: expected 478, got 479 
+fail 1: expected 114, got 115
+fail 6: expected 114, got 115
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 421, got 422
+fail 2: expected 421, got 422 
+fail 1: expected 27, got 28
+fail 6: expected 27, got 28
+fail 1: expected 166, got 167
+fail 2: expected 166, got 167 
+fail 1: expected 458, got 459
+fail 2: expected 458, got 459 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 80, got 81
+fail 6: expected 80, got 81
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 414, got 415
+fail 6: expected 414, got 415
+fail 1: expected 190, got 191
+fail 6: expected 190, got 191
+fail 1: expected 475, got 476
+fail 2: expected 475, got 476 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 4, got 5
+fail 2: expected 4, got 5 
+fail 1: expected 282, got 283
+fail 6: expected 282, got 283
+fail 1: expected 344, got 345
+fail 6: expected 344, got 345
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 8, got 9
+fail 2: expected 8, got 9 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 338, got 339
+fail 2: expected 338, got 339 
+fail 1: expected 121, got 122
+fail 6: expected 121, got 122
+fail 1: expected 174, got 175
+fail 6: expected 174, got 175
+fail 1: expected 102, got 103
+fail 6: expected 102, got 103
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 251, got 252
+fail 6: expected 251, got 252
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 251, got 252
+fail 6: expected 251, got 252
+fail 1: expected 481, got 482
+fail 6: expected 481, got 482
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 61, got 62
+fail 2: expected 61, got 62 
+fail 1: expected 450, got 451
+fail 6: expected 450, got 451
+fail 1: expected 256, got 257
+fail 2: expected 256, got 257 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 176, got 177
+fail 6: expected 176, got 177
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 92, got 93
+fail 6: expected 92, got 93
+fail 1: expected 263, got 264
+fail 2: expected 263, got 264 
+fail 1: expected 323, got 324
+fail 6: expected 323, got 324
+fail 1: expected 5, got 6
+fail 6: expected 5, got 6
+fail 1: expected 217, got 218
+fail 6: expected 217, got 218
+fail 1: expected 387, got 388
+fail 6: expected 387, got 388
+fail 1: expected 266, got 267
+fail 2: expected 266, got 267 
+fail 1: expected 445, got 446
+fail 6: expected 445, got 446
+fail 1: expected 32, got 33
+fail 6: expected 32, got 33
+fail 1: expected 152, got 153
+fail 6: expected 152, got 153
+fail 1: expected 159, got 160
+fail 6: expected 159, got 160
+fail 1: expected 342, got 343
+fail 6: expected 342, got 343
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 477, got 478
+fail 6: expected 477, got 478
+fail 1: expected 193, got 194
+fail 6: expected 193, got 194
+fail 1: expected 74, got 75
+fail 6: expected 74, got 75
+fail 1: expected 476, got 477
+fail 6: expected 476, got 477
+fail 1: expected 26, got 27
+fail 6: expected 26, got 27
+fail 1: expected 201, got 202
+fail 6: expected 201, got 202
+fail 1: expected 70, got 71
+fail 6: expected 70, got 71
+fail 1: expected 453, got 454
+fail 2: expected 453, got 454 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 206, got 207
+fail 6: expected 206, got 207
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 412, got 413
+fail 6: expected 412, got 413
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 144, got 145
+fail 6: expected 144, got 145
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 424, got 425
+fail 6: expected 424, got 425
+fail 1: expected 488, got 489
+fail 6: expected 488, got 489
+fail 1: expected 100, got 101
+fail 6: expected 100, got 101
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 399, got 400
+fail 6: expected 399, got 400
+fail 1: expected 59, got 60
+fail 6: expected 59, got 60
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 425, got 426
+fail 6: expected 425, got 426
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 376, got 377
+fail 6: expected 376, got 377
+fail 1: expected 213, got 214
+fail 6: expected 213, got 214
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 300, got 301
+fail 6: expected 300, got 301
+fail 1: expected 66, got 67
+fail 2: expected 66, got 67 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 180, got 181
+fail 6: expected 180, got 181
+fail 1: expected 100, got 101
+fail 2: expected 100, got 101 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 281, got 282
+fail 2: expected 281, got 282 
+fail 1: expected 386, got 387
+fail 6: expected 386, got 387
+fail 1: expected 10, got 11
+fail 6: expected 10, got 11
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 246, got 247
+fail 6: expected 246, got 247
+fail 1: expected 199, got 200
+fail 2: expected 199, got 200 
+fail 1: expected 110, got 111
+fail 6: expected 110, got 111
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 362, got 363
+fail 2: expected 362, got 363 
+fail 1: expected 399, got 400
+fail 2: expected 399, got 400 
+fail 1: expected 168, got 169
+fail 6: expected 168, got 169
+fail 1: expected 26, got 27
+fail 6: expected 26, got 27
+fail 1: expected 110, got 111
+fail 6: expected 110, got 111
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 448, got 449
+fail 2: expected 448, got 449 
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 29, got 30
+fail 6: expected 29, got 30
+fail 1: expected 3, got 4
+fail 3: expected 3, got 4 
+fail 1: expected 412, got 413
+fail 6: expected 412, got 413
+fail 1: expected 185, got 186
+fail 6: expected 185, got 186
+fail 1: expected 251, got 252
+fail 6: expected 251, got 252
+fail 1: expected 293, got 294
+fail 2: expected 293, got 294 
+fail 1: expected 139, got 140
+fail 2: expected 139, got 140 
+
+
+Tests Complete
+Random Adventurer Test
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+
+ Fail: hand count: expected 3, got 2 
+Tests Complete
+File 'dominion.c'
+Lines executed:26.73% of 651
+Branches executed:26.97% of 419
+Taken at least once:19.57% of 419
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+        -:    0:Source:dominion.c
+        -:    0:Graph:dominion.gcno
+        -:    0:Data:dominion.gcda
+        -:    0:Runs:2
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <stdio.h>
+        -:    5:#include <math.h>
+        -:    6:#include <stdlib.h>
+        -:    7:
+function compare called 169025 returned 100% blocks executed 100%
+        -:    8:int compare(const void* a, const void* b) {
+   169025:    9:  if (*(int*)a > *(int*)b)
+branch  0 taken 1%
+branch  1 taken 99%
+      790:   10:    return 1;
+   168235:   11:  if (*(int*)a < *(int*)b)
+branch  0 taken 18%
+branch  1 taken 82%
+    30788:   12:    return -1;
+   137447:   13:  return 0;
+   169025:   14:}
+        -:   15:
+function newGame called 0 returned 0% blocks executed 0%
+        -:   16:struct gameState* newGame() {
+    #####:   17:  struct gameState* g = malloc(sizeof(struct gameState));
+    #####:   18:  return g;
+        -:   19:}
+        -:   20:
+function kingdomCards called 0 returned 0% blocks executed 0%
+        -:   21:int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
+        -:   22:		  int k8, int k9, int k10) {
+    #####:   23:  int* k = malloc(10 * sizeof(int));
+    #####:   24:  k[0] = k1;
+    #####:   25:  k[1] = k2;
+    #####:   26:  k[2] = k3;
+    #####:   27:  k[3] = k4;
+    #####:   28:  k[4] = k5;
+    #####:   29:  k[5] = k6;
+    #####:   30:  k[6] = k7;
+    #####:   31:  k[7] = k8;
+    #####:   32:  k[8] = k9;
+    #####:   33:  k[9] = k10;
+    #####:   34:  return k;
+        -:   35:}
+        -:   36:
+function initializeGame called 2000 returned 100% blocks executed 95%
+        -:   37:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) {
+        -:   38:  int i;
+        -:   39:  int j;
+        -:   40:  int it;
+        -:   41:  //set up random number generator
+     2000:   42:  SelectStream(1);
+     2000:   43:  PutSeed((long)randomSeed);
+        -:   44:
+        -:   45:  //check number of players
+     4000:   46:  if (numPlayers > MAX_PLAYERS || numPlayers < 2) {
+branch  0 taken 100%
+branch  1 taken 0%
+branch  2 taken 0%
+branch  3 taken 100%
+    #####:   47:    return -1;
+        -:   48:  }
+        -:   49:
+        -:   50:  //set number of players
+     2000:   51:  state->numPlayers = numPlayers;
+        -:   52:
+        -:   53:  //check selected kingdom cards are different
+    44000:   54:  for (i = 0; i < 10; i++) {
+branch  0 taken 91%
+branch  1 taken 9%
+   440000:   55:    for (j = 0; j < 10; j++) {
+branch  0 taken 91%
+branch  1 taken 9%
+   380000:   56:	    if (j != i && kingdomCards[j] == kingdomCards[i]) {
+branch  0 taken 90%
+branch  1 taken 10%
+branch  2 taken 0%
+branch  3 taken 100%
+    #####:   57:         return -1;
+        -:   58:	    }
+   200000:   59:    }
+    20000:   60:  }
+        -:   61:
+        -:   62:
+        -:   63:  //initialize supply
+        -:   64:  ///////////////////////////////
+        -:   65:
+        -:   66:  //set number of Curse cards
+     2000:   67:  if (numPlayers == 2)
+branch  0 taken 17%
+branch  1 taken 83%
+        -:   68:    {
+      333:   69:      state->supplyCount[curse] = 10;
+      333:   70:    }
+     1667:   71:  else if (numPlayers == 3)
+branch  0 taken 81%
+branch  1 taken 19%
+        -:   72:    {
+     1344:   73:      state->supplyCount[curse] = 20;
+     1344:   74:    }
+        -:   75:  else
+        -:   76:    {
+      323:   77:      state->supplyCount[curse] = 30;
+        -:   78:    }
+        -:   79:
+        -:   80:  //set number of Victory cards
+     2000:   81:  if (numPlayers == 2)
+branch  0 taken 17%
+branch  1 taken 83%
+        -:   82:    {
+      333:   83:      state->supplyCount[estate] = 8;
+      333:   84:      state->supplyCount[duchy] = 8;
+      333:   85:      state->supplyCount[province] = 8;
+      333:   86:    }
+        -:   87:  else
+        -:   88:    {
+     1667:   89:      state->supplyCount[estate] = 12;
+     1667:   90:      state->supplyCount[duchy] = 12;
+     1667:   91:      state->supplyCount[province] = 12;
+        -:   92:    }
+        -:   93:
+        -:   94:  //set number of Treasure cards
+     2000:   95:  state->supplyCount[copper] = 60 - (7 * numPlayers);
+     2000:   96:  state->supplyCount[silver] = 40;
+     2000:   97:  state->supplyCount[gold] = 30;
+        -:   98:
+        -:   99:  //set number of Kingdom cards
+    84000:  100:  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+branch  0 taken 95%
+branch  1 taken 5%
+        -:  101:  {
+   704000:  102:    for (j = 0; j < 10; j++)           		//loop chosen cards
+branch  0 taken 93%
+branch  1 taken 7%
+        -:  103:	  {
+   329000:  104:      if (kingdomCards[j] == i) {
+branch  0 taken 5%
+branch  1 taken 95%
+        -:  105:	      //check if card is a 'Victory' Kingdom card
+    33000:  106:	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens) {
+branch  0 taken 94%
+branch  1 taken 6%
+branch  2 taken 13%
+branch  3 taken 88%
+     3000:  107:          if (numPlayers == 2) {
+branch  0 taken 11%
+branch  1 taken 89%
+      333:  108:		        state->supplyCount[i] = 8;
+      333:  109:		      }
+     2667:  110:		      else { state->supplyCount[i] = 12; }
+     3000:  111:		    }
+        -:  112:	      else
+        -:  113:		    {
+    14000:  114:		      state->supplyCount[i] = 10;
+        -:  115:		    }
+    17000:  116:          break;
+        -:  117:	    }
+        -:  118:	    else    //card is not in the set choosen for the game
+        -:  119:	    {
+   312000:  120:	      state->supplyCount[i] = -1;
+        -:  121:	    }
+   312000:  122:    }
+    40000:  123:  }
+        -:  124:  ////////////////////////
+        -:  125:  //supply intilization complete
+        -:  126:
+        -:  127:  //set player decks
+    15980:  128:  for (i = 0; i < numPlayers; i++)
+branch  0 taken 75%
+branch  1 taken 25%
+        -:  129:    {
+     5990:  130:      state->deckCount[i] = 0;
+    47920:  131:      for (j = 0; j < 3; j++)
+branch  0 taken 75%
+branch  1 taken 25%
+        -:  132:	{
+    17970:  133:	  state->deck[i][j] = estate;
+    17970:  134:	  state->deckCount[i]++;
+    17970:  135:	}
+    95840:  136:      for (j = 3; j < 10; j++)
+branch  0 taken 88%
+branch  1 taken 13%
+        -:  137:	{
+    41930:  138:	  state->deck[i][j] = copper;
+    41930:  139:	  state->deckCount[i]++;
+    41930:  140:	}
+     5990:  141:    }
+        -:  142:
+        -:  143:  //shuffle player decks
+    15980:  144:  for (i = 0; i < numPlayers; i++)
+branch  0 taken 75%
+branch  1 taken 25%
+        -:  145:    {
+     5990:  146:      if ( shuffle(i, state) < 0 )
+branch  0 taken 0%
+branch  1 taken 100%
+        -:  147:	{
+    #####:  148:	  return -1;
+        -:  149:	}
+     5990:  150:    }
+        -:  151:
+        -:  152:  //draw player hands
+    15980:  153:  for (i = 0; i < numPlayers; i++)
+branch  0 taken 75%
+branch  1 taken 25%
+        -:  154:    {
+        -:  155:      //initialize hand size to zero
+     5990:  156:      state->handCount[i] = 0;
+     5990:  157:      state->discardCount[i] = 0;
+        -:  158:      //draw 5 cards
+        -:  159:      // for (j = 0; j < 5; j++)
+        -:  160:      //	{
+        -:  161:      //	  drawCard(i, state);
+        -:  162:      //	}
+     5990:  163:    }
+        -:  164:
+        -:  165:  //set embargo tokens to 0 for all supply piles
+   112000:  166:  for (i = 0; i <= treasure_map; i++)
+branch  0 taken 96%
+branch  1 taken 4%
+        -:  167:    {
+    54000:  168:      state->embargoTokens[i] = 0;
+    54000:  169:    }
+        -:  170:
+        -:  171:  //initialize first player's turn
+     2000:  172:  state->outpostPlayed = 0;
+     2000:  173:  state->phase = 0;
+     2000:  174:  state->numActions = 1;
+     2000:  175:  state->numBuys = 1;
+     2000:  176:  state->playedCardCount = 0;
+     2000:  177:  state->whoseTurn = 0;
+     2000:  178:  state->handCount[state->whoseTurn] = 0;
+        -:  179:  //int it; move to top
+        -:  180:
+        -:  181:  //Moved draw cards to here, only drawing at the start of a turn
+    24000:  182:  for (it = 0; it < 5; it++){
+branch  0 taken 83%
+branch  1 taken 17%
+    10000:  183:    drawCard(state->whoseTurn, state);
+    10000:  184:  }
+        -:  185:
+     2000:  186:  updateCoins(state->whoseTurn, state, 0);
+        -:  187:
+     2000:  188:  return 0;
+     2000:  189:}
+        -:  190:
+function shuffle called 8322 returned 100% blocks executed 100%
+        -:  191:int shuffle(int player, struct gameState *state) {
+        -:  192:
+        -:  193:
+        -:  194:  int newDeck[MAX_DECK];
+     8322:  195:  int newDeckPos = 0;
+        -:  196:  int card;
+        -:  197:  int i;
+        -:  198:
+     8322:  199:  if (state->deckCount[player] < 1)
+branch  0 taken 24%
+branch  1 taken 76%
+     2006:  200:    return -1;
+     6316:  201:  qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare);
+        -:  202:  /* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
+        -:  203:
+   293188:  204:  while (state->deckCount[player] > 0) {
+branch  0 taken 96%
+branch  1 taken 4%
+   140278:  205:    card = floor(Random() * state->deckCount[player]);
+   140278:  206:    newDeck[newDeckPos] = state->deck[player][card];
+   140278:  207:    newDeckPos++;
+ 13858804:  208:    for (i = card; i < state->deckCount[player]-1; i++) {
+branch  0 taken 98%
+branch  1 taken 2%
+  6789124:  209:      state->deck[player][i] = state->deck[player][i+1];
+  6789124:  210:    }
+   140278:  211:    state->deckCount[player]--;
+        -:  212:  }
+   293188:  213:  for (i = 0; i < newDeckPos; i++) {
+branch  0 taken 96%
+branch  1 taken 4%
+   140278:  214:    state->deck[player][i] = newDeck[i];
+   140278:  215:    state->deckCount[player]++;
+   140278:  216:  }
+        -:  217:
+     6316:  218:  return 0;
+     8322:  219:}
+        -:  220:
+function playCard called 0 returned 0% blocks executed 0%
+        -:  221:int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state)
+        -:  222:{
+        -:  223:  int card;
+    #####:  224:  int coin_bonus = 0; 		//tracks coins gain from actions
+        -:  225:
+        -:  226:  //check if it is the right phase
+    #####:  227:  if (state->phase != 0)
+branch  0 never executed
+branch  1 never executed
+        -:  228:    {
+    #####:  229:      return -1;
+        -:  230:    }
+        -:  231:
+        -:  232:  //check if player has enough actions
+    #####:  233:  if ( state->numActions < 1 )
+branch  0 never executed
+branch  1 never executed
+        -:  234:    {
+    #####:  235:      return -1;
+        -:  236:    }
+        -:  237:
+        -:  238:  //get card played
+    #####:  239:  card = handCard(handPos, state);
+        -:  240:
+        -:  241:  //check if selected card is an action
+    #####:  242:  if ( card < adventurer || card > treasure_map )
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  243:    {
+    #####:  244:      return -1;
+        -:  245:    }
+        -:  246:
+        -:  247:  //play card
+    #####:  248:  if ( cardEffect(card, choice1, choice2, choice3, state, handPos, &coin_bonus) < 0 )
+branch  0 never executed
+branch  1 never executed
+        -:  249:    {
+    #####:  250:      return -1;
+        -:  251:    }
+        -:  252:
+        -:  253:  //reduce number of actions
+    #####:  254:  state->numActions--;
+        -:  255:
+        -:  256:  //update coins (Treasure cards may be added with card draws)
+    #####:  257:  updateCoins(state->whoseTurn, state, coin_bonus);
+        -:  258:
+    #####:  259:  return 0;
+    #####:  260:}
+        -:  261:
+function buyCard called 0 returned 0% blocks executed 0%
+        -:  262:int buyCard(int supplyPos, struct gameState *state) {
+        -:  263:  int who;
+        -:  264:  if (DEBUG){
+        -:  265:    printf("Entering buyCard...\n");
+        -:  266:  }
+        -:  267:
+        -:  268:  // I don't know what to do about the phase thing.
+        -:  269:
+    #####:  270:  who = state->whoseTurn;
+        -:  271:
+    #####:  272:  if (state->numBuys < 1){
+branch  0 never executed
+branch  1 never executed
+        -:  273:    if (DEBUG)
+        -:  274:      printf("You do not have any buys left\n");
+    #####:  275:    return -1;
+    #####:  276:  } else if (supplyCount(supplyPos, state) <1){
+branch  0 never executed
+branch  1 never executed
+        -:  277:    if (DEBUG)
+        -:  278:      printf("There are not any of that type of card left\n");
+    #####:  279:    return -1;
+    #####:  280:  } else if (state->coins < getCost(supplyPos)){
+branch  0 never executed
+branch  1 never executed
+        -:  281:    if (DEBUG)
+        -:  282:      printf("You do not have enough money to buy that. You have %d coins.\n", state->coins);
+    #####:  283:    return -1;
+        -:  284:  } else {
+    #####:  285:    state->phase=1;
+        -:  286:    //state->supplyCount[supplyPos]--;
+    #####:  287:    gainCard(supplyPos, state, 0, who); //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
+        -:  288:
+    #####:  289:    state->coins = (state->coins) - (getCost(supplyPos));
+    #####:  290:    state->numBuys--;
+        -:  291:    if (DEBUG)
+        -:  292:      printf("You bought card number %d for %d coins. You now have %d buys and %d coins.\n", supplyPos, getCost(supplyPos), state->numBuys, state->coins);
+        -:  293:  }
+        -:  294:
+        -:  295:  //state->discard[who][state->discardCount[who]] = supplyPos;
+        -:  296:  //state->discardCount[who]++;
+        -:  297:
+    #####:  298:  return 0;
+    #####:  299:}
+        -:  300:
+function numHandCards called 0 returned 0% blocks executed 0%
+        -:  301:int numHandCards(struct gameState *state) {
+    #####:  302:  return state->handCount[ whoseTurn(state) ];
+        -:  303:}
+        -:  304:
+function handCard called 0 returned 0% blocks executed 0%
+        -:  305:int handCard(int handPos, struct gameState *state) {
+    #####:  306:  int currentPlayer = whoseTurn(state);
+    #####:  307:  return state->hand[currentPlayer][handPos];
+        -:  308:}
+        -:  309:
+function supplyCount called 0 returned 0% blocks executed 0%
+        -:  310:int supplyCount(int card, struct gameState *state) {
+    #####:  311:  return state->supplyCount[card];
+        -:  312:}
+        -:  313:
+function fullDeckCount called 0 returned 0% blocks executed 0%
+        -:  314:int fullDeckCount(int player, int card, struct gameState *state) {
+        -:  315:  int i;
+    #####:  316:  int count = 0;
+        -:  317:
+    #####:  318:  for (i = 0; i < state->deckCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  319:    {
+    #####:  320:      if (state->deck[player][i] == card) count++;
+branch  0 never executed
+branch  1 never executed
+    #####:  321:    }
+        -:  322:
+    #####:  323:  for (i = 0; i < state->handCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  324:    {
+    #####:  325:      if (state->hand[player][i] == card) count++;
+branch  0 never executed
+branch  1 never executed
+    #####:  326:    }
+        -:  327:
+    #####:  328:  for (i = 0; i < state->discardCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  329:    {
+    #####:  330:      if (state->discard[player][i] == card) count++;
+branch  0 never executed
+branch  1 never executed
+    #####:  331:    }
+        -:  332:
+    #####:  333:  return count;
+        -:  334:}
+        -:  335:
+function whoseTurn called 2000 returned 100% blocks executed 100%
+        -:  336:int whoseTurn(struct gameState *state) {
+     2000:  337:  return state->whoseTurn;
+        -:  338:}
+        -:  339:
+function endTurn called 0 returned 0% blocks executed 0%
+        -:  340:int endTurn(struct gameState *state) {
+        -:  341:  int k;
+        -:  342:  int i;
+    #####:  343:  int currentPlayer = whoseTurn(state);
+        -:  344:
+        -:  345:  //Discard hand
+    #####:  346:  for (i = 0; i < state->handCount[currentPlayer]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:  347:    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = state->hand[currentPlayer][i];//Discard
+    #####:  348:    state->hand[currentPlayer][i] = -1;//Set card to -1
+    #####:  349:  }
+    #####:  350:  state->handCount[currentPlayer] = 0;//Reset hand count
+        -:  351:
+        -:  352:  //Code for determining the player
+    #####:  353:  if (currentPlayer < (state->numPlayers - 1)){
+branch  0 never executed
+branch  1 never executed
+    #####:  354:    state->whoseTurn = currentPlayer + 1;//Still safe to increment
+    #####:  355:  }
+        -:  356:  else{
+    #####:  357:    state->whoseTurn = 0;//Max player has been reached, loop back around to player 1
+        -:  358:  }
+        -:  359:
+    #####:  360:  state->outpostPlayed = 0;
+    #####:  361:  state->phase = 0;
+    #####:  362:  state->numActions = 1;
+    #####:  363:  state->coins = 0;
+    #####:  364:  state->numBuys = 1;
+    #####:  365:  state->playedCardCount = 0;
+    #####:  366:  state->handCount[state->whoseTurn] = 0;
+        -:  367:
+        -:  368:  //int k; move to top
+        -:  369:  //Next player draws hand
+    #####:  370:  for (k = 0; k < 5; k++){
+branch  0 never executed
+branch  1 never executed
+    #####:  371:    drawCard(state->whoseTurn, state);//Draw a card
+    #####:  372:  }
+        -:  373:
+        -:  374:  //Update money
+    #####:  375:  updateCoins(state->whoseTurn, state , 0);
+        -:  376:
+    #####:  377:  return 0;
+        -:  378:}
+        -:  379:
+function isGameOver called 0 returned 0% blocks executed 0%
+        -:  380:int isGameOver(struct gameState *state) {
+        -:  381:  int i;
+        -:  382:  int j;
+        -:  383:
+        -:  384:  //if stack of Province cards is empty, the game ends
+    #####:  385:  if (state->supplyCount[province] == 0)
+branch  0 never executed
+branch  1 never executed
+        -:  386:    {
+    #####:  387:      return 1;
+        -:  388:    }
+        -:  389:
+        -:  390:  //if three supply pile are at 0, the game ends
+    #####:  391:  j = 0;
+    #####:  392:  for (i = 0; i < 25; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  393:    {
+    #####:  394:      if (state->supplyCount[i] == 0)
+branch  0 never executed
+branch  1 never executed
+        -:  395:	{
+    #####:  396:	  j++;
+    #####:  397:	}
+    #####:  398:    }
+    #####:  399:  if ( j >= 3)
+branch  0 never executed
+branch  1 never executed
+        -:  400:    {
+    #####:  401:      return 1;
+        -:  402:    }
+        -:  403:
+    #####:  404:  return 0;
+    #####:  405:}
+        -:  406:
+function scoreFor called 0 returned 0% blocks executed 0%
+        -:  407:int scoreFor (int player, struct gameState *state) {
+        -:  408:
+        -:  409:  int i;
+    #####:  410:  int score = 0;
+        -:  411:  //score from hand
+    #####:  412:  for (i = 0; i < state->handCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  413:    {
+    #####:  414:      if (state->hand[player][i] == curse) { score = score - 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  415:      if (state->hand[player][i] == estate) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  416:      if (state->hand[player][i] == duchy) { score = score + 3; };
+branch  0 never executed
+branch  1 never executed
+    #####:  417:      if (state->hand[player][i] == province) { score = score + 6; };
+branch  0 never executed
+branch  1 never executed
+    #####:  418:      if (state->hand[player][i] == great_hall) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  419:      if (state->hand[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+branch  0 never executed
+branch  1 never executed
+    #####:  420:    }
+        -:  421:
+        -:  422:  //score from discard
+    #####:  423:  for (i = 0; i < state->discardCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  424:    {
+    #####:  425:      if (state->discard[player][i] == curse) { score = score - 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  426:      if (state->discard[player][i] == estate) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  427:      if (state->discard[player][i] == duchy) { score = score + 3; };
+branch  0 never executed
+branch  1 never executed
+    #####:  428:      if (state->discard[player][i] == province) { score = score + 6; };
+branch  0 never executed
+branch  1 never executed
+    #####:  429:      if (state->discard[player][i] == great_hall) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  430:      if (state->discard[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+branch  0 never executed
+branch  1 never executed
+    #####:  431:    }
+        -:  432:
+        -:  433:  //score from deck
+    #####:  434:  for (i = 0; i < state->discardCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  435:    {
+    #####:  436:      if (state->deck[player][i] == curse) { score = score - 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  437:      if (state->deck[player][i] == estate) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  438:      if (state->deck[player][i] == duchy) { score = score + 3; };
+branch  0 never executed
+branch  1 never executed
+    #####:  439:      if (state->deck[player][i] == province) { score = score + 6; };
+branch  0 never executed
+branch  1 never executed
+    #####:  440:      if (state->deck[player][i] == great_hall) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  441:      if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+branch  0 never executed
+branch  1 never executed
+    #####:  442:    }
+        -:  443:
+    #####:  444:  return score;
+        -:  445:}
+        -:  446:
+function getWinners called 0 returned 0% blocks executed 0%
+        -:  447:int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
+        -:  448:  int i;
+        -:  449:  int j;
+        -:  450:  int highScore;
+        -:  451:  int currentPlayer;
+        -:  452:
+        -:  453:  //get score for each player
+    #####:  454:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  455:    {
+        -:  456:      //set unused player scores to -9999
+    #####:  457:      if (i >= state->numPlayers)
+branch  0 never executed
+branch  1 never executed
+        -:  458:	{
+    #####:  459:	  players[i] = -9999;
+    #####:  460:	}
+        -:  461:      else
+        -:  462:	{
+    #####:  463:	  players[i] = scoreFor (i, state);
+        -:  464:	}
+    #####:  465:    }
+        -:  466:
+        -:  467:  //find highest score
+    #####:  468:  j = 0;
+    #####:  469:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  470:    {
+    #####:  471:      if (players[i] > players[j])
+branch  0 never executed
+branch  1 never executed
+        -:  472:	{
+    #####:  473:	  j = i;
+    #####:  474:	}
+    #####:  475:    }
+    #####:  476:  highScore = players[j];
+        -:  477:
+        -:  478:  //add 1 to players who had less turns
+    #####:  479:  currentPlayer = whoseTurn(state);
+    #####:  480:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  481:    {
+    #####:  482:      if ( players[i] == highScore && i > currentPlayer )
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  483:	{
+    #####:  484:	  players[i]++;
+    #####:  485:	}
+    #####:  486:    }
+        -:  487:
+        -:  488:  //find new highest score
+    #####:  489:  j = 0;
+    #####:  490:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  491:    {
+    #####:  492:      if ( players[i] > players[j] )
+branch  0 never executed
+branch  1 never executed
+        -:  493:	{
+    #####:  494:	  j = i;
+    #####:  495:	}
+    #####:  496:    }
+    #####:  497:  highScore = players[j];
+        -:  498:
+        -:  499:  //set winners in array to 1 and rest to 0
+    #####:  500:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  501:    {
+    #####:  502:      if ( players[i] == highScore )
+branch  0 never executed
+branch  1 never executed
+        -:  503:	{
+    #####:  504:	  players[i] = 1;
+    #####:  505:	}
+        -:  506:      else
+        -:  507:	{
+    #####:  508:	  players[i] = 0;
+        -:  509:	}
+    #####:  510:    }
+        -:  511:
+    #####:  512:  return 0;
+        -:  513:}
+        -:  514:
+function drawCard called 16000 returned 100% blocks executed 100%
+        -:  515:int drawCard(int player, struct gameState *state) {
+        -:  516:  int count;
+        -:  517:  int deckCounter;
+        -:  518:
+    16000:  519:  if (state->deckCount[player] <= 0) { //Deck is empty
+branch  0 taken 8%
+branch  1 taken 92%
+        -:  520:    //Step 1 Shuffle the discard pile back into a deck
+        -:  521:    int i;
+        -:  522:    //Move discard to deck
+   163420:  523:    for (i = 0; i < state->discardCount[player]; i++) {
+branch  0 taken 98%
+branch  1 taken 2%
+    80378:  524:      state->deck[player][i] = state->discard[player][i];
+    80378:  525:      state->discard[player][i] = -1;
+    80378:  526:    }
+        -:  527:
+     1332:  528:    state->deckCount[player] = state->discardCount[player];
+     1332:  529:    state->discardCount[player] = 0;  //Reset discard
+        -:  530:
+        -:  531:    //Shufffle the deck
+     1332:  532:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+        -:  533:
+        -:  534:    if (DEBUG) {//Debug statements
+        -:  535:      printf("Deck count now: %d\n", state->deckCount[player]);
+        -:  536:    }
+        -:  537:
+     1332:  538:    state->discardCount[player] = 0;
+        -:  539:
+        -:  540:    //Step 2 Draw Card
+     1332:  541:    count = state->handCount[player];//Get current player's hand count
+        -:  542:
+        -:  543:    if (DEBUG){//Debug statements
+        -:  544:      printf("Current hand count: %d\n", count);
+        -:  545:    }
+        -:  546:
+     1332:  547:    deckCounter = state->deckCount[player];//Create a holder for the deck count
+        -:  548:
+     1332:  549:    if (deckCounter == 0)
+branch  0 taken 76%
+branch  1 taken 24%
+     1006:  550:      return -1;
+        -:  551:
+      326:  552:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+      326:  553:    state->deckCount[player]--;
+      326:  554:    state->handCount[player]++;//Increment hand count
+      326:  555:  }  // End condition, deck empty
+        -:  556:
+        -:  557:  else {
+    14668:  558:    int count = state->handCount[player];//Get current hand count for player
+        -:  559:    int deckCounter;
+        -:  560:    if (DEBUG){//Debug statements
+        -:  561:      printf("Current hand count: %d\n", count);
+        -:  562:    }
+        -:  563:
+    14668:  564:    deckCounter = state->deckCount[player];//Create holder for the deck count
+    14668:  565:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+    14668:  566:    state->deckCount[player]--;
+    14668:  567:    state->handCount[player]++;//Increment hand count
+        -:  568:  }
+        -:  569:
+    14994:  570:  return 0;
+    16000:  571:}
+        -:  572:
+function getCost called 0 returned 0% blocks executed 0%
+        -:  573:int getCost(int cardNumber)
+        -:  574:{
+    #####:  575:  switch( cardNumber )
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+branch 10 never executed
+branch 11 never executed
+branch 12 never executed
+branch 13 never executed
+branch 14 never executed
+branch 15 never executed
+branch 16 never executed
+branch 17 never executed
+branch 18 never executed
+branch 19 never executed
+branch 20 never executed
+branch 21 never executed
+branch 22 never executed
+branch 23 never executed
+branch 24 never executed
+branch 25 never executed
+branch 26 never executed
+branch 27 never executed
+        -:  576:    {
+        -:  577:    case curse:
+    #####:  578:      return 0;
+        -:  579:    case estate:
+    #####:  580:      return 2;
+        -:  581:    case duchy:
+    #####:  582:      return 5;
+        -:  583:    case province:
+    #####:  584:      return 8;
+        -:  585:    case copper:
+    #####:  586:      return 0;
+        -:  587:    case silver:
+    #####:  588:      return 3;
+        -:  589:    case gold:
+    #####:  590:      return 6;
+        -:  591:    case adventurer:
+    #####:  592:      return 6;
+        -:  593:    case council_room:
+    #####:  594:      return 5;
+        -:  595:    case feast:
+    #####:  596:      return 4;
+        -:  597:    case gardens:
+    #####:  598:      return 4;
+        -:  599:    case mine:
+    #####:  600:      return 5;
+        -:  601:    case remodel:
+    #####:  602:      return 4;
+        -:  603:    case smithy:
+    #####:  604:      return 4;
+        -:  605:    case village:
+    #####:  606:      return 3;
+        -:  607:    case baron:
+    #####:  608:      return 4;
+        -:  609:    case great_hall:
+    #####:  610:      return 3;
+        -:  611:    case minion:
+    #####:  612:      return 5;
+        -:  613:    case steward:
+    #####:  614:      return 3;
+        -:  615:    case tribute:
+    #####:  616:      return 5;
+        -:  617:    case ambassador:
+    #####:  618:      return 3;
+        -:  619:    case cutpurse:
+    #####:  620:      return 4;
+        -:  621:    case embargo:
+    #####:  622:      return 2;
+        -:  623:    case outpost:
+    #####:  624:      return 5;
+        -:  625:    case salvager:
+    #####:  626:      return 4;
+        -:  627:    case sea_hag:
+    #####:  628:      return 4;
+        -:  629:    case treasure_map:
+    #####:  630:      return 4;
+        -:  631:    }
+        -:  632:
+    #####:  633:  return -1;
+    #####:  634:}
+        -:  635:
+function cardEffect called 2000 returned 100% blocks executed 2%
+        -:  636:int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+        -:  637:{
+        -:  638:  int i;
+        -:  639:  int j;
+        -:  640:  int k;
+        -:  641:  int x;
+        -:  642:  int index;
+     2000:  643:  int currentPlayer = whoseTurn(state);
+     2000:  644:  int nextPlayer = currentPlayer + 1;
+        -:  645:
+     2000:  646:  int tributeRevealedCards[2] = {-1, -1};
+        -:  647:  int temphand[MAX_HAND];// moved above the if statement
+        -:  648:  // int drawntreasure=0;
+        -:  649:  // int cardDrawn;
+        -:  650:  // int z = 0;// this is the counter for the temp hand
+     2000:  651:  if (nextPlayer > (state->numPlayers - 1)){
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  652:    nextPlayer = 0;
+    #####:  653:  }
+        -:  654:
+        -:  655:
+        -:  656:  //uses switch to select card and perform actions
+     2000:  657:  switch( card )
+branch  0 taken 50%
+branch  1 taken 0%
+branch  2 taken 0%
+branch  3 taken 0%
+branch  4 taken 0%
+branch  5 taken 0%
+branch  6 taken 50%
+branch  7 taken 0%
+branch  8 taken 0%
+branch  9 taken 0%
+branch 10 taken 0%
+branch 11 taken 0%
+branch 12 taken 0%
+branch 13 taken 0%
+branch 14 taken 0%
+branch 15 taken 0%
+branch 16 taken 0%
+branch 17 taken 0%
+branch 18 taken 0%
+branch 19 taken 0%
+branch 20 taken 0%
+        -:  658:    {
+        -:  659:    case adventurer:
+     1000:  660:      playAdventurer(state, currentPlayer);
+     1000:  661:      return 0;
+        -:  662:
+        -:  663:    case council_room:
+        -:  664:      //+4 Cards
+    #####:  665:      for (i = 0; i < 4; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  666:	{
+    #####:  667:	  drawCard(currentPlayer, state);
+    #####:  668:	}
+        -:  669:
+        -:  670:      //+1 Buy
+    #####:  671:      state->numBuys++;
+        -:  672:
+        -:  673:      //Each other player draws a card
+    #####:  674:      for (i = 0; i < state->numPlayers; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  675:	{
+    #####:  676:	  if ( i != currentPlayer )
+branch  0 never executed
+branch  1 never executed
+        -:  677:	    {
+    #####:  678:	      drawCard(i, state);
+    #####:  679:	    }
+    #####:  680:	}
+        -:  681:
+        -:  682:      //put played card in played card pile
+    #####:  683:      discardCard(handPos, currentPlayer, state, 0);
+        -:  684:
+    #####:  685:      return 0;
+        -:  686:
+        -:  687:    case feast:
+        -:  688:      //gain card with cost up to 5
+        -:  689:      //Backup hand
+    #####:  690:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:  691:	temphand[i] = state->hand[currentPlayer][i];//Backup card
+    #####:  692:	state->hand[currentPlayer][i] = -1;//Set to nothing
+    #####:  693:      }
+        -:  694:      //Backup hand
+        -:  695:
+        -:  696:      //Update Coins for Buy
+    #####:  697:      updateCoins(currentPlayer, state, 5);
+    #####:  698:      x = 1;//Condition to loop on
+    #####:  699:      while( x == 1) {//Buy one card
+branch  0 never executed
+branch  1 never executed
+    #####:  700:	if (supplyCount(choice1, state) <= 0){
+branch  0 never executed
+branch  1 never executed
+        -:  701:	  if (DEBUG)
+        -:  702:	    printf("None of that card left, sorry!\n");
+        -:  703:
+        -:  704:	  if (DEBUG){
+        -:  705:	    printf("Cards Left: %d\n", supplyCount(choice1, state));
+        -:  706:	  }
+    #####:  707:	}
+    #####:  708:	else if (state->coins < getCost(choice1)){
+branch  0 never executed
+branch  1 never executed
+    #####:  709:	  printf("That card is too expensive!\n");
+        -:  710:
+        -:  711:	  if (DEBUG){
+        -:  712:	    printf("Coins: %d < %d\n", state->coins, getCost(choice1));
+        -:  713:	  }
+    #####:  714:	}
+        -:  715:	else{
+        -:  716:
+        -:  717:	  if (DEBUG){
+        -:  718:	    printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
+        -:  719:	  }
+        -:  720:
+    #####:  721:	  gainCard(choice1, state, 0, currentPlayer);//Gain the card
+    #####:  722:	  x = 0;//No more buying cards
+        -:  723:
+        -:  724:	  if (DEBUG){
+        -:  725:	    printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
+        -:  726:	  }
+        -:  727:
+        -:  728:	}
+        -:  729:      }
+        -:  730:
+        -:  731:      //Reset Hand
+    #####:  732:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:  733:	state->hand[currentPlayer][i] = temphand[i];
+    #####:  734:	temphand[i] = -1;
+    #####:  735:      }
+        -:  736:      //Reset Hand
+        -:  737:
+    #####:  738:      return 0;
+        -:  739:
+        -:  740:    case gardens:
+    #####:  741:      return -1;
+        -:  742:
+        -:  743:    case mine:
+    #####:  744:      j = state->hand[currentPlayer][choice1];  //store card we will trash
+        -:  745:
+    #####:  746:      if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  747:	{
+    #####:  748:	  return -1;
+        -:  749:	}
+        -:  750:
+    #####:  751:      if (choice2 > treasure_map || choice2 < curse)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  752:	{
+    #####:  753:	  return -1;
+        -:  754:	}
+        -:  755:
+    #####:  756:      if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+branch  0 never executed
+branch  1 never executed
+        -:  757:	{
+    #####:  758:	  return -1;
+        -:  759:	}
+        -:  760:
+    #####:  761:      gainCard(choice2, state, 2, currentPlayer);
+        -:  762:
+        -:  763:      //discard card from hand
+    #####:  764:      discardCard(handPos, currentPlayer, state, 0);
+        -:  765:
+        -:  766:      //discard trashed card
+    #####:  767:      for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  768:	{
+    #####:  769:	  if (state->hand[currentPlayer][i] == j)
+branch  0 never executed
+branch  1 never executed
+        -:  770:	    {
+    #####:  771:	      discardCard(i, currentPlayer, state, 0);
+    #####:  772:	      break;
+        -:  773:	    }
+    #####:  774:	}
+        -:  775:
+    #####:  776:      return 0;
+        -:  777:
+        -:  778:    case remodel:
+    #####:  779:      if(playRemodel(state, currentPlayer, handPos, choice1, choice2) == -1) {
+branch  0 never executed
+branch  1 never executed
+    #####:  780:        return -1;
+        -:  781:      }
+        -:  782:
+    #####:  783:      return 0;
+        -:  784:
+        -:  785:    case smithy:
+        -:  786:      // Play smithy.
+     1000:  787:      playSmithy(state, currentPlayer, handPos);
+     1000:  788:      return 0;
+        -:  789:
+        -:  790:    case village:
+    #####:  791:      playVillage(state, currentPlayer, handPos);
+    #####:  792:      return 0;
+        -:  793:
+        -:  794:    case baron:
+    #####:  795:      state->numBuys++;//Increase buys by 1!
+    #####:  796:      if (choice1 > 0){//Boolean true or going to discard an estate
+branch  0 never executed
+branch  1 never executed
+    #####:  797:	int p = 0;//Iterator for hand!
+    #####:  798:	int card_not_discarded = 1;//Flag for discard set!
+    #####:  799:	while(card_not_discarded){
+branch  0 never executed
+branch  1 never executed
+    #####:  800:	  if (state->hand[currentPlayer][p] == estate){//Found an estate card!
+branch  0 never executed
+branch  1 never executed
+    #####:  801:	    state->coins += 4;//Add 4 coins to the amount of coins
+    #####:  802:	    state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
+    #####:  803:	    state->discardCount[currentPlayer]++;
+    #####:  804:	    for (;p < state->handCount[currentPlayer]; p++){
+branch  0 never executed
+branch  1 never executed
+    #####:  805:	      state->hand[currentPlayer][p] = state->hand[currentPlayer][p+1];
+    #####:  806:	    }
+    #####:  807:	    state->hand[currentPlayer][state->handCount[currentPlayer]] = -1;
+    #####:  808:	    state->handCount[currentPlayer]--;
+    #####:  809:	    card_not_discarded = 0;//Exit the loop
+    #####:  810:	  }
+    #####:  811:	  else if (p > state->handCount[currentPlayer]){
+branch  0 never executed
+branch  1 never executed
+        -:  812:	    if(DEBUG) {
+        -:  813:	      printf("No estate cards in your hand, invalid choice\n");
+        -:  814:	      printf("Must gain an estate if there are any\n");
+        -:  815:	    }
+    #####:  816:	    if (supplyCount(estate, state) > 0){
+branch  0 never executed
+branch  1 never executed
+    #####:  817:	      gainCard(estate, state, 0, currentPlayer);
+    #####:  818:	      state->supplyCount[estate]--;//Decrement estates
+    #####:  819:	      if (supplyCount(estate, state) == 0){
+branch  0 never executed
+branch  1 never executed
+    #####:  820:		isGameOver(state);
+    #####:  821:	      }
+    #####:  822:	    }
+    #####:  823:	    card_not_discarded = 0;//Exit the loop
+    #####:  824:	  }
+        -:  825:
+        -:  826:	  else{
+    #####:  827:	    p++;//Next card
+        -:  828:	  }
+        -:  829:	}
+    #####:  830:      }
+        -:  831:
+        -:  832:      else{
+    #####:  833:	if (supplyCount(estate, state) > 0){
+branch  0 never executed
+branch  1 never executed
+    #####:  834:	  gainCard(estate, state, 0, currentPlayer);//Gain an estate
+    #####:  835:	  state->supplyCount[estate]--;//Decrement Estates
+    #####:  836:	  if (supplyCount(estate, state) == 0){
+branch  0 never executed
+branch  1 never executed
+    #####:  837:	    isGameOver(state);
+    #####:  838:	  }
+    #####:  839:	}
+        -:  840:      }
+        -:  841:
+        -:  842:
+    #####:  843:      return 0;
+        -:  844:
+        -:  845:    case great_hall:
+    #####:  846:      playGreatHall(state, currentPlayer, handPos);
+    #####:  847:      return 0;
+        -:  848:
+        -:  849:    case minion:
+        -:  850:      //+1 action
+    #####:  851:      state->numActions++;
+        -:  852:
+        -:  853:      //discard card from hand
+    #####:  854:      discardCard(handPos, currentPlayer, state, 0);
+        -:  855:
+    #####:  856:      if (choice1)		//+2 coins
+branch  0 never executed
+branch  1 never executed
+        -:  857:	{
+    #####:  858:	  state->coins = state->coins + 2;
+    #####:  859:	}
+        -:  860:
+    #####:  861:      else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
+branch  0 never executed
+branch  1 never executed
+        -:  862:	{
+        -:  863:	  //discard hand
+    #####:  864:	  while(numHandCards(state) > 0)
+branch  0 never executed
+branch  1 never executed
+        -:  865:	    {
+    #####:  866:	      discardCard(handPos, currentPlayer, state, 0);
+        -:  867:	    }
+        -:  868:
+        -:  869:	  //draw 4
+    #####:  870:	  for (i = 0; i < 4; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  871:	    {
+    #####:  872:	      drawCard(currentPlayer, state);
+    #####:  873:	    }
+        -:  874:
+        -:  875:	  //other players discard hand and redraw if hand size > 4
+    #####:  876:	  for (i = 0; i < state->numPlayers; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  877:	    {
+    #####:  878:	      if (i != currentPlayer)
+branch  0 never executed
+branch  1 never executed
+        -:  879:		{
+    #####:  880:		  if ( state->handCount[i] > 4 )
+branch  0 never executed
+branch  1 never executed
+        -:  881:		    {
+        -:  882:		      //discard hand
+    #####:  883:		      while( state->handCount[i] > 0 )
+branch  0 never executed
+branch  1 never executed
+        -:  884:			{
+    #####:  885:			  discardCard(handPos, i, state, 0);
+        -:  886:			}
+        -:  887:
+        -:  888:		      //draw 4
+    #####:  889:		      for (j = 0; j < 4; j++)
+branch  0 never executed
+branch  1 never executed
+        -:  890:			{
+    #####:  891:			  drawCard(i, state);
+    #####:  892:			}
+    #####:  893:		    }
+    #####:  894:		}
+    #####:  895:	    }
+        -:  896:
+    #####:  897:	}
+    #####:  898:      return 0;
+        -:  899:
+        -:  900:    case steward:
+    #####:  901:      if (choice1 == 1)
+branch  0 never executed
+branch  1 never executed
+        -:  902:	{
+        -:  903:	  //+2 cards
+    #####:  904:	  drawCard(currentPlayer, state);
+    #####:  905:	  drawCard(currentPlayer, state);
+    #####:  906:	}
+    #####:  907:      else if (choice1 == 2)
+branch  0 never executed
+branch  1 never executed
+        -:  908:	{
+        -:  909:	  //+2 coins
+    #####:  910:	  state->coins = state->coins + 2;
+    #####:  911:	}
+        -:  912:      else
+        -:  913:	{
+        -:  914:	  //trash 2 cards in hand
+    #####:  915:	  discardCard(choice2, currentPlayer, state, 1);
+    #####:  916:	  discardCard(choice3, currentPlayer, state, 1);
+        -:  917:	}
+        -:  918:
+        -:  919:      //discard card from hand
+    #####:  920:      discardCard(handPos, currentPlayer, state, 0);
+    #####:  921:      return 0;
+        -:  922:
+        -:  923:    case tribute:
+    #####:  924:      if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1){
+branch  0 never executed
+branch  1 never executed
+    #####:  925:	if (state->deckCount[nextPlayer] > 0){
+branch  0 never executed
+branch  1 never executed
+    #####:  926:	  tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
+    #####:  927:	  state->deckCount[nextPlayer]--;
+    #####:  928:	}
+    #####:  929:	else if (state->discardCount[nextPlayer] > 0){
+branch  0 never executed
+branch  1 never executed
+    #####:  930:	  tributeRevealedCards[0] = state->discard[nextPlayer][state->discardCount[nextPlayer]-1];
+    #####:  931:	  state->discardCount[nextPlayer]--;
+    #####:  932:	}
+        -:  933:	else{
+        -:  934:	  //No Card to Reveal
+        -:  935:	  if (DEBUG){
+        -:  936:	    printf("No cards to reveal\n");
+        -:  937:	  }
+        -:  938:	}
+    #####:  939:      }
+        -:  940:
+        -:  941:      else{
+    #####:  942:	if (state->deckCount[nextPlayer] == 0){
+branch  0 never executed
+branch  1 never executed
+    #####:  943:	  for (i = 0; i < state->discardCount[nextPlayer]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:  944:	    state->deck[nextPlayer][i] = state->discard[nextPlayer][i];//Move to deck
+    #####:  945:	    state->deckCount[nextPlayer]++;
+    #####:  946:	    state->discard[nextPlayer][i] = -1;
+    #####:  947:	    state->discardCount[nextPlayer]--;
+    #####:  948:	  }
+        -:  949:
+    #####:  950:	  shuffle(nextPlayer,state);//Shuffle the deck
+    #####:  951:	}
+    #####:  952:	tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
+    #####:  953:	state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
+    #####:  954:	state->deckCount[nextPlayer]--;
+    #####:  955:	tributeRevealedCards[1] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
+    #####:  956:	state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
+    #####:  957:	state->deckCount[nextPlayer]--;
+        -:  958:      }
+        -:  959:
+    #####:  960:      if (tributeRevealedCards[0] == tributeRevealedCards[1]){//If we have a duplicate card, just drop one
+branch  0 never executed
+branch  1 never executed
+    #####:  961:	state->playedCards[state->playedCardCount] = tributeRevealedCards[1];
+    #####:  962:	state->playedCardCount++;
+    #####:  963:	tributeRevealedCards[1] = -1;
+    #####:  964:      }
+        -:  965:
+    #####:  966:      for (i = 0; i <= 2; i ++){
+branch  0 never executed
+branch  1 never executed
+    #####:  967:	if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold){//Treasure cards
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+    #####:  968:	  state->coins += 2;
+    #####:  969:	}
+        -:  970:
+    #####:  971:	else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall){//Victory Card Found
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+    #####:  972:	  drawCard(currentPlayer, state);
+    #####:  973:	  drawCard(currentPlayer, state);
+    #####:  974:	}
+        -:  975:	else{//Action Card
+    #####:  976:	  state->numActions = state->numActions + 2;
+        -:  977:	}
+    #####:  978:      }
+        -:  979:
+    #####:  980:      return 0;
+        -:  981:
+        -:  982:    case ambassador:
+    #####:  983:      j = 0;		//used to check if player has enough cards to discard
+        -:  984:
+    #####:  985:      if (choice2 > 2 || choice2 < 0)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  986:	{
+    #####:  987:	  return -1;
+        -:  988:	}
+        -:  989:
+    #####:  990:      if (choice1 == handPos)
+branch  0 never executed
+branch  1 never executed
+        -:  991:	{
+    #####:  992:	  return -1;
+        -:  993:	}
+        -:  994:
+    #####:  995:      for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  996:	{
+    #####:  997:	  if (i != handPos && i == state->hand[currentPlayer][choice1] && i != choice1)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+        -:  998:	    {
+    #####:  999:	      j++;
+    #####: 1000:	    }
+    #####: 1001:	}
+    #####: 1002:      if (j < choice2)
+branch  0 never executed
+branch  1 never executed
+        -: 1003:	{
+    #####: 1004:	  return -1;
+        -: 1005:	}
+        -: 1006:
+        -: 1007:      if (DEBUG)
+        -: 1008:	printf("Player %d reveals card number: %d\n", currentPlayer, state->hand[currentPlayer][choice1]);
+        -: 1009:
+        -: 1010:      //increase supply count for choosen card by amount being discarded
+    #####: 1011:      state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
+        -: 1012:
+        -: 1013:      //each other player gains a copy of revealed card
+    #####: 1014:      for (i = 0; i < state->numPlayers; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1015:	{
+    #####: 1016:	  if (i != currentPlayer)
+branch  0 never executed
+branch  1 never executed
+        -: 1017:	    {
+    #####: 1018:	      gainCard(state->hand[currentPlayer][choice1], state, 0, i);
+    #####: 1019:	    }
+    #####: 1020:	}
+        -: 1021:
+        -: 1022:      //discard played card from hand
+    #####: 1023:      discardCard(handPos, currentPlayer, state, 0);
+        -: 1024:
+        -: 1025:      //trash copies of cards returned to supply
+    #####: 1026:      for (j = 0; j < choice2; j++)
+branch  0 never executed
+branch  1 never executed
+        -: 1027:	{
+    #####: 1028:	  for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1029:	    {
+    #####: 1030:	      if (state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1])
+branch  0 never executed
+branch  1 never executed
+        -: 1031:		{
+    #####: 1032:		  discardCard(i, currentPlayer, state, 1);
+    #####: 1033:		  break;
+        -: 1034:		}
+    #####: 1035:	    }
+    #####: 1036:	}
+        -: 1037:
+    #####: 1038:      return 0;
+        -: 1039:
+        -: 1040:    case cutpurse:
+        -: 1041:
+    #####: 1042:      updateCoins(currentPlayer, state, 2);
+    #####: 1043:      for (i = 0; i < state->numPlayers; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1044:	{
+    #####: 1045:	  if (i != currentPlayer)
+branch  0 never executed
+branch  1 never executed
+        -: 1046:	    {
+    #####: 1047:	      for (j = 0; j < state->handCount[i]; j++)
+branch  0 never executed
+branch  1 never executed
+        -: 1048:		{
+    #####: 1049:		  if (state->hand[i][j] == copper)
+branch  0 never executed
+branch  1 never executed
+        -: 1050:		    {
+    #####: 1051:		      discardCard(j, i, state, 0);
+    #####: 1052:		      break;
+        -: 1053:		    }
+    #####: 1054:		  if (j == state->handCount[i])
+branch  0 never executed
+branch  1 never executed
+        -: 1055:		    {
+    #####: 1056:		      for (k = 0; k < state->handCount[i]; k++)
+branch  0 never executed
+branch  1 never executed
+        -: 1057:			{
+        -: 1058:			  if (DEBUG)
+        -: 1059:			    printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
+    #####: 1060:			}
+    #####: 1061:		      break;
+        -: 1062:		    }
+    #####: 1063:		}
+        -: 1064:
+    #####: 1065:	    }
+        -: 1066:
+    #####: 1067:	}
+        -: 1068:
+        -: 1069:      //discard played card from hand
+    #####: 1070:      discardCard(handPos, currentPlayer, state, 0);
+        -: 1071:
+    #####: 1072:      return 0;
+        -: 1073:
+        -: 1074:
+        -: 1075:    case embargo:
+        -: 1076:      //+2 Coins
+    #####: 1077:      state->coins = state->coins + 2;
+        -: 1078:
+        -: 1079:      //see if selected pile is in play
+    #####: 1080:      if ( state->supplyCount[choice1] == -1 )
+branch  0 never executed
+branch  1 never executed
+        -: 1081:	{
+    #####: 1082:	  return -1;
+        -: 1083:	}
+        -: 1084:
+        -: 1085:      //add embargo token to selected supply pile
+    #####: 1086:      state->embargoTokens[choice1]++;
+        -: 1087:
+        -: 1088:      //trash card
+    #####: 1089:      discardCard(handPos, currentPlayer, state, 1);
+    #####: 1090:      return 0;
+        -: 1091:
+        -: 1092:    case outpost:
+        -: 1093:      //set outpost flag
+    #####: 1094:      state->outpostPlayed++;
+        -: 1095:
+        -: 1096:      //discard card
+    #####: 1097:      discardCard(handPos, currentPlayer, state, 0);
+    #####: 1098:      return 0;
+        -: 1099:
+        -: 1100:    case salvager:
+        -: 1101:      //+1 buy
+    #####: 1102:      state->numBuys++;
+        -: 1103:
+    #####: 1104:      if (choice1)
+branch  0 never executed
+branch  1 never executed
+        -: 1105:	{
+        -: 1106:	  //gain coins equal to trashed card
+    #####: 1107:	  state->coins = state->coins + getCost( handCard(choice1, state) );
+        -: 1108:	  //trash card
+    #####: 1109:	  discardCard(choice1, currentPlayer, state, 1);
+    #####: 1110:	}
+        -: 1111:
+        -: 1112:      //discard card
+    #####: 1113:      discardCard(handPos, currentPlayer, state, 0);
+    #####: 1114:      return 0;
+        -: 1115:
+        -: 1116:    case sea_hag:
+    #####: 1117:      for (i = 0; i < state->numPlayers; i++){
+branch  0 never executed
+branch  1 never executed
+    #####: 1118:	if (i != currentPlayer){
+branch  0 never executed
+branch  1 never executed
+    #####: 1119:	  state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
+    #####: 1120:	  state->discardCount[i]++;
+    #####: 1121:	  state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
+    #####: 1122:	}
+    #####: 1123:      }
+    #####: 1124:      return 0;
+        -: 1125:
+        -: 1126:    case treasure_map:
+        -: 1127:      //search hand for another treasure_map
+    #####: 1128:      index = -1;
+    #####: 1129:      for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1130:	{
+    #####: 1131:	  if (state->hand[currentPlayer][i] == treasure_map && i != handPos)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -: 1132:	    {
+    #####: 1133:	      index = i;
+    #####: 1134:	      break;
+        -: 1135:	    }
+    #####: 1136:	}
+    #####: 1137:      if (index > -1)
+branch  0 never executed
+branch  1 never executed
+        -: 1138:	{
+        -: 1139:	  //trash both treasure cards
+    #####: 1140:	  discardCard(handPos, currentPlayer, state, 1);
+    #####: 1141:	  discardCard(index, currentPlayer, state, 1);
+        -: 1142:
+        -: 1143:	  //gain 4 Gold cards
+    #####: 1144:	  for (i = 0; i < 4; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1145:	    {
+    #####: 1146:	      gainCard(gold, state, 1, currentPlayer);
+    #####: 1147:	    }
+        -: 1148:
+        -: 1149:	  //return success
+    #####: 1150:	  return 1;
+        -: 1151:	}
+        -: 1152:
+        -: 1153:      //no second treasure_map found in hand
+    #####: 1154:      return -1;
+        -: 1155:    }
+        -: 1156:
+    #####: 1157:  return -1;
+     2000: 1158:}
+        -: 1159:
+function discardCard called 1000 returned 100% blocks executed 90%
+        -: 1160:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+        -: 1161:{
+        -: 1162:
+        -: 1163:  //if card is not trashed, added to Played pile
+     1000: 1164:  if (trashFlag < 1)
+branch  0 taken 100%
+branch  1 taken 0%
+        -: 1165:    {
+        -: 1166:      //add card to played pile
+     1000: 1167:      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
+     1000: 1168:      state->playedCardCount++;
+     1000: 1169:    }
+        -: 1170:
+        -: 1171:  //set played card to -1
+     1000: 1172:  state->hand[currentPlayer][handPos] = -1;
+        -: 1173:
+        -: 1174:  //remove card from player's hand
+     1000: 1175:  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+branch  0 taken 1%
+branch  1 taken 99%
+        -: 1176:    {
+        -: 1177:      //reduce number of cards in hand
+        2: 1178:      state->handCount[currentPlayer]--;
+        2: 1179:    }
+      998: 1180:  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+branch  0 taken 0%
+branch  1 taken 100%
+        -: 1181:    {
+        -: 1182:      //reduce number of cards in hand
+    #####: 1183:      state->handCount[currentPlayer]--;
+    #####: 1184:    }
+        -: 1185:  else
+        -: 1186:    {
+        -: 1187:      //replace discarded card with last card in hand
+      998: 1188:      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+        -: 1189:      //set last card to -1
+      998: 1190:      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+        -: 1191:      //reduce number of cards in hand
+      998: 1192:      state->handCount[currentPlayer]--;
+        -: 1193:    }
+        -: 1194:
+     1000: 1195:  return 0;
+        -: 1196:}
+        -: 1197:
+function gainCard called 0 returned 0% blocks executed 0%
+        -: 1198:int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
+        -: 1199:{
+        -: 1200:  //Note: supplyPos is enum of choosen card
+        -: 1201:
+        -: 1202:  //check if supply pile is empty (0) or card is not used in game (-1)
+    #####: 1203:  if ( supplyCount(supplyPos, state) < 1 )
+branch  0 never executed
+branch  1 never executed
+        -: 1204:    {
+    #####: 1205:      return -1;
+        -: 1206:    }
+        -: 1207:
+        -: 1208:  //added card for [whoseTurn] current player:
+        -: 1209:  // toFlag = 0 : add to discard
+        -: 1210:  // toFlag = 1 : add to deck
+        -: 1211:  // toFlag = 2 : add to hand
+        -: 1212:
+    #####: 1213:  if (toFlag == 1)
+branch  0 never executed
+branch  1 never executed
+        -: 1214:    {
+    #####: 1215:      state->deck[ player ][ state->deckCount[player] ] = supplyPos;
+    #####: 1216:      state->deckCount[player]++;
+    #####: 1217:    }
+    #####: 1218:  else if (toFlag == 2)
+branch  0 never executed
+branch  1 never executed
+        -: 1219:    {
+    #####: 1220:      state->hand[ player ][ state->handCount[player] ] = supplyPos;
+    #####: 1221:      state->handCount[player]++;
+    #####: 1222:    }
+        -: 1223:  else
+        -: 1224:    {
+    #####: 1225:      state->discard[player][ state->discardCount[player] ] = supplyPos;
+    #####: 1226:      state->discardCount[player]++;
+        -: 1227:    }
+        -: 1228:
+        -: 1229:  //decrease number in supply pile
+    #####: 1230:  state->supplyCount[supplyPos]--;
+        -: 1231:
+    #####: 1232:  return 0;
+    #####: 1233:}
+        -: 1234:
+function updateCoins called 2000 returned 100% blocks executed 85%
+        -: 1235:int updateCoins(int player, struct gameState *state, int bonus)
+        -: 1236:{
+        -: 1237:  int i;
+        -: 1238:
+        -: 1239:  //reset coin count
+     2000: 1240:  state->coins = 0;
+        -: 1241:
+        -: 1242:  //add coins for each Treasure card in player's hand
+    24000: 1243:  for (i = 0; i < state->handCount[player]; i++) {
+branch  0 taken 83%
+branch  1 taken 17%
+    10000: 1244:    if (state->hand[player][i] == copper) {
+branch  0 taken 75%
+branch  1 taken 25%
+     7504: 1245:	    state->coins += 1;
+    10000: 1246:    } else if (state->hand[player][i] == silver) {
+branch  0 taken 0%
+branch  1 taken 100%
+    #####: 1247:	    state->coins += 2;
+     2496: 1248:	  } else if (state->hand[player][i] == gold) {
+branch  0 taken 0%
+branch  1 taken 100%
+    #####: 1249:      state->coins += 3;
+    #####: 1250:    }
+    10000: 1251:  }
+        -: 1252:
+        -: 1253:  //add bonus
+     2000: 1254:  state->coins += bonus;
+     2000: 1255:  return 0;
+        -: 1256:}
+        -: 1257:
+        -: 1258:/*
+        -: 1259:int playAdventurer(struct gameState *state);
+        -: 1260:int playSmithy(struct gameState *state, int handPos);
+        -: 1261:int playVillage(struct gameState *state, int handPos);
+        -: 1262:int playFeast(struct gameState *state, int choice1);
+        -: 1263:int playCouncil_Room(struct gameState *state, int handPos);
+        -: 1264:*/
+        -: 1265:
+        -: 1266:/* This method executes the 'smithy' card behavior. */
+function playSmithy called 1000 returned 100% blocks executed 100%
+        -: 1267:int playSmithy(struct gameState *state, int currentPlayer, int handPos) {
+        -: 1268:  int i;  // C99 compile error on linux.
+        -: 1269:  // Draw cards.
+    10000: 1270:  for (i = 0; i <= 3; i++)
+branch  0 taken 80%
+branch  1 taken 20%
+        -: 1271:  {
+     4000: 1272:    drawCard(currentPlayer, state);
+     4000: 1273:  }
+        -: 1274:
+        -: 1275:  // Discard card from hand.
+     1000: 1276:  discardCard(handPos, currentPlayer, state, 0);
+        -: 1277:
+     1000: 1278:  return 0;
+        -: 1279:}
+        -: 1280:
+function playAdventurer called 1000 returned 100% blocks executed 80%
+        -: 1281:int playAdventurer(struct gameState *state, int currentPlayer) {
+     1000: 1282:  int cardDrawn = 0;
+     1000: 1283:  int drawnTreasure = 0;
+        -: 1284:  int temphand[MAX_HAND];
+     1000: 1285:  int z = 0;// this is the counter for the temp hand
+        -: 1286:
+     6000: 1287:  while(drawnTreasure < 2){
+branch  0 taken 67%
+branch  1 taken 33%
+     2000: 1288:    if (state->deckCount[currentPlayer] < 1){//if the deck is empty we need to shuffle discard and add to deck
+branch  0 taken 50%
+branch  1 taken 50%
+     1000: 1289:      shuffle(currentPlayer, state);
+     1000: 1290:    }
+        -: 1291:
+     2000: 1292:    drawCard(currentPlayer, state);
+     2000: 1293:    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+        -: 1294:
+     4000: 1295:    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 100%
+branch  1 taken 0%
+branch  2 taken 0%
+branch  3 taken 100%
+branch  4 never executed
+branch  5 never executed
+     2000: 1296:      drawnTreasure++;
+        -: 1297:    else {
+    #####: 1298:      temphand[z] = cardDrawn;
+    #####: 1299:      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+    #####: 1300:      z++;
+        -: 1301:    }
+        -: 1302:  }
+        -: 1303:
+     2000: 1304:  while(z - 1 >= 0){
+branch  0 taken 0%
+branch  1 taken 100%
+    #####: 1305:    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    #####: 1306:    z = z - 1;
+        -: 1307:  }
+        -: 1308:
+     1000: 1309:  return 0;
+        -: 1310:}
+        -: 1311:
+function playRemodel called 0 returned 0% blocks executed 0%
+        -: 1312:int playRemodel(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2) {
+    #####: 1313:  int j = state->hand[currentPlayer][choice2];  //store card we will trash
+        -: 1314:  int i;  // C99 compile error linux.
+        -: 1315:
+    #####: 1316:  if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+branch  0 never executed
+branch  1 never executed
+        -: 1317:  {
+    #####: 1318:    return -1;
+        -: 1319:  }
+        -: 1320:
+    #####: 1321:  gainCard(choice2, state, 0, currentPlayer);
+        -: 1322:
+        -: 1323:  //discard card from hand
+    #####: 1324:  discardCard(handPos, currentPlayer, state, 1);
+        -: 1325:
+        -: 1326:  //discard trashed card
+    #####: 1327:  for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1328:  {
+    #####: 1329:    if (state->hand[currentPlayer][i] == j)
+branch  0 never executed
+branch  1 never executed
+        -: 1330:    {
+    #####: 1331:      discardCard(i, currentPlayer, state, 0);
+    #####: 1332:      break;
+        -: 1333:    }
+    #####: 1334:  }
+        -: 1335:
+    #####: 1336:  return 0;
+    #####: 1337:}
+        -: 1338:
+function playVillage called 0 returned 0% blocks executed 0%
+        -: 1339:int playVillage(struct gameState *state, int currentPlayer, int handPos) {
+        -: 1340:  //+1 Card
+    #####: 1341:  drawCard(currentPlayer, state);
+        -: 1342:
+        -: 1343:  //+4 Actions
+    #####: 1344:  state->numActions = state->numActions + 4;
+        -: 1345:
+        -: 1346:  //discard played card from hand
+    #####: 1347:  discardCard(handPos, currentPlayer, state, 0);
+        -: 1348:
+    #####: 1349:  return 0;
+        -: 1350:}
+        -: 1351:
+        -: 1352:
+function playGreatHall called 0 returned 0% blocks executed 0%
+        -: 1353:int playGreatHall(struct gameState *state, int currentPlayer, int handPos) {
+        -: 1354:  //+1 Card
+    #####: 1355:  drawCard(currentPlayer, state);
+        -: 1356:
+        -: 1357:  //Add to actions
+    #####: 1358:  state->numPlayers++;
+        -: 1359:
+        -: 1360:  //discard card from hand
+    #####: 1361:  discardCard(handPos, currentPlayer, state, 0);
+        -: 1362:
+        -: 1363:  //+1 Card
+    #####: 1364:  drawCard(currentPlayer, state);
+        -: 1365:
+    #####: 1366:  return -1;
+        -: 1367:}
+        -: 1368:
+        -: 1369://end of dominion.c

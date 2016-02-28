@@ -1,9 +1,9 @@
 
   /* -----------------------------------------------------------------------
  * Random testing of adventurer card
- * testG conditions
+ * pre conditions
  *  1) passed in p, gamestate 
- * G conditions
+ * post conditions
  *  1) players hand is increased by correct number of coin cards
  *  2) players deck is decreased by by number of cards drawn
  *  4) players discard pile is increased by extra drawn cards - cards kept in hand
@@ -198,7 +198,7 @@ int main() {
 			
 	struct gameState G;
 	
-	printf("Random Tests-----------------------------------------------------\n");
+	printf("Random Tests for adventurer-----------------------------------------------------\n");
 
 
 	for (m = 0; m < 100000; m++) {	

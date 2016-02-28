@@ -186,23 +186,25 @@ int main () {
 	testG.discard[player][4] = baron;
 
 	player = 1;
-	testG.hand[player][0] = estate;
-	testG.hand[player][1] = estate;
-	testG.hand[player][2] = estate;
+	testG.hand[player][0] = silver;
+	testG.hand[player][1] = silver;
+	testG.hand[player][2] = silver;
 	testG.hand[player][3] = estate;
 	testG.hand[player][4] = estate;
-	testG.deck[player][0] = estate;
-	testG.deck[player][1] = estate;
-	testG.deck[player][2] = estate;
-	testG.deck[player][3] = estate;
-	testG.deck[player][4] = estate;
-	testG.discard[player][0] = estate;
-	testG.discard[player][1] = estate;
-	testG.discard[player][2] = estate;
-	testG.discard[player][3] = estate;
-	testG.discard[player][4] = estate;
+	testG.deck[player][0] = copper;
+	testG.deck[player][1] = copper;
+	testG.deck[player][2] = copper;
+	testG.deck[player][3] = duchy;
+	testG.deck[player][4] = duchy;
+	testG.discard[player][0] = gold;
+	testG.discard[player][1] = gold;
+	testG.discard[player][2] = gold;
+	testG.discard[player][3] = province;
+	testG.discard[player][4] = province;
 
-    cardEffectSmithy(0, &testG, 3);
+    printf("\n");
+    printf("setup:\n");
+    printf("\n");
 	printHand(0, &testG);
 	printDeck(0, &testG);
 	printPlayed(0, &testG);
@@ -211,6 +213,11 @@ int main () {
 	printDeck(1, &testG);
 	printPlayed(1, &testG);
     printDiscard(1, &testG);
+    printf("\n");
+    printf("test:\n");
+    printf("\n");
+
+    cardEffectSmithy(0, &testG, 3);
     testnum++;
 	count = 7;
 	r = testG.handCount[0];
@@ -229,7 +236,7 @@ int main () {
         printf("FAIL: expected %d, result %d\n", count, r);
     testnum++;
 	count = 1;
-	r = testG.playedCards[0];
+	r = testG.playedCardCount;
     printf("test %d: smithy p0 played         ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
@@ -260,14 +267,14 @@ int main () {
         printf("pass: expected %d, result %d\n", count, r);
     else
         printf("FAIL: expected %d, result %d\n", count, r);
-    testnum++;
-	count = 0;
-	r = testG.playedCards[1];
-    printf("test %d: smithy p1 played         ", testnum);
-    if( r == count )
-        printf("pass: expected %d, result %d\n", count, r);
-    else
-        printf("FAIL: expected %d, result %d\n", count, r);
+    /* testnum++; */
+	/* count = 0; */
+	/* r = testG.playedCardCount; */
+    /* printf("test %d: smithy p1 played         ", testnum); */
+    /* if( r == count ) */
+    /*     printf("pass: expected %d, result %d\n", count, r); */
+    /* else */
+    /*     printf("FAIL: expected %d, result %d\n", count, r); */
     testnum++;
 	count = 5;
 	r = testG.discardCount[1];
@@ -276,6 +283,16 @@ int main () {
         printf("pass: expected %d, result %d\n", count, r);
     else
         printf("FAIL: expected %d, result %d\n", count, r);
+
+    printf("\n");
+	printHand(0, &testG);
+	printDeck(0, &testG);
+	printPlayed(0, &testG);
+    printDiscard(0, &testG);
+	printHand(1, &testG);
+	printDeck(1, &testG);
+	/* printPlayed(1, &testG); */
+    printDiscard(1, &testG);
 
     return 0;
 }

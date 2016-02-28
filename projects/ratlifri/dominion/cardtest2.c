@@ -203,7 +203,9 @@ int main () {
 	testG.discard[player][3] = province;
 	testG.discard[player][4] = province;
 
-    cardEffectAdventurer(0, &testG);
+    printf("\n");
+    printf("setup:\n");
+    printf("\n");
 	printHand(0, &testG);
 	printDeck(0, &testG);
 	printPlayed(0, &testG);
@@ -212,8 +214,13 @@ int main () {
 	printDeck(1, &testG);
 	printPlayed(1, &testG);
     printDiscard(1, &testG);
+    printf("\n");
+    printf("test:\n");
+    printf("\n");
+
+    cardEffectAdventurer(0, &testG);
     testnum++;
-	count = 7;
+	count = 6;
 	r = testG.handCount[0];
     printf("test %d: adventurer p0 hand       ", testnum);
     if( r == count )
@@ -221,7 +228,7 @@ int main () {
     else
         printf("FAIL: expected %d, result %d\n", count, r);
     testnum++;
-	count = 2;
+	count = 1;
 	r = testG.deckCount[0];
     printf("test %d: adventurer p0 deck       ", testnum);
     if( r == count )
@@ -230,14 +237,14 @@ int main () {
         printf("FAIL: expected %d, result %d\n", count, r);
     testnum++;
 	count = 1;
-	r = testG.playedCards[0];
+	r = testG.playedCardCount;
     printf("test %d: adventurer p0 played     ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
     else
         printf("FAIL: expected %d, result %d\n", count, r);
     testnum++;
-	count = 5;
+	count = 7;
 	r = testG.discardCount[0];
     printf("test %d: adventurer p0 discard    ", testnum);
     if( r == count )
@@ -261,14 +268,14 @@ int main () {
         printf("pass: expected %d, result %d\n", count, r);
     else
         printf("FAIL: expected %d, result %d\n", count, r);
-    testnum++;
-	count = 0;
-	r = testG.playedCards[1];
-    printf("test %d: adventurer p1 played     ", testnum);
-    if( r == count )
-        printf("pass: expected %d, result %d\n", count, r);
-    else
-        printf("FAIL: expected %d, result %d\n", count, r);
+    /* testnum++; */
+	/* count = 0; */
+	/* r = testG.playedCardCount; */
+    /* printf("test %d: adventurer p1 played     ", testnum); */
+    /* if( r == count ) */
+    /*     printf("pass: expected %d, result %d\n", count, r); */
+    /* else */
+    /*     printf("FAIL: expected %d, result %d\n", count, r); */
     testnum++;
 	count = 5;
 	r = testG.discardCount[1];
@@ -277,6 +284,16 @@ int main () {
         printf("pass: expected %d, result %d\n", count, r);
     else
         printf("FAIL: expected %d, result %d\n", count, r);
+
+	printf("\n");
+	printHand(0, &testG);
+	printDeck(0, &testG);
+	printPlayed(0, &testG);
+    printDiscard(0, &testG);
+	printHand(1, &testG);
+	printDeck(1, &testG);
+	/* printPlayed(1, &testG); */
+    printDiscard(1, &testG);
 
     return 0;
 }

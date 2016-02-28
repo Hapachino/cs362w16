@@ -78,7 +78,7 @@ void randomTestSmithy(int *success, int *failure)
     }
 
     //play Smithy
-    playSmithy(&testG, 0, thisPlayer);
+    smithyCard(&testG, 0);
     //playSmithy(thisPlayer, &testG, 0);
     if (G.handCount[thisPlayer] + 3 == testG.handCount[thisPlayer])
     {

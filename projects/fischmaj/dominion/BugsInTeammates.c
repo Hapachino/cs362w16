@@ -26,3 +26,41 @@ This causes 4 cards to be drawn instead of the required
 design of discardCard, which moves discarded cards to 
 the playedCards array, instead of the discard Deck. 
 
+Bug 2: while testing the adventurerCard function, I 
+discovered the following bugs: 
+    a.  2 treasures are not delivered to the hand
+
+    b.  The player hand count is not increased by 2
+
+    c.  The player deck count is not decreased by the
+        correct amount. 
+
+The likely cause of all 3 test failures is the same bug:
+an incorrect number of treasure cards being moved from the
+deck to the hand.  After briefly examining the code the 
+issue is probably the line: "while(drawntreasure <1)" in 
+adventurerCard.  This should be "while(drawntreasure <=1)" 
+or "while(drawntreasure <2)"
+
+Bug 3: while testing villageCard I discovered the following
+bug: 
+     a.  improper discard
+
+This is likely due to the same problem as in bug 1c, above. 
+
+Bug 4: while unit testing the isGameOver() function I 
+discovered the following bug: 
+     a.  isGameOver fails to identify certain game over
+         conditions. This occurs when three supply 
+         piles are emptied, if any of the empty 
+         supply piles is card #25 or 26 (sea_hag or
+         treasure_map).
+
+Suspect the following line in isGameOver():
+"for (i = 0; i < 25; i++)" should instead be
+"... i<27; ..." or better yet, less than some 
+constant. 
+
+
+
+   

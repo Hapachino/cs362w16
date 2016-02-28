@@ -1,5 +1,6 @@
 /* -----------------------------------------------------------------------
- * Unit test for scoreFor() function
+ * Testing buyCard() method - using testUpdateCoins.c as the base code.
+ *
  * Include the following lines in your makefile:
  *
  * unittest3: unittest3.c dominion.o rngs.o
@@ -13,93 +14,58 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include <stdlib.h>
-#include <time.h>
 
-int getCardScore(int card, struct gameState *state, int currentPlayer);
-//reture the score of card, return 0 if no value 
-
-
-int main() 
-{
-    srand(time(NULL));
-    int numPlayer = 2;
-    int seed = rand() % 9999;
+int main() {
+    int seed = rand() %1000;
+    int numPlayers = 2;
+    int p;
+    int randPos;
     int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
-    
-    struct gameState G;
-    printf ("TESTING scoreFor():\n");
-    memset(&G, 23, sizeof(struct gameState));
-    assert(initializeGame(numPlayer, k, seed, &G) == 0); 
-    int p, i;
-    int score;
-    int handRandom, deckRandom, discardRandom;
-    for (p = 0; p < numPlayer; p++) //initiate hand, deck and discard cards
-    {
-        score = 0;
-        handRandom = rand() % MAX_HAND;
-        G.handCount[p] = handRandom;
-        for (i = 0; i < handRandom; i++) 
-        {
-            G.hand[p][i] = rand() % 27;
-        }
-        
-        deckRandom = rand() % MAX_DECK;
-        G.deckCount[p] = deckRandom;
-        for (i = 0; i < deckRandom; i++) 
-        {
-            G.deck[p][i] = rand() % 27;
-        }
- 
-        discardRandom = rand () % MAX_DECK;
-        G.discardCount[p] = discardRandom;
-        for (i = 0; i < discardRandom; i++) 
-        {
-            G.discard[p][i] = rand() % 27;
-        }
-        //sum up the score of all cards
-         for (i = 0; i < handRandom; i++) 
-        {
-            score += getCardScore(G.hand[p][i], &G, p);
-        }
+    struct gameState oldGame;
+	struct gameState newGame;
+    int maxHandCount = 10;
+    int failCount = 0;
+    int passCount = 0;
+	int player, round;
+	
+    printf ("<< TESTING unittest3 - buyCard() >>\n");
 
-        for (i = 0; i < deckRandom; i++) 
-        {
-            score += getCardScore(G.deck[p][i], &G, p);
-        }
+	for(p = 0; p < maxHandCount; p++)
+	{
+		memset(&oldGame, 23, sizeof(struct gameState));         //clear the game state
+		memset(&newGame, 23, sizeof(struct gameState));         //clear the game state
+		initializeGame(numPlayers, k, seed, &newGame);
+		for(round = 0; round < 10; round++)
+		{
+			for(player = 0; player < numPlayers; player++)
+			{
+				memcpy(&oldGame, &newGame, sizeof(struct gameState));
+				randPos = rand() % 26;		
+				if(buyCard(randPos, &newGame) == 0)
+				{
+					printf("Player %d - oldhand\n", player);
+					printf("numBuy: %d supply: %d coin: %d\n", oldGame.numBuys, oldGame.supplyCount[randPos], oldGame.coins);
+					printf(" - new hand\n");
+					printf("numBuy: %d supply: %d coin: %d\n", newGame.numBuys, newGame.supplyCount[randPos], newGame.coins);		
+					if(oldGame.supplyCount[randPos] == newGame.supplyCount[randPos] + 1)
+					{
+						passCount++;
+					}
+					else
+					{
+						failCount++;
+					}
+				}
+				else
+				{
+					failCount++;
+				}	
+			}
+		}
+	}
+    printf("Number of cases passed: %d\n", passCount);
+    printf("Number of cases failed: %d\n", failCount);
 
-        for (i = 0; i < discardRandom; i++) 
-        {
-            score += getCardScore(G.discard[p][i], &G, p);
-        }
-        if (scoreFor(p, &G) == score)
-        {
-            printf("Testing scoreFor() passed! for user: %d\n", p);
-        } else {
-            printf("Testing scoreFor() failed for user: %d \n", p);
-        }
-    }
- 
-    return 0;
-}
-int getCardScore(int card, struct gameState *state, int currentPlayer)
-{
-    if (card == curse) 
-        return -1;
-    if (card == estate) 
-        return 1;
-    if (card == duchy) 
-        return 3;
-    if (card == province) 
-        return 6;
-    if (card == great_hall) 
-        return 1;
-    if (card == gardens) 
-    { 
-        int fullDeck;
-        fullDeck = state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer];
-        return ( fullDeck / 10 ); 
-    }
     return 0;
 }

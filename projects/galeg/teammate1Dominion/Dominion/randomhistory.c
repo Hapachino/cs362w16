@@ -1,86 +1,58 @@
-Scott Williams
-CS 362 - ASSIGNMENT 4
-Random Testing
-Due Date: 2/14/2016
+First error in the code I found from adventurer random test.  It fails when the number of treasure cards
+is 0.  I hit this the first time I set the number of repetitions to 100.  It had passed on every other time
+I had run the test.  I knew the probability of getting 0 treasure cards was enough to run into eventually, but it 
+did not happen until I started jacking up the number of repetitions.
 
-Aggregate Tests Totals for Tests:
-Original 8 Tests:
+To allow for longer tests with more repetitions I fixed the bug.  It was caused by faulty logic that would
+not exit the adventurer section, unless two treasures were drawn.  I fixed this by exiting the loop of 
+drawing cards if drawCard returns -1.  It will do so, if there are no more cards to draw from the deck or 
+the discard.  It will shuffle the discard into the deck if necessary.
 
-Lines executed: 86.23%
-Branches executed: 96.34%
-Taken at least once: 60.39%
-Calls executed: 68.38%
+To test I fixed the bug, I made the loop run 100 times with reporting on every time and did a spot check
+to make sure it looked like everything was ok.  I had not gotten any failures previously with one card drawn
+and I wanted to make sure it was passing.  There were several examples of 1 card passing successfully in this report.
 
-Original 10 Tests:
-Lines executed: 86.38%
-Branches executed: 97.07%
-Taken at least once: 60.88%
-Calls executed: 69.83%
+After this, I turned up the number of tests to 1,000,000.  This test takes ~10 seconds.  I do not think it makes sense to
+make the number of tests higher.  I am confident that it tests all possibilities and that there are not any bugs for that card.
 
-Adventurer Tests:
+sea_hag:
+It looks like sea_hag did not have the discardCard method called at the end to put
+it into the playedCard pile.
 
----- Assignment 3 ----
+The -- that sea_hag is using, will actually decrement the actual value of the variable it is used on.  
+When looking for one less than the value of the count of a pile of cards, - 1 should be used.  This will
+not change the value of the variable.
 
-Lines executed:88.06% of 67
-Branches executed:84.62% of 26
-Taken at least once:69.23% of 26
-Calls executed:92.31% of 26
-cardTest1.c:creating 'cardTest1.c.gcov'
+sea_had was decrementing the size of the deck by 1 and not increasing it back when adding curse.  I fixed this.
 
----- Assignment 4 ----
-Lines executed:79.35% of 92
-Branches executed:100.00% of 70
-Taken at least once:68.57% of 70
-Calls executed:60.53% of 38
-randomTestAdventurer.c:creating 'randomTestAdventurer.c.gcov'
+sea_hag was adding a card to discard, when the deck was empty.  Fixed this.
+
+Now it works and runs 1,000,000 times successfully. 
 
 
-Village Tests:
 
----- Assignment 3 ----
+Above are some notes I made while running the tests and debugging the implementation of the cards.
 
-Lines executed:73.17% of 41
-Branches executed:100.00% of 20
-Taken at least once:55.00% of 20
-Calls executed:50.00% of 24
-cardTest3.c:creating 'cardTest3.c.gcov'
+Coverage results from Assn3:
 
----- Assignment 4 ----
-Lines executed:85.92% of 71
-Branches executed:100.00% of 14
-Taken at least once:57.14% of 14
-Calls executed:90.70% of 43
-randomTestCard.c:creating 'randomTestCard.c.gcov'
+File 'dominion.c'
+Lines executed:37.22% of 634
+Branches executed:50.62% of 405
+Taken at least once:32.35% of 405
 
 
-randomTestAdventurer:
+adventurer random tester:
 
-		My first tests included a lot of random testing, so I was able to use a lot of the code that I had already used.
-		I also had randomized treasure draws for the first time, whereas I let the cards in the player's deck
-        and hand determine whether or not certain parameters were met. I probably had less line coverage due to this.
-        However, with full branch coverage, we probably have a slightly more comprehensive test.
-
-        The biggest difference between the previous version of my test and the current version is the scale. I initially only had 20 tests, but with the new additions, I have
-        closer to 1000. This could account for some of the difference in call coverage as well, as call coverage was 92.31% in the original test and only 60.53% in the current test.
-
-        This testing suite was also set up with a seed (29365) so that some tests would succeed and others fail. The tests only failed when the player drew
-        two or fewer treasure cards, which would result in the deck being reshuffled excessively and other conditions not being met. Given that this happened
-        approximately 80% of the time, it gives us a reasonable expectation that there was a bug in the drawn treasure check within the adventurer card itself.
-
-        Other issues do seem to appear as well if there are multiple treasure cards drawn, which were then discarded. This should not happen either, and it is
-        probably a side effect of the implemented bugs from my original versions of the files.
+File 'dominion.c'
+Lines executed:40.51% of 632
+Branches executed:51.60% of 405
+Taken at least once:35.06% of 405
 
 
-Village Tests:
+sea_hag random tester: 
 
-        My original card tests were reasonably thorough and random testing improved this further. The tests were much smaller scale; however, and there were only 14 branches versus 20 in the new
-        update. I reviewed my original tests and trimmed the branches to focus primarily on the area where bugs might have been. The other player's play was also added into the suite, and I found
-        that this error tends to grow over time, between both players, especially if endTurn is used, in particular if both cards are not discarded properly.
+File 'dominion.c'
+Lines executed:21.51% of 637
+Branches executed:24.82% of 407
+Taken at least once:15.72% of 407
 
-        The improvement in coverage means we are also more likely to find the bugs. Both versions of the test suit had 100% branch execution, which is good, but with an increase in proportional line execution
-        we can also further isolate the bugs. And as 90.70% of all calls are now being executed with nearly twice the number, we are getting closer to an ideal test suite. There are still areas and scenarios
-        that probably were not considered in this version of the test. However, the village bug is fairly simple and card discarding is easily fixed by uncommenting out the discard function.
-
-        Currently, test failures to successes are one to one. The discardCount for both players does not work properly, and it appears the second player does not pick up the card properly either. Whether this is a
-        bug of the testing suite or an actual bug within the card itself will require further testing. A big positive of this suite, is that it shows a bug that is consistent and can be readily isolated and
-        hammered out with further testing and debugging. This test suite also confirms the improper discard bug from the previous tests.

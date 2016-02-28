@@ -1,0 +1,63 @@
+|------------------------------------------|
+  Running tests on smithy_play():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on adventurer_play():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Running Scenario 3...
+Running 5 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on council_room_play():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on village_play():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on updateCoins():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on gainCard():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on shuffle():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on discardCard():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+File 'dominion.c'
+Lines executed:29.57% of 585
+Branches executed:24.82% of 419
+Taken at least once:22.20% of 419
+Calls executed:18.56% of 97
+dominion.c:creating 'dominion.c.gcov'
+

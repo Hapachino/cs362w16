@@ -33,6 +33,9 @@ playdom: dominion.o playdom.c
 #cardtest4: cardtest4.c dominion.o 
 #	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o  $(CFLAGS)
 
+cardtestT: cardtestTribute.c dominion.o 
+	gcc -o cardtestT -g  cardtestTribute.c dominion.o rngs.o  $(CFLAGS)
+
 rtadventurer: randomtestadventurer.c dominion.o 
 	gcc -o rtadventurer -g  randomtestadventurer.c dominion.o rngs.o  $(CFLAGS)
 	

@@ -1,0 +1,57 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:    Dominion/Adventurer  draws wrong cards into hand
+
+Class:   Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:           2/21/16
+Reported By:   Todd Waddell
+Email:      waddelto@oregonstate.edu
+
+
+Product:   Dominon/Adventurer   Version:
+Platform:                       Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Yes 
+
+Description
+===========
+On 25000 randomized tests, Adventurer function put incorrect cards in hand.
+Bug reported > 32000 times.  Likely due to multiple incorrect cards in hand
+per test iteration.
+
+Steps to Produce/Reproduce
+--------------------------
+Run adventurer.  Track cards drawn into hand.
+
+
+Expected Results
+----------------
+Adventurer should draw cards from deck.  It should draw until it has put
+two treasure cards into hand.  Non-treasure cards drawn are discarded. 
+
+
+
+Actual Results
+--------------
+
+
+
+Workarounds
+-----------
+
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+
+

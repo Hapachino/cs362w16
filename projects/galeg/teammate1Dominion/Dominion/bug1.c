@@ -1,32 +1,23 @@
-Scott Williams
-CS 362 - Assignment 3
-bug1.c
+I found a bug in adventerer where it was not discarding the adventerer card.  I fixed this and 
+the test now accounts for that change.
 
+isGameOver(): This fails if a stack is empty, that wasn't initially included in the game.  
+	I tested by reducing the stack of minion(not in the set of 10 cards in the given game) and
+	when testing, it said the game was over, but it shouldn't have been.
 
-unitTest1.c: updateCoins()
-    I had some initial problems comparing values, but once I fixed that there were no bugs.
+scoreFor(): This looks at the contents of the player's hand, discard pile and deck to see what their score is.
+	It was set to loop through the deck for a number of times equal to the size of the discard pile.
+	This is now fixed.
 
-unitTest2.c: discardCard()
-    No bugs found during testing.
+	Not sure if this is a bug, but it doesn't count cards in the playedCards pile.  
+	I decided to ignore this, as it's probably not a bug.  Just make sure to discard all playedCards
+	before calling scoreFor().
 
-unitTest3.c: buyCard()
-    No bugs found during testing. All buys are successful as long as player has enough coins to make the purchase.
+fullDeckCount(): This function is straightup broken.  It actually checks the number of a specific card,
+	not the total number of cards in the deck.
 
-unitTest4.c: endTurn()
-    No bugs found during unit testing.
+	refactored it to just add the deck/hand/and discard Counts.
+	-note: this implementation is far from bulletproof, as it relies on the Count
+	 values to be accurate.
 
-cardTest1.c: playAdventurer()
-    Adventurer card will give two drawnTreasures instead of one, causing the loop to terminate early. This can cause problems with seeding in the game, as well as the ratio.
-
-cardTest2.c: playSmithy()
-    Smithy does not properly add 3 cards due to an incrementation error. Rather than using a post-increment (i++), the code is using a prefix increment (++i), this results in only two cards
-    being given. During tests, a +4 is taken into account because the card is granted to the player. If the player does not have 4 more cards in their hand during a test, then the test fails.
-
-cardTest3.c: playVillage()
-    The village is not properly discarded, which causes it to remain in the player's hand.
-
-cardTest4.c: playMinion()
-    The minion was really buggy. The minion properly increments actions, but removes coins from the player's stash under choice 1. Under choice 2, it does not properly grant cards or discard them. This
-    results in other players ending up with additional cards, on top of the one's they already have in their hand and does not force other players to discard their cards. The current way the system is set up as well,
-    it does not appear that cards are properly incremented into player hands.
-
+buyCard(): bug where it would discard the card you just bought.  

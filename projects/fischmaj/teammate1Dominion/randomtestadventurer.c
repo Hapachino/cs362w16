@@ -260,7 +260,7 @@ int checkAdventurer(struct gameState *pre, int player, int *array){
 
 
   /* 1. The function accepts a game state, and a player*/
-  playAdventurer(post,player); 
+  adventurerCard(player, post); 
 
 
   /* 2. Should result in the cards drawn from the deck until 2 treasures are*/

@@ -218,7 +218,8 @@ int main () {
     printf("test:\n");
     printf("\n");
 
-    cardEffectAdventurer(0, &testG);
+//    cardEffectAdventurer(0, &testG);
+    playAdventurer(&testG);
     testnum++;
 	count = 6;
 	r = testG.handCount[0];

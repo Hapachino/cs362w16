@@ -1,19 +1,18 @@
 /*
- * cardtest2.c
+ * cardtest1.c
  *
  * business rules
- * cardtest2.c for adventurer
- *	1. draw a card from player deck until two treasure cards are drawn
- *	2. add treasure cards to hand
- *	3. discard all cards that were drawn
+ * cardtest1.c for smithy
+ *	1. draw/add 3 cards to player hand
+ *	2. discard from hand
  *
  */
 
 /*
  * Include the following lines in your makefile:
  *
- * cardtest2: cardtest2.c dominion.o rngs.o
- *      gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+ * cardtest1: cardtest1.c dominion.o rngs.o
+ *      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
  */
 
 #include "dominion.h"
@@ -160,7 +159,7 @@ int main () {
 	initializeGame(numPlayers, k, seed, &G);
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    printf("--------- Testing adventurer ---------\n");
+    printf("--------- Testing smithy ---------\n");
   
 	testG.handCount[0] = 5;
 	testG.handCount[1] = 5;
@@ -171,18 +170,18 @@ int main () {
 
 	player = 0;
 	testG.hand[player][0] = copper;
-	testG.hand[player][1] = copper;
-	testG.hand[player][2] = copper;
+	testG.hand[player][1] = silver;
+	testG.hand[player][2] = gold;
 	testG.hand[player][3] = smithy;
-	testG.hand[player][4] = adventurer;
-	testG.deck[player][0] = silver;
-	testG.deck[player][1] = silver;
-	testG.deck[player][2] = silver;
+	testG.hand[player][4] = duchy;
+	testG.deck[player][0] = province;
+	testG.deck[player][1] = curse;
+	testG.deck[player][2] = adventurer;
 	testG.deck[player][3] = feast;
 	testG.deck[player][4] = gardens;
-	testG.discard[player][0] = gold;
-	testG.discard[player][1] = gold;
-	testG.discard[player][2] = gold;
+	testG.discard[player][0] = mine;
+	testG.discard[player][1] = remodel;
+	testG.discard[player][2] = steward;
 	testG.discard[player][3] = village;
 	testG.discard[player][4] = baron;
 
@@ -218,19 +217,20 @@ int main () {
     printf("test:\n");
     printf("\n");
 
-    cardEffectAdventurer(0, &testG);
+//    cardEffectSmithy(0, &testG, 3);
+    mySmithy(&testG, 0, 3);
     testnum++;
-	count = 6;
+	count = 7;
 	r = testG.handCount[0];
-    printf("test %d: adventurer p0 hand       ", testnum);
+    printf("test %d: smithy p0 hand           ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
     else
         printf("FAIL: expected %d, result %d\n", count, r);
     testnum++;
-	count = 1;
+	count = 2;
 	r = testG.deckCount[0];
-    printf("test %d: adventurer p0 deck       ", testnum);
+    printf("test %d: smithy p0 deck           ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
     else
@@ -238,15 +238,15 @@ int main () {
     testnum++;
 	count = 1;
 	r = testG.playedCardCount;
-    printf("test %d: adventurer p0 played     ", testnum);
+    printf("test %d: smithy p0 played         ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
     else
         printf("FAIL: expected %d, result %d\n", count, r);
     testnum++;
-	count = 7;
+	count = 5;
 	r = testG.discardCount[0];
-    printf("test %d: adventurer p0 discard    ", testnum);
+    printf("test %d: smithy p0 discard        ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
     else
@@ -255,7 +255,7 @@ int main () {
     testnum++;
 	count = 5;
 	r = testG.handCount[1];
-    printf("test %d: adventurer p1 hand       ", testnum);
+    printf("test %d: smithy p1 hand           ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
     else
@@ -263,7 +263,7 @@ int main () {
     testnum++;
 	count = 5;
 	r = testG.deckCount[1];
-    printf("test %d: adventurer p1 deck       ", testnum);
+    printf("test %d: smithy p1 deck           ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
     else
@@ -271,7 +271,7 @@ int main () {
     /* testnum++; */
 	/* count = 0; */
 	/* r = testG.playedCardCount; */
-    /* printf("test %d: adventurer p1 played     ", testnum); */
+    /* printf("test %d: smithy p1 played         ", testnum); */
     /* if( r == count ) */
     /*     printf("pass: expected %d, result %d\n", count, r); */
     /* else */
@@ -279,13 +279,13 @@ int main () {
     testnum++;
 	count = 5;
 	r = testG.discardCount[1];
-    printf("test %d: adventurer p1 discard    ", testnum);
+    printf("test %d: smithy p1 discard        ", testnum);
     if( r == count )
         printf("pass: expected %d, result %d\n", count, r);
     else
         printf("FAIL: expected %d, result %d\n", count, r);
 
-	printf("\n");
+    printf("\n");
 	printHand(0, &testG);
 	printDeck(0, &testG);
 	printPlayed(0, &testG);

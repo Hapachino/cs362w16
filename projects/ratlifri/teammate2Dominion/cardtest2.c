@@ -221,7 +221,7 @@ int main () {
 //    cardEffectAdventurer(0, &testG);
     myAdventurer(&testG, 0);
     testnum++;
-	count = 7;
+	count = 6;
 	r = testG.handCount[0];
     printf("test %d: adventurer p0 hand       ", testnum);
     if( r == count )
@@ -229,7 +229,7 @@ int main () {
     else
         printf("FAIL: expected %d, result %d\n", count, r);
     testnum++;
-	count = 2;
+	count = 1;
 	r = testG.deckCount[0];
     printf("test %d: adventurer p0 deck       ", testnum);
     if( r == count )
@@ -245,7 +245,7 @@ int main () {
     else
         printf("FAIL: expected %d, result %d\n", count, r);
     testnum++;
-	count = 5;
+	count = 7;
 	r = testG.discardCount[0];
     printf("test %d: adventurer p0 discard    ", testnum);
     if( r == count )

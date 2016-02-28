@@ -32,16 +32,22 @@
 int testAdventurer(struct gameState *after)
 {
 	int beforeTreasure, afterTreasure;
-	int drawnTreasure = 0;
+
+
+	int drawnCard;
+	
+
+	int drawntreasure = 0;
+	int temphand[MAX_HAND];
+  // this is the counter for the temp hand
 	int z = 0;
-	int temphand[0];
-	int drawnCard = 0;
+	
 	int p = after->whoseTurn;//initialize whoseTurn stored as p 
 	
 	struct gameState before;//before card played 
 	memcpy(&before, after, sizeof(struct gameState));
 	
-	playAdventurer(after, p, drawnCard, drawnTreasure, temphand, z);
+	playAdventurer(after, p, drawnCard, drawntreasure, temphand, z);
 	
 	//first checking for state changes
 	int beforeTotal = before.deckCount[p] + before.discardCount[p] - 2;//because 2 cards in the hand of player 

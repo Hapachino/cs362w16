@@ -87,7 +87,7 @@ void testAdventurer()
         int success = play_adventurer(&state, state.whoseTurn, 0);
         if (success != 0)
         {
-            printf("playAdventurer() failed\n");
+            printf("play_adventurer() failed\n");
             failed = 1;
             continue;
         }

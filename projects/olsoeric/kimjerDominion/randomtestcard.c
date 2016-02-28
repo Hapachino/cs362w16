@@ -1,610 +1,199 @@
-/*
-todo: figure out how to pass in by address in initI
-*/
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+/******************
+ * Eric Olson
+ * CS362_Assignment4
+ * Great Hall Card Function Random Test (Draw 1 Card, +1 Action)
+ ******************/
+
 #include "dominion.h"
 #include "rngs.h"
-#include <math.h>
-#include "assert.h"
-#define YES 1
-#define NO 0 
-#define NUMCARDS 10
-
-void ASSERT2(int expVal, int realVal, char *s) 
-{	
-	if(expVal != realVal) 
-	{
-		printf("FAIL - %s\n", s);
-		printf("EXPECTED value is %d; got %d", expVal, realVal);
-		assert(expVal == realVal);
-		exit(1);
-	}
-}
-
-int isUnique(int k[]) {
-	int i, j;
-	for(i = 0; i < NUMCARDS; i++)
-	{
-		for(j = 1; j < NUMCARDS; j++)
-		{	
-			if(j!=i && k[i] == k[j])
-				return NO;	
-		}	
-	}
-	return YES;
-}
-
-void makeK(int k[])
-{
-	int i;
-	for(i = 0; i < NUMCARDS; i++)
-	{
-		k[i] = rand()%NUMCARDS;
-	}
-}	
-
-void initI(struct infosStruct *infos) 
-{
-	int i;
-
-	(*infos).drawntreasure = 0;
-	(*infos).drawntreasure = 0;
-	(*infos).cardDrawn = 0; //random
-	for(i = 0; i < MAX_HAND; i++)
-		(*infos).temphand[i] = 0; //rand()%MAX_HAND
-	(*infos).z = 0;
-	(*infos).handPos = 0; //not used
-	(*infos).i = 0; //not used either
-	(*infos).currentPlayer = 0;
-}
-
-void func(int *x) 
-{
-	*x = 5;
-}
-
-int main() {
-	srand(time(NULL));
-	int i, j, ret;
-	struct gameState *g;
-	struct infosStruct infos;
-	g = newGame();
-	int k[NUMCARDS]; 
-	int n;
-	int handCount, deckCount, discardCount;
-	int handCountExp, deckCountExp, discardCountExp;
-
-	//Make sure draw card is working correctly
-	for(n=0; n < 2000; n++)
-	{
-		//make unique kingdom cards
-		do 
-		{
-			makeK(k);
-		}
-		while(!isUnique(k));
-
-		initializeGame(2, k, 3, g);
-
-		//randomize number of players
-		int numPlayers = (rand()%MAX_PLAYERS)+1;
-		g->numPlayers = numPlayers;
-
-		//randomize unused properties
-		g->outpostPlayed = rand();
-		g->outpostTurn = rand();
-		g->whoseTurn = rand(); //this may be important
-		g->phase = rand();
-		g->numActions = rand();
-		g->coins = rand();
-		g->numBuys = rand();
-
-		//randomized player hands
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = floor(rand()%(MAX_HAND/3));
-			}
-			while(numCards < 13);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->hand[i][j] = rand()%15;
-			}
-			g->handCount[i] = numCards;
-		}
-
-		//randomized player decks
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->deck[i][j] = rand()%15;
-			}
-			g->deckCount[i] = numCards;
-		}
-
-		//randomized player discard counts
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards == 0 && g->deckCount[i] == 0);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->discard[i][j] = rand()%15;
-			}
-			g->discardCount[i] = numCards;
-		}
-
-		//initialize infosStruct
-		infos.drawntreasure = 0;
-		infos.drawntreasure = 0;
-		infos.cardDrawn = 0; //random
-		for(i = 0; i < MAX_HAND; i++)
-			infos.temphand[i] = rand(); //rand()%MAX_HAND
-		infos.z = 0;
-		infos.handPos = 0; //not used
-		infos.i = 0; //not used either
-
-		//randomly select current player
-		do
-		{
-			infos.currentPlayer = rand()%MAX_PLAYERS;
-		}
-		while(infos.currentPlayer >= numPlayers);
-
-		//get gameState values before calling drawCard()
-		handCount = g->handCount[numPlayers-1];
-		deckCount = g->deckCount[numPlayers-1];
-		discardCount = g->discardCount[numPlayers-1];
-
-		//handle case when deckCount is 0
-		if(deckCount == 0)
-		{
-			deckCount = discardCount;
-			discardCount = 0;
-			g->deckCount[numPlayers-1] = g->discardCount[numPlayers-1];
-			g->discardCount[numPlayers-1] = 0;
-		}
-		else //discardCount is not affected
-		{
-			discardCountExp = discardCount;
-		}
-
-		handCountExp = handCount + 1;
-		deckCountExp = deckCount - 1;
-		drawCard(numPlayers-1, g);
-
-		handCount = g->handCount[numPlayers-1];
-		deckCount = g->deckCount[numPlayers-1];
-		discardCount = g->discardCount[numPlayers-1];
-		ASSERT2(handCountExp, handCount, "handCount after drawCard()");
-		ASSERT2(deckCountExp, deckCount, "deckCount after drawCard()");
-		ASSERT2(discardCountExp, discardCount, "discardCount after drawCard()");
-	}
-	puts("drawCard(): PASSED");
-	
-	//make sure player has two more cards after effectAdventurer
-	for(n=0; n < 2000; n++)
-	{
-		//make unique kingdom cards
-		do 
-		{
-			makeK(k);
-		}
-		while(!isUnique(k));
-
-		initializeGame(2, k, 3, g);
-
-		//randomize number of players
-		int numPlayers = (rand()%MAX_PLAYERS)+1;
-		g->numPlayers = numPlayers;
-
-		//randomize unused properties
-		g->outpostPlayed = rand();
-		g->outpostTurn = rand();
-		g->whoseTurn = rand(); //this may be important
-		g->phase = rand();
-		g->numActions = rand();
-		g->coins = rand();
-		g->numBuys = rand();
-
-		//randomized player hands
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = floor(rand()%(MAX_HAND/3));
-			}
-			while(numCards < 13);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->hand[i][j] = rand()%15;
-			}
-			g->handCount[i] = numCards;
-		}
-
-		//randomized player decks
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->deck[i][j] = rand()%15;
-			}
-			g->deckCount[i] = numCards;
-		}
-
-		//randomized player discard counts
-		for(i = 0; i < numPlayers; i++)
-		{
-			int numCards;
-			do
-			{
-				numCards = rand()%(MAX_HAND/3);
-			}
-			while(numCards == 0 && g->deckCount[i] == 0);
-
-			for(j = 0; j < numCards; j++)
-			{
-				g->discard[i][j] = rand()%15;
-			}
-			g->discardCount[i] = numCards;
-		}
-
-		//initialize infosStruct
-		infos.drawntreasure = 0;
-		infos.drawntreasure = 0;
-		infos.cardDrawn = 0; //random
-		for(i = 0; i < MAX_HAND; i++)
-			infos.temphand[i] = rand(); //rand()%MAX_HAND
-		infos.z = 0;
-		infos.handPos = 0; //not used
-		infos.i = 0; //not used either
-
-		//randomly select current player
-		do
-		{
-			infos.currentPlayer = rand()%MAX_PLAYERS;
-		}
-		while(infos.currentPlayer >= numPlayers);
-
-		//handle case when deckCount is 0
-		if(deckCount == 0)
-		{
-			deckCount = discardCount;
-			discardCount = 0;
-			g->deckCount[numPlayers-1] = g->discardCount[numPlayers-1];
-			g->discardCount[numPlayers-1] = 0;
-		}
-		else //discardCount is not affected (in drawCard())
-		{
-			discardCountExp = discardCount;
-		}
-
-		handCount = g->handCount[infos.currentPlayer];
-		handCountExp = handCount + 2;
-		ret = effectAdventure(g, &infos);
-		handCount = g->handCount[infos.currentPlayer];
-		ASSERT2(handCountExp, handCount, "adventurer");
-	}
-	puts("effectAdventure(): Passed");
-	return 0; 
-}
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <string.h>
 
 
-// int drawCard(int player, struct gameState *state)
-// {	
-//	 int count;
-//   int deckCounter;
-//   if (state->deckCount[player] <= 0){//Deck is empty
-    
-//     //Step 1 Shuffle the discard pile back into a deck
-//     int i;
-//     //Move discard to deck
-//     for (i = 0; i < state->discardCount[player];i++){
-//       state->deck[player][i] = state->discard[player][i];
-//       state->discard[player][i] = -1;
-//     }
+int validate(struct gameState *pre, struct gameState *post, int errors);
+void basic_setup(struct gameState *pre, struct gameState *post);
+int scenario_stage(struct gameState *pre, struct gameState *post);
 
-//     state->deckCount[player] = state->discardCount[player];
-//     state->discardCount[player] = 0;//Reset discard
-
-//     //Shufffle the deck
-//     shuffle(player, state);//Shuffle the deck up and make it so that we can draw
-   
-//     if (DEBUG){//Debug statements
-//       printf("Deck count now: %d\n", state->deckCount[player]);
-//     }
-    
-//     state->discardCount[player] = 0;
-
-//     //Step 2 Draw Card
-//     count = state->handCount[player];//Get current player's hand count
-    
-//     if (DEBUG){//Debug statements
-//       printf("Current hand count: %d\n", count);
-//     }
-    
-//     deckCounter = state->deckCount[player];//Create a holder for the deck count
-
-//     if (deckCounter == 0)
-//       return -1;
-
-//     state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
-//     state->deckCount[player]--;
-//     state->handCount[player]++;//Increment hand count
-//   }
-
-//   else{
-//     int count = state->handCount[player];//Get current hand count for player
-//     int deckCounter;
-//     if (DEBUG){//Debug statements
-//       printf("Current hand count: %d\n", count);
-//     }
-
-//     deckCounter = state->deckCount[player];//Create holder for the deck count
-//     state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-//     state->deckCount[player]--;
-//     state->handCount[player]++;//Increment hand count
-//   }
-
-//   return 0;
-// }
-
-
-// struct gameState {
-//   int numPlayers; //number of players
-//   int supplyCount[treasure_map+1];  //this is the amount of a specific type of card given a specific number.
-//   int embargoTokens[treasure_map+1];
-//   int outpostPlayed;
-//   int outpostTurn;
-//   int whoseTurn;
-//   int phase;
-//   int numActions; /* Starts at 1 each turn */
-//   int coins; /* Use as you see fit! */
-//   int numBuys; /* Starts at 1 each turn */
-//   int hand[MAX_PLAYERS][MAX_HAND];
-//   int handCount[MAX_PLAYERS];
-//   int deck[MAX_PLAYERS][MAX_DECK];
-//   int deckCount[MAX_PLAYERS];
-//   int discard[MAX_PLAYERS][MAX_DECK];
-//   int discardCount[MAX_PLAYERS];
-//   int playedCards[MAX_DECK];
-//   int playedCardCount;
-// };
-
-
-// int effectAdventure(struct gameState *state, struct infosStruct *infos) 
-// {
-//   int drawntreasure2 = infos->drawntreasure;
-//   int currentPlayer = infos->currentPlayer;
-//   int cardDrawn = infos->cardDrawn;
-//   int *temphand = (infos->temphand);
-//   int z = infos->z;
-//   int handPos = infos->handPos;
-//   int i = infos->i;
-
-//   while(drawntreasure2<2) 
-//   {
-//     if (state->deckCount[currentPlayer] <1) 
-//     {//if the deck is empty we need to shuffle discard and add to deck
-//       shuffle(currentPlayer, state);
-//     }
-
-//     drawCard(currentPlayer, state);
-
-//     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-    
-//     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-//     {
-//       drawntreasure2++;
-//     }
-//     else
-//     {
-//       temphand[z]=cardDrawn;
-//       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-//       z++;
-//     }
-//   }
-
-//   while(z-1>=0)
-//   {
-//     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-//     z=z-1;
-//   }
-//   return 0;  
-// }
-
-
-
-// int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) 
-// {
-//   int i;
-//   int j;
-//   int it;			
-//   //set up random number generator
-//   SelectStream(1);
-//   PutSeed((long)randomSeed);
+int main(){
+  struct gameState *pre = malloc(sizeof(struct gameState)), *post = malloc(sizeof(struct gameState));
+  int i, errors = 0, gh_pos;
+  srand(time(NULL));
   
-//   //check number of players
-//   if (numPlayers > MAX_PLAYERS || numPlayers < 2)
-//     {
-//       return -1;
-//     }
-
-//   //set number of players
-//   state->numPlayers = numPlayers;
-
-//   //check selected kingdom cards are different
-//   for (i = 0; i < 10; i++)
-//     {
-//       for (j = 0; j < 10; j++)
-//         {
-// 	  if (j != i && kingdomCards[j] == kingdomCards[i])
-// 	    {
-// 	      return -1;
-// 	    }
-//         }
-//     }
-
-//   //initialize supply
-//   ///////////////////////////////
-
-//   //set number of Curse cards
-//   if (numPlayers == 2)
-//     {
-//       state->supplyCount[curse] = 10;
-
-//     }
-//   else if (numPlayers == 3)
-//     {
-//       state->supplyCount[curse] = 20;
-//     }
-//   else
-//     {
-//       state->supplyCount[curse] = 30;
-//     }
-
-//   //set number of Victory cards
-//   if (numPlayers == 2)
-//     {
-//       state->supplyCount[estate] = 8;
-//       state->supplyCount[duchy] = 8;
-//       state->supplyCount[province] = 8;
-//     }
-//   else
-//     {
-//       state->supplyCount[estate] = 12;
-//       state->supplyCount[duchy] = 12;
-//       state->supplyCount[province] = 12;
-//     }
-
-//   //set number of Treasure cards
-//   state->supplyCount[copper] = 60 - (7 * numPlayers);
-//   state->supplyCount[silver] = 40;
-//   state->supplyCount[gold] = 30;
-
-//   //set number of Kingdom cards
-//   for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
-//   {
-//     for (j = 0; j < 10; j++)           		//loop chosen cards
-//     {
-//       if (kingdomCards[j] == i)
-//       {
-//         //check if card is a 'Victory' Kingdom card
-//         if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
-//         {
-//           if (numPlayers == 2)
-//           { 
-//             state->supplyCount[i] = 8; 
-//           }
-//           else
-//           {
-//             state->supplyCount[i] = 12;
-//           }
-//         }
-//         else
-//         {
-//           state->supplyCount[i] = 10;
-//         }
-//         break;
-//       }
-//       else    //card is not in the set choosen for the game
-//       {
-//         state->supplyCount[i] = -1;
-//       }
-//     }
-//   }
-
-//   ////////////////////////
-//   //supply intilization complete
-
-//   //set player decks
-//   for (i = 0; i < numPlayers; i++)
-//   {
-//     state->deckCount[i] = 0;
-//     for (j = 0; j < 3; j++)
-//   	{
-//   	  state->deck[i][j] = estate;
-//   	  state->deckCount[i]++;
-//   	}
-//     for (j = 3; j < 10; j++)
-//   	{
-//   	  state->deck[i][j] = copper;
-//   	  state->deckCount[i]++;		
-//   	}
-//   }
-//   //shuffle player decks
-//   for (i = 0; i < numPlayers; i++)
-//     {
-//       if ( shuffle(i, state) < 0 )
-// 	{
-// 	  return -1;
-// 	}
-//     }
-
-//   //draw player hands
-//   for (i = 0; i < numPlayers; i++)
-//     {  
-//       //initialize hand size to zero
-//       state->handCount[i] = 0;
-//       state->discardCount[i] = 0;
-//       //draw 5 cards
-//       // for (j = 0; j < 5; j++)
-//       //	{
-//       //	  drawCard(i, state);
-//       //	}
-//     }
+  printf("\n|------------------------------------------|\n");
+  printf("  Running tests on great_hall_play():\n");
+  printf("|------------------------------------------|\n");
   
-//   //set embargo tokens to 0 for all supply piles
-//   for (i = 0; i <= treasure_map; i++)
-//     {
-//       state->embargoTokens[i] = 0;
-//     }
+  /***** SCENARIO 1(Randoms) *****/
+  printf("Running 250,000 Random Scenarios...\n");
+  for (i = 0; i < 250000; i++){
+    //Setup Scenario:
+    gh_pos = scenario_stage(pre, post);  //Stage deck/discard/hand.
+    //Have player 0 play great hall card.  
+    great_hall_play(0, post, gh_pos);
+    //Check results.
+    errors = validate(pre, post, errors);
+  }
 
-//   //initialize first player's turn
-//   state->outpostPlayed = 0;
-//   state->phase = 0;
-//   state->numActions = 1;
-//   state->numBuys = 1;
-//   state->playedCardCount = 0;
-//   state->whoseTurn = 0;
-//   state->handCount[state->whoseTurn] = 0;
-//   //int it; move to top
+  
+  //Report Findings
+  if (errors) { printf("Tests Complete: great_hall_play() failed %d tests.\n\n", errors); }
+  else { printf("Tests Complete: No errors found.\n\n"); }
 
-//   //Moved draw cards to here, only drawing at the start of a turn
-//   for (it = 0; it < 5; it++){
-//     drawCard(state->whoseTurn, state);
-//   }
-//   updateCoins(state->whoseTurn, state, 0);
+  return 0;  
+}
+  
+int scenario_stage(struct gameState *pre, struct gameState *post){
+  int decksize, discardsize, handsize, gh_pos = -1, i;
 
-//   return 0;
-// }
+  basic_setup(pre, post);
+  //Clear out hand/deck/discard for random assignment.
+  memset(post->deck[0], 0, MAX_DECK * sizeof(int));
+  memset(post->hand[0], 0, 5 * sizeof(int));
+  memset(post->discard[0], 0, MAX_DECK * sizeof(int));
+  
+  //Randomize deck
+  decksize = rand() % MAX_DECK;
+  post->deckCount[0] = decksize;
+  for (i = 0; i < decksize; i++){
+     post->deck[0][i] = rand() % 27;
+  }
+  
+  //Randomize discard (with at minimum 10 total deck/discard cards)
+  discardsize = rand() % MAX_DECK;
+  if (decksize + discardsize < 10) { discardsize = 10; }  //To ensure at least 10 cards in deck/hand combined.
+  post->discardCount[0] = discardsize;
+  for (i = 0; i < discardsize; i++){
+     post->discard[0][i] = rand() %27;
+  }
+  
+  //Randomize hand
+  handsize = rand() % (MAX_HAND - 1);  //To allow room for 1 great_hall card to be added.
+  post->handCount[0] = handsize;
+  for (i = 0; i < handsize; i++){
+     post->hand[0][i] = rand() % 27;
+     if (post->hand[0][i] == great_hall) { gh_pos = i; }  //Identify where adventurer card is assigned.
+  }
+  if (gh_pos == -1) {
+     post->hand[0][handsize] = great_hall;  //Add a new Great Hall card if one wasn't randomly assigned.
+     post->handCount[0]++;
+     gh_pos = handsize;
+  }
+  
+  //Make sure pre == post.
+  memcpy(pre, post, sizeof(struct gameState));
 
+  return gh_pos;  //So we know which card to play.
+}
+  
+  
+void basic_setup(struct gameState *pre, struct gameState *post){
+  int i, j, try, k[10] = { 0 };
+  //Clear any previous data.
+  memset(pre, 0, sizeof(struct gameState));
+  memset(post, 0, sizeof(struct gameState));
+  
+  //randomize kingdom cards & initalize a game.
+  k[0] = adventurer;
+  for (i = 1; i < 10; i++) {
+    do{
+      //Pick random kingdom card.
+      try = ((rand() % 20) + 7);
+      for (j = 0; j <= i; j++) {
+        if (k[j] == try) { break; }  //If already used, break and try another random kingdom card.
+        if (j == i) { k[i] = try; }  //If no duplicates found, assigned random kingdom card to array.
+      }
+    } while (k[i] == 0);      
+  }
+  if (initializeGame(2, k, ((rand() % 500) + 1), post) != 0) { printf( "Initalization of game failed.\n"); }
+  
+  //Ensure player 0 has adventurer card in hand.
+  post->hand[0][5] = adventurer;
+  post->handCount[0]++;
+  
+  //And create identical copies of gamestate before test.
+  memcpy(pre, post, sizeof(struct gameState));
+}
+  
+int validate(struct gameState *pre, struct gameState *post, int errors){
+  int i;
+  
+  //Check pre vs post gameState's to ensure intended changes occured, and no unintended changes occured.
+  if (pre->numPlayers != post->numPlayers){ 
+    printf("state.numPlayers failed. (expected=%d, actual=%d)\n", pre->numPlayers, post->numPlayers);
+    errors++;   
+  }
+  for (i = 0; i < treasure_map + 1; i++) {
+    if (pre->supplyCount[i] != post->supplyCount[i]){ 
+      printf("state.supplyCount[%d] failed. (expected=%d, actual=%d)\n", 
+	     i, pre->supplyCount[i], post->supplyCount[i]);
+      errors++;  
+    }
+    if (pre->embargoTokens[i] != post->embargoTokens[i]){ 
+      printf("state.embargoTokens[%d] failed. (expected=%d, actual=%d)\n", 
+	     i, pre->embargoTokens[i], post->embargoTokens[i]);
+      errors++;  
+    }
+  }
+  if (pre->outpostPlayed != post->outpostPlayed){ 
+    printf("state.outpost->layed failed. (expected=%d, actual=%d)\n", pre->outpostPlayed, post->outpostPlayed);
+    errors++;  
+  }
+  if (pre->outpostTurn != post->outpostTurn){ 
+    printf("state.outpost->urn failed. (expected=%d, actual=%d)\n", pre->outpostTurn, post->outpostTurn);
+    errors++;  
+  }
+  if (pre->whoseTurn != post->whoseTurn){ 
+    printf("state.whoseTurn failed (expected=%d, actual=%d).\n", pre->whoseTurn, post->whoseTurn);
+    errors++;  
+  }
+  if (pre->phase != post->phase){ 
+    printf("state.phase failed. (expected=%d, actual=%d)\n", pre->phase, post->phase);
+    errors++;  
+  }
+  //Make sure actions was increased by 1.
+  if (pre->numActions != post->numActions - 1){ 
+    printf("state.numActions failed. (expected=%d, actual=%d)\n", pre->numActions + 1, post->numActions);
+    errors++;  
+  }
+  if (pre->coins != post->coins){ 
+    printf("state.coins failed. (expected=%d, actual=%d)\n", pre->coins, post->coins);
+    errors++;  
+  }
+  if (pre->numBuys != post->numBuys){ 
+    printf("state.numBuys failed. (expected=%d, actual=%d)\n", pre->numBuys, post->numBuys);
+    errors++;  
+  }
+  //Actually check if player drew 1 card (and played 1):
+  if (pre->handCount[0] != post->handCount[0]){ 
+    printf("state.handCount failed. (expected=%d, actual=%d)\n", pre->handCount[0] + 1, post->handCount[0]);
+    errors++;  
+  }
+  if (pre->handCount[1] != post->handCount[1]){ 
+    printf("state.handCount[1] failed. (expected=%d, actual=%d)\n", pre->handCount[1], post->handCount[1]);
+    errors++;
+  }
+  //Ensure 1 cards removed from deck/discard.
+  if (pre->deckCount[0] + pre->discardCount[0] != post->deckCount[0] + post->discardCount[0] + 1){ 
+    printf("Deck+Discard count failed. (expected=%d, actual=%d)\n",pre->deckCount[0] + pre->discardCount[0] - 1,
+	   post->deckCount[0] + post->discardCount[0]);
+    errors++;
+  }
+  if (pre->deckCount[1] != post->deckCount[1]){ 
+    printf("state.deckCount[1] failed. (expected=%d, actual=%d)\n", pre->deckCount[1], post->deckCount[1]);
+    errors++;
+  }
+  if (pre->discardCount[1] != post->discardCount[1]){ 
+    printf("state.discardCount[1] failed. (expected=%d, actual=%d)\n", 
+	   pre->discardCount[1], post->discardCount[1]);
+    errors++;
+  }
+  //Ensure great_hall card moved to played after use.
+  if (post->playedCardCount != pre->playedCardCount + 1){ 
+    printf("state.playedCardCount failed. (expected=%d, actual=%d)\n", pre->playedCardCount + 1, post->playedCardCount);
+    errors++;
+  }
 
-
+  return errors;
+}

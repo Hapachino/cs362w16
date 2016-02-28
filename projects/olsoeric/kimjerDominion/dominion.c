@@ -579,6 +579,7 @@ int drawCard(int player, struct gameState *state)
     state->handCount[player]++;//Increment hand count
   }
 
+
   return 0;
 }
 

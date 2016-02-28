@@ -134,7 +134,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 void smithy_play(int currentPlayer, struct gameState *state, int handPos);
 /* Executes Smithy card actions (draw 3 cards from deck) */
 
-void adventurer_play(int currentPlayer, struct gameState *state);
+void adventurer_play(int currentPlayer, struct gameState *state, int handPos);
 /* Executes Adventurer card action (draw until 2 treasures) */
 
 void council_room_play(int currentPlayer, struct gameState *state, int handPos);

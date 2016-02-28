@@ -1,0 +1,464 @@
+“Results for unit tests:”
+“unittest1.c”
+Testing FullDeckCount.
+SIMPLE FIXED TESTS.
+fullDeckCount tests passed.
+FIXED TESTS COMPLETE
+File 'dominion.c'
+Lines executed:18.35% of 643
+Branches executed:18.71% of 417
+Taken at least once:15.83% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+“unittest2.c”
+Testing Baseline state of game
+Verify 12 Estate cards: 12
+Verify 12 Duchies cards: 12
+Verify 12 Province cards: 12
+
+Player 0
+Verify starting coins: 4
+Verify starting deckCount: 5
+Verify starting handCount: 5
+Verify starting discardCount: 0
+
+Player 1
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 2
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 3
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+----------------- Testing Card: isGameOver ----------------
+TEST 1: Test to see if there are any provice cards still in play
+Test 1 failed.
+TEST 2: Test the state of the empty piles
+Test 2 passed.
+TEST 3: Test with one empty pile
+Test 3 passed.
+TEST 4: Test with two empty piles
+Test 4 passed.
+TEST 5: Three empty piles should end game
+Test 5 failed.
+ALL TESTS COMPLETE.
+File 'dominion.c'
+Lines executed:21.15% of 643
+Branches executed:21.10% of 417
+Taken at least once:18.71% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+“unittest3.c”
+Testing playCard with Random Tests
+playCard tests passed.
+RANDOM TESTS COMPLETE.
+File 'dominion.c'
+Lines executed:23.02% of 643
+Branches executed:23.02% of 417
+Taken at least once:20.38% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+“unittest4.c”
+Testing UpdateCoins.
+SIMPLE FIXED TESTS.
+updateCoins tests passed.
+FIXED TESTS COMPLETE
+File 'dominion.c'
+Lines executed:23.64% of 643
+Branches executed:23.02% of 417
+Taken at least once:20.86% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+“cardtest1.c”
+Testing Baseline state of game
+Verify 12 Estate cards: 12
+Verify 12 Duchies cards: 12
+Verify 12 Province cards: 12
+
+Player 0
+Verify starting coins: 4
+Verify starting deckCount: 5
+Verify starting handCount: 5
+Verify starting discardCount: 0
+
+Player 1
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 2
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 3
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+----------------- Testing Card: Steward ----------------
+TEST 1: choice1: +2 cards
+Player 0
+Test hand count = 6, Baseline hand count = 5
+Test deck count = 3, Baseline deck count = 5
+Test discard count = 0, Baseline discard count = 0
+Test coins = 4, Baseline coins = 4
+
+FAIL: Hand counts didn't increment properly
+
+Player 1
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test coins = 4, Baseline coins = 4
+
+
+Player 2
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test coins = 4, Baseline coins = 4
+
+
+Player 3
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test coins = 4, Baseline coins = 4
+
+
+Test 1 failed.
+TEST 2: choice2: +2 coins
+Player 0
+Test hand count = 4, Baseline hand count = 5
+Test deck count = 5, Baseline deck count = 5
+Test discard count = 0, Baseline discard count = 0
+Test coins = 6, Baseline coins = 4
+
+FAIL: Hand counts don't match
+
+Player 1
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test coins = 6, Baseline coins = 4
+
+
+Player 2
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test coins = 6, Baseline coins = 4
+
+
+Player 3
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test coins = 6, Baseline coins = 4
+
+
+Test 2 failed.
+TEST 3: choice3: trash two cards
+starting cards: (18)(4)(2)(1)(9); removed: (4)(2); ending cards: (9)(1), expected: (1)(9)
+
+hand count = 2, expected = 2
+deck count = 5, expected = 5
+starting cards: (18)(4)(2)(1)(9); removed: (4)(1); ending cards: (2)(9), expected: (2)(9)
+
+starting cards: (18)(4)(2)(1)(9); removed: (4)(9); ending cards: (2)(1), expected: (2)(1)
+
+starting cards: (18)(4)(2)(1)(9); removed: (2)(1); ending cards: (9)(4), expected: (4)(9)
+
+starting cards: (18)(4)(2)(1)(9); removed: (2)(9); ending cards: (1)(4), expected: (4)(1)
+
+starting cards: (18)(4)(2)(1)(9); removed: (1)(9); ending cards: (2)(4), expected: (4)(2)
+
+Testing remaining players
+
+Player 1
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+
+Player 2
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+
+Player 3
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+
+Test 3 passed.
+ALL TESTS COMPLETE.
+File 'dominion.c'
+Lines executed:28.62% of 643
+Branches executed:30.94% of 417
+Taken at least once:23.50% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+“cardtest2.c”
+Testing Baseline state of game
+Verify 12 Estate cards: 12
+Verify 12 Duchies cards: 12
+Verify 12 Province cards: 12
+
+Player 0
+Verify starting coins: 4
+Verify starting deckCount: 5
+Verify starting handCount: 5
+Verify starting discardCount: 0
+
+Player 1
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 2
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 3
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+----------------- Testing Card: Smithy ----------------
+TEST 1: +3 cards
+Player 0
+Test hand count = 7, Baseline hand count = 5
+Test deck count = 2, Baseline deck count = 5
+Test discard count = 0, Baseline discard count = 0
+FAIL: Hand counts didn't increment properly
+Player 1
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Player 2
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Player 3
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test 1 failed.
+TEST 2: Remove Smithy card
+Test 2 passed.
+TEST 3: Verify supply count is unchanged
+Test 3 passed.
+ALL TESTS COMPLETE.
+File 'dominion.c'
+Lines executed:29.39% of 643
+Branches executed:31.41% of 417
+Taken at least once:24.22% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+“cardtest3.c”
+Testing Baseline state of game
+Verify 12 Estate cards: 12
+Verify 12 Duchies cards: 12
+Verify 12 Province cards: 12
+
+Player 0
+Verify starting coins: 4
+Verify starting deckCount: 5
+Verify starting handCount: 5
+Verify starting discardCount: 0
+
+Player 1
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 2
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 3
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+----------------- Testing Card: Cut Purse ----------------
+TEST 1: +2 coins
+Player 0
+Test hand count = 4, Baseline hand count = 5
+Test deck count = 5, Baseline deck count = 5
+Test discard count = 0, Baseline discard count = 0
+Test coins = 6, Baseline coins = 4
+
+FAIL: Hand counts don't match
+
+Player 1
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test coins = 6, Baseline coins = 4
+
+
+Player 2
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test coins = 6, Baseline coins = 4
+
+
+Player 3
+Test hand count = 0, Baseline hand count = 0
+Test deck count = 10, Baseline deck count = 10
+Test discard count = 0, Baseline discard count = 0
+Test coins = 6, Baseline coins = 4
+
+
+Test 1 failed.
+TEST 2: discard a copper card
+player 0
+numberInHand 5
+card 0: card value 4
+card 1: card value 4
+card 2: card value 1
+card 3: card value 4
+card 4: card value 4
+Number of coppers in hand in G: 4
+player 1
+numberInHand 5
+card 0: card value 4
+card 1: card value 1
+card 2: card value 1
+card 3: card value 4
+card 4: card value 4
+Number of coppers in hand in G: 3
+player 2
+numberInHand 0
+Number of coppers in hand in G: 0
+player 3
+numberInHand 5
+card 0: card value 4
+card 1: card value 4
+card 2: card value 1
+card 3: card value 1
+card 4: card value 4
+Number of coppers in hand in G: 3
+
+Post test results
+test player 0
+numberInHand 4
+card 0: card value 4
+card 1: card value 4
+card 2: card value 1
+card 3: card value 4
+Number of coppers in hand in G: 3
+test player 1
+numberInHand 4
+card 0: card value 4
+card 1: card value 1
+card 2: card value 1
+card 3: card value 4
+Number of coppers in hand in G: 2
+test player 2
+numberInHand 0
+Number of coppers in hand in G: 0
+test player 3
+numberInHand 4
+card 0: card value 4
+card 1: card value 4
+card 2: card value 1
+card 3: card value 1
+Number of coppers in hand in G: 2
+
+post coppers should be equal for the first player
+post coppers should be 2 less than pre
+Test 2 failed.
+ALL TESTS COMPLETE.
+File 'dominion.c'
+Lines executed:32.66% of 643
+Branches executed:34.29% of 417
+Taken at least once:27.10% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+“cardtest4.c”
+Testing Baseline state of game
+Verify 12 Estate cards: 12
+Verify 12 Duchies cards: 12
+Verify 12 Province cards: 12
+
+Player 0
+Verify starting coins: 4
+Verify starting deckCount: 5
+Verify starting handCount: 5
+Verify starting discardCount: 0
+
+Player 1
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 2
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+Player 3
+Verify starting coins: 4
+Verify starting deckCount: 10
+Verify starting handCount: 0
+Verify starting discardCount: 0
+
+----------------- Testing Card: Adventurer ----------------
+TEST 1: Hand count is incremented by one
+FAIL: Expected Value: 6  Actual Value: 7
+Test 1 failed.
+TEST 2: deck count is decremented by at least two
+Test 2 passed.
+TEST 3: two treasure cards (coins) are added to the hand
+We got 2 treasure cards: 4, 4
+Test 3 passed.
+TEST 4: Test discard of other revealed cards
+Test 4 passed.
+TEST 5: Make sure no other players are effected
+Test 5 passed.
+TEST 5: Make sure no other players are effected
+Test 6 passed.
+TEST 7: Test that the supply is unchanged
+Test 6 passed.
+ALL TESTS COMPLETE.
+File 'dominion.c'
+Lines executed:34.37% of 643
+Branches executed:36.21% of 417
+Taken at least once:28.54% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+

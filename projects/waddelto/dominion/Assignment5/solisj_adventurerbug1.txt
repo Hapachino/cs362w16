@@ -1,0 +1,60 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:  Dominion/Adventurer Shuffle Error  
+
+Class:  Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date: 2/21/16
+Reported By: Todd Waddell  
+Email:       waddelto@oregonstate.edu
+
+
+Product:  Dominion/Adventurer   Version:
+Platform:                       Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Occasionally
+
+Description
+===========
+In 25000 tests, adventurer had the wrong card count after shuffle 53 times.
+
+
+
+Steps to Produce/Reproduce
+--------------------------
+Adventurer with handsize set to force a shuffle.
+
+
+
+Expected Results
+----------------
+Cards in the discard pile before the shuffle should be 
+in the deck after the shuffle.  The discardCount[currentPlayer]
+should be 0 and the deckCount[currentPlayer] should be equal to the 
+prior discardCount.
+
+
+Actual Results
+--------------
+Card counts are incorrect after shuffle.
+
+
+Workarounds
+-----------
+Make deckCount[currentPlayer] and composition large enough
+so that a shuffle isn't necessary.
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+
+

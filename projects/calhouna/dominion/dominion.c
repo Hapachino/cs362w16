@@ -10,6 +10,7 @@
 #include <math.h>
 #include <stdlib.h>
 
+#define NOISY_TEST 1
 
 
 int compare(const void* a, const void* b) {
@@ -328,25 +329,12 @@ int supplyCount(int card, struct gameState *state) {
   return state->supplyCount[card];
 }
 
-int fullDeckCount(int player, int card, struct gameState *state) {
-  int i;
+int fullDeckCount(int player, struct gameState *state) {
   int count = 0;
 
-  for (i = 0; i < state->deckCount[player]; i++)
-    {
-      if (state->deck[player][i] == card) count++;
-    }
-
-  for (i = 0; i < state->handCount[player]; i++)
-    {
-      if (state->hand[player][i] == card) count++;
-    }
-
-  for (i = 0; i < state->discardCount[player]; i++)
-    {
-      if (state->discard[player][i] == card) count++;
-    }
-
+  count += state->handCount[player];
+  count += state->deckCount[player];
+  count += state->discardCount[player];
   return count;
 }
 
@@ -421,10 +409,24 @@ int isGameOver(struct gameState *state) {
   return 0;
 }
 
+// Both groupmates found issues in the scoreFor() code. It appears that the game is not
+// calculating the scores correctly.
+
 int scoreFor (int player, struct gameState *state) {
 
-  int i;
+  int a,b,c,i;
   int score = 0;
+  int gardenCard = 0;
+
+  a = state->handCount[player];
+  b = state->deckCount[player];
+  c = state->discardCount[player];
+
+  int fullDeck = fullDeckCount(player, state);
+
+  printf("\n\nScoreFor Debugging: \n Hand Count: %d\n Deck Count: %d\n Discard Count %d\n", a, b, c);
+  printf("Full Deck Return: %d\n", fullDeck);
+
   //score from hand
   for (i = 0; i < state->handCount[player]; i++)
     {
@@ -433,7 +435,7 @@ int scoreFor (int player, struct gameState *state) {
       if (state->hand[player][i] == duchy) { score = score + 3; };
       if (state->hand[player][i] == province) { score = score + 6; };
       if (state->hand[player][i] == great_hall) { score = score + 1; };
-      if (state->hand[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+      if (state->hand[player][i] == gardens) { score = score + (fullDeckCount(player, state) / 10 ); }
     }
 
   //score from discard
@@ -444,19 +446,24 @@ int scoreFor (int player, struct gameState *state) {
       if (state->discard[player][i] == duchy) { score = score + 3; };
       if (state->discard[player][i] == province) { score = score + 6; };
       if (state->discard[player][i] == great_hall) { score = score + 1; };
-      if (state->discard[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+      if (state->discard[player][i] == gardens) { score = score + (fullDeckCount(player, state) / 10 ); }
+
     }
 
+
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  //for (i = 0; i < state->discardCount[player]; i++) <-- this large, but easily missed error prevented one of Nancy's and Jon's tests to fail. Once we switched to deck, it worked fine.
+  // in fact, this was the cause of the entire problem. See my bug report.
+  for (i = 0; i < state->deckCount[player]; i++)
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };
       if (state->deck[player][i] == duchy) { score = score + 3; };
       if (state->deck[player][i] == province) { score = score + 6; };
       if (state->deck[player][i] == great_hall) { score = score + 1; };
-      if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
-    }
+      if (state->deck[player][i] == gardens) { score = score + (fullDeckCount(player, state) / 10 ); }
+      }
+
 
   return score;
 }
@@ -595,25 +602,25 @@ int drawCard(int player, struct gameState *state)
 int playAdventurer(struct gameState *state, int currentPlayer, int cardDrawn, int drawntreasure, int temphand[], int z)
 {
 
-      while(drawntreasure<2){
-	if (state->deckCount[currentPlayer] <=1){//if the deck is empty we need to shuffle discard and add to deck *** REFACTOR to <= will cause additional shuffling.
+  while(drawntreasure<2){
+	 if (state->deckCount[currentPlayer] < 1){//if the deck is empty we need to shuffle discard and add to deck *** REFACTOR to <= will cause additional shuffling.
 	  shuffle(currentPlayer, state);
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
 	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-	  drawntreasure+=2; // The adventurer should not make off with your treasure. Originally had this put as --, but it actually caused the game to freeze. Opted to give the player more coins. Changes seeded outcomes.
+	    drawntreasure++; // The adventurer should not make off with your treasure. Originally had this put as --, but it actually caused the game to freeze. Opted to give the player more coins. Changes seeded outcomes.
 	else{
 	  temphand[z]=cardDrawn;
-	  state->handCount[currentPlayer]++; //this should just remove the top card (the most recently drawn one).
+	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
 	  z++;
-	}
-      }
-      while(z-1>=0){
+  	}
+  }
+  while(z-1>=0){
 	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 	z=z-1;
-      }
-      return 0;
+  }
+  return 0;
 }
 
 //---------------------
@@ -623,7 +630,7 @@ int playCouncRoom(struct gameState *state, int currentPlayer, int handPos)
 {
     int i; // Needed to be declared under C99 standards, otherwise program breaks.
 
-    //+4 Cards ** REFACTORED TO 3 because of introduced bug.
+    //+4 Cards ** REFACTORED TO 3 because of introduced bug. - CORRECTED
     for (i = 0; i < 4; ++i)
 	{
 	  drawCard(currentPlayer, state);
@@ -663,22 +670,22 @@ int playMinion(struct gameState *state, int choice1, int choice2, int currentPla
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
 
-      if (choice1)		//+2 coins *** REFACTORED: -2 coins.
+      if (choice1)		//+2 coins *** REFACTORED: -2 coins. // fixed
 	{
-	  state->coins = state->coins - 2;
+	  state->coins = state->coins + 2;
 	}
 
       else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
 	{
 
 //	  //discard hand ** COMMENTED OUT FOR REFACTORING
-//	  while(numHandCards(state) > 0)
-//	    {
-//	      discardCard(handPos, currentPlayer, state, 0);
-//	    }
+	  while(numHandCards(state) > 0)
+	    {
+	      discardCard(handPos, currentPlayer, state, 0);
+	    }
 
 	  //draw 4 *** REFACTORED TO DRAW 3
-	  for (i = 0; i < 3; i++)
+	  for (i = 0; i < 4; i++)
 	    {
 	      drawCard(currentPlayer, state);
 	    }
@@ -690,14 +697,14 @@ int playMinion(struct gameState *state, int choice1, int choice2, int currentPla
 		{
 		  if ( state->handCount[i] > 4 )
 		    {
-		    //  //discard hand
-		    //  while( state->handCount[i] > 0 )
-			// {
-			//  discardCard(handPos, i, state, 0);
-			// }
+		    //discard hand
+		    while( state->handCount[i] > 0 )
+			{
+			  discardCard(handPos, i, state, 0);
+			}
 
 		      //draw 4 ** REFACTOR: 3
-		      for (j = 0; j < 3; j++)
+		      for (j = 0; j < 4; j++)
 			{
 			  drawCard(i, state);
 			}
@@ -720,12 +727,20 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos)
     int i;
 
 //+3 Cards  *** REFACTOR changes i++ to ++i, breaks the intent of the card.
-      for (i = 0; i < 3; ++i)
+      for (i = 0; i < 3; i++)  // Un-refactored
 	{
 	  drawCard(currentPlayer, state);
 	}
       //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      discardCard(handPos, currentPlayer, state, 0);  // debated bug.
+      /*
+      It is unclear if discardCard() should be true to its name and actually put a card in the
+      discard pile as it may be the case that this happens in endTurn() instead.
+
+      https://piazza.com/class/iip31fywxe72b0?cid=103 */
+
+
+
       return 0;
 }
 
@@ -743,7 +758,7 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos)
       state->numActions = state->numActions + 2;
 
       //discard played card from hand
-      // discardCard(handPos, currentPlayer, state, 0);
+      discardCard(handPos, currentPlayer, state, 0);
       return 0;
 
 }
@@ -975,10 +990,10 @@ case village:
     case remodel:
       j = state->hand[currentPlayer][choice1];  //store card we will trash
 
-      if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
-	{
-	  return -1;
-	}
+      if ( (getCost(state->hand[currentPlayer][choice1])) > getCost(choice2) )
+	    {
+	       return -1;
+  	  }
 
       gainCard(choice2, state, 0, currentPlayer);
 
@@ -987,13 +1002,13 @@ case village:
 
       //discard trashed card
       for (i = 0; i < state->handCount[currentPlayer]; i++)
-	{
-	  if (state->hand[currentPlayer][i] == j)
 	    {
-	      discardCard(i, currentPlayer, state, 0);
-	      break;
-	    }
-	}
+	       if (state->hand[currentPlayer][i] == j)
+	       {
+	         discardCard(i, currentPlayer, state, 0);
+	         break;
+	       }
+	   }
 
 
       return 0;
@@ -1204,28 +1219,31 @@ case village:
 
     case cutpurse:
 
+    // We need a way to force the algorithm to reveal the hand if there are no coppers.
+
+
       updateCoins(currentPlayer, state, 2);
       for (i = 0; i < state->numPlayers; i++)
-	{
-	  if (i != currentPlayer)
-	    {
-	      for (j = 0; j < state->handCount[i]; j++)
-		{
-		  if (state->hand[i][j] == copper)
-		    {
-		      discardCard(j, i, state, 0);
-		      break;
-		    }
-		  if (j == state->handCount[i])
-		    {
-		      for (k = 0; k < state->handCount[i]; k++)
-			{
-			  if (DEBUG)
-			    printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
-			}
-		      break;
-		    }
-		}
+	     {
+	     if (i != currentPlayer)
+	     {
+	        for (j = 0; j < state->handCount[i]; j++)
+		      {
+		        if (state->hand[i][j] == copper)
+		        {
+		          discardCard(j, i, state, 0);
+		          break;
+		        }
+		        if (j == state->handCount[i])
+		        {
+		          for (k = 0; k < state->handCount[i]; k++)
+			        {
+			          // if (DEBUG) -- this removes the thing holding back the cards from being resolved.
+			             printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
+			        }
+		         break;
+		        }
+		      }
 
 	    }
 

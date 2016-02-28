@@ -83,7 +83,7 @@ void testPlaySmithy() {
   // Make sure player has 1 smithy card in played card pile.
   for(i = 0; i < testGame->playedCardCount; i++) {
     if(testGame->playedCards[i] == smithy) {        // There is a smithy in played cards.
-      smithyDiscardCount++;
+      smithyPlayedCount++;
     }
   }
 

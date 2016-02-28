@@ -525,10 +525,10 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
 }
 
 int drawCard(int player, struct gameState *state)
-{	int count;
+{	
+  int count;
   int deckCounter;
   if (state->deckCount[player] <= 0){//Deck is empty
-    
     //Step 1 Shuffle the discard pile back into a deck
     int i;
     //Move discard to deck
@@ -1174,35 +1174,35 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
 {
   //if card is not trashed, added to Played pile 
   if (trashFlag < 1)
-    {
-      //add card to played pile
-      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-      state->playedCardCount++;
-    }
+  {
+    //add card to played pile
+    state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+    state->playedCardCount++;
+  }
 	
   //set played card to -1
   state->hand[currentPlayer][handPos] = -1;
 	
   //remove card from player's hand
   if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
-    {
-      //reduce number of cards in hand
-      state->handCount[currentPlayer]--;
-    }
+  {
+    //reduce number of cards in hand
+    state->handCount[currentPlayer]--;
+  }
   else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
-    {
-      //reduce number of cards in hand
-      state->handCount[currentPlayer]--;
-    }
+  {
+    //reduce number of cards in hand
+    state->handCount[currentPlayer]--;
+  }
   else 	
   {
-      //replace discarded card with last card in hand
-      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
-      //set last card to -1
-      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
-      //reduce number of cards in hand
-      state->handCount[currentPlayer]--;
-    }
+    //replace discarded card with last card in hand
+    state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+    //set last card to -1
+    state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+    //reduce number of cards in hand
+    state->handCount[currentPlayer]--;
+  }
 	
   return 0;
 }
@@ -1290,6 +1290,10 @@ int effectAdventure(struct gameState *state, struct infosStruct *infos)
     {//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
+    // int handCount = state->handCount[currentPlayer];
+    // int deckCount = state->deckCount[currentPlayer];
+    // int discardCount = state->discardCount[currentPlayer];
+    // printf("discard count %d\n", discardCount);
 
     drawCard(currentPlayer, state);// draw card doesn't update handCount?
 
@@ -1306,10 +1310,6 @@ int effectAdventure(struct gameState *state, struct infosStruct *infos)
       z++;
     }
   }
-
-    printf("VAL OF Z IS : %d\n", z);
-    printf("the discard count is : %d\n", state->discardCount[currentPlayer]);
- 
   while(z-1>=0)
   {
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
@@ -1320,31 +1320,31 @@ int effectAdventure(struct gameState *state, struct infosStruct *infos)
 
 int effectCouncil(struct gameState *state, struct infosStruct *infos)
 {
-      //+4 Cards
+  //+4 Cards
   int currentPlayer = infos->currentPlayer;
   int handPos = infos->handPos;
   int i = infos->i;
-      for (i = 0; i < 4; i++)
+  for (i = 0; i < 4; i++)
+  {
+    drawCard(currentPlayer, state);
+  }
+      
+  //+1 Buy
+  state->numBuys++;
+  
+  //Each other player draws a card
+  for (i = 0; i < state->numPlayers; i++)
+  {
+    if ( i != currentPlayer )
       {
-        drawCard(currentPlayer, state);
+        drawCard(i, state);
       }
-      
-      //+1 Buy
-      state->numBuys++;
-      
-      //Each other player draws a card
-      for (i = 0; i < state->numPlayers; i++)
-      {
-        if ( i != currentPlayer )
-          {
-            drawCard(i, state);
-          }
-      }
-      
-      //put played card in played card pile
-      discardCard(handPos, currentPlayer, state, 0);
+  }
+  
+  //put played card in played card pile
+  discardCard(handPos, currentPlayer, state, 0);
 
-      return 0;
+  return 0;
 }
 //end of dominion.c
 
@@ -1410,5 +1410,6 @@ int effectVillage(struct gameState *state, struct infosStruct *infos)
 
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);
+
   return 0;
 }

@@ -40,7 +40,7 @@ int cutpurseCard(int handPos, int currentPlayer, struct gameState *state)
 	int k;
 
 	updateCoins(currentPlayer, state, 2);
-    for (i = 1; i < state->numPlayers; i++)
+    for (i = 0; i < state->numPlayers; i++)
 	{
 	  	if (i != currentPlayer)
 	    {
@@ -76,7 +76,7 @@ int villageCard(int handPos, int currentPlayer, struct gameState *state)
       drawCard(currentPlayer, state);
 			
       //+2 Actions
-      state->numActions = state->coins + 2;
+      state->numActions = state->numActions + 2;
 			
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
@@ -88,7 +88,7 @@ int smithyCard(int handPos, int currentPlayer, struct gameState *state)
 	int i;
 
 	//+3 Cards
-    for (i = 1; i < 3; i++)
+    for (i = 0; i < 3; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
@@ -105,7 +105,7 @@ int adventurerCard(int currentPlayer, struct gameState *state)
 	int temphand[MAX_HAND];
 	int z = 0;	// this is the counter for the temp hand
 
-  	while(drawntreasure <= 2)
+  	while(drawntreasure < 2)
   	{
   		if (state->deckCount[currentPlayer] < 1)	//if the deck is empty we need to shuffle discard and add to deck
   		{
@@ -566,7 +566,7 @@ int scoreFor (int player, struct gameState *state) {
       if (state->discard[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
     }
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };

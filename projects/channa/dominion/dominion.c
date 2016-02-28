@@ -418,6 +418,10 @@ int scoreFor (int player, struct gameState *state) {
 
   int i;
   int score = 0;
+  int gardens_count;
+  int allDeck_count;
+  int gardens_effect;
+
   //score from hand
   for (i = 0; i < state->handCount[player]; i++)
     {
@@ -426,7 +430,6 @@ int scoreFor (int player, struct gameState *state) {
       if (state->hand[player][i] == duchy) { score = score + 3; };
       if (state->hand[player][i] == province) { score = score + 6; };
       if (state->hand[player][i] == great_hall) { score = score + 1; };
-      if (state->hand[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
     }
 
   //score from discard
@@ -437,19 +440,27 @@ int scoreFor (int player, struct gameState *state) {
       if (state->discard[player][i] == duchy) { score = score + 3; };
       if (state->discard[player][i] == province) { score = score + 6; };
       if (state->discard[player][i] == great_hall) { score = score + 1; };
-      if (state->discard[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
     }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };
       if (state->deck[player][i] == duchy) { score = score + 3; };
       if (state->deck[player][i] == province) { score = score + 6; };
       if (state->deck[player][i] == great_hall) { score = score + 1; };
-      if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
     }
+
+  // Number of gardens
+  gardens_count = fullDeckCount(player, 10, state);
+  // All cards in deck (discard and hand are part of the deck at this point)
+  allDeck_count = state->handCount[player] + state->discardCount[player] + state->deckCount[player];
+  // Gardens is worth 1 VP for every 10 cards in your deck (rounded down)
+  gardens_effect = (allDeck_count / 10) * gardens_count;
+
+  // Add gardens effect
+  score = score + gardens_effect;
 
   return score;
 }
@@ -1268,6 +1279,7 @@ int playAdventurer (struct gameState *state, int currentPlayer)
     {
       temphand[z]=cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+      z++;
     }
   }
   
@@ -1290,13 +1302,13 @@ int playSmithy(int currentPlayer, struct gameState *state, int handPos)
   int i;
 
   //+3 Cards
-  for (i = 0; i <= 3; i++)
+  for (i = 0; i < 3; i++)
   {
     drawCard(currentPlayer, state);
   }
       
   //discard card from hand
-  discardCard(handPos, currentPlayer, state, 1);
+  discardCard(handPos, currentPlayer, state, 0);
   return 0;
 }
 

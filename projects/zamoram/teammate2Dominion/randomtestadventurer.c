@@ -1,391 +1,291 @@
 /* -----------------------------------------------------------------------
- *playCardAdventurer() Unit Testing file
- *Author: James Linnenburger - Oregon State CS362 Spring 2016
- *
- *testCard2: cardtest2.c dominion.o rngs.o
- *	gcc -0 cardtest2 dominion.o rngs.o cardtest2.c $(CFLAGS)
- *
- *
- * playCardAdventurer() is allows the player to draw three additional cards
- * into their hand.
- *
- *
- * -----------------------------------------------------------------------
- */
+	* Author: Marco Zamora
+	* CS 362
+	* Random Testing for adventurer card
+	* -----------------------------------------------------------------------
+*/
 
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <assert.h>
 #include "rngs.h"
+#include <math.h>
 
-#include <stdio.h>
-#include <time.h>
-#include "rngs.h"
+#define LOUDER_TEST 1 //0 for on, 1 for off
 
+void fillDecks(struct gameState *G);
+void fillHands(struct gameState *G);
+void testAdventurer(struct gameState *G, int handPos);
+void compareStates(struct gameState *pre, struct gameState *post);
+void checkPlayerDetails(struct gameState *pre, struct gameState *post);
 
-
-
-//Determine if two gameStates are identical or not: Return 1 if identical, 0 if not
-int statesAreEqual(struct gameState *g1, struct gameState *g2)
-{
-    int i;
-
-    if(g1->numPlayers != g2->numPlayers) return 0;
-    for(i = 0; i < treasure_map+1; i++)
-        if(g1->supplyCount[i] != g2->supplyCount[i]) return 0;
-    for(i = 0; i < treasure_map+1; i++)
-        if(g1->embargoTokens[i] != g2->embargoTokens[i]) return 0;
-    if(g1->outpostPlayed != g2->outpostPlayed) return 0;
-    if(g1->outpostTurn != g2->outpostTurn) return 0;
-    if(g1->whoseTurn != g2->whoseTurn) return 0;
-    if(g1->phase != g2->phase) return 0;
-    if(g1->numActions != g2->numActions) return 01;
-    if(g1->coins != g2->coins) return 0;
-    if(g1->numBuys != g2->numBuys) return 0;
-    /*   for(i = 0; i < MAX_PLAYERS; i++)
-       {
-           if(g1->handCount[i] != g2->handCount[i]) return 0;
-           if(g1->deckCount[i] != g2->deckCount[i]) return 0;
-           if(g1->discardCount[i] != g2->discardCount[i]) return 0;
-
-           for(j = 0; j < MAX_HAND; j++)
-               if(g1->hand[i][j] != g2->hand[i][j]) return 0;
-
-           for(j = 0; j < MAX_DECK; j++)
-               if(g1->deck[i][j] != g2->deck[i][j]) return 0;
-       }
-
-       for(i = 0; i < MAX_DECK; i++)
-           if(g1->playedCards[i] != g2->playedCards[i]) return 0;
-
-       if(g1->playedCardCount != g2->playedCardCount) return 0;
-    */
-    return 1;
-}
-
-
-
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 0
 int main()
 {
-    int i, j;
-    int numcards, temp, numHand, numDeck, numDiscard;
-    int testHandCounts = 0, testPlayedCounts = 0, testDeckCounts = 0, testStateCounts = 0;
-    int testHandCards = 0, testPlayedCards = 0;
-    int adventLoc, currentTest;
-    int tLoc1, tLoc2, tType1, tType2, numDraws, tcount=0;
-    int tests = 100;  // number of times to run test
-    int seed = 500;
-    srand(seed);
-    struct gameState game, test;
-    int tempCards[15];
-    int tempDeck[MAX_DECK];
-    int tempHand[MAX_HAND];
+	//set up variables used for testing
+	int numPlayers,
+		player,
+		handPos,
+		i;
+	struct gameState pre, post;
+	int numTests = 1000;
+	int k[10] = {adventurer, council_room, feast, gardens, mine
+		, remodel, smithy, village, baron, great_hall};
+		
+	int seed;
+	
+	//loop for amount of tests
+	for(i = 0; i < numTests; i++)
+	{
+		printf("****TEST %i****\n", i+1);
+		//randomize each of our test variables
+		numPlayers = floor(Random() * (MAX_PLAYERS-2)) + 2; //at least 2 players
+		player = floor(Random() * numPlayers);
+		printf("Player playing adventurer: #%i\n", player);
+		//initialize game
+		memset(&post, 23, sizeof(struct gameState)); 
+		seed = floor(Random() * MAX_DECK);
+		int init = initializeGame(numPlayers, k, seed, &post);
+		if(init != 0)
+		{
+			printf("Error initializing game.\n");
+			return -1;
+		}
+		//random player test
+		post.whoseTurn = player;
+		
+		//fill out player decks
+		fillDecks(&post);
+		
+		//fill out player hands
+		fillHands(&post);
+		
+		//sneak an adventurer into a random handPos so we can play it
+		handPos = floor(Random() * post.handCount[player]);
+		post.hand[player][handPos] = adventurer;
+		
+		//copy game
+		// memset(&pre, 23, sizeof(struct gameState)); 
+		memcpy(&pre, &post, sizeof(struct gameState));
+		// printf("The hand count for player %i is %i\n", player, post.handCount[player]);
+		// printf("The deck count for player %i is %i\n", player, post.deckCount[player]);
+		
+		//play adventurer
+		int playcardState = playCard(handPos, 0,0,0, &post);
+		if(playcardState != 0)
+		{
+			printf("There was an error playing the card\n");
+		}
+		
+		//imitate playing adventurer
+		testAdventurer(&pre, handPos);
+		
+		//compare the game states
+		compareStates(&pre, &post);
+		
+		printf("****FINISHED TEST %i****\n\n", i);
+	}
+	
+	return 0;
+}
 
+//fills in random cards for all player decks
+void fillDecks(struct gameState *G)
+{
+	int numPlayers = G->numPlayers;
+	int deckCount, i, j;
+	for(i = 0; i < numPlayers; i++)
+	{
+		deckCount = floor(Random() * MAX_DECK);
+		G->deckCount[i] = deckCount;
+		for(j = 0; j < deckCount; j++)
+		{
+			G->deck[i][j] = floor(Random() * (treasure_map+1));
+		}
+	}
+}
 
-    printf ("TESTING playCardAdventurer():\n");
-    for(j=0; j < tests; j++)
-    {
-        currentTest = 1;
-        numHand = 0;
-        numDeck = 0;
-        numDiscard = -1;
-        //set the deck to a random # of cards between 5 and 15
-        numcards = (int)(rand() % 10 + 5);
+//fills in random cards for all player hands
+//depending on deck count; total count cannot exceed 500
+void fillHands(struct gameState *G)
+{
+	int numPlayers = G->numPlayers;
+	int max, handCount, i, j;
+	for(i = 0; i < numPlayers; i++)
+	{
+		max = MAX_DECK - G->deckCount[i];
+		handCount = floor(Random() * max);
+		G->handCount[i] = handCount;
+		for(j = 0; j < handCount; j++)
+		{
+			G->hand[i][j] = floor(Random() * (treasure_map+1));
+		}
+	}
+}
 
-        //load a temporary set of cards randomly picked
-        for(i = 0; i < 15; i++)
-        {
-            tempCards[i] = -1;
-        }
+//set the changes for playing an adventurer card manually
+void testAdventurer(struct gameState *G, int handPos)
+{
+	int i;
+	int player = G->whoseTurn;
+	int treasures = 0;
+	int tempHand[MAX_HAND];
+	int j = 0;
+	
+	//use up an action
+	G->numActions--;
+	
+	//draw 2 treasures
+	while(treasures < 2)
+	{
+		if(G->deckCount[player] < 1)
+		{
+			shuffle(player, G);
+		}
+		drawCard(player, G);
+		int card = G->hand[player][G->handCount[player]-1];
+		if (card == copper || card == silver || card == gold)
+			treasures++;
+		else
+		{
+			tempHand[j] = card;
+			G->handCount[player]--;
+			j++;
+		}
+	}
+	//discard tempHand
+	while(j-1 >= 0)
+	{
+		G->discard[player][G->discardCount[player]++] = tempHand[j-1];
+		j -= 1;
+	}
+	
+	//discard card
+	discardCard(handPos, player, G, 0);
+	
+	//update coins
+	G->coins = 0;
+	for (i = 0; i < G->handCount[player]; i++)
+	{
+		 if (G->hand[player][i] == copper)
+		{
+			G->coins += 1;
+		}
+		else if (G->hand[player][i] == silver)
+		{
+			G->coins += 2;
+		}
+		 else if (G->hand[player][i] == gold)
+		{
+			G->coins += 3;
+		}
+	}
+}
 
-        for(i = 0; i < numcards; i++)
-        {
-            temp = rand() % 10;
-            tempCards[i] = temp;
-        }
+//compare the two structs
+void compareStates(struct gameState *pre, struct gameState *post)
+{
+	int i, j;
+	// int preP= pre->whoseTurn;
+	// int postP = post->whoseTurn;
+	//did players change?
+	if(pre->numPlayers != post->numPlayers)
+		printf("ERROR w/ numPlayers: Expected: %i, Actual: %i\n", pre->numPlayers, post->numPlayers);
+	else if (LOUDER_TEST == 0)
+		printf("OK: number of players\n");
+	
+	//check supply counts; nothing was bought so nothing should have changed anyway
+	for(i = 0; i < treasure_map+1; i++)
+	{
+		if(pre->supplyCount[i] != post->supplyCount[i])
+			printf("ERROR: Supply count for card #%i does not match:  Expected: %i, Actual: %i\n", i, pre->supplyCount[i] , post->supplyCount[i]);
+		else if (LOUDER_TEST == 0)
+			printf("OK: Supply count for card #%i\n", i);
+	}
+	//same player should still be playing
+	if( pre->whoseTurn != post->whoseTurn)
+		printf("ERROR: WhoseTurn has changed: Expected: %i, Actual: %i\n", pre->whoseTurn , post->whoseTurn);
+	else if (LOUDER_TEST == 0)
+		printf("OK: whose turn\n");
+	//check coins; this should have been changed because of drawing treasure cards
+	if(pre->coins != post->coins)
+		printf("ERROR: Coin counts do not match: Expected: %i, Actual: %i\n", pre->coins , post->coins);
+	else if (LOUDER_TEST == 0)
+		printf("OK: coin count\n");
+	//check number of buysl should not have been affected
+	if(pre->numBuys != post->numBuys)
+		printf("ERROR: numBuys counts do not match: Expected: %i, Actual: %i\n", pre->numBuys , post->numBuys);
+	else if (LOUDER_TEST == 0)
+		printf("OK: number of buys\n");
+	//number of actions should have been reduced
+	if(pre->numActions != post->numActions)
+		printf("ERROR: numActions counts do not match: Expected: %i, Actual: %i\n", pre->numActions , post->numActions);
+	else if (LOUDER_TEST == 0)
+		printf("OK: number of actions\n");
+	
+	// //check hand count
+	// if(pre->handCount[preP] != post->handCount[postP])
+		// printf("ERROR: hand counts:  Expected: %i, Actual: %i\n", pre->handCount[preP], post->handCount[postP]);
+	// else if (LOUDER_TEST)
+		// printf("OK: hand counts\n");
+	
+	// //check deck count
+	// if(pre->deckCount[preP] != post->deckCount[postP])
+		// printf("ERROR: deck counts:  Expected: %i, Actual: %i\n", pre->deckCount[preP], post->deckCount[postP]);
+	// else if (LOUDER_TEST)
+		// printf("OK: deck counts\n");
+	
+	// //check discard count
+	// if(pre->discardCount[preP] != post->discardCount[postP])
+		// printf("ERROR: discard counts:  Expected: %i, Actual: %i\n", pre->discardCount[preP], post->discardCount[postP]);
+	// else if (LOUDER_TEST)
+		// printf("OK: discard counts\n");
+	
+	//check played card count
+	if(pre->playedCardCount != post->playedCardCount)
+		printf("ERROR: played card counts:  Expected: %i, Actual: %i\n", pre->playedCardCount, post->playedCardCount);
+	else if (LOUDER_TEST == 0)
+		printf("OK: played card counts\n");
+	
+	//check is game over
+	if( isGameOver(pre) != isGameOver(post) )
+		printf("ERROR: Game over check: Expected: %i, Actual: %i\n", isGameOver(pre), isGameOver(post));
+	else if (LOUDER_TEST == 0)
+		printf("OK: Game over check\n");
+	
+	//check scores
+	for(j = 0; j < pre->numPlayers; j++)
+	{
+		if(scoreFor(j, pre) != scoreFor(j, post))
+			printf("ERROR: Score for %i: Expected: %i, Actual: %i\n", j, scoreFor(j, pre), scoreFor(j, post));
+	}
+	//check other players
+	checkPlayerDetails(pre, post);
+}
 
-        //decide how many cards to have in hand/deck/discard
-        //make sure the hand has at least 1 card in it (for smithy)
-        while(numDeck == 0)
-            numDeck = rand() % numcards;
-        //while(numDiscard < 0)
-        //numDiscard = rand() % (numcards - (numDeck));
-        while(numHand == 0)
-            numHand = rand() % (numcards - numDeck +1);
-
-        //create temporary deck, hand, discard
-        for(i=0; i < numDeck; i++)
-            tempDeck[i] = tempCards[i];
-        for(i=numDeck; i < numDeck + numHand; i++)
-            tempHand[i-numDeck] = tempCards[i];
-        // for(i=numHand+numDeck; i < numcards; i++)
-        //     tempDiscard[i-(numHand+numDeck)] = tempCards[i];
-
-        //make sure adventurer card is in player's hand
-        adventLoc = (int) (rand() % numHand);
-        tempHand[adventLoc] = adventurer;
-
-
-        //determine where 2 treasure cards are in deck
-        tLoc1 = -1;
-        tLoc2 = -1;
-        tcount = 0;
-        for(i = numDeck-1; i >= 0; i--)
-        {
-            if(tempDeck[i] == copper)
-            {
-                if(tLoc1 == -1)
-                {
-                    tLoc1 = i;
-                    tType1 = copper;
-                    tcount++;
-                }
-                else
-                {
-                    tLoc2 = i;
-                    tType2 = copper;
-                    i = -1;
-                    tcount++;
-                }
-            }
-            else if(tempDeck[i] == silver)
-            {
-                if(tLoc1 == -1)
-                {
-                    tLoc1 = i;
-                    tType1 = silver;
-                    tcount++;
-                }
-                else
-                {
-                    tLoc2 = i;
-                    tType2 = silver;
-                    i = -1;
-                    tcount++;
-                }
-            }
-            else if(tempDeck[i] == gold)
-            {
-                if(tLoc1 == -1)
-                {
-                    tLoc1 = i;
-                    tcount++;
-                    tType1 = gold;
-                }
-                else
-                {
-                    tLoc2 = i;
-                    tType2 = gold;
-                    i = -1;
-                    tcount++;
-                }
-            }
-        }
-
-        //how many draws are going to be required:
-        if(tLoc2 != -1)
-        {
-            numDraws = numDeck - tLoc2;
-        }
-        else
-        {
-            numDraws = numDeck;
-        }
-
-
-#if (NOISY_TEST == 1)
-        printf("TEST# %d:   ", j);
-        printf("%d\t%d\t%d\t%d\n", numcards, numDeck, numDiscard, numHand);
-        printf("temp: %d [", numcards);
-        for(i = 0; i < 20; i++)
-            printf("%d, ", tempCards[i]);
-        printf("\b\b]\n");
-
-        printf("hand:  %d [", numHand);
-        for(i = 0; i < numHand; i++)
-            printf("%d, ", tempHand[i]);
-        printf("\b\b]\n");
-
-        printf("deck: %d [", numDeck);
-        for(i = 0; i < numDeck; i++)
-            printf("%d, ", tempDeck[i]);
-        printf("\b\b]\n");
-        /*
-                printf("discard: [");
-                for(i = 0; i < numDiscard; i++)
-                    printf("%d, ", tempDiscard[i]);
-                printf("\b\b]\n");
-        */
-        printf("tLoc1: %d\t\ttType: %d\n", tLoc1, tType1);
-        printf("tLoc2: %d\t\ttType: %d\n", tLoc2, tType1);
-        printf("draws needed: %d\n", numDraws);
-#endif
-
-        //populate the gamestate with the player's relevant deck, hand, and discard information
-        memset(&game, 0, sizeof(struct gameState));          // clear the game state
-        memcpy(game.hand[0], tempHand, sizeof(int) * numHand);
-        memcpy(game.deck[0], tempDeck, sizeof(int) * numDeck);
-
-        game.handCount[0] = numHand;
-        game.deckCount[0] = numDeck;
-        game.discardCount[0] = 0;
-        game.playedCardCount = 0;
-        for(i=0; i < MAX_DECK; i++)
-        {
-            game.playedCards[i] = -1;
-        }
-        memcpy(&test, &game, sizeof(struct gameState));     //establish a cloned game state
-
-
-        playCardAdventurer(&game, 0, adventLoc);
-
-
-#if (NOISY_TEST == 1)
-        printf("\nAFTER PLAYED ADVENTURER\n");
-        printf("temp: %d [", numcards);
-        for(i = 0; i < 20; i++)
-            printf("%d, ", tempCards[i]);
-        printf("\b\b]\n");
-
-        printf("hand:  %d \t[", game.handCount[0]);
-        for(i = 0; i < game.handCount[0]; i++)
-            printf("%d, ", game.hand[0][i]);
-        printf("\b\b]\n");
-
-        printf("deck:  %d \t[", game.deckCount[0]);
-        for(i = 0; i < game.deckCount[0]; i++)
-            printf("%d, ", game.deck[0][i]);
-        printf("\b\b]\n");
-
-        printf("discard: [");
-        for(i = 0; i < game.discardCount[0]; i++)
-            printf("%d, ", game.discard[0][i]);
-        printf("\b\b]\n");
-
-
-        //Check for proper card counts
-        printf("handcount: %d\ttcount: %d\tnumHand + tcount -1: %d\n",game.handCount[0], tcount,numHand + tcount - 1);
-#endif
-        if(game.handCount[0] == numHand + tcount - 1)
-            testHandCounts++;
-        else
-        {
-#if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-        }
-
-        //Check for proper cards in hand
-        //take discard of adventurer into consideration
-        tempHand[adventLoc] = tempHand[numHand-1];
-        if(tcount == 0)
-            tempHand[numHand-1]=-1;
-        else
-        {
-            tempHand[numHand-1] = tType1;
-            if(tcount == 2)
-                tempHand[numHand] = tType2;
-        }
-
-        currentTest = 1;
-        for(i=0; i <= numHand; i++)
-        {
-#if (NOISY_TEST == 1)
-            printf("tempHand[i]: %d\tgame.hand[0][i]: %d\n", tempHand[i], game.hand[0][i]);
-#endif
-            if(tempHand[i] != game.hand[0][i])
-                currentTest = 0;
-        }
-
-        if(currentTest == 1)
-            testHandCards++;
-        else
-        {
-#if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nHAND CARD LIST FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-        }
-
-        //Check for deck card counts
-        if(tLoc2 > -1) //did we find 2 treasures
-        {
-
-            if(game.deckCount[0] == tLoc2)
-                testDeckCounts++;
-            else
-            {
-#if (NOISY_TEST == 1)
-                printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-            }
-        }
-        else if(game.deckCount[0] == 0)
-            testDeckCounts++;
-        else
-        {
-#if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nDECK COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-        }
-
-#if (NOISY_TEST == 1)
-        //Check for played card counts
-        printf("playedCardCount: %d \tnumDeck: %d\n", game.playedCardCount, numDeck);
-#endif
-        if(tLoc1 == -1 && game.playedCardCount == numDeck)
-            testPlayedCounts++;
-        else if(tLoc2 == -1 && game.playedCardCount == numDeck-1)
-            testPlayedCounts++;
-        else if(game.playedCardCount == (numDeck - tLoc2 - 1))
-            testPlayedCounts++;
-        else
-        {
-#if (NOISY_TEST == 1)
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nPLAYED COUNT FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-#endif
-        }
-
-        //check for rest of game state to remain unchanged
-        if(statesAreEqual(&game, &test) == 1)
-            testStateCounts++;
-        else
-            printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=\nSTATE CHANGE FAILURE\n=-=-=-=-=-=-=-=-=-=-=-=-=-=\n");
-
-    }
-    printf("CardCountTests (%d total tests):\n", tests);
-    if(testHandCounts == tests)
-        printf("\tALL HAND COUNT TESTS PASSED\n");
-    else
-        printf("\tThere were %d hand count test failures.\n", tests - testHandCounts);
-
-    if(testDeckCounts == tests)
-        printf("\tALL DECK COUNT TESTS PASSED\n");
-    else
-        printf("\tThere were %d deck count test failures.\n", tests - testDeckCounts);
-
-    if(testPlayedCounts == tests)
-        printf("\tALL PLAYED COUNT TESTS PASSED\n");
-    else
-        printf("\tThere were %d played count test failures.\n", tests - testPlayedCounts);
-
-    printf("ListAccuracyTests (%d total tests):\n", tests);
-    if(testHandCards == tests)
-        printf("\tALL HAND LIST TESTS PASSED\n");
-    else
-        printf("\tThere were %d hand list test failures.\n", tests - testHandCards);
-
-    printf("State Change Tests (%d total tests):\n", tests);
-       if(testStateCounts == tests)
-           printf("\tALL STATE CHANGE TESTS PASSED\n");
-       else
-           printf("\tThere were %d state change test failures.\n", tests - testPlayedCards);
-
-
-
-    return 0;
+//check all player settings
+void checkPlayerDetails(struct gameState *pre, struct gameState *post)
+{
+	int i;
+	for(i = 0; i < pre->numPlayers; i++)
+	{
+		//check hand count
+		if(pre->handCount[i] != post->handCount[i])
+			printf("ERROR: hand count for player %i:  Expected: %i, Actual: %i\n", i, pre->handCount[i], post->handCount[i]);
+		else if (LOUDER_TEST == 0)
+			printf("OK: hand counts for player %i\n", i);
+		
+		//check deck count
+		if(pre->deckCount[i] != post->deckCount[i])
+			printf("ERROR: deck count for player %i:  Expected: %i, Actual: %i\n", i, pre->deckCount[i], post->deckCount[i]);
+		else if (LOUDER_TEST == 0)
+			printf("OK: deck counts for player %i\n", i);
+		
+		//check discard count
+		if(pre->discardCount[i] != post->discardCount[i])
+			printf("ERROR: discard count for  for player %i:  Expected: %i, Actual: %i\n", i, pre->discardCount[i], post->discardCount[i]);
+		else if (LOUDER_TEST == 0)
+			printf("OK: discard counts for player %i\n", i);
+	}
 }

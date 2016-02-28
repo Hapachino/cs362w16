@@ -441,7 +441,7 @@ int scoreFor (int player, struct gameState *state) {
     }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };
@@ -658,7 +658,7 @@ int cardAdventurer(struct gameState *state)
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == copper || cardDrawn == silver)
+	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 	  drawntreasure++;
 	else{
 	  temphand[z]=cardDrawn;
@@ -670,6 +670,8 @@ int cardAdventurer(struct gameState *state)
 	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 	z=z-1;
       }
+
+      
       return 0;
 }
 
@@ -679,7 +681,7 @@ int cardSmithy(struct gameState *state, int handPos)
    int i;
    int currentPlayer = whoseTurn(state);
 
-   for (i = 0; i < 4; i++)
+   for (i = 0; i < 3; i++)
    {
 	drawCard(currentPlayer, state);
    }
@@ -716,7 +718,7 @@ int cardRemodel(struct gameState *state, int choice1, int choice2, int handPos)
 	  return -1;
    }
 
-   gainCard(choice2, state, 0, currentPlayer);
+   gainCard(choice1, state, 0, currentPlayer);
 
    //discard card from hand
    discardCard(handPos, currentPlayer, state, 0);
@@ -726,7 +728,7 @@ int cardRemodel(struct gameState *state, int choice1, int choice2, int handPos)
    {
       if (state->hand[currentPlayer][i] == j)
       {
-	      discardCard(i, currentPlayer, state, 0);			
+	      discardCard(i, currentPlayer, state, 1);			
 	      break;
       }
    }
@@ -843,6 +845,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  if (DEBUG){
 	    printf("Cards Left: %d\n", supplyCount(choice1, state));
 	  }
+	  return -1;
 	}
 	else if (state->coins < getCost(choice1)){
 	  printf("That card is too expensive!\n");
@@ -850,6 +853,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  if (DEBUG){
 	    printf("Coins: %d < %d\n", state->coins, getCost(choice1));
 	  }
+	  return -1;
 	}
 	else{
 
@@ -1273,8 +1277,8 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
   if (trashFlag < 1)
     {
       //add card to played pile
-      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-      state->playedCardCount++;
+      state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][handPos]; 
+      state->discardCount[currentPlayer]++;
     }
 	
   //set played card to -1

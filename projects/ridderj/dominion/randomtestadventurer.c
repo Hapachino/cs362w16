@@ -25,6 +25,7 @@ int main() {
       "feast", "gardens", "mine", "remodel", "smithy", "village", "baron", "great_hall", "minion", "steward",
      "tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", "sea_hag", "treasure_map" };
     int countNum = 0;
+    int whosTurnCheck;
     int coinRandom;
     int coinCounter;
     int allCardsCounter;
@@ -72,7 +73,7 @@ int main() {
     
    
     
-    while(countNum < 500000){ //Stops testing after a certain number of attemtps
+    while(countNum < 20000){ //Stops testing after a certain number of attemtps
     if(DEBUG2)
       printf("\nTEST START---------------------------------\n");
 
@@ -82,7 +83,7 @@ int main() {
           memset(&G, 23, sizeof(struct gameState));   // clear the game state
           r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
           G.whoseTurn = floor(Random()*numPlayer); //set current player
-          
+          whosTurnCheck = G.whoseTurn;
           
  
                
@@ -183,15 +184,15 @@ int main() {
              if(DEBUG2) {
                 printf("ADVENTURER CARD---\n");
                 
-                printf("Hand Supply Count = %d ,expected %d\n", G.handCount[G.whoseTurn], handRandom+2);
+                printf("Hand Supply Count = %d ,expected %d\n", G.handCount[whosTurnCheck], handRandom+1);
                 //assert(G.handCount[G.whoseTurn] == handRandom);
-                if(G.handCount[G.whoseTurn] != handRandom)
+                if(G.handCount[whosTurnCheck] != handRandom+1)
                    printf("TEST FAIL\n");
                 
                 
-                printf("Discard Supply Count = %d,expected %d\n",G.discardCount[G.whoseTurn], discardRandom+allCardsCounter+1);
-                //assert( G.discardCount[G.whoseTurn] == discardRandom+allCardsCounter+1);
-                if( G.discardCount[G.whoseTurn] != discardRandom+allCardsCounter+1)
+                printf("Discard Supply Count = %d,expected %d\n",G.discardCount[G.whoseTurn], discardRandom+allCardsCounter);
+                //assert( G.discardCount[G.whoseTurn] == discardRandom+allCardsCounter);
+                if( G.discardCount[G.whoseTurn] != discardRandom+allCardsCounter)
                   printf("TEST FAIL\n");
                 
                 printf("Coins = %d ,expected %d\n",G.coins, coinRandom);

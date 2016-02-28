@@ -1,0 +1,55 @@
+Noverse Bug Reporting Template
+==============================
+
+Title: Smithy card is not adding the correct amount of cards to the player's hand.  
+
+Class: Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date: 2/22/2016          
+Reported By: Juan Solis  
+Email: solisj@oregonstate.edu      
+
+
+Product:   dominion.c/playSmithy()            Version:
+Platform:    C                                  Version:
+Browser:                                        Version:
+URL:        
+
+Is it reproducible: Yes
+
+Description
+===========
+After playing the smithy card, the handCount should increase by 2(+3 new cards, -1 smithy card = net +2 cards).
+
+
+Steps to Produce/Reproduce
+--------------------------
+1) Run smithyEffect()
+2) Check the gameState.handCount[player] for the smithy card
+
+
+Expected Results
+----------------
+previousGameState..handCount[player] + 2
+
+
+Actual Results
+--------------
+Testing that player[0] handCount has increased by 2...
+handCount = 2, Expected = 3
+
+
+Workarounds
+-----------
+none
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+The for loop in playSmithy() is starting the variable 'i' at '1'. It should be set to "i = 0".

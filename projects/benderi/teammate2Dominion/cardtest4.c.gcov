@@ -1,0 +1,95 @@
+        -:    0:Source:cardtest4.c
+        -:    0:Graph:cardtest4.gcno
+        -:    0:Data:cardtest4.gcda
+        -:    0:Runs:3
+        -:    0:Programs:1
+        -:    1:/* Author:      Ian Bender
+        -:    2: * Course:      CS362
+        -:    3: * Due Date:    2/3/2016
+        -:    4: * Description: Unit test for Village card.
+        -:    5: * Requirements
+        -:    6: *      - player draws 1 card
+        -:    7: *      - player gains 2 actions
+        -:    8: */
+        -:    9:
+        -:   10:#include "dominion.h"
+        -:   11:#include "dominion_helpers.h"
+        -:   12:#include <string.h>
+        -:   13:#include <stdio.h>
+        -:   14:#include <assert.h>
+        -:   15:#include "rngs.h"
+        -:   16:
+function main called 3 returned 100% blocks executed 78%
+        3:   17:int main() 
+        -:   18:{
+        -:   19:    int i, j;
+        -:   20:    int outcome;
+        3:   21:    int seed = 1000;
+        3:   22:    int numPlayers = 2;
+        3:   23:    int thisPlayer = 0;
+        -:   24:    struct gameState G, testG;
+        3:   25:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        -:   26:                    remodel, smithy, village, baron, great_hall};
+        -:   27:
+        3:   28:    printf("TESTING - VILLAGE CARD\n");
+call    0 returned 100%
+        -:   29:    //initialize game state
+        3:   30:    outcome = initializeGame(numPlayers, k, seed, &G);
+call    0 returned 100%
+        3:   31:    if (outcome == -1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   32:        printf("ERROR - Game initialization failed.\n");
+call    0 never executed
+        3:   33:    memcpy(&testG, &G, sizeof(struct gameState));
+        -:   34:
+        -:   35:    //give Village card to first player
+        3:   36:    testG.hand[thisPlayer][testG.handCount[thisPlayer]] = village;
+        3:   37:    testG.handCount[thisPlayer]++;
+        3:   38:    if (G.handCount[thisPlayer] + 1 == testG.handCount[thisPlayer])
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        3:   39:        printf("SUCCESS - Village card given to player.\n");
+call    0 returned 100%
+        -:   40:    else
+    #####:   41:        printf("ERROR - Village card not given.\n");
+call    0 never executed
+        -:   42:
+        -:   43:    //play Village card
+        -:   44:    //teammate refactored code for this card as villageCard
+        3:   45:    villageCard(&testG, testG.hand[thisPlayer][testG.handCount[thisPlayer]-1]);
+call    0 returned 100%
+        -:   46:    //cardEffect(village, 0, 0, 0, &testG, 
+        -:   47:    //        testG.hand[thisPlayer][testG.handCount[thisPlayer]-1], 0);
+        -:   48:    
+        -:   49:    //test that player gained 1 card
+        3:   50:    if (G.handCount[thisPlayer] + 1 == testG.handCount[thisPlayer])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   51:        printf("SUCCESS - Player gained 1 new card, discarded 1.\n");
+call    0 never executed
+        -:   52:    else
+        -:   53:    {
+        3:   54:        printf("ERROR - Player did not gain/discard correct # of cards.\n");
+call    0 returned 100%
+        3:   55:        printf("expected: %d, actual: %d\n", G.handCount[thisPlayer] + 1,
+call    0 returned 100%
+        -:   56:                    testG.handCount[thisPlayer]);
+        -:   57:    }
+        -:   58:
+        -:   59:    //test that player gained 2 actions
+        3:   60:    if (G.numActions + 2 == testG.numActions)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        3:   61:        printf("SUCCESS - Player gained 2 actions.\n");
+call    0 returned 100%
+        -:   62:    else
+    #####:   63:        printf("ERROR - Player did not gain 2 actions.\n");
+call    0 never executed
+        -:   64:
+        -:   65:
+        3:   66:    printf("TEST COMPLETE\n\n");
+call    0 returned 100%
+        -:   67:
+        3:   68:    return 0;
+        -:   69:}

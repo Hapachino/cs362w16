@@ -15,6 +15,9 @@ unittest1: unittest1.c dominion.o rngs.o
 randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
 	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
     
+cardtest44: cardtest44.c dominion.o rngs.o
+	gcc -o cardtest44 -g  cardtest44.c dominion.o rngs.o $(CFLAGS)    
+    
 randomtestcard: randomtestcard.c dominion.o rngs.o
 	gcc -o randomtestcard -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
     

@@ -3,9 +3,9 @@ CS362 Assignment 5
 Winter 2016
 
 
-******************
+****************************
 Teammate1: Nancy Chan
-******************	
+****************************	
 
 TEST SUMMARY:
 
@@ -133,9 +133,9 @@ Slight refactoring to give more clarity that all tests were working correctly, s
 problem I had with Andrew's code where the bug broke my unit test function. 
 Test failed. Discard count after card was played not correct. Sometimes it was equal, and sometimes discard pile equaled 0. 
 
-********************
+*****************************
 Teammate2: Andrew Calhoun 
-*********************
+*****************************
 
 TEST SUMMARY:
 
@@ -166,11 +166,15 @@ Refactored playCounRoom to change name of function and number of arguments to ma
 Tests passed. No bug found. 
 
 Test 9: tested random test for Adventurer 
-All Tests Passed. 
-
+randomtestadventurer.c did not need refactoring to work with Andrew's code. I ran a suite of different tests to determine
+if the segmentation fault that was occuring was because my test wasn't running. However, it is due to the bug introduced 
+in Andrew's refactoring that allowed for my test to assert on line 74 when checking for the cardEffect = 0. My test did 
+find this bug however, because I set up the assert before the suite of tests, I initially could not see more detail on the
+assert. 
+		
 Test 10: tested random test for Great Hall
-Slight refactoring to give more clarity that all tests were working correctly, so that I didn't have the same
-problem I had with Andrew's code where the bug broke my unit test function. 
+Slight refactoring in test to show that the discard count was indeed failing the test. This has to not with an error
+introduced by Andrew in great hall, but in a discard function issue in the dominion code. 
 Test failed. Discard count after card was played not correct. Sometimes it was equal, and sometimes discard pile equaled 0. 
 
 
@@ -291,38 +295,7 @@ ERROR 1: Hand count difference! Before: 316 After: 317
 ======================================================
 Bug 5 Andrew Calhoun - Random Testing Adventurer
 ======================================================
+Segmentation fault introduced during this test for my random tester. Assert failed on line 74. 
 
-ITERATION 869
-Drawn Treasure: 1
-
-Cards in hand for player 1 are: Card: gold
-Card: duchy
-Card: duchy
-Card: baron
-Card: gardens
-Card: estate
-Card: estate
-Card: estate
-Card: curse
-Card: copper
-
-Cards in the deck for player 1: Card in Deck: copper
-Card in Deck: copper
-
-End Turn Cards for Player 1: Card: gold
-Card: duchy
-Card: duchy
-Card: baron
-Card: gardens
-Card: estate
-Card: estate
-Card: estate
-Card: curse
-Card: copper
-
-End Turn Deck Cards for Player 1: Cards in Deck: gold
-Cards in Deck: duchy
-New Cards: 5
-Discarded: 2
-
+Results:
 Failed test, Player 1 hand count is incorrect.

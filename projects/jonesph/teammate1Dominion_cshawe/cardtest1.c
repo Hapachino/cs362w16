@@ -37,19 +37,19 @@ int testVillageCard(int player, struct gameState *after, int position)
 
 	if (after->handCount[player] != before.handCount[player])
 	{
-		printf("The hand counts differed. \n");
+		printf("The Village card didn't work properly. \n");
 	}
 //	assert(after->handCount[player] == before.handCount[player]);
 
 	if (memcmp(&before, after, sizeof(struct gameState)) != 0)
 	{
-		printf("The gamestate memory sizes didn't match. \n");
+		printf("The Village card didn't work properly. \n");
 	}
 //	assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
 
 	if (memcmp(after->deck[player], before.deck[player], sizeof(after->deck[player])) != 0)
 	{
-		printf("The player deck memory sizes didn't match. \n");
+		printf("The Village card didn't work properly. \n");
 	}
 //	assert(memcmp(after->deck[player], before.deck[player], sizeof(after->deck[player])) == 0);
 

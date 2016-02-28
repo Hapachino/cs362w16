@@ -1,0 +1,358 @@
+        -:    0:Source:randomtestadventurer.c
+        -:    0:Graph:randomtestadventurer.gcno
+        -:    0:Data:randomtestadventurer.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* randomtestadventurer.c
+        -:    2: * Author: Eric Anderson
+        -:    3: * Class: CS362w16
+        -:    4: * Description: Unit test for the Adventurer card in dominion.c
+        -:    5: * Action Sequence: Reveal cards until two treasure cards are revealed.
+        -:    6: * Add them to your hand, then discard the other revealed cards.
+        -:    7: This version of lest loops many time and used random inputs for cards, 
+        -:    8: players, coins etc.
+        -:    9:*/
+        -:   10:
+        -:   11:#include "dominion.h"
+        -:   12:#include "dominion_helpers.h"
+        -:   13:#include <string.h>
+        -:   14:#include <stdio.h>
+        -:   15:#include <stdlib.h>
+        -:   16:#include <assert.h>
+        -:   17:#include <math.h>
+        -:   18:#include "rngs.h"
+        -:   19:
+        -:   20:#define DEBUG 0
+        -:   21:#define NOISY_TEST 1
+        -:   22:#define TESTCARD "Adventurer"
+        -:   23:/**********************************************************
+        -:   24: * function: main
+        -:   25: * description: This function executes the adventurer effect
+        -:   26: * against a copy or the game struct, I compare to make sure
+        -:   27: * the post play has increment the cards by two treasure cards
+        -:   28: * and that the function can be executed.
+        -:   29: * input: the player number (0-3), a prefilled out struct
+        -:   30: * returns: 0 for success
+        -:   31: ***********************************************************/
+function main called 1 returned 100% blocks executed 85%
+        -:   32:int main (int argc, char** argv) {
+        -:   33:
+        -:   34:  int i, n, handPos, player, choice1, choice2, choice3, x;
+        -:   35:  int *bonus;
+        -:   36:
+        -:   37:  struct gameState G;
+        -:   38:
+        1:   39:  SelectStream(2);
+        1:   40:  PutSeed(73);
+        -:   41:
+        -:   42:  // n controls the number of random tests to run
+       22:   43:  for (n = 0; n < 10; n++) { //loop 20000 times
+branch  0 taken 91%
+branch  1 taken 9%
+        -:   44:    // Initialize the gameState with random bytes
+   526020:   45:    for (i = 0; i < sizeof(struct gameState); i++) {
+branch  0 taken 99%
+branch  1 taken 1%
+   263000:   46:      ((char*)&G)[i] = floor(Random() * 255);
+   263000:   47:    }
+        -:   48:    //Set critical values for current test to be with in valid ranges
+        -:   49:    //Set whoseTurn to a valid player number
+       10:   50:    G.numPlayers = 2 + floor(Random() * (MAX_PLAYERS - 1));
+       10:   51:    player = floor(Random() * G.numPlayers);
+       10:   52:    G.whoseTurn = player;
+        -:   53:    
+        -:   54:    //Set deck/hand/discard values to reasonable numbers
+       78:   55:    for (i = 0; i < G.numPlayers; i++) {
+branch  0 taken 74%
+branch  1 taken 26%
+       29:   56:      G.deckCount[i] = floor(Random() * 10);//This is a lower number to increase the number of 0's
+       29:   57:      G.handCount[i] = floor(Random() * (MAX_HAND/2));
+       29:   58:      G.discardCount[i] = floor(Random() * (MAX_DECK/2));
+       29:   59:    }
+        -:   60:    
+       10:   61:    G.playedCardCount = floor(Random() * (MAX_DECK/2));
+        -:   62:    
+        -:   63:    //Set cards to valid card numbers (with more treasure cards mixed in)
+    10020:   64:    for (i = 0; i < MAX_DECK; i++) {
+branch  0 taken 99%
+branch  1 taken 1%
+     5000:   65:      if (i%6 == 0){
+branch  0 taken 17%
+branch  1 taken 83%
+      840:   66:      	G.deck[player][i] = 4 + floor(Random() * 3);
+      840:   67:            } else {
+     4160:   68:      	G.deck[player][i] = floor(Random() * 27);
+        -:   69:        }
+     5000:   70:      }  
+    10020:   71:    for (i = 0; i < MAX_DECK; i++) {
+branch  0 taken 99%
+branch  1 taken 1%
+     5000:   72:      if (i%6 == 0){
+branch  0 taken 17%
+branch  1 taken 83%
+      840:   73:      	G.discard[player][i] = 4 + floor(Random() * 3);
+      840:   74:      } else {
+     4160:   75:      	G.discard[player][i] = floor(Random() * 27);
+        -:   76:      }
+     5000:   77:    }
+    10020:   78:    for (i = 0; i < MAX_HAND; i++) {
+branch  0 taken 99%
+branch  1 taken 1%
+     5000:   79:      if (i%6 == 0){
+branch  0 taken 17%
+branch  1 taken 83%
+      840:   80:      	G.hand[player][i] = 4 + floor(Random() * 3);
+      840:   81:      } else {
+     4160:   82:      	G.hand[player][i] = floor(Random() * 27);
+        -:   83:      }
+     5000:   84:    }
+       10:   85:    G.numBuys = 1;//floor(Random() * 10);
+        -:   86:    //Set position to within range of handCount[]
+       10:   87:    handPos = floor(Random() * (G.handCount[player]));
+        -:   88:    //Set random values for unused parameters
+       10:   89:    choice1 = floor(Random() * 256);
+       10:   90:    choice2 = floor(Random() * 256);
+       10:   91:    choice3 = floor(Random() * 256);
+       10:   92:    x = floor(Random() * 256);
+       10:   93:    bonus = &x;
+        -:   94:    
+        -:   95:    // copy the game state to a test case
+        -:   96:    struct gameState testG;
+       10:   97:    memcpy (&testG, &G, sizeof(struct gameState));
+        -:   98:
+        -:   99:    //define variables
+        -:  100:    int r;
+       10:  101:    int seed_sync = 9;
+        -:  102:    int j;               // counter
+       10:  103:    int p = whoseTurn(&testG);           // players
+        -:  104:    int preCount;
+       10:  105:    int amount = 0;
+        -:  106:    int preamount;
+       10:  107:    int moneycard = 0;
+        -:  108:    int newcard;
+       10:  109:    int z = 0;
+        -:  110:    int temp[MAX_HAND];
+       10:  111:    int currPlayer = whoseTurn(&testG);
+        -:  112:
+       10:  113:    PutSeed(seed_sync);
+        -:  114:
+       10:  115:    printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
+       10:  116:    printf("TEST 1: +2 cards\n");
+        -:  117:   
+        -:  118:      // Test to see what cards are already in the players hand
+       10:  119:      preCount = testG.handCount[p];
+       10:  120:      preamount = G.coins;
+       10:  121:      amount = 0;
+       10:  122:      printf("Coin cards in hand originally, if any: ");
+     1822:  123:      for(j = 0; j < testG.handCount[p]; j++){
+branch  0 taken 99%
+branch  1 taken 1%
+      901:  124:        if(testG.hand[p][j] == copper){
+branch  0 taken 8%
+branch  1 taken 92%
+       72:  125:          printf("copper, ");
+       72:  126:          preamount += 1;
+       72:  127:          preCount++;
+       72:  128:        }
+      901:  129:        if(testG.hand[p][j] == silver){
+branch  0 taken 9%
+branch  1 taken 91%
+       78:  130:          printf("silver, ");
+       78:  131:          preamount += 2;
+       78:  132:          preCount++;
+       78:  133:        }
+      901:  134:        if(testG.hand[p][j] == gold){
+branch  0 taken 7%
+branch  1 taken 93%
+       63:  135:          printf("gold, ");
+       63:  136:          preamount += 3;
+       63:  137:          preCount++;
+       63:  138:        }
+      901:  139:      }
+        -:  140:
+       10:  141:      printf("\n");
+        -:  142:
+        -:  143:    // play the turn
+       10:  144:    r = cardEffect(adventurer, choice1, choice2, choice3, &testG, handPos, bonus);
+        -:  145:    
+        -:  146:  //now check to see what cards we got
+       10:  147:  printf("Coin cards Found: ");
+     1862:  148:      for(j = 0; j < testG.handCount[p]; j++){
+branch  0 taken 99%
+branch  1 taken 1%
+      921:  149:        if(testG.hand[p][j] == copper){
+branch  0 taken 9%
+branch  1 taken 91%
+       83:  150:          printf("copper, ");
+       83:  151:          amount += 1;
+       83:  152:        }
+      921:  153:        if(testG.hand[p][j] == silver){
+branch  0 taken 8%
+branch  1 taken 92%
+       78:  154:          printf("silver, ");
+       78:  155:          amount += 2;
+       78:  156:        }
+      921:  157:        if(testG.hand[p][j] == gold){
+branch  0 taken 8%
+branch  1 taken 92%
+       72:  158:          printf("gold, ");
+       72:  159:          amount += 3;
+       72:  160:        }
+      921:  161:      }
+        -:  162:
+       10:  163:      printf("\n");
+        -:  164:
+        -:  165:   // ----------- TEST 2: choice2: +2 coins --------------
+       10:  166:    printf("TEST 2: +2 coins in hand\n");    
+        -:  167:      // test to see if two coins were added to the hand
+       10:  168:      if(amount == testG.coins)
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  169:        printf("Passed. Coin card amount expected: %d   amount finish: %d\n", amount, testG.coins);
+        -:  170:      else 
+       10:  171:        printf("FAILED. Coin card amount expected: %d   amount finish: %d\n", amount, testG.coins);
+        -:  172:
+        -:  173:   // ----------- TEST 3: +2 coins --------------
+       10:  174:    printf("TEST 3: testG & post card verification\n");   
+        -:  175:      // Now lets test to see if our rep and post states match - they should!
+       10:  176:      if(G.coins == testG.coins)
+branch  0 taken 100%
+branch  1 taken 0%
+       10:  177:        printf("Passed. Coin amount the same\n");
+        -:  178:      else
+    #####:  179:        printf("FAILED. Coin amount different\n");
+        -:  180:
+        -:  181:   // ----------- TEST 4: +2 coins --------------
+       10:  182:    printf("TEST 4: +2 coins added\n");   
+        -:  183:      // Did the player actually get 2 coins added?
+       10:  184:      if(testG.handCount[p] == G.handCount[p] + 2)        // - adventurer, + 2, = gain 1 
+branch  0 taken 100%
+branch  1 taken 0%
+       10:  185:        printf("Passed. Coin card amount expected: %d   count finish: %d\n", G.handCount[p] + 2, testG.handCount[p]);
+        -:  186:      else 
+    #####:  187:        printf("FAILED. Coin card amount expected: %d   count finish: %d\n", G.handCount[p] +2, testG.handCount[p]);
+        -:  188:
+        -:  189:    //printf("handCount: %d\n", testG.handCount[currPlayer]);
+       10:  190:    PutSeed(seed_sync);
+        -:  191:
+        -:  192:    // Special Case: If deckCount is 0, it should shuffle!
+        -:  193:    // Does the deck shuffle when deckCount is at 0?
+        -:  194:    // ----------- TEST 5: Shuffle --------------
+       10:  195:    printf("Test 5: Special Case -- if deckCount is zero, shuffle should be selected:\n");
+      102:  196:    while (moneycard < 2) {
+branch  0 taken 80%
+branch  1 taken 20%
+       41:  197:      if(testG.deckCount[currPlayer]<1){
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  198:        shuffle(currPlayer, &testG);
+    #####:  199:        printf("I shuffled!\n");
+    #####:  200:      }
+       41:  201:      drawCard(currPlayer, &testG);
+       41:  202:      newcard = testG.hand[currPlayer][(testG.handCount[currPlayer])-1];
+       94:  203:      if (newcard == copper || newcard == silver || newcard == gold) {
+branch  0 taken 76%
+branch  1 taken 24%
+branch  2 taken 71%
+branch  3 taken 29%
+branch  4 taken 5%
+branch  5 taken 95%
+       20:  204:        moneycard++;
+       20:  205:      } 
+        -:  206:      else {
+       21:  207:        temp[z] = newcard;
+       21:  208:        testG.handCount[currPlayer]--;
+       21:  209:        z++;
+        -:  210:      }
+        -:  211:    }
+       62:  212:    while (z-1>=0){
+branch  0 taken 68%
+branch  1 taken 32%
+       21:  213:      testG.discard[currPlayer][testG.discardCount[currPlayer]++] = temp[z-1];
+       21:  214:      z=z-1;
+        -:  215:    }
+        -:  216:    
+        -:  217:    //Check that testG and post gameStates are equivalent
+        -:  218:    // ----------- TEST 6: Check other players --------------
+       10:  219:    printf("Test 6: Make sure other players are uneffected\n");
+        -:  220:    #if (DEBUG)
+        -:  221:      assert (r == 0);
+        -:  222:      assert (testG.numBuys == G.numBuys);
+        -:  223:      assert (testG.discardCount[testG.whoseTurn] == G.discardCount[testG.whoseTurn]);
+        -:  224:      assert (testG.handCount[testG.whoseTurn] == G.handCount[testG.whoseTurn]);
+        -:  225:      assert (testG.deckCount[currPlayer] == G.deckCount[currPlayer]);
+        -:  226:    #endif
+       10:  227:      if (testG.numBuys != G.numBuys){
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  228:        printf("FAILED: numBuys Mismatch Expected %d Received: %d\n", G.numBuys, testG.numBuys);
+    #####:  229:      }else {
+       10:  230:        printf("Passed: numBuys Expected %d Received: %d\n", G.numBuys, testG.numBuys);
+        -:  231:      }
+       10:  232:      if (testG.discardCount[testG.whoseTurn] == G.discardCount[testG.whoseTurn]){
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  233:        printf("FAILED: discardCount Mismatch Expected %d Received: %d\n", G.discardCount[testG.whoseTurn], testG.discardCount[testG.whoseTurn]);
+    #####:  234:      } else {
+       10:  235:        printf("Passed: discardCount Expected %d Received: %d\n", G.discardCount[testG.whoseTurn], testG.discardCount[testG.whoseTurn]);
+        -:  236:      }
+       10:  237:      if (testG.handCount[testG.whoseTurn] == G.handCount[testG.whoseTurn]){
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  238:        printf("FAILED: handCount Mismatch Expected %d Received: %d\n", G.handCount[testG.whoseTurn], testG.handCount[testG.whoseTurn]);
+    #####:  239:      } else {
+       10:  240:        printf("Passed: handCount Expected %d Received: %d\n", G.handCount[testG.whoseTurn], testG.handCount[testG.whoseTurn]);
+        -:  241:      }
+       10:  242:      if (testG.deckCount[currPlayer] == G.deckCount[currPlayer]){
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  243:        printf("FAILED: deckCount Mismatch Expected %d Received: %d\n", G.deckCount[currPlayer], testG.deckCount[currPlayer]);
+    #####:  244:      } else {
+       10:  245:        printf("Passed: deckCount Expected %d Received: %d\n", G.deckCount[currPlayer], testG.deckCount[currPlayer]);
+        -:  246:      }
+        -:  247:
+        -:  248:      // Did the game state money amount change?
+        -:  249:      // ----------- TEST 7: Supply counts for treasure distributed --------------
+       10:  250:      printf("Test 7: supply counts for treasure should have been distributed:\n");
+       10:  251:      if(G.supplyCount[copper] != testG.supplyCount[copper])
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  252:        printf("FAILED. Copper Count Mismatch. Expected: %d  Received: %d\n", G.supplyCount[copper], testG.supplyCount[copper]);
+       10:  253:      if(G.supplyCount[silver] != testG.supplyCount[silver])
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  254:        printf("FAILED. Silver Count Mismatch. Expected: %d  Received: %d\n", G.supplyCount[silver], testG.supplyCount[silver]);
+       10:  255:      if(G.supplyCount[gold] != testG.supplyCount[gold])
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  256:        printf("FAILED. Gold Count Mismatch. Expected: %d  Received: %d\n", G.supplyCount[gold], testG.supplyCount[gold]);
+        -:  257:      else
+       10:  258:        printf("Passed. Supply counts for treasure cards are the same\n");
+        -:  259:
+        -:  260:      // ----------- TEST 7: Did the supply counts change? --------------
+       10:  261:      printf("Test 8: Did the supply counts ( points and curses) change?\n");
+       10:  262:      if(G.supplyCount[estate] != testG.supplyCount[estate])
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  263:        printf("FAILED. Estate Count Mismatch. Expected: %d  Received: %d\n", G.supplyCount[estate], testG.supplyCount[estate]);
+       10:  264:      if(G.supplyCount[duchy] != testG.supplyCount[duchy])
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  265:        printf("FAILED. Duchy Count Mismatch. Expected: %d  Received: %d\n", G.supplyCount[duchy], testG.supplyCount[duchy]);
+       10:  266:      if(G.supplyCount[province] != testG.supplyCount[province])
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  267:        printf("FAILED. Province Count Mismatch. Expected: %d  Received: %d\n", G.supplyCount[province], testG.supplyCount[province]);
+       10:  268:      if(G.supplyCount[curse] != testG.supplyCount[curse])
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  269:        printf("FAILED. Province Count Mismatch. Expected: %d  Received: %d\n", G.supplyCount[curse], testG.supplyCount[curse]);
+        -:  270:      else
+       10:  271:        printf("Passed. Supply counts for curses and victory cards are the same\n");
+        -:  272:
+       10:  273:  }
+        -:  274:
+        1:  275:  printf ("ALL TESTS COMPLETE\n");
+        -:  276:
+        1:  277:  return 0;
+        -:  278:}

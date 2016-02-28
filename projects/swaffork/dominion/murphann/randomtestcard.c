@@ -1,38 +1,151 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
+#include "testhelper.h"
+#include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
-#include <stdlib.h>
+#include <math.h>
 
-#define TESTCARD "village"
+int compare(const void*, const void*);
 
-int main() {
-  int numPlayers = 2;
-  int trials = 10;
-  struct gameState G, storeG;
-  int p1 = 0;
-  int i = 0;
-  int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
-               council_room, village, mine, tribute, ambassador};
+int setUp(struct gameState* state)
+{
+    int player;
+    int seed = 1000;
+    int numPlayers = 2;
+    int cards[10] = {adventurer, council_room, feast, gardens, mine,
+                     remodel, smithy, village, baron, great_hall};
 
-  printf("********Testing %s***********\n", TESTCARD);
-  for(i = 1; i <= trials; i++){
-  int seed = rand()%1000+1;
+    // Initialize gameState
+    if (initializeGame(numPlayers, cards, seed, state) != 0)
+    {
+        printf("Error: Default initializeGame() failed.\n");
+        return -1;
+    }
 
-  initializeGame(numPlayers, kcards, seed, &G);
-  memcpy(&storeG, &G, sizeof(struct gameState));
-  cardEffect(village, 0, 0, 0, &G, 0, 0);
+    // Randomly decide who goes first and randomly set their deck, discard, and hand count
+    player = rand() % 2;
+    state->whoseTurn = player;
+    state->deckCount[player] = floor(Random() * MAX_DECK);
+    state->handCount[player] = floor(Random() * MAX_HAND + 1);
+    state->discardCount[player] = floor(Random() * MAX_DECK);
 
-  printf("Test %d\n", i);
-  printf("Cards in Hand:  %d, Cards Expected: %d\n",
-        G.handCount[p1], storeG.handCount[p1]+1);
-  printf("Cards in Deck: %d, cards Expected: %d\n",
-        G.deckCount[p1], storeG.deckCount[p1]-1);
-  printf("Number of Actions:  %d, Number Expected: %d\n",
-        G.numActions, storeG.numActions+2);
-    printf("\n\n");
-  }
-   return 0;
+    return 0;
+}
+
+void testSmithy()
+{
+    printf("Beginning random tests for smithy:\n");
+
+    int i;
+    int j;
+    int passed = 0;
+    int numTests = 1000;
+    int player;
+
+    for (i = 0; i < numTests; i++)
+    {
+        struct gameState state;
+        if (setUp(&state) < 0)
+        {
+            printf("ERROR: setup failed\n");
+            continue;
+        }
+        struct gameState expected;
+        memcpy(&expected, &state, sizeof(struct gameState));
+
+        // Add smithy as last card in hand and play it.
+        player = state.whoseTurn;
+        int handPos = state.handCount[player];
+        state.hand[player][handPos] = smithy;
+        state.handCount[player]++;
+        if (playSmithy(&state, handPos) != 0)
+        {
+            printf("Failed: playSmithy() failed.\n");
+            continue;
+        }
+
+        // Setup expected state.
+        for (j = 0; j < 3; j++)
+        {
+            expected.hand[player][expected.handCount[player]] = expected.deck[player][expected.deckCount[player]];
+            expected.handCount[player]++;
+            expected.deckCount[player]--;
+        }
+        expected.handCount[player] += 3;
+        expected.playedCards[expected.playedCardCount] = smithy;
+        expected.playedCardCount++;
+
+        // Compare states
+        if (state.handCount[(player + 1) % 2] != expected.handCount[(player + 1) % 2])
+        {
+            printf("Non-active player's hand changed.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.deckCount[(player + 1) % 2] != expected.deckCount[(player + 1) % 2])
+        {
+            printf("Non-active player's deck changed.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.discardCount[(player + 1) % 2] != expected.discardCount[(player + 1) % 2])
+        {
+            printf("Non-active player's discard pile changed.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.handCount[player] != expected.handCount[player])
+        {
+            // Remove print statement since we intentionally introduced this bug
+            // printf("Player's hand count not as expected.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.playedCardCount != expected.playedCardCount)
+        {
+            printf("Player's played card count not as expected.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.discardCount[player] != expected.discardCount[player])
+        {
+            printf("Player's discard card count not as expected.\n");
+            passed += 0;
+            continue;
+        }
+        else if (state.deckCount[player] != expected.deckCount[player])
+        {
+            printf("Player's deck card count not as expected.\n");
+            passed += 0;
+            continue;
+        }
+        // Compare expected to actual hands
+        else
+        {
+            qsort(state.hand[player], state.handCount[player], sizeof(int), compare);
+            qsort(expected.hand[player], expected.handCount[player], sizeof(int), compare);
+            for (j = 0; j < expected.handCount[player]; j++)
+            {
+                if (state.hand[player][j] != expected.hand[player][j])
+                {
+                    printf("Failed: hands do not match.\n");
+                    passed += 0;
+                    continue;
+                }
+            }
+        }
+        
+        passed += 1;
+    }
+
+    printf("End of test. %d out of %d tests passed.\n\n", passed, i);
+}
+
+int main()
+{
+    testSmithy();
+    return 0;
 }

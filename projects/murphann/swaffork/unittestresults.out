@@ -1,0 +1,64 @@
+********Testing shuffle***********
+BEFORE SHUFFLE
+1
+4
+4
+1
+4
+AFTER SHUFFLE
+1
+4
+1
+4
+4
+
+
+
+********Testing endTurn***********
+Size of discards: 5  Expected number of discards: 5
+Player Hand: 0  Expected Player Hand: 0
+Player turn: 1  Expected Turn: 1
+New Player Hand: 5  Expected Player Hand: 5
+
+
+
+********Testing updateCoins***********
+4
+4
+4
+4
+1
+initial coins (should be 4): 4
+Coins after update (should be 7): 7
+
+
+
+********Testing drawCard***********
+Expected hand size: 6  New Hand Size: 6
+Expected Deck Size: 4  New Deck Size: 4
+
+
+
+********Testing smithy***********
+Cards in Hand:  5, Cards Expected: 8
+Cards in Deck: 2, cards Expected: 2
+End of smithy test
+
+
+
+********Testing village***********
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+
+********Testing council_room***********
+Player 1 Cards in Hand:  8, Cards Expected: 9
+Cards in Deck: 1, cards Expected: 1
+Player 2 Cards in Hand:  1, Cards Expected: 1
+Cards in Deck: 9, cards Expected: 9
+Number of Buys:  2, Number Expected: 2
+
+
+

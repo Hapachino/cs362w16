@@ -13,7 +13,7 @@ playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 
 # Smithy
-smithyTest: cardtest1.c dominion.o rngs.o
+cardtest1: cardtest1.c dominion.o rngs.o
 	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
 
 # Adventurer
@@ -57,14 +57,20 @@ rAdv: adventurerRandomTest.c dominion.o rngs.o interface.o
 sndbx: sndbx.c rngs.o
 	gcc -o sndbx -g sndbx.c rngs.o $(CFLAGS)
 
-random: rSmithy rAdv playdom player
+random: rSmithy rAdv cardtest1 cardtest2 unittest1 unittest2 unittest3 unittest4 playdom player
 
-	./rSmithy 2 500000 0 &> randomtestSmithy.out
-	./rAdv 2 500000 0 &> randomtestAdventurer.out
+	./rSmithy 2 5000 0 &> vogeldTest.out
+	./rAdv 2 5000 0 &> vogeldTest.out
+	./cardtest1 2 >> vogeldTest.out
+	./cardtest2 2 >> vogeldTest.out
+	./unittest1 2 >> vogeldTest.out
+	./unittest2 2 >> vogeldTest.out
+	./unittest3 2 >> vogeldTest.out
+	./unittest4 2 >> vogeldTest.out
 
-	gcov dominion.c -b -f >> randomtestresult.out
-	cat dominion.c.gcov >> randomtestSmithy.out
-	cat dominion.c.gcov >> randomtestAdventurer.out
+	gcov dominion.c -b -f >> vogeldTest.out
+	cat dominion.c.gcov >> vogeldTest.out
+	cat dominion.c.gcov >> vogeldTest.out
 
 regular: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 
@@ -84,7 +90,7 @@ regular: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 u
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player smithyTest cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
+all: playdom player
 
 clean:
 	rm -f *.o playdom.exe playdom *.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.stackdump

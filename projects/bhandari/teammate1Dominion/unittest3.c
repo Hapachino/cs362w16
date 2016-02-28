@@ -1,264 +1,158 @@
 /*
-Unit Test for drawCard() function
-*/
+Rishi Bhandarkar
+CS 362
 
+Unit test for discardCard() function
+Gamestate
+	- Create an inital gamestate with 2 players, and each player is given 3 estate cards and 7 coppers
+	- Player 1 draws 5 cards
+Requirements to test
+	- After Player 1 discards a card from the middle of his hand	
+		- Player 1's hand must decrease by 1
+		- Player 1's deck must remain unchanged
+		- Player 1's discard pile must go up by 1
+		- Player 2's hand, deck, and discard should remain unchanged
+	- For the 3 times Player 1 removed the last card from his hand
+		- Player 1's hand must decrease by 1
+		- Player 1's deck must remain unchanged
+		- Player 1's discard pile must go up by 1
+		- Player 2's hand, deck, and discard should remain unchanged
+	- After Player 1 discards the final card from his hand
+		- Player 1's hand must decrease by 1
+		- Player 1's deck must remain unchanged
+		- Player 1's discard pile must go up by 1
+		- Player 2's hand, deck, and discard should remain unchanged
+	- After all discards, the Kingdom and Victory supplies must remain unchanged
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <time.h>
-#include <stdlib.h>
-#include <math.h>
+#include "rngs.h"
 
-#define DEBUG 0
+int main () {	
+	int seed = 1000, flag = 0;
+	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+	struct gameState G, prevG;
 
-/*
-Preconditions:
-function accepts (int currentPlayer, struct gameState *state) */
+	SelectStream(2);
+	PutSeed(3);
 
-int main() {
-	printf("\n-------------Unit Test #3: Testing drawCard() function-------------\n\n");
+	initializeGame(2, k, seed, &G);
+	memcpy(&prevG, &G, sizeof(struct gameState));
 
-	//initialize variables for unit test
-	int i, numPlayers, randomSeed, currentPlayer;
-	int success = 0;
-	int error1 = 0;
-	int error2 = 0;
-	struct gameState post, pre;
-	int kCards[10] = {adventurer, embargo, village, minion, mine, cutpurse,
-			sea_hag, tribute, smithy, council_room};
+	printf ("Testing the discardCard() method\n");
 	
-	//seed random number generator and create random values (within boundaries for numPlayers and randomSeed
-	srand(time(NULL));
-	numPlayers = (rand() % 3) + 2;
-	randomSeed = (rand() % 100);
-	
-	
-	
-	//Test Case 1: Deck is not empty
-	printf("\nCASE 1: Deck is not empty\n");
-	initializeGame(numPlayers, kCards, randomSeed, &post);
-	memcpy(&pre, &post, sizeof(struct gameState));
-	currentPlayer = 0;
-	//check for error thrown by drawCard function
-	if (drawCard(currentPlayer, &post) == -1) {
-		printf("Failed function: drawCard returned -1.\n");
-		success = -1;
+	printf("Discarding a card from the middle of Player 1's hand..\n");
+	discardCard(2, 0, &G, 0);
+	if(!(prevG.handCount[0]-1 == G.handCount[0])){
+		printf("TEST FAILED: Player 1 hand count incorrect [middle card]\n");
+		flag = 1;
 	}
-	//check that current player added top card from deck to hand
-	if (post.hand[currentPlayer][pre.handCount[currentPlayer]] != pre.deck[currentPlayer][pre.deckCount[currentPlayer]-1]) {
-		printf("Failed test case 1a: drawCard either did not add top card from deck to the current player's hand or added it at an unexpected location in the hand.\n");
-		success = -1;
+	if(!(prevG.deckCount[0] == G.deckCount[0])){
+		printf("TEST FAILED: Player 1 deck count incorrect [middle card]\n");
+		flag = 1;
 	}
-	else {
-		printf("Successfully added the top card from deck to the current player's hand.\n");
+	if(!(prevG.discardCount[0]+1 == G.discardCount[0])){
+		printf("TEST FAILED: Player 1 discard count incorrect [middle card]\n");
+		flag = 1;
 	}
-	//check that current player hand count incremented
-	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]+1) {
-		printf("Failed test case 1b: current player's hand count was not incremented by 1.\n");
-		success = -1;
+	if(!(prevG.handCount[1] == G.handCount[1])){
+		printf("TEST FAILED: Player 2 hand count incorrect [middle card]\n");
+		flag = 1;
 	}
-	else {
-		printf("Successfully incremented the current player's hand count by 1.\n");
+	if(!(prevG.deckCount[1] == G.deckCount[1])){
+		printf("TEST FAILED: Player 2 deck count incorrect [middle card]\n");
+		flag = 1;
 	}
-	//check that current player deck count decremented
-	if (post.deckCount[currentPlayer] != pre.deckCount[currentPlayer]-1) {
-		printf("Failed test case 1c: current player's deck count was not decremented by 1.\n");
-		success = -1;
+	if(!(prevG.discardCount[1] == G.discardCount[1])){
+		printf("TEST FAILED: Player 2 discard count incorrect [middle card]\n");
+		flag = 1;
 	}
-	else {
-		printf("Successfully decremented the current player's deck count by 1.\n");
+	if(!(prevG.playedCardCount+1 == G.playedCardCount)){
+		printf("TEST FAILED: Played card count incorrect [middle card]\n");
+		flag = 1;
 	}
-	//verify no other player's had their deck size or hand size modified
-	for (i = 1; i < numPlayers; i++) {
-		if (post.deckCount[i] != pre.deckCount[i]) {
-			error1 = -1;
+
+	printf("Removing the last card in Player 1's hand until 1 card remains..\n");
+	int cards = G.handCount[0];
+	for(int i = 0; i < cards-1; i++){
+		discardCard(G.handCount[0]-1, 0, &G, 0);
+		if(!(prevG.handCount[0]-(i+2) == G.handCount[0])){
+			printf("TEST FAILED: Player 1 hand count incorrect [last card]\n");
+			flag = 1;
 		}
-		if (post.handCount[i] != pre.handCount[i]) {
-			error2 = -1;
+		if(!(prevG.deckCount[0] == G.deckCount[0])){
+			printf("TEST FAILED: Player 1 deck count incorrect [last card]\n");
+			flag = 1;
 		}
-	}
-	if (error1 == -1) {
-		printf("Failed test case 1d: at least one other player's deck count changed.\n");
-	}
-	else {
-		printf("No other player's deck count was affected.\n");
-	}
-	if (error2 == -1) {
-		printf("Failed test case 1e: at least one other player's hand count changed.\n");
-	}
-	else {
-		printf("No other player's hand count was affected.\n");
-	}
-	if (success == 0) {
-		printf("Test case 1 successfully passed.\n");
-	}
-	
-	
-	
-	//Test Case 2: Deck is empty and needs to be shuffled. Cards exist in the discard pile
-	printf("\nCASE 2: Deck is empty and needs to be shuffled\n");
-	success = 0;
-	error1 = 0;
-	error2 = 0;
-	initializeGame(numPlayers, kCards, randomSeed, &post);
-	currentPlayer = 0;
-	
-	//change game states so that current player has an empty deck
-	//move deck to discard pile
-	for (i = 0; i < post.deckCount[currentPlayer]; i++) {
-		post.discard[currentPlayer][post.discardCount[currentPlayer]+i] = post.deck[currentPlayer][i];
-		post.deck[currentPlayer][i] = -1;
-	}
-	//update deck and discard counts
-	post.discardCount[currentPlayer] = post.discardCount[currentPlayer] + post.deckCount[currentPlayer];
-	post.deckCount[currentPlayer] = 0;
-
-	//now that deck is empty, copy game state and then call drawCard
-	memcpy(&pre, &post, sizeof(struct gameState));
-	if (drawCard(currentPlayer, &post) == -1) {
-		printf("Failed function: drawCard returned -1 in test case 2.\n");
-		success = -1;
-	}
-	//check that deck was shuffled
-	if (post.deckCount[currentPlayer] != pre.discardCount[currentPlayer]-1) {
-		printf("Failed test case 2a: the deck does not have the correct number of cards after shuffling the discard pile.\n");
-		success = -1;
-	}
-	else {
-		printf("Successfully shuffled the discard pile into the deck.\n");
-	}
-	//check that current player added a card with value != -1 to their hand
-	if (post.hand[currentPlayer][pre.handCount[currentPlayer]] == -1) {
-		printf("Failed test case 2b: the current player did not add a card to their hand after shuffling the discard pile into the deck.\n");
-		success = -1;
-	}
-	else {
-		printf("Successfully added a card from the newly shuffled deck to current player's hand.\n");
-	}
-	//check that current player hand count incremented
-	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]+1) {
-		printf("Failed test case 2c: current player's hand count was not incremented by 1.\n");
-		success = -1;
-	}
-	else {
-		printf("Successfully incremented the current player's hand count by 1.\n");
-	}
-	//check that current player deck count decremented
-	if (post.deckCount[currentPlayer] != pre.discardCount[currentPlayer]-1) {
-		printf("Failed test case 2d: current player's deck count was not decremented by 1 after shuffling.\n");
-		success = -1;
-	}
-	else {
-		printf("Successfully decremented the current player's newly shuffled deck count by 1.\n");
-	}
-	//verify no other player's had their deck size or hand size modified
-	for (i = 1; i < numPlayers; i++) {
-		if (post.deckCount[i] != pre.deckCount[i]) {
-			error1 = -1;
+		if(!(prevG.discardCount[0]+(i+2) == G.discardCount[0])){
+			printf("TEST FAILED: Player 1 discard count incorrect [last card]\n");
+			flag = 1;
 		}
-		if (post.handCount[i] != pre.handCount[i]) {
-			error2 = -1;
+		if(!(prevG.handCount[1] == G.handCount[1])){
+			printf("TEST FAILED: Player 2 hand count incorrect [last card]\n");
+			flag = 1;
+		}
+		if(!(prevG.deckCount[1] == G.deckCount[1])){
+			printf("TEST FAILED: Player 2 deck count incorrect [last card]\n");
+			flag = 1;
+		}
+		if(!(prevG.discardCount[1] == G.discardCount[1])){
+			printf("TEST FAILED: Player 2 discard count incorrect [last card]\n");
+			flag = 1;
+		}
+		if(!(prevG.playedCardCount+(2+i) == G.playedCardCount)){
+			printf("TEST FAILED: Played card count incorrect [last card]\n");
+			flag = 1;
 		}
 	}
-	if (error1 == -1) {
-		printf("Failed test case 2e: at least one other player's deck count changed.\n");
-	}
-	else {
-		printf("No other player's deck count was affected.\n");
-	}
-	if (error2 == -1) {
-		printf("Failed test case 2f: at least one other player's hand count changed.\n");
-	}
-	else {
-		printf("No other player's hand count was affected.\n");
-	}
-	if (success == 0) {
-		printf("Test case 2 successfully passed.\n");
-	}
-	
-	
-	
-	
-	//Test Case 3: Deck is empty and discard pile is empty
-	printf("\nCASE 3: Deck is empty and discard pile is empty\n");
-	success = 0;
-	error1 = 0;
-	error2 = 0;
-	initializeGame(numPlayers, kCards, randomSeed, &post);
-	currentPlayer = 0;
-	
-	//change game states so that current player has an empty deck
-	//move deck to discard pile
-	for (i = 0; i < post.deckCount[currentPlayer]; i++) {
-		post.hand[currentPlayer][post.handCount[currentPlayer]+i] = post.deck[currentPlayer][i];
-		post.deck[currentPlayer][i] = -1;
-	}
-	//update deck and discard counts
-	post.handCount[currentPlayer] = post.handCount[currentPlayer] + post.deckCount[currentPlayer];
-	post.deckCount[currentPlayer] = 0;
 
-	//now that deck is empty, copy game state and then call drawCard
-	memcpy(&pre, &post, sizeof(struct gameState));
-	if (drawCard(currentPlayer, &post) != -1) {
-		printf("Failed function: drawCard did not return expected -1 in test case 3.\n");
-		success = -1;
+
+	printf("Removing the final card in Player 1's hand..\n");
+	discardCard(0, 0, &G, 0);
+	if(!(prevG.handCount[0]-5 == G.handCount[0])){
+		printf("TEST FAILED: Player 1 hand count incorrect [final remaining card]\n");
+		flag = 1;
 	}
-	else {
-		printf("Successfully returned -1 for test case 3.\n");
+	if(!(prevG.deckCount[0] == G.deckCount[0])){
+		printf("TEST FAILED: Player 1 deck count incorrect [final remaining card]\n");
+		flag = 1;
 	}
-	//check that current player did not add a card to their hand
-	if (post.handCount[currentPlayer] != pre.handCount[currentPlayer]) {
-		printf("Failed test case 3a: current player added a card to their hand even though no cards in deck and discard pile.\n");
-		success = -1;
+	if(!(prevG.discardCount[0]+5 == G.discardCount[0])){
+		printf("TEST FAILED: Player 1 discard count incorrect [final remaining card]\n");
+		flag = 1;
 	}
-	else {
-		printf("Passed test case 3a: current player's hand count did not change.\n");
+	if(!(prevG.handCount[1] == G.handCount[1])){
+		printf("TEST FAILED: Player 2 hand count incorrect [final remaining card]\n");
+		flag = 1;
 	}
-	//check that current player deck count equals 0
-	if (post.deckCount[currentPlayer] != 0) {
-		printf("Failed test case 3b: current player's deck count is not zero\n");
-		success = -1;
+	if(!(prevG.deckCount[1] == G.deckCount[1])){
+		printf("TEST FAILED: Player 2 deck count incorrect [final remaining card]\n");
+		flag = 1;
 	}
-	else {
-		printf("Passed test case 3b: current player's deck count is zero.\n");
+	if(!(prevG.discardCount[1] == G.discardCount[1])){
+		printf("TEST FAILED: Player 2 discard count incorrect [final remaining card]\n");
+		flag = 1;
 	}
-	//check that current player discard count equals 0
-	if (post.discardCount[currentPlayer] != 0) {
-		printf("Failed test case 3c: current player's discard count is not zero\n");
-		success = -1;
+	if(!(prevG.playedCardCount+5 == G.playedCardCount)){
+		printf("TEST FAILED: Played card count incorrect [final remaining card]\n");
+		flag = 1;
 	}
-	else {
-		printf("Passed test case 3c: current player's discard count is zero.\n");
-	}
-	//verify no other player's had their deck size or hand size modified
-	for (i = 1; i < numPlayers; i++) {
-		if (post.deckCount[i] != pre.deckCount[i]) {
-			error1 = -1;
-		}
-		if (post.handCount[i] != pre.handCount[i]) {
-			error2 = -1;
+
+	printf("Test if Victory and Kingdom piles are unchanged..\n");
+	int arraySize = sizeof(G.supplyCount) / sizeof(int);
+	for(int i = 0; i < arraySize; i++){
+		if(G.supplyCount[i] != prevG.supplyCount[i]){
+			printf("TEST FAILED: Kingdom/Victory supplied have been altered\n");
+			flag = 1;
 		}
 	}
-	if (error1 == -1) {
-		printf("Failed test case 3d: at least one other player's deck count changed.\n");
-	}
-	else {
-		printf("No other player's deck count was affected.\n");
-	}
-	if (error2 == -1) {
-		printf("Failed test case 3e: at least one other player's hand count changed.\n");
-	}
-	else {
-		printf("No other player's hand count was affected.\n");
-	}
-	if (success == 0) {
-		printf("Test case 3 successfully passed.\n");
-	}
 	
-	
-	printf("\n\n-------------Unit Test #3 Complete -------------\n\n\n");
+	if(flag == 0){
+		printf("TEST SUCCEEDED\n");
+	}
+
 	return 0;
 }

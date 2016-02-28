@@ -47,3 +47,20 @@ bug:
      a.  improper discard
 
 This is likely due to the same problem as in bug 1c, above. 
+
+Bug 4: while unit testing the isGameOver() function I 
+discovered the following bug: 
+     a.  isGameOver fails to identify certain game over
+         conditions. This occurs when three supply 
+         piles are emptied, if any of the empty 
+         supply piles is card #25 or 26 (sea_hag or
+         treasure_map).
+
+Suspect the following line in isGameOver():
+"for (i = 0; i < 25; i++)" should instead be
+"... i<27; ..." or better yet, less than some 
+constant. 
+
+
+
+   

@@ -1,6 +1,8 @@
 File: ProjectPartA.txt
 Author: Chris Trana
 CS 362
+Teammates: Chris Trana, Megan Fanning, Jennifer Mendoza (I was added to team late due to my original team 
+reforming without notifying me).
 
 The testIsValid method takes arrays of URL parts (scheme, authority, port, path, query) and then grabs a piece of a potential URL from each array and combines them together to creat a URL to test.
 

@@ -206,11 +206,33 @@ to:
 
 playRemodel()
 * Trashing an adventurer card doesn't allow user to purchase a garden.
+The test that was failing turned out to be wrong. Instead of checking the number of
+actions it was testing the number of cards in the players hand. While stepping through
+the code with GDB I was able to figure out the conditional was incorrect.
 from:
-  if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+  if(state->handCount[state->whoseTurn]-1 == testGame->handCount[testGame->whoseTurn])
 
 to:
-  if ( (getCost(state->hand[currentPlayer][choice1]) + 2) < getCost(choice2) )
+  if(state->numActions-1 == testGame->numActions)
+
+* Gaining a garden card should place the card in the discard pile.
+The bug was again related to my tests. I was calling 'playRemodel' with
+both choices being hand positions instead of choice1 being a hand position and
+choice 2 being the enum value of the card to gain.
+from:
+  playRemodel(testGame, testGame->whoseTurn, 0, 1, 1);
+
+to:
+  playRemodel(testGame, testGame->whoseTurn, 0, 1, 10);
+
+* Gaining a feast card by trashing a garden increases discard by 2.
+The bug was again in my tests. I was incorectly expecting the played card
+to go into the discard pile. Instead it goes into the played card pile.
+from:
+  if(testGame->discardCount[testGame->whoseTurn] == state->discardCount[state->whoseTurn]+2) {
+
+to:
+  if(testGame->playedCardCount == state->playedCardCount) {
 
 
 playVillage()
@@ -232,3 +254,15 @@ to:
     if(state->hand[currentPlayer][handPos] != village) {
       return -1;
     }
+
+* Expects players hand size to increase by 0, was increasing by -1.
+The bug turned out to be an error in my test code. I used gdb to step through execution
+of the playVillage method and noticed that at the beginning of the function call my
+handCount and deckCount variables were set to 0. This led me to check my gameInitialize
+method which was failing because I was passing an array of kingdom cards to the initialization
+function that had two 'village' in it.
+from:
+  int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, village};
+
+to:
+  int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};

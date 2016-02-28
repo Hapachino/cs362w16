@@ -47,7 +47,7 @@ int main() {
                     testG.hand[currentPlayer][testG.handCount[currentPlayer]-i] <= gold);
         }
 
-        else if (testG.hand[currentPlayer][testG.handCount[currentPlayer]-i] == curse && passed == 1)
+        else if (testG.hand[currentPlayer][testG.handCount[currentPlayer]-i] != curse && passed == 1)
         {
             printf("TEST 1 failed\n");
             passed = 0 ;
@@ -116,7 +116,6 @@ int main() {
     adventurerCard(&testG, currentPlayer);
 
     int cardsDrawn = testG.handCount[currentPlayer] - G.handCount[currentPlayer];
-    printf("%d\n", cardsDrawn);
     assert(testG.deckCount[currentPlayer] == G.deckCount[currentPlayer] - cardsDrawn);
 
 	// ----------- TEST 5: no state change for other players --------------

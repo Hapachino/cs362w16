@@ -1,0 +1,1 @@
+With my tests I found the bug that I implemented in smithy where I do not return 3 cards. I also found the bug I added to adventurer where I do not return 2 cards. The unit tests did not pinpoint them more specifically, just that the proper amount of cards are not being returned. 

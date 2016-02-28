@@ -233,7 +233,7 @@ int main() {
 
     //Change number of deck count  
     testG.deckCount[nextPlayer] = 2; 
-    testG.deckCount[nextPlayer] = 2; 
+    G.deckCount[nextPlayer] = 2; 
     
     r = scoreFor(nextPlayer, &G); // Run scoreFor() for player 0
     testR = runScoreFor(nextPlayer, &testG); //Run runScoreFor() for player 0

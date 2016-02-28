@@ -1,0 +1,72 @@
+        -:    0:Source:cardtest4.c
+        -:    0:Graph:cardtest4.gcno
+        -:    0:Data:cardtest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2:**Card test 4: Salvager
+        -:    3:**Written by: Tom Gariepy
+        -:    4:**CS 325 Winter 2016
+        -:    5:*/
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <stdio.h>
+        -:   11:#include <assert.h>
+        -:   12:#include "rngs.h"
+        -:   13:
+        -:   14:/*void playSalvagerCard(struct gameState *state, int choice1, int currentPlayer, int handPos)*/
+        -:   15:
+        1:   16:int main(int argc, char const *argv[]) {
+        -:   17:    int i;
+        1:   18:    int seed = 1000;
+        1:   19:    int numPlayer = 2;
+        -:   20:    int p, r, handCount, correctBuys, correctCoins, toTrash;
+        -:   21:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        1:   22:               , remodel, smithy, village, baron, great_hall};
+        -:   23:    struct gameState G;
+        -:   24:
+        -:   25:    // array fro the salvager test
+        -:   26:    int salv[11];
+        1:   27:    salv[0] = salvager;
+       11:   28:    for (i = 1; i < 11; i++)
+        -:   29:    {
+       10:   30:        salv[i] = k[i - 1];
+        -:   31:    }
+        -:   32:
+        1:   33:    printf ("TESTING Salvager card:\n");
+        3:   34:    for (p = 0; p < numPlayer; p++) {
+        -:   35:    	// int x;
+       22:   36:    	for (handCount = 2; handCount <= 11; handCount++) {
+      130:   37:    		for(toTrash = 1; toTrash < handCount; toTrash++){//This for loop needs to be about the choice card instead
+      110:   38:    			printf("Test player %d playing Salvager card, hand size: %d, hand to trash: %d\n", p, handCount, toTrash);
+        -:   39:    		
+      110:   40:    			memset(&G, 23, sizeof(struct gameState));   // clear the game state
+      110:   41:        	    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+        -:   42:        	    //Get selected card amount
+      110:   43:        	    G.whoseTurn = p;
+      110:   44:        	    G.handCount[p] = handCount;
+      110:   45:        	    correctBuys = G.numBuys + 1;
+      110:   46:        	    correctCoins = G.coins + getCost(salv[toTrash]);
+        -:   47:
+      110:   48:        	    memcpy(G.hand[p], salv, sizeof(int) * handCount);
+        -:   49:
+      110:   50:        	    r = playCard(0, toTrash, 0, 0, &G); //choice 1 will be changing
+        -:   51:
+      110:   52:        	    printf("G.numBuys = %d, expected = %d\n", G.numBuys, correctBuys);
+      110:   53:        	    printf("G.coins = %d, expected = %d\n", G.coins, correctCoins);
+        -:   54:
+      110:   55:        	    if (G.numBuys == correctBuys + 2 && G.coins == correctCoins) {
+    #####:   56:        	    	printf("The Salvager card worked correctly\n");
+        -:   57:        	    }
+        -:   58:        	    else {
+      110:   59:        	    	printf("The Salvager card did not work correctly\n");
+        -:   60:        	    }
+        -:   61:        	}
+        -:   62:    	}
+        -:   63:    }
+        -:   64:	
+        -:   65:
+        1:   66:	return 0;
+        -:   67:}

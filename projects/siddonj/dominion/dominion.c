@@ -1356,6 +1356,7 @@ int playRemodel(struct gameState *state, int currentPlayer, int handPos, int cho
     }
   }
 
+  state->numActions = state->numActions-1;
   return 0;
 }
 
@@ -1365,14 +1366,16 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos) {
     return -1;
   }
 
+  //discard played card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+
   //+1 Card
   drawCard(currentPlayer, state);
 
   //+2 Actions
   state->numActions = state->numActions + 2;
 
-  //discard played card from hand
-  discardCard(handPos, currentPlayer, state, 0);
+
 
   return 0;
 }

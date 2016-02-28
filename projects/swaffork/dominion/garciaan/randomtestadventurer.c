@@ -38,6 +38,8 @@ int setUp(struct gameState* state)
     state->whoseTurn = player;
     state->deckCount[player] = floor(Random() * MAX_DECK);
     state->handCount[player] = floor(Random() * MAX_HAND + 1);
+    // make sure player has an adventurer card - REFACTORED
+    state->hand[player][0] = adventurer;
     state->discardCount[player] = floor(Random() * MAX_DECK);
 
     // Since adventurer must draw 2 treasure cards, consider case where there are two treasure cards for interesting test results:
@@ -81,7 +83,8 @@ void testAdventurer()
         struct gameState expectedState;
         memcpy(&expectedState, &state, sizeof(struct gameState));
 
-        int success = playAdventurer(&state);
+        // (old) int success = playAdventurer(&state);
+        int success = play_adventurer(&state, state.currentPlayer, 0);
         if (success != 0)
         {
             printf("playAdventurer() failed\n");

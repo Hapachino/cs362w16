@@ -44,7 +44,7 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 int countCards(int *deck, int *cardCount);
 
-int checkAdventurer(struct gameState *pre, int player, 
+int checkAdventurer(struct gameState *pre, int handPosition, int player, 
 		    int *array); 
 
 
@@ -95,6 +95,10 @@ int main(){
     } while ((randomDeckCount+randomHandCount+randomDiscardCount)>MAX_DECK); 
 
 
+    /* pick one card in the hand to be the adventurer*/
+    int randomPos = floor(Random()*randomHandCount);
+
+
     /* pick a random player */
     p=floor(Random()*2);
 
@@ -111,7 +115,13 @@ int main(){
 	  pre->hand[i][j]= floor(Random()*CARDTYPES);
       }
     }
-    testsFailed += checkAdventurer(pre, p, rulesTest);
+
+
+    /* Rewrite the selected player's hand to include adventurer at the random*/
+    /* position in his hand */
+    pre->hand[p][randomPos]= adventurer;
+
+    testsFailed += checkAdventurer(pre, randomPos, p, rulesTest);
  }
 
 
@@ -231,7 +241,8 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 
 
-int checkAdventurer(struct gameState *pre, int player, int *array){
+int checkAdventurer(struct gameState *pre, int player, int handPosition, 
+		    int *array){
 
   int testFail = 0; 
   int tempHand[MAX_HAND];
@@ -260,7 +271,7 @@ int checkAdventurer(struct gameState *pre, int player, int *array){
 
 
   /* 1. The function accepts a game state, and a player*/
-  playAdventurer(post,player); 
+  adventurerCard(post,handPosition); 
 
 
   /* 2. Should result in the cards drawn from the deck until 2 treasures are*/

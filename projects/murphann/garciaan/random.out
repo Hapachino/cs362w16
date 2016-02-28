@@ -1,0 +1,132 @@
+********Testing adventurer***********
+Test 1
+Cards in Hand:  10, Cards Expected: 7
+Cards in Deck: 0, cards Expected: 2
+Cards in discard:  0, Cards Expected: 1
+Coins: 7, Coins expected: 6
+
+
+Test 2
+Cards in Hand:  6, Cards Expected: 7
+Cards in Deck: 3, cards Expected: 2
+Cards in discard:  0, Cards Expected: 1
+Coins: 4, Coins expected: 6
+
+
+Test 3
+Cards in Hand:  7, Cards Expected: 7
+Cards in Deck: 2, cards Expected: 2
+Cards in discard:  1, Cards Expected: 1
+Coins: 5, Coins expected: 5
+
+
+Test 4
+Cards in Hand:  7, Cards Expected: 7
+Cards in Deck: 2, cards Expected: 1
+Cards in discard:  1, Cards Expected: 2
+Coins: 6, Coins expected: 6
+
+
+Test 5
+Cards in Hand:  7, Cards Expected: 7
+Cards in Deck: 2, cards Expected: 1
+Cards in discard:  1, Cards Expected: 2
+Coins: 6, Coins expected: 7
+
+
+Test 6
+Cards in Hand:  7, Cards Expected: 7
+Cards in Deck: 2, cards Expected: 2
+Cards in discard:  1, Cards Expected: 1
+Coins: 5, Coins expected: 6
+
+
+Test 7
+Cards in Hand:  7, Cards Expected: 7
+Cards in Deck: 2, cards Expected: 1
+Cards in discard:  1, Cards Expected: 2
+Coins: 5, Coins expected: 7
+
+
+Test 8
+Cards in Hand:  7, Cards Expected: 7
+Cards in Deck: 2, cards Expected: 2
+Cards in discard:  1, Cards Expected: 1
+Coins: 5, Coins expected: 5
+
+
+Test 9
+Cards in Hand:  7, Cards Expected: 7
+Cards in Deck: 2, cards Expected: 2
+Cards in discard:  1, Cards Expected: 1
+Coins: 5, Coins expected: 7
+
+
+Test 10
+Cards in Hand:  10, Cards Expected: 7
+Cards in Deck: 0, cards Expected: 2
+Cards in discard:  0, Cards Expected: 1
+Coins: 7, Coins expected: 5
+
+
+********Testing village***********
+Test 1
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+Test 2
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+Test 3
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+Test 4
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+Test 5
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+Test 6
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+Test 7
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+Test 8
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+Test 9
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+Test 10
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+

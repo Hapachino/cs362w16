@@ -91,3 +91,21 @@ This causes 4 cards to be drawn instead of the required
 design of discardCard, which moves discarded cards to 
 the playedCards array, instead of the discard Deck. 
    
+Bug 2: while testing the adventureCard function I 
+discovered the following: 
+   a.  The temporary hand is not discarded properly.
+       In other words, the number of cards in the 
+       discard does not match the number of cards in 
+       the temporary hand -2 for the 2 treasure cards
+       that should be delivered to the player's hand. 
+
+   b.  The player's hand count does not increase by 2.
+       This indicates an improper number of treasure cards
+       delivered to the player's hand (too many or too few).
+
+   c.  deckCount improperly decreased: This indicates again
+       that either too many or too few cards were drawn 
+       from the deck into the temp hand. 
+
+The likely problem is the following line in adventurerCard():   
+"  while(drawntreasure<4){" which should be "(drawntreasure<3)"

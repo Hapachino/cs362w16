@@ -37,9 +37,9 @@ Fix #006 - Self-Imposed Bug:  Changed the order of paramaters passed to village_
            led to some undefined behavior(including a possible seg fault) depending on the values in each.
 
 village_play():
-Fix #007 - Self-Imposed Bug:  Changed the assignment statement for numActions to a = rather then an ==.
-           This results in the actions actually being increased, rather then an equality check and no
-           action at all.
+Fix #007 - Self-Imposed Bug/TeamMate Reported:  Changed the assignment statement for numActions to a = 
+           rather then an ==.  This results in the actions actually being increased, rather then an 
+           equality check and no action at all.
 
 cutpurse_play():
 Fix #008 - Self-Imposed Bug:  Changed the equality statement int he second imbeded if statement to an

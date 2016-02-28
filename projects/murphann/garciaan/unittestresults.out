@@ -1,0 +1,452 @@
+********Testing shuffle***********
+BEFORE SHUFFLE
+1
+4
+4
+1
+4
+AFTER SHUFFLE
+1
+4
+1
+4
+4
+
+
+
+********Testing endTurn***********
+Size of discards: 5  Expected number of discards: 5
+Player Hand: 0  Expected Player Hand: 0
+Player turn: 1  Expected Turn: 1
+New Player Hand: 5  Expected Player Hand: 5
+
+
+
+********Testing updateCoins***********
+4
+4
+4
+4
+1
+initial coins (should be 4): 4
+Coins after update (should be 7): 7
+
+
+
+********Testing drawCard***********
+Expected hand size: 6  New Hand Size: 6
+Expected Deck Size: 4  New Deck Size: 4
+
+
+
+********Testing smithy***********
+Cards in Hand:  8, Cards Expected: 8
+Cards in Deck: 2, cards Expected: 2
+End of smithy test
+
+
+
+********Testing adventurer***********
+Cards in Hand:  10, Cards Expected: 7
+Cards in Deck: 0, cards Expected: 1
+Cards in discard:  0, Cards Expected: 2
+Coins: 7, Coins expected: 6
+
+
+
+********Testing village***********
+Cards in Hand:  5, Cards Expected: 6
+Cards in Deck: 4, cards Expected: 4
+Number of Actions:  3, Number Expected: 3
+
+
+
+********Testing council_room***********
+Player 1 Cards in Hand:  8, Cards Expected: 9
+Cards in Deck: 1, cards Expected: 1
+Player 2 Cards in Hand:  1, Cards Expected: 1
+Cards in Deck: 9, cards Expected: 9
+Number of Buys:  2, Number Expected: 2
+
+
+
+File 'unittest1.c'
+Lines executed:100.00% of 18
+Creating 'unittest1.c.gcov'
+
+File 'unittest2.c'
+Lines executed:100.00% of 19
+Creating 'unittest2.c.gcov'
+
+File 'unittest3.c'
+Lines executed:100.00% of 20
+Creating 'unittest3.c.gcov'
+
+File 'unittest4.c'
+Lines executed:100.00% of 15
+Creating 'unittest4.c.gcov'
+
+File 'dominion.c'
+Lines executed:30.53% of 570
+Creating 'dominion.c.gcov'
+
+Lines executed:38.32% of 642
+File 'cardTest1.c'
+Lines executed:100.00% of 16
+Creating 'cardTest1.c.gcov'
+
+File 'cardTest2.c'
+Lines executed:100.00% of 29
+Creating 'cardTest2.c.gcov'
+
+File 'cardTest3.c'
+Lines executed:100.00% of 17
+Creating 'cardTest3.c.gcov'
+
+File 'cardTest4.c'
+Lines executed:100.00% of 22
+Creating 'cardTest4.c.gcov'
+
+File 'dominion.c'
+Lines executed:30.53% of 570
+Creating 'dominion.c.gcov'
+
+Lines executed:39.45% of 654
+        -:    0:Source:unittest1.c
+        -:    0:Programs:12
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <stdlib.h>
+        -:    8:
+        -:    9:#define TESTMETHOD "shuffle"
+        -:   10:
+        1:   11:int main() {
+        1:   12:  int numPlayers = 2;
+        1:   13:  int i = 0;
+        1:   14:  int seed = 1004;
+        -:   15:  struct gameState G, storeG;
+        1:   16:  int thisPlayer = 0;
+        1:   17:  int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
+        -:   18:               council_room, village, mine, tribute, ambassador};
+        -:   19:
+        1:   20:  initializeGame(numPlayers, kcards, seed, &G);
+        -:   21:
+        1:   22:  printf("********Testing %s***********\n", TESTMETHOD);
+        -:   23:
+        1:   24:  memcpy(&storeG, &G, sizeof(struct gameState));
+        -:   25:
+        1:   26:  shuffle(thisPlayer, &G);
+        -:   27:
+        1:   28:  printf("BEFORE SHUFFLE\n");
+        6:   29:  for (i = 0; i < storeG.deckCount[thisPlayer]; i++) {
+        5:   30:    printf("%d\n", storeG.deck[thisPlayer][i]);
+        -:   31:  }
+        -:   32:
+        1:   33:  printf("AFTER SHUFFLE\n");
+        6:   34:  for (i = 0; i < G.deckCount[thisPlayer]; i++) {
+        5:   35:    printf("%d\n", G.deck[thisPlayer][i]);
+        -:   36:  }
+        -:   37:
+        1:   38:  printf("\n\n\n");
+        -:   39:
+        1:   40:  return 0;
+        -:   41:}
+        -:    0:Source:unittest2.c
+        -:    0:Programs:12
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <stdlib.h>
+        -:    8:
+        -:    9:#define TESTMETHOD "endTurn"
+        -:   10:
+        1:   11:int main() {
+        1:   12:  int numPlayers = 2;
+        1:   13:  int seed = 1004;
+        -:   14:  struct gameState G, storeG;
+        1:   15:  int p1 = 0;
+        1:   16:  int p2 = 1;
+        1:   17:  int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
+        -:   18:               council_room, village, mine, tribute, ambassador};
+        -:   19:
+        1:   20:   initializeGame(numPlayers, kcards, seed, &G);
+        -:   21:
+        1:   22:   printf("********Testing %s***********\n", TESTMETHOD);
+        -:   23:
+        1:   24:   memcpy(&storeG, &G, sizeof(struct gameState));
+        -:   25:
+        1:   26:   endTurn(&G);
+        -:   27:
+        1:   28:   printf("Size of discards: %d  Expected number of discards: %d\n",
+        -:   29:           G.discardCount[p1],
+        1:   30:           storeG.discardCount[p1] + storeG.handCount[p1]);
+        -:   31:
+        1:   32:   printf("Player Hand: %d  Expected Player Hand: %d\n",
+        1:   33:           G.handCount[p1], storeG.handCount[p1-5]);
+        -:   34:
+        1:   35:  printf("Player turn: %d  Expected Turn: %d\n", G.whoseTurn, storeG.whoseTurn+1);
+        -:   36:
+        1:   37:  printf("New Player Hand: %d  Expected Player Hand: %d\n",
+        1:   38:          G.handCount[p2], storeG.handCount[p2]+5);
+        -:   39:
+        1:   40:  printf("\n\n\n");
+        1:   41:    return 0;
+        -:   42:}
+        -:    0:Source:unittest3.c
+        -:    0:Programs:12
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <stdlib.h>
+        -:    8:
+        -:    9:#define TESTMETHOD "updateCoins"
+        -:   10:
+        1:   11:int main() {
+        1:   12:  int numPlayers = 2;
+        1:   13:  int i = 0;
+        1:   14:  int seed = 1234;
+        -:   15:  struct gameState G, storeG;
+        1:   16:  int bonusCoins = 3;
+        1:   17:  int pCoins = 0;
+        1:   18:  int p1 = 0;
+        1:   19:  int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
+        -:   20:               council_room, village, mine, tribute, ambassador};
+        -:   21:
+        1:   22:  initializeGame(numPlayers, kcards, seed, &G);
+        -:   23:
+        1:   24:  printf("********Testing %s***********\n", TESTMETHOD);
+        -:   25:
+        1:   26:  memcpy(&storeG, &G, sizeof(struct gameState));
+        -:   27:
+        6:   28:  for (i = 0; i < storeG.handCount[p1]; i++) {
+        5:   29:    printf("%d\n", storeG.hand[p1][i]);
+        5:   30:    if (storeG.hand[p1][i] == 4) {
+        4:   31:      pCoins = pCoins + 1;
+        -:   32:    }
+        -:   33:   }
+        -:   34:
+        1:   35:  printf("initial coins (should be %d): %d\n", pCoins, G.coins);
+        -:   36:
+        1:   37:  updateCoins(p1, &G, bonusCoins);
+        -:   38:
+        1:   39:  printf("Coins after update (should be %d): %d\n", pCoins+3, G.coins);
+        1:   40:  printf("\n\n\n");
+        1:   41:  return 0;
+        -:   42:}
+        -:    0:Source:unittest4.c
+        -:    0:Programs:12
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <stdlib.h>
+        -:    8:
+        -:    9:#define TESTMETHOD "drawCard"
+        -:   10:
+        1:   11:int main() {
+        1:   12:  int numPlayers = 2;
+        1:   13:  int seed = 1004;
+        -:   14:  struct gameState G, storeG;
+        1:   15:  int p1 = 0;
+        1:   16:  int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
+        -:   17:               council_room, village, mine, tribute, ambassador};
+        -:   18:
+        1:   19:  initializeGame(numPlayers, kcards, seed, &G);
+        -:   20:
+        1:   21:  printf("********Testing %s***********\n", TESTMETHOD);
+        -:   22:
+        1:   23:  memcpy(&storeG, &G, sizeof(struct gameState));
+        -:   24:
+        1:   25:  drawCard(p1, &G);
+        -:   26:
+        2:   27:  printf("Expected hand size: %d  New Hand Size: %d\n",
+        1:   28:           storeG.handCount[p1]+1, G.handCount[p1]);
+        -:   29:
+        2:   30:  printf("Expected Deck Size: %d  New Deck Size: %d\n",
+        1:   31:          storeG.deckCount[p1]-1, G.deckCount[p1]);
+        1:   32:  printf("\n\n\n");
+        1:   33:  return 0;
+        -:   34:}
+        -:    0:Source:cardTest1.c
+        -:    0:Programs:12
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <stdlib.h>
+        -:    8:
+        -:    9:#define TESTCARD "smithy"
+        -:   10:
+        1:   11:int main() {
+        1:   12:  int numPlayers = 2;
+        1:   13:  int seed = 1004;
+        -:   14:  struct gameState G, storeG;
+        1:   15:  int p1 = 0;
+        1:   16:  int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
+        -:   17:                    council_room, village, mine, tribute, ambassador};
+        1:   18:  initializeGame(numPlayers, kcards, seed, &G);
+        -:   19:
+        1:   20:  printf("********Testing %s***********\n", TESTCARD);
+        -:   21:
+        1:   22:  memcpy(&storeG, &G, sizeof(struct gameState));
+        -:   23:
+        1:   24:  cardEffect(smithy, 0, 0, 0, &G, 0, 0);
+        1:   25:  printf("Cards in Hand:  %d, Cards Expected: %d\n",
+        1:   26:           G.handCount[p1], storeG.handCount[p1]+3);
+        1:   27:  printf("Cards in Deck: %d, cards Expected: %d\n",
+        1:   28:          G.deckCount[p1], storeG.deckCount[p1]-3);
+        -:   29:
+        1:   30:  printf("End of %s test\n", TESTCARD);
+        -:   31:
+        1:   32:  printf("\n\n\n");
+        1:   33:   return 0;
+        -:   34:}
+        -:    0:Source:cardTest2.c
+        -:    0:Programs:12
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <stdlib.h>
+        -:    8:
+        -:    9:#define TESTCARD "adventurer"
+        -:   10:
+        1:   11:int main() {
+        1:   12:  int numPlayers = 2;
+        1:   13:  int seed = 14;
+        -:   14:  struct gameState G, storeG;
+        1:   15:  int p1 = 0;
+        1:   16:  int i = 0;
+        1:   17:  int coinsInDeck = 0;
+        1:   18:  int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
+        -:   19:               council_room, village, mine, tribute, ambassador};
+        -:   20:
+        1:   21:  initializeGame(numPlayers, kcards, seed, &G);
+        -:   22:
+        1:   23:  printf("********Testing %s***********\n", TESTCARD);
+        -:   24:
+        1:   25:  memcpy(&storeG, &G, sizeof(struct gameState));
+        -:   26:
+        4:   27:  for (i = 0; i < storeG.deckCount[p1]; i++) {
+        4:   28:    if (storeG.deck[p1][i] == 4){
+        2:   29:      coinsInDeck = coinsInDeck + 1;
+        -:   30:    }
+        4:   31:    if (coinsInDeck == 2) {
+        1:   32:      coinsInDeck = i+1;
+        1:   33:      break;
+        -:   34:    }
+        -:   35:  }
+        -:   36:
+        1:   37:  cardEffect(adventurer, 0, 0, 0, &G, 0, 0);
+        1:   38:  updateCoins(p1, &G, 0);
+        1:   39:  updateCoins(p1, &storeG, 0);
+        1:   40:  printf("Cards in Hand:  %d, Cards Expected: %d\n",
+        1:   41:           G.handCount[p1], storeG.handCount[p1]+2);
+        1:   42:  printf("Cards in Deck: %d, cards Expected: %d\n",
+        1:   43:          G.deckCount[p1], storeG.deckCount[p1]-coinsInDeck);
+        1:   44:  printf("Cards in discard:  %d, Cards Expected: %d\n",
+        1:   45:           G.discardCount[p1], storeG.discardCount[p1]+coinsInDeck-2);
+        1:   46:  printf("Coins: %d, Coins expected: %d\n",
+        1:   47:          G.coins, storeG.coins+2);
+        -:   48:
+        1:   49:  printf("\n\n\n");
+        1:   50:  return 0;
+        -:   51:}
+        -:    0:Source:cardTest3.c
+        -:    0:Programs:12
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <stdlib.h>
+        -:    8:
+        -:    9:#define TESTCARD "village"
+        -:   10:
+        1:   11:int main() {
+        1:   12:  int numPlayers = 2;
+        1:   13:  int seed = 1004;
+        -:   14:  struct gameState G, storeG;
+        1:   15:  int p1 = 0;
+        1:   16:  int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
+        -:   17:               council_room, village, mine, tribute, ambassador};
+        -:   18:
+        1:   19:   initializeGame(numPlayers, kcards, seed, &G);
+        -:   20:
+        1:   21:   printf("********Testing %s***********\n", TESTCARD);
+        -:   22:
+        1:   23:   memcpy(&storeG, &G, sizeof(struct gameState));
+        -:   24:
+        1:   25:   cardEffect(village, 0, 0, 0, &G, 0, 0);
+        -:   26:
+        1:   27:   printf("Cards in Hand:  %d, Cards Expected: %d\n",
+        1:   28:            G.handCount[p1], storeG.handCount[p1]+1);
+        1:   29:   printf("Cards in Deck: %d, cards Expected: %d\n",
+        1:   30:           G.deckCount[p1], storeG.deckCount[p1]-1);
+        1:   31:   printf("Number of Actions:  %d, Number Expected: %d\n",
+        1:   32:            G.numActions, storeG.numActions+2);
+        1:   33:  printf("\n\n\n");
+        1:   34:   return 0;
+        -:   35:}
+        -:    0:Source:cardTest4.c
+        -:    0:Programs:12
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include <string.h>
+        -:    4:#include <stdio.h>
+        -:    5:#include <assert.h>
+        -:    6:#include "rngs.h"
+        -:    7:#include <stdlib.h>
+        -:    8:
+        -:    9:#define TESTCARD "council_room"
+        -:   10:
+        1:   11:int main() {
+        1:   12:  int numPlayers = 2;
+        1:   13:  int seed = 1004;
+        -:   14:  struct gameState G, storeG;
+        1:   15:  int p1 = 0;
+        1:   16:  int p2 = 1;
+        1:   17:  int kcards[10] = {adventurer, minion, cutpurse, steward, smithy,
+        -:   18:               council_room, village, mine, tribute, ambassador};
+        -:   19:
+        1:   20:   initializeGame(numPlayers, kcards, seed, &G);
+        -:   21:
+        1:   22:   printf("********Testing %s***********\n", TESTCARD);
+        -:   23:
+        1:   24:   memcpy(&storeG, &G, sizeof(struct gameState));
+        -:   25:
+        1:   26:   cardEffect(council_room, 0, 0, 0, &G, 0, 0);
+        -:   27:
+        1:   28:   printf("Player 1 Cards in Hand:  %d, Cards Expected: %d\n",
+        1:   29:            G.handCount[p1], storeG.handCount[p1]+4);
+        1:   30:   printf("Cards in Deck: %d, cards Expected: %d\n",
+        1:   31:           G.deckCount[p1], storeG.deckCount[p1]-4);
+        -:   32:
+        1:   33:   printf("Player 2 Cards in Hand:  %d, Cards Expected: %d\n",
+        1:   34:            G.handCount[p2], storeG.handCount[p2]+1);
+        1:   35:   printf("Cards in Deck: %d, cards Expected: %d\n",
+        1:   36:           G.deckCount[p2], storeG.deckCount[p2]-1);
+        -:   37:
+        -:   38:
+        1:   39:   printf("Number of Buys:  %d, Number Expected: %d\n",
+        1:   40:            G.numBuys, storeG.numBuys+1);
+        1:   41:  printf("\n\n\n");
+        1:   42:   return 0;
+        -:   43:}

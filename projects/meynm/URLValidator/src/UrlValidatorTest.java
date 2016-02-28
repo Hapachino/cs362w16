@@ -16,9 +16,11 @@
  */
 
 
+
+import java.io.Console;
+import java.util.Scanner;
+
 import junit.framework.TestCase;
-
-
 
 
 
@@ -35,15 +37,23 @@ public class UrlValidatorTest extends TestCase {
    public UrlValidatorTest(String testName) {
       super(testName);
    }
-
+   
    
    
    public void testManualTest()
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
-	   
-	   
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);	   
+	   Scanner s = new Scanner(System.in);
+	   String testUrl;
+	   while(true) 
+	   {
+		   System.out.print("Enter test URL:\t");
+		   testUrl = s.nextLine();
+		   if(testUrl.isEmpty())
+			   break;
+		   System.out.println(urlVal.isValid(testUrl));	  
+	   }
+	   s.close();
    }
    
    
@@ -78,3 +88,4 @@ public class UrlValidatorTest extends TestCase {
    
 
 }
+

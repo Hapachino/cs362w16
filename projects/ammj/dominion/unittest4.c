@@ -46,8 +46,11 @@
 #include <assert.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "dominion_cards.h"
 #include "unittest.h"
 #include "rngs.h"
+
+#define PRINTPASS 1
 
 #define HAND 0
 #define DECK 1
@@ -142,27 +145,6 @@ struct playerGroup* newPlayerGroup() {
   initPlayerGroup(playerGroup);
   return playerGroup;
 
-}
-
-/**
- * Function: getDeckFrequencies()
- * Inputs: card pile, count of cards in pile, cardFrequency container, cardFrequencies
- * Outputs: 0 on completion
- * Description:  Counts the frequency of cards in a deck
- */
-int getDeckFrequencies(int *card, int cardCount, int *cardFrequencies, int cardFreqCount){
-
-	int i, j;
-	for(i = 0; i < cardFreqCount; i++)
-	{
-		for(j = 0; j < cardCount; j++)
-		{
-			if(card[j] == i)
-				cardFrequencies[i]++;
-		}
-	}
-
-	return 0;
 }
 
 /**
@@ -345,22 +327,26 @@ void unitTest4(int printVal, int seed, struct results *result){
 	for(i=0; i < MAX_PLAYERS; i++)
 	{
 		int j;
+		int score = scoreFor(i, activeGame);
 
-		if(!(playGroup->playerValues[i]->winner == players[i]))
+		if(!(playGroup->playerValues[i]->winner == players[i]) || !(score == playGroup->playerValues[i]->score))
 		{
 			printf("TEST: %d, FAIL: Player: %d of %d players\nScore: %d, Expected: %d, Winner Val Returned: %d,"
 					" Expected: %d\n",
-					result->testNum, i, playGroup->numPlayers, scoreFor(i, activeGame),
+					result->testNum, i, playGroup->numPlayers, score,
 					playGroup->playerValues[i]->score, players[i], playGroup->playerValues[i]->winner);
 			result->testsFailed++;
 		}
 		else
 		{
 			assert(playGroup->playerValues[i]->winner == players[i]);
-			printf("TEST: %d, PASS: Player: %d of %d players\nScore: %d, Expected: %d, Winner Val Returned: %d,"
-					" Expected: %d\n",
-					result->testNum, i, playGroup->numPlayers, scoreFor(i, activeGame),
-					playGroup->playerValues[i]->score, players[i], playGroup->playerValues[i]->winner);
+
+			if(PRINTPASS){
+				printf("TEST: %d, PASS: Player: %d of %d players\nScore: %d, Expected: %d, Winner Val Returned: %d,"
+						" Expected: %d\n",
+						result->testNum, i, playGroup->numPlayers, score,
+						playGroup->playerValues[i]->score, players[i], playGroup->playerValues[i]->winner);
+			}
 		}
 
 		if(!(scoreFor(i, activeGame) == playGroup->playerValues[i]->score))

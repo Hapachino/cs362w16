@@ -1,0 +1,105 @@
+****TEST 1****
+Player playing adventurer: #0
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 0: Expected: 73, Actual: 79
+ERROR: hand count for player 0:  Expected: 161, Actual: 176
+ERROR: deck count for player 0:  Expected: 72, Actual: 71
+ERROR: discard count for  for player 0:  Expected: 13, Actual: 14
+****FINISHED TEST 0****
+
+****TEST 2****
+Player playing adventurer: #1
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 1: Expected: 115, Actual: 123
+ERROR: hand count for player 1:  Expected: 269, Actual: 286
+ERROR: deck count for player 1:  Expected: 208, Actual: 207
+ERROR: discard count for  for player 1:  Expected: 15, Actual: 16
+****FINISHED TEST 1****
+
+****TEST 3****
+Player playing adventurer: #1
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 1: Expected: 64, Actual: 79
+ERROR: hand count for player 1:  Expected: 145, Actual: 151
+ERROR: deck count for player 1:  Expected: 63, Actual: 62
+ERROR: discard count for  for player 1:  Expected: 4, Actual: 5
+****FINISHED TEST 2****
+
+****TEST 4****
+Player playing adventurer: #1
+ERROR: Coin counts do not match: Expected: 21, Actual: 18
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 1: Expected: 29, Actual: 26
+ERROR: hand count for player 1:  Expected: 84, Actual: 91
+ERROR: deck count for player 1:  Expected: 56, Actual: 63
+ERROR: discard count for  for player 1:  Expected: 13, Actual: 6
+****FINISHED TEST 3****
+
+****TEST 5****
+Player playing adventurer: #0
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 0: Expected: 50, Actual: 57
+ERROR: hand count for player 0:  Expected: 122, Actual: 133
+ERROR: deck count for player 0:  Expected: 181, Actual: 180
+ERROR: discard count for  for player 0:  Expected: 9, Actual: 10
+****FINISHED TEST 4****
+
+****TEST 6****
+Player playing adventurer: #1
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 1: Expected: 72, Actual: 78
+ERROR: hand count for player 1:  Expected: 104, Actual: 116
+ERROR: deck count for player 1:  Expected: 204, Actual: 203
+ERROR: discard count for  for player 1:  Expected: 10, Actual: 11
+****FINISHED TEST 5****
+
+****TEST 7****
+Player playing adventurer: #0
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 0: Expected: 23, Actual: 35
+ERROR: hand count for player 0:  Expected: 14, Actual: 22
+ERROR: deck count for player 0:  Expected: 448, Actual: 447
+ERROR: discard count for  for player 0:  Expected: 6, Actual: 7
+****FINISHED TEST 6****
+
+****TEST 8****
+Player playing adventurer: #0
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 0: Expected: 95, Actual: 102
+ERROR: hand count for player 0:  Expected: 99, Actual: 121
+ERROR: deck count for player 0:  Expected: 206, Actual: 205
+ERROR: discard count for  for player 0:  Expected: 20, Actual: 21
+****FINISHED TEST 7****
+
+****TEST 9****
+Player playing adventurer: #0
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 0: Expected: 36, Actual: 40
+ERROR: hand count for player 0:  Expected: 51, Actual: 59
+ERROR: deck count for player 0:  Expected: 408, Actual: 407
+ERROR: discard count for  for player 0:  Expected: 6, Actual: 7
+****FINISHED TEST 8****
+
+****TEST 10****
+Player playing adventurer: #0
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 0: Expected: 208, Actual: 233
+ERROR: hand count for player 0:  Expected: 315, Actual: 361
+ERROR: deck count for player 0:  Expected: 113, Actual: 112
+ERROR: discard count for  for player 0:  Expected: 44, Actual: 45
+****FINISHED TEST 9****
+
+****TEST 11****
+Player playing adventurer: #1
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 1: Expected: 11, Actual: 12
+ERROR: hand count for player 1:  Expected: 7, Actual: 16
+ERROR: deck count for player 1:  Expected: 300, Actual: 299
+ERROR: discard count for  for player 1:  Expected: 7, Actual: 8
+****FINISHED TEST 10****
+
+****TEST 12****
+Player playing adventurer: #1
+ERROR: Coin counts do not match: Expected: 16, Actual: 14
+ERROR: played card counts:  Expected: 1, Actual: 0
+ERROR: Score for 1: Expected:

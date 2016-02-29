@@ -1,0 +1,4533 @@
+TEST 1
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 17, 1, 14, 1, 
+Random Seed: 10000
+Failed Item(s): 
+Invalid draw card operation
+TEST 7
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 2, 1, 14, 24, 13, 4, 2, 3, 24, 
+Random Seed: 10006
+Failed Item(s): 
+Invalid draw card operation
+TEST 10
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 15, 14, 0, 15, 
+Random Seed: 10009
+Failed Item(s): 
+Invalid draw card operation
+TEST 16
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 23, 8, 23, 12, 21, 19, 14, 
+Random Seed: 10015
+Failed Item(s): 
+Invalid draw card operation
+TEST 18
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 16, 5, 14, 9, 
+Random Seed: 10017
+Failed Item(s): 
+Invalid draw card operation
+TEST 22
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 1, 14, 
+Random Seed: 10021
+Failed Item(s): 
+Invalid draw card operation
+TEST 25
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 9, 10, 15, 16, 14, 15, 23, 17, 
+Random Seed: 10024
+Failed Item(s): 
+Invalid draw card operation
+TEST 30
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 15, 23, 8, 16, 14, 21, 
+Random Seed: 10029
+Failed Item(s): 
+Invalid draw card operation
+TEST 33
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 14, 14, 7, 14, 17, 3, 19, 
+Random Seed: 10032
+Failed Item(s): 
+Invalid draw card operation
+TEST 34
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10033
+Failed Item(s): 
+Invalid draw card operation
+TEST 36
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 16, 14, 16, 14, 12, 18, 1, 
+Random Seed: 10035
+Failed Item(s): 
+Invalid draw card operation
+TEST 37
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 20, 22, 14, 
+Random Seed: 10036
+Failed Item(s): 
+Invalid draw card operation
+TEST 38
+Function Used: effectVillage(&state, &infos);
+Position of village card: 9
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 16, 23, 13, 25, 11, 6, 3, 6, 22, 14, 
+Random Seed: 10037
+Failed Item(s): 
+Invalid draw card operation
+TEST 39
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 17, 22, 1, 14, 
+Random Seed: 10038
+Failed Item(s): 
+Invalid draw card operation
+TEST 40
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 0, 14, 3, 4, 
+Random Seed: 10039
+Failed Item(s): 
+Invalid draw card operation
+TEST 41
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 20, 12, 14, 14, 16, 2, 3, 
+Random Seed: 10040
+Failed Item(s): 
+Invalid draw card operation
+TEST 45
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 6, 12, 11, 14, 4, 
+Random Seed: 10044
+Failed Item(s): 
+Invalid draw card operation
+TEST 47
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 1, 23, 14, 
+Random Seed: 10046
+Failed Item(s): 
+Invalid draw card operation
+TEST 48
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 12, 14, 4, 
+Random Seed: 10047
+Failed Item(s): 
+Invalid draw card operation
+TEST 49
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 24, 0, 14, 19, 
+Random Seed: 10048
+Failed Item(s): 
+Invalid draw card operation
+TEST 65
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 24, 15, 15, 14, 15, 7, 
+Random Seed: 10064
+Failed Item(s): 
+Invalid draw card operation
+TEST 66
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 13, 18, 15, 14, 20, 18, 6, 3, 7, 
+Random Seed: 10065
+Failed Item(s): 
+Invalid draw card operation
+TEST 68
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 14, 20, 3, 9, 18, 20, 24, 8, 1, 24, 
+Random Seed: 10067
+Failed Item(s): 
+Invalid draw card operation
+TEST 75
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 25, 14, 19, 16, 
+Random Seed: 10074
+Failed Item(s): 
+Invalid draw card operation
+TEST 87
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 16, 22, 14, 20, 
+Random Seed: 10086
+Failed Item(s): 
+Invalid draw card operation
+TEST 93
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 25, 14, 
+Random Seed: 10092
+Failed Item(s): 
+Invalid draw card operation
+TEST 94
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 14, 7, 10, 22, 
+Random Seed: 10093
+Failed Item(s): 
+Invalid draw card operation
+TEST 95
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 13, 14, 11, 19, 
+Random Seed: 10094
+Failed Item(s): 
+Invalid draw card operation
+TEST 97
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 3, 14, 3, 18, 
+Random Seed: 10096
+Failed Item(s): 
+Invalid draw card operation
+TEST 98
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 24, 21, 4, 6, 14, 20, 17, 
+Random Seed: 10097
+Failed Item(s): 
+Invalid draw card operation
+TEST 100
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 23, 4, 14, 16, 12, 17, 9, 14, 
+Random Seed: 10099
+Failed Item(s): 
+Invalid draw card operation
+TEST 105
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 14, 12, 16, 15, 
+Random Seed: 10104
+Failed Item(s): 
+Invalid draw card operation
+TEST 106
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 17, 14, 
+Random Seed: 10105
+Failed Item(s): 
+Invalid draw card operation
+TEST 113
+Function Used: effectVillage(&state, &infos);
+Position of village card: 9
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 18, 9, 23, 21, 10, 16, 3, 14, 17, 14, 
+Random Seed: 10112
+Failed Item(s): 
+Invalid draw card operation
+TEST 115
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10114
+Failed Item(s): 
+Invalid draw card operation
+TEST 118
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 1, 5, 14, 2, 
+Random Seed: 10117
+Failed Item(s): 
+Invalid draw card operation
+TEST 120
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 14, 17, 
+Random Seed: 10119
+Failed Item(s): 
+Invalid draw card operation
+TEST 124
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 24, 2, 5, 6, 14, 2, 
+Random Seed: 10123
+Failed Item(s): 
+Invalid draw card operation
+TEST 140
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10139
+Failed Item(s): 
+Invalid draw card operation
+TEST 142
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 24, 2, 16, 14, 
+Random Seed: 10141
+Failed Item(s): 
+Invalid draw card operation
+TEST 155
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 12, 14, 7, 11, 
+Random Seed: 10154
+Failed Item(s): 
+Invalid draw card operation
+TEST 160
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 14, 15, 
+Random Seed: 10159
+Failed Item(s): 
+Invalid draw card operation
+TEST 168
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 17, 13, 23, 2, 23, 14, 12, 9, 2, 23, 
+Random Seed: 10167
+Failed Item(s): 
+Invalid draw card operation
+TEST 169
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10168
+Failed Item(s): 
+Invalid draw card operation
+TEST 171
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 14, 7, 
+Random Seed: 10170
+Failed Item(s): 
+Invalid draw card operation
+TEST 175
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 14, 22, 21, 17, 
+Random Seed: 10174
+Failed Item(s): 
+Invalid draw card operation
+TEST 180
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 14, 8, 10, 9, 25, 18, 3, 22, 18, 
+Random Seed: 10179
+Failed Item(s): 
+Invalid draw card operation
+TEST 182
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 11, 10, 5, 14, 
+Random Seed: 10181
+Failed Item(s): 
+Invalid draw card operation
+TEST 184
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 2, 10, 9, 14, 2, 
+Random Seed: 10183
+Failed Item(s): 
+Invalid draw card operation
+TEST 188
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 2, 13, 21, 14, 
+Random Seed: 10187
+Failed Item(s): 
+Invalid draw card operation
+TEST 191
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 9, 10, 13, 14, 
+Random Seed: 10190
+Failed Item(s): 
+Invalid draw card operation
+TEST 196
+Function Used: effectVillage(&state, &infos);
+Position of village card: 8
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 23, 15, 12, 12, 18, 1, 0, 14, 14, 
+Random Seed: 10195
+Failed Item(s): 
+Invalid draw card operation
+TEST 197
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 6, 25, 14, 16, 
+Random Seed: 10196
+Failed Item(s): 
+Invalid draw card operation
+TEST 199
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 1, 18, 11, 14, 
+Random Seed: 10198
+Failed Item(s): 
+Invalid draw card operation
+TEST 206
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 4, 5, 18, 14, 13, 18, 12, 14, 20, 22, 
+Random Seed: 10205
+Failed Item(s): 
+Invalid draw card operation
+TEST 211
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 19, 14, 16, 19, 
+Random Seed: 10210
+Failed Item(s): 
+Invalid draw card operation
+TEST 214
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 8, 12, 16, 14, 22, 
+Random Seed: 10213
+Failed Item(s): 
+Invalid draw card operation
+TEST 217
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 22, 19, 1, 14, 
+Random Seed: 10216
+Failed Item(s): 
+Invalid draw card operation
+TEST 222
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 14, 14, 5, 17, 4, 12, 6, 5, 10, 17, 
+Random Seed: 10221
+Failed Item(s): 
+Invalid draw card operation
+TEST 224
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 14, 9, 7, 14, 3, 13, 0, 24, 22, 15, 
+Random Seed: 10223
+Failed Item(s): 
+Invalid draw card operation
+TEST 227
+Function Used: effectVillage(&state, &infos);
+Position of village card: 7
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 25, 22, 5, 15, 3, 0, 22, 14, 
+Random Seed: 10226
+Failed Item(s): 
+Invalid draw card operation
+TEST 230
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 14, 16, 23, 18, 
+Random Seed: 10229
+Failed Item(s): 
+Invalid draw card operation
+TEST 236
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 3, 6, 14, 
+Random Seed: 10235
+Failed Item(s): 
+Invalid draw card operation
+TEST 238
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 14, 22, 12, 4, 
+Random Seed: 10237
+Failed Item(s): 
+Invalid draw card operation
+TEST 242
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 8, 24, 18, 14, 17, 18, 16, 5, 22, 16, 
+Random Seed: 10241
+Failed Item(s): 
+Invalid draw card operation
+TEST 246
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 12, 22, 14, 13, 20, 20, 5, 13, 13, 
+Random Seed: 10245
+Failed Item(s): 
+Invalid draw card operation
+TEST 249
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 0, 14, 18, 13, 14, 11, 
+Random Seed: 10248
+Failed Item(s): 
+Invalid draw card operation
+TEST 250
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 2, 14, 18, 21, 
+Random Seed: 10249
+Failed Item(s): 
+Invalid draw card operation
+TEST 251
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 14, 12, 14, 8, 
+Random Seed: 10250
+Failed Item(s): 
+Invalid draw card operation
+TEST 253
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 14, 16, 22, 6, 23, 24, 0, 25, 13, 
+Random Seed: 10252
+Failed Item(s): 
+Invalid draw card operation
+TEST 266
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 17, 8, 23, 16, 14, 6, 22, 3, 
+Random Seed: 10265
+Failed Item(s): 
+Invalid draw card operation
+TEST 268
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 13, 7, 22, 14, 8, 11, 10, 
+Random Seed: 10267
+Failed Item(s): 
+Invalid draw card operation
+TEST 270
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 19, 25, 16, 18, 9, 14, 
+Random Seed: 10269
+Failed Item(s): 
+Invalid draw card operation
+TEST 274
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 2, 14, 
+Random Seed: 10273
+Failed Item(s): 
+Invalid draw card operation
+TEST 277
+Function Used: effectVillage(&state, &infos);
+Position of village card: 8
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 0, 15, 22, 15, 1, 16, 17, 14, 14, 12, 
+Random Seed: 10276
+Failed Item(s): 
+Invalid draw card operation
+TEST 280
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 9, 12, 14, 17, 12, 
+Random Seed: 10279
+Failed Item(s): 
+Invalid draw card operation
+TEST 290
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 6, 14, 5, 13, 
+Random Seed: 10289
+Failed Item(s): 
+Invalid draw card operation
+TEST 293
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 4, 16, 14, 21, 11, 16, 
+Random Seed: 10292
+Failed Item(s): 
+Invalid draw card operation
+TEST 294
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10293
+Failed Item(s): 
+Invalid draw card operation
+TEST 295
+Function Used: effectVillage(&state, &infos);
+Position of village card: 8
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 9, 1, 17, 15, 12, 8, 23, 5, 14, 
+Random Seed: 10294
+Failed Item(s): 
+Invalid draw card operation
+TEST 297
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 15, 22, 18, 3, 14, 
+Random Seed: 10296
+Failed Item(s): 
+Invalid draw card operation
+TEST 301
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 10, 14, 
+Random Seed: 10300
+Failed Item(s): 
+Invalid draw card operation
+TEST 304
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 16, 1, 14, 9, 2, 11, 21, 11, 
+Random Seed: 10303
+Failed Item(s): 
+Invalid draw card operation
+TEST 305
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 12, 20, 14, 
+Random Seed: 10304
+Failed Item(s): 
+Invalid draw card operation
+TEST 309
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 21, 14, 2, 14, 
+Random Seed: 10308
+Failed Item(s): 
+Invalid draw card operation
+TEST 311
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 24, 4, 21, 18, 11, 16, 14, 
+Random Seed: 10310
+Failed Item(s): 
+Invalid draw card operation
+TEST 314
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 14, 14, 23, 11, 
+Random Seed: 10313
+Failed Item(s): 
+Invalid draw card operation
+TEST 315
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 24, 5, 14, 
+Random Seed: 10314
+Failed Item(s): 
+Invalid draw card operation
+TEST 318
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 3, 4, 14, 21, 
+Random Seed: 10317
+Failed Item(s): 
+Invalid draw card operation
+TEST 325
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 8, 17, 12, 14, 8, 
+Random Seed: 10324
+Failed Item(s): 
+Invalid draw card operation
+TEST 331
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 22, 24, 5, 14, 0, 11, 15, 4, 20, 
+Random Seed: 10330
+Failed Item(s): 
+Invalid draw card operation
+TEST 342
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 7, 1, 0, 14, 0, 22, 
+Random Seed: 10341
+Failed Item(s): 
+Invalid draw card operation
+TEST 353
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 23, 9, 12, 14, 
+Random Seed: 10352
+Failed Item(s): 
+Invalid draw card operation
+TEST 354
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 2, 16, 16, 23, 5, 14, 1, 1, 5, 
+Random Seed: 10353
+Failed Item(s): 
+Invalid draw card operation
+TEST 359
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 0, 15, 14, 0, 
+Random Seed: 10358
+Failed Item(s): 
+Invalid draw card operation
+TEST 360
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 19, 14, 4, 18, 
+Random Seed: 10359
+Failed Item(s): 
+Invalid draw card operation
+TEST 364
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 21, 14, 14, 12, 16, 20, 4, 
+Random Seed: 10363
+Failed Item(s): 
+Invalid draw card operation
+TEST 368
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 23, 6, 13, 14, 9, 
+Random Seed: 10367
+Failed Item(s): 
+Invalid draw card operation
+TEST 372
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 10, 16, 25, 16, 14, 6, 10, 
+Random Seed: 10371
+Failed Item(s): 
+Invalid draw card operation
+TEST 379
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 19, 0, 14, 
+Random Seed: 10378
+Failed Item(s): 
+Invalid draw card operation
+TEST 382
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 17, 14, 17, 20, 
+Random Seed: 10381
+Failed Item(s): 
+Invalid draw card operation
+TEST 393
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 10, 18, 23, 9, 14, 
+Random Seed: 10392
+Failed Item(s): 
+Invalid draw card operation
+TEST 394
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 12, 14, 10, 22, 0, 1, 7, 
+Random Seed: 10393
+Failed Item(s): 
+Invalid draw card operation
+TEST 397
+Function Used: effectVillage(&state, &infos);
+Position of village card: 7
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 10, 24, 3, 22, 17, 1, 6, 14, 23, 
+Random Seed: 10396
+Failed Item(s): 
+Invalid draw card operation
+TEST 399
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 7, 7, 14, 21, 11, 23, 
+Random Seed: 10398
+Failed Item(s): 
+Invalid draw card operation
+TEST 401
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10400
+Failed Item(s): 
+Invalid draw card operation
+TEST 403
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 19, 11, 15, 21, 14, 14, 14, 24, 
+Random Seed: 10402
+Failed Item(s): 
+Invalid draw card operation
+TEST 404
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 14, 15, 6, 21, 
+Random Seed: 10403
+Failed Item(s): 
+Invalid draw card operation
+TEST 405
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10404
+Failed Item(s): 
+Invalid draw card operation
+TEST 410
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 2, 14, 25, 22, 14, 10, 
+Random Seed: 10409
+Failed Item(s): 
+Invalid draw card operation
+TEST 412
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 15, 20, 20, 9, 14, 21, 22, 19, 
+Random Seed: 10411
+Failed Item(s): 
+Invalid draw card operation
+TEST 419
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 14, 4, 11, 3, 
+Random Seed: 10418
+Failed Item(s): 
+Invalid draw card operation
+TEST 428
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 14, 3, 
+Random Seed: 10427
+Failed Item(s): 
+Invalid draw card operation
+TEST 432
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 4, 17, 14, 21, 21, 20, 
+Random Seed: 10431
+Failed Item(s): 
+Invalid draw card operation
+TEST 434
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 4, 25, 17, 14, 25, 6, 
+Random Seed: 10433
+Failed Item(s): 
+Invalid draw card operation
+TEST 435
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 7, 14, 25, 0, 
+Random Seed: 10434
+Failed Item(s): 
+Invalid draw card operation
+TEST 437
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10436
+Failed Item(s): 
+Invalid draw card operation
+TEST 447
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 19, 12, 14, 4, 
+Random Seed: 10446
+Failed Item(s): 
+Invalid draw card operation
+TEST 450
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 14, 17, 14, 
+Random Seed: 10449
+Failed Item(s): 
+Invalid draw card operation
+TEST 453
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 4, 18, 14, 19, 
+Random Seed: 10452
+Failed Item(s): 
+Invalid draw card operation
+TEST 457
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10456
+Failed Item(s): 
+Invalid draw card operation
+TEST 468
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 14, 8, 
+Random Seed: 10467
+Failed Item(s): 
+Invalid draw card operation
+TEST 469
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 7, 20, 5, 2, 25, 14, 12, 
+Random Seed: 10468
+Failed Item(s): 
+Invalid draw card operation
+TEST 473
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10472
+Failed Item(s): 
+Invalid draw card operation
+TEST 477
+Function Used: effectVillage(&state, &infos);
+Position of village card: 9
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 6, 25, 19, 16, 0, 17, 18, 0, 17, 14, 
+Random Seed: 10476
+Failed Item(s): 
+Invalid draw card operation
+TEST 479
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 4, 14, 24, 
+Random Seed: 10478
+Failed Item(s): 
+Invalid draw card operation
+TEST 483
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 14, 10, 14, 4, 
+Random Seed: 10482
+Failed Item(s): 
+Invalid draw card operation
+TEST 484
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 13, 14, 25, 4, 
+Random Seed: 10483
+Failed Item(s): 
+Invalid draw card operation
+TEST 488
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 15, 20, 20, 14, 
+Random Seed: 10487
+Failed Item(s): 
+Invalid draw card operation
+TEST 489
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 14, 19, 
+Random Seed: 10488
+Failed Item(s): 
+Invalid draw card operation
+TEST 497
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 14, 13, 19, 
+Random Seed: 10496
+Failed Item(s): 
+Invalid draw card operation
+TEST 498
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 22, 14, 25, 21, 
+Random Seed: 10497
+Failed Item(s): 
+Invalid draw card operation
+TEST 499
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 21, 10, 14, 15, 11, 15, 5, 
+Random Seed: 10498
+Failed Item(s): 
+Invalid draw card operation
+TEST 508
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 22, 7, 15, 21, 14, 
+Random Seed: 10507
+Failed Item(s): 
+Invalid draw card operation
+TEST 515
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10514
+Failed Item(s): 
+Invalid draw card operation
+TEST 517
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 9, 15, 25, 14, 
+Random Seed: 10516
+Failed Item(s): 
+Invalid draw card operation
+TEST 522
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 10, 5, 14, 9, 9, 25, 0, 2, 1, 15, 
+Random Seed: 10521
+Failed Item(s): 
+Invalid draw card operation
+TEST 523
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 14, 15, 15, 21, 
+Random Seed: 10522
+Failed Item(s): 
+Invalid draw card operation
+TEST 528
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 13, 10, 8, 14, 
+Random Seed: 10527
+Failed Item(s): 
+Invalid draw card operation
+TEST 531
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 2, 24, 12, 14, 3, 17, 25, 16, 25, 
+Random Seed: 10530
+Failed Item(s): 
+Invalid draw card operation
+TEST 532
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 4, 12, 14, 
+Random Seed: 10531
+Failed Item(s): 
+Invalid draw card operation
+TEST 537
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 19, 14, 19, 13, 2, 9, 19, 
+Random Seed: 10536
+Failed Item(s): 
+Invalid draw card operation
+TEST 538
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 19, 14, 
+Random Seed: 10537
+Failed Item(s): 
+Invalid draw card operation
+TEST 550
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 7, 21, 8, 21, 14, 19, 7, 5, 
+Random Seed: 10549
+Failed Item(s): 
+Invalid draw card operation
+TEST 551
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 7, 5, 23, 1, 14, 
+Random Seed: 10550
+Failed Item(s): 
+Invalid draw card operation
+TEST 553
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 23, 14, 
+Random Seed: 10552
+Failed Item(s): 
+Invalid draw card operation
+TEST 555
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 21, 14, 25, 25, 18, 2, 16, 
+Random Seed: 10554
+Failed Item(s): 
+Invalid draw card operation
+TEST 556
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 14, 18, 25, 5, 16, 
+Random Seed: 10555
+Failed Item(s): 
+Invalid draw card operation
+TEST 557
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 19, 0, 4, 14, 
+Random Seed: 10556
+Failed Item(s): 
+Invalid draw card operation
+TEST 566
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 23, 5, 19, 14, 
+Random Seed: 10565
+Failed Item(s): 
+Invalid draw card operation
+TEST 567
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 16, 0, 18, 19, 14, 21, 15, 
+Random Seed: 10566
+Failed Item(s): 
+Invalid draw card operation
+TEST 568
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 7, 15, 18, 3, 14, 8, 5, 13, 
+Random Seed: 10567
+Failed Item(s): 
+Invalid draw card operation
+TEST 569
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 1, 14, 16, 0, 
+Random Seed: 10568
+Failed Item(s): 
+Invalid draw card operation
+TEST 570
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 5, 14, 24, 7, 7, 14, 18, 23, 7, 
+Random Seed: 10569
+Failed Item(s): 
+Invalid draw card operation
+TEST 571
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 2, 14, 2, 19, 2, 12, 8, 20, 
+Random Seed: 10570
+Failed Item(s): 
+Invalid draw card operation
+TEST 575
+Function Used: effectVillage(&state, &infos);
+Position of village card: 7
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 16, 25, 22, 20, 15, 17, 6, 14, 
+Random Seed: 10574
+Failed Item(s): 
+Invalid draw card operation
+TEST 584
+Function Used: effectVillage(&state, &infos);
+Position of village card: 7
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 2, 0, 5, 18, 24, 0, 8, 14, 1, 
+Random Seed: 10583
+Failed Item(s): 
+Invalid draw card operation
+TEST 593
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 10, 3, 14, 23, 11, 17, 5, 
+Random Seed: 10592
+Failed Item(s): 
+Invalid draw card operation
+TEST 594
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 12, 23, 14, 12, 
+Random Seed: 10593
+Failed Item(s): 
+Invalid draw card operation
+TEST 602
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 19, 11, 25, 4, 14, 8, 21, 23, 24, 
+Random Seed: 10601
+Failed Item(s): 
+Invalid draw card operation
+TEST 603
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10602
+Failed Item(s): 
+Invalid draw card operation
+TEST 604
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 14, 18, 3, 14, 8, 10, 
+Random Seed: 10603
+Failed Item(s): 
+Invalid draw card operation
+TEST 611
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10610
+Failed Item(s): 
+Invalid draw card operation
+TEST 613
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 24, 14, 7, 14, 
+Random Seed: 10612
+Failed Item(s): 
+Invalid draw card operation
+TEST 619
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 18, 18, 5, 21, 14, 24, 14, 23, 
+Random Seed: 10618
+Failed Item(s): 
+Invalid draw card operation
+TEST 624
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 14, 8, 12, 11, 
+Random Seed: 10623
+Failed Item(s): 
+Invalid draw card operation
+TEST 635
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 15, 14, 
+Random Seed: 10634
+Failed Item(s): 
+Invalid draw card operation
+TEST 636
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 14, 22, 7, 15, 
+Random Seed: 10635
+Failed Item(s): 
+Invalid draw card operation
+TEST 638
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 14, 21, 0, 1, 
+Random Seed: 10637
+Failed Item(s): 
+Invalid draw card operation
+TEST 639
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 6, 9, 14, 18, 
+Random Seed: 10638
+Failed Item(s): 
+Invalid draw card operation
+TEST 642
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 14, 8, 
+Random Seed: 10641
+Failed Item(s): 
+Invalid draw card operation
+TEST 644
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10643
+Failed Item(s): 
+Invalid draw card operation
+TEST 647
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 2, 10, 3, 11, 14, 3, 
+Random Seed: 10646
+Failed Item(s): 
+Invalid draw card operation
+TEST 652
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 14, 8, 5, 13, 12, 1, 0, 16, 
+Random Seed: 10651
+Failed Item(s): 
+Invalid draw card operation
+TEST 655
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 4, 3, 4, 19, 14, 10, 14, 9, 2, 11, 
+Random Seed: 10654
+Failed Item(s): 
+Invalid draw card operation
+TEST 656
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 14, 0, 16, 25, 17, 25, 20, 0, 
+Random Seed: 10655
+Failed Item(s): 
+Invalid draw card operation
+TEST 660
+Function Used: effectVillage(&state, &infos);
+Position of village card: 7
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 24, 24, 2, 25, 16, 3, 18, 14, 15, 23, 
+Random Seed: 10659
+Failed Item(s): 
+Invalid draw card operation
+TEST 661
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 10, 9, 16, 9, 19, 18, 14, 
+Random Seed: 10660
+Failed Item(s): 
+Invalid draw card operation
+TEST 669
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 24, 14, 11, 25, 1, 0, 11, 16, 9, 15, 
+Random Seed: 10668
+Failed Item(s): 
+Invalid draw card operation
+TEST 672
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 14, 24, 8, 12, 4, 25, 17, 0, 12, 24, 
+Random Seed: 10671
+Failed Item(s): 
+Invalid draw card operation
+TEST 677
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 4, 16, 12, 0, 7, 14, 11, 19, 
+Random Seed: 10676
+Failed Item(s): 
+Invalid draw card operation
+TEST 678
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10677
+Failed Item(s): 
+Invalid draw card operation
+TEST 680
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 14, 2, 25, 6, 
+Random Seed: 10679
+Failed Item(s): 
+Invalid draw card operation
+TEST 682
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 14, 3, 14, 13, 
+Random Seed: 10681
+Failed Item(s): 
+Invalid draw card operation
+TEST 683
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 25, 9, 22, 15, 2, 14, 25, 23, 10, 22, 
+Random Seed: 10682
+Failed Item(s): 
+Invalid draw card operation
+TEST 684
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 0, 14, 
+Random Seed: 10683
+Failed Item(s): 
+Invalid draw card operation
+TEST 690
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 20, 11, 24, 14, 
+Random Seed: 10689
+Failed Item(s): 
+Invalid draw card operation
+TEST 691
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 14, 3, 2, 
+Random Seed: 10690
+Failed Item(s): 
+Invalid draw card operation
+TEST 697
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 1, 22, 22, 14, 7, 16, 
+Random Seed: 10696
+Failed Item(s): 
+Invalid draw card operation
+TEST 698
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 22, 25, 23, 14, 
+Random Seed: 10697
+Failed Item(s): 
+Invalid draw card operation
+TEST 706
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 10, 21, 22, 8, 14, 
+Random Seed: 10705
+Failed Item(s): 
+Invalid draw card operation
+TEST 707
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 24, 2, 19, 14, 
+Random Seed: 10706
+Failed Item(s): 
+Invalid draw card operation
+TEST 712
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 0, 0, 14, 19, 15, 3, 14, 7, 19, 6, 
+Random Seed: 10711
+Failed Item(s): 
+Invalid draw card operation
+TEST 720
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 13, 10, 14, 15, 4, 18, 20, 1, 14, 
+Random Seed: 10719
+Failed Item(s): 
+Invalid draw card operation
+TEST 721
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10720
+Failed Item(s): 
+Invalid draw card operation
+TEST 722
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 16, 14, 
+Random Seed: 10721
+Failed Item(s): 
+Invalid draw card operation
+TEST 723
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 4, 3, 14, 6, 
+Random Seed: 10722
+Failed Item(s): 
+Invalid draw card operation
+TEST 724
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 14, 3, 18, 0, 
+Random Seed: 10723
+Failed Item(s): 
+Invalid draw card operation
+TEST 725
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 14, 1, 14, 14, 
+Random Seed: 10724
+Failed Item(s): 
+Invalid draw card operation
+TEST 726
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 2, 6, 25, 6, 11, 14, 16, 9, 21, 10, 
+Random Seed: 10725
+Failed Item(s): 
+Invalid draw card operation
+TEST 727
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 20, 14, 2, 16, 3, 11, 20, 1, 15, 
+Random Seed: 10726
+Failed Item(s): 
+Invalid draw card operation
+TEST 739
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10738
+Failed Item(s): 
+Invalid draw card operation
+TEST 740
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 8, 17, 16, 21, 14, 23, 
+Random Seed: 10739
+Failed Item(s): 
+Invalid draw card operation
+TEST 746
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 12, 14, 13, 17, 
+Random Seed: 10745
+Failed Item(s): 
+Invalid draw card operation
+TEST 747
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 2, 24, 6, 23, 14, 9, 23, 24, 11, 8, 
+Random Seed: 10746
+Failed Item(s): 
+Invalid draw card operation
+TEST 748
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 19, 14, 21, 1, 
+Random Seed: 10747
+Failed Item(s): 
+Invalid draw card operation
+TEST 749
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 13, 14, 6, 23, 13, 17, 
+Random Seed: 10748
+Failed Item(s): 
+Invalid draw card operation
+TEST 757
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 11, 12, 23, 14, 
+Random Seed: 10756
+Failed Item(s): 
+Invalid draw card operation
+TEST 762
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10761
+Failed Item(s): 
+Invalid draw card operation
+TEST 763
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 5, 22, 18, 14, 17, 22, 10, 16, 20, 
+Random Seed: 10762
+Failed Item(s): 
+Invalid draw card operation
+TEST 766
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 12, 21, 14, 
+Random Seed: 10765
+Failed Item(s): 
+Invalid draw card operation
+TEST 770
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 6, 14, 7, 4, 
+Random Seed: 10769
+Failed Item(s): 
+Invalid draw card operation
+TEST 774
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 5, 10, 13, 11, 20, 19, 14, 11, 14, 
+Random Seed: 10773
+Failed Item(s): 
+Invalid draw card operation
+TEST 779
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 4, 25, 14, 14, 0, 22, 13, 15, 10, 
+Random Seed: 10778
+Failed Item(s): 
+Invalid draw card operation
+TEST 781
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 0, 24, 5, 14, 
+Random Seed: 10780
+Failed Item(s): 
+Invalid draw card operation
+TEST 788
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 1, 14, 9, 13, 
+Random Seed: 10787
+Failed Item(s): 
+Invalid draw card operation
+TEST 792
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 18, 14, 3, 
+Random Seed: 10791
+Failed Item(s): 
+Invalid draw card operation
+TEST 793
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 14, 15, 0, 21, 
+Random Seed: 10792
+Failed Item(s): 
+Invalid draw card operation
+TEST 795
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 15, 7, 4, 10, 14, 
+Random Seed: 10794
+Failed Item(s): 
+Invalid draw card operation
+TEST 799
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10798
+Failed Item(s): 
+Invalid draw card operation
+TEST 801
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 3, 14, 0, 9, 
+Random Seed: 10800
+Failed Item(s): 
+Invalid draw card operation
+TEST 804
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 1, 1, 14, 19, 
+Random Seed: 10803
+Failed Item(s): 
+Invalid draw card operation
+TEST 806
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 22, 13, 14, 8, 0, 14, 
+Random Seed: 10805
+Failed Item(s): 
+Invalid draw card operation
+TEST 810
+Function Used: effectVillage(&state, &infos);
+Position of village card: 9
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 25, 15, 6, 10, 17, 5, 0, 7, 13, 14, 
+Random Seed: 10809
+Failed Item(s): 
+Invalid draw card operation
+TEST 816
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 22, 14, 12, 17, 7, 24, 20, 5, 12, 
+Random Seed: 10815
+Failed Item(s): 
+Invalid draw card operation
+TEST 818
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 1, 20, 14, 7, 
+Random Seed: 10817
+Failed Item(s): 
+Invalid draw card operation
+TEST 821
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 14, 11, 
+Random Seed: 10820
+Failed Item(s): 
+Invalid draw card operation
+TEST 822
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 4, 21, 14, 2, 
+Random Seed: 10821
+Failed Item(s): 
+Invalid draw card operation
+TEST 832
+Function Used: effectVillage(&state, &infos);
+Position of village card: 7
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 21, 20, 12, 8, 14, 18, 12, 14, 
+Random Seed: 10831
+Failed Item(s): 
+Invalid draw card operation
+TEST 837
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 15, 14, 16, 5, 21, 13, 11, 1, 
+Random Seed: 10836
+Failed Item(s): 
+Invalid draw card operation
+TEST 839
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 11, 14, 3, 2, 
+Random Seed: 10838
+Failed Item(s): 
+Invalid draw card operation
+TEST 840
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 20, 14, 23, 20, 3, 2, 15, 21, 22, 
+Random Seed: 10839
+Failed Item(s): 
+Invalid draw card operation
+TEST 842
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 2, 23, 6, 15, 19, 14, 19, 20, 21, 8, 
+Random Seed: 10841
+Failed Item(s): 
+Invalid draw card operation
+TEST 844
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 19, 18, 14, 5, 
+Random Seed: 10843
+Failed Item(s): 
+Invalid draw card operation
+TEST 845
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 6, 5, 14, 6, 12, 
+Random Seed: 10844
+Failed Item(s): 
+Invalid draw card operation
+TEST 847
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 14, 4, 5, 
+Random Seed: 10846
+Failed Item(s): 
+Invalid draw card operation
+TEST 849
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 14, 10, 
+Random Seed: 10848
+Failed Item(s): 
+Invalid draw card operation
+TEST 851
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10850
+Failed Item(s): 
+Invalid draw card operation
+TEST 852
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10851
+Failed Item(s): 
+Invalid draw card operation
+TEST 855
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 18, 22, 14, 23, 
+Random Seed: 10854
+Failed Item(s): 
+Invalid draw card operation
+TEST 860
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 25, 17, 22, 23, 14, 24, 
+Random Seed: 10859
+Failed Item(s): 
+Invalid draw card operation
+TEST 861
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 15, 14, 14, 
+Random Seed: 10860
+Failed Item(s): 
+Invalid draw card operation
+TEST 862
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 25, 6, 8, 16, 19, 23, 14, 25, 
+Random Seed: 10861
+Failed Item(s): 
+Invalid draw card operation
+TEST 865
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 3, 15, 24, 14, 
+Random Seed: 10864
+Failed Item(s): 
+Invalid draw card operation
+TEST 872
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 14, 5, 23, 18, 
+Random Seed: 10871
+Failed Item(s): 
+Invalid draw card operation
+TEST 874
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 14, 14, 16, 
+Random Seed: 10873
+Failed Item(s): 
+Invalid draw card operation
+TEST 877
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 11, 14, 23, 21, 9, 13, 
+Random Seed: 10876
+Failed Item(s): 
+Invalid draw card operation
+TEST 878
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10877
+Failed Item(s): 
+Invalid draw card operation
+TEST 880
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 5
+Starting deck count: 0
+Cards in hand: 6, 13, 14, 2, 19, 
+Random Seed: 10879
+Failed Item(s): 
+Invalid draw card operation
+TEST 886
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 11, 0, 19, 9, 14, 10, 25, 
+Random Seed: 10885
+Failed Item(s): 
+Invalid draw card operation
+TEST 890
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 0, 15, 16, 18, 14, 8, 3, 20, 1, 
+Random Seed: 10889
+Failed Item(s): 
+Invalid draw card operation
+TEST 891
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 14, 16, 13, 18, 17, 20, 14, 11, 0, 
+Random Seed: 10890
+Failed Item(s): 
+Invalid draw card operation
+TEST 892
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 14, 14, 5, 
+Random Seed: 10891
+Failed Item(s): 
+Invalid draw card operation
+TEST 896
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 5, 10, 24, 14, 20, 18, 21, 13, 4, 
+Random Seed: 10895
+Failed Item(s): 
+Invalid draw card operation
+TEST 899
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 14, 0, 16, 14, 12, 20, 10, 7, 9, 17, 
+Random Seed: 10898
+Failed Item(s): 
+Invalid draw card operation
+TEST 903
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 25, 11, 14, 22, 
+Random Seed: 10902
+Failed Item(s): 
+Invalid draw card operation
+TEST 905
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 16, 8, 5, 14, 
+Random Seed: 10904
+Failed Item(s): 
+Invalid draw card operation
+TEST 907
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 24, 7, 14, 9, 
+Random Seed: 10906
+Failed Item(s): 
+Invalid draw card operation
+TEST 917
+Function Used: effectVillage(&state, &infos);
+Position of village card: 5
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 18, 12, 0, 16, 3, 14, 0, 21, 
+Random Seed: 10916
+Failed Item(s): 
+Invalid draw card operation
+TEST 919
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 14, 11, 16, 
+Random Seed: 10918
+Failed Item(s): 
+Invalid draw card operation
+TEST 921
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 0, 16, 21, 14, 
+Random Seed: 10920
+Failed Item(s): 
+Invalid draw card operation
+TEST 924
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 4
+Starting deck count: 0
+Cards in hand: 21, 14, 8, 19, 
+Random Seed: 10923
+Failed Item(s): 
+Invalid draw card operation
+TEST 926
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 5, 1, 14, 2, 5, 20, 14, 2, 7, 14, 
+Random Seed: 10925
+Failed Item(s): 
+Invalid draw card operation
+TEST 931
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 22, 23, 14, 
+Random Seed: 10930
+Failed Item(s): 
+Invalid draw card operation
+TEST 932
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 14, 22, 9, 7, 10, 11, 22, 1, 19, 
+Random Seed: 10931
+Failed Item(s): 
+Invalid draw card operation
+TEST 933
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 14, 6, 0, 0, 16, 5, 
+Random Seed: 10932
+Failed Item(s): 
+Invalid draw card operation
+TEST 936
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 2
+Cards in hand: 14, 0, 15, 10, 
+Random Seed: 10935
+Failed Item(s): 
+Invalid draw card operation
+TEST 938
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 14, 5, 8, 7, 
+Random Seed: 10937
+Failed Item(s): 
+Invalid draw card operation
+TEST 942
+Function Used: effectVillage(&state, &infos);
+Position of village card: 4
+Number of Cards in Hand: 10
+Starting deck count: 0
+Cards in hand: 11, 19, 8, 18, 14, 17, 23, 23, 1, 4, 
+Random Seed: 10941
+Failed Item(s): 
+Invalid draw card operation
+TEST 944
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 4, 5, 14, 19, 20, 23, 
+Random Seed: 10943
+Failed Item(s): 
+Invalid draw card operation
+TEST 949
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 3
+Starting deck count: 0
+Cards in hand: 4, 21, 14, 
+Random Seed: 10948
+Failed Item(s): 
+Invalid draw card operation
+TEST 950
+Function Used: effectVillage(&state, &infos);
+Position of village card: 8
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 8, 25, 13, 8, 6, 10, 2, 14, 14, 
+Random Seed: 10949
+Failed Item(s): 
+Invalid draw card operation
+TEST 953
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 2
+Starting deck count: 0
+Cards in hand: 1, 14, 
+Random Seed: 10952
+Failed Item(s): 
+Invalid draw card operation
+TEST 955
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 14, 20, 14, 14, 
+Random Seed: 10954
+Failed Item(s): 
+Invalid draw card operation
+TEST 958
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 25, 18, 14, 5, 
+Random Seed: 10957
+Failed Item(s): 
+Invalid draw card operation
+TEST 960
+Function Used: effectVillage(&state, &infos);
+Position of village card: 3
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 24, 15, 15, 14, 
+Random Seed: 10959
+Failed Item(s): 
+Invalid draw card operation
+TEST 961
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 3
+Cards in hand: 14, 18, 8, 20, 
+Random Seed: 10960
+Failed Item(s): 
+Invalid draw card operation
+TEST 963
+Function Used: effectVillage(&state, &infos);
+Position of village card: 6
+Number of Cards in Hand: 7
+Starting deck count: 0
+Cards in hand: 25, 17, 3, 3, 19, 22, 14, 
+Random Seed: 10962
+Failed Item(s): 
+Invalid draw card operation
+TEST 974
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 1
+Starting deck count: 0
+Cards in hand: 14, 
+Random Seed: 10973
+Failed Item(s): 
+Invalid draw card operation
+TEST 978
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 1
+Cards in hand: 14, 17, 18, 6, 
+Random Seed: 10977
+Failed Item(s): 
+Invalid draw card operation
+TEST 979
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 14, 21, 15, 24, 
+Random Seed: 10978
+Failed Item(s): 
+Invalid draw card operation
+TEST 986
+Function Used: effectVillage(&state, &infos);
+Position of village card: 1
+Number of Cards in Hand: 6
+Starting deck count: 0
+Cards in hand: 7, 14, 16, 17, 15, 10, 
+Random Seed: 10985
+Failed Item(s): 
+Invalid draw card operation
+TEST 988
+Function Used: effectVillage(&state, &infos);
+Position of village card: 0
+Number of Cards in Hand: 8
+Starting deck count: 0
+Cards in hand: 14, 11, 21, 7, 5, 4, 18, 22, 
+Random Seed: 10987
+Failed Item(s): 
+Invalid draw card operation
+TEST 991
+Function Used: effectVillage(&state, &infos);
+Position of village card: 7
+Number of Cards in Hand: 9
+Starting deck count: 0
+Cards in hand: 1, 11, 1, 3, 22, 4, 18, 14, 9, 
+Random Seed: 10990
+Failed Item(s): 
+Invalid draw card operation
+TEST 999
+Function Used: effectVillage(&state, &infos);
+Position of village card: 2
+Number of Cards in Hand: 4
+Starting deck count: 4
+Cards in hand: 24, 22, 14, 25, 
+Random Seed: 10998
+Failed Item(s): 
+Invalid draw card operation
+
+Total Tests: 1000
+Total Passed: 715
+Total Failed: 285
+File 'dominion.c'
+Lines executed:31.90% of 605
+Branches executed:31.18% of 417
+Taken at least once:21.34% of 417
+Calls executed:19.79% of 96
+dominion.c:creating 'dominion.c.gcov'
+
+        -:    0:Source:dominion.c
+        -:    0:Graph:dominion.gcno
+        -:    0:Data:dominion.gcda
+        -:    0:Runs:8
+        -:    0:Programs:8
+        -:    1:#include "dominion.h"
+        -:    2:#include "dominion_helpers.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <stdio.h>
+        -:    5:#include <math.h>
+        -:    6:#include <stdlib.h>
+        -:    7:
+function compare called 30210 returned 100% blocks executed 83%
+    30210:    8:int compare(const void* a, const void* b) {
+    30210:    9:  if (*(int*)a > *(int*)b)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   10:    return 1;
+    30210:   11:  if (*(int*)a < *(int*)b)
+branch  0 taken 27% (fallthrough)
+branch  1 taken 73%
+     8056:   12:    return -1;
+    22154:   13:  return 0;
+        -:   14:}
+        -:   15:
+function newGame called 0 returned 0% blocks executed 0%
+    #####:   16:struct gameState* newGame() {
+    #####:   17:  struct gameState* g = malloc(sizeof(struct gameState));
+    #####:   18:  return g;
+        -:   19:}
+        -:   20:
+function kingdomCards called 0 returned 0% blocks executed 0%
+    #####:   21:int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
+        -:   22:		  int k8, int k9, int k10) {
+    #####:   23:  int* k = malloc(10 * sizeof(int));
+        -:   24:  
+    #####:   25:  k[0] = k1;
+    #####:   26:  k[1] = k2;
+    #####:   27:  k[2] = k3;
+    #####:   28:  k[3] = k4;
+    #####:   29:  k[4] = k5;
+    #####:   30:  k[5] = k6;
+    #####:   31:  k[6] = k7;
+    #####:   32:  k[7] = k8;
+    #####:   33:  k[8] = k9;
+    #####:   34:  k[9] = k10;
+    #####:   35:  return k;
+        -:   36:}
+        -:   37:
+        -:   38:
+function initializeGame called 1007 returned 100% blocks executed 88%
+     1007:   39:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state) 
+        -:   40:{
+        -:   41:  int i;
+        -:   42:  int j;
+        -:   43:  int it;      
+        -:   44:  //set up random number generator
+     1007:   45:  SelectStream(1);
+call    0 returned 100%
+     1007:   46:  PutSeed((long)randomSeed);
+call    0 returned 100%
+        -:   47:  
+        -:   48:  //check number of players
+     1007:   49:  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 0% (fallthrough)
+branch  3 taken 100%
+        -:   50:    {
+    #####:   51:      return -1;
+        -:   52:    }
+        -:   53:
+        -:   54:  //set number of players
+     1007:   55:  state->numPlayers = numPlayers;
+        -:   56:
+        -:   57:  //check selected kingdom cards are different
+    11077:   58:  for (i = 0; i < 10; i++)
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+        -:   59:    {
+   110770:   60:      for (j = 0; j < 10; j++)
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+        -:   61:        {
+   100700:   62:   if (j != i && kingdomCards[j] == kingdomCards[i])
+branch  0 taken 90% (fallthrough)
+branch  1 taken 10%
+branch  2 taken 0% (fallthrough)
+branch  3 taken 100%
+        -:   63:     {
+    #####:   64:       return -1;
+        -:   65:     }
+        -:   66:        }
+        -:   67:    }
+        -:   68:
+        -:   69:  //initialize supply
+        -:   70:  ///////////////////////////////
+        -:   71:
+        -:   72:  //set number of Curse cards
+     1007:   73:  if (numPlayers == 2)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   74:    {
+     1007:   75:      state->supplyCount[curse] = 10;
+        -:   76:
+        -:   77:    }
+    #####:   78:  else if (numPlayers == 3)
+branch  0 never executed
+branch  1 never executed
+        -:   79:    {
+    #####:   80:      state->supplyCount[curse] = 20;
+        -:   81:    }
+        -:   82:  else
+        -:   83:    {
+    #####:   84:      state->supplyCount[curse] = 30;
+        -:   85:    }
+        -:   86:
+        -:   87:  //set number of Victory cards
+     1007:   88:  if (numPlayers == 2)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   89:    {
+     1007:   90:      state->supplyCount[estate] = 8;
+     1007:   91:      state->supplyCount[duchy] = 8;
+     1007:   92:      state->supplyCount[province] = 8;
+        -:   93:    }
+        -:   94:  else
+        -:   95:    {
+    #####:   96:      state->supplyCount[estate] = 12;
+    #####:   97:      state->supplyCount[duchy] = 12;
+    #####:   98:      state->supplyCount[province] = 12;
+        -:   99:    }
+        -:  100:
+        -:  101:  //set number of Treasure cards
+     1007:  102:  state->supplyCount[copper] = 60 - (7 * numPlayers);
+     1007:  103:  state->supplyCount[silver] = 40;
+     1007:  104:  state->supplyCount[gold] = 30;
+        -:  105:
+        -:  106:  //set number of Kingdom cards
+    21147:  107:  for (i = adventurer; i <= treasure_map; i++)         //loop all cards
+branch  0 taken 95%
+branch  1 taken 5% (fallthrough)
+        -:  108:  {
+   166162:  109:    for (j = 0; j < 10; j++)               //loop chosen cards
+branch  0 taken 94%
+branch  1 taken 6% (fallthrough)
+        -:  110:    {
+   156085:  111:      if (kingdomCards[j] == i)
+branch  0 taken 6% (fallthrough)
+branch  1 taken 94%
+        -:  112:      {
+        -:  113:        //check if card is a 'Victory' Kingdom card
+    11070:  114:        if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 10% (fallthrough)
+branch  3 taken 90%
+        -:  115:        {
+     1007:  116:          if (numPlayers == 2)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:  117:          { 
+     1007:  118:            state->supplyCount[i] = 8; 
+        -:  119:          }
+        -:  120:          else
+        -:  121:          {
+    #####:  122:            state->supplyCount[i] = 12;
+        -:  123:          }
+        -:  124:        }
+        -:  125:        else
+        -:  126:        {
+     9056:  127:          state->supplyCount[i] = 10;
+        -:  128:        }
+    10063:  129:        break;
+        -:  130:      }
+        -:  131:      else    //card is not in the set choosen for the game
+        -:  132:      {
+   146022:  133:        state->supplyCount[i] = -1;
+        -:  134:      }
+        -:  135:    }
+        -:  136:  }
+        -:  137:
+        -:  138:  ////////////////////////
+        -:  139:  //supply intilization complete
+        -:  140:
+        -:  141:  //set player decks
+     3021:  142:  for (i = 0; i < numPlayers; i++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  143:  {
+     2014:  144:    state->deckCount[i] = 0;
+     8056:  145:    for (j = 0; j < 3; j++)
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
+        -:  146:   {
+     6042:  147:     state->deck[i][j] = estate;
+     6042:  148:     state->deckCount[i]++;
+        -:  149:   }
+    16112:  150:    for (j = 3; j < 10; j++)
+branch  0 taken 88%
+branch  1 taken 13% (fallthrough)
+        -:  151:   {
+    14098:  152:     state->deck[i][j] = copper;
+    14098:  153:     state->deckCount[i]++;    
+        -:  154:   }
+        -:  155:  }
+        -:  156:  //shuffle player decks
+     3021:  157:  for (i = 0; i < numPlayers; i++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  158:    {
+     2014:  159:      if ( shuffle(i, state) < 0 )
+call    0 returned 100%
+branch  1 taken 0% (fallthrough)
+branch  2 taken 100%
+        -:  160: {
+    #####:  161:   return -1;
+        -:  162: }
+        -:  163:    }
+        -:  164:
+        -:  165:  //draw player hands
+     3021:  166:  for (i = 0; i < numPlayers; i++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  167:    {  
+        -:  168:      //initialize hand size to zero
+     2014:  169:      state->handCount[i] = 0;
+     2014:  170:      state->discardCount[i] = 0;
+        -:  171:      //draw 5 cards
+        -:  172:      // for (j = 0; j < 5; j++)
+        -:  173:      // {
+        -:  174:      //   drawCard(i, state);
+        -:  175:      // }
+        -:  176:    }
+        -:  177:  
+        -:  178:  //set embargo tokens to 0 for all supply piles
+    28196:  179:  for (i = 0; i <= treasure_map; i++)
+branch  0 taken 96%
+branch  1 taken 4% (fallthrough)
+        -:  180:    {
+    27189:  181:      state->embargoTokens[i] = 0;
+        -:  182:    }
+        -:  183:
+        -:  184:  //initialize first player's turn
+     1007:  185:  state->outpostPlayed = 0;
+     1007:  186:  state->phase = 0;
+     1007:  187:  state->numActions = 1;
+     1007:  188:  state->numBuys = 1;
+     1007:  189:  state->playedCardCount = 0;
+     1007:  190:  state->whoseTurn = 0;
+     1007:  191:  state->handCount[state->whoseTurn] = 0;
+        -:  192:  //int it; move to top
+        -:  193:
+        -:  194:  //Moved draw cards to here, only drawing at the start of a turn
+     6042:  195:  for (it = 0; it < 5; it++){
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
+     5035:  196:    drawCard(state->whoseTurn, state);
+call    0 returned 100%
+        -:  197:  }
+     1007:  198:  updateCoins(state->whoseTurn, state, 0);
+call    0 returned 100%
+        -:  199:
+     1007:  200:  return 0;
+        -:  201:}
+        -:  202:
+        -:  203:
+function shuffle called 2228 returned 100% blocks executed 100%
+     2228:  204:int shuffle(int player, struct gameState *state) {
+        -:  205: 
+        -:  206:  int newDeck[MAX_DECK];
+     2228:  207:  int newDeckPos = 0;
+        -:  208:  int card;
+        -:  209:  int i;
+        -:  210:
+     2228:  211:  if (state->deckCount[player] < 1)
+branch  0 taken 10% (fallthrough)
+branch  1 taken 90%
+      214:  212:    return -1;
+     2014:  213:  qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
+call    0 returned 100%
+        -:  214:  /* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
+        -:  215:
+    24168:  216:  while (state->deckCount[player] > 0) {
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+    20140:  217:    card = floor(Random() * state->deckCount[player]);
+call    0 returned 100%
+    20140:  218:    newDeck[newDeckPos] = state->deck[player][card];
+    20140:  219:    newDeckPos++;
+    67947:  220:    for (i = card; i < state->deckCount[player]-1; i++) {
+branch  0 taken 70%
+branch  1 taken 30% (fallthrough)
+    47807:  221:      state->deck[player][i] = state->deck[player][i+1];
+        -:  222:    }
+    20140:  223:    state->deckCount[player]--;
+        -:  224:  }
+    22154:  225:  for (i = 0; i < newDeckPos; i++) {
+branch  0 taken 91%
+branch  1 taken 9% (fallthrough)
+    20140:  226:    state->deck[player][i] = newDeck[i];
+    20140:  227:    state->deckCount[player]++;
+        -:  228:  }
+     2014:  229:  return 0;
+        -:  230:}
+        -:  231:
+function playCard called 0 returned 0% blocks executed 0%
+    #####:  232:int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
+        -:  233:{	
+        -:  234:  int card;
+    #####:  235:  int coin_bonus = 0; 		//tracks coins gain from actions
+        -:  236:
+        -:  237:  //check if it is the right phase
+    #####:  238:  if (state->phase != 0)
+branch  0 never executed
+branch  1 never executed
+        -:  239:    {
+    #####:  240:      return -1;
+        -:  241:    }
+        -:  242:	
+        -:  243:  //check if player has enough actions
+    #####:  244:  if ( state->numActions < 1 )
+branch  0 never executed
+branch  1 never executed
+        -:  245:    {
+    #####:  246:      return -1;
+        -:  247:    }
+        -:  248:	
+        -:  249:  //get card played
+    #####:  250:  card = handCard(handPos, state);
+call    0 never executed
+        -:  251:	
+        -:  252:  //check if selected card is an action
+    #####:  253:  if ( card < adventurer || card > treasure_map )
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  254:    {
+    #####:  255:      return -1;
+        -:  256:    }
+        -:  257:	
+        -:  258:  //play card
+    #####:  259:  if ( cardEffect(card, choice1, choice2, choice3, state, handPos, &coin_bonus) < 0 )
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  260:    {
+    #####:  261:      return -1;
+        -:  262:    }
+        -:  263:	
+        -:  264:  //reduce number of actions
+    #####:  265:  state->numActions--;
+        -:  266:
+        -:  267:  //update coins (Treasure cards may be added with card draws)
+    #####:  268:  updateCoins(state->whoseTurn, state, coin_bonus);
+call    0 never executed
+        -:  269:	
+    #####:  270:  return 0;
+        -:  271:}
+        -:  272:
+function buyCard called 4 returned 100% blocks executed 100%
+        4:  273:int buyCard(int supplyPos, struct gameState *state) {
+        -:  274:  int who;
+        4:  275:  if (DEBUG){
+        -:  276:    printf("Entering buyCard...\n");
+        -:  277:  }
+        -:  278:
+        -:  279:  // I don't know what to do about the phase thing.
+        -:  280:
+        4:  281:  who = state->whoseTurn;
+        -:  282:
+        4:  283:  if (state->numBuys < 1){
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        1:  284:    if (DEBUG)
+        -:  285:      printf("You do not have any buys left\n");
+        1:  286:    return -1;
+        3:  287:  } else if (supplyCount(supplyPos, state) <1){
+call    0 returned 100%
+branch  1 taken 33% (fallthrough)
+branch  2 taken 67%
+        1:  288:    if (DEBUG)
+        -:  289:      printf("There are not any of that type of card left\n");
+        1:  290:    return -1;
+        2:  291:  } else if (state->coins < getCost(supplyPos)){
+call    0 returned 100%
+branch  1 taken 50% (fallthrough)
+branch  2 taken 50%
+        1:  292:    if (DEBUG) 
+        -:  293:      printf("You do not have enough money to buy that. You have %d coins.\n", state->coins);
+        1:  294:    return -1;
+        -:  295:  } else {
+        1:  296:    state->phase=1;
+        -:  297:    //state->supplyCount[supplyPos]--;
+        1:  298:    gainCard(supplyPos, state, 0, who); //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
+call    0 returned 100%
+        -:  299:  
+        1:  300:    state->coins = (state->coins) - (getCost(supplyPos));
+call    0 returned 100%
+        1:  301:    state->numBuys--;
+        1:  302:    if (DEBUG)
+        -:  303:      printf("You bought card number %d for %d coins. You now have %d buys and %d coins.\n", supplyPos, getCost(supplyPos), state->numBuys, state->coins);
+        -:  304:  }
+        -:  305:
+        -:  306:  //state->discard[who][state->discardCount[who]] = supplyPos;
+        -:  307:  //state->discardCount[who]++;
+        -:  308:    
+        1:  309:  return 0;
+        -:  310:}
+        -:  311:
+function numHandCards called 1 returned 100% blocks executed 100%
+        1:  312:int numHandCards(struct gameState *state) {
+        1:  313:  return state->handCount[ whoseTurn(state) ];
+call    0 returned 100%
+        -:  314:}
+        -:  315:
+function handCard called 0 returned 0% blocks executed 0%
+    #####:  316:int handCard(int handPos, struct gameState *state) {
+    #####:  317:  int currentPlayer = whoseTurn(state);
+call    0 never executed
+    #####:  318:  return state->hand[currentPlayer][handPos];
+        -:  319:}
+        -:  320:
+function supplyCount called 8 returned 100% blocks executed 100%
+        8:  321:int supplyCount(int card, struct gameState *state) {
+        8:  322:  return state->supplyCount[card];
+        -:  323:}
+        -:  324:
+function fullDeckCount called 0 returned 0% blocks executed 0%
+    #####:  325:int fullDeckCount(int player, int card, struct gameState *state) {
+        -:  326:  int i;
+    #####:  327:  int count = 0;
+        -:  328:
+    #####:  329:  for (i = 0; i < state->deckCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  330:    {
+    #####:  331:      if (state->deck[player][i] == card) count++;
+branch  0 never executed
+branch  1 never executed
+        -:  332:    }
+        -:  333:
+    #####:  334:  for (i = 0; i < state->handCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  335:    {
+    #####:  336:      if (state->hand[player][i] == card) count++;
+branch  0 never executed
+branch  1 never executed
+        -:  337:    }
+        -:  338:
+    #####:  339:  for (i = 0; i < state->discardCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  340:    {
+    #####:  341:      if (state->discard[player][i] == card) count++;
+branch  0 never executed
+branch  1 never executed
+        -:  342:    }
+        -:  343:
+    #####:  344:  return count;
+        -:  345:}
+        -:  346:
+function whoseTurn called 1 returned 100% blocks executed 100%
+        1:  347:int whoseTurn(struct gameState *state) {
+        1:  348:  return state->whoseTurn;
+        -:  349:}
+        -:  350:
+function endTurn called 0 returned 0% blocks executed 0%
+    #####:  351:int endTurn(struct gameState *state) {
+        -:  352:  int k;
+        -:  353:  int i;
+    #####:  354:  int currentPlayer = whoseTurn(state);
+call    0 never executed
+        -:  355:  
+        -:  356:  //Discard hand
+    #####:  357:  for (i = 0; i < state->handCount[currentPlayer]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:  358:    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = state->hand[currentPlayer][i];//Discard
+    #####:  359:    state->hand[currentPlayer][i] = -1;//Set card to -1
+        -:  360:  }
+    #####:  361:  state->handCount[currentPlayer] = 0;//Reset hand count
+        -:  362:    
+        -:  363:  //Code for determining the player
+    #####:  364:  if (currentPlayer < (state->numPlayers - 1)){ 
+branch  0 never executed
+branch  1 never executed
+    #####:  365:    state->whoseTurn = currentPlayer + 1;//Still safe to increment
+        -:  366:  }
+        -:  367:  else{
+    #####:  368:    state->whoseTurn = 0;//Max player has been reached, loop back around to player 1
+        -:  369:  }
+        -:  370:
+    #####:  371:  state->outpostPlayed = 0;
+    #####:  372:  state->phase = 0;
+    #####:  373:  state->numActions = 1;
+    #####:  374:  state->coins = 0;
+    #####:  375:  state->numBuys = 1;
+    #####:  376:  state->playedCardCount = 0;
+    #####:  377:  state->handCount[state->whoseTurn] = 0;
+        -:  378:
+        -:  379:  //int k; move to top
+        -:  380:  //Next player draws hand
+    #####:  381:  for (k = 0; k < 5; k++){
+branch  0 never executed
+branch  1 never executed
+    #####:  382:    drawCard(state->whoseTurn, state);//Draw a card
+call    0 never executed
+        -:  383:  }
+        -:  384:
+        -:  385:  //Update money
+    #####:  386:  updateCoins(state->whoseTurn, state , 0);
+call    0 never executed
+        -:  387:
+    #####:  388:  return 0;
+        -:  389:}
+        -:  390:
+function isGameOver called 0 returned 0% blocks executed 0%
+    #####:  391:int isGameOver(struct gameState *state) {
+        -:  392:  int i;
+        -:  393:  int j;
+        -:  394:	
+        -:  395:  //if stack of Province cards is empty, the game ends
+    #####:  396:  if (state->supplyCount[province] == 0)
+branch  0 never executed
+branch  1 never executed
+        -:  397:    {
+    #####:  398:      return 1;
+        -:  399:    }
+        -:  400:
+        -:  401:  //if three supply pile are at 0, the game ends
+    #####:  402:  j = 0;
+    #####:  403:  for (i = 0; i < 25; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  404:    {
+    #####:  405:      if (state->supplyCount[i] == 0)
+branch  0 never executed
+branch  1 never executed
+        -:  406:	{
+    #####:  407:	  j++;
+        -:  408:	}
+        -:  409:    }
+    #####:  410:  if ( j >= 3)
+branch  0 never executed
+branch  1 never executed
+        -:  411:    {
+    #####:  412:      return 1;
+        -:  413:    }
+        -:  414:
+    #####:  415:  return 0;
+        -:  416:}
+        -:  417:
+function scoreFor called 0 returned 0% blocks executed 0%
+    #####:  418:int scoreFor (int player, struct gameState *state) {
+        -:  419:
+        -:  420:  int i;
+    #####:  421:  int score = 0;
+        -:  422:  //score from hand
+    #####:  423:  for (i = 0; i < state->handCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  424:    {
+    #####:  425:      if (state->hand[player][i] == curse) { score = score - 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  426:      if (state->hand[player][i] == estate) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  427:      if (state->hand[player][i] == duchy) { score = score + 3; };
+branch  0 never executed
+branch  1 never executed
+    #####:  428:      if (state->hand[player][i] == province) { score = score + 6; };
+branch  0 never executed
+branch  1 never executed
+    #####:  429:      if (state->hand[player][i] == great_hall) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  430:      if (state->hand[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+        -:  431:    }
+        -:  432:
+        -:  433:  //score from discard
+    #####:  434:  for (i = 0; i < state->discardCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  435:    {
+    #####:  436:      if (state->discard[player][i] == curse) { score = score - 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  437:      if (state->discard[player][i] == estate) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  438:      if (state->discard[player][i] == duchy) { score = score + 3; };
+branch  0 never executed
+branch  1 never executed
+    #####:  439:      if (state->discard[player][i] == province) { score = score + 6; };
+branch  0 never executed
+branch  1 never executed
+    #####:  440:      if (state->discard[player][i] == great_hall) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  441:      if (state->discard[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+        -:  442:    }
+        -:  443:
+        -:  444:  //score from deck
+    #####:  445:  for (i = 0; i < state->discardCount[player]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  446:    {
+    #####:  447:      if (state->deck[player][i] == curse) { score = score - 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  448:      if (state->deck[player][i] == estate) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  449:      if (state->deck[player][i] == duchy) { score = score + 3; };
+branch  0 never executed
+branch  1 never executed
+    #####:  450:      if (state->deck[player][i] == province) { score = score + 6; };
+branch  0 never executed
+branch  1 never executed
+    #####:  451:      if (state->deck[player][i] == great_hall) { score = score + 1; };
+branch  0 never executed
+branch  1 never executed
+    #####:  452:      if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+branch  0 never executed
+branch  1 never executed
+call    2 never executed
+        -:  453:    }
+        -:  454:
+    #####:  455:  return score;
+        -:  456:}
+        -:  457:
+function getWinners called 0 returned 0% blocks executed 0%
+    #####:  458:int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
+        -:  459:  int i;	
+        -:  460:  int j;
+        -:  461:  int highScore;
+        -:  462:  int currentPlayer;
+        -:  463:
+        -:  464:  //get score for each player
+    #####:  465:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  466:    {
+        -:  467:      //set unused player scores to -9999
+    #####:  468:      if (i >= state->numPlayers)
+branch  0 never executed
+branch  1 never executed
+        -:  469:	{
+    #####:  470:	  players[i] = -9999;
+        -:  471:	}
+        -:  472:      else
+        -:  473:	{
+    #####:  474:	  players[i] = scoreFor (i, state);
+call    0 never executed
+        -:  475:	}
+        -:  476:    }
+        -:  477:
+        -:  478:  //find highest score
+    #####:  479:  j = 0;
+    #####:  480:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  481:    {
+    #####:  482:      if (players[i] > players[j])
+branch  0 never executed
+branch  1 never executed
+        -:  483:	{
+    #####:  484:	  j = i;
+        -:  485:	}
+        -:  486:    }
+    #####:  487:  highScore = players[j];
+        -:  488:
+        -:  489:  //add 1 to players who had less turns
+    #####:  490:  currentPlayer = whoseTurn(state);
+call    0 never executed
+    #####:  491:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  492:    {
+    #####:  493:      if ( players[i] == highScore && i > currentPlayer )
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  494:	{
+    #####:  495:	  players[i]++;
+        -:  496:	}
+        -:  497:    }
+        -:  498:
+        -:  499:  //find new highest score
+    #####:  500:  j = 0;
+    #####:  501:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  502:    {
+    #####:  503:      if ( players[i] > players[j] )
+branch  0 never executed
+branch  1 never executed
+        -:  504:	{
+    #####:  505:	  j = i;
+        -:  506:	}
+        -:  507:    }
+    #####:  508:  highScore = players[j];
+        -:  509:
+        -:  510:  //set winners in array to 1 and rest to 0
+    #####:  511:  for (i = 0; i < MAX_PLAYERS; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  512:    {
+    #####:  513:      if ( players[i] == highScore )
+branch  0 never executed
+branch  1 never executed
+        -:  514:	{
+    #####:  515:	  players[i] = 1;
+        -:  516:	}
+        -:  517:      else
+        -:  518:	{
+    #####:  519:	  players[i] = 0;
+        -:  520:	}
+        -:  521:    }
+        -:  522:
+    #####:  523:  return 0;
+        -:  524:}
+        -:  525:
+function drawCard called 6042 returned 100% blocks executed 86%
+     6042:  526:int drawCard(int player, struct gameState *state)
+        -:  527:{	
+        -:  528:  int count;
+        -:  529:  int deckCounter;
+     6042:  530:  if (state->deckCount[player] <= 0){//Deck is empty
+branch  0 taken 4% (fallthrough)
+branch  1 taken 96%
+        -:  531:    //Step 1 Shuffle the discard pile back into a deck
+        -:  532:    int i;
+        -:  533:    //Move discard to deck
+      214:  534:    for (i = 0; i < state->discardCount[player];i++){
+branch  0 taken 0%
+branch  1 taken 100% (fallthrough)
+    #####:  535:      state->deck[player][i] = state->discard[player][i];
+    #####:  536:      state->discard[player][i] = -1;
+        -:  537:    }
+        -:  538:
+      214:  539:    state->deckCount[player] = state->discardCount[player];
+      214:  540:    state->discardCount[player] = 0;//Reset discard
+        -:  541:
+        -:  542:    //Shufffle the deck
+      214:  543:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+call    0 returned 100%
+        -:  544:   
+      214:  545:    if (DEBUG){//Debug statements
+        -:  546:      printf("Deck count now: %d\n", state->deckCount[player]);
+        -:  547:    }
+        -:  548:    
+      214:  549:    state->discardCount[player] = 0;
+        -:  550:
+        -:  551:    //Step 2 Draw Card
+      214:  552:    count = state->handCount[player];//Get current player's hand count
+        -:  553:    
+      214:  554:    if (DEBUG){//Debug statements
+        -:  555:      printf("Current hand count: %d\n", count);
+        -:  556:    }
+        -:  557:    
+      214:  558:    deckCounter = state->deckCount[player];//Create a holder for the deck count
+        -:  559:
+      214:  560:    if (deckCounter == 0)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+      214:  561:      return -1;
+        -:  562:
+    #####:  563:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+    #####:  564:    state->deckCount[player]--;
+    #####:  565:    state->handCount[player]++;//Increment hand count
+        -:  566:  }
+        -:  567:
+        -:  568:  else{
+     5828:  569:    int count = state->handCount[player];//Get current hand count for player
+        -:  570:    int deckCounter;
+     5828:  571:    if (DEBUG){//Debug statements
+        -:  572:      printf("Current hand count: %d\n", count);
+        -:  573:    }
+        -:  574:
+     5828:  575:    deckCounter = state->deckCount[player];//Create holder for the deck count
+     5828:  576:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+     5828:  577:    state->deckCount[player]--;
+     5828:  578:    state->handCount[player]++;//Increment hand count
+        -:  579:  }
+        -:  580:
+     5828:  581:  return 0;
+        -:  582:}
+        -:  583:
+function getCost called 3 returned 100% blocks executed 13%
+        3:  584:int getCost(int cardNumber)
+        -:  585:{
+        3:  586:  switch( cardNumber ) 
+branch  0 taken 0%
+branch  1 taken 0%
+branch  2 taken 0%
+branch  3 taken 0%
+branch  4 taken 0%
+branch  5 taken 0%
+branch  6 taken 0%
+branch  7 taken 0%
+branch  8 taken 0%
+branch  9 taken 0%
+branch 10 taken 0%
+branch 11 taken 0%
+branch 12 taken 0%
+branch 13 taken 67%
+branch 14 taken 0%
+branch 15 taken 0%
+branch 16 taken 0%
+branch 17 taken 33%
+branch 18 taken 0%
+branch 19 taken 0%
+branch 20 taken 0%
+branch 21 taken 0%
+branch 22 taken 0%
+branch 23 taken 0%
+branch 24 taken 0%
+branch 25 taken 0%
+branch 26 taken 0%
+branch 27 taken 0%
+        -:  587:    {
+        -:  588:    case curse:
+    #####:  589:      return 0;
+        -:  590:    case estate:
+    #####:  591:      return 2;
+        -:  592:    case duchy:
+    #####:  593:      return 5;
+        -:  594:    case province:
+    #####:  595:      return 8;
+        -:  596:    case copper:
+    #####:  597:      return 0;
+        -:  598:    case silver:
+    #####:  599:      return 3;
+        -:  600:    case gold:
+    #####:  601:      return 6;
+        -:  602:    case adventurer:
+    #####:  603:      return 6;
+        -:  604:    case council_room:
+    #####:  605:      return 5;
+        -:  606:    case feast:
+    #####:  607:      return 4;
+        -:  608:    case gardens:
+    #####:  609:      return 4;
+        -:  610:    case mine:
+    #####:  611:      return 5;
+        -:  612:    case remodel:
+    #####:  613:      return 4;
+        -:  614:    case smithy:
+        2:  615:      return 4;
+        -:  616:    case village:
+    #####:  617:      return 3;
+        -:  618:    case baron:
+    #####:  619:      return 4;
+        -:  620:    case great_hall:
+    #####:  621:      return 3;
+        -:  622:    case minion:
+        1:  623:      return 5;
+        -:  624:    case steward:
+    #####:  625:      return 3;
+        -:  626:    case tribute:
+    #####:  627:      return 5;
+        -:  628:    case ambassador:
+    #####:  629:      return 3;
+        -:  630:    case cutpurse:
+    #####:  631:      return 4;
+        -:  632:    case embargo: 
+    #####:  633:      return 2;
+        -:  634:    case outpost:
+    #####:  635:      return 5;
+        -:  636:    case salvager:
+    #####:  637:      return 4;
+        -:  638:    case sea_hag:
+    #####:  639:      return 4;
+        -:  640:    case treasure_map:
+    #####:  641:      return 4;
+        -:  642:    }
+        -:  643:	
+    #####:  644:  return -1;
+        -:  645:}
+        -:  646:
+function cardEffect called 0 returned 0% blocks executed 0%
+    #####:  647:int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+        -:  648:{
+        -:  649:
+    #####:  650:  struct infosStruct *infos = malloc(sizeof(struct infosStruct));
+        -:  651:  int i;
+        -:  652:  int j;
+        -:  653:  int k;
+        -:  654:  int x;
+        -:  655:  int index;
+    #####:  656:  int currentPlayer = whoseTurn(state);
+call    0 never executed
+    #####:  657:  int nextPlayer = currentPlayer + 1;
+        -:  658:
+    #####:  659:  int tributeRevealedCards[2] = {-1, -1};
+        -:  660:  int temphand[MAX_HAND];// moved above the if statement
+    #####:  661:  int drawntreasure=0;
+        -:  662:  int cardDrawn;
+    #####:  663:  int z = 0;// this is the counter for the temp hand
+    #####:  664:  if (nextPlayer > (state->numPlayers - 1)){
+branch  0 never executed
+branch  1 never executed
+    #####:  665:    nextPlayer = 0;
+    #####:  666:    infos->nextPlayer = nextPlayer;
+        -:  667:  }
+        -:  668:  
+    #####:  669:  infos->z = 0;
+    #####:  670:  infos->currentPlayer = whoseTurn(state);
+call    0 never executed
+    #####:  671:  infos->tributeRevealedCards[0] = -1;
+    #####:  672:  infos->tributeRevealedCards[1] = -1;
+    #####:  673:  infos->drawntreasure = 0;
+    #####:  674:  infos->handPos = handPos;
+    #####:  675:  infos->choice1 = choice1;
+    #####:  676:  infos->choice2 = choice2;
+    #####:  677:  infos->choice3 = choice3;
+        -:  678:  //uses switch to select card and perform actions
+    #####:  679:  switch( card ) 
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+branch 10 never executed
+branch 11 never executed
+branch 12 never executed
+branch 13 never executed
+branch 14 never executed
+branch 15 never executed
+branch 16 never executed
+branch 17 never executed
+branch 18 never executed
+branch 19 never executed
+branch 20 never executed
+        -:  680:    {
+        -:  681:    case adventurer:
+    #####:  682:      return effectAdventure(state, infos);
+call    0 never executed
+        -:  683:
+        -:  684:    case council_room:
+    #####:  685:      return effectCouncil(state, infos);
+call    0 never executed
+        -:  686:
+        -:  687:
+        -:  688:    case feast:
+        -:  689:      //gain card with cost up to 5
+        -:  690:      //Backup hand
+    #####:  691:      for (i = 0; i <= state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  692:      {
+    #####:  693:      	temphand[i] = state->hand[currentPlayer][i];//Backup card
+    #####:  694:      	state->hand[currentPlayer][i] = -1;//Set to nothing
+        -:  695:      }
+        -:  696:      //Backup hand
+        -:  697:
+        -:  698:      //Update Coins for Buy
+    #####:  699:      updateCoins(currentPlayer, state, 5);
+call    0 never executed
+    #####:  700:      x = 1;//Condition to loop on
+    #####:  701:      while( x == 1) {//Buy one card
+branch  0 never executed
+branch  1 never executed
+    #####:  702:	   if (supplyCount(choice1, state) <= 0){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  703:    	  if (DEBUG)
+        -:  704:    	    printf("None of that card left, sorry!\n");
+        -:  705:
+    #####:  706:    	  if (DEBUG){
+        -:  707:    	    printf("Cards Left: %d\n", supplyCount(choice1, state));
+        -:  708:    	  }
+        -:  709:    	}
+    #####:  710:    	else if (state->coins < getCost(choice1)){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  711:    	  printf("That card is too expensive!\n");
+call    0 never executed
+        -:  712:
+    #####:  713:    	  if (DEBUG){
+        -:  714:    	    printf("Coins: %d < %d\n", state->coins, getCost(choice1));
+        -:  715:    	  }
+        -:  716:    	}
+        -:  717:  	else{
+        -:  718:
+    #####:  719:  	  if (DEBUG){
+        -:  720:  	    printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
+        -:  721:  	  }
+        -:  722:
+    #####:  723:  	  gainCard(choice1, state, 0, currentPlayer);//Gain the card
+call    0 never executed
+    #####:  724:  	  x = 0;//No more buying cards
+        -:  725:
+    #####:  726:  	  if (DEBUG){
+        -:  727:  	    printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
+        -:  728:  	  }
+        -:  729:
+        -:  730:  	}
+        -:  731:      }     
+        -:  732:
+        -:  733:      //Reset Hand
+    #####:  734:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
+branch  0 never executed
+branch  1 never executed
+    #####:  735:	state->hand[currentPlayer][i] = temphand[i];
+    #####:  736:	temphand[i] = -1;
+        -:  737:      }
+        -:  738:      //Reset Hand
+        -:  739:      			
+    #####:  740:      return 0;
+        -:  741:			
+        -:  742:    case gardens:
+    #####:  743:      return -1;
+        -:  744:			
+        -:  745:    case mine:
+    #####:  746:      j = state->hand[currentPlayer][choice1];  //store card we will trash
+        -:  747:
+    #####:  748:      if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  749:	{
+    #####:  750:	  return -1;
+        -:  751:	}
+        -:  752:		
+    #####:  753:      if (choice2 > treasure_map || choice2 < curse)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  754:	{
+    #####:  755:	  return -1;
+        -:  756:	}
+        -:  757:
+    #####:  758:      if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  759:	{
+    #####:  760:	  return -1;
+        -:  761:	}
+        -:  762:
+    #####:  763:      gainCard(choice2, state, 2, currentPlayer);
+call    0 never executed
+        -:  764:
+        -:  765:      //discard card from hand
+    #####:  766:      discardCard(handPos, currentPlayer, state, 0);
+call    0 never executed
+        -:  767:
+        -:  768:      //discard trashed card
+    #####:  769:      for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  770:	{
+    #####:  771:	  if (state->hand[currentPlayer][i] == j)
+branch  0 never executed
+branch  1 never executed
+        -:  772:	    {
+    #####:  773:	      discardCard(i, currentPlayer, state, 0);			
+call    0 never executed
+    #####:  774:	      break;
+        -:  775:	    }
+        -:  776:	}
+        -:  777:			
+    #####:  778:      return 0;
+        -:  779:			
+        -:  780:    case remodel:
+    #####:  781:      return effectRemodel(state, infos);
+call    0 never executed
+        -:  782:		
+        -:  783:    case smithy:
+    #####:  784:      return effectSmithy(state, infos);
+call    0 never executed
+        -:  785:
+        -:  786:		case village:
+    #####:  787:      return effectVillage(state, infos);
+call    0 never executed
+        -:  788:
+        -:  789:    case baron:
+    #####:  790:      state->numBuys++;//Increase buys by 1!
+    #####:  791:      if (choice1 > 0){//Boolean true or going to discard an estate
+branch  0 never executed
+branch  1 never executed
+    #####:  792:	int p = 0;//Iterator for hand!
+    #####:  793:	int card_not_discarded = 1;//Flag for discard set!
+    #####:  794:	while(card_not_discarded){
+branch  0 never executed
+branch  1 never executed
+    #####:  795:	  if (state->hand[currentPlayer][p] == estate){//Found an estate card!
+branch  0 never executed
+branch  1 never executed
+    #####:  796:	    state->coins += 4;//Add 4 coins to the amount of coins
+    #####:  797:	    state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
+    #####:  798:	    state->discardCount[currentPlayer]++;
+    #####:  799:	    for (;p < state->handCount[currentPlayer]; p++){
+branch  0 never executed
+branch  1 never executed
+    #####:  800:	      state->hand[currentPlayer][p] = state->hand[currentPlayer][p+1];
+        -:  801:	    }
+    #####:  802:	    state->hand[currentPlayer][state->handCount[currentPlayer]] = -1;
+    #####:  803:	    state->handCount[currentPlayer]--;
+    #####:  804:	    card_not_discarded = 0;//Exit the loop
+        -:  805:	  }
+    #####:  806:	  else if (p > state->handCount[currentPlayer]){
+branch  0 never executed
+branch  1 never executed
+    #####:  807:	    if(DEBUG) {
+        -:  808:	      printf("No estate cards in your hand, invalid choice\n");
+        -:  809:	      printf("Must gain an estate if there are any\n");
+        -:  810:	    }
+    #####:  811:	    if (supplyCount(estate, state) > 0){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  812:	      gainCard(estate, state, 0, currentPlayer);
+call    0 never executed
+    #####:  813:	      state->supplyCount[estate]--;//Decrement estates
+    #####:  814:	      if (supplyCount(estate, state) == 0){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  815:		isGameOver(state);
+call    0 never executed
+        -:  816:	      }
+        -:  817:	    }
+    #####:  818:	    card_not_discarded = 0;//Exit the loop
+        -:  819:	  }
+        -:  820:			    
+        -:  821:	  else{
+    #####:  822:	    p++;//Next card
+        -:  823:	  }
+        -:  824:	}
+        -:  825:      }
+        -:  826:			    
+        -:  827:      else{
+    #####:  828:        if (supplyCount(estate, state) > 0){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  829:	  gainCard(estate, state, 0, currentPlayer);//Gain an estate
+call    0 never executed
+    #####:  830:	  state->supplyCount[estate]--;//Decrement Estates
+    #####:  831:	  if (supplyCount(estate, state) == 0){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  832:	    isGameOver(state);
+call    0 never executed
+        -:  833:	  }
+        -:  834:	}
+        -:  835:      }
+        -:  836:	    
+        -:  837:      
+    #####:  838:      return 0;
+        -:  839:		
+        -:  840:    case great_hall:
+        -:  841:      //+1 Card
+    #####:  842:      drawCard(currentPlayer, state);
+call    0 never executed
+        -:  843:			
+        -:  844:      //+1 Actions
+    #####:  845:      state->numActions++;
+        -:  846:			
+        -:  847:      //discard card from hand
+    #####:  848:      discardCard(handPos, currentPlayer, state, 0);
+call    0 never executed
+    #####:  849:      return 0;
+        -:  850:		
+        -:  851:    case minion:
+        -:  852:      //+1 action
+    #####:  853:      state->numActions++;
+        -:  854:			
+        -:  855:      //discard card from hand
+    #####:  856:      discardCard(handPos, currentPlayer, state, 0);
+call    0 never executed
+        -:  857:			
+    #####:  858:      if (choice1)		//+2 coins
+branch  0 never executed
+branch  1 never executed
+        -:  859:	{
+    #####:  860:	  state->coins = state->coins + 2;
+        -:  861:	}
+        -:  862:			
+    #####:  863:      else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
+branch  0 never executed
+branch  1 never executed
+        -:  864:	{
+        -:  865:	  //discard hand
+    #####:  866:	  while(numHandCards(state) > 0)
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  867:	    {
+    #####:  868:	      discardCard(handPos, currentPlayer, state, 0);
+call    0 never executed
+        -:  869:	    }
+        -:  870:				
+        -:  871:	  //draw 4
+    #####:  872:	  for (i = 0; i < 4; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  873:	    {
+    #####:  874:	      drawCard(currentPlayer, state);
+call    0 never executed
+        -:  875:	    }
+        -:  876:				
+        -:  877:	  //other players discard hand and redraw if hand size > 4
+    #####:  878:	  for (i = 0; i < state->numPlayers; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  879:	    {
+    #####:  880:	      if (i != currentPlayer)
+branch  0 never executed
+branch  1 never executed
+        -:  881:		{
+    #####:  882:		  if ( state->handCount[i] > 4 )
+branch  0 never executed
+branch  1 never executed
+        -:  883:		    {
+        -:  884:		      //discard hand
+    #####:  885:		      while( state->handCount[i] > 0 )
+branch  0 never executed
+branch  1 never executed
+        -:  886:			{
+    #####:  887:			  discardCard(handPos, i, state, 0);
+call    0 never executed
+        -:  888:			}
+        -:  889:							
+        -:  890:		      //draw 4
+    #####:  891:		      for (j = 0; j < 4; j++)
+branch  0 never executed
+branch  1 never executed
+        -:  892:			{
+    #####:  893:			  drawCard(i, state);
+call    0 never executed
+        -:  894:			}
+        -:  895:		    }
+        -:  896:		}
+        -:  897:	    }
+        -:  898:				
+        -:  899:	}
+    #####:  900:      return 0;
+        -:  901:		
+        -:  902:    case steward:
+    #####:  903:      if (choice1 == 1)
+branch  0 never executed
+branch  1 never executed
+        -:  904:    	{
+        -:  905:    	  //+2 cards
+    #####:  906:    	  drawCard(currentPlayer, state);
+call    0 never executed
+    #####:  907:    	  drawCard(currentPlayer, state);
+call    0 never executed
+        -:  908:    	}
+    #####:  909:      else if (choice1 == 2)
+branch  0 never executed
+branch  1 never executed
+        -:  910:    	{
+        -:  911:    	  //+2 coins
+    #####:  912:    	  state->coins = state->coins + 2;
+        -:  913:    	}
+        -:  914:      else
+        -:  915:    	{
+        -:  916:    	  //trash 2 cards in hand
+    #####:  917:    	  discardCard(choice2, currentPlayer, state, 1);
+call    0 never executed
+    #####:  918:    	  discardCard(choice3, currentPlayer, state, 1);
+call    0 never executed
+        -:  919:    	}
+        -:  920:			
+        -:  921:      //discard card from hand
+    #####:  922:      discardCard(handPos, currentPlayer, state, 0);
+call    0 never executed
+    #####:  923:      return 0;
+        -:  924:		
+        -:  925:    case tribute:
+    #####:  926:      if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1)
+branch  0 never executed
+branch  1 never executed
+        -:  927:      {
+    #####:  928:      	if (state->deckCount[nextPlayer] > 0)
+branch  0 never executed
+branch  1 never executed
+        -:  929:        {
+    #####:  930:      	  tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
+    #####:  931:      	  state->deckCount[nextPlayer]--;
+        -:  932:      	}
+    #####:  933:      	else if (state->discardCount[nextPlayer] > 0)
+branch  0 never executed
+branch  1 never executed
+        -:  934:        {
+    #####:  935:      	  tributeRevealedCards[0] = state->discard[nextPlayer][state->discardCount[nextPlayer]-1];
+    #####:  936:      	  state->discardCount[nextPlayer]--;
+        -:  937:        }
+        -:  938:      	else
+        -:  939:        {
+        -:  940:      	  //No Card to Reveal
+    #####:  941:      	  if (DEBUG)
+        -:  942:          {
+        -:  943:      	    printf("No cards to reveal\n");
+        -:  944:      	  }
+        -:  945:      	}
+        -:  946:      }
+        -:  947:      else
+        -:  948:      {
+    #####:  949:      	if (state->deckCount[nextPlayer] == 0)
+branch  0 never executed
+branch  1 never executed
+        -:  950:        {
+    #####:  951:      	  for (i = 0; i < state->discardCount[nextPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -:  952:          {
+    #####:  953:      	    state->deck[nextPlayer][i] = state->discard[nextPlayer][i];//Move to deck
+    #####:  954:      	    state->deckCount[nextPlayer]++;
+    #####:  955:      	    state->discard[nextPlayer][i] = -1;
+    #####:  956:      	    state->discardCount[nextPlayer]--;
+        -:  957:      	  }
+    #####:  958:        shuffle(nextPlayer,state);//Shuffle the deck
+call    0 never executed
+        -:  959:        }
+    #####:  960:      	tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
+    #####:  961:      	state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
+    #####:  962:      	state->deckCount[nextPlayer]--;
+    #####:  963:      	tributeRevealedCards[1] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
+    #####:  964:      	state->deck[nextPlayer][state->deckCount[nextPlayer]--] = -1;
+    #####:  965:      	state->deckCount[nextPlayer]--;
+        -:  966:      }    
+        -:  967:		       
+    #####:  968:      if (tributeRevealedCards[0] == tributeRevealedCards[1])
+branch  0 never executed
+branch  1 never executed
+        -:  969:      {//If we have a duplicate card, just drop one 
+    #####:  970:      	state->playedCards[state->playedCardCount] = tributeRevealedCards[1];
+    #####:  971:      	state->playedCardCount++;
+    #####:  972:      	tributeRevealedCards[1] = -1;
+        -:  973:      }
+        -:  974:
+    #####:  975:      for (i = 0; i <= 2; i ++)
+branch  0 never executed
+branch  1 never executed
+        -:  976:      {
+    #####:  977:      	if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+        -:  978:        {//Treasure cards
+    #####:  979:      	  state->coins += 2;
+        -:  980:        }
+        -:  981:		    
+    #####:  982:      	else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+        -:  983:          {//Victory Card Found
+    #####:  984:            drawCard(currentPlayer, state);
+call    0 never executed
+    #####:  985:            drawCard(currentPlayer, state);
+call    0 never executed
+        -:  986:          }
+        -:  987:      	else
+        -:  988:        {//Action Card
+    #####:  989:      	  state->numActions = state->numActions + 2;
+        -:  990:      	}
+        -:  991:      }
+    #####:  992:    return 0;
+        -:  993:		
+        -:  994:    case ambassador:
+    #####:  995:      j = 0;		//used to check if player has enough cards to discard
+        -:  996:
+    #####:  997:      if (choice2 > 2 || choice2 < 0)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -:  998:	{
+    #####:  999:	  return -1;				
+        -: 1000:	}
+        -: 1001:
+    #####: 1002:      if (choice1 == handPos)
+branch  0 never executed
+branch  1 never executed
+        -: 1003:	{
+    #####: 1004:	  return -1;
+        -: 1005:	}
+        -: 1006:
+    #####: 1007:      for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1008:	{
+    #####: 1009:	  if (i != handPos && i == state->hand[currentPlayer][choice1] && i != choice1)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+        -: 1010:	    {
+    #####: 1011:	      j++;
+        -: 1012:	    }
+        -: 1013:	}
+    #####: 1014:      if (j < choice2)
+branch  0 never executed
+branch  1 never executed
+        -: 1015:	{
+    #####: 1016:	  return -1;				
+        -: 1017:	}
+        -: 1018:
+    #####: 1019:      if (DEBUG) 
+        -: 1020:	printf("Player %d reveals card number: %d\n", currentPlayer, state->hand[currentPlayer][choice1]);
+        -: 1021:
+        -: 1022:      //increase supply count for choosen card by amount being discarded
+    #####: 1023:      state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
+        -: 1024:			
+        -: 1025:      //each other player gains a copy of revealed card
+    #####: 1026:      for (i = 0; i < state->numPlayers; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1027:	{
+    #####: 1028:	  if (i != currentPlayer)
+branch  0 never executed
+branch  1 never executed
+        -: 1029:	    {
+    #####: 1030:	      gainCard(state->hand[currentPlayer][choice1], state, 0, i);
+call    0 never executed
+        -: 1031:	    }
+        -: 1032:	}
+        -: 1033:
+        -: 1034:      //discard played card from hand
+    #####: 1035:      discardCard(handPos, currentPlayer, state, 0);			
+call    0 never executed
+        -: 1036:
+        -: 1037:      //trash copies of cards returned to supply
+    #####: 1038:      for (j = 0; j < choice2; j++)
+branch  0 never executed
+branch  1 never executed
+        -: 1039:	{
+    #####: 1040:	  for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1041:	    {
+    #####: 1042:	      if (state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1])
+branch  0 never executed
+branch  1 never executed
+        -: 1043:		{
+    #####: 1044:		  discardCard(i, currentPlayer, state, 1);
+call    0 never executed
+    #####: 1045:		  break;
+        -: 1046:		}
+        -: 1047:	    }
+        -: 1048:	}			
+        -: 1049:
+    #####: 1050:      return 0;
+        -: 1051:		
+        -: 1052:    case cutpurse:
+        -: 1053:
+    #####: 1054:      updateCoins(currentPlayer, state, 2);
+call    0 never executed
+    #####: 1055:      for (i = 0; i < state->numPlayers; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1056:	{
+    #####: 1057:	  if (i != currentPlayer)
+branch  0 never executed
+branch  1 never executed
+        -: 1058:	    {
+    #####: 1059:	      for (j = 0; j < state->handCount[i]; j++)
+branch  0 never executed
+branch  1 never executed
+        -: 1060:		{
+    #####: 1061:		  if (state->hand[i][j] == copper)
+branch  0 never executed
+branch  1 never executed
+        -: 1062:		    {
+    #####: 1063:		      discardCard(j, i, state, 0);
+call    0 never executed
+    #####: 1064:		      break;
+        -: 1065:		    }
+    #####: 1066:		  if (j == state->handCount[i])
+branch  0 never executed
+branch  1 never executed
+        -: 1067:		    {
+    #####: 1068:		      for (k = 0; k < state->handCount[i]; k++)
+branch  0 never executed
+branch  1 never executed
+        -: 1069:			{
+    #####: 1070:			  if (DEBUG)
+        -: 1071:			    printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
+        -: 1072:			}	
+    #####: 1073:		      break;
+        -: 1074:		    }		
+        -: 1075:		}
+        -: 1076:					
+        -: 1077:	    }
+        -: 1078:				
+        -: 1079:	}				
+        -: 1080:
+        -: 1081:      //discard played card from hand
+    #####: 1082:      discardCard(handPos, currentPlayer, state, 0);			
+call    0 never executed
+        -: 1083:
+    #####: 1084:      return 0;
+        -: 1085:
+        -: 1086:		
+        -: 1087:    case embargo: 
+        -: 1088:      //+2 Coins
+    #####: 1089:      state->coins = state->coins + 2;
+        -: 1090:			
+        -: 1091:      //see if selected pile is in play
+    #####: 1092:      if ( state->supplyCount[choice1] == -1 )
+branch  0 never executed
+branch  1 never executed
+        -: 1093:	{
+    #####: 1094:	  return -1;
+        -: 1095:	}
+        -: 1096:			
+        -: 1097:      //add embargo token to selected supply pile
+    #####: 1098:      state->embargoTokens[choice1]++;
+        -: 1099:			
+        -: 1100:      //trash card
+    #####: 1101:      discardCard(handPos, currentPlayer, state, 1);		
+call    0 never executed
+    #####: 1102:      return 0;
+        -: 1103:		
+        -: 1104:    case outpost:
+        -: 1105:      //set outpost flag
+    #####: 1106:      state->outpostPlayed++;
+        -: 1107:			
+        -: 1108:      //discard card
+    #####: 1109:      discardCard(handPos, currentPlayer, state, 0);
+call    0 never executed
+    #####: 1110:      return 0;
+        -: 1111:		
+        -: 1112:    case salvager:
+        -: 1113:      //+1 buy
+    #####: 1114:      state->numBuys++;
+        -: 1115:			
+    #####: 1116:      if (choice1)
+branch  0 never executed
+branch  1 never executed
+        -: 1117:	{
+        -: 1118:	  //gain coins equal to trashed card
+    #####: 1119:	  state->coins = state->coins + getCost( handCard(choice1, state) );
+call    0 never executed
+call    1 never executed
+        -: 1120:	  //trash card
+    #####: 1121:	  discardCard(choice1, currentPlayer, state, 1);	
+call    0 never executed
+        -: 1122:	}
+        -: 1123:			
+        -: 1124:      //discard card
+    #####: 1125:      discardCard(handPos, currentPlayer, state, 0);
+call    0 never executed
+    #####: 1126:      return 0;
+        -: 1127:		
+        -: 1128:    case sea_hag:
+    #####: 1129:      for (i = 0; i < state->numPlayers; i++){
+branch  0 never executed
+branch  1 never executed
+    #####: 1130:	if (i != currentPlayer){
+branch  0 never executed
+branch  1 never executed
+    #####: 1131:	  state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
+    #####: 1132:	  state->discardCount[i]++;
+    #####: 1133:	  state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
+        -: 1134:	}
+        -: 1135:      }
+    #####: 1136:      return 0;
+        -: 1137:		
+        -: 1138:    case treasure_map:
+        -: 1139:      //search hand for another treasure_map
+    #####: 1140:      index = -1;
+    #####: 1141:      for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1142:	{
+    #####: 1143:	  if (state->hand[currentPlayer][i] == treasure_map && i != handPos)
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+        -: 1144:	    {
+    #####: 1145:	      index = i;
+    #####: 1146:	      break;
+        -: 1147:	    }
+        -: 1148:	}
+    #####: 1149:      if (index > -1)
+branch  0 never executed
+branch  1 never executed
+        -: 1150:	{
+        -: 1151:	  //trash both treasure cards
+    #####: 1152:	  discardCard(handPos, currentPlayer, state, 1);
+call    0 never executed
+    #####: 1153:	  discardCard(index, currentPlayer, state, 1);
+call    0 never executed
+        -: 1154:
+        -: 1155:	  //gain 4 Gold cards
+    #####: 1156:	  for (i = 0; i < 4; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1157:	    {
+    #####: 1158:	      gainCard(gold, state, 1, currentPlayer);
+call    0 never executed
+        -: 1159:	    }
+        -: 1160:				
+        -: 1161:	  //return success
+    #####: 1162:	  return 1;
+        -: 1163:	}
+        -: 1164:			
+        -: 1165:      //no second treasure_map found in hand
+    #####: 1166:      return -1;
+        -: 1167:    }
+        -: 1168:	
+    #####: 1169:  return -1;
+        -: 1170:}
+        -: 1171:
+function discardCard called 1002 returned 100% blocks executed 100%
+     1002: 1172:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+        -: 1173:{
+        -: 1174:  //if card is not trashed, added to Played pile 
+     1002: 1175:  if (trashFlag < 1)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -: 1176:  {
+        -: 1177:    //add card to played pile
+     1002: 1178:    state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+     1002: 1179:    state->playedCardCount++;
+        -: 1180:  }
+        -: 1181:	
+        -: 1182:  //set played card to -1
+     1002: 1183:  state->hand[currentPlayer][handPos] = -1;
+        -: 1184:	
+        -: 1185:  //remove card from player's hand
+     1002: 1186:  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+branch  0 taken 9% (fallthrough)
+branch  1 taken 91%
+        -: 1187:  {
+        -: 1188:    //reduce number of cards in hand
+       86: 1189:    state->handCount[currentPlayer]--;
+        -: 1190:  }
+      916: 1191:  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+branch  0 taken 3% (fallthrough)
+branch  1 taken 97%
+        -: 1192:  {
+        -: 1193:    //reduce number of cards in hand
+       23: 1194:    state->handCount[currentPlayer]--;
+        -: 1195:  }
+        -: 1196:  else 	
+        -: 1197:    //replace discarded card with last card in hand
+      893: 1198:    state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+        -: 1199:    //set last card to -1
+     1002: 1200:	state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+        -: 1201:	// reduce number of cards in hand
+     1002: 1202:	state->handCount[currentPlayer]--;
+        -: 1203:
+     1002: 1204:  return 0;
+        -: 1205:}
+        -: 1206:
+function gainCard called 5 returned 100% blocks executed 100%
+        5: 1207:int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
+        -: 1208:{
+        -: 1209:  //Note: supplyPos is enum of choosen card
+        -: 1210:	
+        -: 1211:  //check if supply pile is empty (0) or card is not used in game (-1)
+        5: 1212:  if ( supplyCount(supplyPos, state) < 1 )
+call    0 returned 100%
+branch  1 taken 20% (fallthrough)
+branch  2 taken 80%
+        -: 1213:    {
+        1: 1214:      return -1;
+        -: 1215:    }
+        -: 1216:	
+        -: 1217:  //added card for [whoseTurn] current player:
+        -: 1218:  // toFlag = 0 : add to discard
+        -: 1219:  // toFlag = 1 : add to deck
+        -: 1220:  // toFlag = 2 : add to hand
+        -: 1221:
+        4: 1222:  if (toFlag == 1)
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        -: 1223:    {
+        1: 1224:      state->deck[ player ][ state->deckCount[player] ] = supplyPos;
+        1: 1225:      state->deckCount[player]++;
+        -: 1226:    }
+        3: 1227:  else if (toFlag == 2)
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
+        -: 1228:    {
+        1: 1229:      state->hand[ player ][ state->handCount[player] ] = supplyPos;
+        1: 1230:      state->handCount[player]++;
+        -: 1231:    }
+        -: 1232:  else
+        -: 1233:    {
+        2: 1234:      state->discard[player][ state->discardCount[player] ] = supplyPos;
+        2: 1235:      state->discardCount[player]++;
+        -: 1236:    }
+        -: 1237:	
+        -: 1238:  //decrease number in supply pile
+        4: 1239:  state->supplyCount[supplyPos]--;
+        -: 1240:	 
+        4: 1241:  return 0;
+        -: 1242:}
+        -: 1243:
+function updateCoins called 1012 returned 100% blocks executed 100%
+     1012: 1244:int updateCoins(int player, struct gameState *state, int bonus)
+        -: 1245:{
+        -: 1246:  int i;
+        -: 1247:	
+        -: 1248:  //reset coin count
+     1012: 1249:  state->coins = 0;
+        -: 1250:
+        -: 1251:  //add coins for each Treasure card in player's hand
+     6071: 1252:  for (i = 0; i < state->handCount[player]; i++)
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
+        -: 1253:    {
+     5059: 1254:      if (state->hand[player][i] == copper)
+branch  0 taken 78% (fallthrough)
+branch  1 taken 22%
+        -: 1255:	{
+     3936: 1256:	  state->coins += 1;
+        -: 1257:	}
+     1123: 1258:      else if (state->hand[player][i] == silver)
+branch  0 taken 1% (fallthrough)
+branch  1 taken 99%
+        -: 1259:	{
+       12: 1260:	  state->coins += 2;
+        -: 1261:	}
+     1111: 1262:      else if (state->hand[player][i] == gold)
+branch  0 taken 1% (fallthrough)
+branch  1 taken 99%
+        -: 1263:	{
+        4: 1264:	  state->coins += 3;
+        -: 1265:	}	
+        -: 1266:    }	
+        -: 1267:
+        -: 1268:  //add bonus
+     1012: 1269:  state->coins += bonus;
+        -: 1270:
+     1012: 1271:  return 0;
+        -: 1272:}
+        -: 1273:
+function effectAdventure called 1 returned 100% blocks executed 93%
+        1: 1274:int effectAdventure(struct gameState *state, struct infosStruct *infos) 
+        -: 1275:{
+        1: 1276:  int drawntreasure2 = infos->drawntreasure;
+        1: 1277:  int currentPlayer = infos->currentPlayer;
+        1: 1278:  int cardDrawn = infos->cardDrawn;
+        1: 1279:  int *temphand = (infos->temphand);
+        1: 1280:  int z = infos->z;
+        1: 1281:  int handPos = infos->handPos;
+        1: 1282:  int i = infos->i;
+        -: 1283:
+        5: 1284:  while(drawntreasure2<2) 
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
+        -: 1285:  {
+        3: 1286:    if (state->deckCount[currentPlayer] <1) 
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -: 1287:    {//if the deck is empty we need to shuffle discard and add to deck
+    #####: 1288:      shuffle(currentPlayer, state);
+call    0 never executed
+        -: 1289:    }
+        -: 1290:    // int handCount = state->handCount[currentPlayer];
+        -: 1291:    // int deckCount = state->deckCount[currentPlayer];
+        -: 1292:    // int discardCount = state->discardCount[currentPlayer];
+        -: 1293:    // printf("discard count %d\n", discardCount);
+        -: 1294:
+        3: 1295:    drawCard(currentPlayer, state);// draw card doesn't update handCount?
+call    0 returned 100%
+        -: 1296:
+        3: 1297:    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+        -: 1298:    
+        5: 1299:    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
+branch  2 taken 100% (fallthrough)
+branch  3 taken 0%
+branch  4 taken 0% (fallthrough)
+branch  5 taken 100%
+        -: 1300:    {
+        2: 1301:      drawntreasure2++;
+        -: 1302:    }
+        -: 1303:    else
+        -: 1304:    {
+        1: 1305:      temphand[z]=cardDrawn;
+        1: 1306:      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+        1: 1307:      z++;
+        -: 1308:    }
+        -: 1309:  }
+        3: 1310:  while(z-1>=0)
+branch  0 taken 50%
+branch  1 taken 50% (fallthrough)
+        -: 1311:  {
+        1: 1312:    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+        1: 1313:    z=z-1;
+        -: 1314:  }
+        1: 1315:  return 0;  
+        -: 1316:}
+        -: 1317:
+function effectCouncil called 0 returned 0% blocks executed 0%
+    #####: 1318:int effectCouncil(struct gameState *state, struct infosStruct *infos)
+        -: 1319:{
+        -: 1320:  //+4 Cards
+    #####: 1321:  int currentPlayer = infos->currentPlayer;
+    #####: 1322:  int handPos = infos->handPos;
+    #####: 1323:  int i = infos->i;
+    #####: 1324:  for (i = 0; i < 4; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1325:  {
+    #####: 1326:    drawCard(currentPlayer, state);
+call    0 never executed
+        -: 1327:  }
+        -: 1328:      
+        -: 1329:  //+1 Buy
+    #####: 1330:  state->numBuys++;
+        -: 1331:  
+        -: 1332:  //Each other player draws a card
+    #####: 1333:  for (i = 0; i < state->numPlayers; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1334:  {
+    #####: 1335:    if ( i != currentPlayer )
+branch  0 never executed
+branch  1 never executed
+        -: 1336:      {
+    #####: 1337:        drawCard(i, state);
+call    0 never executed
+        -: 1338:      }
+        -: 1339:  }
+        -: 1340:  
+        -: 1341:  //put played card in played card pile
+    #####: 1342:  discardCard(handPos, currentPlayer, state, 0);
+call    0 never executed
+        -: 1343:
+    #####: 1344:  return 0;
+        -: 1345:}
+        -: 1346://end of dominion.c
+        -: 1347:
+function effectRemodel called 0 returned 0% blocks executed 0%
+    #####: 1348:int effectRemodel(struct gameState *state, struct infosStruct *infos) 
+        -: 1349:{
+    #####: 1350:  int currentPlayer = infos->currentPlayer;
+    #####: 1351:  int choice1 = infos->choice1;
+    #####: 1352:  int choice2 = infos->choice2;
+    #####: 1353:  int j = state->hand[currentPlayer][choice1];  //store card we will trash
+    #####: 1354:  int i = infos->i;
+    #####: 1355:  int handPos = infos->handPos;
+    #####: 1356:  if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+call    0 never executed
+call    1 never executed
+branch  2 never executed
+branch  3 never executed
+        -: 1357:  {
+    #####: 1358:    return -1;
+        -: 1359:  }
+        -: 1360:
+    #####: 1361:  gainCard(choice2, state, 0, currentPlayer);
+call    0 never executed
+        -: 1362:
+        -: 1363:  //discard card from hand
+    #####: 1364:  discardCard(handPos, currentPlayer, state, 0);
+call    0 never executed
+        -: 1365:
+        -: 1366:  //discard trashed card
+    #####: 1367:  for (i = 0; i < state->handCount[currentPlayer]; i++)
+branch  0 never executed
+branch  1 never executed
+        -: 1368:  {
+    #####: 1369:    if (state->hand[currentPlayer][i] == j)
+branch  0 never executed
+branch  1 never executed
+        -: 1370:    {
+    #####: 1371:      discardCard(i, currentPlayer, state, 0);      
+call    0 never executed
+    #####: 1372:      break;
+        -: 1373:    }
+        -: 1374:  }
+    #####: 1375:  return 0;
+        -: 1376:}
+        -: 1377:
+function effectSmithy called 1 returned 100% blocks executed 100%
+        1: 1378:int effectSmithy(struct gameState *state, struct infosStruct *infos) 
+        -: 1379:{
+        -: 1380:  int i;
+        1: 1381:  int currentPlayer= infos->currentPlayer;
+        1: 1382:  int handPos = infos->handPos;
+        -: 1383:
+        -: 1384:  //+3 Cards
+        4: 1385:  for (i = 0; i < 3; i++)
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
+        -: 1386:  {
+        3: 1387:    drawCard(currentPlayer, state);
+call    0 returned 100%
+        -: 1388:  }
+        -: 1389:
+        -: 1390:  //discard card from hand
+        -: 1391:
+        1: 1392:  discardCard(handPos, currentPlayer, state, 0);
+call    0 returned 100%
+        1: 1393:  return 0;
+        -: 1394:}
+        -: 1395:
+function effectVillage called 1001 returned 100% blocks executed 100%
+     1001: 1396:int effectVillage(struct gameState *state, struct infosStruct *infos)
+        -: 1397:{
+        -: 1398:
+     1001: 1399:  int currentPlayer= infos->currentPlayer;
+        -: 1400:
+     1001: 1401:  int handPos = infos->handPos;
+        -: 1402:  //+1 Card
+     1001: 1403:  drawCard(currentPlayer, state);
+call    0 returned 100%
+        -: 1404:
+        -: 1405:  //+2 Actions
+     1001: 1406:  state->numActions = state->numActions + 2;
+        -: 1407:
+        -: 1408:  //discard played card from hand
+     1001: 1409:  discardCard(handPos, currentPlayer, state, 0);
+call    0 returned 100%
+        -: 1410:
+     1001: 1411:  return 0;
+        -: 1412:}

@@ -171,7 +171,7 @@ int main() {
              for(j=0; j < numPlayer;j++) {
                 //Count copper cards
                 countCopper = 0;
-                for (i = 0; i < 6; i++) {
+                for (i = 0; i < G.handCount[j]; i++) {
                      if(G.hand[j][i] == copper){
                         countCopper++;
                      }
@@ -332,7 +332,7 @@ int main() {
              
              
              supplyCountCheck = memcmp(sizeS.supplyCount, G.supplyCount, sizeof(G.supplyCount));
-             printf("    Total memcmp is 0,expected 0\n", supplyCountCheck);
+             printf("    Total memcmp is %d,expected 0\n", supplyCountCheck);
              assert(supplyCountCheck == 0);
         
 

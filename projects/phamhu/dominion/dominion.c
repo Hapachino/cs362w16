@@ -650,7 +650,7 @@ void smithyCard(int handPos, int currentPlayer, struct gameState *state)
 {
 	int i;
   	//+3 Cards
-  	for (i = 0; i < 4; i++)
+  	for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -669,7 +669,7 @@ void villageCard(int handPos, int currentPlayer, struct gameState *state)
       state->numActions = state->numActions + 2;
 			
       //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 1); 
+      discardCard(handPos, currentPlayer, state, 0); 
 }
 
 /* Implement adventurer logic*/
@@ -680,7 +680,7 @@ void adventurerCard(int currentPlayer, struct gameState *state)
   	int temphand[MAX_HAND];
   	int z = 0;// this is the counter for the temp hand
  
-	while(drawntreasure<1){
+	while(drawntreasure<2){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  		shuffle(currentPlayer, state);
 		}	
@@ -724,7 +724,7 @@ void councilRoomCard(int handPos, int currentPlayer, struct gameState *state)
 	}
 			
     //put played card in played card pile
-    discardCard(handPos, currentPlayer, state, 1);
+    discardCard(handPos, currentPlayer, state, 0);
 }
 
 /* Implement feast logic*/

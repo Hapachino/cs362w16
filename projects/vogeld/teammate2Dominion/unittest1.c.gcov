@@ -1,0 +1,94 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* Author:      Ian Bender
+        -:    2: * Course:      CS362
+        -:    3: * Due Date:    2/3/2016
+        -:    4: * Description: Unit test for numHandCards() function.
+        -:    5: * Requirements
+        -:    6: *      - initial hand has 5 cards
+        -:    7: *      - hand count is incremented after draw
+        -:    8: *      - hand count is decremented after discard
+        -:    9: */
+        -:   10:
+        -:   11:#include "dominion.h"
+        -:   12:#include "dominion_helpers.h"
+        -:   13:#include <string.h>
+        -:   14:#include <stdio.h>
+        -:   15:#include <assert.h>
+        -:   16:#include "rngs.h"
+        -:   17:
+function main called 1 returned 100% blocks executed 88%
+        -:   18:int main() 
+        -:   19:{
+        -:   20:    int i, j;
+        -:   21:    int outcome;
+        1:   22:    int seed = 1000;
+        1:   23:    int numPlayers = 2;
+        -:   24:    int expCardCount;   //expected card count
+        -:   25:    struct gameState G, testG;
+        1:   26:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        -:   27:                    remodel, smithy, village, baron, great_hall};
+        -:   28:
+        1:   29:    printf("TESTING - numHandCards()\n");
+        -:   30:    //initialize game state
+        1:   31:    outcome = initializeGame(numPlayers, k, seed, &G);
+        1:   32:    if (outcome == -1)
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:   33:        printf("ERROR - Game initialization failed.\n");
+        1:   34:    memcpy(&testG, &G, sizeof(struct gameState));
+        -:   35:
+        6:   36:    for (i = 0; i < numPlayers; i++)
+branch  0 taken 67%
+branch  1 taken 33%
+        -:   37:    {
+        2:   38:        printf("Player %d\n", i + 1);
+        2:   39:        expCardCount = 5;
+       24:   40:        for (j = 0; j < 5; j++)
+branch  0 taken 83%
+branch  1 taken 17%
+        -:   41:        {
+       10:   42:            if (numHandCards(&G) != expCardCount + j)
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:   43:                printf("ERROR - Cards in hand: %d, Expected: %d\n",
+    #####:   44:                        numHandCards(&G), expCardCount + j);
+        -:   45:            else
+       10:   46:                printf("SUCCESS - Cards in hand: %d, Expected: %d\n",
+       10:   47:                        numHandCards(&G), expCardCount + j);
+       10:   48:            drawCard(whoseTurn(&G), &G);
+       10:   49:        }
+        2:   50:        endTurn(&G);
+        2:   51:    }
+        -:   52:
+        1:   53:    printf("TESTING - DISCARD CARDS\n");
+        6:   54:    for (i = 0; i < numPlayers; i++)
+branch  0 taken 67%
+branch  1 taken 33%
+        -:   55:    {
+        2:   56:        printf("Player %d\n", i + 1);
+        2:   57:        expCardCount = 5;
+       24:   58:        for (j = 0; j < 5; j++)
+branch  0 taken 83%
+branch  1 taken 17%
+        -:   59:        {
+       10:   60:            if (numHandCards(&G) != expCardCount - j)
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:   61:                printf("ERROR - Cards in hand: %d, Expected: %d\n",
+    #####:   62:                        numHandCards(&G), expCardCount - j);
+        -:   63:            else
+       10:   64:                printf("SUCCESS - Cards in hand: %d, Expected: %d\n",
+       10:   65:                        numHandCards(&G), expCardCount - j);
+       10:   66:            discardCard(0, i, &G, 0);
+       10:   67:        }
+        2:   68:        endTurn(&G);
+        2:   69:    }
+        -:   70:
+        1:   71:    printf("TEST COMPLETE\n\n");
+        -:   72:
+        1:   73:    return 0;
+        -:   74:}

@@ -24,5 +24,11 @@ void printResults(int testsPassed, int testsFailed);
 void printTestName(char *testName);
 void initResults(struct results* result);
 struct results* declResults();
+int calcCoins(int *hand, int handCount);
+int calcCoinCards(int *hand, int handCount);
+int updatePile(int player, int count, int pile, struct gameState *state);
+int getDeckFrequencies(int *card, int cardCount, int *cardFrequencies, int cardFreqCount);
+char* getCardType(int card);
+int cardCount(int card, int *pile, int pileCount);
 
 #endif /* UNITTEST_H_ */

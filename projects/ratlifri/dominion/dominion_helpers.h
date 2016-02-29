@@ -12,7 +12,7 @@ int getCost(int cardNumber);
 int cardEffect(int card, int choice1, int choice2, int choice3, 
 	       struct gameState *state, int handPos, int *bonus);
 int cardEffectSmithy(int currentPlayer, struct gameState *state, int handPos);
-int cardEffectAdventurer(int currentPlayer, struct gameState *state);
+int cardEffectAdventurer(int currentPlayer, struct gameState *state, int handPos);
 int cardEffectCouncilRoom(int currentPlayer, struct gameState *state, int handPos);
 int cardEffectMine(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2);
 

@@ -1,0 +1,2204 @@
+./unittest1
+---------- Testing Function: isGameOver --------------
+---- Case: Stack of province cards is empty ---
+---- Expecting: 1
+Received: 1
+Game state altered? 0
+Test Passed.
+
+---- Case: Stack of province cards is not empty---- Expecting: 0
+Received: 0
+Game state altered? 0
+Test Passed.
+
+---- Case: Four supply piles are at 0---- Expecting: 1
+Received: 1
+Game state altered? 0
+Test Passed.
+
+---- Case: Three supply piles are at 0---- Expecting: 1
+Received: 1
+Game state altered? 0
+Test Passed.
+
+---- Case: Two supply piles are at 0---- Expecting: 0
+Received: 0
+Game state altered? 0
+Test Passed.
+
+---- Case: All supply piles are at 0---- Expecting: 1
+Received: 1
+Game state altered? 0
+Test Passed.
+
+---- Case: No supply piles are at 0---- Expecting: 0
+Received: 0
+Game state altered? 0
+Test Passed.
+
+
+---- 7 Passed ---- 0 Failed ------
+---------- Testing isGameOver Function Complete ------
+
+./unittest2
+---------- Testing Function: updateCoins --------------
+------ Testing Player 1, Bonus 0
+---- Case: All coppers ---
+---- Expecting: 5 coins ----
+---- Received: 5 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 10 coins ----
+---- Received: 10 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 7 coins ----
+---- Received: 7 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 11 coins ----
+---- Received: 11 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 1
+---- Case: All coppers ---
+---- Expecting: 6 coins ----
+---- Received: 6 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 11 coins ----
+---- Received: 11 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 8 coins ----
+---- Received: 8 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 2
+---- Case: All coppers ---
+---- Expecting: 7 coins ----
+---- Received: 7 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 9 coins ----
+---- Received: 9 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 3
+---- Case: All coppers ---
+---- Expecting: 8 coins ----
+---- Received: 8 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 18 coins ----
+---- Received: 18 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 10 coins ----
+---- Received: 10 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 4
+---- Case: All coppers ---
+---- Expecting: 9 coins ----
+---- Received: 9 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 19 coins ----
+---- Received: 19 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 11 coins ----
+---- Received: 11 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 5
+---- Case: All coppers ---
+---- Expecting: 10 coins ----
+---- Received: 10 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 20 coins ----
+---- Received: 20 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 6
+---- Case: All coppers ---
+---- Expecting: 11 coins ----
+---- Received: 11 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 21 coins ----
+---- Received: 21 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 18 coins ----
+---- Received: 18 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 7
+---- Case: All coppers ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 22 coins ----
+---- Received: 22 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 19 coins ----
+---- Received: 19 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 18 coins ----
+---- Received: 18 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 8
+---- Case: All coppers ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 18 coins ----
+---- Received: 18 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 23 coins ----
+---- Received: 23 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 20 coins ----
+---- Received: 20 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 19 coins ----
+---- Received: 19 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 9
+---- Case: All coppers ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 19 coins ----
+---- Received: 19 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 24 coins ----
+---- Received: 24 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 21 coins ----
+---- Received: 21 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 20 coins ----
+---- Received: 20 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 1, Bonus 10
+---- Case: All coppers ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 20 coins ----
+---- Received: 20 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 25 coins ----
+---- Received: 25 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 22 coins ----
+---- Received: 22 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 21 coins ----
+---- Received: 21 coins
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 0
+---- Case: All coppers ---
+---- Expecting: 5 coins ----
+---- Received: 5 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 10 coins ----
+---- Received: 10 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 7 coins ----
+---- Received: 7 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 11 coins ----
+---- Received: 11 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 1
+---- Case: All coppers ---
+---- Expecting: 6 coins ----
+---- Received: 6 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 11 coins ----
+---- Received: 11 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 8 coins ----
+---- Received: 8 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 2
+---- Case: All coppers ---
+---- Expecting: 7 coins ----
+---- Received: 7 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 9 coins ----
+---- Received: 9 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 3
+---- Case: All coppers ---
+---- Expecting: 8 coins ----
+---- Received: 8 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 18 coins ----
+---- Received: 18 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 10 coins ----
+---- Received: 10 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 4
+---- Case: All coppers ---
+---- Expecting: 9 coins ----
+---- Received: 9 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 19 coins ----
+---- Received: 19 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 11 coins ----
+---- Received: 11 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 5
+---- Case: All coppers ---
+---- Expecting: 10 coins ----
+---- Received: 10 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 20 coins ----
+---- Received: 20 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 6
+---- Case: All coppers ---
+---- Expecting: 11 coins ----
+---- Received: 11 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 21 coins ----
+---- Received: 21 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 18 coins ----
+---- Received: 18 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 7
+---- Case: All coppers ---
+---- Expecting: 12 coins ----
+---- Received: 12 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 22 coins ----
+---- Received: 22 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 19 coins ----
+---- Received: 19 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 18 coins ----
+---- Received: 18 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 8
+---- Case: All coppers ---
+---- Expecting: 13 coins ----
+---- Received: 13 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 18 coins ----
+---- Received: 18 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 23 coins ----
+---- Received: 23 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 20 coins ----
+---- Received: 20 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 19 coins ----
+---- Received: 19 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 9
+---- Case: All coppers ---
+---- Expecting: 14 coins ----
+---- Received: 14 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 19 coins ----
+---- Received: 19 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 24 coins ----
+---- Received: 24 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 16 coins ----
+---- Received: 16 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 21 coins ----
+---- Received: 21 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 20 coins ----
+---- Received: 20 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+------ Testing Player 2, Bonus 10
+---- Case: All coppers ---
+---- Expecting: 15 coins ----
+---- Received: 15 coins
+Test Passed.
+---- Case: All silvers ---
+---- Expecting: 20 coins ----
+---- Received: 20 coins
+Test Passed.
+---- Case: All golds ---
+---- Expecting: 25 coins ----
+---- Received: 25 coins
+Test Passed.
+---- Case: Three coppers, two silvers ---
+---- Expecting: 17 coins ----
+---- Received: 17 coins
+Test Passed.
+---- Case: Three silvers, two golds ---
+---- Expecting: 22 coins ----
+---- Received: 22 coins
+Test Passed.
+---- Case: Three golds, two coppers ---
+---- Expecting: 21 coins ----
+---- Received: 21 coins
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+
+---- 330 Passed ---- 0 Failed ------
+---------- Testing updateCoins Function Complete ------
+./unittest3
+---------- Testing Function: discardCard --------------
+---- Testing Player 0, Trash Flag 0, Hand Count 0
+---- Was the card played? ----
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 0, Hand Count 0
+---- Was the card played? ----
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 0, Trash Flag 0, Hand Count 1
+---- Was the card played? ----
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 0, Hand Count 1
+---- Was the card played? ----
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 0, Trash Flag 0, Hand Count 2
+---- Was the card played? ----
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 0, Hand Count 2
+---- Was the card played? ----
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 0, Trash Flag 0, Hand Count 3
+---- Was the card played? ----
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 0, Hand Count 3
+---- Was the card played? ----
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 0, Trash Flag 0, Hand Count 4
+---- Was the card played? ----
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 0, Hand Count 4
+---- Was the card played? ----
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 0, Trash Flag 1, Hand Count 0
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 1, Hand Count 0
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 0, Trash Flag 1, Hand Count 1
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 1, Hand Count 1
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 0, Trash Flag 1, Hand Count 2
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 1, Hand Count 2
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 0, Trash Flag 1, Hand Count 3
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 1, Hand Count 3
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 0, Trash Flag 1, Hand Count 4
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Testing Player 1, Trash Flag 1, Hand Count 4
+---- Was the card played? ----
+No, and it was supposed to be trashed.
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+Pre: 0	Post: 0
+---- Was the current player's hand affected? ----
+Test Passed.
+---- Was the current player's deck unaffected? ----
+No. Test Passed.
+---- Was the other player's hand affected? ----
+No. Test Passed.
+---- Was the other player's deck affected? ----
+No. Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+
+---- 320 Passed ---- 20 Failed ------
+---------- Testing discardCard Function Complete ------
+./unittest4
+---------- Testing Function: getCost --------------
+Kingdom Card 7 cost is correct. Test Passed.
+Other Card 0 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Kingdom Card 10 cost is correct. Test Passed.
+Other Card 1 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Kingdom Card 22 cost is correct. Test Passed.
+Other Card 2 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Kingdom Card 14 cost is correct. Test Passed.
+Other Card 3 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Kingdom Card 17 cost is correct. Test Passed.
+Other Card 4 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Kingdom Card 11 cost is correct. Test Passed.
+Other Card 5 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Kingdom Card 21 cost is correct. Test Passed.
+Other Card 6 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Kingdom Card 25 cost is correct. Test Passed.
+Other Card 8 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Kingdom Card 19 cost is correct. Test Passed.
+Other Card 9 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Kingdom Card 13 cost is correct. Test Passed.
+Other Card 12 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Other Card 15 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Other Card 16 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Other Card 18 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Other Card 19 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Other Card 20 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Other Card 23 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Other Card 24 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+Other Card 26 cost is correct. Test Passed.
+Was game state affected?
+No. Test Passed.
+
+---- 46 Passed ---- 0 Failed ------
+---------- Testing getCost Function Complete ------
+./cardtest1
+---------- Testing Card: Smithy --------------
+---- Testing Player 0 Hand Position 0 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 5	clean: 8
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 0 discard a card?
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+---- Testing Player 0 Hand Position 1 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 5	clean: 8
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 0 discard a card?
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+---- Testing Player 0 Hand Position 2 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 5	clean: 8
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 0 discard a card?
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+---- Testing Player 0 Hand Position 3 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 5	clean: 8
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 0 discard a card?
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+---- Testing Player 0 Hand Position 4 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 5	clean: 8
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 0 discard a card?
+Test Passed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+---- Testing Player 1 Hand Position 0 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 0	clean: 3
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 1 discard a card?
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+---- Testing Player 1 Hand Position 1 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 0	clean: 3
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 1 discard a card?
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+---- Testing Player 1 Hand Position 2 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 0	clean: 3
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 1 discard a card?
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+---- Testing Player 1 Hand Position 3 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 0	clean: 3
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 1 discard a card?
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+---- Testing Player 1 Hand Position 4 ----
+---- Did player's hand count go up by 3?
+No. Test Failed.
+test: 0	clean: 3
+---- Did other player's hand change?
+No. Test Passed.
+---- Did player 1 discard a card?
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Failed.
+
+---- 90 Passed ---- 20 Failed ------
+---------- Testing Smithy Card Complete ------
+./cardtest2
+---------- Testing Card: Adventurer --------------
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Pre: 3	Post: 6
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Failed.
+---- Did played card count increment?
+Test Passed
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Pre: 3	Post: 11
+Failed.
+---- Did player 1 discard a card?
+Test Passed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did the other player's deck change?
+Test Failed.
+---- Did played card count increment?
+Test Passed
+
+---- 15 Passed ---- 7 Failed ------
+---------- Testing Adventurer Card Complete ------
+./cardtest3
+---------- Testing Card: Council Room --------------
+---- Did player 0 draw 4 cards?
+Test Passed.
+---- Did player 0 receive one buy?
+Test Passed.
+---- Did player 1 draw one card?
+Test Passed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did played card count increment?
+Test Passed
+---- Did player 1 draw 4 cards?
+Test Passed.
+---- Did player 1 receive one buy?
+Test Passed.
+---- Did player 0 draw one card?
+Test Passed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did played card count increment?
+Test Passed
+
+---- 20 Passed ---- 2 Failed ------
+---------- Testing Council Room Card Complete ------
+./cardtest4
+---------- Testing Card: Great Hall --------------
+---- Did player 0 draw 1 card?
+Test Failed.
+---- Did player 0 gain one action?
+Test Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Was player 1's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Passed
+---- Did player 1 draw 1 card?
+Test Failed.
+---- Did player 1 gain one action?
+Test Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Was player 0's discard pile unaffected?
+Test Passed.
+---- Did whoseTurn change?
+No, it didn't change.  Test Passed.
+---- Did player count change?
+No. Test Passed
+---- Did outpostPlayed change?
+No. Test Passed
+---- Did outpostTurn change?
+Test Passed
+---- Did phase change?
+Test Passed
+---- Did number of buys change?
+Test Passed
+---- Did the other player's hand change?
+Test Passed.
+---- Did the other player's deck change?
+Test Passed
+---- Did played card count increment?
+Test Passed
+
+---- 20 Passed ---- 6 Failed ------
+---------- Testing Great Hall Card Complete ------
+Coverage starts below:
+File 'dominion.c'
+Lines executed:39.20% of 648
+dominion.c:creating 'dominion.c.gcov'
+

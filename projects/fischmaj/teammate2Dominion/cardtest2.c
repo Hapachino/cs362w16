@@ -43,7 +43,7 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 int countCards(int *deck, int *cardCount);
 
-int checkAdventurer(struct gameState *pre, int player, 
+int checkAdventurer(struct gameState *pre, int handPosition, int player, 
 		FILE *filename); 
 
 
@@ -68,10 +68,14 @@ int main(){
 
 
   for (n = 0; n < NUMTESTS; n ++){
-    /* generate a random gamestate*/
-    for (i=0; i <sizeof(struct gameState); i++){
-      ((char*) pre)[i]= floor(Random() * 256);
-    }
+      /* altered code here to work with Xisheng's code-- using initialize */
+      /*rather than a random generation */
+      int k[10]= {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+		  sea_hag, tribute, smithy};
+
+      /* initialize a game state */
+      initializeGame(2, k, 2, pre);
+
 
     /* setting certain key features to random, but within specs. */
 
@@ -82,6 +86,10 @@ int main(){
       randomHandCount = floor(Random()* 10 +5 ); /*random hand of 5-15 */
       randomDiscardCount= floor(Random()*MAX_DECK);
     } while ((randomDeckCount+randomHandCount+randomDiscardCount)>MAX_DECK); 
+
+
+    /* pick one card in the hand to be the adventurer*/
+    int randomPos = floor(Random()*randomHandCount);
 
 
     /* pick a random player */
@@ -101,14 +109,14 @@ int main(){
       }
     }
 
-    /* Rewrite the selected player's hand to include smithy at the random*/
+    /* Rewrite the selected player's hand to include adventurer at the random*/
     /* position in his hand */
-    //    pre->hand[p][randomSmithyPos]= smithy;
+    pre->hand[p][randomPos]= adventurer;
 
     printf("\nTest run %i:", n);
-    checkAdventurer(pre, p, f);
+    checkAdventurer(pre, randomPos,p, f);
   
- }
+  }
 
 
 
@@ -222,7 +230,8 @@ int compareGameState(struct gameState *old, struct gameState *new,
 
 
 
-int checkAdventurer(struct gameState *pre, int player, FILE *f){
+int checkAdventurer(struct gameState *pre, int handPosition, int player,
+		    FILE *f){
 
   int testFail = 0; 
   int tempHand[MAX_HAND];
@@ -251,7 +260,7 @@ int checkAdventurer(struct gameState *pre, int player, FILE *f){
 
 
   /* 1. The function accepts a game state, and a player*/
-  playAdventurer(post,player); 
+  adventurerCard(post,handPosition); 
 
 
   /* 2. Should result in the cards drawn from the deck until 2 treasures are*/

@@ -68,10 +68,15 @@ int main(){
 
 
   for (n = 0; n < NUMTESTS; n ++){
-    /* generate a random gamestate*/
-    for (i=0; i <sizeof(struct gameState); i++){
-      ((char*) pre)[i]= floor(Random() * 256);
-    }
+
+    /* modifying my original test code to match Xisheng's- initializing vs */
+    /* a random generation*/
+    int k[10]= {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+		sea_hag, tribute, smithy};
+
+    /* initialize a game state */
+    initializeGame(2, k, 2, pre);
+
 
     /* setting certain key features to random, but within specs. */
 
@@ -233,7 +238,7 @@ int checkPlayVillage(struct gameState *pre, int player, int handPosition,
   int actionCount; 
   int nextCard = 0; 
   int preDeckCounter = pre->deckCount[player];
-
+  int randomCoins = rand()%100; 
 
   /* create a copy of the input gameState-- 'post' */
   struct gameState *post = malloc(sizeof(struct gameState));
@@ -249,10 +254,11 @@ int checkPlayVillage(struct gameState *pre, int player, int handPosition,
   /*                              BEGIN TESTING                           */
   /************************************************************************/
 
-  /* 1. The playVillage card should accept a game state, a player, and a hand */
-  /*    position.  */
+  /* run the function. */
+  cardEffect(village, 0, 0, 0, post,
+	     handPosition, &randomCoins);   
 
-  playVillage(post, player, handPosition);
+
 
   /* 2. The next card in the player's deck should be moved to the hand. */   
   nextCard= pre->deck[player][preDeckCounter -1];

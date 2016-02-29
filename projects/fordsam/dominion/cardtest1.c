@@ -15,6 +15,7 @@
 
 #define P1 0
 #define P2 1
+#define HANDPOS 0
 
 int testAdventurer() {
   int passCount = 0;
@@ -57,7 +58,7 @@ int testAdventurer() {
     perror("Error forking");
   } else if (pid == 0) {
     /* Execute the test in the child process */
-    result = playAdventurer(&state);
+    result = playAdventurer(HANDPOS, &state);
 
     exit(result);
   } else if (pid > 0) {
@@ -92,7 +93,7 @@ int testAdventurer() {
     /* Properly test the lack of treasure cards if it didn't cause a crash
        NOTE: This current setup relies on the pre-existing setup above */
     memcpy(&state, &preState, sizeof(struct gameState));
-    result = playAdventurer(&state);
+    result = playAdventurer(HANDPOS, &state);
     compareState(&state, &preState, &gsc);
 
     /* Should not change the player's hand */
@@ -151,7 +152,7 @@ int testAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = playAdventurer(HANDPOS, &state);
   compareState(&state, &preState, &gsc);
 
   /* For 1 treasure card, hand should only get 1 additional card
@@ -210,7 +211,7 @@ int testAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = playAdventurer(HANDPOS, &state);
   compareState(&state, &preState, &gsc);
 
   /* Should draw treasure cards from deck into hand
@@ -268,7 +269,7 @@ int testAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = playAdventurer(HANDPOS, &state);
   compareState(&state, &preState, &gsc);
 
   /* Should draw treasure cards from deck into hand
@@ -337,7 +338,7 @@ int testAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = playAdventurer(HANDPOS, &state);
   compareState(&state, &preState, &gsc);
 
   /* Should draw treasure cards from deck into hand

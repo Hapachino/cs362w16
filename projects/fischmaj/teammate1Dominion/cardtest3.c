@@ -70,10 +70,16 @@ int main(){
 
 
   for (n = 0; n < NUMTESTS; n ++){
-    /* generate a random gamestate*/
-    for (i=0; i <sizeof(struct gameState); i++){
-      ((char*) pre)[i]= floor(Random() * 256);
-    }
+
+    /* modifying my original test code to match Huy's- initializing rather */
+    /* than a random generation*/
+    int k[10]= {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+                sea_hag, tribute, smithy};
+
+    /* initialize a game state */
+    initializeGame(2, k, 2, pre);
+
+
 
     /* setting certain key features to random, but within specs. */
 

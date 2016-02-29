@@ -84,10 +84,10 @@ void testAdventurer()
         memcpy(&expectedState, &state, sizeof(struct gameState));
 
         // (old) int success = playAdventurer(&state);
-        int success = play_adventurer(&state, state.currentPlayer, 0);
+        int success = play_adventurer(&state, state.whoseTurn, 0);
         if (success != 0)
         {
-            printf("playAdventurer() failed\n");
+            printf("play_adventurer() failed\n");
             failed = 1;
             continue;
         }

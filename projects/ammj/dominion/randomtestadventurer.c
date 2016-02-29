@@ -373,13 +373,13 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 
 	// if there were at least two coins between the deck and discard
 	// verify the handCount went up by 1 (2 added - 1 played)
-	int countDeckCoins = calcCoins(controlGame->deck[curPlayer],
+	int countDeckCoins = calcCoinCards(controlGame->deck[curPlayer],
 			controlGame->deckCount[curPlayer]);
-	int countDiscardCoins = calcCoins(controlGame->discard[curPlayer],
+	int countDiscardCoins = calcCoinCards(controlGame->discard[curPlayer],
 			controlGame->discardCount[curPlayer]);
 
 	if(countDeckCoins + countDiscardCoins >= results->cardsToAdd)
-		addedCards = 2;
+		addedCards = results->cardsToAdd;
 	else
 		addedCards = countDeckCoins + countDiscardCoins;
 
@@ -584,6 +584,9 @@ void randomtestadventurer(int printVal, int seed, struct cardResults *result){
 	// initialize the hand
 	initializeGame(result->players, k, result->seed, controlGame);
 
+	// added as this was not set prior
+	controlGame->whoseTurn = result->curPlayer;
+
 	// update the hand, deck and discard to our random values
 	updatePile(result->curPlayer, result->deckCount, DECK, controlGame);
 	updatePile(result->curPlayer, result->discardCount, DISCARD, controlGame);
@@ -598,11 +601,10 @@ void randomtestadventurer(int printVal, int seed, struct cardResults *result){
 
 	// play the card
 	printf("Configuration: DeckCount: %d, DiscardCount: %d, handCount: %d\n", result->deckCount, result->discardCount, result->handCount);
-	r = playAdventurer(activeGame);
+	r = playAdventurer(activeGame, result->advPos);
 
 	assert(r == 0);
 
-	result->deckCount = random_number(0, 50);
 	result->testsPassed++;
 
 	// verify the results

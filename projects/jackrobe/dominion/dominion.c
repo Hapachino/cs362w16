@@ -441,7 +441,7 @@ int scoreFor (int player, struct gameState *state) {
   }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
   {
     if (state->deck[player][i] == curse) { score = score - 1; };
     if (state->deck[player][i] == estate) { score = score + 1; };
@@ -648,24 +648,29 @@ int getCost(int cardNumber)
   return -1;
 }
 
-int adventurerCard( struct gameState * state ){
+int adventurerCard( struct gameState * state, int currentPlayer ){
 
   //local vars that I have the feeling need to be adapted
   //somehowe else b/c they get reused for every card...hmm class and constructor time?
   int z = 0;
-  int currentPlayer = whoseTurn(state);
+
   int cardDrawn;
   int temphand[MAX_HAND];
   int drawntreasure = 0;
 
   while (drawntreasure<2){
+
     if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
+
     drawCard(currentPlayer, state);
+
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];//top card of hand is most recently drawn card.
+
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
       drawntreasure++;
+
     else{
       temphand[z] = cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
@@ -673,7 +678,7 @@ int adventurerCard( struct gameState * state ){
     }
 
   }
-  while (z - 1 > 0){
+  while (z - 1 >= 0){
     state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
     z = z - 1;
   }
@@ -695,7 +700,7 @@ int councilRoomCard(struct gameState * state, int currentPlayer, int handPos){
   state->numBuys++;
 
   //Each other player draws a card
-  for (i; i < state->numPlayers; i++)
+  for (i=0; i < state->numPlayers; i++)
   {
     if (i != currentPlayer)
     {
@@ -710,12 +715,12 @@ int councilRoomCard(struct gameState * state, int currentPlayer, int handPos){
 
 }
 
-int smithyCard(struct gameState * state, int handPos){
+int smithyCard(struct gameState * state, int handPos, int currentPlayer){
 
-  int currentPlayer = whoseTurn(state);
+
   int i;
   //+3 Cards
-  for (i = 0; i <= 3; i++)
+  for (i = 0; i < 3; i++)
   {
     drawCard(currentPlayer, state);
   }
@@ -730,6 +735,9 @@ int smithyCard(struct gameState * state, int handPos){
 int villageCard(struct gameState* state, int handPos){
 
   int currentPlayer = whoseTurn(state);
+
+  //+1 Card
+  drawCard(currentPlayer, state);
 
   //+2 Actions
   state->numActions = state->numActions + 2;
@@ -835,7 +843,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   {
     case adventurer:
 
-      adventurerCard(state);
+      adventurerCard(state, currentPlayer);
 
 
     case council_room:
@@ -961,7 +969,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
           return 0;
 
     case smithy:
-      smithyCard(state, handPos);
+      smithyCard(state, handPos, currentPlayer);
 
     case village:
       villageCard(state, handPos);

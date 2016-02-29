@@ -1,0 +1,425 @@
+        -:    0:Source:gw_randomtestadventurer.c
+        -:    0:Graph:gw_randomtestadventurer.gcno
+        -:    0:Data:gw_randomtestadventurer.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* Adventurer Cards
+        -:    2:   1. Player gets two treasure cards from their deck
+        -:    3:   2. Drawn Cards are discarded
+        -:    4:   3. No state changes
+        -:    5:   
+        -:    6:   CODE REFERENCE: 
+        -:    7:   int adventurerCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+        -:    8:   {
+        -:    9:	
+        -:   10:   int z=0;
+        -:   11:   int cardDrawn;
+        -:   12:   int drawntreasure=1;
+        -:   13:   int currentPlayer = whoseTurn(state);
+        -:   14:   int temphand[MAX_HAND];
+        -:   15:	
+        -:   16:   while(drawntreasure<2){
+        -:   17:	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+        -:   18:	  shuffle(currentPlayer, state);
+        -:   19:	}
+        -:   20:	drawCard(currentPlayer, state);
+        -:   21:	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+        -:   22:	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+        -:   23:	  drawntreasure++;
+        -:   24:	else{
+        -:   25:	  temphand[z]=cardDrawn;
+        -:   26:	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+        -:   27:	  z++;
+        -:   28:	}
+        -:   29:      }
+        -:   30:      while(z-1>=0){
+        -:   31:	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+        -:   32:	z=z-1;
+        -:   33:      }
+        -:   34:	  
+        -:   35:	  return 0;
+        -:   36:	  
+        -:   37:   }
+        -:   38:
+        -:   39:   int drawCard(int player, struct gameState *state)
+        -:   40:{	int count;
+        -:   41:  int deckCounter;
+        -:   42:  if (state->deckCount[player] <= 0){//Deck is empty
+        -:   43:    
+        -:   44:    //Step 1 Shuffle the discard pile back into a deck
+        -:   45:    int i;
+        -:   46:    //Move discard to deck
+        -:   47:    for (i = 0; i < state->discardCount[player];i++){
+        -:   48:      state->deck[player][i] = state->discard[player][i];
+        -:   49:      state->discard[player][i] = -1;
+        -:   50:    }
+        -:   51:
+        -:   52:    state->deckCount[player] = state->discardCount[player];
+        -:   53:    state->discardCount[player] = 0;//Reset discard
+        -:   54:
+        -:   55:    //Shufffle the deck
+        -:   56:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+        -:   57:   
+        -:   58:    if (DEBUG){//Debug statements
+        -:   59:      printf("Deck count now: %d\n", state->deckCount[player]);
+        -:   60:    }
+        -:   61:    
+        -:   62:    state->discardCount[player] = 0;
+        -:   63:
+        -:   64:    //Step 2 Draw Card
+        -:   65:    count = state->handCount[player];//Get current player's hand count
+        -:   66:    
+        -:   67:    if (DEBUG){//Debug statements
+        -:   68:      printf("Current hand count: %d\n", count);
+        -:   69:    }
+        -:   70:    
+        -:   71:    deckCounter = state->deckCount[player];//Create a holder for the deck count
+        -:   72:
+        -:   73:    if (deckCounter == 0)
+        -:   74:      return -1;
+        -:   75:
+        -:   76:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+        -:   77:    state->deckCount[player]--;
+        -:   78:    state->handCount[player]++;//Increment hand count
+        -:   79:  }
+        -:   80:
+        -:   81:  else{
+        -:   82:    int count = state->handCount[player];//Get current hand count for player
+        -:   83:    int deckCounter;
+        -:   84:    if (DEBUG){//Debug statements
+        -:   85:      printf("Current hand count: %d\n", count);
+        -:   86:    }
+        -:   87:
+        -:   88:    deckCounter = state->deckCount[player];//Create holder for the deck count
+        -:   89:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+        -:   90:    state->deckCount[player]--;
+        -:   91:    state->handCount[player]++;//Increment hand count
+        -:   92:  }
+        -:   93:
+        -:   94:  return 0;
+        -:   95:}
+        -:   96:
+        -:   97: */
+        -:   98:
+        -:   99:
+        -:  100:#include "dominion.h"
+        -:  101:#include "dominion_helpers.h"
+        -:  102:#include "interface.h"
+        -:  103:#include <string.h>
+        -:  104:#include <stdio.h>
+        -:  105:#include <assert.h>
+        -:  106:#include "rngs.h"
+        -:  107:#include <math.h>
+        -:  108:#include <stdlib.h>
+        -:  109:
+        -:  110:#define MAX_HAND_ADV 6
+        -:  111:#define MAX_DECK_ADV 20
+        -:  112:#define DEBUG 0
+        -:  113:#define NOISY_TEST 1
+        -:  114:
+        -:  115:int checkAdventurerCard(int p, struct gameState *post);
+        -:  116:void RandomCards(struct gameState *G);
+        -:  117:void GameDetails(struct gameState *G);
+        -:  118:
+     2000:  119:int checkAdventurerCard(int p, struct gameState *post) {
+        -:  120:  struct gameState pre;
+     2000:  121:  memcpy(&pre, post, sizeof(struct gameState));
+        -:  122:
+     2000:  123:  int who = post->whoseTurn;
+     2000:  124:  printf("Who: %d\n",who);
+        -:  125:  int i;
+        -:  126:  int handPos;
+    13080:  127:  for(i=0;i<post->handCount[who]; i++){
+    11080:  128:  	if(post->hand[who][i]== adventurer){
+     2349:  129:		handPos = i;
+        -:  130:	}       
+        -:  131:  }
+     2000:  132:  printf("Pre:\n"); 
+     2000:  133:  GameDetails(&pre);
+        -:  134:
+        -:  135:  //int playCard(int handPos, int choice1, int choice2, int choice3,struct gameState *state);
+        -:  136:  //adventurerCard(0,0,0,post,handPos,0);
+     2000:  137:  playCard(handPos, 0, 0, 0, post);
+     2000:  138:  printf("Post:\n");
+     2000:  139:  GameDetails(post); 
+        -:  140:
+        -:  141:  
+        -:  142:
+        -:  143:
+     2000:  144:   printf("Player Hand After Play:\n");
+     2000:  145:  printHand(who,post);
+        -:  146:
+     2000:  147:   if (pre.deckCount[who] <1){//if the deck is empty we need to shuffle discard and add to deck
+       81:  148:	printf("Deck Requires Shuffling\n" );
+       81:  149:     if(pre.deckCount[who]  == post->deckCount[who]){
+       81:  150:	printf("***************************Shuffling Error**************************\n" );
+        -:  151:    }
+        -:  152:  }
+        -:  153:
+        -:  154:  //Check if Player gets two treasure cards from their deck
+     2000:  155:  int postHandCount = post->handCount[who];
+     2000:  156:  int newTreasure1 = post->hand[who][postHandCount-1];
+     2000:  157:  int newTreasure2 = post->hand[who][postHandCount-2];
+     2000:  158:  printf("New Treasuer1: %d\n",newTreasure1 );
+     2000:  159:  printf("New Treasuer2: %d\n",newTreasure2 );
+        -:  160:
+     2000:  161:  if (newTreasure1 < 4 &&  newTreasure1 > 6) {
+    #####:  162:	printf("Last card put in hand is not treasure\n");
+        -:  163:  }
+     2000:  164:   if (newTreasure2 < 4 && newTreasure2 > 6 ) {
+    #####:  165:	printf("Second to last card put in hand is not treasure\n");
+        -:  166:  }
+        -:  167:
+     2000:  168:if (pre.deckCount[who] >=3){
+        -:  169:
+        -:  170:
+        -:  171:
+        -:  172: 
+        -:  173:  //Check if retrieved the correct cards
+     1718:  174:  printDeck(pre.whoseTurn,&pre);
+        -:  175:  int n;
+     1718:  176:  n = pre.deckCount[who]-1;
+        -:  177:  int decktreasure1;
+        -:  178:  int decktreasure2;
+     1718:  179:  printf("Deck Count: %d\n",n);
+     6839:  180:  while(n>=0){
+     5121:  181:	if(pre.deck[who][n]== copper || pre.deck[who][n]== silver || pre.deck[who][n]== gold){
+     1718:  182:		decktreasure2 = pre.deck[who][n];
+     1718:  183:                break;
+        -:  184:	}  
+     3403:  185:   n--;    
+        -:  186:  }
+     1718:  187:  n--;
+     6762:  188:  while(n>=0){
+     5044:  189:	if(pre.deck[who][n]== copper || pre.deck[who][n]== silver || pre.deck[who][n]== gold){
+     1718:  190:		decktreasure1 =  pre.deck[who][n];
+     1718:  191:                break;
+        -:  192:	}     
+     3326:  193:   n--; 
+        -:  194:  }
+        -:  195:
+     1718:  196:  printf("Next Deck Treasuer1: %d\n",decktreasure1 );
+     1718:  197:  printf("Next Deck Treasuer2: %d\n",decktreasure2 );
+        -:  198: 
+        -:  199:  
+        -:  200:
+        -:  201:
+     1718:  202:   if ( decktreasure2 != newTreasure2){
+     1658:  203:	printf("Deck Treasure2 not matching hand Treasure: deck: %d , hand: %d\n",decktreasure2, newTreasure2);
+        -:  204:  }
+        -:  205:
+        -:  206:
+     1718:  207:  if ( decktreasure1 != newTreasure1){
+     1658:  208:	printf("Deck Treasure1 not matching hand Treasure: deck: %d , hand: %d\n",decktreasure1, newTreasure1);
+        -:  209:  }
+        -:  210:
+        -:  211:
+        -:  212:
+        -:  213:
+        -:  214:
+        -:  215:  //Drawn Cards are discarded
+        -:  216:  if(pre.discard[who]==post->discard[who]){
+        -:  217:      printf("Discard unchanged");
+        -:  218:  }
+        -:  219:
+     1718:  220:  printf("Pre Discard Count: %d\n",pre.discardCount[who]);
+     1718:  221:  printf("Post Discard Count: %d\n",post->discardCount[who]);
+     1718:  222:  printf("pre deckCount %d",pre.deckCount[who]);
+        -:  223:
+     1718:  224:  if(pre.deckCount[who] - (n+2) != (post->discardCount[who]-pre.discardCount[who])){
+     1505:  225:     printf("Incorrect # discard cards\n");
+        -:  226:  }
+        -:  227:}
+        -:  228:
+        -:  229:  //Check new hand count
+     2000:  230:  if(pre.handCount[who] +1 != post->handCount[who])
+     2000:  231:  	printf("Hand Count Incorrect! - pre: %d , post: %d\n",pre.handCount[who],post->handCount[who]);
+        -:  232:
+        -:  233:
+        -:  234:
+        -:  235:  //No state changes
+        -:  236:  //check state change of other players cards
+        -:  237:
+     2000:  238:  int check=0;
+     2000:  239:  if (pre.numPlayers == 2){
+     1004:  240:	if(pre.whoseTurn==1){
+      502:  241:	   check=0;
+        -:  242:	} else{
+      502:  243:	   check=1;
+        -:  244:	}
+        -:  245: int y;
+     6506:  246:  for(y=0;y<post->handCount[check];y++){
+        -:  247:
+     5502:  248:     if(post->hand[check][y]!=pre.hand[check][y]){
+    #####:  249:     	printf("ERROR: Othe players cards have changed!.\n");
+    #####:  250:      	printf("before-%d after-%d",pre.hand[1][y],post->hand[1][y]);
+        -:  251:     }
+        -:  252:
+        -:  253:   }
+        -:  254:
+        -:  255: }
+        -:  256:
+        -:  257: 
+        -:  258:	
+        -:  259:   //check if no change in buys
+     2000:  260:   if(post->numBuys != pre.numBuys)
+        -:  261:   {
+    #####:  262:	printf("ERROR: State Change for buys.\n");
+        -:  263:   }
+        -:  264:
+        -:  265:   //check if no change in action
+     2000:  266:   if(post->numActions != pre.numActions)
+        -:  267:   {
+    #####:  268:	printf("ERROR: State change for actions.\n");
+        -:  269:   }
+        -:  270:
+        -:  271:   //check if no change in coins
+     2000:  272:   if(post->coins != pre.coins)
+        -:  273:   {
+    #####:  274:	printf("ERROR: State change for coins.\n");
+        -:  275:   }
+        -:  276:
+     2000:  277:  return 0;
+        -:  278:
+        -:  279:
+        -:  280:}
+        -:  281:
+        -:  282:
+        -:  283:
+        1:  284:int main () {
+        -:  285:
+        -:  286:  int i, n, p;
+        -:  287:
+        -:  288:  struct gameState G;
+        -:  289:
+        1:  290:  printf ("Testing Adventurer Card.\n");
+        -:  291:
+        1:  292:  printf ("RANDOM TESTS.\n");
+        -:  293:
+        1:  294:  SelectStream(2);
+        1:  295:  PutSeed(3);
+        -:  296:
+     2001:  297:  for (n = 0; n < 2000; n++) {
+ 52602000:  298:    for (i = 0; i < sizeof(struct gameState); i++) {
+ 52600000:  299:      ((char*)&G)[i] = floor(Random() * 256);
+        -:  300:    }
+     2000:  301:    printf("TEST: %d\n",n);
+     2000:  302:    p = floor(Random() * 2)+1;
+     2000:  303:    G.numPlayers = p;
+     2000:  304:    printf("Num Players: %d\n",G.numPlayers);
+     2000:  305:    G.whoseTurn = floor(Random() * p);
+     2000:  306:    printf("Player Turn: %d\n",G.whoseTurn);
+     2000:  307:    RandomCards(&G);
+        -:  308:    //GameDetails(&G);
+     2000:  309:    checkAdventurerCard(p, &G);
+     2000:  310:    printf("END TEST: %d\n\n\n",n);
+        -:  311:  }
+        -:  312:
+        1:  313:  exit(0);
+        -:  314:
+        -:  315:}
+        -:  316:
+     2000:  317:void RandomCards(struct gameState *G){
+        -:  318:
+        -:  319:	int p;
+        -:  320:	int randomAdventurer;
+     2000:  321:        int treasure1Position = 0;
+     2000:  322:	int treasure2Position = 0;
+        -:  323:	
+     5004:  324:	for(p=0;p<G->numPlayers;p++)
+        -:  325:	{
+        -:  326:
+     3004:  327:		printf("player: %d",p);
+        -:  328:
+     3004:  329:		G->deckCount[p] = floor(Random() * MAX_DECK_ADV)+0;
+     3004:  330:		G->discardCount[p] = floor(Random() * MAX_DECK_ADV)+5;
+     3004:  331:    		G->handCount[p] = floor(Random() * MAX_HAND_ADV)+3;
+        -:  332:
+        -:  333:		int x;	
+    19586:  334:		for(x = 0; x < G->handCount[p]; x++)
+        -:  335:		{
+    16582:  336:			G->hand[p][x] = floor(Random() * treasure_map) + 1;
+        -:  337:		}
+        -:  338:		
+        -:  339:       		 int y;
+    46583:  340:		for(y = 0; y < G->discardCount[p]; y++)
+        -:  341:		{
+    43579:  342:			G->discard[p][y] = floor(Random() * treasure_map) + 1;
+        -:  343:		}
+        -:  344:
+        -:  345:		int z;
+    31330:  346:		for(z = 0; z < G->deckCount[p]; z++)
+        -:  347:		{
+    28326:  348:			G->deck[p][z] = floor(Random() * treasure_map) + 1;
+        -:  349:		}
+        -:  350:	
+        -:  351:		//int w;
+        -:  352:		//for(w = 0; w < G->playedCardCount; w++)
+        -:  353:		//{
+        -:  354:		//	G->playedCards[w] = floor(Random() * treasure_map) + 1;
+        -:  355:		//}
+        -:  356:
+     3004:  357:		randomAdventurer = floor(Random() * G->handCount[p]);
+        -:  358:
+     3004:  359:		printf("HandSize: %d\n",G->handCount[p]);
+     3004:  360:		printf("A location: %d\n",randomAdventurer);
+     3004:  361:		G->hand[p][randomAdventurer] = adventurer;
+        -:  362:         
+     3004:  363:	  if (G->deckCount[p] >=3){
+        -:  364:
+        -:  365:                		do{
+     2980:  366:			treasure1Position = floor(Random() * G->deckCount[p]);
+     2980:  367:			treasure2Position = floor(Random() * G->deckCount[p]);
+     2980:  368:		}while(treasure1Position == treasure2Position);
+        -:  369:
+     2585:  370:		printf("TreasurePosition1: %d\n",treasure1Position);
+     2585:  371:		printf("TreasurePosition2: %d\n",treasure2Position);
+        -:  372:
+        -:  373:
+     2585:  374:               		 G->deck[p][treasure1Position] =  4;
+     2585:  375:		G->deck[p][treasure2Position] =  6;
+        -:  376:	
+        -:  377:	}else {
+        -:  378:
+        -:  379:		do{
+      467:  380:			treasure1Position = floor(Random() * G->discardCount[p]);
+      467:  381:			treasure2Position = floor(Random() * G->discardCount[p]);
+      467:  382:		}while(treasure1Position == treasure2Position);
+        -:  383:
+      419:  384:		printf("TreasurePosition1: %d\n",treasure1Position);
+      419:  385:		printf("TreasurePosition2: %d\n",treasure2Position);
+        -:  386:
+        -:  387:
+      419:  388:               		 G->discard[p][treasure1Position] =  4;
+      419:  389:		G->discard[p][treasure2Position] =  6;
+        -:  390:
+        -:  391:	}
+        -:  392:
+     3004:  393:		G->numBuys = floor(Random() * 10);
+     3004:  394:		G->numActions = floor(Random() * 10);
+     3004:  395:		G->coins = floor(Random() * 10);
+        -:  396:
+        -:  397:                	     
+        -:  398:
+        -:  399:	}
+        -:  400:
+        -:  401:
+     2000:  402:}
+        -:  403:
+     4000:  404:void GameDetails(struct gameState *G){
+        -:  405:
+        -:  406:	int p;
+     4000:  407:        p=G->whoseTurn;
+        -:  408:	
+     4000:  409:	printf("Player: %d\n",p);
+     4000:  410:	printHand(p,G);
+     4000:  411:        printDeck(p,G);
+     4000:  412:        printDiscard(p,G);
+        -:  413:
+        -:  414:
+        -:  415:
+     4000:  416:}
+        -:  417:
+        -:  418:
+        -:  419:
+        -:  420: 

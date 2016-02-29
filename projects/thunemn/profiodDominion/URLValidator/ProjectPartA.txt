@@ -1,0 +1,12 @@
+The testIsValid method accepts an object array of test objects and a long for options. These test objects are arrays of result pairs where one item is a portion of the url and the other item is a boolean value for if that particular url part is a valid part. It is broken up into 5 categories for this test. These categories are Url Scheme (i.e. http or ftp), Url Authority (i.e. IP address or domain name and top level domain), Port Number, Path, and Query parameters. 
+
+The function maintains an array of indexes. The indexes coincide with the url parts in the object array passed into the function. The testIsValid function creates a string by appending each part of the url to an empty string. It knows which part of the url to use by using the indexes. The function maintains the expected result by doing a bitwise and on the boolean that represents the validitiy of that url part. If one url part is false this makes the expected value false. (Bitwise AND compares two boolean values and only returns true if both are true) The function prints all urls that have an returned isValid value of true. It then does an assertion that expected equals the returned value. 
+
+The next step is the function calls incrementTestPartsIndex with the running index of the test parts and the test objects. This function increases the index on the test part by increasing the last value in the array. Once the index reaches the maximum value it resets back to 0 and that 1 is carried to the next index. An example: {0, 0, 0, 0, 2}, after the function would become {0, 0, 0, 1, 0}. This allows for all of the combinations of the test urls to be completed. It knows what the maximum index is by using the ResultPair array's length. This equals out to be 35910 urls that are tested. 
+
+I don't feel that this is much different than the unit tests and card tests that we have wrote. This test is solely testing the return value of the isValid function. It does implement some complexity with the way it handles building the URL's, but I do not feel that it is far out of the range of what we are completing. 
+
+Example Valid url: 
+http://www.google.com:80/test1?action=view
+Example Invalid url: 
+http://www.google.com:-1/test1?action=view

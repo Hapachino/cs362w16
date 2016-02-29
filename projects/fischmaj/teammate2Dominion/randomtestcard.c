@@ -270,7 +270,7 @@ int checkSmithy(int player, struct gameState *pre, int position, int *array){
 
 
   /* 1. The function accepts 1 player, a game state, and a hand position */
-  playSmithy(post,player, position); 
+  smithyCard(post, position); 
 
 
 

@@ -61,7 +61,8 @@ void testSmithy()
         int handPos = state.handCount[player];
         state.hand[player][handPos] = smithy;
         state.handCount[player]++;
-        if (playSmithy(&state, handPos) != 0)
+        // if (playSmithy(&state, handPos) != 0) (REFACTOR)
+        if (play_smithy(&state, player, handPos != 0))
         {
             printf("Failed: playSmithy() failed.\n");
             continue;

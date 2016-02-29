@@ -36,11 +36,11 @@ cardtest3: dominion.o testFunctions.o cardtest3.c
 cardtest4: dominion.o testFunctions.o cardtest4.c
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o testFunctions.o $(CFLAGS)
 
-randomtestadventurer: dominion.o testFunctions.o randomtestadventurer.c
-	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o testFunctions.o $(CFLAGS)
+randomtestadventurer: dominion.o testhelper.o randomtestadventurer.c
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o testhelper.o $(CFLAGS)
 
-randomtestcard: dominion.o testFunctions.o randomtestcard.c
-	gcc -o randomtestcard randomtestcard.c -g dominion.o rngs.o testFunctions.o $(CFLAGS)
+randomtestcard: dominion.o testhelper.o randomtestcard.c
+	gcc -o randomtestcard randomtestcard.c -g dominion.o rngs.o testhelper.o $(CFLAGS)
 
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
@@ -53,6 +53,9 @@ testBuyCard: testDrawCard.c dominion.o rngs.o
 
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
+
+testhelper.o: testhelper.h testhelper.c
+	gcc -c testhelper.c -g $(CFLAGS)
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)

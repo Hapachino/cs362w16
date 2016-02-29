@@ -1353,7 +1353,7 @@ int adventurerCard(int choice1, int choice2, int choice3, struct gameState *stat
 	
    int z=0;
    int cardDrawn;
-   int drawntreasure=1;
+   int drawntreasure=0;
    int currentPlayer = whoseTurn(state);
    int temphand[MAX_HAND];
 	
@@ -1376,6 +1376,8 @@ int adventurerCard(int choice1, int choice2, int choice3, struct gameState *stat
 	z=z-1;
 	      }
 	  
+	//discardCard(handPos, currentPlayer, state, 0);	
+
 	  return 0;
 	  
 }
@@ -1387,7 +1389,7 @@ int smithyCard(int choice1, int choice2, int choice3, struct gameState *state, i
 	int currentPlayer = whoseTurn(state);
 	
 	//+3 Cards
-    for (i = 0; i <= 3; i++)
+    for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -1419,10 +1421,11 @@ int council_roomCard(int choice1, int choice2, int choice3, struct gameState *st
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
 	{
-	 
-	      drawCard(i, state);
+	 	 if ( i != currentPlayer )
+	    {
+		 drawCard(i, state);
 	}
-			
+	}	
       //put played card in played card pile
       discardCard(handPos, currentPlayer, state, 0);
 			
@@ -1452,7 +1455,7 @@ int stewardCard(int choice1, int choice2, int choice3, struct gameState *state, 
 	  discardCard(choice2, currentPlayer, state, 1);
 	  discardCard(choice3, currentPlayer, state, 1);
 	}
-			
+      discardCard(handPos, currentPlayer, state, 0);			
       return 0;
 }
 	

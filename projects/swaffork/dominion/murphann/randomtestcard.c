@@ -35,9 +35,9 @@ int setUp(struct gameState* state)
     return 0;
 }
 
-void testSmithy()
+void testGreatHall()
 {
-    printf("Beginning random tests for smithy:\n");
+    printf("Beginning random tests for Great Hall:\n");
 
     int i;
     int j;
@@ -56,26 +56,23 @@ void testSmithy()
         struct gameState expected;
         memcpy(&expected, &state, sizeof(struct gameState));
 
-        // Add smithy as last card in hand and play it.
+        // Add great_hall as last card in hand and play it.
         player = state.whoseTurn;
         int handPos = state.handCount[player];
-        state.hand[player][handPos] = smithy;
+        state.hand[player][handPos] = great_hall;
         state.handCount[player]++;
-        if (playSmithy(&state, handPos) != 0)
+        if (playGreat_Hall(&state, handPos) != 0)
         {
-            printf("Failed: playSmithy() failed.\n");
+            printf("Failed: playGreat_Hall() failed.\n");
             continue;
         }
 
         // Setup expected state.
-        for (j = 0; j < 3; j++)
-        {
-            expected.hand[player][expected.handCount[player]] = expected.deck[player][expected.deckCount[player]];
-            expected.handCount[player]++;
-            expected.deckCount[player]--;
-        }
-        expected.handCount[player] += 3;
-        expected.playedCards[expected.playedCardCount] = smithy;
+        expected.hand[player][expected.handCount[player]] = expected.deck[player][expected.deckCount[player]];
+        expected.handCount[player]++;
+        expected.deckCount[player]--;
+
+        expected.playedCards[expected.playedCardCount] = great_hall;
         expected.playedCardCount++;
 
         // Compare states
@@ -142,10 +139,11 @@ void testSmithy()
     }
 
     printf("End of test. %d out of %d tests passed.\n\n", passed, i);
+
 }
 
 int main()
 {
-    testSmithy();
+    testGreatHall();
     return 0;
 }

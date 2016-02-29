@@ -1,4 +1,4 @@
-/* -----------------------------------------------------------------------
+ /* -----------------------------------------------------------------------
  * Faye Yao
  * CS 362
  * Village Card Unit Test
@@ -59,7 +59,7 @@ int main() {
         G.hand[p][0] = village;
         memcpy(&copyG, &G, sizeof(struct gameState));
         prevActions = G.numActions;
-        cardEffect(village, 0, 0, 0, &G, 0, &zero);
+        playCard(0, 0, 0, 0, &G);
         printf("Checking if Player drew a card successfully ... \n");
         if (G.handCount[p] != 1)
         {
@@ -76,9 +76,9 @@ int main() {
             }
         }
         printf("Checking if Player has +2 to num actions...\n");
-        if (G.numActions != prevActions + 2)
+        if (G.numActions != prevActions + 1)
         {
-            printf("Village Card did not add +2 Actions. Current numActions: %i, Expected numActions: %i\n", G.numActions, prevActions + 2);
+            printf("Village Card did not add +2 Actions. Current numActions: %i, Expected numActions: %i\n", G.numActions, prevActions + 1);
         }
         printf("Checking the gameState for all other players to make sure it wasn't modified... \n");
         for (j = 0; j < numPlayer; j++)

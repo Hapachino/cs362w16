@@ -299,7 +299,7 @@ int main() {
 
    printf("\tdiscardCount + deckCount = %d; expected = %d", testG.discardCount[player] + testG.deckCount[player], G.discardCount[player] + G.deckCount[player] - 2);
    assert(testG.discardCount[player] + testG.deckCount[player] == G.discardCount[player] + G.deckCount[player] - 2);
-
+   printf("\tCard at adventurer position is still adventurer after played: \t%s\n", testG.hand[player][handPos] == adventurer ? "TRUE" : "FALSE");
  
    printf("\nTEST 3: PLAYED CARDS PILE - advevnturer card is played \n");
 

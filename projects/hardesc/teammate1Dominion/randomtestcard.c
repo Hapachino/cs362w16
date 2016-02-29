@@ -1,6 +1,6 @@
 /*
  *
- * cardtest3.c
+ * randomcardtest.c
  *
  *
  *
@@ -30,33 +30,33 @@ int main() {
    struct gameState G, testG;
    int numPlayers;
    int player;
-   int handPos;//position of adventurer card in hand
+   int handPos;//position of council_room card in hand
    int bonus;
    int choice1 = 0, choice2 = 0, choice3 = 0;
    int seed = 1000;
    int i, j, k[10];
-   int adventurerPos;
+   int council_roomPos;
    int reps = REPS; 
 
 
  while (reps > 0) {
 
-   printf("\n\n\n-------------------------Random Testing adventurer-------------------\n\n");
+   printf("\n\n\n-------------------------Random Testing council_room-------------------\n\n");
 
 
    srand((unsigned int) time(NULL) + reps);
 
    numPlayers = ((rand() % 3) + 2);
-   adventurerPos = rand() % 10;
+   council_roomPos = rand() % 10;
    player = rand() % numPlayers;//randomize the player who will play the adventurer
 
-   printf("adventurer card at k[%d] position.\nnumber of players = %d\nplayer playing adventurer = %d\n", adventurerPos, numPlayers, player);
+   printf("council_room card at k[%d] position.\nnumber of players = %d\nplayer playing council_room = %d\n", council_roomPos, numPlayers, player);
 
 //   printf("line 42\n");   
    //make random kingdom card selections 
    printf("randomizing kingdom cards...\n");
    for (i = 0; i < 10; i++) {
-      if (i == adventurerPos) {k[i] = adventurer;}
+      if (i == council_roomPos) {k[i] = council_room;}
       else {
          k[i] = (rand() % 20) + 7;
       } 
@@ -247,7 +247,7 @@ int main() {
 //      printf("\tplayedCard[%d] = %d\n", i, G.playedCards[i]);
    }
  
-   printf("\nplayer %d playing adventurer from handpos %d\n\n", player, handPos);
+   printf("\nplayer %d playing council_room from handpos %d\n\n", player, handPos);
    for (i = 0; i < numPlayers; i ++) {
       printf("player %d:  handCount = %d\t", i, G.handCount[i] );
       for (j = 0; j < G.handCount[i]; j ++) {
@@ -266,49 +266,40 @@ int main() {
    printf("\ncopying game state G to testG\n");
    memcpy(&testG, &G, sizeof(struct gameState));
   
-   printf("calling cardEffect(adventurer, 0, 0, &testG, handPos = %d, &bonus = %d)\n", handPos, bonus);
-   cardEffect(adventurer, choice1, choice2, choice3, &testG, handPos, &bonus);
+   printf("calling cardEffect(council_room, 0, 0, &testG, handPos = %d, &bonus = %d)\n", handPos, bonus);
+   cardEffect(council_room, choice1, choice2, choice3, &testG, handPos, &bonus);
 
 
-   printf("\nTEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard\n");
+   printf("\nTEST 1: DRAW 4 CARDS - player has 4 new cards - 1 discard\n");
 
-   printf("\thandCount = %d, expected = %d", testG.handCount[player], G.handCount[player] + 1);
-   assert(testG.handCount[player] == G.handCount[player] + 1);
+   printf("\thandCount = %d, expected = %d", testG.handCount[player], G.handCount[player] + 3);
+   assert(testG.handCount[player] == G.handCount[player] + 3);
 
-   int testG_treasureCount = 0;
+   printf("\nTEST 2: BUYS INCREMENTED - buys + 1\n");
 
-   for (i = 0; i < testG.handCount[player]; i++) {
-      if ((testG.hand[player][i] == copper) || (testG.hand[player][i] == silver) || (testG.hand[player][i] == gold)) {
-         testG_treasureCount++; 
-      }
-   }
+   printf("\tnumBuys = %d; expected = %d", testG.numBuys, G.numBuys + 1);
+   assert(testG.numBuys == G.numBuys + 1);
 
-   int G_treasureCount = 0;
+   printf("\nTEST 3: CARDS ARE FROM DECK - new cards are the next cards from deck\n");
 
-   for (i = 0; i < G.handCount[player]; i++) {
-      if ((G.hand[player][i] == copper) || (G.hand[player][i] == silver) || (G.hand[player][i] == gold)) {
-         G_treasureCount++; 
-      }
-   }
-
-   printf("\ttreasureCount = %d, expected = %d", testG_treasureCount, G_treasureCount + 2);
-   assert(testG_treasureCount == G_treasureCount + 2);
-
-
-   printf("\nTEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards \n");
-
-   printf("\tdiscardCount + deckCount = %d; expected = %d", testG.discardCount[player] + testG.deckCount[player], G.discardCount[player] + G.deckCount[player] - 2);
-   assert(testG.discardCount[player] + testG.deckCount[player] == G.discardCount[player] + G.deckCount[player] - 2);
+   printf("\tdiscardCount + deckCount = %d; expected = %d", testG.discardCount[player] + testG.deckCount[player], G.discardCount[player] + G.deckCount[player] - 4);
+   assert(testG.discardCount[player] + testG.deckCount[player] == G.discardCount[player] + G.deckCount[player] - 4);
 
  
-   printf("\nTEST 3: PLAYED CARDS PILE - advevnturer card is played \n");
+   printf("\nTEST 4: PLAYED CARDS - 1 additional played card\n");
 
-
-   printf("\tplayedCardsCount = %d, expected = %d", testG.playedCardCount, G.playedCardCount + 1);
+   printf("\tplayedCardCount = %d, expected = %d", testG.playedCardCount, G.playedCardCount + 1);
    assert(testG.playedCardCount == G.playedCardCount + 1);
 
+   printf("\nTEST 5: OTHER PLAYERS DRARW CARD - each other player in the game draws a card from their deck\n");
+   for (i  = 0; i < numPlayers; i++) {
+      if (i == player) {continue;}
+      printf("\tPlayer[%d]:\n\t\thandCount = %d; expected = %d\t%s\n\t\tdeckCount + discardCount = %d; expected = %d\t%s\n", i, testG.handCount[i], G.handCount[i] + 1,
+        assert2(testG.handCount[i] == G.handCount[i] + 1), testG.discardCount[i] + testG.deckCount[i], G.discardCount[i] + G.deckCount[i] - 1,
+        assert2(testG.discardCount[i] + testG.deckCount[i] == G.discardCount[i] + G.deckCount[i] - 1));
+   }
 
-   printf("\nTEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables\n");
+   printf("\nTEST 6: NO STATE CHANGE - state remains unchanged in unaffected variables\n");
 
    //Test supply counts
    printf("\tSupply Counts:\t");
@@ -331,12 +322,7 @@ int main() {
       if (player == i) {continue;}
       printf("\t\tPlayer[%d]: ", i);
       fail = 0;
-      for (j = 0; j < testG.handCount[i]; j++) {
-         if (testG.hand[i][j] != G.hand[i][j]) {
-            printf("\n\t\ttestG.hand[%d][%d] = %d; expected = %d\tFAIL\n", i, j, testG.hand[i][j], G.hand[i][j]);
-            fail = 1;
-         }
-      }
+      
       for (j = 0; j < testG.discardCount[i]; j++) {
          if (testG.discard[i][j] != G.discard[i][j]) {
             printf("\n\t\ttestG.discard[%d][%d] = %d; expected = %d\tFAIL\n", i, j, testG.discard[i][j], G.discard[i][j]);
@@ -349,24 +335,20 @@ int main() {
             fail = 1;
          }
       }
-      printf("\n\t\ttestG.handCount[%d] = %d; expected = %d", i, testG.handCount[i], G.handCount[i]);
-      assert(testG.handCount[i] == G.handCount[i]);
-      printf("\t\ttestG.deckCount[%d] = %d; expected = %d", i, testG.deckCount[i], G.deckCount[i]);
-      assert(testG.deckCount[i] == G.deckCount[i]);
-      printf("\t\ttestG.discardCount[%d] = %d; expected = %d", i, testG.discardCount[i], G.discardCount[i]);
-      assert(testG.discardCount[i] == G.discardCount[i]);
-      printf("\n");
-  }
+      if (testG.discardCount[i] != G.discardCount[i]) {
+         fail = 1;
+         printf("player[%d] state: FAIL\n", i); 
+      }
+      if (!fail) printf("PASS\n");
+   }
 
    printf("\n\tnumActions = %d; expected = %d", testG.numActions, G.numActions);
    assert(testG.numActions == G.numActions);
-   printf("\tnumBuys = %d; expected = %d", testG.numBuys, G.numBuys);
-   assert(testG.numBuys == G.numBuys);
    printf("\tcoins = %d; expected = %d\t", testG.coins, G.coins);
    assert(testG.coins == G.coins);
 //   printf("\t\nnumActions = %d; expected = %d\n", testG.numActions, G.numActions);
    
-   printf("\n\n----------------------adventurer test complete------------------------\n\n\n");
+   printf("\n\n----------------------council_room test complete------------------------\n\n\n");
 
 
    reps--;

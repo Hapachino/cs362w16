@@ -657,7 +657,7 @@ int playAdventurer(struct gameState *state, int currentPlayer) {
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]; //top card of hand is most recently drawn card.
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
-      drawntreasure+=2;
+      drawntreasure++; // revert +=2 to ++
     } else {
       temphand[z]=cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
@@ -677,7 +677,7 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos) {
   //+3 Cards
   int i;
 
-  for (i = 1; i < 3; i++) {
+  for (i = 0; i < 3; i++) { // revert i = 1 to i = 0
     drawCard(currentPlayer, state);
   }
 
@@ -695,7 +695,7 @@ int playSalvager(struct gameState *state, int currentPlayer, int handPos, int ch
     //gain coins equal to trashed card
     state->coins = state->coins + getCost(handCard(choice1, state));
     //trash card
-    discardCard(choice1, currentPlayer, state, 0);
+    discardCard(choice1, currentPlayer, state, 1); // revert trashflag value 0 to 1
   }
   //discard card
   discardCard(handPos, currentPlayer, state, 0);
@@ -708,7 +708,7 @@ int playGreatHall(struct gameState *state, int currentPlayer, int handPos) {
   drawCard(currentPlayer, state);
 
   //+1 Actions
-  state->numActions += 2;
+  state->numActions++; //revert +=2 to ++
 
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
@@ -741,7 +741,7 @@ int playMinion(struct gameState *state, int currentPlayer, int handPos, int choi
 
 //other players discard hand and redraw if hand size > 4
   for (i = 0; i < state->numPlayers; i++) {
-    if (i == currentPlayer) {
+    if (i != currentPlayer) { // revert == to !=
       if ( state->handCount[i] > 4) {
         //discard hand
         while( state->handCount[i] > 0) {

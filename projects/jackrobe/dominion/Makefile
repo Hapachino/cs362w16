@@ -1,5 +1,5 @@
-#CFLAGS = -Wall -fpic -coverage -lm
-CFLAGS =  -coverage
+CFLAGS = -Wall -fpic -coverage -lm
+#CFLAGS =  -coverage
 TESTS?=100
 VERB?=0
 
@@ -13,8 +13,8 @@ playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 
 # Smithy
-smithyTest: smithyTest.c dominion.o rngs.o
-	gcc -o smithyTest -g  smithyTest.c dominion.o rngs.o $(CFLAGS)
+smithyTest: cardtest1.c dominion.o rngs.o
+	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
 
 # Adventurer
 cardtest2: cardtest2.c dominion.o rngs.o
@@ -44,17 +44,6 @@ unittest3: unittest3.c dominion.o rngs.o
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
 
-testDrawCard: testDrawCard.c dominion.o rngs.o
-	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
-
-badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
-	gcc -o badTestDrawCard -g  badTestDrawCard.c dominion.o rngs.o $(CFLAGS)
-
-testBuyCard: testDrawCard.c dominion.o rngs.o
-	gcc -o testDrawCard g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
-
-testAll: dominion.o testSuite.c
-	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
@@ -77,9 +66,9 @@ random: rSmithy rAdv playdom player
 	cat dominion.c.gcov >> randomtestSmithy.out
 	cat dominion.c.gcov >> randomtestAdventurer.out
 
-unittestresults.out: smithyTest cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
+regular: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 
-	./smithyTest 2 &> unittestresult.out
+	./cardtest1 2 &> unittestresult.out
 	./cardtest2 2 >> unittestresult.out
 	./cardtest3 2 >> unittestresult.out
 	./cardtest4 2 >> unittestresult.out
@@ -98,4 +87,4 @@ player: player.c interface.o
 all: playdom player smithyTest cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.stackdump
+	rm -f *.o playdom.exe playdom *.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.stackdump

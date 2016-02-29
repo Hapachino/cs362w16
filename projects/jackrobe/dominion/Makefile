@@ -13,7 +13,7 @@ playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 
 # Smithy
-smithyTest: cardtest1.c dominion.o rngs.o
+cardtest1: cardtest1.c dominion.o rngs.o
 	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
 
 # Adventurer
@@ -57,28 +57,23 @@ rAdv: adventurerRandomTest.c dominion.o rngs.o interface.o
 sndbx: sndbx.c rngs.o
 	gcc -o sndbx -g sndbx.c rngs.o $(CFLAGS)
 
-random: rSmithy rAdv playdom player
 
-	./rSmithy 2 500000 0 &> randomtestSmithy.out
-	./rAdv 2 500000 0 &> randomtestAdventurer.out
+alltests: playdom player rSmithy rAdv cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 
-	gcov dominion.c -b -f >> randomtestresult.out
-	cat dominion.c.gcov >> randomtestSmithy.out
-	cat dominion.c.gcov >> randomtestAdventurer.out
+	./rSmithy 2 5000 0 &> post-Test.out
+	./rAdv 2 5000 0 >> post-Test.out
+	./cardtest1 2 >> post-Test.out
+	./cardtest2 2 >> post-Test.out
+	./cardtest3 2 >> post-Test.out
+	./cardtest4 2 >> post-Test.out
+	./unittest1 2 >> post-Test.out
+	./unittest2 2 >> post-Test.out
+	./unittest3 2 >> post-Test.out
+	./unittest4 2 >> post-Test.out
 
-regular: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
-
-	./cardtest1 2 &> unittestresult.out
-	./cardtest2 2 >> unittestresult.out
-	./cardtest3 2 >> unittestresult.out
-	./cardtest4 2 >> unittestresult.out
-	./unittest1 2 >> unittestresult.out
-	./unittest2 2 >> unittestresult.out
-	./unittest3 2 >> unittestresult.out
-	./unittest4 2 >> unittestresult.out
-
-	gcov dominion.c -b -f >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
+	gcov dominion.c -b -f >> post-Test.out
+	cat dominion.c.gcov >> post-Test.out
+	cat dominion.c.gcov >> post-Test.out
 
 
 player: player.c interface.o

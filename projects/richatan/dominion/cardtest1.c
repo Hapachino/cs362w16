@@ -186,13 +186,20 @@ int main () {
 		printf("\nCurrent player's deck count: %d, Expected: %d", g->deckCount[whoseTurn(g)], pre->deckCount[whoseTurn(g)] - 3);
 		failed = 1;		
 	}
-	//Check cards removed from deck = cards added to hand
-	for(i = 1; i <= 3; i++){
-		if (g->hand[whoseTurn(g)][g->deckCount[whoseTurn(g)] - i] != pre->deck[whoseTurn(g)][pre->deckCount[whoseTurn(g)] - i]){
-			printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - i, g->hand[whoseTurn(g)][g->deckCount[whoseTurn(g)] - i], pre->deck[whoseTurn(g)][pre->deckCount[whoseTurn(g)] - i]);
-			failed = 1;		
-		}	
+	//Check cards removed from deck = cards added to hand (last 2 cards, plus position 0...last card replaces test card when discarded)
+	if (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1] != pre->deck[whoseTurn(g)][pre->deckCount[whoseTurn(g)] - 1]){
+		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 1, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 1], pre->deck[whoseTurn(g)][pre->deckCount[whoseTurn(g)] - 1]);
+		failed = 1;		
 	}
+	if (g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2] != pre->deck[whoseTurn(g)][pre->deckCount[whoseTurn(g)] - 2]){
+		printf("\nCurrent player's hand[%d]: %d, Expected: %d", g->handCount[whoseTurn(g)] - 2, g->hand[whoseTurn(g)][g->handCount[whoseTurn(g)] - 2], pre->deck[whoseTurn(g)][pre->deckCount[whoseTurn(g)] - 2]);
+		failed = 1;		
+	}
+	if (g->hand[whoseTurn(g)][0] != pre->deck[whoseTurn(g)][pre->deckCount[whoseTurn(g)] - 3]){
+		printf("\nCurrent player's hand[0]: %d, Expected: %d", g->hand[whoseTurn(g)][0], pre->deck[whoseTurn(g)][pre->deckCount[whoseTurn(g)] - 3]);
+		failed = 1;		
+	}
+	
 	//Check no bonus coins added
 	if (coin_bonus != 0){
 		printf("\nCoin bonus after smithy: %d, Expected: %d", coin_bonus, 0);

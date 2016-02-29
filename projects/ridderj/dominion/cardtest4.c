@@ -171,7 +171,7 @@ int main() {
              for(j=0; j < numPlayer;j++) {
                 //Count copper cards
                 countCopper = 0;
-                for (i = 0; i < 6; i++) {
+                for (i = 0; i < G.handCount[j]; i++) {
                      if(G.hand[j][i] == copper){
                         countCopper++;
                      }

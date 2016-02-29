@@ -1,118 +1,59 @@
-/*********************************************************************
-** Program Filename: cardtest4.c
-** Author: Kyle Johnson
-** Date: 2/2/2016
-** Description: implementation file for council room card test
-*********************************************************************/ 
-
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
 #include "rngs.h"
+#include <stdio.h>
+#include <math.h>
 #include <stdlib.h>
 
-#define TESTCARD "council_room"
+//4=copper, 5=silver, 6 = gold
 
-//set-up and initialization based on cardtest4.c, week 4 module CS362W16
-int main() {
-    int newCards = 4;
-    int discarded = 1;
-	int addBuy = 1;
-	int otherCard = 1;
-    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
-    int seed = 1000;
-    int numPlayers = 2;
-    int currentPlayer = 0;
-    int nextPlayer = 1;
-	int playedCards = 1;
-	
-	
-	struct gameState G, testG;
-	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
-			sea_hag, tribute, smithy, council_room};
+int main(){
+	struct gameState G;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
+	initializeGame(4, k, 99, &G);
+	G.discardCount[2] = G.deckCount[2];
+	G.deckCount[2]=0;
+	int handC = G.handCount[2];
+	adventurerCard(&G, 2);
 
-	// initialize a game state and player cards
-	initializeGame(numPlayers, k, seed, &G);
+	int counts = G.handCount[2]+1- handC;
+	int i;
+	int c=0;
+	if(G.deckCount + counts < 1){
+		printf("Fail: the deck as not shuffled\n");
+	}
+	else{
+		for(i=0; i<G.handCount[1]; i++){
+			if(G.discard[1][i] == 4 || G.discard[1][i] == 5 || G.discard[1][i]==6){
+				c++;
+			}
+				
+		}
+		if(c>0){
+			printf("Fail: %d treasure cards were discarded\n", c);
+		}
+		else{
+			printf("Pass: no treasure cards were discarded\n");
+		}
+	}
+	int hcP1 = G.handCount[1];
+	adventurerCard(&G, 2);
 
-	printf("----------------- Testing cardtest4: %s ----------------\n", TESTCARD);
-
-	// ----------- TEST 1: +4 cards --------------
-	printf("TEST 1: +4 cards\n");
-
-	// copy the game state to a test case
-	memcpy(&testG, &G, sizeof(struct gameState));
-	cardEffect(council_room, choice1, choice2, choice3, &testG, handpos, &bonus);
-	newCards = 4;
-	
-	//check player hand count
-	printf("hand count = %d, expected = %d\n", testG.handCount[currentPlayer], G.handCount[currentPlayer] + newCards - discarded);
-	if (testG.handCount[currentPlayer] == G.handCount[currentPlayer] + newCards - discarded) 
-        printf("PASSED - player hand count matches\n");    
-	else 	
-        printf("FAILED - player hand count does not match\n");
-	
-	//check player deck count
-	printf("deck count = %d, expected = %d\n", testG.deckCount[currentPlayer], G.deckCount[currentPlayer] - newCards);
-	if (testG.deckCount[currentPlayer] == G.deckCount[currentPlayer] - newCards)  
-        printf("PASSED - player deck count did not change\n");
-    else 
-        printf("FAILED - player deck count changed\n");
-	
-	//check that card is added to played cards count
-	printf("played card count = %d, expected = %d\n", testG.playedCardCount, G.playedCardCount + playedCards);
-	if (testG.playedCardCount == G.playedCardCount + playedCards)
-		printf("PASSED - played card count matches\n");
-	else
-		printf("FAILED - played card count does not match\n");
-	
-	// ----------- TEST 2: +1 buy --------------
-	printf("TEST 2: +1 buy\n");
-	
-	printf("buy count = %d, expected = %d\n", testG.numBuys , G.numBuys + addBuy);
-	if (testG.numBuys == G.numBuys + addBuy)
-		printf("PASSED - number of buys matches\n");
-	else
-		printf("FAILED - number of buys does not match\n");
-	
-	// ----------- TEST 3: +1 card for next player --------------
-	printf("TEST 3: +1 next player card\n");
-	
-	//check next player hand count
-	printf("hand count = %d, expected = %d\n", testG.handCount[nextPlayer], G.handCount[nextPlayer] + otherCard);
-    if (testG.handCount[nextPlayer] == G.handCount[nextPlayer] + otherCard)
-        printf("PASSED - next player hand count matches\n");    
-	else 	
-        printf("FAILED - next player hand count does not match\n");
-	
-	//check next player deck count
-	printf("deck count = %d, expected = %d\n", testG.deckCount[nextPlayer], G.deckCount[nextPlayer] - otherCard);
-	if (testG.deckCount[nextPlayer] == G.deckCount[nextPlayer] - otherCard)  
-        printf("PASSED - next player deck count changes\n");
-    else 
-        printf("FAILED - next player deck count does not change\n");
-	
-	//check victory card piles
-	printf("estate = %d, expected = %d\n", testG.supplyCount[estate], G.supplyCount[estate]);
-	if (testG.supplyCount[estate] == G.supplyCount[estate])  
-        printf("PASSED - supply count matches\n");
-    else 
-        printf("FAILED - supply count does not match\n");
-	
-	printf("duchy = %d, expected = %d\n", testG.supplyCount[duchy], G.supplyCount[duchy]);
-	if (testG.supplyCount[duchy] == G.supplyCount[duchy])  
-        printf("PASSED - supply count matches\n");
-    else 
-        printf("FAILED - supply count does not match\n");
-	
-	printf("province = %d, expected = %d\n", testG.supplyCount[province], G.supplyCount[province]);
-	if (testG.supplyCount[province] == G.supplyCount[province])  
-        printf("PASSED - supply count matches\n");
-    else 
-        printf("FAILED - supply count does not match\n");
-	
-	printf("council room card testing completed.\n");
-	
-	return 0;
+	if(G.handCount[1] - hcP1 < 1){
+		printf("Fail: The player hand increases by at least one card\n");
+	}
+	else{
+		printf("Pass: The player has the minimum amount of added cards\n");
+		for(i=0; i<G.handCount[1]; i++){
+			if(G.hand[1][i] == 4 || G.hand[1][i] == 5 || G.hand[1][i]==6){
+				c++;
+			}
+				
+		}
+		if(c<2){
+			printf("Fail: the player does not have the correct amount of treasure cards\n");
+		}
+	}
+	return 0;	
 }
+

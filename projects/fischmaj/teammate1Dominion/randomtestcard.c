@@ -1,96 +1,362 @@
-/* -----------------------------------------------------------------------
- * Testing council room card - using random tester.
- *
- * Include the following lines in your makefile:
- *
- * random2: randometestcard.c dominion.o rngs.o
- *      gcc -o randomtest2 -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
- */
+/***************************************************************************
+ ** randomcardtest.c ( test of smithy functions) 
+ ** Jeremy Fischman
+ ** 
+ ** This program is a unit test of the playSmithy() function that includes a
+ ** random tester.  It tests that  playSmithy() complies with the following 
+ ** business rules: 
+ **
+ ** 1. The function accepts 1 player, a game state, and a hand position
+ **
+ ** 2. Should result in the next 3 cards from the player's deck moving to 
+ **    his hand. 
+ **
+ ** 3. The smithy card should be removed from the player's hand, and go to
+ **    the discard deck. 
+ ** 
+ ** 4. deckCount should decrease by 3.
+ **
+ ** 5. handCount should increase by 2 (3 more cards, but smithy discarded). 
+ **
+ ** 6. discardCount should increase by 1 (for smithy card). 
+ ** 
+ ** 7. The other features of the state of the game should all be unchanged. 
+ **
+ **************************************************************************/
 
-#include "dominion.h"
 #include "dominion_helpers.h"
+#include "dominion.h"
 #include <string.h>
 #include <stdio.h>
-#include <assert.h>
+#include <math.h>
+#include <stdlib.h>
 #include "rngs.h"
 
-int main() {
-    int seed;
-	int numPlayers;
-    int p, player, round;
-	int otherPlayers;
-    int otherDrawCount;
-	int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, baron, great_hall};
-    struct gameState oldGame;
-	struct gameState newGame;
-    int maxHandCount = 5;
-    int failCount = 0;
-    int passCount = 0;
-	int testCount = 0;
-	int MAXRUN = 100;
-    printf ("<< TESTING - council room card - using random tester  >>\n");
-	
-	for(testCount = 0; testCount < MAXRUN; testCount++)
-	{	
-	//generate random seed
-	seed = rand() % 100000;
-	// generate random number of players    		
-	numPlayers = rand() % 3 + 2;
-	printf("Test #%d - seed:%d \n", testCount, seed);
- 	
-	for(p = 0; p < maxHandCount; p++)
-	{
-		memset(&oldGame, 23, sizeof(struct gameState));         //clear the game state
-		memset(&newGame, 23, sizeof(struct gameState));         //clear the game state
-		initializeGame(numPlayers, k, seed, &newGame);
-		for(round = 0; round < 2; round++)
-		{
-			for(player = 0; player < numPlayers; player++)
-			{
-				otherDrawCount = 0;
-				memcpy(&oldGame, &newGame, sizeof(struct gameState));
-				councilRoomCard(council_room, player, &newGame);
-				
-				// count number of players whom drew a card
-				for (otherPlayers = 0; otherPlayers < numPlayers; otherPlayers++)
-				{
-					if(otherPlayers != player)
-					{
-						if(newGame.handCount[otherPlayers] == oldGame.handCount[otherPlayers] + 1)
-						{
-							otherDrawCount++;
-						}
-					}
-				}
+#define MEMBERS 18     /* Number of member variables in a gameState (gS) */
+#define DECKCOUNTMEMBER 13  /* The deckCount is 14th member of gS, index 13*/
+#define CARDTYPES treasure_map+1  /* Number of different card types in game */
+#define NUMTESTS 10000   /* Number of times to run the tests */
 
-				if((newGame.numBuys == oldGame.numBuys + 1) &&
-					(newGame.handCount[player] == oldGame.handCount[player] + 4) &&
-					(otherDrawCount == numPlayers - 1) &&
-					(newGame.deckCount[player] == oldGame.deckCount[player] - 4)	
-				  )
-				{
-					passCount++;
-				}
-				else
-				{
-					printf("Failed - \t player %d\n", player);
-					printf("\t expected buy: %d - actual buy: %d\n", oldGame.numBuys + 1, newGame.numBuys);
-					printf("\t expected handCount: %d - actual handCount: %d\n", oldGame.handCount[player] + 4, newGame.handCount[player]);
-					printf("\t expected deckCount: %d - actual deckCount: %d\n", oldGame.deckCount[player] - 4, newGame.deckCount[player]);	
-//					printf("\t expected playedCardCount: %d - actual playedCardCount: %d\n", oldGame.playedCardCount, newGame.playedCardCount);
-					printf("\t expected number of other players whom drew a card: %d - actual count: %d\n", numPlayers - 1, otherDrawCount);
-					failCount++;
-				}
 
-			}	
-		}		
-	}
-	}
-	printf("\n < < < < RESULTS > > > >\n\n");
-    printf("\t Number of cases passed: %d\n", passCount);
-    printf("\t Number of cases failed: %d\n\n", failCount);
+/* function prototypes */
 
-    return 0;
+int compareGameState(struct gameState *old, struct gameState *new, 
+		     int *diffArray, int length);
+
+int countCards(int *deck, int *cardCount);
+
+int checkSmithy(int player, struct gameState *pre, int position, 
+		int *array); 
+
+
+int main(){
+
+  int n, i, j, p; 
+  int testsFailed = 0; 
+
+  /* record the rules which fail tests*/  
+  int *rulesTest = malloc(sizeof(int)*7);
+  for (i = 0; i <7; i++){
+    rulesTest[i]=0; 
+  }
+
+  float percentage; 
+
+  int randomDeckCount=0;
+  int randomHandCount=0;
+  int randomDiscardCount=0;
+
+
+  struct gameState *pre= malloc(sizeof(struct gameState));
+
+
+  SelectStream(2);
+  PutSeed(3);
+
+
+  printf("\n Running tests of smithy():\n");
+
+
+  for (n = 0; n < NUMTESTS; n ++){
+
+
+    int k[10]= {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+		sea_hag, tribute, smithy};
+
+    /* initialize a game state */
+    initializeGame(2, k, 2, pre);
+
+
+    /* setting certain key features to random, but within specs. */
+
+    /* first, make sure total number of cards is below MAX_DECK */
+    /* and select some random cards for the deck, discard, and hand*/
+    do{
+      randomDeckCount = floor(Random()* MAX_DECK); 
+      randomHandCount = floor(Random()* 10 +5 ); /*random hand of 5-15 */
+      randomDiscardCount= floor(Random()*MAX_DECK);
+    } while ((randomDeckCount+randomHandCount+randomDiscardCount)>MAX_DECK); 
+
+    /* pick one card in the hand to be the Smithy*/
+    int randomSmithyPos = floor(Random()*randomHandCount); 
+
+    /* pick a random player */
+    p=floor(Random()*2);
+
+    /* then set his card counts, and fill his deck, discard, and hand */
+    pre->deckCount[p]= randomDeckCount;
+    pre->discardCount[p] = randomDiscardCount;
+    pre->handCount[p] = randomHandCount;
+
+    /* Fill deck with a random selection of cards. */
+    for (i = 0; i < MAX_PLAYERS; i++){
+      for( j=0; j < MAX_DECK; j++){
+          pre->deck[i][j]=floor(Random()*CARDTYPES); 
+	  pre->discard[i][j] = floor(Random()*CARDTYPES);
+	  pre->hand[i][j]= floor(Random()*CARDTYPES);
+      }
+    }
+
+    /* Rewrite the selected player's hand to include smithy at the random*/
+    /* position in his hand */
+    pre->hand[p][randomSmithyPos]= smithy;
+
+    testsFailed +=  checkSmithy(p, pre, randomSmithyPos, rulesTest);
+  
+ }
+
+
+
+  percentage = (float)rulesTest[i]/NUMTESTS *100;
+  printf("\nTesting playSmithy() complete.\n");
+  printf("%d of %d test cases failed. ", testsFailed, NUMTESTS);
+  printf("(%f%%)\n\n", percentage);
+
+  for (i = 0; i < 7 ; i++){
+    percentage = (float)rulesTest[i]/NUMTESTS *100; 
+    printf("Test criteria %d failed %d", i+1, rulesTest[i]); 
+    printf(" times out of %d tests (%f%%).\n",NUMTESTS, percentage);
+  }
+
+  return 0;
 }
+
+
+
+/* This function compares 2 struct gameStates, and returns 0 if they are  */
+/* identical, and 1 otherwise.  Also, it fills an Array with a 1 for each */
+/* member of gameState 'new' that differs from gameState 'old' */
+int compareGameState(struct gameState *old, struct gameState *new, 
+		     int *diffArray, int length){
+
+  int i, j, k;
+  
+  struct gameState *difference= malloc(sizeof(struct gameState)); 
+
+ 
+  /* generating the difference between gameState old and gameState new using */
+  /* bitwise XOR */
+  char *charPtr1 =(char *)old; 
+  char *charPtr2 =(char *) new; 
+  char *charPtr3 =(char *) difference;  
+  for (i = 0; i < sizeof(struct gameState); i++){
+
+    /*generating a struct gamestate called differences that is the XOR of */
+    /*old and new */
+    charPtr3[i]= charPtr1[i]^charPtr2[i];
+  }
+ 
+
+
+  /* checking which members of new were changed, member by member */
+  if (difference->numPlayers)    {diffArray[0]=1;}
+
+  /* need to check every type of card for cardSupply and embargoTokens*/
+  for (i = 0; i < CARDTYPES; i++){
+    if (difference->supplyCount[i])   {diffArray[1] = 1;}
+    if (difference->embargoTokens[i]) {diffArray[2] = 1;}
+  }
+
+  if (difference->outpostPlayed)  {diffArray[3]=1; }
+  if (difference->outpostTurn)    {diffArray[4]=1; }
+  if (difference->whoseTurn)      {diffArray[5]=1;}
+  if (difference->phase)          {diffArray[6]=1;  }
+  if (difference->numActions)     {diffArray[7]=1;  }
+  if (difference->coins)          {diffArray[8]=1;} 
+  if (difference->numBuys)        {diffArray[9]=1;}
+ 
+  /*Checking all of the game states that depend on a particular player */
+  for (j = 0; j < MAX_PLAYERS; j++){
+ 
+    /*checking the player's hands */
+    for (k = 0; k < MAX_HAND; k++){
+      /*If a player's hand has changed, record a 1 in that digit */	
+      if (difference->hand[j][k])   {diffArray[10] += (int) pow(10, j);}
+    }
+
+
+    /*If a player's hand Count has changed, record a 1 in that digit */
+    if(difference->handCount[j])    {diffArray[11] += (int) pow(10, j);}
+
+
+    /*checking all of the decks */
+    for(int k = 0; k < MAX_DECK; k++){
+
+      /* If any card in player j's deck has changed record player number */
+      /* player 1 = 1, player 2=10, player 3= 100, etc.- then break out  */
+      /* to examine the next player's deck.  */
+      if(difference->deck[j][k])    {
+	diffArray[12] += (int) pow(10, j);
+	break;
+      }
+
+    }
+
+    /*checking all of the discards */
+    for(int k = 0; k < MAX_DECK; k++){
+
+      /* If any card in player j's discard changed record player number  */
+      /* player 1 = 1, player 2=10, player 3= 100, etc.- then break out  */
+      /* to examine the next player's deck.  */
+      if(difference->discard[j][k]) {
+	diffArray[14] += (int) pow(10, j);
+	break;
+      }
+
+    }
+
+  
+    if(difference->deckCount[j])    {diffArray[13] += (int)pow(10, j); }
+    if(difference->discardCount[j]) {diffArray[15] += (int)pow(10, j); }
+  }
+
+  for (i = 0; i < MAX_DECK; i++){
+    if (difference->playedCards[i]) {diffArray[16] = 1;}
+  }
+
+  if (difference->playedCardCount)  {diffArray[17] = 1;}
+
+  free(difference); 
+  return 0; 
+}
+
+
+
+
+int checkSmithy(int player, struct gameState *pre, int position, int *array){
+
+  int testFail = 0; 
+  int preCards[3];
+  int preDeckCounter;
+  int preHandCounter;
+  int preDiscardCounter;
+
+
+
+  /* create a copy of the input gameState-- 'post' */
+  struct gameState *post = malloc(sizeof(struct gameState));
+  memcpy(post, pre, sizeof(struct gameState)); 
+
+  /* create an array to track differences from pre to post and zeroize it */
+  int *differences = malloc(sizeof(int)*MEMBERS);
+  memset(differences, 0, (sizeof(int)*MEMBERS));
+
+
+
+  /************************************************************************/
+  /*                              BEGIN TESTING                           */
+  /************************************************************************/
+
+
+
+  /* 1. The function accepts 1 player, a game state, and a hand position */
+  smithyCard(position,player, post); 
+
+
+
+
+  /* 2. Should result in the next 3 cards from the player's deck moving to */
+  /*    his hand. */
+
+  preDeckCounter=pre->deckCount[player];
+  preHandCounter=pre->handCount[player];
+  preDiscardCounter=pre->discardCount[player];
+
+  /* Check the 2 cards added to the end of the hand*/
+  for (int i = 0; i < 2; i++){
+    preCards[i] = pre->deck[player][preDeckCounter-(1+i)];
+
+    if (post->hand[player][preHandCounter+i] != preCards[i]){
+      testFail = 1; 
+      array[0]++; 
+    }
+  }
+
+  /* 3. The smithy card should be removed from the player's hand, and go to the discard deck.*/ 
+
+  /* check that the 3rd card was moved to the hand in the same position as the discarded Smithy*/
+  /* (This also finishes test of business rule 2.*/ 
+  if (post->hand[player][position] !=pre->deck[player][preDeckCounter-3]){
+    testFail = 1; 
+    array[1]++;
+  }
+
+  /* Check that the most recent discard is Smithy*/    
+  if (post->discard[player][preDiscardCounter+1] != smithy){
+    testFail= 1;
+    array[2]++;
+  }
+
+  /* 4. deckCount should decrease by 3.*/
+  if(post->deckCount[player] != preDeckCounter -3){
+    testFail = 1; 
+    array[3]++;
+  }
+
+  /* 5. handCount should increase by 2 (3 more cards, but smithy discarded).*/
+  if(post->handCount[player] != preHandCounter +2){
+    testFail = 1; 
+    array[4]++; 
+  }
+
+
+  /* 6. discardCount should increase by 1 (for smithy card). */
+  if(post->discardCount[player] != preDiscardCounter + 1){
+    testFail= 1; 
+    array[5]++;
+ }
+
+
+  /* 7. The other features of the state of the game should all be unchanged.*/
+  
+  compareGameState(pre, post, differences, MEMBERS); 
+  for (int i =0; i < MEMBERS; i++){
+    /* First clause checks all of the members that shouldn't change at all */
+    if ( (differences[i]) && (i < 10) ){
+      testFail= 1; 
+      array[6]++;
+      /* Next 4 clauses ensure only the chosen player's data has changed*/ 
+    } else if ((differences[i] ==1) && (player !=0)){
+      testFail= 1; 
+      array[6]++;
+    } else if ((differences[i] ==10) && (player !=1)){
+      testFail= 1; 
+      array[6]++;
+    } else if ((differences[i] ==100) && (player !=2)){
+      testFail= 1; 
+      array[6]++;
+    } else if ((differences[i] ==1000) && (player !=3)){
+      testFail= 1; 
+      array[6]++;
+    }
+  }
+
+  if(!testFail){
+    printf("\tTests passed.\n");
+  }
+
+
+  free(post); 
+  free(differences);
+  return testFail;
+} 

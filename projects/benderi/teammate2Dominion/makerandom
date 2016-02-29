@@ -1,0 +1,10 @@
+#/bin/bash
+
+./randomtestcard &> randomtestcard.out
+gcov -b randomtestcard.c >> randomtestcard.out
+cat randomtestcard.c.gcov >> randomtestcard.out
+./randomtestadventurer &> randomtestadventurer.out
+gcov -b randomtestadventurer.c >> randomtestadventurer.out
+cat randomtestadventurer.c.gcov >> randomtestadventurer.out
+
+

@@ -41,9 +41,6 @@ int main() {
     // ----------- TEST 1: Checking Winner as Player 1 --------------
     printf("TEST 1: Checking Winner as Player 1\n");
 
-    // copy the game state to a test case
-    memcpy(&testG, &G, sizeof(struct gameState));
-
     //Score adjustment to hand pile
     G.handCount[nextPlayer] = 5;
     G.hand[nextPlayer][0] = curse;
@@ -70,6 +67,9 @@ int main() {
     G.deck[nextPlayer][3] = province; 
     G.deck[nextPlayer][4] = great_hall; 
     G.deck[nextPlayer][5] = gardens; 
+	
+	// copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
    
     r = getWinners(players, &G); // Run getWinners()
 

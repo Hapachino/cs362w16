@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-
+#include <assert.h>
 
 
 int compare(const void* a, const void* b) {
@@ -36,7 +36,7 @@ int* kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7,
   return k;
 }
 
-// added my own game initialization to use with assignment 3
+
 int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed,
 		   struct gameState *state) {
 
@@ -197,6 +197,12 @@ int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed,
 
   return 0;
 }
+
+
+
+
+
+
 
 
 
@@ -871,7 +877,7 @@ int smithyFun(struct gameState *state, int handPos)
 	int currentPlayer = whoseTurn(state);	
 
       	//+3 Cards
-      	for (i = 0; i < 2; i++)
+      	for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -892,7 +898,7 @@ int villageFun(struct gameState *state, int handPos)
       	drawCard(currentPlayer, state);
 			
       	//+2 Actions
-      	state->numActions = state->numActions + 1;
+      	state->numActions = state->numActions + 2;
 			
       	//discard played card from hand
       	discardCard(handPos, currentPlayer, state, 0);
@@ -935,9 +941,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
+  //int drawntreasure=0;
+  //int cardDrawn;
+  //int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }

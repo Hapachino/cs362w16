@@ -1,0 +1,214 @@
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: gold, copper, silver, silver, copper, silver, silver, gold, copper, gold, copper, silver, gold, silver, gold, copper, silver, gold, silver, copper, silver, gold, silver, silver, copper, gold, silver, copper, silver, silver, copper, gold, copper, silver, gold, gold, copper, gold, silver, gold, copper, gold, silver, silver, copper, copper, silver, copper, copper, copper, gold, gold, copper, silver, silver, silver, silver, gold, silver, gold, 
+Coin cards Found: gold, copper, silver, silver, copper, silver, silver, gold, copper, gold, copper, silver, gold, silver, gold, copper, silver, gold, silver, copper, silver, gold, silver, silver, copper, gold, silver, copper, silver, silver, copper, gold, copper, silver, gold, gold, copper, gold, silver, gold, copper, gold, silver, silver, copper, copper, silver, copper, copper, copper, gold, gold, copper, silver, silver, silver, silver, gold, silver, gold, copper, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 122   amount finish: -1897944334
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 210   count finish: 210
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 196 Received: 6
+Passed: handCount Expected 208 Received: 212
+Passed: deckCount Expected 3 Received: 189
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, 
+Coin cards Found: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, gold, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 37   amount finish: -246199116
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 79   count finish: 79
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 42 Received: 8
+Passed: handCount Expected 77 Received: 81
+Passed: deckCount Expected 4 Received: 34
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, 
+Coin cards Found: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, gold, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 37   amount finish: -246199116
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 79   count finish: 79
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 42 Received: 8
+Passed: handCount Expected 77 Received: 81
+Passed: deckCount Expected 4 Received: 34
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, 
+Coin cards Found: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, gold, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 37   amount finish: -246199116
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 79   count finish: 79
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 42 Received: 8
+Passed: handCount Expected 77 Received: 81
+Passed: deckCount Expected 4 Received: 34
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, 
+Coin cards Found: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, gold, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 37   amount finish: -246199116
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 79   count finish: 79
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 42 Received: 8
+Passed: handCount Expected 77 Received: 81
+Passed: deckCount Expected 4 Received: 34
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, 
+Coin cards Found: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, gold, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 37   amount finish: -246199116
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 79   count finish: 79
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 42 Received: 8
+Passed: handCount Expected 77 Received: 81
+Passed: deckCount Expected 4 Received: 34
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, 
+Coin cards Found: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, gold, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 37   amount finish: -246199116
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 79   count finish: 79
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 42 Received: 8
+Passed: handCount Expected 77 Received: 81
+Passed: deckCount Expected 4 Received: 34
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, 
+Coin cards Found: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, gold, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 37   amount finish: -246199116
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 79   count finish: 79
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 42 Received: 8
+Passed: handCount Expected 77 Received: 81
+Passed: deckCount Expected 4 Received: 34
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, 
+Coin cards Found: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, gold, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 37   amount finish: -246199116
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 79   count finish: 79
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 42 Received: 8
+Passed: handCount Expected 77 Received: 81
+Passed: deckCount Expected 4 Received: 34
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+----------------- Testing Card: Adventurer ----------------
+TEST 1: +2 cards
+Coin cards in hand originally, if any: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, 
+Coin cards Found: silver, copper, copper, copper, gold, gold, gold, silver, silver, gold, copper, copper, silver, silver, copper, gold, silver, gold, copper, 
+TEST 2: +2 coins in hand
+FAILED. Coin card amount expected: 37   amount finish: -246199116
+TEST 3: testG & post card verification
+Passed. Coin amount the same
+TEST 4: +2 coins added
+Passed. Coin card amount expected: 79   count finish: 79
+Test 5: Special Case -- if deckCount is zero, shuffle should be selected:
+Test 6: Make sure other players are uneffected
+Passed: numBuys Expected 1 Received: 1
+Passed: discardCount Expected 42 Received: 8
+Passed: handCount Expected 77 Received: 81
+Passed: deckCount Expected 4 Received: 34
+Test 7: supply counts for treasure should have been distributed:
+Passed. Supply counts for treasure cards are the same
+Test 8: Did the supply counts ( points and curses) change?
+Passed. Supply counts for curses and victory cards are the same
+ALL TESTS COMPLETE
+Function 'main'
+Lines executed:86.62% of 157
+Branches executed:100.00% of 74
+Taken at least once:79.73% of 74
+No calls
+
+File 'randomtestadventurer.c'
+Lines executed:86.62% of 157
+Branches executed:100.00% of 74
+Taken at least once:79.73% of 74
+No calls
+randomtestadventurer.c:creating 'randomtestadventurer.c.gcov'
+

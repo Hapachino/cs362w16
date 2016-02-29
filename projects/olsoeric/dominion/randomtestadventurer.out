@@ -1,0 +1,14 @@
+
+|------------------------------------------|
+  Running tests on adventurer_play():
+|------------------------------------------|
+Running 250,000 Random Scenarios...
+Tests Complete: No errors found.
+
+File 'dominion.c'
+Lines executed:23.42% of 585
+Branches executed:21.48% of 419
+Taken at least once:18.14% of 419
+Calls executed:11.34% of 97
+dominion.c:creating 'dominion.c.gcov'
+

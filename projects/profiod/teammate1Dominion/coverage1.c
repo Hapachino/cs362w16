@@ -1,35 +1,26 @@
-// gcov outpout
+/*
+Filename:	coverage1.c
+Author:		Chris Loomis
+Created:	1/31/2016
+Last Mod:	1/31/2016
 
-File 'dominion.c'
-Lines executed:17.13% of 578
-Branches executed:15.83% of 417
-Taken at least once:14.15% of 417
-Calls executed:7.37% of 95
+My tests were good in the sense that few lines within the functions called were missed.  There are a few exceptions, such as my
+updateCoins() test not testing Gold coins ever.
 
-// isGameOver()
-function isGameOver called 5 returned 100% blocks executed 100%
+drawCard() has missed coverage which is directly related to bugs it stirred up reported in bug1.c.  I used a freshly initialized
+game, set it's deckCount to 0 to trigger a shuffle when drawCard() was called, and this resulted in logic errors as the 
+discardCount was 0 as nothing had been discarded yet.  The code relies on itself, so when my tests (not just drawCard()) introduced
+absurd game instances things began to misbehave understandibly.
 
-// discardCard()
-function discardCard called 90 returned 100% blocks executed 88%
+Of the 4 cards, only Adventurer contained some missed lines of code.  It never required a shuffle, as it has only been run from
+a freshly initialized game, so it is impossible for it to ever require a shuffle (even if the first 3 cards drawn are the estates
+the next 2 must then be copper).  Due to this, the only lines of code not run have to do when the player goes through a lot of 
+cards and would have to discard them.  This never occurred.
 
-// shuffle()
-function shuffle called 414 returned 100% blocks executed 93%
-
-// buyCard()
-function buyCard called 202 returned 100% blocks executed 100%
-
-- Blocks executed is on the high side for all 4 unit tests, but 
-  both shuffle and discardCard tests could be improved. For the
-  discardCard function the scenario where the player has only one
-  card in hand is not tested. For shuffle the scenario where the
-  player's deckCount is less than 1 is not tested.
-
-- isGameOver could probably use additional tests since 5 is a small
-  sample size. Some branches were only tested 1 time - hardly
-  all encompassing.
-
-- For the future, increasing the sample size may be beneficial. 
-  The lectures spoke of waiting significant periods of time for tests
-  to run to be sure they are thorough. Mine executed after a short 
-  couple second delay. This is probably indicative of a lack of a 
-  sample size as well as not testing the boundaries. 
+In the future it will be better if I take the time to generate random instances of the game, that make logical sense (such as no
+deckCount 0 and discardCount 0), to test.  I will also need to develop helper functions independent of the code that calculate
+what the correct responses are.  As an example, for updateCoins() I will need a separate function to calc what the answer should
+be so I can make sure the dominion code calcs it correctly.  With this I will be able to run many distinct instances of all 
+the tests, producing more data, which will either find more errors, or at the least show more convincingly that the code is working
+as intended.
+*/

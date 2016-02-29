@@ -667,7 +667,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card )
     {
     case adventurer:
-        return adventurerCard(state, currentPlayer);
+        return adventurerCard(state, currentPlayer, handPos);
 
     case council_room:
       //+4 Cards
@@ -832,7 +832,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	}
       }
 
-
+      discardCard(handPos, currentPlayer, state, 0);
       return 0;
 
     case great_hall:
@@ -1268,7 +1268,7 @@ int smithyCard(struct gameState *state, int currentPlayer, int handPos)
     return 0;
 }
 
-int adventurerCard(struct gameState *state, int currentPlayer)
+int adventurerCard(struct gameState *state, int currentPlayer, int handPos)
 {
     int cardDrawn;
     int drawntreasure = 0;
@@ -1295,6 +1295,8 @@ int adventurerCard(struct gameState *state, int currentPlayer)
         z=z-1;
     }
 
+    // add adventurer to played pile
+    discardCard(handPos, currentPlayer, state, 0);
     return 0;
 }
 

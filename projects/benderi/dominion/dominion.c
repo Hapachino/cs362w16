@@ -655,9 +655,8 @@ int playAdventurer(int currentPlayer, struct gameState *state)
     while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
-   //}
-	drawCard(currentPlayer, state);
 	}
+	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
 	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 	  drawntreasure++;
@@ -679,7 +678,7 @@ int playSmithy(int currentPlayer, struct gameState *state, int handPos)
     int i;
 
     //+3 Cards
-    for (i = 0; i > 3; i++)
+    for (i = 0; i < 3; i++)
     {
         drawCard(currentPlayer, state);
     }

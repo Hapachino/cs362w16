@@ -1,0 +1,60 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:  Dominion/Minion Record Coins Bug  
+
+Class:  Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:           2/21/2016
+Reported By:   Todd Waddell
+Email:      waddelto@oregonstate.edu
+
+
+Product:  Dominion/Minion       Version:
+Platform:                       Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Yes 
+
+Description
+===========
+In 5000 tests of minion path 1, Minion failed to record bonus coins
+each time.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Run Minion with path 1 track bonus coins
+
+
+Expected Results
+----------------
+Current player should have two bonus coins to play in current round.
+
+
+
+Actual Results
+--------------
+Coins are not properly credited and essentially disappear. 
+Coins should be credited to bonus coins variable.  Instead they are
+credited to gamestate->coins.  That value is zero'ed out when 
+update coins is called.
+
+
+
+Workarounds
+-----------
+None.
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+
+

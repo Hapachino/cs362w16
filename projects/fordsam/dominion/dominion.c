@@ -662,7 +662,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card )
     {
     case adventurer:
-      return playAdventurer(state);
+      return playAdventurer(handPos, state);
 
     case council_room:
       return playCouncilRoom(handPos, state);
@@ -1194,7 +1194,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-int playAdventurer(struct gameState *state) {
+int playAdventurer(int handPos, struct gameState *state) {
   int player = whoseTurn(state);
   int drawnTreasure = 0;
   int cardDrawn;
@@ -1221,11 +1221,14 @@ int playAdventurer(struct gameState *state) {
     }
   }
 
-  while (z - 1 > 0) {
+  while (z - 1 >= 0) {
     // Discard all cards in play that have been drawn
     state->discard[player][state->discardCount[player]++] = tempHand[z-1];
     z = z - 1;
   }
+
+  // Put played card in played card pile
+  discardCard(handPos, player, state, 0);
 
   return 0;
 }
@@ -1283,7 +1286,7 @@ int playFeast(int choice1, struct gameState *state) {
       if (DEBUG) {
         printf("Cards Left: %d\n", supplyCount(choice1, state));
       }
-    } else if (state->coins <= getCost(choice1)) {
+    } else if (state->coins < getCost(choice1)) {
       printf("That card is too expensive!\n");
 
       if (DEBUG) {
@@ -1338,11 +1341,11 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state) {
     return -1;
   }
 
-  if (choice2 > treasure_map || choice2 < curse) {
+  if (choice2 < copper || choice2 > gold) {
     return -1;
   }
 
-  if ((getCost(state->hand[player][choice1]) + 3) > getCost(choice2)) {
+  if ((getCost(state->hand[player][choice1]) + 3) < getCost(choice2)) {
     return -1;
   }
 
@@ -1354,7 +1357,8 @@ int playMine(int handPos, int choice1, int choice2, struct gameState *state) {
   // Discard trashed card
   for (i = 0; i < state->handCount[player]; i++) {
     if (state->hand[player][i] == j) {
-      discardCard(i, player, state, 0);
+      discardCard(i, player, state, 1);
+      break;
     }
   }
 
@@ -1371,7 +1375,7 @@ int playSmithy(int handPos, struct gameState *state) {
   }
 
   // Discard card from hand
-  discardCard(handPos, player, state, 1);
+  discardCard(handPos, player, state, 0);
   return 0;
 }
 

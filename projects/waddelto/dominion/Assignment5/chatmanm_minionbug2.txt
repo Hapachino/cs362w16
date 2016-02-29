@@ -1,0 +1,62 @@
+Noverse Bug Reporting Template
+==============================
+
+Title: Dominion/Minion fails to discard played card
+
+Class:  Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:           2/21/2016
+Reported By:   Todd Waddell
+Email:      waddelto@oregonstate.edu
+
+
+Product:  Dominon/Minion        Version:
+Platform:                       Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Yes 
+
+Description
+===========
+On 5000 tests, Minion failed to discard played card 5000 times.
+
+
+Steps to Produce/Reproduce
+--------------------------
+When playing minion card with choice 1, Minion does not
+properly discard the played card.
+
+
+
+Expected Results
+----------------
+Minion card should be in the discard pile
+and discardCount should be incremented
+
+
+
+Actual Results
+--------------
+Card is put into played card pile and 
+play card count in incremented.  Essentially, 
+card is trashed.
+
+
+
+Workarounds
+-----------
+None
+
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+
+

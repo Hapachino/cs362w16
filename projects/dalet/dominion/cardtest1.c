@@ -84,12 +84,12 @@ void checkState(struct gameState pre, struct gameState post, int currentPlayer){
 		printf("Hand Count incorrect after play TEST FAILED\n");
 	}
 	//assert(pre.deckCount[currentPlayer] - 3 == post.deckCount[currentPlayer]);    //should remove 3 cards from deck
-	if (pre.deckCount[currentPlayer] - 3 == post.deckCount[currentPlayer])
+	if (pre.deckCount[currentPlayer] - 3 != post.deckCount[currentPlayer])
 	{
 		printf("Deck Count incorrect after play TEST FAILED\n");
 	}
 	//assert(pre.discardCount[currentPlayer] == post.discardCount[currentPlayer]);  //should add nothing to discard
-	if (pre.discardCount[currentPlayer] == post.discardCount[currentPlayer])
+	if (pre.discardCount[currentPlayer] != post.discardCount[currentPlayer])
 	{
 		printf("Discard count changed TEST FAILED\n");
 	}

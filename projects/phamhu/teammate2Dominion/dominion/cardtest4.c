@@ -1,8 +1,9 @@
 /* -----------------------------------------------------------------------
- * Unit test for cutPurseCard() function
+ * Testing councilRoom card - using testUpdateCoins.c as the base code.
+ *
  * Include the following lines in your makefile:
  *
- * cardtest4: cardtest4.c dominion.o rngs.o
+ * unittest1: cardtest4.c dominion.o rngs.o
  *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
@@ -13,96 +14,69 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include <time.h>
-#include <math.h>
-#include <stdlib.h>
 
-int checkCutpurseCard(int p, struct gameState *post) {
-  
-  struct gameState pre;
-  post->whoseTurn = p;
-  memcpy (&pre, post, sizeof(struct gameState));
-
-  int i, j, r;
-  
-  int handPos = rand() % pre.handCount[p];
-  r = cutpurseCard(post, handPos);
-
-  updateCoins(p, &pre, 2);
-   printf("After gaining 2 coins, tester coinCount: %d\n", pre.coins);
-   printf("After gaining 2 coins, testee coinCount: %d\n", post->coins);
-  for (i = 0; i < pre.numPlayers; i++)
-     {
-       if (i != p)
-       {
-         for (j = 0; j < pre.handCount[i]; j++)
-          {
-            if (pre.hand[i][j] == copper)
-            {
-              discardCard(j, i, &pre, 0);
-              break;
-            }
-            if (j == pre.handCount[i])
-            {
-              int revealedCard = rand () % pre.handCount[i];
-              printf("Player %d reveals card number %d\n", i, pre.hand[i][revealedCard]);          
-              break;
-            }   
-          }          
-        }        
-       }        
-    
-  assert (r == 0);
-  discardCard(handPos, p, &pre, 0);
-  if (memcmp(&pre, post, sizeof(struct gameState)) == 0) {
-    printf("cutpurseCard() function unit test passed for player %d!\n", p);
-  } else {
-    printf("cutpurseCard() function unit test failed for player %d\n", p);
-  }
-  return 0;
-}
-
-int main () 
-{
-  srand(time(NULL));
-  int i, p;
-  int k[10] = {adventurer, council_room, feast, gardens, mine
+int main() {
+    int seed = rand() % 1000;
+    int numPlayers = 2;
+    int p, player, otherPlayers, round;
+	int othersDrawCount;
+    int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
-  struct gameState G;
-  int numPlayers = 2;
+    struct gameState oldGame;
+	struct gameState newGame;
+    int maxHandCount = 5;
+    int failCount = 0;
+    int passCount = 0;
+    printf ("<< TESTING cardtest4 - councilRoom  >>\n");
+	
+	for(p = 0; p < maxHandCount; p++)
+	{
+		memset(&oldGame, 23, sizeof(struct gameState));         //clear the game state
+		memset(&newGame, 23, sizeof(struct gameState));         //clear the game state
+		initializeGame(numPlayers, k, seed, &newGame);
+		for(round = 0; round < 2; round++)
+		{
+			for(player = 0; player < numPlayers; player++)
+			{
+				memcpy(&oldGame, &newGame, sizeof(struct gameState));
+				//councilRoomCard(council_room, player, &newGame);
+				playCard(council_room, -1, -1, -1, &newGame);
+				othersDrawCount = 0;
 
-  int seed = rand() % + 9999;
-  int handRandom, deckRandom, discardRandom;
-  printf ("Testing cutPurseCard().\n");
+ 				printf("Player %d\n", player);
+				printf("Old - deckCount: %d handCount: %d ", oldGame.deckCount[player], oldGame.handCount[player]);
+				printf(" playedCardCount: %d", oldGame.playedCardCount);
+				printf(" discardCount: %d numBuys: %d\n", oldGame.discardCount[player], oldGame.numBuys);
+				printf("New - deckCount: %d handCount: %d ", newGame.deckCount[player], newGame.handCount[player]);
+				printf(" playedCardCount: %d", newGame.playedCardCount);
+				printf(" discardCount: %d numBuys: %d\n", newGame.discardCount[player], newGame.numBuys);
 
-  for (p = 0; p < numPlayers; p++) 
-  {
-    memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    assert(initializeGame(numPlayers, k, seed, &G) == 0);
+				// tally the number of other players whom drew a card		
+				for (otherPlayers = 0; otherPlayers < numPlayers; otherPlayers++)
+				{
+					if(otherPlayers != player)
+					{
+						if(newGame.handCount[otherPlayers] == oldGame.handCount[otherPlayers] + 1)
+						{
+							othersDrawCount++;
+						}
+					}
+				}
+				if((newGame.numBuys == oldGame.numBuys + 1) && 						//new buy should increase by 1
+				   (newGame.handCount[player] == oldGame.handCount[player] + 4) &&	//player's hand should increase by 4
+				   (othersDrawCount == numPlayers + 1))								//other players should add a card
+				{
+					passCount++;
+				}
+				else
+				{
+					failCount++;
+				}
+			}	
+		}		
+	}
+    printf("Number of cases passed: %d\n", passCount);
+    printf("Number of cases failed: %d\n", failCount);
 
-        handRandom = rand() % MAX_HAND;
-        G.handCount[p] = handRandom;
-        for (i = 0; i < handRandom; i++) 
-        {
-            G.hand[p][i] = rand() % 27;
-        }
-        
-        deckRandom = rand() % MAX_DECK;
-        G.deckCount[p] = deckRandom;
-        for (i = 0; i < deckRandom; i++) 
-        {
-            G.deck[p][i] = rand() % 27;
-        }
- 
-        discardRandom = rand () % MAX_DECK;
-        G.discardCount[p] = discardRandom;
-        for (i = 0; i < discardRandom; i++) 
-        {
-            G.discard[p][i] = rand() % 27;
-        }
-    checkCutpurseCard(p, &G);
-  }
-   
-  return 0;
-
+    return 0;
 }

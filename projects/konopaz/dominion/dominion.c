@@ -654,7 +654,7 @@ int adventurerEffect(int choice1, int choice2, int choice3, struct gameState *st
    while(drawntreasure<2) {
       //if the deck is empty we need to shuffle discard and add to deck
       if(state->deckCount[currentPlayer] < 1) {
-         shuffle(nextPlayer, state);
+         shuffle(currentPlayer, state);
       }
       drawCard(currentPlayer, state);
       //top card of hand is most recently drawn card.
@@ -682,7 +682,7 @@ int smithyEffect(struct gameState *state, int handPos) {
    int currentPlayer = whoseTurn(state);
 
    //+3 Cards
-   for (i = 0; i < 3; ++i) {
+   for (i = 0; i < 3; i++) {
       drawCard(currentPlayer, state);
    }
 

@@ -6,8 +6,8 @@ rngs.o: rngs.h rngs.c
 dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g $(CFLAGS)
 	
-refactor.o: refactor.c rngs.o
-	gcc -c -g -o refactor.o refactor.c $(CFLAGS)
+refactor.o: cardFunctions.c rngs.o
+	gcc -c -g -o refactor.o cardFunctions.c $(CFLAGS)
 
 playdom: dominion.o refactor.o playdom.c rngs.o
 	gcc -o playdom playdom.c -g dominion.o refactor.o rngs.o $(CFLAGS)
@@ -23,7 +23,22 @@ unittest3: unittest3.c dominion.o rngs.o refactor.o
 	
 unittest4: unittest4.c dominion.o rngs.o refactor.o
 	gcc -o unittest4 -g unittest4.c dominion.o rngs.o refactor.o $(CFLAGS)
+
+testSmithy: testSmithy.c dominion.o rngs.o refactor.o
+	gcc -o testSmithy -g testSmithy.c dominion.o rngs.o refactor.o $(CFLAGS)
 	
+testAdv: testAdv.c dominion.o rngs.o refactor.o
+	gcc -o testAdv -g testAdv.c dominion.o rngs.o refactor.o $(CFLAGS)
+
+testScore: testScore.c dominion.o rngs.o refactor.o
+	gcc -o testScore -g testScore.c dominion.o rngs.o refactor.o $(CFLAGS)
+	
+testSalvager: testSalvager.c dominion.o rngs.o refactor.o
+	gcc -o testSalvager -g testSalvager.c dominion.o rngs.o refactor.o $(CFLAGS)	
+
+t1cardtest1: t1cardtest1.c dominion.o rngs.o refactor.o
+	gcc -o t1cardtest1 -g t1cardtest1.c dominion.o rngs.o refactor.o $(CFLAGS)
+
 cardtest1: cardtest1.c dominion.o rngs.o refactor.o
 	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o refactor.o $(CFLAGS)
 	
@@ -89,7 +104,7 @@ randomtestcard.out: randomtestcard
 player: player.c interface.o refactor.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o refactor.o $(CFLAGS)
 
-all: playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 unittestresult.out randomtestadventurer randomtestcard randomtestadventurer.out randomtestcard.out
+all: testAdv testSmithy playdom player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 unittestresult.out randomtestadventurer randomtestcard randomtestadventurer.out randomtestcard.out
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcda *.gcno *.so #*.gcov

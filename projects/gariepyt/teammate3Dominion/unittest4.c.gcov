@@ -1,0 +1,80 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2:**Unit test 4: endTurn()
+        -:    3:**Written by: Tom Gariepy
+        -:    4:**CS 325 Winter 2016
+        -:    5:*/
+        -:    6:
+        -:    7:#include "dominion.h"
+        -:    8:#include "dominion_helpers.h"
+        -:    9:#include <string.h>
+        -:   10:#include <stdio.h>
+        -:   11:#include <assert.h>
+        -:   12:#include "rngs.h"
+        -:   13:
+        1:   14:int main(int argc, char const *argv[]) {
+        1:   15:    int seed = 1000;
+        -:   16:    int numTurns;
+        1:   17:    int numPlayer = 2;
+        -:   18:    int p, r, endT, turnRes, disNum, curP;
+        -:   19:    // int bonus;
+        -:   20:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        1:   21:               , remodel, smithy, village, baron, great_hall};
+        -:   22:    struct gameState G;
+        1:   23:    int maxHandCount = 5;
+        -:   24:
+        -:   25:    int i;
+        -:   26:    int cards[MAX_HAND];
+      501:   27:    for (i = 0; i < MAX_HAND; i++)
+        -:   28:    {
+      500:   29:        cards[i] = adventurer;
+        -:   30:    }
+        -:   31:
+        1:   32:    printf ("TESTING endTurn():\n");
+        3:   33:    for (p = 0; p < numPlayer; p++)	{
+       14:   34:    	for (disNum = 0; disNum <= maxHandCount; disNum++) {
+      132:   35:    		for (numTurns = 1; numTurns <= 10; numTurns++) {
+      120:   36:    				printf("Testing start player %d with %d end turns and %d cards in discard pile\n", p, numTurns, disNum);
+      120:   37:    				memset(&G, 23, sizeof(struct gameState));
+      120:   38:    				r = initializeGame(p, k, seed, &G);
+      120:   39:    				int steps = 0;
+        -:   40:
+        -:   41:    				// Something wrong with initializing the game
+      120:   42:    				G.whoseTurn = p;
+        -:   43:
+        -:   44:    				// endTun() isn't working
+      900:   45:    				while (steps < numTurns) {
+        -:   46:/*    					G.handCount[p] = disNum;                 // set the number of cards on hand
+        -:   47:               			memcpy(G.hand[p], cards, sizeof(int) * disNum);
+        -:   48:
+        -:   49:               			G.discardCount[p] = disNum;                 // set the number of cards on hand
+        -:   50:                		memcpy(G.discard[p], cards, sizeof(int) * disNum);
+        -:   51:     
+        -:   52:               			G.playedCardCount = disNum;                 // set the number of cards on hand
+        -:   53:                		memcpy(G.playedCards, cards, sizeof(int) * disNum);*/
+        -:   54:
+        -:   55:    					// endT = endTurn(&G);
+        -:   56:    					// printf("Current hand count = %d\n", G.handCount[p]);
+      660:   57:    					steps++;
+        -:   58:    				}
+        -:   59:
+      120:   60:    				turnRes = G.whoseTurn;
+        -:   61:
+      120:   62:					printf("turn =  %d, expected = %d \n", turnRes, numTurns % 2);
+        -:   63:
+      120:   64:    				if (turnRes == numTurns % 2) {
+       60:   65:    					printf("The turn is correct\n");
+        -:   66:    				}
+        -:   67:    				else {
+       60:   68:    					printf("The turn is not correct\n");
+        -:   69:    				}
+        -:   70:    		}
+        -:   71:    	}
+        -:   72:    }
+        -:   73:
+        1:   74:	return 0;
+        -:   75:}

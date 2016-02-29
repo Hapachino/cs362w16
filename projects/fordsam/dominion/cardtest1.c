@@ -1,5 +1,5 @@
-/* Test the playAdventurer() function
-   NOTE: playAdventurer() should:
+/* Test the Adventurer card
+   NOTE: Adventurer should:
      * Draw cards from the player's deck until two treasure cards are drawn.
      * Discard all drawn cards that are not treasure cards.
      * Move the played card to the playedCards pile.
@@ -15,8 +15,9 @@
 
 #define P1 0
 #define P2 1
+#define HANDPOS 0
 
-int testPlayAdventurer() {
+int testAdventurer() {
   int passCount = 0;
   int testCount = 0;
   int result = 0;
@@ -29,6 +30,8 @@ int testPlayAdventurer() {
   int status = 0;
 
   /* Test with no available treasure cards */
+  state.hand[P1][0] = adventurer;
+  state.handCount[P1] = 1;
   state.deck[P1][0] = estate;
   state.deck[P1][1] = baron;
   state.deck[P1][2] = mine;
@@ -55,7 +58,7 @@ int testPlayAdventurer() {
     perror("Error forking");
   } else if (pid == 0) {
     /* Execute the test in the child process */
-    result = playAdventurer(&state);
+    result = playAdventurer(HANDPOS, &state);
 
     exit(result);
   } else if (pid > 0) {
@@ -90,7 +93,7 @@ int testPlayAdventurer() {
     /* Properly test the lack of treasure cards if it didn't cause a crash
        NOTE: This current setup relies on the pre-existing setup above */
     memcpy(&state, &preState, sizeof(struct gameState));
-    result = playAdventurer(&state);
+    result = playAdventurer(HANDPOS, &state);
     compareState(&state, &preState, &gsc);
 
     /* Should not change the player's hand */
@@ -128,7 +131,8 @@ int testPlayAdventurer() {
   /* Test with only one treasure card */
   printf("\n----- Test: deckCount = 5, deck has copper, discardCount = 5\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
-  state.handCount[P1] = 0;
+  state.hand[P1][0] = adventurer;
+  state.handCount[P1] = 1;
   state.deck[P1][0] = estate;
   state.deck[P1][1] = copper;
   state.deck[P1][2] = mine;
@@ -148,14 +152,15 @@ int testPlayAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = playAdventurer(HANDPOS, &state);
   compareState(&state, &preState, &gsc);
 
-  /* For 1 treasure card, hand should only get 1 additional card */
+  /* For 1 treasure card, hand should only get 1 additional card
+     NOTE: We subtract one because the played card should be discarded */
   testCount += 1;
   passCount += fakeAssert(
     "For 1 treasure card, player's hand should only get the 1 treasure card",
-    (state.handCount[P1] == preState.handCount[P1] + 1
+    (state.handCount[P1] == preState.handCount[P1] + 1 - 1
     && containsCard(copper, state.hand[P1], state.handCount[P1]))
   );
 
@@ -190,6 +195,8 @@ int testPlayAdventurer() {
   printf("\n----- Test: deckCount = 0, discardCount = 5, discard has copper");
   printf(" + silver\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
+  state.hand[P1][0] = adventurer;
+  state.handCount[P1] = 1;
   state.discard[P1][0] = estate;
   state.discard[P1][1] = copper;
   state.discard[P1][2] = mine;
@@ -204,14 +211,15 @@ int testPlayAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = playAdventurer(HANDPOS, &state);
   compareState(&state, &preState, &gsc);
 
-  /* Should draw treasure cards from deck into hand */
+  /* Should draw treasure cards from deck into hand
+     NOTE: We subtract one because the played card should be discarded */
   testCount += 1;
   passCount += fakeAssert(
     "Should add discard to deck and shuffle, so 2 treasure cards are drawn",
-    (state.handCount[P1] == preState.handCount[P1] + 2
+    (state.handCount[P1] == preState.handCount[P1] + 2 - 1
     && containsCard(copper, state.hand[P1], state.handCount[P1])
     && containsCard(silver, state.hand[P1], state.handCount[P1]))
   );
@@ -246,7 +254,8 @@ int testPlayAdventurer() {
     "\n----- Test: deckCount = 5, deck has copper + silver\n"
   );
   memcpy(&state, &initialState, sizeof(struct gameState));
-  state.handCount[P1] = 0;
+  state.hand[P1][0] = adventurer;
+  state.handCount[P1] = 1;
   state.deck[P1][0] = estate;
   state.deck[P1][1] = copper;
   state.deck[P1][2] = mine;
@@ -260,14 +269,15 @@ int testPlayAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = playAdventurer(HANDPOS, &state);
   compareState(&state, &preState, &gsc);
 
-  /* Should draw treasure cards from deck into hand */
+  /* Should draw treasure cards from deck into hand
+     NOTE: We subtract one because the played card should be discarded */
   testCount += 1;
   passCount += fakeAssert(
     "Should draw 2 treasure cards (of 2) from player's deck into hand",
-    (state.handCount[P1] == preState.handCount[P1] + 2
+    (state.handCount[P1] == preState.handCount[P1] + 2 - 1
     && containsCard(copper, state.hand[P1], state.handCount[P1])
     && containsCard(silver, state.hand[P1], state.handCount[P1]))
   );
@@ -310,7 +320,8 @@ int testPlayAdventurer() {
   printf("\n----- Test: deckCount = 8, deck has copper, silver, and");
   printf(" gold, discardCount = 5\n");
   memcpy(&state, &initialState, sizeof(struct gameState));
-  state.handCount[P1] = 0;
+  state.hand[P1][0] = adventurer;
+  state.handCount[P1] = 1;
   state.deck[P1][0] = estate;
   state.deck[P1][1] = copper;
   state.deck[P1][2] = mine;
@@ -327,14 +338,15 @@ int testPlayAdventurer() {
   state.hand[P2][3] = council_room;
   state.handCount[P2] = 2;
   memcpy(&preState, &state, sizeof(struct gameState));
-  result = playAdventurer(&state);
+  result = playAdventurer(HANDPOS, &state);
   compareState(&state, &preState, &gsc);
 
-  /* Should draw treasure cards from deck into hand */
+  /* Should draw treasure cards from deck into hand
+     NOTE: We subtract one because the played card should be discarded */
   testCount += 1;
   passCount += fakeAssert(
     "Should draw 2 treasure cards (of 3) from player's deck into hand",
-    (state.handCount[P1] == preState.handCount[P1] + 2
+    (state.handCount[P1] == preState.handCount[P1] + 2 - 1
     && containsCard(silver, state.hand[P1], state.handCount[P1])
     && containsCard(gold, state.hand[P1], state.handCount[P1]))
   );
@@ -380,6 +392,6 @@ int testPlayAdventurer() {
 }
 
 int main() {
-  testPlayAdventurer();
+  testAdventurer();
   return 0;
 }

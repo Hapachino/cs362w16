@@ -1,0 +1,34 @@
+==============================================
+    Beginning testing for playSmithy()
+==============================================
+---------------------------------------------------------------------------------------------------------------------------
+Testing that player[0] handCount has increased by 2...
+handCount = 3, Expected = 3
+Testing that player[0] playedCardCount has increased by 1..
+playedCardCount = 0, Expected = 1
+Checking that the smithy card was added to the played cards pile...
+Failed! Smithy card was not found in played cards pile!
+Checking that smithy card is not in player[0]'s hand...
+Passsed! Smithy card was not found in the player's hand!
+Checking that the 3 cards added came from the player's own deck...
+Found gold card in player[0]'s hand at position 0! Number of cards found: 1
+Found gardens card in player[0]'s hand at position 2! Number of cards found: 2
+Found tribute card in player[0]'s hand at position 1! Number of cards found: 3
+cardCount = 3, Expected = 3
+---------------------------------------------------------------------------------------------------------------------------
+Testing that player[1] handCount has increased by 2...
+handCount = 3, Expected = 3
+Testing that player[1] playedCardCount has increased by 1..
+playedCardCount = 0, Expected = 1
+Checking that the smithy card was added to the played cards pile...
+Failed! Smithy card was not found in played cards pile!
+Checking that smithy card is not in player[1]'s hand...
+Passsed! Smithy card was not found in the player's hand!
+Checking that the 3 cards added came from the player's own deck...
+Found gold card in player[1]'s hand at position 0! Number of cards found: 1
+Found gardens card in player[1]'s hand at position 2! Number of cards found: 2
+Found tribute card in player[1]'s hand at position 1! Number of cards found: 3
+cardCount = 3, Expected = 3
+---------------------------------------------------------------------------------------------------------------------------
+12 out of 16 tests passed!
+4 out of 16 tests failed!

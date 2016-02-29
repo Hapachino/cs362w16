@@ -1,0 +1,115 @@
+        -:    0:Source:randomtestcard.c
+        -:    0:Graph:randomtestcard.gcno
+        -:    0:Data:randomtestcard.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Random test for the Village Card
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *      1.  handCount must increase by 1 card (then 1 card discarded)
+        -:    6: *      2.  numActions must increase by 2 actions
+        -:    7: *
+        -:    8: * randomtestcard: randomtestcard.c dominion.o rngs.o
+        -:    9: *      gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(FLAGS)
+        -:   10: *
+        -:   11: */
+        -:   12:
+        -:   13:#include "dominion.h"
+        -:   14:#include "dominion_helpers.h"
+        -:   15:#include <string.h>
+        -:   16:#include <stdio.h>
+        -:   17:#include <assert.h>
+        -:   18:#include "rngs.h"
+        -:   19:
+        -:   20://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   21:#define NOISY_TEST 1
+        -:   22:#define MAX_TESTS 1000
+        -:   23:
+        1:   24: int main() {
+        -:   25:
+        -:   26: 	int i, j, new_game, player, hand_count, num_actions;
+        1:   27: 	int seed = 1000;
+        -:   28: 	int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   29:                 remodel, smithy, village, baron, great_hall};
+        -:   30:
+        -:   31:    struct gameState G;
+        -:   32:
+        1:   33:    int isHandCountPass = 1;
+        1:   34:    int isNumActionsPass = 1;
+        -:   35:
+        -:   36:    //random number of players
+        1:   37:    player = rand() % 2 + 1;
+        -:   38:    //initialize game state
+        1:   39:    new_game = initializeGame(player, k, seed, &G);
+        -:   40:
+        -:   41:    //make sure game initialized correctly
+        1:   42:    assert(new_game == 0);
+        -:   43:    //make sure player has 5 cards
+        1:   44:    assert(numHandCards(&G) == 5);
+        -:   45:    //make sure player has 1 action
+        1:   46:    assert(G.numActions == 1);
+        -:   47:
+        1:   48:    printf("RANDOM TESTING for Village Card\n");
+     1001:   49:    for(i = 0; i < MAX_TESTS; ++i) {
+        -:   50:
+        -:   51:        //set random values for handCount, deckCount, and discardCount
+     1000:   52:        G.handCount[player] = rand() % MAX_HAND + 1;
+     1000:   53:        G.deckCount[player] = rand() % MAX_DECK + 1;
+     1000:   54:        G.discardCount[player] = rand() % MAX_DECK + 1;
+        -:   55:
+        -:   56:        //fill hand with random cards
+   258474:   57:        for(j = 0; j < G.handCount[player]; ++j) {
+   257474:   58:            int randCard = rand() % 10;
+   257474:   59:            G.hand[player][j] = k[randCard];
+        -:   60:        }
+        -:   61:
+        -:   62:        //set random value for numActions
+     1000:   63:        G.numActions = rand() % MAX_HAND + 1;
+        -:   64:
+        -:   65:        //set values to local variables
+     1000:   66:        G.whoseTurn = player;
+     1000:   67:        hand_count = G.handCount[player];
+     1000:   68:        num_actions = G.numActions;
+        -:   69:
+        -:   70:        //play the villageCard
+     1000:   71:        playVillage(&G, 0);
+        -:   72:
+        -:   73:        //print error messages, if any
+        -:   74:        //village card draws a card, then discards one card- difference should be 0
+     1000:   75:        if(G.handCount[player] != hand_count) {
+        -:   76:#if (NOISY_TEST == 1)
+    #####:   77:            printf("Village Card test (handCount) FAILED for index: %d\n", i);
+    #####:   78:            printf("hand_count = %d\n", hand_count);
+    #####:   79:            printf("G.handCount = %d\n", G.handCount[player]);
+        -:   80:#endif
+    #####:   81:            isHandCountPass = 0;
+        -:   82:        }
+     1000:   83:        if(G.numActions != (num_actions+2)) {
+        -:   84:#if (NOISY_TEST == 1)
+    #####:   85:            printf("Village Card test (numActions) FAILED for index: %d\n", i);
+    #####:   86:            printf("num_actions = %d\n", num_actions);
+    #####:   87:            printf("G.numActions = %d\n", G.numActions);
+        -:   88:#endif
+    #####:   89:            isNumActionsPass = 0;
+        -:   90:        }
+        -:   91:    }
+        -:   92:
+        1:   93:    if(isHandCountPass) {
+        1:   94:        printf("Village Card Test PASSED (handCount)\n");
+        -:   95:    }
+        -:   96:    else {
+    #####:   97:        printf("Village Card Test FAILED (handCount)\n");
+        -:   98:    }
+        -:   99:
+        1:  100:    if(isNumActionsPass) {
+        1:  101:        printf("Village Card Test PASSED (numActions)\n");
+        -:  102:    }
+        -:  103:    else {
+    #####:  104:        printf("Village Card Test FAILED (numActions)\n");
+        -:  105:    }
+        -:  106:
+        1:  107: 	printf("Random Village Card Test Complete!\n");
+        -:  108:
+        1:  109: 	return 0;
+        -:  110: }

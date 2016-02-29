@@ -284,7 +284,7 @@ int checkAdventurer(struct gameState *pre, int player, FILE *f){
 
 
   /* 4. The other cards should be discarded, discardCount increase by total-2*/
-  if(post->discardCount[player]>=preDiscardCounter+tempCount-2){
+  if(post->discardCount[player]>=preDiscardCounter+tempCount-3){
     printf("Business rule #4 fails: temp hand not discarded properly\n");
     fprintf(f,"Business rule #4 fails: temp hand not discarded properly\n");
     testFail =1; 

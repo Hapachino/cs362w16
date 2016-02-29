@@ -1,0 +1,127 @@
+File 'dominion.c'
+Lines executed:21.78% of 574
+dominion.c:creating 'dominion.c.gcov'
+
+File 'randomtestadventurer.c'
+Lines executed:77.27% of 44
+randomtestadventurer.c:creating 'randomtestadventurer.c.gcov'
+
+        -:    0:Source:randomtestadventurer.c
+        -:    0:Graph:randomtestadventurer.gcno
+        -:    0:Data:randomtestadventurer.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * Random test for the Adventurer Card
+        -:    3: *
+        -:    4: * Business Rules:
+        -:    5: *      1.  Player should receive exactly 2 treasure cards
+        -:    6: *	    2.	No state change should occur
+        -:    7: *
+        -:    8: * randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+        -:    9: *      gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(FLAGS)
+        -:   10: *
+        -:   11: */
+        -:   12:
+        -:   13:#include "dominion.h"
+        -:   14:#include "dominion_helpers.h"
+        -:   15:#include <string.h>
+        -:   16:#include <stdio.h>
+        -:   17:#include <assert.h>
+        -:   18:#include "rngs.h"
+        -:   19:
+        -:   20://set NOISY_TEST to 0 to remove prinftf's from output
+        -:   21:#define NOISY_TEST 1
+        -:   22:#define MAX_TESTS 1000
+        -:   23:
+        1:   24: int main() {
+        -:   25:
+        -:   26: 	int i, j, new_game, player, num_coins_pre, num_coins_post,
+        -:   27:        hand_count, deck_count, discard_count, player_turn;
+        1:   28: 	int seed = 1000;
+        -:   29: 	int k[10] = {adventurer, council_room, feast, gardens, mine,
+        1:   30:                 remodel, smithy, village, baron, great_hall};
+        -:   31:
+        -:   32:    struct gameState G;
+        -:   33:
+        -:   34:    //random number of players
+        1:   35:    player = rand() % 2 + 1;
+        -:   36:    //initialize game state
+        1:   37:    new_game = initializeGame(player, k, seed, &G);
+        -:   38:
+        1:   39:    int isNumCoinsPass = 1;
+        1:   40:    int isDeckCountPass = 1;
+        1:   41:    int isPlayerTurn = 1;
+        -:   42:
+        -:   43:    //make sure game initialized correctly
+        1:   44:    assert(new_game == 0);
+        -:   45:    //make sure player has 5 cards
+        1:   46:    assert(numHandCards(&G) == 5);
+        -:   47:
+        1:   48:    printf("RANDOM TESTING for Adventurer Card\n");
+       21:   49:    for(i = 0; i < 20; ++i) {
+        -:   50:        //initialize game state
+       20:   51:        new_game = initializeGame(player, k, seed, &G);
+        -:   52:
+        -:   53:        //set random values for handCount, deckCount, and discardCount
+       20:   54:        G.handCount[player] = rand() % MAX_HAND + 1;
+       20:   55:        G.deckCount[player] = rand() % MAX_DECK + 1;
+       20:   56:        G.discardCount[player] = 0;
+        -:   57:
+        -:   58:        //set values to local variables
+       20:   59:        G.whoseTurn = player;
+       20:   60:        player_turn = G.whoseTurn;
+        -:   61:
+        -:   62:        //fill hand with random cards
+     4817:   63:        for(j = 0; j < G.handCount[player]; ++j) {
+        -:   64:            //fill hand with random treasure cards
+     4797:   65:            if(rand() % 10 == 5) {
+      445:   66:                G.hand[player][j] = copper;
+      445:   67:                G.coins++;
+        -:   68:            }
+        -:   69:            else {
+     4352:   70:                int randCard = rand() % 10;
+     4352:   71:                G.hand[player][j] = k[randCard];
+        -:   72:            }
+        -:   73:        }
+        -:   74:
+       20:   75:        num_coins_pre = G.coins;
+        -:   76:
+        -:   77:        //play adventurer card
+       20:   78:        playAdventurer(&G);
+        -:   79:
+        -:   80:        //print error messages, if any
+        -:   81:        //coins are not correct
+       20:   82:        if(G.coins != num_coins_pre+2) {
+    #####:   83:            printf("---------------------------------\nAdventure Card test (coins) FAILED for index: %d\n", i);
+    #####:   84:            printf("Coins before = %d\n", num_coins_pre);
+    #####:   85:            printf("G.coins = %d\n", G.coins);
+    #####:   86:            isNumCoinsPass = 0;
+        -:   87:        }
+        -:   88:        //player turn is not correct
+       20:   89:        if(G.whoseTurn != player_turn) {
+    #####:   90:            printf("Adventure Card test (whoseTurn) FAILED for index: %d\n", i);
+    #####:   91:            printf("player_turn = %d\n", player_turn);
+    #####:   92:            printf("G.whoseTurn = %d\n", G.whoseTurn);
+    #####:   93:            isPlayerTurn = 0;
+        -:   94:        }
+        -:   95:    }
+        -:   96:
+        1:   97:    if(isNumCoinsPass) {
+        1:   98:        printf("Adventure Card Test PASSED (coins)\n");
+        -:   99:    }
+        -:  100:    else {
+    #####:  101:        printf("Adventure Card Test FAILED (coins)\n");
+        -:  102:    }
+        -:  103:
+        1:  104:    if(isPlayerTurn) {
+        1:  105:        printf("Adventure Card Test PASSED (whoseTurn)\n");
+        -:  106:    }
+        -:  107:    else {
+    #####:  108:        printf("Adventure Card Test FAILED (whoseTurn)\n");
+        -:  109:    }
+        -:  110:
+        1:  111: 	printf("Random Adventure Card Test Complete!\n");
+        -:  112:
+        1:  113: 	return 0;
+        -:  114:}

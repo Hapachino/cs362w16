@@ -15256,7 +15256,7 @@ Failed - 	 player 1
 	 Number of cases failed: 3030
 
 File 'dominion.c'
-Lines executed:22.07% of 580
+Lines executed:22.41% of 580
 Branches executed:20.14% of 417
 Taken at least once:17.51% of 417
 Calls executed:11.58% of 95
@@ -16161,7 +16161,7 @@ function smithyCard called 0 returned 0% blocks executed 0%
         -:  650:{
         -:  651:	int i;
         -:  652:  	//+3 Cards
-    #####:  653:  	for (i = 0; i < 4; i++)
+    #####:  653:  	for (i = 0; i < 3; i++)
 branch  0 never executed
 branch  1 never executed
         -:  654:	{
@@ -16186,7 +16186,7 @@ call    0 never executed
     #####:  669:      state->numActions = state->numActions + 2;
         -:  670:			
         -:  671:      //discard played card from hand
-    #####:  672:      discardCard(handPos, currentPlayer, state, 1); 
+    #####:  672:      discardCard(handPos, currentPlayer, state, 0); 
 call    0 never executed
     #####:  673:}
         -:  674:
@@ -16199,7 +16199,7 @@ function adventurerCard called 0 returned 0% blocks executed 0%
         -:  680:  	int temphand[MAX_HAND];
     #####:  681:  	int z = 0;// this is the counter for the temp hand
         -:  682: 
-    #####:  683:	while(drawntreasure<1){
+    #####:  683:	while(drawntreasure<2){
 branch  0 never executed
 branch  1 never executed
     #####:  684:		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
@@ -16266,7 +16266,7 @@ call    0 returned 100%
         -:  724:	}
         -:  725:			
         -:  726:    //put played card in played card pile
-     3030:  727:    discardCard(handPos, currentPlayer, state, 1);
+     3030:  727:    discardCard(handPos, currentPlayer, state, 0);
 call    0 returned 100%
      3030:  728:}
         -:  729:
@@ -17038,18 +17038,18 @@ call    0 never executed
     #####: 1254:  return -1;
         -: 1255:}
         -: 1256:
-function discardCard called 3030 returned 100% blocks executed 75%
+function discardCard called 3030 returned 100% blocks executed 88%
      3030: 1257:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
         -: 1258:{
         -: 1259:	
         -: 1260:  //if card is not trashed, added to Played pile 
      3030: 1261:  if (trashFlag < 1)
-branch  0 taken 0% (fallthrough)
-branch  1 taken 100%
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
         -: 1262:    {
         -: 1263:      //add card to played pile
-    #####: 1264:      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-    #####: 1265:      state->playedCardCount++;
+     3030: 1264:      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+     3030: 1265:      state->playedCardCount++;
         -: 1266:    }
         -: 1267:	
         -: 1268:  //set played card to -1

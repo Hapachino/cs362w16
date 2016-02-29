@@ -651,7 +651,7 @@ int callAdventurerCard(struct gameState *state, int currentPlayer){
     int z = 0;
     int temphand[MAX_HAND];
 
-    while(drawntreasure<=2){
+    while(drawntreasure<2){
         if (state->deckCount[currentPlayer] < 1){//if the deck is empty we need to shuffle discard and add to deck
           shuffle(currentPlayer, state);
         }
@@ -690,6 +690,8 @@ int callSmithyCard(struct gameState *state, int currentPlayer, int handPos){
 
 int callVillageCard(int currentPlayer, struct gameState *state, int handPos){
      
+     drawCard(currentPlayer, state);
+     
       //+2 Actions
       state->numActions = state->numActions + 2;
       
@@ -709,7 +711,7 @@ int callEmbargoCard(struct gameState *state, int choice1, int currentPlayer, int
   }
       
       //add embargo token to selected supply pile
-      state->embargoTokens[choice1] = state->embargoTokens[choice1] + 2;
+      state->embargoTokens[choice1]++;
       
       //trash card
       discardCard(handPos, currentPlayer, state, 1);    

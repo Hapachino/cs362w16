@@ -1,156 +1,359 @@
+/********************************************************************************************************************************************************
+*** Filename: cardtest1.c
+*** Author: Juan C. Solis
+*** Class: CS362-400
+*** Date: 1/28/2015
+*** Due date: 1/31/2015
+*** Assignment 3
+*** Description: Unit test for playSmithy()- refactored version from assignment 2 (Includes deliberate bug - Info can be found in refactor.c)
+*** Business requirements:
+***  1. Adds exactly 3 cards from the current player's own deck or discarded pile to the current player's hand.
+***  2. Adds the smithy card that was just played to the player's discard deck. 
+***
+***  Testing:
+***       1. Check that exactly 3 cards were indeed added to current player's hand by comparing handCount value
+***       2. Check that the 3 cards added came from the player's own deck
+***       3. Check that playedCardCount has increased by 1
+***       4. Check that the smithy card was added to the playedCards pile
+***
+*** References: testUpdateCoins.c and cardTest4.c provided by instructor to use as examples and templates
+***
+* Include the following lines in your makefile:
+*
+* cardtest1: cardtest1.c dominion.o rngs.o
+*      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+* -----------------------------------------------------------------------
+*
+********************************************************************************************************************************************************/
 #include "dominion.h"
-#include "test_helper.h"
-#include <stdio.h>
+#include "dominion_helpers.h"
 #include "rngs.h"
-#include <assert.h>
+#include <stdio.h>
 #include <string.h>
-#include <math.h>
+#include <assert.h>
+
+// set NOISY_TEST to 0 to remove printfs from output
+#define NOISY_TEST 1
 
 
-/**************************
- * cardtest1.c
- * Smithy Card Test
- *
- * We're going to:
- *  create two game structs: control and test
- *
- *  We're going to randomize the state of the game
- *  We're going copy the game state to our control
- *  We're going to call smithyEffects
- *  Then we're going to check to see if the top 
- *  three cards from the draw deck are now in the hand
- *  and that the smithy card has been discarded.    
- *  *****************************/
+int findCard(int player, struct gameState *state, int card, int pileFlag); //helper function to search for cards in hand,deck, and played piles
 
-void smithyTest(long seed)
+int main()
 {
-    int i, j, m, res;
-    int count = 1000;
-    int tests = 0;
-    int fail = 0;
+     int r;
+     int player;
+     int numPlayer = 2;
 
-    for (i = 0; i < count; i++)
-    {
-      int k[10];
-      randomizeKingdomCards(k);
+     int seed = 1000;
+     int k[10] = { adventurer, council_room, feast, gardens, mine
+          , remodel, smithy, village, baron, great_hall };
 
-      struct gameState Tester;
-      struct gameState Control;
+#if (NOISY_TEST == 1)
+     const char* cards[] = //All 27 cards in game
+     {
+          "curse",
+          "estate",
+          "duchy",
+          "province",
+          "copper",
+          "silver",
+          "gold",
+          "adventurer",
+          "council_room",
+          "feast",
+          "gardens",
+          "mine",
+          "remodel",
+          "smithy",
+          "village",
+          "baron",
+          "great_hall",
+          "minion",
+          "steward",
+          "tribute",
+          "ambassador",
+          "cutpurse",
+          "embargo",
+          "outpost",
+          "salvager",
+          "sea_hag",
+          "treasure_map"
+     };
+#endif
 
-      int numPlayers = floor(Random() * (MAX_PLAYERS - 2) + 2);
-      assert(numPlayers >= 2 && numPlayers <= 4);
-      initializeGame(numPlayers, k, seed, &Tester);
+     struct gameState prevState; //untouched game state to compare with after running tests
+     struct gameState postState; //game state that will be used for tests
 
 
-      //randomize handstates, deck, draw states for each player
-        for (j = 0; j < Tester.numPlayers; j++)
-        { 
-            tests++;
-            //randomize hand
-            //Tester.handCount[j] = 100;
-            Tester.handCount[j] = floor(Random() * MAX_HAND-3);
-            assert (Tester.handCount[j] < (MAX_HAND-3));
-            for (m = 0; m < Tester.handCount[j]; m++)
-                Tester.hand[j][m] = floor(Random() * (treasure_map + 1));
+     int testResult;
 
-            //If there are less than 3 cards in the deck when we play the
-            //smithy, we have no way to tell if the draw correctly chose the
-            //top three cards of the deck because of the shuffle.  We're not
-            //testing the shuffle here, so we're going to pass any tests where
-            //there are lesS THAN Three cards in the hand.
-       
-            //Tester.deckCount[j] = 200;
-            Tester.deckCount[j] = floor(Random() * (MAX_DECK - 3) ) + 3;
-            assert((Tester.deckCount[j] < MAX_DECK - 3) && (Tester.deckCount[j] >= 3));
-            for (m = 0; m < Tester.deckCount[j]; m++){
-                Tester.deck[j][m] = floor(Random() * (treasure_map + 1));
-                //printf("Deck value[%d]: %d\n", m, Tester.hand[j][m]);
-            }
-            //in the real game, it seems impossible to have a hand of less
-            //than three cards.  Even if one burns or trashes a lot of
-            //cards, one would have three estates.
-            //
-            //But the code does not protect against an endless look where 
-            //it's trying to play a smithy card, but the player has less
-            //than three total cards in deck or discard. 
-            //In order to protect against this known logic gap, we're going
-            //to hard code the test so that there should always be at least
-            //three cards in the discard that could be shuffled to enable
-            //to smithy draw.
-            
-            Tester.discardCount[j] = floor((Random() * (MAX_DECK -3)) + 3);
-            for (m = 0; m <Tester.discardCount[j]; m++)
-                Tester.discard[j][m] = floor(Random() * (treasure_map + 1));
+     int numTests = 1; //how many test iterations to run.
+     int failedTests = 0;
+     int passedTests = 0;
 
-            //put smithy card in handPos 
-            int handPos = 0; //floor(Random() * Tester.handCount[j]);
-            Tester.hand[j][handPos] = smithy;
-            Tester.phase = 0;
-            Tester.numActions = 1;
+     printf("==============================================\r\n");
+     printf("    Beginning testing for playSmithy()\r\n");
+     printf("==============================================\r\n");
 
-            Tester.whoseTurn = j;
 
-            //copy the tester state to the Control state.
-            memcpy(&Control, &Tester, sizeof(Control));
+     int i;
+     for (i = 0; i < numTests; i++)
+     {
 
-            //For test purposes we select handPos 0 where we have inserted a
-            //smithy.  Since smithy takes no choices, we set choice1, choice2
-            //and choice3 = 0;
-            res = playCard(handPos, 0, 0, 0, &Tester);
-            //smithy does not return -1 on failure and has no failure state.
-            //we assert (res != -1) to protect against faults in the playCard
-            //function.
-            if (res == -1){
-                printf("Error returned from playCard function.  Smithy function has no\n");
-                printf("error reporting.  So we know the error was in the playCard routine.\n");
-                continue;
-            }
+          memset(&prevState, 23, sizeof(struct gameState));   // clear the game state
+          r = initializeGame(numPlayer, k, seed, &prevState); // initialize a new game
 
-            //check that the discardCount count is incremented by one
-            if (Tester.discardCount[j] != Control.discardCount[j] + 1){
-                printf("Smithy didn't discard properly.\n");
-                fail++;
-                continue;
-            }
+          for (player = 0; player < numPlayer; player++)
+          {
+    
+               prevState.handCount[player] = 1;        // set the number of cards on hand
+               int smithyHand[1];
+               smithyHand[0] = smithy;
+               memcpy(prevState.hand[player], smithyHand, sizeof(int));
 
-            //printHand(&Tester);
-            //printDeck(&Control);
-            //check effects
-            //check 3 cards drawn from deck
-            if (Tester.deckCount[j] != Control.deckCount[j] - 3){
-                printf("Smithy draw count failure.\n");
-                fail++;
-                continue;
-            }
+               prevState.deckCount[player] = 5;        // set the number of cards in deck
+               int mixedDeck[5];
+               mixedDeck[0] = copper;
+               mixedDeck[1] = silver;
+               mixedDeck[2] = gold;
+               mixedDeck[3] = gardens;
+               mixedDeck[4] = tribute;
+               memcpy(prevState.deck[player], mixedDeck, sizeof(int) * 5);  
 
-            //check 3 cards added to hand, 1 discarded
-            if (Tester.handCount[j] != Control.handCount[j] + 2){
-                printf("Smithy hand count failure.\n");
-                fail++;
-                printf("Tester handCount: %d\tControl handCount: %d\n", Tester.handCount[j], Control.handCount[j]);
-                continue;
-            }
+               /*
+               ============================================================
+               Refactored to work with teammate1's dominion.c code
+               ==============================================================
+               */
 
-        
-        //Check that the Tester draw deck no longer contains the cards
-        //To fully test this function, we should write a function that counds
-        //the number of occurances of a card X in the Control deck
-        //
-        //Then we should determine which cards were drawn into the hand 
-        //and determine that the Tester deck contains 1 less of that card than
-        //the control deck.
-        //For the sake of time, we're not going to do that at this point.
-        //Instead, we're simply going to check that the deck is three less than
-        //it was before smithy
-        if (Tester.deckCount[j] != Control.deckCount[j] - 3){
-            printf("Smithy failed to decrement the Tester deck.\n");
-            fail++;
-            continue;
-            }
-        }
-    }
-   
-    printf("Smithy test results: Tested: %d\tPassed: %d\t Failed: %d\n",
-        tests, tests - fail, fail);
-    return;
+               //set player to gamestate.whoseTurn to match teammate 1's refactored smithy
+               prevState.whoseTurn = player;
+
+               memcpy(&postState, &prevState, sizeof(struct gameState)); //create clone of game state to run tests on
+                         
+                    
+               //playSmithy(player, &postState, 0);
+
+               testResult = smithyEffect(&postState, 0); //testing teammate 1's version of smithy
+
+
+               //Check that exactly 3 cards were indeed added to current player's hand by comparing handCount value
+#if (NOISY_TEST == 1)
+               printf("---------------------------------------------------------------------------------------------------------------------------\r\n");
+               printf("Testing that player[%d] handCount has increased by 2...\r\n", player);
+#endif
+
+               testResult = postState.handCount[player]; 
+
+               if (testResult == prevState.handCount[player] + 2) //+2 due to smithy needing being discarded
+               {
+                    passedTests++;
+               }
+               else//failed
+               {
+                    failedTests++;
+               }
+#if (NOISY_TEST == 1)
+               printf("handCount = %d, Expected = %d\r\n", testResult, prevState.handCount[player] + 2);
+               printf("Testing that player[%d] playedCardCount has increased by 1..\r\n", player);
+#endif
+               //Check that playedCardCount increased by 1
+
+               testResult = postState.playedCardCount;
+
+               if (testResult == prevState.playedCardCount + 1) //passed
+               {
+                    passedTests++;
+               }
+               else//failed
+               {
+                    failedTests++;
+               }
+#if (NOISY_TEST == 1)
+               printf("playedCardCount = %d, Expected = %d\r\n", testResult, prevState.playedCardCount + 1);
+               printf("Checking that the smithy card was added to the played cards pile...\r\n");
+#endif
+               //Check that the smithy card was added to the played cards pile
+
+               testResult = findCard(player, &postState, smithy, 0);
+
+               if (testResult == -1) //failed, if variable is still -1, smithy was not found
+               {
+                    failedTests++;
+               }
+               else//passed
+               {
+                    passedTests++;
+               }
+
+#if (NOISY_TEST == 1)
+               if (testResult == -1) //failed
+               {
+                    printf("Failed! Smithy card was not found in played cards pile!\r\n");
+               }
+               else//passed
+               {
+                    printf("Passed! Smithy card was found in played cards pile at position %d!\r\n", testResult);
+               }
+               printf("Checking that smithy card is not in player[%d]'s hand...\r\n", player);
+#endif
+               //Check that smithy card is not in player's hand
+
+               testResult = findCard(player, &postState, smithy, 1);
+
+               if (testResult == -1) //passed, if variable is still -1, smithy was not found
+               {
+                    passedTests++;
+               }
+               else//failed
+               {
+                    failedTests++;
+               }
+
+#if (NOISY_TEST == 1)
+               if (testResult == -1) //passed
+               {
+                    printf("Passsed! Smithy card was not found in the player's hand!\r\n");
+               }
+               else//failed
+               {
+                    printf("Failed! Smithy card was found in player's hand at position %d!\r\n", testResult);
+               }
+               printf("Checking that the 3 cards added came from the player's own deck...\r\n");
+#endif
+               //Check that the 3 cards added came from the player's own deck
+
+
+               //debug
+               //int y;
+               //for (y = 0; y < postState.handCount[player]; y++)
+               //{
+                    //printf("%s Card at position %d \r\n", cards[postState.hand[player][y]], y);
+              // }
+
+               int card;
+               int cardCount = 0;
+               int foundCards[MAX_DECK];
+               int j;
+               for (j = 0; j < 5; j++)
+               {
+
+                    if (j == 0) 
+                    { 
+                         card = copper; 
+                    }
+                    if (j == 1) 
+                    { 
+                         card = silver;
+                    }
+                    if (j == 2)
+                    { 
+                         card = gold;
+                    }
+                    if (j == 3)
+                    { 
+                         card = gardens;
+                    }
+                    if (j == 4)
+                    { 
+                         card = tribute;
+                    }
+
+                    testResult = findCard(player, &postState,card, 1);
+
+                    if (testResult != -1) //card found
+                    {
+                         cardCount++;
+                         foundCards[cardCount - 1] = card;
+
+#if (NOISY_TEST == 1)
+                         printf("Found %s card in player[%d]'s hand at position %d! Number of cards found: %d\r\n", cards[card], player, testResult, cardCount);
+#endif
+                    }
+               }
+
+               if (cardCount == 3) //passed
+               {
+                    passedTests++;
+               }
+               else//failed
+               {
+                   failedTests++;
+               }
+
+#if (NOISY_TEST == 1)
+               printf("cardCount = %d, Expected = 3\r\n", cardCount);
+#endif
+
+               //check that the found cards are not in the deck anymore
+               for (j = 0; j < cardCount; j++)
+               {
+                    testResult = findCard(player, &postState, foundCards[j], 2);
+
+                    if (testResult == -1) //card not found
+                    {
+                         passedTests++;                         
+                    }
+                    else
+                    {
+                         failedTests++;
+#if (NOISY_TEST == 1)
+                         printf("Found %s card in player[%d]'s deck at position %d\r\n", cards[card], player, testResult);
+#endif
+                    }
+               }
+          }
+     }
+     
+     printf("---------------------------------------------------------------------------------------------------------------------------\r\n");
+     printf("%d out of %d tests passed!\r\n", passedTests, passedTests + failedTests);
+     printf("%d out of %d tests failed!\r\n", failedTests, passedTests + failedTests);
+
+     return 0;
+}
+
+
+int findCard(int player, struct gameState *state, int card, int pileFlag)
+{
+     int foundCard = -1;
+
+     //pileFlag = 0: Check played pile
+     //pileFlag = 1: Check hand
+     //pileFlag = 2: Check deck
+     int pileCount = 0;
+
+     if (pileFlag == 0) { pileCount = state->playedCardCount; };
+     if (pileFlag == 1) { pileCount = state->handCount[player]; };
+     if (pileFlag == 2){ pileCount = state->deckCount[player]; };
+
+
+     int i;
+     for (i = 0; i < pileCount; i++)
+     {
+
+          if (pileFlag == 0)
+          {
+               if (state->playedCards[i] == card)
+               {
+                    foundCard = i;
+               }
+          }
+          else if (pileFlag == 1)
+          {
+               if (state->hand[player][i] == card)
+               {
+                    foundCard = i;
+               }
+          }
+          else if (pileFlag == 2)
+          {
+               if (state->deck[player][i] == card)
+               {
+                    foundCard = i;
+               }
+          }
+     }
+
+     return foundCard;
+
 }

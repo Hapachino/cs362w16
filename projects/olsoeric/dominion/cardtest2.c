@@ -29,30 +29,27 @@ int main(){
   //Setup Scenario:
   scenario_stage(pre, post, copper, copper);
   //Have player 0 play adventurer card.
-  adventurer_play(0, post);
+  adventurer_play(0, post, 5);
   //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 7, 1);
-  printf("Errors so far %d\n", errors);
 
   /***** SCENARIO 2 - New game, hand=6, deck=10(only 2 silvers), discard=0  *****/
   printf("Running Scenario 2...\n");
   //Setup Scenario:
   scenario_stage(pre, post, silver, silver);
   //Have player 0 play adventurer card.
-  adventurer_play(0, post);
+  adventurer_play(0, post, 5);
   //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 7, 1);
-  printf("Errors so far %d\n", errors);
   
   /***** SCENARIO 3 - New game, hand=6, deck=10(only 2 gold), discard=0  *****/
   printf("Running Scenario 3...\n");
   //Setup Scenario:
   scenario_stage(pre, post, gold, gold);
   //Have player 0 play adventurer card.
-  adventurer_play(0, post);
+  adventurer_play(0, post, 5);
   //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
   errors = validate(pre, post, errors, 7, 1);
-  printf("Errors so far %d\n", errors);
   
   
   /***** SCENARIO 4(Randoms) - New game, hand=6, deck=10(2 random treasure types), discard=0  *****/
@@ -61,10 +58,9 @@ int main(){
     //Setup Scenario:
     scenario_stage(pre, post, ((rand() % 3) + 4), ((rand() % 3) + 4));
     //Have player 0 play adventurer card.
-    adventurer_play(0, post);
+    adventurer_play(0, post, 5);
     //Check hand went from 6 to 7, deck+discard went down by 2, played went from 0 - 1.
     errors = validate(pre, post, errors, 7, 1);
-    printf("Errors so far %d\n", errors);
   }
 
   
@@ -89,7 +85,7 @@ void scenario_stage(struct gameState *pre, struct gameState *post, int treasure1
   pre->deck[0][i] = post->deck[0][i] = treasure1;  //Assign 1st treasure.
   i = rand() % 10;
   //Assign 2nd treasure randomly, or 4 away from current treasure if chosen at random again.
-  if (pre->deck[0][i] != treasure1){ pre->deck[0][(i + 4) % 10] = post->deck[0][(i + 4) % 10] = treasure2; }
+  if (pre->deck[0][i] == treasure1){ pre->deck[0][(i + 4) % 10] = post->deck[0][(i + 4) % 10] = treasure2; }
   else { pre->deck[0][i] = post->deck[0][i] = treasure2; } 
 }
   

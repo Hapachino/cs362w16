@@ -54,6 +54,9 @@ randomtestSmithy: randomtestcard.c dominion.o rngs.o
 randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
 	gcc -o randomadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 
+randomtestFeast: refactoredCardTest.c dominion.o rngs.o
+	gcc -o testFeast -g  refactoredCardTest.c dominion.o rngs.o $(CFLAGS)
+
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out

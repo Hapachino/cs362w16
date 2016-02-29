@@ -1,172 +1,96 @@
-/*********************************************************************
-** Program Filename: randomtestadventurer.c
-** Author: Kyle Johnson
-** Date: 2/14/2016
-** Description: implementation file for random testing of village card
-*********************************************************************/ 
-/*
-Please note: this will run with normal dominion.c and dominion.h, 
-but leads to core dump on my modified/re factored version.  Will redo
-if time is sufficient
- */
-
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
 #include "rngs.h"
+#include <stdio.h>
+#include <math.h>
 #include <stdlib.h>
-#include "math.h" 
+#include <time.h>
 
-#define TESTCARD "adventurer"
+//4=copper, 5=silver, 6 = gold
 
-//set-up and initialization based on cardtest4.c, week 4 module CS362W16
-int main() {
-    int newCards = 0;
-    int discarded = 0;
-    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
-    int seed;
-    int numPlayers = 2;
-    int currentPlayer = 0;
-    int nextPlayer = 1;
-	int playedCards = 1;
-	int i, j, l;
-	//int card;
-	int pHandCount = 0;
-	int pDeckCount = 0;
-	int nHandCount = 0;
-	int nDeckCount = 0;
-	int playedCount = 0;
-	int victoryCount = 0;
-	struct gameState G, testG;
-	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
-			sea_hag, tribute, smithy, council_room};
+int main(){
+	int player=1;
+	struct gameState G;
+	srand(time(0));
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
+//initialize the Game for four players
+	initializeGame(2, k, 73, &G);
+	int c=0;
+	int b=0;
+	int i;
+	int h=0;
+//hand count before function call
+	int hcbefore;
+	int j=0;
+	int n;
+	for(n=0; n<10; n++){
+		hcbefore = G.handCount[player];
+		for(i=0; i<G.handCount[player]; i++){
+			printf("in hand position %d card %d\n", i, G.hand[player][i]);
+			if(G.hand[player][i] == 6 || G.hand[player][i] == 5 || G.hand[player][i] == 4){
+				c++;
+			}
+		}
+//adds cards to deck and discard to simulate random times of the game 
+		G.deckCount[player] = rand()%20;
+		G.discardCount[player] = 20 - G.deckCount[player];
+		for(i=0; i<G.deckCount[player]; i++){
+			G.deck[player][i] = rand() % 27;
+//keeps track of treasure cards added to deck
+			if(G.deck[player][i] == 6 || G.deck[player][i] == 5 || G.deck[player][i] == 4){
+				j++;
+			}
+		}
+		for(i=0; i<G.discardCount[player]; i++){
+//if there are not at least two treasure card in the deck then some are added to discard to access when shuffled
+			if(j<2){
+				G.discard[player][i] = 5;
+				j++;
+			}
+			else{
+				G.discard[player][i] = rand() % 27;
+			}
+		}
+		printf("deck count before is: %d\n", G.deckCount[player]);
+		printf("dicard count before is %d\n", G.discardCount[player]);
+//checks discard pile for tresures before start
+		adventurerCard(&G, player);
 
-	
-	printf("----------------- Testing: %s ----------------\n", TESTCARD);
-	printf("Failure Descriptions\n");
-	
-	for (i = 0; i < 10000; i++) 
-	{	
-		seed = rand();
-		// ----------- TEST 1: +2 cards --------------
-		for (l = 0; l < sizeof(struct gameState); l++)
-			((char*)&G)[l] = floor(Random() * 256);
-		
-		// initialize a random game state and random number of cards
-		initializeGame(numPlayers, k, seed, &G);
-		G.handCount[currentPlayer] = floor(Random() * 15);
-		G.deckCount[currentPlayer] = floor(Random() * 50 + 2);
-		G.discardCount[currentPlayer] = floor(Random() * 25);
-		
-		G.handCount[nextPlayer] = floor(Random() * 15);
-		G.deckCount[nextPlayer] = floor(Random() * 50 + 2);
-		
-		/*
-		//random hand cards from cards in game
-		for (j = 0; j < G.handCount[currentPlayer]; j++) 
-		{
-			card = floor(Random() * 10);
-			G.hand[currentPlayer][j] = k[card];
+//checks discard pile for tresures after
+		for(i=0; i<G.discardCount[player]; i++){
+			if(G.discard[player][i] == 4 || G.discard[player][i] == 5 || G.discard[player][i]==6){
+				b++;
+				printf("Treasure card found in discard %d\n", G.discard[player][i]);
+			}
+				
 		}
-		
-		//random discard cards from cards in game
-		for (j = 0; j < G.discardCount[currentPlayer]; j++)
-		{
-			card = floor(Random() * 10);
-			G.discard[currentPlayer][j] = k[card];
-		}		
-	
-		//random deck cards from cards in game
-		for (j = 0; j < G.deckCount[currentPlayer]; j++) 
-		{
-			card = floor(Random() * 10);
-			G.deck[currentPlayer][j] = k[card];
+		for(i=0; i<G.deckCount[player]; i++){
+			if(G.deck[player][i] == 4 || G.deck[player][i] == 5 || G.deck[player][i]==6){
+				b++;
+			}
+				
 		}
-		*/
-		
-		for (j = 0; j < G.handCount[currentPlayer]; j++) 
-			G.hand[currentPlayer][j] = floor(Random() * (treasure_map + 1));
-		
-		for (j = 0; j < G.discardCount[currentPlayer]; j++) 
-			G.discard[currentPlayer][j] = floor(Random() * (treasure_map + 1));
-		
-		for (j = 0; j < G.deckCount[currentPlayer]; j++) 
-			G.deck[currentPlayer][j] = floor(Random() * (treasure_map + 1));
-		
-		// copy the game state to a test case
-		memcpy(&testG, &G, sizeof(struct gameState));
-		cardEffect(adventurer, choice1, choice2, choice3, &testG, handpos, &bonus);
-		newCards = 2;
-		
-		//check player hand count
-		if (testG.handCount[currentPlayer] != G.handCount[currentPlayer] + newCards - discarded)
-		{
-			printf("hand count = %d, expected = %d\n", testG.handCount[currentPlayer], G.handCount[currentPlayer] + newCards - discarded);
-			pHandCount++;
+		for(i=0; i<G.handCount[player]; i++){
+			if(G.hand[player][i] == 6 || G.hand[player][i] == 5 || G.hand[player][i] == 4){
+				if(i>=hcbefore){
+				printf("added treasure card in hand position %d treasure card %d\n", i, G.hand[player][i]);
+				}
+				h++;
+			}
+
 		}
-		
-		//check player deck count
-		if (testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer] != G.deckCount[currentPlayer] - newCards)
-		{
-			printf("deck count = %d, expected = %d\n", testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer], G.deckCount[currentPlayer] - newCards);
-			pDeckCount++;
+		if(h-c != 2){
+			printf("Fail: incorrect number of treasure cards added\n");
 		}
-		
-		//check next player hand count
-		if (testG.handCount[nextPlayer] != G.handCount[nextPlayer])
-		{
-			printf("hand count = %d, expected = %d\n", testG.handCount[nextPlayer], G.handCount[nextPlayer]);
-			nHandCount++;
-		}	
-		
-		//check next player deck count
-		if (testG.deckCount[nextPlayer] != G.deckCount[nextPlayer])
-		{
-			printf("deck count = %d, expected = %d\n", testG.deckCount[nextPlayer], G.deckCount[nextPlayer]);
-			nDeckCount++;
+		if(b-j > 0){
+			printf("Fail: a treasure card was discarded\n");
 		}
-			
-		//check that card is added to played cards count
-		
-		if (testG.playedCardCount != G.playedCardCount + playedCards)
-		{
-			printf("played card count = %d, expected = %d\n", testG.playedCardCount, G.playedCardCount + playedCards);
-			playedCount++;
+		if(G.handCount[player] - hcbefore < 2){
+			printf("Fail: handcount is : %d and hcbefore is %d\n", G.handCount[player], hcbefore);
 		}
-	
-		//check victory card piles
-		if (testG.supplyCount[estate] != G.supplyCount[estate])  
-		{
-			printf("estate = %d, expected = %d\n", testG.supplyCount[estate], G.supplyCount[estate]);
-			victoryCount++;
-		}
-		
-		if (testG.supplyCount[duchy] != G.supplyCount[duchy])  
-		{
-			printf("duchy = %d, expected = %d\n", testG.supplyCount[duchy], G.supplyCount[duchy]);
-			victoryCount++;
-		}
-		
-		if (testG.supplyCount[province] != G.supplyCount[province])  
-		{
-			printf("province = %d, expected = %d\n", testG.supplyCount[province], G.supplyCount[province]);
-			victoryCount++;
+		else{
+			printf("Pass: The player has the minimum amount of added cards the hand count is %d\n", G.handCount[player]);			
 		}
 	}
-	//print sum of errors for each test type
-	printf("adventurer card random testing completed.\n");
-		printf("-------------------------------------------\n");
-		printf("Results Summary (10,000 runs):\n");
-		printf("-------------------------------------------\n");
-		printf("Player hand count failures: %d\n",pHandCount);
-		printf("Player deck count failures: %d\n",pDeckCount);
-		printf("Next player hand count failures: %d\n",nHandCount);
-		printf("Next player deck count failures: %d\n",nDeckCount);
-		printf("Played card count failures: %d\n",playedCount);
-		printf("Victory card supply failures: %d\n\n",victoryCount);
-		return 0;
+	return 0;	
 }
-	
-	

@@ -52,7 +52,7 @@ int main() {
 
 	struct gameState Gcopy;
 	struct infosStruct infos;
-	int k[] = {5, 6, 7, 8, 9, 10, 11, 12, 13, 14};	
+	int k[] = {7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
 	int numPlayers = 4;
 	int handCountBefore, handCountAfter;
 	int deckCountBefore, deckCountAfter;
@@ -84,7 +84,7 @@ int main() {
 	G.deckCount[p2] = deckCount;	
 	G.deckCount[p3] = deckCount;	
 	G.deckCount[p4] = deckCount;
-	printf("handCount: %d\n", G.deckCount[p2]);
+	printf("deckCount: %d\n", G.deckCount[p2]);
 
 	setDiscardDeck(G.discard[p1], MAX_DECK);
 	setDiscardDeck(G.discard[p2], MAX_DECK);
@@ -151,10 +151,10 @@ int main() {
     }
 
 
-    // for(i = 0; i < G.handCount[p1]; i++)
-    // {
-    // 	assert(Gcopy.hand[p1][i] == G.hand[p1][i]);
-    // }
+    for(i = 0; i < G.handCount[p1]; i++)
+    {
+    	assert(Gcopy.hand[p1][i] == G.hand[p1][i]);
+    }
 
     printf("TEST: player 2 hand is unchanged\n");
     for(i = 0; i < G.handCount[p2]; i++)
@@ -175,8 +175,6 @@ int main() {
     }
 	return 0;
 }
-
-
 
 
 int drawCard2(int player, struct gameState *state)

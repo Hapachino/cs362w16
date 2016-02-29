@@ -1,0 +1,6797 @@
+---------- Testing Card: Adventurer --------------
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Was player 0's discard pile unaffected?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 receive two treasure cards?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Was player 1's discard pile unaffected?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 receive two treasure cards?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 receive two treasure cards?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did the other player's deck change?
+Test Failed.
+
+---- 7606 Passed ---- 3394 Failed ------
+---------- Testing Adventurer Card Complete ------
+Coverage starts below:
+File 'dominion.c'
+Lines executed:26.54% of 648
+dominion.c:creating 'dominion.c.gcov'
+

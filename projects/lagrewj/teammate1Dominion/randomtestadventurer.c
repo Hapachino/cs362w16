@@ -46,9 +46,12 @@ int main() {
 		choice2 = rand()%2;
 		choice3 = rand()%2;
 		handPos = rand()%4;
-
+		printf("Initializing new game state...\n");
 		initializeGame(numPlayers, k, seed, &G);//initialize game with random number of players, cards, seed an new game 
-
+		printf("Created new game state...\n");
+		//
+		//int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
+		//   struct gameState *state);
 		//random values to state variables
 		G.deckCount[curPlayer] = rand()%MAX_DECK; 
 		G.discardCount[curPlayer] = rand()%MAX_DECK;
@@ -67,9 +70,9 @@ int main() {
 			if(G.hand[curPlayer][x] == copper || G.hand[curPlayer][x] == silver || G.hand[curPlayer][x] == gold) treasure++;
 			else if(G.hand[curPlayer][x] == 0) zero++; //new hand check
 		}
-
+		printf("checking that cardEffect returned okay...\n");
 		assert(r == 0);	//assert for cardEffect returned okay
-
+		printf("cardEffect returned okay.\n");
 		//treasure not increased by at least two, adventurer card failed
 		if(treasure < 2 && zero != G.handCount[curPlayer] && G.handCount[curPlayer] != 0) 
 		{
@@ -82,19 +85,25 @@ int main() {
 			printf("\n");
 
 		}
-
+		else{
+			printf("Treasure increased by 2. Test Passed.\n");
+		}
 		if(G.handCount[curPlayer] < 0) //negative hand count, then error occured 
 		{
 			printf("\tTest failed: hand count (i = %d)\n", i);
 			printf("\t\tG.handCount = %d\t handCount = %d\n\n", G.handCount[curPlayer], handCount);
 		}
-
+		else{
+			printf("Non-negative hand count. Test Passed.\n");
+		}
 		if(deckCount < G.deckCount[curPlayer]+2 && deckCount != G.deckCount[curPlayer] && G.deckCount[curPlayer] != 0)
 		{
 			printf("\tTest failed: deck count (i = %d)\n", i);
 			printf("\t\tG.deckCount = %d\t deckCount = %d\n\n", G.deckCount[curPlayer], deckCount);
 		}
-
+		else{
+			printf("Accurate deck count. Test Passed.\n");
+		}
 	}
 
 	printf("**Test complete.\n");

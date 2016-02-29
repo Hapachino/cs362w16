@@ -202,7 +202,11 @@ int main()
         if(handCoins(&G, thisPlayer) > coinCount)
             coinCount++;
         else
+        {
             discardCard(G.handCount[thisPlayer]-1, thisPlayer, &G, 0);
+            printfr("discarding!\n");
+        }
+
     }
 
 

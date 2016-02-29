@@ -1,0 +1,17 @@
+
+Starting tests for villageEffect
+---------------------------------
+Test numActions incremented appropriately... passed
+Test the copper at the top of the deck was drawn... passed
+Test that the hand only has one card in it... passed
+SUCCESS 3 of 3 tests passed.
+
+Starting tests for councilRoomEffect
+---------------------------------
+Test that the council room was dicarded...passed.
+Test the 4 cards were drawn as expected...passed
+Test that the hand now has a smithy...passed
+Test that the hand now has a village...passed
+Test that the hand now has a copper...passed
+Test that the hand now has a adventurer...passed
+SUCCESS 6 of 6 tests passed.

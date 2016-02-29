@@ -32,7 +32,7 @@ int main(){
     //Stage deck/discard/hand with at min 2 treasure cards.
     adventurer_pos = scenario_stage(pre, post, ((rand() % 3) + 4), ((rand() % 3) + 4));      
     //Have player 0 play adventurer card.  Would pass adventurer_pos if adventurer_play used handPos(bug).
-    adventurer_play(0, post);
+    adventurer_play(0, post, adventurer_pos);
     //Check results.
     errors = validate(pre, post, errors);
   }
@@ -75,7 +75,7 @@ int scenario_stage(struct gameState *pre, struct gameState *post, int treasure1,
   }
   
   //Randomize hand
-  handsize = rand() % MAX_HAND - 3;  //To allow room for 2 treasure cards and 1 adventurer card to be added.
+  handsize = rand() % (MAX_HAND - 3);  //To allow room for 2 treasure cards and 1 adventurer card to be added.
   post->handCount[0] = handsize;
   for (i = 0; i < handsize; i++){
      post->hand[0][i] = rand() % 27;
@@ -132,10 +132,6 @@ void basic_setup(struct gameState *pre, struct gameState *post){
   }
   if (initializeGame(2, k, ((rand() % 500) + 1), post) != 0) { printf( "Initalization of game failed.\n"); }
   
-  //Ensure player 0 has adventurer card in hand.
-  post->hand[0][5] = adventurer;
-  post->handCount[0]++;
-  
   //And create identical copies of gamestate before test.
   memcpy(pre, post, sizeof(struct gameState));
 }
@@ -189,15 +185,8 @@ int validate(struct gameState *pre, struct gameState *post, int errors){
     errors++;  
   }
   //Actually check if player drew 2 treasure cards (and played 1):
-  if (post->handCount[0] != pre->handCount[0] + 1 || 
-      post->hand[0][post->handCount[0] - 2] < 4 || post->hand[0][post->handCount[0] - 2] > 6 ||
-      post->hand[0][post->handCount[0] - 1] < 4 || post->hand[0][post->handCount[0] - 1] > 6){ 
-        printf("state.handCount failed. (expected=%d, actual=%d)", pre->handCount[0] + 1, post->handCount[0]);
-        if (post->handCount[0] >= 2){
-          printf(" last 2 in hand = %d,%d\n", post->hand[0][post->handCount[0] - 2], 
-	          post->hand[0][post->handCount[0] - 1]);
-        }
-	else { printf("\n"); }
+  if (post->handCount[0] != pre->handCount[0] + 1){ 
+    printf("state.handCount failed. (expected=%d, actual=%d)\n", pre->handCount[0] + 1, post->handCount[0]);
     errors++;  
   }
   if (pre->handCount[1] != post->handCount[1]){ 

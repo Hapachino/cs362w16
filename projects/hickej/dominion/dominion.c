@@ -891,7 +891,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 
     case great_hall:
-
+        playGreat_Hall(state);
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
@@ -1333,7 +1333,7 @@ int playCouncil_Room(struct gameState *state)
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
 	{
-	  if ( i == currentPlayer )
+	  if ( i != currentPlayer )
 	    {
 	      drawCard(i, state);
 	    }
@@ -1350,8 +1350,10 @@ int playSmithy(struct gameState *state)
 	{
 	  drawCard(currentPlayer, state);
 
-    return 0;
+
     }
+     return 0;
+
 }
 
 int playAdventurer(struct gameState *state)
@@ -1362,7 +1364,7 @@ int playAdventurer(struct gameState *state)
     int z = 0;
     int temphand[MAX_HAND];
 
-         while(drawntreasure<=2){
+         while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
 	}

@@ -1,247 +1,295 @@
-/**************************************************************************
-* CS 362-400 Assignment 4 
-* By:  Lynn Herrick
-* Date: 2/9/16
-* Description: Write a random testers for two Dominion cards, one of which 
-*       has to be the adventurer card. Check these random testers in.
-***************************************************************************/
-#include <stdlib.h>
-#include <assert.h>
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
-#include <math.h>  //for floor()
-#include <setjmp.h>
-#include <signal.h>
+/* Author: Kim McLeod
+ * Assignment: 4
+ * File: randomtestcard.c
+ *
+ *
+ * smithy - 	receives three cards
+ *		discards card in hand
+ *
+ */
+
+
+
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include <stdio.h>
 #include "rngs.h"
-
-//specific random test functions
-int checkVillage(struct gameState Test, int player);  //test oracle
-void segfault(int sig_num);
-
-//global vars
-jmp_buf skipPoint;	//used for keeping randomizing alive if signal
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <math.h>
 
 
-int main(){  //test generator
-	char testName[] = "Village";
-	int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-           sea_hag, tribute, smithy};
-	int i, currentPlayer, deckcount, discardcount, handcount;
-	struct gameState testState;
-	srand(time(NULL));
+#define TESTCARD "smithy"
 
-	printf("---------------- Testing %s card. ----------------\n", testName);
-	//amount of random tests -- similar to lecture
-	for(i=0; i<2000; i++){	
-		//set up proper preconditions and random input
-		initializeGame(2, kingdomCards, 1000, &testState);
-		currentPlayer = rand()%2;
-		deckcount = floor(Random()*MAX_DECK);		//from lecture
-		testState.deckCount[currentPlayer] = deckcount;
-		discardcount = floor(Random()*MAX_DECK);   //from lecture
-		testState.discardCount[currentPlayer] = discardcount;
-		handcount = floor(Random()*MAX_HAND);		//from lecture
-		testState.handCount[currentPlayer] = handcount;
-		printf("Random Variables: Test number = %d Current Player = %d; Deck Count = %d; Discard Count = %d; Hand Count = %d\n", i+1, currentPlayer, deckcount, discardcount, handcount);
-		checkVillage(testState, currentPlayer);
+int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed,
+		   struct gameState *state);
+
+int main() {
+
+    int i, error1 = 0, error2 = 0;
+    int handpos = 0;    
+    int seed = 2000;
+    int player = 0;
+    int numBefore;
+    int numAfter;
+    int bonus = 0;
+    int card = 0;
+    int numPlayers;
+
+	struct gameState G, testG;
+	int k[10] = {smithy, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, adventurer, council_room};
+
+	printf("---------------- Random Testing for %s Begin ----------------\n", TESTCARD);
+for(i = 0; i < seed; i++){
+	player = floor(Random() * 2);
+	numPlayers = floor(Random() * MAX_PLAYERS);
+	G.deckCount[player] = floor(Random() * MAX_DECK);
+	G.discardCount[player] = floor(Random() * MAX_DECK);
+	G.handCount[player] = floor(Random() * MAX_HAND);
+
+
+	// initialize a game state and player cards
+	initTestGame(numPlayers, k, seed, &G);
+
+
+	
+
+	/*************** TEST 1: User gets +3 cards ***********/
+	
+
+
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+	player = testG.whoseTurn;
+
+	// give player smithy card
+	gainCard(smithy,&testG,2,player);
+
+
+	// record number of cards before and after smithy is played
+	numBefore = numHandCards(&testG);
+	cardEffect(card, 0, 0, 0, &testG, handpos, &bonus);
+	numAfter = numHandCards(&testG);
+
+
+	endTurn(&testG);
+
+
+	// test passes if number of cards in hand is 3 more
+	// than start, minus one discarded
+	// this will fail due to alterations in the dominion.c code
+	if(numAfter != (numBefore + 3 - 1))
+	{	printf("Error 1 'User gains 3 cards' Expected: %d, Actual %d\n", (numBefore + 3 - 1), numAfter);
+		error1++;
+		
 	}
-	printf ("---------- Random Testing Complete -------------\n");
+
+
+
+
+
+	/*************** TEST 2: User discards card in hand ***********/
+	
+
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+	player = testG.whoseTurn;
+
+	// give player smithy card
+	gainCard(smithy,&testG,2,player);
+
+
+	// record number of cards before and after smithy is played
+	numBefore = numHandCards(&testG);
+	cardEffect(card, 0, 0, 0, &testG, handpos, &bonus);
+	numAfter = numHandCards(&testG);
+
+	endTurn(&testG);
+
+	// test passes if number of cards in hand is 3 more
+	// than start, minus one discarded
+	// this will fail due to alterations in the dominion.c code
+	if(&testG.discardCount[player] != &G.discardCount[player])
+	{	printf("Error 2 'User discards smithy card' Expected: %d, Actual: %d\n", &G.discardCount[player], &testG.discardCount[player]);
+		error2++;
+		
+	}
+
+
+
+    }
+
+
+	printf("\n >>>>> SUCCESS: Testing complete for %s <<<<<\n\n", TESTCARD);
+    
+
+	printf("Error 1 'User gains 3 cards' Failed %d of %d times\n", error1, seed); 
+	printf("Error 2 'User discards smithy card' Failed %d of %d times\n\n\n\n", error2, seed);
+
 	return 0;
 }
 
+// added my own game initialization to use with assignment 3
+int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed,
+		   struct gameState *state) {
 
-int checkVillage(struct gameState Clean, int player){
-	int i;
-	int p1, p2, pos, result;
-	int testNum = 0;
-	int testTreasureCount = 0;
-	int cleanTreasureCount = 0;
-	char cardTested[] = "Village";
-	struct gameState Test;
-	signal(SIGSEGV, segfault); // keeps alive if func causes segfault
+  int i;
+  int j;
+  int it;			
+  //set up random number generator
+  SelectStream(1);
+  PutSeed((long)randomSeed);
+  
+  //check number of players
+  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+    {
+      return -1;
+    }
 
-	//set the correct player as random current player (p1)
-	pos = -1;
-	if(player == 0){
-		p1 = player;
-		p2 = 1;
-	}
-	else{
-		p1 = player;
-		p2 = 0;
-	}
+  //set number of players
+  state->numPlayers = numPlayers;
 
-	memcpy (&Test, &Clean, sizeof(struct gameState));
+  //check selected kingdom cards are different
+  for (i = 0; i < 10; i++)
+    {
+      for (j = 0; j < 10; j++)
+        {
+	  if (j != i && kingdomCards[j] == kingdomCards[i])
+	    {
+	      return -1;
+	    }
+        }
+    }
 
-	//keeps test alive if signal, jmp in signal handler
-	if(setjmp(skipPoint) == 0){  
-		//test chosen function
-		result = cardEffect(village, 0, 0, 0, &Test, 0, 0);
-	}else{
-		goto tests;
-	}
 
-tests:
-	//print info from test case
-	printf("\n%d. Did player 1's hand change:\n", testNum);
-	if(Test.handCount[p1] > Clean.handCount[p1]){ //acount for discard of adventurer
-		printf("Passed. Hand count is %d > %d\n", Clean.handCount[p1], Test.handCount[p1]);
-	} 
-	else{  //fail
-		printf("Failed. Hand count is %d > %d\n", Clean.handCount[p1], Test.handCount[p1]);
-	}
-	testNum++;
-	printf("\n%d. Did player 2's hand change:\n", testNum);
-	if(Test.handCount[p2] == Clean.handCount[p2]){
-		printf("Passed.  Hand count is %d - 0 = %d", Clean.handCount[p2], Test.handCount[p2]);
-	}
-	else{	//fail
-		printf("Failed. Hand count is %d - 0 = %d", Clean.handCount[p2], Test.handCount[p2]);
-	}
-	testNum++;
-	printf("\n%d. Did player 1's deck change:\n", testNum);
-	if(Test.deckCount[p1] == Clean.deckCount[p1] - (Test.discardCount[p1]+2)){	//discards plus two treasure cards
-		printf("Passed. Deck count is %d - (%d + 2) = %d\n", Clean.deckCount[p1], Test.discardCount[p1],Test.deckCount[p1]);
-	}
-	else{	//fail
-		printf("Failed. Deck count is %d - (%d + 2) = %d\n", Clean.deckCount[p1], Test.discardCount[p1],Test.deckCount[p1]);
-	}
-	testNum++;
-	printf("\n%d. Did player 2's deck change - 0:\n", testNum);
-	if(Test.deckCount[p2] == Clean.deckCount[p2]){
-		printf("Passed. Deck count is %d - 0 = %d\n", Clean.deckCount[p2], Test.deckCount[p2]);
-	}
-	else{	//fail
-		printf("Passed. Deck count is %d - 0 = %d\n", Clean.deckCount[p2], Test.deckCount[p2]);
-	}
-	testNum++;
-	printf("\n%d. Did player 1's discard pile change:\n", testNum);
-	if(Test.discardCount[p1] >= Clean.discardCount[p1]-1){
-		printf("Passed. Discard count is %d - 1 <= %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
-	}
-	else{	//fail
-		printf("Failed. Discard count is %d - 1 <= %d\n", Clean.discardCount[p1], Test.discardCount[p1]);
-	}
-	testNum++;
-	printf("\n%d. Did player 2's discard pile change - 0:\n", testNum);
-	if(Test.discardCount[p2] == Clean.discardCount[p2]){
-		printf("Passed. Discard count is %d - 0 = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
-	}
-	else{	//fail
-		printf("Failed. Discard count is %d - 0 = %d\n", Clean.discardCount[p2], Test.discardCount[p2]);
-	}
-	testNum++;
-	printf("\n%d. Did the number of players change - 0:\n", testNum);
-	if(Test.numPlayers == Clean.numPlayers){
-		printf("Passed. Player count is %d - 0 = %d\n", Clean.numPlayers, Test.numPlayers);
-	}
-	else{	//fail
-		printf("Failed. Player count is %d - 0 = %d\n", Clean.numPlayers, Test.numPlayers);
-	}
-	testNum++;
-	printf("\n%d. Did the outpost played change - 0:\n", testNum);
-	if(Test.outpostPlayed == Clean.outpostPlayed){
-		printf("Passed. Outpost played is %d - 0 = %d\n", Clean.outpostPlayed, Test.outpostPlayed);
-	}
-	else{	//fail
-		printf("Failed. Outpost played is %d - 0 = %d\n", Clean.outpostPlayed, Test.outpostPlayed);
-	}
-	testNum++;
-	printf("\n%d. Did the outpost turn change - 0:\n", testNum);
-	if(Test.outpostTurn == Clean.outpostTurn){
-		printf("Passed. Outpost turn is %d = %d\n", Clean.outpostTurn, Test.outpostTurn);
-	}
-	else{	//fail
-		printf("Failed. Outpost turn is %d = %d\n", Clean.outpostTurn, Test.outpostTurn);
-	}
-	testNum++;
-	printf("\n%d. Did whose turn it is not chage:\n", testNum);
-	if(Test.whoseTurn == Clean.whoseTurn){
-		printf("Passed. Player's turn is %d = %d\n", Clean.whoseTurn, Test.whoseTurn);
-	}
-	else{	//fail
-		printf("Failed. Player turn is %d = %d\n", Clean.whoseTurn, Test.whoseTurn);
-	}
-	testNum++;
-	printf("\n%d. Did the phase change + 0':\n", testNum);
-	if(Test.phase == Clean.phase){
-		printf("Passed. Phase is %d + 0 = %d\n", Clean.phase, Test.phase);
-	}
-	else{	//fail
-		printf("Failed. Phase is %d + 0 = %d\n", Clean.phase, Test.phase);
-	}
-	testNum++;
-	printf("\n%d. Did the number of actions change + 0':\n", testNum);
-	if(Test.numActions == Clean.numActions){
-		printf("Passed. Numbers of actions is %d + 0 = %d\n", Clean.numActions, Test.numActions);
-	}
-	else{	//fail
-		printf("Failed. Phase is %d + 0 = %d\n", Clean.numActions, Test.numActions);
-	}
-	testNum++;
-	printf("\n%d. Did the coins change + 0':\n", testNum);
-	if(Test.coins == Clean.coins){
-		printf("Passed. Coins are %d + 0 = %d\n", Clean.coins, Test.coins);
-	}
-	else{	//fail
-		printf("Failed. Coins are %d + 0 = %d\n", Clean.coins, Test.coins);
-	}
-	testNum++;
-	printf("\n%d. Did the number of buys change + 0':\n", testNum);
-	if(Test.numBuys == Clean.numBuys){
-		printf("Passed. Number of buys is %d + 0 = %d\n", Clean.numBuys, Test.numBuys);
-	}
-	else{	//fail
-		printf("Failed. Number of buys is %d + 0 = %d\n", Clean.numBuys, Test.numBuys);
-	}
-	testNum++;
-	printf("\n%d. Did the played card count change + 1':\n", testNum);
-	if(Test.playedCardCount == Clean.playedCardCount + 1){
-		printf("Passed. Played card count is %d + 1 = %d\n", Clean.playedCardCount, Test.playedCardCount);
-	}
-	else{	//fail
-		printf("Failed. Played card count is %d + 1 = %d\n", Clean.playedCardCount, Test.playedCardCount);
-	}
-	testNum++;
-	printf("\n%d. Did the played 1 draw 2 treasure cards':\n", testNum);
-	for(i = 0; i < sizeof(Test.hand); i++){
-		if(Test.hand[p1][i] == gold || Test.hand[p1][i] == silver || Test.hand[p1][i] == copper){
-			testTreasureCount++;
+  //initialize supply
+  ///////////////////////////////
+
+  //set number of Curse cards
+  if (numPlayers == 2)
+    {
+      state->supplyCount[curse] = 10;
+    }
+  else if (numPlayers == 3)
+    {
+      state->supplyCount[curse] = 20;
+    }
+  else
+    {
+      state->supplyCount[curse] = 30;
+    }
+
+  //set number of Victory cards
+  if (numPlayers == 2)
+    {
+      state->supplyCount[estate] = 8;
+      state->supplyCount[duchy] = 8;
+      state->supplyCount[province] = 8;
+    }
+  else
+    {
+      state->supplyCount[estate] = 12;
+      state->supplyCount[duchy] = 12;
+      state->supplyCount[province] = 12;
+    }
+
+  //set number of Treasure cards
+  state->supplyCount[copper] = 60 - (7 * numPlayers);
+  state->supplyCount[silver] = 40;
+  state->supplyCount[gold] = 30;
+
+  //set number of Kingdom cards
+  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+    {
+      for (j = 0; j < 10; j++)           		//loop chosen cards
+	{
+	  if (kingdomCards[j] == i)
+	    {
+	      //check if card is a 'Victory' Kingdom card
+	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+		{
+		  if (numPlayers == 2){ 
+		    state->supplyCount[i] = 8; 
+		  }
+		  else{ state->supplyCount[i] = 12; }
 		}
-	}
-	for(i = 0; i < sizeof(Clean.hand); i++){
-		if(Clean.hand[p1][i] == gold || Clean.hand[p1][i] == silver || Clean.hand[p1][i] == copper){
-			cleanTreasureCount++;
+	      else
+		{
+		  state->supplyCount[i] = 10;
 		}
+	      break;
+	    }
+	  else    //card is not in the set choosen for the game
+	    {
+	      state->supplyCount[i] = -1;
+	    }
 	}
-	if(testTreasureCount == cleanTreasureCount + 2){
-		printf("Passed. Player 1 treasure count is %d + 2 = %d\n", cleanTreasureCount, testTreasureCount);
+
+    }
+
+  ////////////////////////
+  //supply intilization complete
+
+  //set player decks
+  // start all players with empty decks for the test games
+ 
+  for (i = 0; i < numPlayers; i++)
+    {
+      state->deckCount[i] = 0;
+      for (j = 0; j < 3; j++)
+	{
+	  state->deck[i][j] = estate;
+	  state->deckCount[i]++;
 	}
-	else{	//fail
-		printf("Failed. Played card count is %d + 2 = %d\n", cleanTreasureCount, testTreasureCount);
+      for (j = 3; j < 10; j++)
+	{
+	  state->deck[i][j] = copper;
+	  state->deckCount[i]++;		
 	}
-	testNum++;
-	
-	printf("\n-------Completed tests on the %s card.-------\n", cardTested);
-	
-	//assert(result == 0); //function ran
-	//assert(memcmp(&Clean, &Test, sizeof(struct gameState)) == 0); //no mismatch
+    }
 
-	return 0;
-} 
+  //shuffle player decks
+  for (i = 0; i < numPlayers; i++)
+    {
+      if ( shuffle(i, state) < 0 )
+	{
+	  return -1;
+	}
+    }
 
+  // set counts to 0
+  for (i = 0; i < numPlayers; i++)
+    {  
+      //initialize hand size to zero
+      state->handCount[i] = 0;
+      state->discardCount[i] = 0;
+    }
+  
+  //set embargo tokens to 0 for all supply piles
+  for (i = 0; i <= treasure_map; i++)
+    {
+      state->embargoTokens[i] = 0;
+    }
 
+  //initialize first player's turn
+  state->outpostPlayed = 0;
+  state->phase = 0;
+  state->numActions = 1;
+  state->numBuys = 1;
+  state->playedCardCount = 0;
+  state->whoseTurn = 0;
+  state->handCount[state->whoseTurn] = 0;
+  //int it; move to top
 
-/****************************************************************************************
-* Desc: ignores any sigal and continues with unit tests while showing what caused a
-*		signal to occur.
-* Parameters: int signal number
-****************************************************************************************/
-void segfault(int sig_num){
-	printf("------------ WARNING: signal issues start here  -----------");
-	printf("----cardEffect() DID NOT RETURN PROPERLY FOR THIS TEST-----");
-	longjmp(skipPoint, 0);  //since seg fault, this exits infinite handler
+  //Moved draw cards to here, only drawing at the start of a turn
+  //for (it = 0; it < 5; it++){
+  //  drawCard(state->whoseTurn, state);
+  //}
+
+  updateCoins(state->whoseTurn, state, 0);
+
+  return 0;
 }
+

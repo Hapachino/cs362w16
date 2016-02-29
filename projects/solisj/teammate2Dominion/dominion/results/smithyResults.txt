@@ -1,0 +1,32 @@
+==============================================
+    Beginning testing for playSmithy()
+==============================================
+---------------------------------------------------------------------------------------------------------------------------
+Testing that player[0] handCount has increased by 2...
+handCount = 2, Expected = 3
+Testing that player[0] playedCardCount has increased by 1..
+playedCardCount = 1, Expected = 1
+Checking that the smithy card was added to the played cards pile...
+Passed! Smithy card was found in played cards pile at position 0!
+Checking that smithy card is not in player[0]'s hand...
+Passsed! Smithy card was not found in the player's hand!
+Checking that the 3 cards added came from the player's own deck...
+Found gardens card in player[0]'s hand at position 0! Number of cards found: 1
+Found tribute card in player[0]'s hand at position 1! Number of cards found: 2
+cardCount = 2, Expected = 3
+---------------------------------------------------------------------------------------------------------------------------
+Testing that player[1] handCount has increased by 2...
+handCount = 2, Expected = 3
+Testing that player[1] playedCardCount has increased by 1..
+playedCardCount = 1, Expected = 1
+Checking that the smithy card was added to the played cards pile...
+Passed! Smithy card was found in played cards pile at position 0!
+Checking that smithy card is not in player[1]'s hand...
+Passsed! Smithy card was not found in the player's hand!
+Checking that the 3 cards added came from the player's own deck...
+Found gardens card in player[1]'s hand at position 0! Number of cards found: 1
+Found tribute card in player[1]'s hand at position 1! Number of cards found: 2
+cardCount = 2, Expected = 3
+---------------------------------------------------------------------------------------------------------------------------
+10 out of 14 tests passed!
+4 out of 14 tests failed!

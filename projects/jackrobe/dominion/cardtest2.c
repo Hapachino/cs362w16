@@ -173,10 +173,10 @@ void printDeck(int player, struct gameState *game) {
 
 
 
-int testAdventurer(struct gameState *state ){
+int testAdventurer(struct gameState *state, int currentPlayer ){
 
     //set some beginning vars
-    int currentPlayer = whoseTurn(state);
+    //int currentPlayer = whoseTurn(state);
     int beginHandCount = state->handCount[currentPlayer];
     int beginDeckCount = state->deckCount[currentPlayer];
     int beginDiscardCount = state->discardCount[currentPlayer];
@@ -197,7 +197,7 @@ int testAdventurer(struct gameState *state ){
     //printDeck(currentPlayer, state);
 
     //run adventurer
-    adventurerCard(state);
+    adventurerCard(state, currentPlayer);
     printf("PERFORMING DRAW TESTs-------------------------: \n");
     //Adventurer should draw two cards from the deck
     if(state->handCount[currentPlayer] != beginHandCount+2){
@@ -248,7 +248,7 @@ int testAdventurer(struct gameState *state ){
     assert(beginHandCount > 0);
 
     //run adventurer
-    adventurerCard(state);
+    adventurerCard(state, currentPlayer);
 
     //should add entire deck to discard,
     if (state->discardCount[currentPlayer] != beginDiscardCount+beginDeckCount){
@@ -325,7 +325,7 @@ int testAdventurer(struct gameState *state ){
     state->deckCount[currentPlayer] = 0;
 
     //run adventurer
-    adventurerCard(state);
+    adventurerCard(state, currentPlayer);
 
     //when the deck is 0, nothing should get discarded either
     if(state->discardCount[currentPlayer] > beginDiscardCount) {
@@ -365,7 +365,7 @@ int main(int argc, char** argv) {
 
     printf ("\n\nTESTING Adventurer CARD: ------------------ \n");
 
-    int testResult = testAdventurer(&G);
+    int testResult = testAdventurer(&G, currentPlayer);
     if( testResult == 0){
         printf ("testAdventurer: OK\n");
 

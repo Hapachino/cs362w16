@@ -1,0 +1,89 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2:**Unit test 1: updateCoins()
+        -:    3:**Written by: Tom Gariepy
+        -:    4:**CS 325 Winter 2016
+        -:    5:**NOTE: ideas taken from testUpdateCoins.c provided in class
+        -:    6:**Major changes from orignial: removed all instances of asserrt()
+        -:    7:*/
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:/*int shuffle(int player, struct gameState *state);*/
+        -:   17:
+        1:   18:int main(int argc, char const *argv[]) {
+        -:   19:    int i;
+        -:   20:    // int seed = srand(time(0));
+        1:   21:    int seed = 1000;
+        1:   22:    int numPlayer = 2;
+        1:   23:    int maxBonus = 10;
+        -:   24:    int p, r, handCount;
+        -:   25:    int bonus;
+        -:   26:    int k[10] = {adventurer, council_room, feast, gardens, mine
+        1:   27:               , remodel, smithy, village, baron, great_hall};
+        -:   28:    struct gameState G;
+        1:   29:    int maxHandCount = 5;
+        -:   30:
+        -:   31:    // arrays of all coppers, silvers, and golds
+        -:   32:    int coppers[MAX_HAND];
+        -:   33:    int silvers[MAX_HAND];
+        -:   34:    int golds[MAX_HAND];
+      501:   35:    for (i = 0; i < MAX_HAND; i++) {
+      500:   36:        coppers[i] = copper;
+      500:   37:        silvers[i] = silver;
+      500:   38:        golds[i] = gold;
+        -:   39:    }
+        -:   40:
+        1:   41:    printf ("TESTING updateCoins():\n");
+        -:   42:    // printf("Seed: %d\n", seed);
+        3:   43:    for (p = 0; p < numPlayer; p++) {
+       12:   44:        for (handCount = 1; handCount <= maxHandCount; handCount++) {
+      120:   45:            for (bonus = 0; bonus <= maxBonus; bonus++) {
+      110:   46:                printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
+      110:   47:                memset(&G, 23, sizeof(struct gameState));   // clear the game state
+      110:   48:                r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+      110:   49:                G.handCount[p] = handCount;                 // set the number of cards on hand
+      110:   50:                memcpy(G.hand[p], coppers, sizeof(int) * handCount); // set all the cards to copper
+      110:   51:                updateCoins(p, &G, bonus);
+        -:   52:
+      110:   53:                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
+      110:   54:                if (G.coins == handCount * 1 + bonus) {
+      110:   55:                	printf("Number of coins is correct\n");
+        -:   56:                } // check if the number of coins is correct
+        -:   57:                else {
+    #####:   58:                	printf("Number of coins is not correct\n");
+        -:   59:                }
+      110:   60:                memcpy(G.hand[p], silvers, sizeof(int) * handCount); // set all the cards to silver
+      110:   61:                updateCoins(p, &G, bonus);
+        -:   62:
+      110:   63:                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
+      110:   64:                if (G.coins == handCount * 2 + bonus){
+      110:   65:                	printf("Number of coins is correct\n");
+        -:   66:                } // check if the number of coins is correct
+        -:   67:                else {
+    #####:   68:                	printf("Number of coins is not correct\n");
+        -:   69:                }
+      110:   70:                memcpy(G.hand[p], golds, sizeof(int) * handCount); // set all the cards to gold
+      110:   71:                updateCoins(p, &G, bonus);
+      110:   72:                printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
+      110:   73:                if (G.coins == handCount * 3 + bonus){
+      110:   74:                	printf("Number of coins is correct\n");
+        -:   75:                } // check if the number of coins is correct
+        -:   76:                else {
+    #####:   77:                	printf("Number of coins is not correct\n");
+        -:   78:                }
+        -:   79:            }
+        -:   80:        }
+        -:   81:    }
+        -:   82:
+        1:   83:	return 0;
+        -:   84:}

@@ -30,8 +30,10 @@ new code
     }
 error:segfault
 
-Card Test 2: Feast
-this code hadn't been refactored by my partner so I have skipped this test
+Card Test 2: Salvager
+ The rules state If you have at least one card in your hand, then you must trash one.If you don't have a card in hand left to trash, you get no Coin, but still get the +1 Buy. The design of this card doesn't account for if a user chooses a card which isn't in their deck.
+error: Segmentation fault (core dumped)
+likely caused by whoseTurn accessing a bad game state or by discardCard, it segfaults before reporting any error even with several runs indicating that it's not the randomization aspect producing this segfault.
 
 Card Test3: Smithy
 altered function prototype to match teammates function

@@ -1386,7 +1386,7 @@ return 0;
 
 int playCouncil_room(int handPos, struct gameState *state) {
   int i, currentPlayer;
-  currentPlayer = whoseTurn(&state);
+  currentPlayer = 0;
 
   //+4 Cards
   for (i = 0; i < 4; i++) {

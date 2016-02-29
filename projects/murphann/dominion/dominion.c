@@ -671,7 +671,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card )
     {
     case adventurer:
-      playAdventurer(state);
+      playAdventurer(state, handPos);
 
     case council_room:
       //+4 Cards
@@ -1190,13 +1190,12 @@ int playSmithy(struct gameState *state, int handPos) {
   {
     drawCard(currentPlayer, state);
   }
-  state->numActions++;
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
   return 0;
 }
 
-int playAdventurer(struct gameState *state) {
+int playAdventurer(struct gameState *state, int handPos) {
 
   int temphand[MAX_HAND];// moved above the if statement
   int currentPlayer = whoseTurn(state);
@@ -1205,12 +1204,12 @@ int playAdventurer(struct gameState *state) {
   int z = 0;// this is the counter for the temp hand
 
   while(drawntreasure<2){
-    if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+    if (state->deckCount[currentPlayer] <=0){//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-    if (cardDrawn == copper || cardDrawn == village || cardDrawn == silver || cardDrawn == gold)
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
       drawntreasure++;
     else{
       temphand[z]=cardDrawn;
@@ -1222,15 +1221,15 @@ int playAdventurer(struct gameState *state) {
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
   }
+//discard card from hand
+discardCard(handPos, currentPlayer, state, 0);
 return 0;
 }
 
 int playGreat_Hall(struct gameState *state, int handPos){
   int currentPlayer = whoseTurn(state);
-  int nextPlayer = currentPlayer+1;
   //+1 Card
   drawCard(currentPlayer, state);
-  drawCard(nextPlayer, state);
   //+1 Actions
   state->numActions++;
 
@@ -1242,7 +1241,6 @@ int playGreat_Hall(struct gameState *state, int handPos){
 int playSea_Hag(struct gameState *state){
   int i=0;
   int currentPlayer = whoseTurn(state);
-  int nextPlayer = currentPlayer+1;
   for (i = 0; i < state->numPlayers; i++){
     if (i != currentPlayer){
       state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
@@ -1251,7 +1249,6 @@ int playSea_Hag(struct gameState *state){
       state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
     }
   }
-  shuffle(nextPlayer, state);
   return 0;
 }
 

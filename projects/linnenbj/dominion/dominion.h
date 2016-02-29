@@ -160,7 +160,7 @@ int playCardSmithy(struct gameState *state, int currentPlayer, int handPos);
  *    Always returns 0 when complete.
 */
 
-int playCardVillage(struct gameState *state, int currentPlayer);
+int playCardVillage(struct gameState *state, int currentPlayer, int handPos);
 /*  Plays the village card. Draws 1 card and adds 2 actions.
  *
  *  Params:

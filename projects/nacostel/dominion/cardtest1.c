@@ -66,7 +66,7 @@ int main() {
                  //save gamestate
                 memcpy(&test, &G, sizeof(struct gameState));
                 //call function to be tested 
-                cardEffect(adventurer, choice1, choice2, choice3, G, 0, &bonus);
+                cardEffect(adventurer, choice1, choice2, choice3, &G, 0, &bonus);
 
 #if (NOISY_TEST == 1)
                 //print results of hand and deck count check

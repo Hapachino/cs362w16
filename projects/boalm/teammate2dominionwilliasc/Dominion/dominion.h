@@ -130,18 +130,15 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
-/*
-int playAdventurer(struct gameState *state);
-int playSmithy(struct gameState *state, int handPos);
-int playVillage(struct gameState *state, int handPos);
-int playFeast(struct gameState *state, int choice1);
-int playCouncil_Room(struct gameState *state, int handPos);
-*/
 
-void playAdventurerCard(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int * temphand, int z);
-void playCouncilCard(struct gameState *state, int currentPlayer, int cardDrawn, int z, int handPos);
-void playSmithyCard(int currentPlayer, struct gameState *state, int handPos);
-void playVillageCard(int currentPlayer, struct gameState *state, int handPos);
-void playSalvagerCard(struct gameState *state, int choice1, int currentPlayer, int handPos);
+// Functions for the cards that were taken from the card switch and turned into individual functions.
+// Had to factor in all potential variables that were in the hand to ensure proper execution. Otherwise undeclareds and
+// other errors were rampant.
+
+int playAdventurer(struct gameState *state, int currentPlayer, int cardDrawn, int drawntreasure, int tempHand[], int z); // The adventurer is actually a pretty complicated card with a lot going on...
+int playCouncRoom(struct gameState *state, int currentPlayer, int handPos);
+int playMinion(struct gameState *state, int choice1, int choice2, int currentPlayer, int handPos); // Minion has two choices. These would be booleans in C++, but we are using 1 or 0 int here. Otherwise, it's not too different than other cards.
+int playSmithy(struct gameState *state, int currentPlayer, int handPos);
+int playVillage(struct gameState *state, int currentPlayer, int handPos);
 
 #endif

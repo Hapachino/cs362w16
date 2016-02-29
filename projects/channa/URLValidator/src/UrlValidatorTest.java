@@ -36,26 +36,102 @@ public class UrlValidatorTest extends TestCase {
       super(testName);
    }
 
-   
-   
    public void testManualTest()
    {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
-	   
-	   
+	   //System.out.println(urlVal.isValid("http://www.amazon.com:80/example?test=passed&result=true"));
    }
-   
    
    public void testYourFirstPartition()
    {
+	   String trueScheme = "http://";
+	   String trueAuthority = "www.amazon.com";
+	   String truePort = ":80";
+	   String truePath = "/example";
+	   String trueQuery = "?test=passed&result=true";
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
+	   String falseScheme = "1h2t1p://";
+	   String emptyScheme = "";
+	   
+	   String valid = trueScheme + trueAuthority + truePort + truePath + trueQuery;
+	   String invalid = falseScheme + trueAuthority + truePort + truePath + trueQuery;
+	   String empty = emptyScheme + trueAuthority + truePort + truePath + trueQuery;
+	   
+	   System.out.println("Testing Scheme Partition");
+	   
+	   // Valid
+	   if (urlVal.isValid(valid)) {
+		   System.out.println("VALID URL: " + valid + ", RETURNED VALID, TEST PASSED");
+		   
+	   }
+	   else {
+		   System.out.println("VALID URL: " + valid + ", RETURNED INVALID, TEST FAILED");
+	   }
+	   
+	   // Invalid
+	   if (urlVal.isValid(invalid)) {
+		   System.out.println("INVALID URL: " + invalid + ", RETURNED VALID, TEST FAILED");
+		   
+	   }
+	   else {
+		   System.out.println("INVALID URL: " + invalid + ", RETURNED INVALID, TEST PASSED");
+	   }
+	   
+	   // Empty
+	   if (urlVal.isValid(empty)) {
+		   System.out.println("EMPTY PART URL: " + empty + ", RETURNED VALID, TEST PASSED");
+		   
+	   }
+	   else {
+		   System.out.println("EMPTY PART URL: " + empty + ", RETURNED INVALID, TEST FAILED");
+	   }
    }
    
    public void testYourSecondPartition(){
+	   String trueScheme = "http://";
+	   String trueAuthority = "www.amazon.com";
+	   String truePort = ":80";
+	   String truePath = "/example";
+	   String trueQuery = "?test=passed&result=true";
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
+	   String falseAuthority = "!@#$%^&*(_).com";
+	   String emptyAuthority = "";
+	   
+	   String valid = trueScheme + trueAuthority + truePort + truePath + trueQuery;
+	   String invalid = trueScheme + falseAuthority + truePort + truePath + trueQuery;
+	   String empty = trueScheme + emptyAuthority + truePort + truePath + trueQuery;	   
+	   
+	   System.out.println("Testing Authority Partition");
+	   
+	   // Valid
+	   if (urlVal.isValid(valid)) {
+		   System.out.println("VALID URL: " + valid + ", RETURNED VALID, TEST PASSED");
+		   
+	   }
+	   else {
+		   System.out.println("VALID URL: " + valid + ", RETURNED INVALID, TEST FAILED");
+	   }
+	   
+	   // Invalid
+	   if (urlVal.isValid(invalid)) {
+		   System.out.println("INVALID URL: " + invalid + ", RETURNED VALID, TEST FAILED");
+		   
+	   }
+	   else {
+		   System.out.println("INVALID URL: " + invalid + ", RETURNED INVALID, TEST PASSED");
+	   }
+	   
+	   // Empty
+	   if (urlVal.isValid(empty)) {
+		   System.out.println("EMPTY PART URL: " + empty + ", RETURNED VALID, TEST FAILED");
+		   
+	   }
+	   else {
+		   System.out.println("EMPTY PART URL: " + empty + ", RETURNED INVALID, TEST PASSED");
+	   }
    }
-   
    
    public void testIsValid()
    {

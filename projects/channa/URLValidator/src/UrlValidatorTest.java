@@ -44,21 +44,25 @@ public class UrlValidatorTest extends TestCase {
    
    public void testYourFirstPartition()
    {
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   // Valid parts
 	   String trueScheme = "http://";
 	   String trueAuthority = "www.amazon.com";
 	   String truePort = ":80";
 	   String truePath = "/example";
 	   String trueQuery = "?test=passed&result=true";
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
+	   // Parts to test
 	   String falseScheme = "1h2t1p://";
 	   String emptyScheme = "";
 	   
+	   // Construct urls
 	   String valid = trueScheme + trueAuthority + truePort + truePath + trueQuery;
 	   String invalid = falseScheme + trueAuthority + truePort + truePath + trueQuery;
 	   String empty = emptyScheme + trueAuthority + truePort + truePath + trueQuery;
 	   
-	   System.out.println("Testing Scheme Partition");
+	   System.out.println("\nTesting Scheme Partition");
 	   
 	   // Valid
 	   if (urlVal.isValid(valid)) {
@@ -88,22 +92,27 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
-   public void testYourSecondPartition(){
+   public void testYourSecondPartition()
+   {
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   // Valid parts
 	   String trueScheme = "http://";
 	   String trueAuthority = "www.amazon.com";
 	   String truePort = ":80";
 	   String truePath = "/example";
 	   String trueQuery = "?test=passed&result=true";
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
+	   // Parts to test
 	   String falseAuthority = "!@#$%^&*(_).com";
 	   String emptyAuthority = "";
 	   
+	   // Construct urls
 	   String valid = trueScheme + trueAuthority + truePort + truePath + trueQuery;
 	   String invalid = trueScheme + falseAuthority + truePort + truePath + trueQuery;
 	   String empty = trueScheme + emptyAuthority + truePort + truePath + trueQuery;	   
 	   
-	   System.out.println("Testing Authority Partition");
+	   System.out.println("\nTesting Authority Partition");
 	   
 	   // Valid
 	   if (urlVal.isValid(valid)) {
@@ -123,7 +132,7 @@ public class UrlValidatorTest extends TestCase {
 		   System.out.println("INVALID URL: " + invalid + ", RETURNED INVALID, TEST PASSED");
 	   }
 	   
-	   // Empty
+	   // Empty (authority is the only part that cannot be empty)
 	   if (urlVal.isValid(empty)) {
 		   System.out.println("EMPTY PART URL: " + empty + ", RETURNED VALID, TEST FAILED");
 		   

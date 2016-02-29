@@ -673,13 +673,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-
-	/* BUG INTRODUCED */
-	//if (cardDrawn == silver || cardDrawn == gold) // BUG INTRODUCED
-	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-	  //drawntreasure = drawntreasure + 2; // BUG INTRODUCED
-	  drawntreasure++;
-
+	if (cardDrawn == silver || cardDrawn == gold)
+	  drawntreasure = drawntreasure + 2;
 	else{
 	  temphand[z]=cardDrawn;
 	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
@@ -840,23 +835,18 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  drawCard(currentPlayer, state);
 	}
 	
-      /* BUG INTRODUCED */
-	  //drawCard(currentPlayer+1, state); // BUG INTRODUCED
-
+	  drawCard(currentPlayer+1, state);
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
-
       return 0;
 		
     case village:
       //+1 Card
       drawCard(currentPlayer, state);
 
-      /* BUG INTRODUCED */
-      //if (handPos == (state->handCount[currentPlayer] - 1)) //+3 Actions // BUG INTRODUCED
-		//state->numActions = state->numActions + 3; // BUG INTRODUCED
-
-      //else //+2 Actions // BUG INTRODUCED
+      if (handPos == (state->handCount[currentPlayer] - 1)) //+3 Actions
+		state->numActions = state->numActions + 3;
+      else //+2 Actions
 		state->numActions = state->numActions + 2;
 			
       //discard played card from hand
@@ -914,20 +904,16 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       
       return 0;
 		
-
     case great_hall:
       //+1 Card
       drawCard(currentPlayer, state);
-
-      /* BUG INTRODUCED */
-	  //state->numActions = state->numActions + 2; // BUG INTRODUCED
-      state->numActions++;
-
+			
+	  state->numActions = state->numActions + 2;
+			
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
 		
-
     case minion:
       //+1 action
       state->numActions++;

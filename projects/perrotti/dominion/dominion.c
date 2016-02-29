@@ -1276,7 +1276,7 @@ int playAdventurer(struct gameState *state) {
     int currentPlayer = whoseTurn(state); // Determine current player
     int cardDrawn; // Stores info on card drawn
     
-    while(drawntreasure <= 2) {
+    while(drawntreasure < 2) {
         //if the deck is empty we need to shuffle discard and add to deck
         if (state->deckCount[currentPlayer] <1){
           shuffle(currentPlayer, state);
@@ -1284,7 +1284,7 @@ int playAdventurer(struct gameState *state) {
         drawCard(currentPlayer, state);
         //top card of hand is most recently drawn card.
         cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
-        if (cardDrawn == copper || cardDrawn == silver) {
+        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
             drawntreasure++;
         }
         else {
@@ -1296,7 +1296,7 @@ int playAdventurer(struct gameState *state) {
     }
     
     // Loop through all cards in temphand
-    while(z-1>0) {
+    while(z-1>=0) {
         // discard all cards in play that have been drawn
         state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; 
         z=z-1;
@@ -1309,9 +1309,8 @@ int playSmithy(struct gameState *state, int handPos) {
     
     // +3 Cards
     int i;
-    for (i = 0; i <= 3; i++) {
+    for (i = 0; i < 3; i++) {
         drawCard(currentPlayer, state);
-        drawCard(2, state);
 	}
 			
     // discard card from hand
@@ -1324,10 +1323,10 @@ int playVillage(struct gameState *state, int handPos) {
     int currentPlayer = whoseTurn(state); // Determine current player
     
     //+1 Card
-    drawCard(1, state);
+    drawCard(currentPlayer, state);
             
     //+2 Actions
-    state->numActions = state->numActions + 5;
+    state->numActions = state->numActions + 2;
             
     //discard played card from hand
     discardCard(handPos, currentPlayer, state, 0);
@@ -1339,7 +1338,7 @@ int playGreatHall(struct gameState *state, int handPos) {
     int currentPlayer = whoseTurn(state); // Determine current player
     
     //+1 Card
-    drawCard(currentPlayer = 1, state);
+    drawCard(currentPlayer, state);
 			
     //+1 Actions
     state->numActions++;
@@ -1364,7 +1363,7 @@ int playCouncilRoom(struct gameState *state, int handPos) {
 			
     // Each other player draws a card
     for (i = 0; i < state->numPlayers; i++) {
-	    if ( i == currentPlayer ) {
+	    if ( i != currentPlayer ) {
             drawCard(i, state);
 	    }
 	}

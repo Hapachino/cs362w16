@@ -1,23 +1,28 @@
-﻿Group Members: Brandon Gipson, Stephen Heng, and Joshua Homann
+﻿CS 362, Winter 2016
+Project Part A
+Group Members: Brandon Gipson, Stephen Heng, and Joshua Homann
 
 
 Explain testIsValid Function of UrlValidator test code. 
-It uses the various object pieces to create urls inside a loop. It then passes the created urls to the isValid function and compares its results to the test oracle. Next it repeats these two steps until there are no further combinations of url parts to pair.
+It uses the various object pieces to create urls inside a loop. It then passes the created urls to the isValid function and compares its results to the test oracle. Next it repeats these two steps until there are no further combinations of url parts to pair. It falls under the UrlValidatorTest class and checks to see if a URL address is valid.
 
 
 Total number of urls being tested: Somewhere in the realm of 35,910 if we don’t count the 
-testUrlPathOptions. At least these are the parts created
-by the test, however, you can add whatever you want
-to the part objects if you want to test more.
+testUrlPathOptions. It results in types of 9 schemes, 19  authority,7 port, 10 path and 3 query checks which comes in at 35,910 URL combinations. At least these are the parts created by the test, however, you can add whatever you want to the part objects if you want to test more.
 How those urls are built: scheme+authority+port+path+query. In the test function it loops   
                                             through an object that contains other objects that form the pieces
                                             of the url. It appends each piece to the testBuffer and expected
         from what I can tell. The buffer is then stringified before being passed
-        to the urVal.isValid function.
-Example of valid url: http://www.google.com
+        to the urVal.isValid function .
+Example of valid url: http://www.google.com and http://www.google.com/
+schemes: http , https
+authority: www.google.com , go.com
+port: :80 , :65535
+path: /test1 , /t123
+query: ?action=view , ?action=edit&mode=up
+
+
 Example of invalid url: ://aaa:-1/..
-
-
 
 
 Do you think that a real world test (URL Validator's testIsValid() test in this case) is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines. 

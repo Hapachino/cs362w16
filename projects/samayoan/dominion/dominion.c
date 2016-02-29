@@ -656,7 +656,7 @@ int smithyEffect(int handPos, int currentPlayer, struct gameState *state){
 	int i;
 
 	//+3 Cards
-    for (i = 0; i < 3; ++i)
+    for (i = 0; i < 3; i++)
 	{
         drawCard(currentPlayer, &state);
     }
@@ -679,7 +679,7 @@ int adventurerEffect(int currentPlayer, struct gameState *state){
         }
         drawCard(currentPlayer, state);
         //top card of hand is most recently drawn card.
-        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]=copper;
+        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
           drawntreasure++;
         else{
@@ -709,23 +709,22 @@ int cutpurseEffect(int handPos, int currentPlayer, struct gameState *state){
 	  if (i != currentPlayer)
 	    {
 	      for (j = 0; j < state->handCount[i]; j++)
-		{
-		  if (state->hand[i][j] == gold)
-		    {
-		      discardCard(j, i, state, 0);
-		      break;
-		    }
-		  if (j == state->handCount[i])
-		    {
-		      for (k = 0; k < state->handCount[i]; k++)
-			{
-			  if (DEBUG)
-			    printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
-			}
-		      break;
-		    }
-		}
-
+            {
+              if (state->hand[i][j] == copper)
+                {
+                  discardCard(j, i, state, 0);
+                  break;
+                }
+              if (j == state->handCount[i] -1)
+                {
+                  for (k = 0; k < state->handCount[i]; k++)
+                {
+                  if (DEBUG)
+                    printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
+                }
+                  break;
+                }
+            }
 	    }
 
 	}
@@ -763,7 +762,7 @@ int salvagerEffect(int choice1, int handPos, int currentPlayer, struct gameState
 	  //gain coins equal to trashed card
 	  state->coins = state->coins + getCost( handCard(choice1, state) );
 	  //trash card
-	  discardCard(choice1, currentPlayer, state, 1);
+	  discardCard(choice1, currentPlayer, state, 0);
 	}
 
     //discard card
@@ -1270,7 +1269,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     }
 
   //set played card to -1
-  state->hand[currentPlayer][handPos] = -1;
+  state->hand[currentPlayer][handPos] = 99;
 
   //remove card from player's hand
   if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
@@ -1365,4 +1364,3 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 
 //end of dominion.c
-

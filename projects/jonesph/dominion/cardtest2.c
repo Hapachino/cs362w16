@@ -29,7 +29,7 @@ int testAdventurerCard(int player, struct gameState *after)
 	{
 		if (before.discardCount[player] == 0 && before.deckCount[player] == 0) 
 		{
-			printf("The Adventurer card didn't work properly. \n");
+			printf("The discard count and deck counts didn't = 0. \n");
 //			assert(checkVal == -1);
 			return 1;
 		}
@@ -59,7 +59,7 @@ int testAdventurerCard(int player, struct gameState *after)
 
 	if (memcmp(&before, after, sizeof(struct gameState)) != 0)
 	{
-		printf("The Adventurer card didn't work properly. \n");
+		printf("The memory was different before and after. \n");
 	}
 //	assert(memcmp(&before, after, sizeof(struct gameState)) == 0);
 	if (initialHand == after->handCount[player] - 2)	

@@ -441,7 +441,7 @@ int scoreFor (int player, struct gameState *state) {
     }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };
@@ -644,7 +644,7 @@ int getCost(int cardNumber)
 }
 int smith(struct gameState *state, int handPos, int currentPlayer){
 	int i;
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -662,7 +662,7 @@ int adven(struct gameState *state, int handPos, int currentPlayer, int drawntrea
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == silver || cardDrawn == gold)
+	if (cardDrawn == silver || cardDrawn == gold || cardDrawn == copper)
 	  drawntreasure++;
 	else{
 	  temphand[z]=cardDrawn;
@@ -689,7 +689,7 @@ int council(struct gameState *state, int handPos, int currentPlayer){
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
 	{
-	  if ( i = currentPlayer )
+	  if ( i != currentPlayer )
 	    {
 	      drawCard(i, state);
 	    }
@@ -710,13 +710,13 @@ int vill(struct gameState *state, int handPos, int currentPlayer){
 	return 0;
 }
 int stew(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int currentPlayer){
-      if (choice1 == 2)
+      if (choice1 == 1)
 	{
 	  //+2 cards
 	  drawCard(currentPlayer, state);
 	  drawCard(currentPlayer, state);
 	}
-      else if (choice1 == 1)
+      else if (choice1 == 2)
 	{
 	  //+2 coins
 	  state->coins = state->coins + 2;

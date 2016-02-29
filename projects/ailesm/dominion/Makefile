@@ -50,6 +50,39 @@ interface.o: interface.h interface.c
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+	
+testRandom: testRandom.c dominion.o rngs.o
+	gcc -o testRandom -g  testRandom.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard: randomtestcard.c dominion.o rngs.o
+	gcc -o randomtestcard -g  randomtestcard.c dominion.o rngs.o $(CFLAGS)
+
+runrandomtestcard: randomtestcard
+	./randomtestcard > /dev/null
+	touch randomtestcard.out
+	gcov dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+	gcov -b dominion.c >> randomtestcard.out
+	cat dominion.c.gcov >> randomtestcard.out
+	./randomtestcard  >> randomtestcard.out
+
+randomtestcard.out:
+	make clean; make randomtestcard; make runrandomtestcard;
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+runrandomtestadventurer: randomtestadventurer
+	./randomtestadventurer > /dev/null
+	touch randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	./randomtestadventurer  >> randomtestadventurer.out
+
+randomtestadventurer.out:
+	make clean; make randomtestadventurer; make runrandomtestadventurer;
 
 unittestresults.out:
 	make clean; make tests; make runtests;

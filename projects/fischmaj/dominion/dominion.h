@@ -5,6 +5,7 @@
 
 #define MAX_HAND 500
 #define MAX_DECK 500
+#define NUMCARDTYPES 27 //27 different types of cards
 
 #define MAX_PLAYERS 4
 

@@ -1,0 +1,58 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:   Minion failed to record coins correctly 
+
+Class:  Serious bug 
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:   2/21/2016        
+Reported By:   Todd Waddell
+Email: waddelto@oregonstate.edu
+
+
+Product:   Dominion/Minion      Version:
+Platform:   C                    Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Yes 
+
+Description
+===========
+On 5000 tests, Minion faield to record coins correctly 5000 times.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Run Minion with path 1 selected.  Track bonus coins that should be
+granted.
+
+
+Expected Results
+----------------
+Minon path 1 should give the current player two bonus coins.
+
+
+Actual Results
+--------------
+Bonus coins are not credited to current player's status for the current 
+turn.
+
+
+Workarounds
+-----------
+None
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+This is a problem with how minion records coins.  Card records them
+directly to state->coins++.  To be properly recorded, they should be added
+to bonus coins. 
+

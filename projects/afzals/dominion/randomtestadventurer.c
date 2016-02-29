@@ -51,7 +51,7 @@ int main()
 		
 		memcpy(&testG, &G, sizeof(struct gameState));
 		
-	t = adventurerCard(&testG, 0);
+	t = play_adventurer(&testG, 0);
 	assert(t == 0);
 	
 	if(G.handCount[G.whoseTurn] + 2 != testG.handCount[testG.whoseTurn]){

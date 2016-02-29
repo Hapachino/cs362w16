@@ -657,6 +657,7 @@ int adventurerEffect(int currentPlayer, int drawntreasure, int cardDrawn, int te
 		else {
 			temphand[z] = cardDrawn;
 			state->handCount[currentPlayer]--;
+			z++;
 		}
 	}
 	while (z - 1 >= 0) {
@@ -670,7 +671,7 @@ int adventurerEffect(int currentPlayer, int drawntreasure, int cardDrawn, int te
 int smithyEffect(int currentPlayer, struct gameState *state, int handpos) {
 	int i = 0;
 	// add three cards
-	for (i = 0; i <= 3; i++) {
+	for (i = 0; i < 3; i++) {
 		drawCard(currentPlayer, state);
 	}
 
@@ -685,7 +686,7 @@ int villageEffect(int currentPlayer, struct gameState *state, int handpos) {
 	drawCard(currentPlayer, state);
 
 	// add two actions
-	state->numActions = state->numActions++;
+	state->numActions = state->numActions + 2;
 
 	// discard played card from hand
 	discardCard(handpos, currentPlayer, state, 0);
@@ -707,7 +708,7 @@ int remodelEffect(int currentPlayer, int choice1, int choice2, struct gameState 
 	discardCard(handpos, currentPlayer, state, 0);
 
 	// discard trashed card
-	for (i = 1; i < state->handCount[currentPlayer]; i++) {
+	for (i = 0; i < state->handCount[currentPlayer]; i++) {
 		if (state->hand[currentPlayer][i] == j) {
 			discardCard(i, currentPlayer, state, 0);
 			break;
@@ -722,7 +723,6 @@ int greatHallEffect(int currentPlayer, struct gameState *state, int handpos) {
 	drawCard(currentPlayer, state);
 
 	// add one action
-	state->numActions++;
 	state->numActions++;
 
 	// discard card from hand

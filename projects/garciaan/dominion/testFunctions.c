@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <assert.h>
 
 /****************************************************
 * everything in the default init except does not draw 
@@ -105,6 +106,11 @@ int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed, struct ga
      state->deck[i][j] = copper;
      state->deckCount[i]++;   
     }
+
+  }
+  for (i = 0; i < numPlayers; i++){  
+    state->handCount[i] = 0;
+    state->discardCount[i] = 0;
   }
 
   //shuffle player decks
@@ -472,15 +478,12 @@ int countTreasures(int player, struct gameState *state){
   int money = 0;
   while(i < numHandCards(state)){
     if (handCard(i, state) == copper){
-      playCard(i, -1, -1, -1, state);
       money++;
     }
     else if (handCard(i, state) == silver){
-      playCard(i, -1, -1, -1, state);
       money += 2;
     }
     else if (handCard(i, state) == gold){
-      playCard(i, -1, -1, -1, state);
       money += 3;
     }
     i++;
@@ -539,7 +542,7 @@ int checkHand(int orig_hand_count, int offset, int player, struct gameState *sta
 
 /****************************************************
 * Checks for card removal from game, deck decrementing,
-* and accidental discarding. 
+* and accidental discarding after doing a drawCard
 ****************************************************/
 int checkDeck(int player, struct gameState *previousState, struct gameState *state){
   int deck_count_err = 0;
@@ -547,9 +550,12 @@ int checkDeck(int player, struct gameState *previousState, struct gameState *sta
   //Checks if card is removed from game / trashed
   if (totalDeckCount(player,previousState) != totalDeckCount(player,state)){
     deck_count_err = 1;
+    //printf("Card removed/trashed\n");
   }      
   //Checks if drawable deck is decremented accounting for reshuffle
-  if (numDiscards(player,previousState) == (totalDeckCount(player,previousState) - numHandCards(previousState)) && numDiscards(player,previousState) > 0){
+  // If discards == totalcards - hand mean discards == deck which implies a need for reshuffle
+  //if (numDiscards(player,previousState) == (totalDeckCount(player,previousState) - numHandCards(previousState)) && numDiscards(player,previousState) > 0){
+  if (numDeck(player,previousState) == 0 && numDiscards(player,previousState) > 0){
     previous_deck_count = numDiscards(player,previousState); //discards become new deck
   }
   else {
@@ -557,12 +563,14 @@ int checkDeck(int player, struct gameState *previousState, struct gameState *sta
   }
   if ((previous_deck_count - 1) != numDeck(player,state)){
     deck_count_err = 1;
+    //printf("Count decrement error\n");
   } 
   //Check to see if deck was shuffled when all card in discards
   if (numDiscards(player,previousState) == (totalDeckCount(player,previousState) - numHandCards(previousState)) && numDiscards(player,previousState) > 0){
     //if the discard pile is still 0 after drawing
     if (numDiscards(player,state) != 0 || numDeck(player,state) == 0){
       deck_count_err = 1;
+      //printf("Discard pile reshuffle error\n");
     }
   }
 
@@ -590,15 +598,25 @@ void resetError(){
 }
 
 /****************************************************
-* Checks for card removal from game, deck decrementing,
-* and accidental discarding. 
+* checks error flag, prints necessary statement 
 ****************************************************/
 void printResults(){
   if (ERROR != 0){
-    printf("\t- RESULT: FAIL\n\n");
+    printf("\t- RESULT: " KRED " FAIL <<<<<<<<<<<<<<<" RESET "\n\n");
   }
   else {
-    printf("\t- RESULT: PASS\n\n");
+    printf("\t- RESULT: " KGRN " PASS " RESET "\n\n");
+  }
+}
+/****************************************************
+* checks error flag, prints necessary statement
+****************************************************/
+void printRandomTestResults(int seed, char *msg){
+  if (ERROR != 0){
+    printf("- FAIL - SEED: %d - %s\n", seed, msg);
+  }
+  else {
+    printf("- PASS - SEED: %d - %s\n", seed, msg);
   }
 }
 
@@ -607,9 +625,9 @@ void printResults(){
 ****************************************************/
 void printDeck(struct gameState *state, int player){
   int i;
-  printf("\nNum Cards in Deck: %d\n",state->deckCount[player]);
+  printf("\n%d: Num Cards in Deck: %d\n",player,state->deckCount[player]);
   for (i = 0; i < state->deckCount[player]; i++){
-    printf("CARD %d: %d\n",i+1,state->deck[player][i]);
+    printf("%d: CARD %d: %s\n",player,i+1,getCardName(state->deck[player][i]));
   }
 }
 
@@ -618,9 +636,9 @@ void printDeck(struct gameState *state, int player){
 ****************************************************/
 void printHand(struct gameState *state, int player){
   int i;
-  printf("\nNum Cards in Hand: %d\n",state->handCount[player]);
+  printf("\n%d: Num Cards in Hand: %d\n",player,state->handCount[player]);
   for (i = 0; i < state->handCount[player]; i++){
-    printf("CARD %d: %d\n",i+1,state->hand[player][i]);
+    printf("%d: CARD %d: %s\n",player,i+1,getCardName(state->hand[player][i]));
   }
 }
 
@@ -629,9 +647,9 @@ void printHand(struct gameState *state, int player){
 ****************************************************/
 void printDiscard(struct gameState *state, int player){
   int i;
-  printf("\nNum Cards in Discard: %d\n",state->discardCount[player]);
+  printf("\n%d: Num Cards in Discard: %d\n",player,state->discardCount[player]);
   for (i = 0; i < state->discardCount[player]; i++){
-    printf("CARD %d: %d\n",i+1,state->discard[player][i]);
+    printf("%d: CARD %d: %s\n",player,i+1,getCardName(state->discard[player][i]));
   }
 }
 
@@ -641,6 +659,7 @@ void printDiscard(struct gameState *state, int player){
 int contains(int* array, int size, int val){
   int i;
   for (i = 0; i < size; i++){
+    printf("Card: %d Val: %d\n",array[i],val);
     if (array[i] == val){
       return 1;
     }
@@ -670,19 +689,152 @@ void resetCards(struct gameState *state, int player){
 
   state->playedCardCount = 0;
 }
+
+int testAdventurer(struct gameState *state, int player, int handPos){
+  int i;
+  int coin_count = 0;
+  struct gameState previousState;
+
+  previousState = *state;
+  for (i = 0; i < state->deckCount[player]; i++){
+    if (state->deck[player][i] >= copper && state->deck[player][i] <= gold){
+      coin_count++;
+    }
+  }
+  for (i = 0; i < state->discardCount[player]; i++){
+    if (state->discard[player][i] >= copper && state->discard[player][i] <= gold){
+      coin_count++;
+    }
+  }
+
+  if (playCard(handPos, -1, -1, -1, state) == -1){
+    return -1;
+  }
+  
+  if (coin_count == 1){
+    checkError((previousState.handCount[player]) == state->handCount[player]); //gain 1 coins, play the adventurer
+  }
+  else if (coin_count > 1){
+    checkError((previousState.handCount[player] + 1) == state->handCount[player]); //gain 2 coins, play the adventurer
+  }
+  else {
+    checkError((previousState.handCount[player] - 1) == state->handCount[player]);
+  }
+
+
+  return 0;
+}
+
+int testSmithy(struct gameState *state, int player, int handPos){
+  struct gameState previousState;
+  int total_cards = 0;
+  int current_cards = 0;
+
+  previousState = *state;
+
+  if (playCard(handPos, -1, -1, -1, state) == -1){
+    return -1;
+  }
+  
+  total_cards = previousState.deckCount[player] + previousState.discardCount[player];
+  current_cards = state->deckCount[player] + state->discardCount[player];
+  //checks for if enough cards in the discard and deck together, this will almost never 
+  // get called unless all the cards in hand or have been trashed for some reason
+  if (total_cards >= 3){ 
+    checkError(total_cards - 3 == current_cards); //3 cards went to hand
+    checkError(previousState.handCount[player] + 2 == state->handCount[player]);
+  }
+  else if (total_cards == 2){
+    checkError(total_cards - 2 == current_cards); //2 cards went to hand
+    checkError(previousState.handCount[player] + 1 == state->handCount[player]);
+  }
+  else if (total_cards == 1){
+    checkError(total_cards - 1 == current_cards); //1 card went to hand
+    checkError(previousState.handCount[player] == state->handCount[player]); //played 1, gained 1
+  }
+  else {
+    checkError(total_cards == current_cards);
+    checkError(previousState.handCount[player] - 1 == state->handCount[player]);
+  }
+
+
+
+
+  return 0;
+}
+
+char* getCardName(int card){
+  if (card == 0)
+    return "Curse";
+  else if (card == 1)
+    return "Estate";
+  else if (card == 2)
+    return "Duchy";
+  else if (card == 3)
+    return "Provine";
+  else if (card == 4)
+    return "Copper";
+  else if (card == 5)
+    return "Silver";
+  else if (card == 6)
+    return "Gold";
+  else if (card == 7)
+    return "Adventurer";
+  else if (card == 8)
+    return "Council Room";
+  else if (card == 9)
+    return "Feast";
+  else if (card == 10)
+    return "Gardens";
+  else if (card == 11)
+    return "Mine";
+  else if (card == 12)
+    return "Remodel";
+  else if (card == 13)
+    return "Smithy";
+  else if (card == 14)
+    return "Village";
+  else if (card == 15)
+    return "Baron";
+  else if (card == 16)
+    return "Great Hall";
+  else if (card == 17)
+    return "Minion";
+  else if (card == 18)
+    return "Steward";
+  else if (card == 19)
+    return "Tribute";
+  else if (card == 20)
+    return "Ambassador";
+  else if (card == 21)
+    return "Cutpurse";
+  else if (card == 22)
+    return "Embargo";
+  else if (card == 23)
+    return "Outpost";
+  else if (card == 24)
+    return "Salvager";
+  else if (card == 25)
+    return "Sea Hag";
+  else if (card == 26)
+    return "Treasure Map";
+  else
+    return "ERROR";
+
+}
 /****************************************************
 * SIGNAL HANDLERS
 ****************************************************/
 void timeout(int signum){
-  printf("\t- RESULT: FAIL - TIMEOUT - EXITING...\n\n");
-    printf(">>>>>>>>>>> FAILURE: Testing incomplete <<<<<<<<<<<\n\n");
+  printf("- RESULT: FAIL - TIMEOUT - EXITING...\n\n");
+    printf(KRED ">>>>>>>>>>> FAILURE: Testing incomplete <<<<<<<<<<<\n\n" RESET);
 
   exit(0);
 }
 
 void handle_segfault(int signum){
-  printf("\t- RESULT: FAIL - SEGFAULT - EXITING...\n\n");
-  printf(">>>>>>>>>>> FAILURE: Testing incomplete <<<<<<<<<<<\n\n");
+  printf("- RESULT: FAIL - SEGFAULT - EXITING...\n\n");
+  printf(KRED ">>>>>>>>>>> FAILURE: Testing incomplete <<<<<<<<<<<\n\n" RESET);
 
   exit(0);
 }

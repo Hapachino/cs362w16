@@ -1,0 +1,56 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:    Minion Path 2 Current player didn't discard hand
+
+Class:  Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:   2/21/16        
+Reported By:   Todd Waddell
+Email:      waddelto@oregonstate.edu
+
+
+Product:     Dominon/Minion     Version:
+Platform:                       Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Yes 
+
+Description
+===========
+On 5000 tests of Minion-Path 2, minion failed to properly discard the
+current player's hand every time.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Run Minion card with path 2
+
+
+Expected Results
+----------------
+Minon should discard current hand and draw four new cards
+
+
+
+Actual Results
+--------------
+Minon discard routine trashes hand
+
+
+Workarounds
+-----------
+none
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+
+

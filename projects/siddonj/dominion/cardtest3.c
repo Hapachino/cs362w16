@@ -50,7 +50,7 @@ void testPlayRemodel() {
   testGame->hand[testGame->whoseTurn][1] = adventurer;
   int gardensDiscardCount = 0;
 
-  playRemodel(testGame, testGame->whoseTurn, 0, 1, 1);      // Trying to buy gardens by trashing a adventurer.
+  playRemodel(testGame, testGame->whoseTurn, 0, 1, 10);      // Trying to buy gardens by trashing a adventurer.
 
   // See if any other players handsize increased, don't include player that played remodel.
   for(i = 1; i < numPlayers; i++) {
@@ -117,12 +117,12 @@ void testPlayRemodel() {
   }
   printf("expects attempt to buy 'garden' by trashing a 'adventurer' to decrease handsize by a total of '2', 'hand' decreased by: %d\n", state->handCount[state->whoseTurn]-testGame->handCount[testGame->whoseTurn]);
 
-  if(state->handCount[state->whoseTurn]-1 == testGame->handCount[testGame->whoseTurn]) {    // Action reduced by 1 the same.
+  if(state->numActions-1 == testGame->numActions) {    // Action reduced by 1 the same.
     printf(PLAYREMODEL_PASS);
   } else {
     printf(PLAYREMODEL_FAIL);
   }
-  printf("expects attempt to buy 'garden' by trashing a 'adventurer' to decrease actions by '1', 'actions' decreased by: %d\n", state->handCount[state->whoseTurn]-testGame->handCount[testGame->whoseTurn]);
+  printf("expects attempt to buy 'garden' by trashing a 'adventurer' to decrease actions by '1', 'actions' decreased by: %d\n", state->numActions-testGame->numActions);
 
   if(state->numBuys == testGame->numBuys) {    // Number of buys should still be 1.
     printf(PLAYREMODEL_PASS);
@@ -276,13 +276,12 @@ void testPlayRemodel() {
   }
   printf("expects attempt to buy 'feast' by trashing a 'garden', to not increase deck size, deck size changed by: %d\n", testGame->deckCount[testGame->whoseTurn]-state->deckCount[state->whoseTurn]);
 
-  if(testGame->discardCount[testGame->whoseTurn] == state->discardCount[state->whoseTurn]+2) {    // Make sure discard count stays the same.
+  if(testGame->discardCount[testGame->whoseTurn] == state->discardCount[state->whoseTurn]) {    // Make sure discard count stays the same.
     printf(PLAYREMODEL_PASS);
   } else {
     printf(PLAYREMODEL_FAIL);
   }
-  printf("expects attempt to buy 'feast' by trashing a 'garden', to increase discard pile size by 2, discard pile size changed by: %d\n", testGame->discardCount[testGame->whoseTurn]-state->discardCount[state->whoseTurn]);
-
+  printf("expects attempt to buy 'feast' by trashing a 'garden', to increase discard pile size by 0, discard pile size changed by: %d\n", testGame->discardCount[testGame->whoseTurn]-state->discardCount[state->whoseTurn]);
 
   // Clear memory
   free(state);

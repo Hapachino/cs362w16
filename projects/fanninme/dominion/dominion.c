@@ -659,7 +659,7 @@ void adventurerCard(int currentPlayer, struct gameState *state){
 	        shuffle(currentPlayer, state);
 	    }
 	    drawCard(currentPlayer, state);
-	    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];
+	    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer-1]];
         //top card of hand is most recently drawn card.
 
 	    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
@@ -715,6 +715,7 @@ void feastCard(int currentPlayer,struct gameState *state,int choice1){
 	        }
 
 	        gainCard(choice1, state, 0, currentPlayer);//Gain the card
+            x=0;
 
 	        if (DEBUG){
                 printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
@@ -736,9 +737,7 @@ void smithyCard(int currentPlayer,struct gameState *state,int handPos){
     int i;
     for (i = 0; i < 3; i++){
 	    drawCard(currentPlayer, state);
-        discardCard(handPos, currentPlayer, state, 0);
-
-	}
+	}		
     //discard smithy card from hand
     discardCard(handPos, currentPlayer, state, 0);
 		
@@ -750,8 +749,8 @@ void villageCard(int currentPlayer,struct gameState *state,int handPos){
     drawCard(currentPlayer, state);
 			
     //+2 Actions
-    state->numActions = state->numBuys + 2;
-			
+    state->numActions = state->numActions + 2;
+
     //discard played card from hand
     discardCard(handPos, currentPlayer, state, 0);
 }
@@ -773,7 +772,7 @@ void baronCard(int currentPlayer,struct gameState *state,int choice1){
 	            state->discardCount[currentPlayer]++;
 	    
                 for (;p < state->handCount[currentPlayer]; p++){
-	                //state->hand[currentPlayer][p] = state->hand[currentPlayer][p];
+	                state->hand[currentPlayer][p] = state->hand[currentPlayer][p+1];
 	            }
 	            state->hand[currentPlayer][state->handCount[currentPlayer]] = -1;
 	            state->handCount[currentPlayer]--;

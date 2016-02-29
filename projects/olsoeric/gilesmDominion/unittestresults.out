@@ -1,0 +1,94 @@
+|------------------------------------------|
+  Running tests on smithy_play():
+|------------------------------------------|
+Running Scenario 1...
+state.handCount failed. (expected=8, actual=9)
+state.deckCount[0] failed. (expected=2, actual=1)
+Running Scenario 2...
+state.handCount failed. (expected=8, actual=9)
+state.deckCount[0] failed. (expected=7, actual=6)
+Tests Complete: smithy_play() failed 4 tests.
+
+|------------------------------------------|
+  Running tests on adventurer_play():
+|------------------------------------------|
+Running Scenario 1...
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,4
+Deck+Discard count failed. (expected=10, actual=2)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 3
+Running Scenario 2...
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 5,5
+Deck+Discard count failed. (expected=10, actual=7)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 6
+Running Scenario 3...
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 6,6
+Deck+Discard count failed. (expected=10, actual=6)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 9
+Running 5 Random Scenarios...
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 6,6
+Deck+Discard count failed. (expected=10, actual=9)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 12
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 6,5
+Deck+Discard count failed. (expected=10, actual=7)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 15
+state.handCount failed. (expected=7, actual=7) last 2 in hand = 7,5
+Deck+Discard count failed. (expected=10, actual=2)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 18
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,6
+Deck+Discard count failed. (expected=10, actual=4)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 21
+state.handCount failed. (expected=7, actual=8) last 2 in hand = 4,5
+Deck+Discard count failed. (expected=10, actual=3)
+state.playedCardCount failed. (expected=1, actual=0)
+Errors so far 24
+Tests Complete: adventurer_play() failed 24 tests.
+
+|------------------------------------------|
+  Running tests on village_play():
+|------------------------------------------|
+Running Scenario 1...
+state.numActions failed. (expected=3, actual=2)
+Running Scenario 2...
+state.numActions failed. (expected=3, actual=2)
+Tests Complete: village_play() failed 2 tests.
+
+|------------------------------------------|
+  Running tests on updateCoins():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on gainCard():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on shuffle():
+|------------------------------------------|
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+|------------------------------------------|
+  Running tests on discardCard():
+|------------------------------------------|
+Running Scenario 1...
+Running Scenario 2...
+Running 50,000 Random Scenarios...
+Tests Complete: No errors found.
+
+File 'dominion.c'
+Lines executed:27.57% of 584
+Branches executed:23.02% of 417
+Taken at least once:20.86% of 417
+Calls executed:15.79% of 95
+dominion.c:creating 'dominion.c.gcov'
+

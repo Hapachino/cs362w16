@@ -1,0 +1,395 @@
+        -:    0:Source:gw_randomtestcardsmithy.c
+        -:    0:Graph:gw_randomtestcardsmithy.gcno
+        -:    0:Data:gw_randomtestcardsmithy.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1: /* Smithy Card
+        -:    2:       1. effect +3 Cards
+        -:    3:       2. Verify discard
+        -:    4:      3. verify State Change
+        -:    5:   
+        -:    6:   CODE REFERENCE: 
+        -:    7:  CODE:
+        -:    8:   int smithyCard(int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+        -:    9:   {
+        -:   10:	
+        -:   11:	int i;
+        -:   12:	int currentPlayer = whoseTurn(state);
+        -:   13:	
+        -:   14:	//+3 Cards
+        -:   15:       for (i = 0; i <= 3; i++)
+        -:   16:	{
+        -:   17:	  drawCard(currentPlayer, state);
+        -:   18:	}
+        -:   19:			
+        -:   20:      //discard card from hand
+        -:   21:      discardCard(handPos, currentPlayer, state, 0);
+        -:   22:	  
+        -:   23:	return 0;
+        -:   24:   }
+        -:   25:   int drawCard(int player, struct gameState *state)
+        -:   26:{	int count;
+        -:   27:  int deckCounter;
+        -:   28:  if (state->deckCount[player] <= 0){//Deck is empty
+        -:   29:    
+        -:   30:    //Step 1 Shuffle the discard pile back into a deck
+        -:   31:    int i;
+        -:   32:    //Move discard to deck
+        -:   33:    for (i = 0; i < state->discardCount[player];i++){
+        -:   34:      state->deck[player][i] = state->discard[player][i];
+        -:   35:      state->discard[player][i] = -1;
+        -:   36:    }
+        -:   37:
+        -:   38:    state->deckCount[player] = state->discardCount[player];
+        -:   39:    state->discardCount[player] = 0;//Reset discard
+        -:   40:
+        -:   41:    //Shufffle the deck
+        -:   42:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+        -:   43:   
+        -:   44:    if (DEBUG){//Debug statements
+        -:   45:      printf("Deck count now: %d\n", state->deckCount[player]);
+        -:   46:    }
+        -:   47:    
+        -:   48:    state->discardCount[player] = 0;
+        -:   49:
+        -:   50:    //Step 2 Draw Card
+        -:   51:    count = state->handCount[player];//Get current player's hand count
+        -:   52:    
+        -:   53:    if (DEBUG){//Debug statements
+        -:   54:      printf("Current hand count: %d\n", count);
+        -:   55:    }
+        -:   56:    
+        -:   57:    deckCounter = state->deckCount[player];//Create a holder for the deck count
+        -:   58:
+        -:   59:    if (deckCounter == 0)
+        -:   60:      return -1;
+        -:   61:
+        -:   62:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+        -:   63:    state->deckCount[player]--;
+        -:   64:    state->handCount[player]++;//Increment hand count
+        -:   65:  }
+        -:   66:
+        -:   67:  else{
+        -:   68:    int count = state->handCount[player];//Get current hand count for player
+        -:   69:    int deckCounter;
+        -:   70:    if (DEBUG){//Debug statements
+        -:   71:      printf("Current hand count: %d\n", count);
+        -:   72:    }
+        -:   73:
+        -:   74:    deckCounter = state->deckCount[player];//Create holder for the deck count
+        -:   75:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+        -:   76:    state->deckCount[player]--;
+        -:   77:    state->handCount[player]++;//Increment hand count
+        -:   78:  }
+        -:   79:
+        -:   80:  return 0;
+        -:   81:}
+        -:   82:
+        -:   83:int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
+        -:   84:{
+        -:   85:	
+        -:   86:  //if card is not trashed, added to Played pile 
+        -:   87:  if (trashFlag < 1)
+        -:   88:    {
+        -:   89:      //add card to played pile
+        -:   90:      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+        -:   91:      state->playedCardCount++;
+        -:   92:    }
+        -:   93:	
+        -:   94:  //set played card to -1
+        -:   95:  state->hand[currentPlayer][handPos] = -1;
+        -:   96:	
+        -:   97:  //remove card from player's hand
+        -:   98:  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
+        -:   99:    {
+        -:  100:      //reduce number of cards in hand
+        -:  101:      state->handCount[currentPlayer]--;
+        -:  102:    }
+        -:  103:  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+        -:  104:    {
+        -:  105:      //reduce number of cards in hand
+        -:  106:      state->handCount[currentPlayer]--;
+        -:  107:    }
+        -:  108:  else 	
+        -:  109:    {
+        -:  110:        //replace discarded card with last card in hand
+        -:  111:      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+        -:  112:      //set last card to -1
+        -:  113:      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+        -:  114:      //reduce number of cards in hand
+        -:  115:      state->handCount[currentPlayer]--;
+        -:  116:    }
+        -:  117:	
+        -:  118:  return 0;
+        -:  119:}
+        -:  120:
+        -:  121:
+        -:  122:
+        -:  123: */
+        -:  124:
+        -:  125:
+        -:  126:#include "dominion.h"
+        -:  127:#include "dominion_helpers.h"
+        -:  128:#include "interface.h"
+        -:  129:#include <string.h>
+        -:  130:#include <stdio.h>
+        -:  131:#include <assert.h>
+        -:  132:#include "rngs.h"
+        -:  133:#include <math.h>
+        -:  134:#include <stdlib.h>
+        -:  135:
+        -:  136:#define MAX_HAND_ADV 6
+        -:  137:#define MAX_DECK_ADV 20
+        -:  138:#define DEBUG 0
+        -:  139:#define NOISY_TEST 1
+        -:  140:
+        -:  141:int  checkSmithyCard(int p, struct gameState *post);
+        -:  142:void RandomCards(struct gameState *G);
+        -:  143:void GameDetails(struct gameState *G);
+        -:  144:
+     2000:  145:int  checkSmithyCard(int p, struct gameState *post) {
+        -:  146:  
+        -:  147:                     struct gameState pre;
+     2000:  148:	memcpy(&pre, post, sizeof(struct gameState));
+        -:  149:
+     2000:  150:                    int who = post->whoseTurn;
+     2000:  151:  	printf("Who: %d\n",who);
+        -:  152:  	int i;
+        -:  153:  	int handPos;
+    12995:  154:  	for(i=0;i<post->handCount[who]; i++){
+    10995:  155:  	if(post->hand[who][i]== smithy){
+     2356:  156:		handPos = i;
+        -:  157:	}       
+        -:  158: 	 }
+     2000:  159:                     printf("HandPosition: %d",handPos);
+     2000:  160:  	printf("Pre:\n"); 
+     2000:  161:  	GameDetails(&pre);
+        -:  162:
+        -:  163:	
+        -:  164:	//smithyCard(0,0,0,post,handPos,0);
+     2000:  165:	 playCard(handPos, 0, 0, 0, post);
+        -:  166:
+     2000:  167:                   printf("Post:\n");
+     2000:  168:                   GameDetails(post); 
+        -:  169:                   
+     2000:  170:	if(post->handCount[0]+2 != pre.handCount[0]){
+     2000:  171:		printf("Error in Hand Count \n");
+        -:  172:	}
+        -:  173:
+     2000:  174:	return (0);
+        -:  175:	int d;
+        -:  176:	int numAfterSmithys=0;
+        -:  177:	for(d=0;d<post->handCount[who];d++){
+        -:  178:		if(post->hand[who][d] == smithy){
+        -:  179:			numAfterSmithys++;
+        -:  180:		}		
+        -:  181:	}
+        -:  182:
+        -:  183:                    	int numUnmodifiedSmithys=0;
+        -:  184:	for(d=0;d<pre.handCount[who];d++){
+        -:  185:		if(pre.hand[who][d] == smithy){
+        -:  186:			numUnmodifiedSmithys++;
+        -:  187:		}		
+        -:  188:	}
+        -:  189:
+        -:  190:	if (numAfterSmithys + 1 != numUnmodifiedSmithys){
+        -:  191:		printf ("Error Discarding Smithy\n");
+        -:  192:		printf("before-%d after-%d\n",numAfterSmithys,numUnmodifiedSmithys);
+        -:  193:	}
+        -:  194:
+        -:  195:
+        -:  196:	//Check got right cards from deck
+        -:  197:                     int firstDeck;
+        -:  198:     
+        -:  199:                     firstDeck = pre.deck[who][pre.deckCount[who]-1];
+        -:  200:             	firstDeck = pre.deck[who][pre.deckCount[who]-2];
+        -:  201:	firstDeck = pre.deck[who][pre.deckCount[who]-3];
+        -:  202:             
+        -:  203:                     if(firstDeck!=post->hand[who][post->deckCount[who]-3]){
+        -:  204:		printf("Incorrect Card Moved To Hand");
+        -:  205:	}
+        -:  206:             
+        -:  207:	   if(firstDeck!=post->hand[who][post->deckCount[who]-2]){
+        -:  208:		printf("Incorrect Card Moved To Hand");
+        -:  209:	}
+        -:  210:
+        -:  211:	   if(firstDeck!=post->hand[who][post->deckCount[who]-1]){
+        -:  212:		printf("Incorrect Card Moved To Hand");
+        -:  213:	}
+        -:  214:
+        -:  215:
+        -:  216:	if(post->handCount[who]+2 != pre.handCount[who]){
+        -:  217:		printf("Error in Hand Count - Intentional Bug\n");
+        -:  218:	}
+        -:  219:
+        -:  220:
+        -:  221:	if(post->playedCards[post->playedCardCount-1]!=13){
+        -:  222:		printf("Last played card is not Smithy");
+        -:  223:	}
+        -:  224:
+        -:  225:
+        -:  226:  	//Check for state changes after playing smithy
+        -:  227:
+        -:  228:  	//Check state change of other players cards
+        -:  229:  	int check=0;
+        -:  230:  	if (pre.numPlayers == 2){
+        -:  231:	if(pre.whoseTurn==1){
+        -:  232:	   check=0;
+        -:  233:	} else{
+        -:  234:	   check=1;
+        -:  235:	}
+        -:  236: 
+        -:  237:	int y;
+        -:  238:  	for(y=0;y<post->handCount[check];y++){
+        -:  239:
+        -:  240: 	    if(post->hand[check][y]!=pre.hand[check][y]){
+        -:  241: 	    	printf("ERROR: Othe players cards have changed!.\n");
+        -:  242: 	     	printf("before-%d after-%d",pre.hand[1][y],post->hand[1][y]);
+        -:  243: 	    }
+        -:  244:
+        -:  245: 	  }
+        -:  246:
+        -:  247: 	}
+        -:  248:
+        -:  249: 
+        -:  250:	
+        -:  251:	   //check if no change in buys
+        -:  252:	   if(post->numBuys != pre.numBuys)
+        -:  253:	   {
+        -:  254:		printf("ERROR: State Change for buys.\n");
+        -:  255:   	}
+        -:  256:
+        -:  257:   	//check if no change in action
+        -:  258:   	if(post->numActions != pre.numActions)
+        -:  259:   	{
+        -:  260:		printf("ERROR: State change for actions.\n");
+        -:  261:   	}
+        -:  262:
+        -:  263:   	//check if no change in coins
+        -:  264:   	if(post->coins != pre.coins)
+        -:  265:   	{	
+        -:  266:	printf("ERROR: State change for coins.\n");
+        -:  267:   	}
+        -:  268:
+        -:  269: 	return 0;
+        -:  270:
+        -:  271:
+        -:  272:}
+        -:  273:
+        -:  274:
+        -:  275:
+        1:  276:int main () {
+        -:  277:
+        -:  278:  int i, n, p;
+        -:  279:
+        -:  280:  struct gameState G;
+        -:  281:
+        1:  282:  printf ("Testing Smithy Card.\n");
+        -:  283:
+        1:  284:  printf ("RANDOM TESTS.\n");
+        -:  285:
+        1:  286:  SelectStream(2);
+        1:  287:  PutSeed(3);
+        -:  288:
+     2001:  289:  for (n = 0; n < 2000; n++) {
+ 52602000:  290:    for (i = 0; i < sizeof(struct gameState); i++) {
+ 52600000:  291:      ((char*)&G)[i] = floor(Random() * 256);
+        -:  292:    }
+     2000:  293:    printf("TEST: %d\n",n);
+     2000:  294:    p = floor(Random() * 2)+1;
+     2000:  295:    G.numPlayers = p;
+     2000:  296:    printf("Num Players: %d\n",G.numPlayers);
+     2000:  297:    G.whoseTurn = floor(Random() * p);
+     2000:  298:    printf("Player Turn: %d\n",G.whoseTurn);
+     2000:  299:    RandomCards(&G);
+        -:  300:    //GameDetails(&G);
+     2000:  301:    checkSmithyCard(p, &G);
+     2000:  302:    printf("END TEST: %d\n\n\n",n);
+        -:  303:  }
+        -:  304:
+        1:  305:  exit(0);
+        -:  306:
+        -:  307:}
+        -:  308:
+     2000:  309:void RandomCards(struct gameState *G){
+        -:  310:
+        -:  311:	int p;
+        -:  312:	int randomAdventurer;
+     2000:  313:        int treasure1Position = 0;
+     2000:  314:	int treasure2Position = 0;
+        -:  315:	
+     4993:  316:	for(p=0;p<G->numPlayers;p++)
+        -:  317:	{
+        -:  318:
+     2993:  319:		printf("player: %d",p);
+        -:  320:
+     2993:  321:		G->deckCount[p] = floor(Random() * MAX_DECK_ADV)+5;
+     2993:  322:		G->discardCount[p] = floor(Random() * MAX_DECK_ADV)+5;
+     2993:  323:    		G->handCount[p] = floor(Random() * MAX_HAND_ADV)+3;
+     2993:  324:		G->playedCardCount = 0;
+        -:  325:
+        -:  326:		int x;	
+    19358:  327:		for(x = 0; x < G->handCount[p]; x++)
+        -:  328:		{
+    16365:  329:			G->hand[p][x] = floor(Random() * treasure_map) + 1;
+        -:  330:		}
+        -:  331:		
+        -:  332:       		 int y;
+    46019:  333:		for(y = 0; y < G->discardCount[p]; y++)
+        -:  334:		{
+    43026:  335:			G->discard[p][y] = floor(Random() * treasure_map) + 1;
+        -:  336:		}
+        -:  337:
+        -:  338:		int z;
+    46311:  339:		for(z = 0; z < G->deckCount[p]; z++)
+        -:  340:		{
+    43318:  341:			G->deck[p][z] = floor(Random() * treasure_map) + 1;
+        -:  342:		}
+        -:  343:	
+        -:  344:		//int w;
+        -:  345:		//for(w = 0; w < G->playedCardCount; w++)
+        -:  346:		//{
+        -:  347:		//	G->playedCards[w] = floor(Random() * treasure_map) + 1;
+        -:  348:		//}
+        -:  349:
+     2993:  350:		randomAdventurer = floor(Random() * G->handCount[p]);
+        -:  351:
+     2993:  352:		printf("HandSize: %d\n",G->handCount[p]);
+     2993:  353:		printf("A location: %d\n",randomAdventurer);
+     2993:  354:		G->hand[p][randomAdventurer] = smithy;
+        -:  355:
+        -:  356:                do{
+     3277:  357:			treasure1Position = floor(Random() * G->deckCount[p]);
+     3277:  358:			treasure2Position = floor(Random() * G->deckCount[p]);
+     3277:  359:		}while(treasure1Position == treasure2Position);
+        -:  360:
+     2993:  361:		printf("TreasurePosition1: %d\n",treasure1Position);
+     2993:  362:		printf("TreasurePosition2: %d\n",treasure2Position);
+        -:  363:
+     2993:  364:               		 G->deck[p][treasure1Position] =  4;
+     2993:  365:		G->deck[p][treasure2Position] =  6;
+        -:  366:
+     2993:  367:		G->numBuys = floor(Random() * 10);
+     2993:  368:		G->numActions = floor(Random() * 10);
+     2993:  369:		G->coins = floor(Random() * 10);
+        -:  370:
+        -:  371:                
+        -:  372:
+        -:  373:	}
+        -:  374:
+        -:  375:
+     2000:  376:}
+        -:  377:
+     4000:  378:void GameDetails(struct gameState *G){
+        -:  379:
+        -:  380:	int p;
+     4000:  381:        p=G->whoseTurn;
+        -:  382:	
+     4000:  383:	printf("Player: %d\n",p);
+     4000:  384:	printHand(p,G);
+     4000:  385:        printDeck(p,G);
+     4000:  386:        printPlayed(p,G);
+        -:  387:
+        -:  388:
+        -:  389:
+     4000:  390:}

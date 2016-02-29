@@ -1,0 +1,5945 @@
+---------- Testing Card: Adventurer --------------
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two treasure cards?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 1 receive two cards ?
+Failed.
+---- Did player 1 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 0 receive two cards ?
+Failed.
+---- Did player 0 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 3 receive two cards ?
+Failed.
+---- Did player 3 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+---- Did player 2 receive two cards ?
+Failed.
+---- Did player 2 discard a card?
+Test Failed.
+---- Did played card count increment?
+Test Failed.
+
+---- 8032 Passed ---- 2968 Failed ------
+---------- Testing Adventurer Card Complete ------
+Coverage starts below:
+File 'dominion.c'
+Lines executed:23.93% of 652
+dominion.c:creating 'dominion.c.gcov'
+

@@ -42,3 +42,8 @@ Village Card
 Error :: no error within card, but off by 1 in my test caused
 
 Steward card
+Fixed + coin count.
+
+playFeast
+Error :: +  updateCoins(currentPlayer, state, 15);
+Fixed :: +  updateCoins(currentPlayer, state, 5);

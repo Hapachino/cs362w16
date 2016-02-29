@@ -646,7 +646,7 @@ int getCost(int cardNumber)
 int smithyCard(int currentPlayer, struct gameState *state, int handPos){
     int i;
     //+3 Cards
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < 3; i++)
     {
         drawCard(currentPlayer, state);
     }
@@ -673,6 +673,7 @@ int adventurerCard(int currentPlayer, struct gameState *state){
         else{
             temphand[z]=cardDrawn;
             state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+            z++; // Bug fix
         }
     }
     while(z-1>=0){
@@ -715,7 +716,7 @@ int villageCard(int currentPlayer, int handPos, struct gameState *state){
     drawCard(currentPlayer, state);
 
     //+2 Actions
-    state->numActions = state->numActions + 1;
+    state->numActions = state->numActions + 2;
 
     //discard played card from hand
     discardCard(handPos, currentPlayer, state, 0);

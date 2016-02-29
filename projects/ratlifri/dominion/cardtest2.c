@@ -143,7 +143,7 @@ int main () {
     //int xtraCoins = 0;
     //int shuffledCards = 0;
     //int i, j, m;
-    //int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int handpos = 0; //, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
     //int remove1, remove2;
     int seed = 1000;
     int numPlayers = 2;
@@ -175,6 +175,7 @@ int main () {
 	testG.hand[player][2] = copper;
 	testG.hand[player][3] = smithy;
 	testG.hand[player][4] = adventurer;
+	handpos = 4;
 	testG.deck[player][0] = silver;
 	testG.deck[player][1] = silver;
 	testG.deck[player][2] = silver;
@@ -218,7 +219,7 @@ int main () {
     printf("test:\n");
     printf("\n");
 
-    cardEffectAdventurer(0, &testG);
+    cardEffectAdventurer(0, &testG, handpos);
     testnum++;
 	count = 6;
 	r = testG.handCount[0];

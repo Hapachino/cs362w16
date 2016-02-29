@@ -1,286 +1,343 @@
 /* -----------------------------------------------------------------------
- * Test scoreFor() function
- * Need to verify:
- *   - if score is calculated when player has curse, estate, duchy, province,
-        great hall, or gardens cards
- *
-*  Inputs to generate randomly:
-*    - gameState
- *   - players
+ * Updated scoreFor function test
  *
  * --------------------------------------------------------------------
  */
 
-#include "dominion.h"
-#include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
-#include <math.h>
-#include "rngs.h"
+ #include "dominion.h"
+ #include "dominion_helpers.h"
+ #include <string.h>
+ #include <stdio.h>
+ #include <assert.h>
+ #include <math.h>
+ #include "rngs.h"
 
-#define NOISY_TEST 1
+ // helper function prototypes
+ int otherPlayerState(struct gameState *pre, struct gameState *post, int p1, int p2, int vc1, int vc2, int kc1, int kc2);
+ int checkCounts(struct gameState *pre, struct gameState *post, int p, int victoryCount, int victoryCount2, int kingdomCount, int kingdomCount2);
+ int getVictoryCount(struct gameState *post);
+ int getKingdomCount(struct gameState *post);
+ int printDeck(struct gameState *post, int p, char *n);
+ int printHand(struct gameState *post, int p, char *n);
+ int printCounts(struct gameState *post, int p);
+ int stackDeck(struct gameState *post, int player, int start, int end, int card);
+ int stackHand(struct gameState *post, int player, int start, int end, int card);
+ int passOrFail(int r);
+ int unitTest(int handPos, struct gameState *post, int p);
 
-int unitTest(int p, int score, struct gameState *post) {
-  struct gameState pre;
-  memcpy(&pre, post, sizeof(struct gameState));
+ int getScore (int player, struct gameState *state) {
 
-  // get supply of each card before and after function call
-#if(NOISY_TEST == 1)
+   int i;
+   int score = 0;
+   //score from hand
+   for (i = 0; i < state->handCount[player]; i++)
+     {
+       if (state->hand[player][i] == curse) { score = score - 1; };
+       if (state->hand[player][i] == estate) { score = score + 1; };
+       if (state->hand[player][i] == duchy) { score = score + 3; };
+       if (state->hand[player][i] == province) { score = score + 6; };
+       if (state->hand[player][i] == great_hall) { score = score + 1; };
+       if (state->hand[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+     }
 
-  printf("PRE-SCORE: %d \n", score);
+   //score from discard
+   for (i = 0; i < state->discardCount[player]; i++)
+     {
+       if (state->discard[player][i] == curse) { score = score - 1; };
+       if (state->discard[player][i] == estate) { score = score + 1; };
+       if (state->discard[player][i] == duchy) { score = score + 3; };
+       if (state->discard[player][i] == province) { score = score + 6; };
+       if (state->discard[player][i] == great_hall) { score = score + 1; };
+       if (state->discard[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+     }
 
-#endif
+   //score from deck
+   for (i = 0; i < state->deckCount[player]; i++)
+     {
+       if (state->deck[player][i] == curse) { score = score - 1; };
+       if (state->deck[player][i] == estate) { score = score + 1; };
+       if (state->deck[player][i] == duchy) { score = score + 3; };
+       if (state->deck[player][i] == province) { score = score + 6; };
+       if (state->deck[player][i] == great_hall) { score = score + 1; };
+       if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+     }
 
-  int r = scoreFor(p, post);
-
-#if(NOISY_TEST == 1)
-  printf("POST-SCORE: %d \n", r);
-  if(r != score ) {
-    printf("FAIL: Looks like we found an error in the calcuation of score\n ");
-  }
-
-#endif
-
-
-  // general test to see if supply counts are the same pre/post function call
-  assert(pre.supplyCount[curse] == post->supplyCount[curse]);
-  assert(pre.supplyCount[estate] == post->supplyCount[estate]);
-  assert(pre.supplyCount[duchy] == post->supplyCount[duchy]);
-  assert(pre.supplyCount[province] == post->supplyCount[province]);
-  assert(pre.supplyCount[great_hall] == post->supplyCount[great_hall]);
-  assert(pre.supplyCount[gardens] == post->supplyCount[gardens]);
-
-#if(NOISY_TEST == 1)
-  printf("SUCCESS ->> pre supply counts  EQUAL post function call\n");
-#endif
-  // test to see if the handcounts are the same after calling function
-  assert(pre.handCount[p] == post->handCount[p]);
-  assert(pre.deckCount[p] == post->deckCount[p]);
-  assert(pre.discardCount[p] == post->discardCount[p]);
-  #if(NOISY_TEST == 1)
-    printf("SUCCESS ->> pre hand,deck,discard counts  EQUAL post function call\n");
-  #endif
-  /*error is in either gardens card or fullDeckCount() */
-  if(r != score) {
-    printf("FAIL TEST: Scores did not compute correctly\n");
-  }
-//  assert(r == score);
-}
+   return score;
+ }
 
 int main() {
-    int i, n, j, p,
-       randomCard, randomCardCount, randomDiscardCount, randomDeckCount;
+   int p, r, p2,
+       seed, numPlayer,
+       handPos;
 
-    struct gameState G;
+   seed = 1000;
+   numPlayer = 2;
+   handPos = 4;
 
-    SelectStream(2);
-    PutSeed(3);
+   int k[10] = {adventurer, great_hall, cutpurse, gardens, mine,
+                remodel, smithy, village, sea_hag, embargo};
 
-    printf ("TESTING isGameOver():\n");
+   struct gameState G;
+   p = whoseTurn(&G);
+   p2 = 1;
 
-    // initialize hand
-    // taken from betterTestDrawCard.c
-    for (n = 0; n < 2000; n++) {
-      for (i = 0; i < sizeof(struct gameState); i++) {
-        ((char*)&G)[i] = floor(Random() * 256);
-      }
-      // create a random but sane game state
-      randomCardCount = floor(Random() * MAX_HAND);
-      randomDiscardCount = floor(Random() * MAX_DECK);
-      randomDeckCount = floor(Random() * MAX_DECK);
-      p = floor(Random() * 2);
-      G.deckCount[p] = randomDeckCount;
-      G.discardCount[p] = randomDiscardCount;
-      G.handCount[p] = randomCardCount;
+   // clear game state and initialize game
+   memset(&G, 23, sizeof(struct gameState));
+   r = initializeGame(numPlayer, k, seed, &G);
 
-      // For cards in hand
-      // give players random scoring cards
-      for (j = 0; j < randomCardCount; j++) {
-        G.hand[p][j] = 0;
-        randomCard = floor(Random() * 6);
 
-           if (randomCard == 0) {
-            G.hand[p][j] = curse;
-          }
+   printf ("TESTING ScoreFor():\n\n");
+   int i, j;
+   for(i = 0; i < 5; i++) {
+     stackHand(&G, p, 0, G.handCount[p], i);
+     // run test
+     j = getScore(p, &G);
+     r = unitTest(handPos, &G, p);
 
-          else if (randomCard == 1) {
-            G.hand[p][j] = estate;
-          }
-
-          else if (randomCard == 2) {
-            G.hand[p][j] = duchy;
-          }
-
-          else if (randomCard == 3) {
-            G.hand[p][j] = province;
-          }
-
-          else if (randomCard == 4) {
-            G.hand[p][j] = great_hall;
-          }
-
-          else if(randomCard == 5) {
-             G.hand[p][j] = gardens;
-           }
-      }
-
-      // calculate player's score from hand cards
-      int score;
-      score = 0;
-      for(j = 0; j < randomCardCount; j++) {
-        if (G.hand[p][j] == curse) {
-         score -= 1;
-       }
-
-       else if (G.hand[p][j] == estate) {
-         score += 1;
-       }
-
-       else if (G.hand[p][j] == duchy) {
-         score += 3;
-       }
-
-       else if (G.hand[p][j] == province) {
-         score += 6;
-       }
-
-       else if (G.hand[p][j] == great_hall) {
-         score += 1;
-       }
-
-       else if(G.hand[p][j] == gardens) {
-         score = score + (fullDeckCount(p, 0, &G) / 10);
-        }
-      }
-//printf("After hand Score is now %d\n", score);
-      // For cards in hand
-      // give players random discard cards
-      for (j = 0; j < randomDiscardCount; j++) {
-        G.discard[p][j] = 0;
-        randomCard = floor(Random() * 6);
-
-           if (randomCard == 0) {
-            G.discard[p][j] = curse;
-          }
-
-          else if (randomCard == 1) {
-            G.discard[p][j] = estate;
-          }
-
-          else if (randomCard == 2) {
-            G.discard[p][j] = duchy;
-          }
-
-          else if (randomCard == 3) {
-            G.discard[p][j] = province;
-          }
-
-          else if (randomCard == 4) {
-            G.discard[p][j] = great_hall;
-          }
-
-          else if(randomCard == 5) {
-             G.discard[p][j] = gardens;
-           }
-      }
-
-      // calculate player's score from discard cards
-
-      for(j = 0; j < randomDiscardCount; j++) {
-        if (G.discard[p][j] == curse) {
-         score -= 1;
-       }
-
-       else if (G.discard[p][j] == estate) {
-         score += 1;
-       }
-
-       else if (G.discard[p][j] == duchy) {
-         score += 3;
-       }
-
-       else if (G.discard[p][j] == province) {
-         score += 6;
-       }
-
-       else if (G.discard[p][j] == great_hall) {
-         score += 1;
-       }
-
-       else if(G.discard[p][j] == gardens) {
-          score = score + (fullDeckCount(p, 0, &G) / 10);
-
-        }
-      }
-
-//      printf("After discard Score is now %d\n", score);
-
-      for (j = 0; j < randomDeckCount; j++) {
-        G.deck[p][j] = 0;
-        randomCard = floor(Random() * 6);
-
-           if (randomCard == 0) {
-            G.deck[p][j] = curse;
-          }
-
-          else if (randomCard == 1) {
-            G.deck[p][j] = estate;
-          }
-
-          else if (randomCard == 2) {
-            G.deck[p][j] = duchy;
-          }
-
-          else if (randomCard == 3) {
-            G.deck[p][j] = province;
-          }
-
-          else if (randomCard == 4) {
-            G.deck[p][j] = great_hall;
-          }
-
-          else if(randomCard == 5) {
-             G.deck[p][j] = gardens;
-           }
-      }
-
-      // calculate player's score from discard cards
-
-      for(j = 0; j < randomDeckCount; j++) {
-        if (G.deck[p][j] == curse) {
-         score -= 1;
-       }
-
-       else if (G.deck[p][j] == estate) {
-         score += 1;
-       }
-
-       else if (G.deck[p][j] == duchy) {
-         score += 3;
-       }
-
-       else if (G.deck[p][j] == province) {
-         score += 6;
-       }
-
-       else if (G.deck[p][j] == great_hall) {
-         score += 1;
-       }
-
-       else if(G.deck[p][j] == gardens) {
-          score = score + (fullDeckCount(p, 0, &G) / 10);
-        }
-      }
-  //    printf("After deck Score is now %d\n", score);
+     if(j != r) {
+       printf("FAIL\n");
+     }
+     else {
+       printf("PASS\n");
+     }
+   }
 
 
 
-      unitTest(p, score, &G);
 
 
+
+
+return 0;
+}
+
+/* Test 1
+     - Draw copper card from deck -pass
+     - Gain two actions -pass
+     - Discard card - fail
+     - Verify player 2 state hasn't changed -pass
+     - No state change should occur to the victory card piles and kingdom card piles -pass
+*/
+
+int unitTest(int score, struct gameState *post, int p) {
+  struct gameState pre;
+  memcpy(&pre, post, sizeof(struct gameState));
+  int failedTests = 0;
+  int p2 = 1; // player 2
+  int r, j, victoryCount, victoryCount2, kingdomCount, kingdomCount2;
+    // run fucntion
+  r =  scoreFor(p, post);
+
+  // cardEffect(village, 0, 0, 0, post, handPos, 0);
+
+
+
+
+return r;
+}
+
+int otherPlayerState(struct gameState *pre, struct gameState *post, int p1, int p2, int vc1, int vc2, int kc1, int kc2) {
+  printf("Player: 2 PRE FUNC COUNTS: \n");
+  printf("Hand Count: %d Played Count: %d  Deck Count: %d Victory Count: %d, Kingdom Count: %d \n",
+           pre->handCount[p2], pre->playedCardCount, pre->deckCount[p2], vc1, kc1);
+
+  printf("\nPlayer: 2 POST FUNC COUNTS: \n");
+  printf("Hand Count: %d Played Count: %d  Deck Count: %d Victory Count: %d  Kingdom Count: %d \n\n",
+  post->handCount[p2], post->playedCardCount, post->deckCount[p2], vc2);
+  return 0;
+
+}
+
+int checkCounts(struct gameState *pre, struct gameState *post, int p, int victoryCount, int victoryCount2, int kingdomCount, int kingdomCount2) {
+  char *n = "Post";
+  char *n2 = "Pre";
+  int failedTests = 0;
+
+  // check number of actions
+  if(pre->numActions + 2 != post->numActions) {
+    printf("FAIL: action count mismatch\n");
+    failedTests++;
   }
 
+  // check hand count
+  // we gain a card then discard a card so net gain is 0
+  if(pre->handCount[p] != post->handCount[p]) {
+     printf("FAIL: Handcount mismatch\n");
+     failedTests++;
+   }
 
-    return 0;
+  // check played count
+  if(pre->playedCardCount+1 != post->playedCardCount) {
+     printf("FAIL: Played card amount mismatch\n");
+     failedTests++;
+  }
+
+  // check deck count
+  if(pre->deckCount[p]-1 != post->deckCount[p]) {
+    printf("FAIL: deck count mismatch\n");
+    failedTests++;
+  }
+  // check discard count
+  if(pre->discardCount[p] != post->discardCount[p]) {
+    printf("FAIL: discard count mismatch\n");
+    printf("Expected: %d   Actual:  %d\n", pre->discardCount[p]+1,post->discardCount[p] );
+
+    failedTests++;
+  }
+  // check victory count
+  if(victoryCount != victoryCount2) {
+    printf("FAIL: victory count mismatch\n");
+    failedTests++;
+  }
+
+  // check kingdom count
+  if(kingdomCount != kingdomCount2) {
+    printf("FAIL: kingdom count mismatch\n");
+    failedTests++;
+  }
+  // if(failedTests > 0) {
+  //   printDeck(pre, p, n2);
+  //   printDeck(post, p, n);
+  //
+  //   printHand(pre, p, n2);
+  //   printHand(post, p, n);
+  //
+  //   printCounts(pre, p);
+  //   printCounts(post, p);
+  // }
+  return failedTests;
+}
+
+
+int getVictoryCount(struct gameState *post) {
+  return post->supplyCount[estate] + post->supplyCount[province] +
+         post->supplyCount[duchy] + post->supplyCount[curse];
+}
+
+int getKingdomCount(struct gameState *post) {
+  int kingdomCount, i;
+  kingdomCount = 0;
+
+  int k[10] = {adventurer, great_hall, cutpurse, gardens, mine,
+              remodel, smithy, village, sea_hag, embargo};
+
+
+  for(i = 0; i < 10; i++) {
+    kingdomCount += post->supplyCount[k[i]];
+  }
+
+return kingdomCount;
+}
+
+int printDeck(struct gameState *post, int p, char *n) {
+  int i;
+  printf("%s DECK Cards: \n", n);
+  for (i = 0; i < post->deckCount[p]; i++) {
+      printf("Index   %d      Card:   %d  \n", i, post->deck[p][i]);
+  }
+  return 0;
+}
+
+int printCounts(struct gameState *post, int p) {
+     printf(" FUNCTION COUNTS: \n");
+     printf("   Hand Count: %d \n", post->handCount[p]);
+     printf("   Played Count: %d \n", post->playedCardCount);
+     printf("   Deck Count: %d \n", post->deckCount[p]);
+     printf("   Discard Count: %d \n\n", post->discardCount[p]);
+     return 0;
+}
+
+
+int passOrFail(int r) {
+  if( r < 1) {
+    printf("TEST: PASS \n");
+  }
+
+  else {
+    printf("TEST: FAIL\n");
+  }
+  return 0;
+}
+
+
+int checkPlayer2(struct gameState *pre, struct gameState *post, int p, int victoryCount, int victoryCount2, int kingdomCount, int kingdomCount2) {
+  char *n = "Post";
+  char *n2 = "Pre";
+
+  // check hand count
+  int failedTests = 0;
+  if(pre->handCount[p] != post->handCount[p]) {
+     printf("FAIL: Handcount mismatch\n");
+     failedTests++;
+   }
+
+  // check played count
+  // + 1 because playedcount is for both players
+  if(pre->playedCardCount+1 != post->playedCardCount) {
+     printf("FAIL: Played card amount mismatch\n");
+     printf("Expected %d    Actual %d \n", pre->playedCardCount, post->playedCardCount);
+
+     failedTests++;
+  }
+
+  // check deck count
+  if(pre->deckCount[p] != post->deckCount[p] ) {
+    printf("FAIL: deck count mismatch\n");
+    failedTests++;
+  }
+
+  if(pre->discardCount[p] != post->discardCount[p]) {
+    printf("FAIL: discard count mismatch\n");
+    printf("Expected %d    Actual %d \n", pre->discardCount[p], post->discardCount[p]);
+    failedTests++;
+  }
+
+  // check victory count
+  if(victoryCount != victoryCount2) {
+    printf("FAIL: victory count mismatch\n");
+    failedTests++;
+  }
+
+  // check kingdom count
+  if(kingdomCount != kingdomCount2) {
+    printf("FAIL: kingdom count mismatch\n");
+    failedTests++;
+  }
+  if(failedTests == 0) {
+    printf("PLAYER 2 PASS\n");
+  }
+  return failedTests;
+}
+
+// stacking deck with card
+int stackDeck(struct gameState *post, int player, int start, int end, int card) {
+  int count = 0;
+  int i;
+  for( i = start; i < end; i++) {
+    post->deck[player][i] = card;
+    count++;
+  }
+//  printf("Added  %d cards of type %d \n", count, card);
+  return 0;
+}
+
+// stacking hand with card
+int stackHand(struct gameState *post, int player, int start, int end, int card) {
+  int count = 0;
+  int i;
+  for( i = start; i < end; i++) {
+    post->hand[player][i] = card;
+    count++;
+  }
+  //printf("Added  %d cards of type %d \n", count, card);
+  return 0;
+}
+
+int printHand(struct gameState *post, int p, char *n) {
+  int i;
+  printf("\n%s function call HAND Cards: \n", n);
+  for (i = 0; i < post->handCount[p]; i++) {
+      printf("Index   %d      Card:   %d  \n", i, post->hand[p][i]);
+  }
+  return 0;
 }

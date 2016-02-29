@@ -236,3 +236,23 @@ Actual Results
 --------------
 Test ran and does not end after several minutes. I aborted the test.
 
+
+****Note: Due to very late addition of another teammate, the following are the bugs I found in his program.
+
+
+isGameOver
+Bug found when setting random piles of 3 to 0. Some pass and some fail, meaning that there is a bug
+with one or more of the cards. My test indicates that the bug is when treasure map and/or sea hag is
+set to 0. These 2 cards are the source of the bug.
+
+villageCard
+Actions do not increment. Stayed the same.
+
+smithyCard
+deckCount of current player decreases by 4
+handCount increased incorrectly
+
+adventurerCard
+discardCount for current player increases drastically (pre:39 post:127)
+deckCount decreased drastically(pre:95 post:5)
+

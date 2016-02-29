@@ -667,7 +667,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-		playAdventurer(state);
+		playAdventurer(state, handPos);
 		return 0;
 			
     case council_room:
@@ -689,12 +689,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  return -1;
 	}
 		
-      if (choice2 > treasure_map || choice2 < curse)
+      if (choice2 > gold || choice2 < copper)
 	{
 	  return -1;
 	}
 
-      if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+      if ( (getCost(state->hand[currentPlayer][choice1]) + 3) < getCost(choice2) )
 	{
 	  return -1;
 	}
@@ -709,7 +709,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	{
 	  if (state->hand[currentPlayer][i] == j)
 	    {
-	      discardCard(i, currentPlayer, state, 0);			
+	      discardCard(i, currentPlayer, state, 1);			
 	      break;
 	    }
 	}
@@ -734,7 +734,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	{
 	  if (state->hand[currentPlayer][i] == j)
 	    {
-	      discardCard(i, currentPlayer, state, 0);			
+	      discardCard(i, currentPlayer, state, 1);			
 	      break;
 	    }
 	}
@@ -1244,7 +1244,7 @@ int cardDrawn;
 int z = 0;// this is the counter for the temp hand
 */
 
-int playAdventurer(struct gameState *state){
+int playAdventurer(struct gameState *state, int handPos){
 	int drawntreasure=0;
 	int currentPlayer = whoseTurn(state);
 	int cardDrawn;
@@ -1252,7 +1252,7 @@ int playAdventurer(struct gameState *state){
 	int z = 0;// this is the counter for the temp hand
 
 	
-	while(drawntreasure<=2){
+	while(drawntreasure<2){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 			shuffle(currentPlayer, state);
 		}
@@ -1270,6 +1270,8 @@ int playAdventurer(struct gameState *state){
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 		z=z-1;
     }
+	state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
+    state->playedCardCount++;
 	
 	return 0;
 }
@@ -1279,7 +1281,7 @@ int playSmithy(struct gameState *state, int handPos){
 	int currentPlayer = whoseTurn(state);
 
 	//+3 Cards
-	for (i = 0; i <= 3; i++){
+	for (i = 0; i < 3; i++){
 		drawCard(currentPlayer, state);
 	}
 		
@@ -1295,7 +1297,7 @@ int playVillage(struct gameState *state, int handPos){
 	drawCard(currentPlayer, state);
 
 	//+2 Actions
-	state->numActions = state->numActions + 3;
+	state->numActions = state->numActions + 2;
 
 	//discard played card from hand
 	discardCard(handPos, currentPlayer, state, 0);
@@ -1310,7 +1312,7 @@ int playFeast(struct gameState *state, int choice1){
 
 	//gain card with cost up to 5
 	//Backup hand
-	for (i = 0; i < state->handCount[currentPlayer]; i++){
+	for (i = 0; i <= state->handCount[currentPlayer]; i++){
 		temphand[i] = state->hand[currentPlayer][i];//Backup card
 		state->hand[currentPlayer][i] = -1;//Set to nothing
 	}
@@ -1370,7 +1372,7 @@ int playCouncil_Room(struct gameState *state, int handPos){
 	}
 		
 	//+1 Buy
-	state->numBuys--;
+	state->numBuys++;
 		
 	//Each other player draws a card
 	for (i = 0; i < state->numPlayers; i++){

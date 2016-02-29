@@ -679,7 +679,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      return playAdventurer(state);
+      return playAdventurer(state, handPos);
 			
     case council_room:
       //+4 Cards
@@ -1234,24 +1234,35 @@ int updateCoins(int player, struct gameState *state, int bonus)
  * Inputs: state
  * Outputs: returns 0
  */
-int playAdventurer(struct gameState *state)
+int playAdventurer(struct gameState *state, int handPos)
 {
 	//int z, cardDrawn, drawntreasure;
-	int temphand[MAX_HAND];
+	int temphand[MAX_HAND] = {0};
 	int player = whoseTurn(state);
 
 	// refactored version introduced bugs with not setting these values
 	int drawntreasure=0;
 	int cardDrawn;
 	int z = 0;// this is the counter for the temp hand
+	int availCards = state->deckCount[player] + state->discardCount[player];
 
-	while(drawntreasure<2){
-		if (state->deckCount[player] < 1){//if the deck is empty we need to shuffle discard and add to deck
-		  shuffle(player, state);
-		}
+	// check handPos is not higher than the handCount
+	if(handPos > state->handCount[player] - 1)
+		return -1;
 
+	// add card to played pile
+	state->playedCardCount++;
+	state->playedCards[state->playedCardCount - 1] = state->hand[player][handPos];
+	// put the last card in handPos
+	state->hand[player][handPos] = state->hand[player][state->handCount[player] - 1];
+	state->handCount[player]--;
+
+	while(drawntreasure<2 && availCards > 0){
+
+		// attempt to drawCard and shuffle if deck < 0
 		drawCard(player, state);
 		cardDrawn = state->hand[player][state->handCount[player]-1];//top card of hand is most recently drawn card.
+
 		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 		  drawntreasure++;
 		else{
@@ -1259,21 +1270,19 @@ int playAdventurer(struct gameState *state)
 		  state->handCount[player]--; //this should just remove the top card (the most recently drawn one).
 		  z++;
 		}
-		// original placement of z-- uncomment to verify failures (comment line 1267)
-		// z--;
 
-
+		// availableCards updated to fix endless looping
+		availCards = state->deckCount[player] + state->discardCount[player];
 	}
 
-	z--;
 	while(z-1>=0){
 		state->discard[player][state->discardCount[player]++]=temphand[z-1]; // discard all cards in play that have been drawn
 		z=z-1;
-
 	}
 
 	return 0;
 }
+
 
 /**
  * Function: playSmithy
@@ -1292,8 +1301,6 @@ int playSmithy(int handPos, struct gameState *state)
   {
     drawCard(player, state);
   }
-
-  updateCoins(player, state, 1);
 
   //discard card from hand
   discardCard(handPos, player, state, 0);
@@ -1376,7 +1383,7 @@ int playAmbassador(int choice1, int choice2, int handPos, struct gameState *stat
   {
     if (i != player)
     {
-      gainCard(state->hand[player][choice1], state, 2, i);
+      gainCard(state->hand[player][choice1], state, 0, i);
     }
   }
 
@@ -1429,7 +1436,7 @@ int playSteward(int choice1, int choice2, int choice3, int handPos, struct gameS
 	}
 
 	//discard card from hand
-	discardCard(handPos, player, state, 1);
+	discardCard(handPos, player, state, 0);
 	return 0;
 
 }

@@ -405,7 +405,7 @@ int isGameOver(struct gameState *state) {
 
   //if three supply pile are at 0, the game ends
   j = 0;
-  for (i = 0; i < 25; i++)
+  for (i = 0; i < 27; i++)
     {
       if (state->supplyCount[i] == 0)
 	{
@@ -1291,7 +1291,7 @@ int smithyCard(struct gameState *state, int handPos)
     nextPlayer = 0;
   }
       //+3 Cards
-      for (i = 0; i <= 3; i++)
+      for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -1316,7 +1316,7 @@ int feastCard(int choice1, struct gameState *state, int handPos)
       //gain card with cost up to 5
       
 
- 
+	x = 0;
       while( x == 1) {//Buy one card
 	if (supplyCount(choice1, state) <= 0){
 	  if (DEBUG)
@@ -1369,7 +1369,7 @@ int ambassadorCard(int choice1, int choice2, int choice3, struct gameState *stat
   
       j = 0;		//used to check if player has enough cards to discard
 
-      if (choice2 > 2 && choice2 < 0)
+      if (choice2 > 2 || choice2 < 0)
 	{
 	  return -1;				
 	}

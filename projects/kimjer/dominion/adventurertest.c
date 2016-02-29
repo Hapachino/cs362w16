@@ -146,10 +146,12 @@ int main()
 	hCount1 = G.handCount[0];
 	tCount1 = countTreasureCards(G.hand[0], G.handCount[0]);
 	tCountDeck1 = countTreasureCards(G.deck[0], G.deckCount[0]);
-
+	int dCount1 = dCount;
 	effectAdventure(&G, &infos);
-
-	//assert(dCount == G.discardCount[0]);
+	int dCount2 = G.discardCount[0];
+	printf("discard count before: %d\n", dCount1);
+	printf("\ndiscard count after: %d\n", dCount2);
+	assert(dCount == G.discardCount[0]);
 	printf("d %d\n", G.discardCount[0]);
 	hCount2 = G.handCount[0];
 	tCount2 = countTreasureCards(G.hand[0], G.handCount[0]);

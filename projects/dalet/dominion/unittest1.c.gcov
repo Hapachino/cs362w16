@@ -1,0 +1,353 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:2
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2:* Unit Test for updateCoins()
+        -:    3:*
+        -:    4:* Business Requirements:
+        -:    5:*	1. The current game states coin count should be reset to 0
+        -:    6:*   2. Should add 1 for each copper, 2 for each silver and 3 for each gold in a players hand to the game states coin count
+        -:    7:		- These cards must only be checked from the cards in the current players hand
+        -:    8:*	3. Should add the bonus correctly that is passed to updateCoins() 
+        -:    9:*   4. No changes should be made to the game state besides the change of its coin count
+        -:   10:*
+        -:   11:* unittest1: unittest1.c dominion.o rngs.o
+        -:   12:*	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+        -:   13:*/
+        -:   14:
+        -:   15:#include "dominion.h"
+        -:   16:#include "dominion_helpers.h"
+        -:   17:#include <string.h>
+        -:   18:#include <stdio.h>
+        -:   19:#include <assert.h>
+        -:   20:#include "rngs.h"
+        -:   21:#include <time.h>
+        -:   22:#include <stdlib.h>
+        -:   23:
+function checkState called 1320 returned 100% blocks executed 58%
+     1320:   24:void checkState(struct gameState pre, struct gameState post){
+        -:   25:	int i;
+        -:   26:	//assert(pre.numPlayers == post.numPlayers); //number of players
+     1320:   27:	if (pre.numPlayers != post.numPlayers)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   28:	{
+    #####:   29:		printf("Num Players Changed TEST FAILED\n");
+call    0 never executed
+        -:   30:	}
+    35640:   31:	for (i = 0; i < treasure_map; i++)
+branch  0 taken 96%
+branch  1 taken 4% (fallthrough)
+        -:   32:	{
+        -:   33:		//assert(pre.supplyCount[i] == post.supplyCount[i]);
+    34320:   34:		if (pre.supplyCount[i] != post.supplyCount[i])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   35:		{
+    #####:   36:			printf("Supply Counts Changed TEST FAILED\n");
+call    0 never executed
+        -:   37:		}
+        -:   38:		//assert(pre.embargoTokens[i] == post.embargoTokens[i]);
+    34320:   39:		if (pre.embargoTokens[i] != post.embargoTokens[i])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   40:		{
+    #####:   41:			printf("Embargo Tokens Changed TEST FAILED\n");
+call    0 never executed
+        -:   42:		}
+        -:   43:	}
+        -:   44:	//assert(pre.outpostPlayed == post.outpostPlayed);
+     1320:   45:	if (pre.outpostPlayed != post.outpostPlayed)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   46:	{
+    #####:   47:		printf("outpost played changed TEST FAILED\n");
+call    0 never executed
+        -:   48:	}
+        -:   49:	//assert(pre.outpostTurn == post.outpostTurn);
+     1320:   50:	if (pre.outpostTurn != post.outpostTurn)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   51:	{
+    #####:   52:		printf("outpost turn changed TEST FAILED\n");
+call    0 never executed
+        -:   53:	}
+        -:   54:	//assert(pre.whoseTurn == post.whoseTurn);
+     1320:   55:	if (pre.whoseTurn != post.whoseTurn)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   56:	{
+    #####:   57:		printf("whose turn changed TEST FAILED\n");
+call    0 never executed
+        -:   58:	}
+        -:   59:	//assert(pre.phase == post.phase);
+     1320:   60:	if (pre.phase != post.phase)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   61:	{
+    #####:   62:		printf("phase changed TEST FAILED\n");
+call    0 never executed
+        -:   63:	}
+        -:   64:	//assert(pre.numActions == post.numActions);
+     1320:   65:	if (pre.numActions != post.numActions)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   66:	{
+    #####:   67:		printf("num actions changed TEST FAILED\n");
+call    0 never executed
+        -:   68:	}
+        -:   69:	//assert(pre.coins == post.coins);  will not use in this test as this should change
+        -:   70:	//assert(pre.numBuys == post.numBuys);
+     1320:   71:	if (pre.numBuys != post.numBuys)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   72:	{
+    #####:   73:		printf("num buys changed TEST FAILED\n");
+call    0 never executed
+        -:   74:	}
+        -:   75:	//assert(pre.playedCardCount == post.playedCardCount);
+     1320:   76:	if (pre.playedCardCount != post.playedCardCount)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:   77:	{
+    #####:   78:		printf("num played cards changed TEST FAILED\n");
+call    0 never executed
+        -:   79:	}
+        -:   80:
+     1320:   81:}
+        -:   82:
+function main called 2 returned 100% blocks executed 93%
+        2:   83:int main() {
+        -:   84:	int i;
+        -:   85:	int j;
+        2:   86:	int seed = 1000;
+        2:   87:	int numPlayer = 2;
+        2:   88:	int maxBonus = 10;
+        -:   89:	int p, r, handCount;
+        -:   90:	int bonus;
+        -:   91:	int k[10] = { adventurer, council_room, feast, gardens, mine
+        2:   92:		, remodel, smithy, village, baron, great_hall };
+        -:   93:	struct gameState G;
+        -:   94:	struct gameState pre;
+        2:   95:	int maxHandCount = 5;
+        -:   96:	//arrays of all coppers, silvers, and golds
+        -:   97:	int coppers[MAX_HAND];
+        -:   98:	int silvers[MAX_HAND];
+        -:   99:	int golds[MAX_HAND];
+     1002:  100:	for (i = 0; i < MAX_HAND; i++)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:  101:	{
+     1000:  102:		coppers[i] = copper;
+     1000:  103:		silvers[i] = silver;
+     1000:  104:		golds[i] = gold;
+        -:  105:
+        -:  106:	}
+        -:  107:
+        -:  108:	//creates random seed
+        2:  109:	srand( time(NULL) );
+call    0 returned 100%
+call    1 returned 100%
+        -:  110:
+        2:  111:	printf("Running unittest1 for updateCoins():\n");
+call    0 returned 100%
+        -:  112://	printf("Testing if hand is only one type of coin with various bonuses");
+        6:  113:	for (p = 0; p < numPlayer; p++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  114:	{
+       28:  115:		for (handCount = 0; handCount <= maxHandCount; handCount++)
+branch  0 taken 86%
+branch  1 taken 14% (fallthrough)
+        -:  116:		{
+      288:  117:			for (bonus = 0; bonus <= maxBonus; bonus++)
+branch  0 taken 92%
+branch  1 taken 8% (fallthrough)
+        -:  118:			{
+        -:  119://				printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
+      264:  120:				memset(&G, 23, sizeof(struct gameState));				// clear the game state
+      264:  121:				r = initializeGame(numPlayer, k, seed, &G);				// initialize a new game
+call    0 returned 100%
+      264:  122:				G.handCount[p] = handCount;								// set the number of cards on hand																			
+      264:  123:				memcpy(G.hand[p], coppers, sizeof(int) * handCount);	// set all the cards to copper
+      264:  124:				memcpy(&pre, &G, sizeof(struct gameState));				// save a copy of current gamestate
+      264:  125:				updateCoins(p, &G, bonus);
+call    0 returned 100%
+        -:  126://				printf("G.coins = %d, expected = %d\n", G.coins, handCount * 1 + bonus);
+        -:  127:				//assert(G.coins == handCount * 1 + bonus);				// check if the number of coins is correct
+      264:  128:				if (G.coins != handCount * 1 + bonus)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  129:				{
+    #####:  130:					printf("Copper coins not added correctly TEST FAILED\n");
+call    0 never executed
+        -:  131:				}
+      264:  132:				checkState(pre, G);										// check new gamestate vs old only g.coins should change
+call    0 returned 100%
+        -:  133:				
+        -:  134:				
+      264:  135:				memcpy(G.hand[p], silvers, sizeof(int) * handCount);	// set all the cards to silver
+      264:  136:				memcpy(&pre, &G, sizeof(struct gameState));				// save a copy of current gamestate
+      264:  137:				updateCoins(p, &G, bonus);
+call    0 returned 100%
+        -:  138://				printf("G.coins = %d, expected = %d\n", G.coins, handCount * 2 + bonus);
+        -:  139:				//assert(G.coins == handCount * 2 + bonus);				// check if the number of coins is correct
+      264:  140:				if (G.coins != handCount * 2 + bonus)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  141:				{
+    #####:  142:					printf("Silver coins not added correctly TEST FAILED\n");
+call    0 never executed
+        -:  143:				}
+        -:  144:
+      264:  145:				checkState(pre, G);										// check new gamestate vs old only g.coins should change
+call    0 returned 100%
+        -:  146:
+      264:  147:				memcpy(G.hand[p], golds, sizeof(int) * handCount);		// set all the cards to gold
+      264:  148:				memcpy(&pre, &G, sizeof(struct gameState));				// save a copy of current gamestate
+      264:  149:				updateCoins(p, &G, bonus);
+call    0 returned 100%
+        -:  150://				printf("G.coins = %d, expected = %d\n", G.coins, handCount * 3 + bonus);
+        -:  151:				//assert(G.coins == handCount * 3 + bonus);				// check if the number of coins is correct
+      264:  152:				if (G.coins != handCount * 3 + bonus)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  153:				{
+    #####:  154:					printf("Gold coins not added correctly TEST FAILED\n");
+call    0 never executed
+        -:  155:				}
+      264:  156:				checkState(pre, G);										// check new gamestate vs old only g.coins should change
+call    0 returned 100%
+        -:  157:
+        -:  158:			}
+        -:  159:		}
+        -:  160:	}
+        -:  161://	printf("Testing if hand has no treasure cards but random other cards with various bonuses");
+        6:  162:	for (p = 0; p < numPlayer; p++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  163:	{
+       28:  164:		for (handCount = 0; handCount <= maxHandCount; handCount++)
+branch  0 taken 86%
+branch  1 taken 14% (fallthrough)
+        -:  165:		{
+      288:  166:			for (bonus = 0; bonus <= maxBonus; bonus++)
+branch  0 taken 92%
+branch  1 taken 8% (fallthrough)
+        -:  167:			{
+        -:  168://				printf("Test player %d with 0 treasure card(s) and %d bonus.\n", p, bonus);
+      264:  169:				memset(&G, 23, sizeof(struct gameState));				// clear the game state
+      264:  170:				r = initializeGame(numPlayer, k, seed, &G);				// initialize a new game
+call    0 returned 100%
+      264:  171:				G.handCount[p] = handCount;								// set the number of cards on hand
+        -:  172:
+      924:  173:				for (j = 0; j < handCount; j++)
+branch  0 taken 71%
+branch  1 taken 29% (fallthrough)
+        -:  174:				{
+      660:  175:					int randCard = rand() % 10;							// random none treasure card from kingdom list
+call    0 returned 100%
+      660:  176:					G.hand[p][j] = k[randCard];
+        -:  177:				}
+      264:  178:				memcpy(&pre, &G, sizeof(struct gameState));				// save a copy of current gamestate
+      264:  179:				updateCoins(p, &G, bonus);
+call    0 returned 100%
+        -:  180://				printf("G.coins = %d, expected = %d\n", G.coins, bonus);
+        -:  181:				//assert(G.coins == bonus);								// check if the number of coins is correct
+      264:  182:				if (G.coins != bonus)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  183:				{
+    #####:  184:					printf("Bonus did not add correctly with no treasure cards TEST FAILED\n");
+call    0 never executed
+        -:  185:				}
+      264:  186:				checkState(pre, G);										// check new gamestate vs old only g.coins should change
+call    0 returned 100%
+        -:  187:
+        -:  188:			}			
+        -:  189:		}
+        -:  190:	}
+        -:  191://	printf("Testing if hand has a mix of treasure and non-treasure cards with various bonuses");
+        6:  192:	for (p = 0; p < numPlayer; p++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:  193:	{
+       28:  194:		for (handCount = 0; handCount <= maxHandCount; handCount++)
+branch  0 taken 86%
+branch  1 taken 14% (fallthrough)
+        -:  195:		{
+      288:  196:			for (bonus = 0; bonus <= maxBonus; bonus++)
+branch  0 taken 92%
+branch  1 taken 8% (fallthrough)
+        -:  197:			{
+        -:  198:				
+      264:  199:				memset(&G, 23, sizeof(struct gameState));				// clear the game state
+      264:  200:				r = initializeGame(numPlayer, k, seed, &G);				// initialize a new game
+call    0 returned 100%
+      264:  201:				G.handCount[p] = handCount;								// set the number of cards on hand
+      264:  202:				int expectedCoin = 0;
+      264:  203:				int tempCount = 0;
+        -:  204:
+        -:  205:				//makes half hand non-treasure half treasure
+      924:  206:				for (j = 0; j < handCount; j++)
+branch  0 taken 71%
+branch  1 taken 29% (fallthrough)
+        -:  207:				{
+      660:  208:					if (j % 2 == 0) 
+branch  0 taken 60% (fallthrough)
+branch  1 taken 40%
+        -:  209:					{
+      396:  210:						tempCount++;
+      396:  211:						int randCard = rand() % 3 + 4;					// random treasure card (4: copper, 5: silver, 6:gold)
+call    0 returned 100%
+      396:  212:						G.hand[p][j] = randCard;
+      396:  213:						if (randCard == 4)
+branch  0 taken 29% (fallthrough)
+branch  1 taken 71%
+        -:  214:						{
+      114:  215:							expectedCoin += 1;
+        -:  216:						}
+      282:  217:						else if (randCard == 5)
+branch  0 taken 51% (fallthrough)
+branch  1 taken 49%
+        -:  218:						{
+      144:  219:							expectedCoin += 2;
+        -:  220:						}
+        -:  221:						else
+        -:  222:						{
+      138:  223:							expectedCoin += 3;
+        -:  224:						}
+        -:  225:					}
+        -:  226:					else
+        -:  227:					{
+      264:  228:						int randCard = rand() % 10;							// random none treasure card from kingdom list
+call    0 returned 100%
+      264:  229:						G.hand[p][j] = k[randCard];
+        -:  230:					}
+        -:  231:				}
+        -:  232://				printf("Test player %d with %d random treasure card(s) and %d bonus.\n", p, tempCount, bonus);
+      264:  233:				memcpy(&pre, &G, sizeof(struct gameState));				// save a copy of current gamestate
+      264:  234:				updateCoins(p, &G, bonus);
+call    0 returned 100%
+        -:  235://				printf("G.coins = %d, expected = %d\n", G.coins, expectedCoin + bonus);
+        -:  236:				//assert(G.coins == expectedCoin + bonus);				// check if the number of coins is correct
+      264:  237:				if (G.coins != expectedCoin + bonus)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+        -:  238:				{
+    #####:  239:					printf("Random treasure + non tresure did not add correctly TEST FAILED\n");
+call    0 never executed
+        -:  240:				}
+      264:  241:				checkState(pre, G);										// check new gamestate vs old only g.coins should change
+call    0 returned 100%
+        -:  242:			}
+        -:  243:		}
+        -:  244:	}
+        -:  245:	
+        2:  246:	printf("Finished running unittest1 for updateCoins():\n");
+call    0 returned 100%
+        2:  247:	return 0;
+        -:  248:}
+        -:  249:

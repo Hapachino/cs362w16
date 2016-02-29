@@ -2,7 +2,7 @@
  Robert Jackson
 CS362 2/14/16
 
-To run the tests simply type make random it will autimatically run 500k tests and output the information in three files
+To run the tests simply type make random it will automatically run 500k tests and output the information in three files
 
 
 Smithy Card:

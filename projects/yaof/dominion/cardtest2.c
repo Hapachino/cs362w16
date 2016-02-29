@@ -64,7 +64,7 @@ int main() {
             G.hand[p][0] = feast;
             memcpy(&copyG, &G, sizeof(struct gameState));
             prevSupplyCount = G.supplyCount[testCards[i]];
-            r = cardEffect(feast, testCards[i], testCards[i], testCards[i], &G, 0, &zero);
+            r = playCard(0, 0, 0, 0, &G);
             printf("Checking supplyCount and discard pile if card was able to be bought ...\n");
             if ( (prevSupplyCount != G.supplyCount[testCards[i]] + 1) && r != -1)
                 printf("Did not properly subtract supplyCount for the bought card, if card is able to be bought. Expected: %i, Actual: %i\n", prevSupplyCount - 1, G.supplyCount[testCards[i]]);

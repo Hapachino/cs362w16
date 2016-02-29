@@ -59,7 +59,7 @@ int main() {
         G.handCount[p] = 1;
         G.hand[p][0] = smithy;
         memcpy(&copyG, &G, sizeof(struct gameState));
-        cardEffect(smithy, 0, 0, 0, &G, 0, &zero);
+        playCard(0, 0, 0, 0, &G);
         printf("Checking if players drew the right amount of cards ... \n");
         if (G.handCount[p] != 3)
         {
@@ -91,7 +91,7 @@ int main() {
                 printf("Deck has changed between copied and modified game state!\n");
         }
         printf("Testing general game state variables if they've been changed ...\n");
-        printf("This will test to see if our copied game state before we performed villageCardTest is equal to the modified game state.\n");
+        printf("This will test to see if our copied game state before we performed smithyCardTest is equal to the modified game state.\n");
         
         if (cmpPlayedCards(&G, &copyG) == 0)
             printf("playedCards hasn't changed between copied and modified game state!\n");

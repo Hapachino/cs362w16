@@ -64,8 +64,7 @@ int main() {
         G.hand[p][0] = adventurer;
         memcpy(&copyG, &G, sizeof(struct gameState));
         printf("Test without any cards in the deck, but a full discard deck to see if shuffle will work.\n");
-        cardEffect(adventurer, 0, 0, 0, &G, 0, &i);
-        playAdventurer(&G);
+        playCard(0, 0, 0, 0, &G);
         printf("Checking if player drew two treasure cards successfully ...\n");
         if (G.handCount[p] != 2)
         {

@@ -770,7 +770,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		playSmithy(state, handPos, currentPlayer);
 		
     case village:
-		int playVillage(state, handPos, currentPlayer);
+		playVillage(state, handPos, currentPlayer);
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -1271,7 +1271,7 @@ playAdventurer(struct gameState *state, int currentPlayer)
 			z++;
 		}
     }
-    while(z-1>0){
+    while(z-1>=0){
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 		z=z-1;
     }
@@ -1282,21 +1282,20 @@ playSmithy(struct gameState *state, int handPos, int currentPlayer)
 {
 	int i;
       //+3 Cards
-    for (i = 1; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
+    for (i = 0; i < 3; i++){
+		drawCard(currentPlayer, state);
 	}
 			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+    //discard card from hand
+    discardCard(handPos, currentPlayer, state, 0);
+    return 0;
 }
 
 int playCouncil_Room(struct gameState *state, int handPos, int currentPlayer)
 {
     //+4 Cards
 	int i;
-    for (i = 1; i < 4; i++){
+    for (i = 0; i < 4; i++){
 		drawCard(currentPlayer, state);
 	}
 			
@@ -1304,23 +1303,21 @@ int playCouncil_Room(struct gameState *state, int handPos, int currentPlayer)
     state->numBuys++;
 			
     //Each other player draws a card
-    for (i = 1; i < state->numPlayers; i++){
+    for (i = 0; i < state->numPlayers; i++){
 		if ( i != currentPlayer )
 		{
 			drawCard(i, state);
 	    }
-	}
-			
+	}		
     //put played card in played card pile
-    discardCard(handPos, currentPlayer, state, 0);
-			
+    discardCard(handPos, currentPlayer, state, 0);		
     return 0;
 }
 
 int playRemodel(struct gameState *state, int handPos, int currentPlayer, int choice1, int choice2)
 {
 	int j;
-	j = state->hand[currentPlayer][choice2];  //store card we will trash
+	j = state->hand[currentPlayer][choice1];  //store card we will trash
 
     if ( (getCost(state->hand[currentPlayer][choice1]) + 2) < getCost(choice2) ){
 	  return -1;

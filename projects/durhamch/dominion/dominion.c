@@ -703,10 +703,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
 	{
-	  if ( i != currentPlayer )
-	    {
-	      drawCard(i, state);
-	    }
+	//  if ( i != currentPlayer )
+	//    {
+	//      drawCard(i, state);
+	//    }
 	}
 			
       //put played card in played card pile

@@ -82,83 +82,8 @@ Test method changes:
  Other Information
  -----------------
 
- ==============================
- BUG 2
- ==============================
-
-Title: Smithy card incorrect post playment placement.
-
-Class: "Logic Error"
-
-Date: 2/24/16
-Reported By: Justin Siddon
-Email: siddonj@oregonstate.edu
-
-
-Product: Dominion                       Version: 1.0
-Platform: Ubuntu                      Version: 12.04
-Browser: None                        Version:
-URL:
-
-Is it reproducible: Yes
-
-Description
-===========
-The 'smithyCard' function places the played smithy card directly into the 'discard' pile.
-Instead it should be placed into the 'played' card pile then discarded at the end of the
-player's turn.
-
-
-Steps to Produce/Reproduce
---------------------------
-Initialize a game of dominion
-Execute the 'smithyCard' function.
-Review the size of the discard pile and compare it to the size of the played pile.
-
-
-
-Expected Results
-----------------
-Player whom played smithy card to have 1 more card in played card pile, and no
-additional cards in discard pile.
-
-
-Actual Results
---------------
-Discard will have 1 more card after calling method, played will have no additional
-cards after calling method.
-
-
-Workarounds
------------
-Decrement move the top discard card directly into the players played pile after
-calling the 'smithyCard' function.
-
-
-Attachments (Code Causing Error)
------------
-// Smithy Card implementation
-int smithyCard (struct gameState *state, int handPos) {
-    int i;
-    int currentPlayer = whoseTurn(state);
-      //+3 Cards
-      for (i = 0; i < 3; i++)
-  {
-    drawCard(currentPlayer, state);
-  }
-
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
-}
-
-
-Other Information
------------------
-
-
 ==============================
-BUG 3
+BUG 2
 ==============================
 
 Title: Adventurer incorrect amount of treasures added to players hand.
@@ -217,7 +142,7 @@ Other Information
 
 
 ==============================
-BUG 4
+BUG 3
 ==============================
 
 Title: Adventurer doesn't validate the players card as an 'adventurer'.
@@ -422,7 +347,7 @@ Other Information
 BUG 3
 ==============================
 
-Title: Village doesn't incorrectly subtracts player's buy total.
+Title: Village incorrectly subtracts player's buy total.
 
 Class: "Logic Error"
 
@@ -483,12 +408,24 @@ Other Information
 /*************************************************
 Andrew's Code
 *************************************************/
+To get Andrew's code to run I have to change my calls to 'playSmithy'
+to 'cardEffect'. For smithy I used:
+  int r = 0;
+  cardEffect(smithy, 1,1,1, testGame, 0 ,&r);
+
+Adventurer modifications:
+Changed: playAdventurer(testGame, testGame->whoseTurn);         // First card is adventurer;
+To:
+  int r = 0;
+  cardEffect(adventurer, 1,1,1, testGame, 0 ,&r);
+
+
 
 ==============================
 BUG 1
 ==============================
 
-Title:
+Title: Player's actions don't correctly decrease when playing smithy card.
 
 Class: "Logic Error"
 
@@ -506,42 +443,205 @@ Is it reproducible: Yes
 
 Description
 ===========
-The 'smithyCard' function draw the correct number of cards into the players hand.
+Playing a smithy card should decrease the total number of actions the player
+has available by 1.
 
 
 Steps to Produce/Reproduce
 --------------------------
 Initialize a game of dominion
-Execute the 'smithyCard' function.
+Set players first card in hand to be smithy.
+Execute the 'cardEffect' function passing in these values:
+  cardEffect(smithy, 1,1,1, testGame, 0 ,&r);
 
 
 Expected Results
 ----------------
-Player who played the smithy card hand size increases by a total of 2 cards.
-Draw 3 and discard 1 (smithy) so net increase is 2.
+Player who played the smithy card actions to decrease by 1.
 
 
 Actual Results
 --------------
-Player's hand size only increases by 1.
+Player's actions don't decrease at all.
 
 
 Workarounds
 -----------
-None.
+play smithy card then manually decrement the players actions.
 
 
 Attachments (code causing error)
 -----------
-	// You are initilizing 'i' to the 1, should be 0.
-    for (i = 1; i < 3; i++)
-	{
-		drawCard(currentPlayer, state);
-	}
+case smithy:
+  //+3 Cards
+  for (i = 0; i < 3; i++)
+  {
+    drawCard(currentPlayer, state);
+  }
 
-    //discard card from hand
-    discardCard(handPos, currentPlayer, state, 0);
-    return 0;
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  return 0;
+
+
+Other Information
+-----------------
+
+
+
+==============================
+BUG 2
+==============================
+
+Title: Player's hand size increases by 1 to many cards when playing adventurer.
+
+Class: "Logic Error"
+
+Date: 2/24/16
+Reported By: Justin Siddon
+Email: siddonj@oregonstate.edu
+
+
+Product: Dominion                       Version: 1.0
+Platform: Ubuntu                      Version: 12.04
+Browser: None                        Version:
+URL:
+
+Is it reproducible: Yes
+
+Description
+===========
+Playing adventurer card should increase the total number of cards in the players
+hand by 1. Player gets 2 cards in hand, then discards the adventurer card leading
+to a net increase of 1.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Initialize a game of dominion
+Set players first card in hand to be adventurer.
+Execute the 'cardEffect' function passing in these values:
+  cardEffect(adventurer, 1,1,1, testGame, 0 ,&r);
+
+
+Expected Results
+----------------
+Player who played adventurer card actions to increase by 1.
+
+
+Actual Results
+--------------
+Player who played adventurer card actions to increase by 2.
+
+
+Workarounds
+-----------
+play adventurer card then manually call discard on the
+adventurer hand position.
+
+
+Attachments (code causing error)
+-----------
+case adventurer:
+  while(drawntreasure<2){
+    if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+      shuffle(currentPlayer, state);
+    }
+    drawCard(currentPlayer, state);
+    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+    drawntreasure++;
+    else{
+      temphand[z]=cardDrawn;
+      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+      z++;
+    }
+  }
+  while(z-1>=0){
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    z=z-1;
+  }
+  return 0;
+
+
+Other Information
+-----------------
+
+
+
+==============================
+BUG 3
+==============================
+
+Title: Adventurer card isn't in the played card pile.
+
+Class: "Logic Error"
+
+Date: 2/24/16
+Reported By: Justin Siddon
+Email: siddonj@oregonstate.edu
+
+
+Product: Dominion                       Version: 1.0
+Platform: Ubuntu                      Version: 12.04
+Browser: None                        Version:
+URL:
+
+Is it reproducible: Yes
+
+Description
+===========
+Playing adventurer card should increase the total number of cards in the players
+played card pile by 1.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Initialize a game of dominion
+Set players first card in hand to be adventurer.
+Execute the 'cardEffect' function passing in these values:
+  cardEffect(adventurer, 1,1,1, testGame, 0 ,&r);
+
+
+Expected Results
+----------------
+Player who played adventurer card playedCard count to increase by 1.
+
+
+Actual Results
+--------------
+Player who played adventurer card playedCard count is left unchanged.
+
+
+Workarounds
+-----------
+play adventurer card then manually call discard on the
+adventurer hand position witht he correct discard flag set.
+
+
+Attachments (code causing error)
+-----------
+case adventurer:
+  while(drawntreasure<2){
+    if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+      shuffle(currentPlayer, state);
+    }
+    drawCard(currentPlayer, state);
+    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+    drawntreasure++;
+    else{
+      temphand[z]=cardDrawn;
+      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+      z++;
+    }
+  }
+  while(z-1>=0){
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    z=z-1;
+  }
+  return 0;
+
 
 Other Information
 -----------------

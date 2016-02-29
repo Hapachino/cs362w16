@@ -331,6 +331,13 @@ int testAdventurer(struct gameState *pre, struct gameState *post, int player, in
         }
     }
     
+    //Total number of cards for player should be the same
+    int preCount = pre->deckCount[player] + pre->handCount[player] + pre->discardCount[player];
+    int postCount = post->deckCount[player] + post->handCount[player] + post->discardCount[player];
+    if (preCount != postCount) {
+        change = postCount - preCount;
+        printf("FAIL. Player's total card count changed by %d.\n", change);
+    }
     
     //Tests for all other players
     for (i = 0; i < numPlayers; i++)

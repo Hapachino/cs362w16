@@ -388,30 +388,30 @@ int endTurn(struct gameState *state) {
 }
 
 int isGameOver(struct gameState *state) {
-  int i;
-  int j;
-	
-  //if stack of Province cards is empty, the game ends
-  if (state->supplyCount[province] == 0)
-    {
-      return 1;
-    }
+	int i;
+	int j;
 
-  //if three supply pile are at 0, the game ends
-  j = 0;
-  for (i = 0; i < 25; i++)
-    {
-      if (state->supplyCount[i] == 0)
+	//if stack of Province cards is empty, the game ends
+	if (state->supplyCount[province] == 0)
 	{
-	  j++;
+		return 1;
 	}
-    }
-  if ( j >= 3)
-    {
-      return 1;
-    }
 
-  return 0;
+	//if three supply pile are at 0, the game ends
+	j = 0;
+	for (i = 0; i < 25; i++)
+	{
+		if (state->supplyCount[i] == 0)
+		{
+			j++;
+		}
+	}
+	if (j >= 3)
+	{
+		return 1;
+	}
+
+	return 0;
 }
 
 int scoreFor (int player, struct gameState *state) {
@@ -1280,7 +1280,7 @@ int playVillage(struct gameState *state, int handPos)
 	state->numActions = state->numActions + 2;
 
 	//discard played card from hand
-
+	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
 
@@ -1299,7 +1299,7 @@ int playFeast(struct gameState *state, int choice1)
 	//Backup hand
 
 	//Update Coins for Buy
-	updateCoins(currentPlayer, state, 10);
+	updateCoins(currentPlayer, state, 5);
 	x = 1;//Condition to loop on
 	while (x == 1) {//Buy one card
 		if (supplyCount(choice1, state) <= 0) {

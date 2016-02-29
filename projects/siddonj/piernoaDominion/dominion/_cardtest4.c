@@ -40,8 +40,9 @@ void testPlayVillage() {
 
   // Set player 1's first card in hand to be village card.
   testGame->hand[testGame->whoseTurn][0] = village;
-
-  playVillage(testGame, testGame->whoseTurn, 0);         // First card is village;
+  int r = 0;
+  cardEffect(adventurer, 1,1,1, testGame, 0 ,&r);
+  //playVillage(testGame, testGame->whoseTurn, 0);         // First card is village;
 
   // See if any other players handsize increased, don't include player that played village.
   for(i = 1; i < numPlayers; i++) {
@@ -155,8 +156,9 @@ void testPlayVillage() {
 
   // Set player 1's first card in hand to be copper card.
   testGame->hand[testGame->whoseTurn][0] = copper;
-
-  playVillage(testGame, testGame->whoseTurn, 0);         // First card is copper, not village;
+  r = 0;
+  cardEffect(adventurer, 1,1,1, testGame, 0 ,&r);
+  //playVillage(testGame, testGame->whoseTurn, 0);         // First card is copper, not village;
 
   if(state->numActions == testGame->numActions) {    // Players actions shouldn't update.
     printf(PLAYVILLAGE_PASS);
@@ -174,7 +176,9 @@ void testPlayVillage() {
 
   testGame->hand[testGame->whoseTurn][0] = village;
 
-  playVillage(testGame, testGame->whoseTurn, 0);         // First card is copper, not village;
+  r = 0;
+  //playVillage(testGame, testGame->whoseTurn, 0);         // First card is copper, not village;
+  cardEffect(adventurer, 1,1,1, testGame, 0 ,&r);
 
   if(state->discardCount[state->whoseTurn] == testGame->discardCount[testGame->whoseTurn]) {    // Players actions shouldn't update.
     printf(PLAYVILLAGE_PASS);

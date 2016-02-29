@@ -87,10 +87,10 @@ int main (int argc, char** argv) {
       printf("TEST3: Smithy Hand Effects\n");
       alarm(2);
       checkError(previousG.handCount[player] + 2 == G.handCount[player]);
-      checkError(contains(G.deck[player],G.deckCount[player],copper) == 1);
-      checkError(contains(G.deck[player],G.deckCount[player],silver) == 1);
-      checkError(contains(G.deck[player],G.deckCount[player],gold) == 1);
-      checkError(contains(G.deck[player],G.deckCount[player],adventurer) == 0);
+      checkError(contains(G.hand[player],G.handCount[player],copper) == 1);
+      checkError(contains(G.hand[player],G.handCount[player],silver) == 1);
+      checkError(contains(G.hand[player],G.handCount[player],gold) == 1);
+      checkError(contains(G.hand[player],G.handCount[player],adventurer) == 0);
       alarm(0);
       printResults();
       resetError();

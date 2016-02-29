@@ -54,15 +54,15 @@ unittestresults.out: dominion.h rngs.h dominion_helpers.h dominion.o rngs.o unit
 	#gcov dominion.c >> unitTestResults.out
 	#cat dominion.c.gcov >> unitTestResults.out
 	#card 1 Adventurer
-	gcc -o cardTest1.o cardTest1.c dominion.o rngs.o -g $(CFLAGS)
-	./cardTest1.o
-	gcov dominion.c >> unitTestResults.out
-	cat dominion.c.gcov >> unitTestResults.out
-	#card 2 Feast
-	#gcc -o cardTest2.o cardTest2.c dominion.o rngs.o -g $(CFLAGS)
-	#./cardTest2.o
+	#gcc -o cardTest1.o cardTest1.c dominion.o rngs.o -g $(CFLAGS)
+	#./cardTest1.o
 	#gcov dominion.c >> unitTestResults.out
 	#cat dominion.c.gcov >> unitTestResults.out
+	#card 2 Salvanger
+	gcc -o cardTest2.o cardTest2.c dominion.o rngs.o -g $(CFLAGS)
+	./cardTest2.o
+	gcov dominion.c >> unitTestResults.out
+	cat dominion.c.gcov >> unitTestResults.out
 	#card 3
 	gcc -o cardTest3.o cardTest3.c dominion.o rngs.o -g $(CFLAGS)
 	./cardTest3.o

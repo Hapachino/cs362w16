@@ -1,9 +1,0 @@
-# Eclipse files
-.cproject
-.project
-
-# Text files
-*.txt
-
-# To experiment with rngs.c
-testRandom.c

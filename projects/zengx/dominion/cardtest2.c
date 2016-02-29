@@ -55,12 +55,13 @@ static char * test_adventurer() {
 	{
 		istreasure = 1;
 	}
-	int newcard = 3;
+	int newcard = 2;
+	int discardNum = 3;
 	printf("discardcountbefore = %d, discardcountafter =%d\n", G.discardCount[thisPlayer], testG.discardCount[thisPlayer]);
 	printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newcard -1 );
 	printf("coins = %d, expected = %d\n", testG.coins, G.coins);
 	printf("action = %d, expected = %d\n", testG.numActions, G.numActions);
-	mu_assert("-error: card discard not correct", G.discardCount[thisPlayer] == testG.discardCount[thisPlayer] - newcard);
+	mu_assert("-error: card discard not correct", G.discardCount[thisPlayer] == testG.discardCount[thisPlayer] - discardNum);
 	mu_assert("-error: last 2 cards not treasure", istreasure == 1);
 	mu_assert("-error: coins not correct", testG.coins == G.coins );
 	mu_assert("-error: action not correct", testG.numActions == G.numActions);

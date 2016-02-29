@@ -1,0 +1,76 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:4
+        -:    0:Programs:1
+        -:    1:/* Author:      Ian Bender
+        -:    2: * Course:      CS362
+        -:    3: * Due Date:    2/3/2016
+        -:    4: * Description: Unit test for endTurn() function.
+        -:    5: * Requirements
+        -:    6: *      - End current player turn
+        -:    7: *      - Advance to next player
+        -:    8: *      - Do not advance if game is over
+        -:    9: */
+        -:   10:
+        -:   11:#include "dominion.h"
+        -:   12:#include "dominion_helpers.h"
+        -:   13:#include <string.h>
+        -:   14:#include <stdio.h>
+        -:   15:#include <assert.h>
+        -:   16:#include "rngs.h"
+        -:   17:
+function main called 4 returned 100% blocks executed 85%
+        4:   18:int main() 
+        -:   19:{
+        -:   20:    int i, j;
+        -:   21:    int outcome;
+        4:   22:    int seed = 1000;
+        -:   23:    struct gameState G, testG;
+        4:   24:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        -:   25:                    remodel, smithy, village, baron, great_hall};
+        -:   26:
+        4:   27:    printf("TESTING - endTurn()\n");
+call    0 returned 100%
+        -:   28:    //initialize game state
+        4:   29:    outcome = initializeGame(MAX_PLAYERS, k, seed, &G);
+call    0 returned 100%
+        4:   30:    if (outcome == -1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   31:        printf("ERROR - Game initialization failed.\n");
+call    0 never executed
+        4:   32:    memcpy(&testG, &G, sizeof(struct gameState));
+        -:   33:
+        -:   34:    //multiple tests to verify last player turn loops back to first player
+       16:   35:    for (i = 0; i < 3; i++)
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
+        -:   36:    {
+       60:   37:        for (j = 0; j < MAX_PLAYERS; j++)
+branch  0 taken 80%
+branch  1 taken 20% (fallthrough)
+        -:   38:        {
+        -:   39:            // test that current player is who we expect
+       48:   40:            if (whoseTurn(&G) != j)
+call    0 returned 100%
+branch  1 taken 0% (fallthrough)
+branch  2 taken 100%
+    #####:   41:                printf("ERROR - Current player: %d, Expected player: %d\n",
+call    0 never executed
+call    1 never executed
+        -:   42:                        whoseTurn(&G), j);
+        -:   43:            else
+       48:   44:                printf("SUCCESS - Current player: %d, Expected player: %d\n",
+call    0 returned 100%
+call    1 returned 100%
+        -:   45:                        whoseTurn(&G), j);
+       48:   46:            endTurn(&G);    //end current player turn
+call    0 returned 100%
+        -:   47:        }
+        -:   48:    }
+        4:   49:    printf("TEST COMPLETE\n\n");
+call    0 returned 100%
+        -:   50:
+        4:   51:    return 0;
+        -:   52:}

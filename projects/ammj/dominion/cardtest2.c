@@ -416,7 +416,7 @@ void setupTest(struct gameState *activeGame, struct cardResults *result){
 		activeGame->deckCount[result->curPlayer] = result->deckCount;
 		for(i=0; i < result->deckCount; i++)
 		{
-			if(result->coinFlag == 1)
+			if(result->coinFlag == 1 || result->coinFlag == 2)
 				cardNum = smithy;
 			else
 				cardNum = random_number(0, treasure_map);
@@ -428,6 +428,8 @@ void setupTest(struct gameState *activeGame, struct cardResults *result){
 		{
 			if(result->coinFlag == 1)
 				cardNum = duchy;
+			else if(result->coinFlag == 2) // added to test bug1
+				cardNum = copper;
 			else
 				cardNum = random_number(0, treasure_map);
 			activeGame->discard[result->curPlayer][i] = cardNum;
@@ -468,7 +470,7 @@ void cardTest2(int printVal, int seed, struct cardResults *result){
 	printf("\nTEST FOR ADVENTURER FIRST CARD PLAYED\n");
 
 	// refactored for Janel's code
-	r = playAdventurer(activeGame);
+	r = playAdventurer(activeGame, result->advPos);
 	assert(r == 0);
 	result->testsPassed++;
 
@@ -513,7 +515,7 @@ void cardTest2(int printVal, int seed, struct cardResults *result){
 	memcpy(controlGame, activeGame, sizeof(struct gameState));
 
 	// refactored for Janel's code
-  r = playAdventurer(activeGame);
+  r = playAdventurer(activeGame, result->advPos);
 	assert(r == 0);
 	result->testsPassed++;
 
@@ -539,7 +541,7 @@ void cardTest2(int printVal, int seed, struct cardResults *result){
 	memcpy(controlGame, activeGame, sizeof(struct gameState));
 
 	// refactored for Janel's code
-	r = playAdventurer(activeGame);
+	r = playAdventurer(activeGame, result->advPos);
 	assert(r == 0);
 	result->testsPassed++;
 
@@ -580,7 +582,44 @@ void cardTest2(int printVal, int seed, struct cardResults *result){
 	memcpy(controlGame, activeGame, sizeof(struct gameState));
 
 	// refactored for Janel's code
-	r = playAdventurer(activeGame);
+	r = playAdventurer(activeGame, result->advPos);
+	assert(r == 0);
+	result->testsPassed++;
+
+	r = verifyResults(activeGame, controlGame, result);
+
+	// clean up memory
+	free(controlGame);
+	free(activeGame);
+	controlGame = newGame();
+	activeGame = newGame();
+
+	// added to test bug 1
+	result->deckCount = random_number(1, 5);
+	result->discardCount = random_number(1, 5);
+	result->initFlag = 1;
+	result->coinFlag = 2;
+
+	printf("\nTEST FOR NO COINS IN DECK but coins in DISCARD\n");
+
+	setupTest(activeGame, result);
+
+	// Ensure last card in hand is a treasure card to get around program crashing
+	if(result->advPos == activeGame->handCount[result->curPlayer] - 1)
+	{
+		activeGame->hand[result->curPlayer][result->advPos - 1] = activeGame->hand[result->curPlayer][result->advPos];
+		activeGame->hand[result->curPlayer][activeGame->handCount[result->curPlayer] - 1] = 5;
+		result->advPos--;
+	}
+	else
+	{
+		activeGame->hand[result->curPlayer][activeGame->handCount[result->curPlayer] - 1] = 5;
+	}
+
+	// copy the data into the controlGame before running the function
+	memcpy(controlGame, activeGame, sizeof(struct gameState));
+
+	r = playAdventurer(activeGame, result->advPos);
 	assert(r == 0);
 	result->testsPassed++;
 

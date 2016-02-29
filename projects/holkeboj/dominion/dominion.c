@@ -650,9 +650,7 @@ int smithy_card(int handPos, int currentPlayer, struct gameState *state) {
     int i;
     // +3 Cards
     for (i = 0; i < 3; i++) {
-        if (handPos != 2) { // bug - this condition shouldn't be here
-            drawCard(currentPlayer, state);
-        }
+        drawCard(currentPlayer, state);
     }
     
     //discard card from hand
@@ -668,12 +666,7 @@ int adventurer_card(int handPos, int z, int temphand[], int drawntreasure, int c
             shuffle(currentPlayer, state);
         }
         drawCard(currentPlayer, state);
-        if (drawntreasure == 1) {
-            // BUG: draw two extra cards if drawntreasure == 1.  Could potentiall result in drawing
-            // more than two treasure cards.
-            drawCard(currentPlayer, state);
-            drawCard(currentPlayer, state);
-        }
+
         cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];
         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
             drawntreasure++;
@@ -686,6 +679,9 @@ int adventurer_card(int handPos, int z, int temphand[], int drawntreasure, int c
             state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z-1];
             z = z -1;
         }
+        
+        discardCard(handPos, currentPlayer, state, 0);
+        
         return 0;
     }
 }
@@ -694,8 +690,6 @@ int adventurer_card(int handPos, int z, int temphand[], int drawntreasure, int c
 int outpost_card(int handPos, int currentPlayer, struct gameState *state) {
     // set outpost flag
     state->outpostPlayed++;
-    
-    state->handCount[currentPlayer]++;
     
     // discard card
     discardCard(handPos, currentPlayer, state, 0);
@@ -737,9 +731,7 @@ int village_card(int handPos, int currentPlayer, struct gameState *state) {
     state->numActions = state->numActions + 2;
 
     // discard played card from hand
-    if (state->numActions > 3) {
-        discardCard(handPos, currentPlayer, state, 0);
-    }
+    discardCard(handPos, currentPlayer, state, 0);
     return 0;
 }
 

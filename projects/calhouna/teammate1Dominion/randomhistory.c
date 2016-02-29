@@ -1,117 +1,103 @@
-Nancy Chan
-CS 362
-Winter 2016
-Assignment 4: randomhistory.c
+Andrew M. Calhoun
+CS 362 - ASSIGNMENT 4
+Random Testing
+Due Date: 2/14/2016
 
-Adding the random testers improved coverage in all aspects:
+Aggregate Tests Totals for Tests:
+Original 8 Tests:
 
-Assignment 3:
-Aggregate coverage for all 8 test files:
-Lines executed:37.04% of 575
-Branches executed:47.96% of 417
-Taken at least once:36.21% of 417
-Calls executed:21.05% of 95
+Lines executed: 86.23%
+Branches executed: 96.34%
+Taken at least once: 60.39%
+Calls executed: 68.38%
 
-Assignment 4:
-Aggregate coverage for all 10 test files:
-Lines executed:41.57% of 575
-Branches executed:48.92% of 417
-Taken at least once:41.01% of 417
-Calls executed:23.16% of 95
+Original 10 Tests:
+Lines executed: 86.38%
+Branches executed: 97.07%
+Taken at least once: 60.88%
+Calls executed: 69.83%
 
-randomtestadventurer:
+Adventurer Tests:
 
-	I developed the random tester by creating a deck of 10 random cards, an empty discard pile,
-	and a fixed hand of 5 cards. I then saved pre-test values to compare with post-test values.
-	I calculated expected values for three scenarios: 1) no treasures in the deck, 2) one treasure
-	in the deck, and 3) at least 2 treasures in the deck. I compared the expected values with the
-	actual values in the changes to the deck, discard, and hand after playing the adventurer card. 
-	
-	In terms of coverage, for Assignment 3, I had not tested the behavior of adventurer in the case
-	of an empty deck and so the shuffle line in the playAdventurer function had not been executed.
-	Adding the random tester gave a more realistic assortment of cards which could result in an
-	empty deck as the player may go through the entire deck in a deck containing no treasures. This
-	improved coverage as the following line which was previously not executed is now executed:
+---- Assignment 3 ----
 
-	-: 1258:      //if the deck is empty we need to shuffle discard and add to deck
-   20: 1259:      shuffle(currentPlayer, state);
+Lines executed:88.06% of 67
+Branches executed:84.62% of 26
+Taken at least once:69.23% of 26
+Calls executed:92.31% of 26
+cardTest1.c:creating 'cardTest1.c.gcov'
 
-   However, the last section of code in playAdventurer is still not executed and remains inaccessible
-   because of the bug that I introduced in removing an incrementing statement for z:
+---- Assignment 4 ----
+Lines executed:79.35% of 92
+Branches executed:100.00% of 70
+Taken at least once:68.57% of 70
+Calls executed:60.53% of 38
+randomTestAdventurer.c:creating 'randomTestAdventurer.c.gcov'
 
-  200: 1274:  while(z-1>=0)
-	-: 1275:  {
-#####: 1276:    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-#####: 1277:    z=z-1;
-	-: 1278:  }
 
-	All branches are taken at least some percentage of the time except for the branch in which the above
-	while(z-1>=0) condition is satisfied.
+Village Tests:
 
-	Effort to check the correctness of the specification:
+---- Assignment 3 ----
 
-	Examples of scenarios that the random testers cover:
-		At least 2 treasures: Random Deck Test 1
-			- Deck count and hand count are correct. Discard pile is incorrect.
-		Exactly 2 treasures: Random Deck Test 6
-			- Deck count and hand count are correct. Discard pile is incorrect.
-		1 treasure: Random Deck Test 16
-			- Deck count and hand count are correct. Discard pile is incorrect.
-		No treasures: Random Deck Test 2
-			- Deck count is correct. Discard pile and hand count are incorrect.
+Lines executed:73.17% of 41
+Branches executed:100.00% of 20
+Taken at least once:55.00% of 20
+Calls executed:50.00% of 24
+cardTest3.c:creating 'cardTest3.c.gcov'
 
-	Note: The deck, discard pile, and hand counts are all correct only when there are at least 2 treasures at the top of
-	the deck (Example: Random Test 20) because in that instance, there is no need to discard other revealed cards and so
-	the bug in not correctly discarding cards does not occur.
+---- Assignment 4 ----
+Lines executed:85.92% of 71
+Branches executed:100.00% of 14
+Taken at least once:57.14% of 14
+Calls executed:90.70% of 43
+randomTestCard.c:creating 'randomTestCard.c.gcov'
 
-randomtestcard:
 
-	I developed the random tester by creating a hand of 10 random cards, I then put the remodel card in index 0 of the
-	hand (since the call to playRemodel requires passing its index). I then randomly select a card in the hand to trash
-	and randomly select a card to try to gain (from an array of cards representing each possible cost from 0 to 8).
-	Pre-test values are saved in order to compare them with post-test values. I created a function called trashOK()
-	which looks up the cost of the card to trash and card to gain and determines if it is possible to trash that card to
-	gain that other card according to the remodel card logic. I then check the deck, discard pile, and hand, comparing
-	expected values with actual values resulting from changes to the cards after playing the remodel card. If it is
-	possible to trash a card to gain a card, then there should be no change to the deck, + 2 added to the discard because
-	a card was gained and remodel was played, and - 2 subtracted from the hand because a card was trashed and remodel
-	was played. If it is not possible, then there should be no changes to the deck, discard pile, and hand.
+randomTestAdventurer:
 
-	In terms of coverage, the gcov file shows 100% statement coverage of playRemodel() and "function playRemodel called
-	1000 returned 100% blocks executed 100%". playRemodel is called many more times now because using a random tester
-	generates a larger number of different test cases.
+		My previous tests included some random tests, so I decided to create a new
+		series of tests. Albeit, they are very similar, the branch coverage for my second test
+        was more comprehensive, even though fewer lines were executed. This is likely in part to more
+        lines being in the program, and zeroing in on the bugs that I "discovered" during my assignment 3
+        testing. I also had randomized treasure draws for the first time, whereas I let the cards in the player's deck
+        and hand determine whether or not certain parameters were met. This probably created a more 'organic' testing situation,
+        at the expense of line coverage. However, with full branch coverage, we probably have a slightly more comprehensive test.
 
-	Effort to check the correctness of the specification:
+        The biggest difference between the previous version of my test and the current version is the scale. Originally, there were only
+        20 random tests done, whereas in the updated/new tests, there are 1000 tests being performed. This could account for some of the difference
+        in call coverage as well, as call coverage was 92.31% in the original test and only 60.53% in the current test.
 
-	choice1 = trashCard
-	choice2 = gainCard
-	Cost of trashCard + 2 < Cost of gainCard:
-		Random Test 75
-			- choice1 cost: 2, choice2 cost: 5
-			- Result: 0, Expected: -1
-		Random Test 661
-			- choice1 cost: 2, choice2 cost: 5
-			- Result: -1, Expected: -1
+        This testing suite was also set up with a seed (29365) so that some tests would succeed and others fail. The tests only failed when the player drew
+        two or fewer treasure cards, which would result in the deck being reshuffled excessively and other conditions not being met. Given that this happened
+        approximately 80% of the time, it gives us a reasonable expectation that there was a bug in the drawn treasure check within the adventurer card itself.
 
-	Cost of gainCard = Cost of trashCard + 2:
-		Random Test 51
-			- choice1 cost: 3, choice2 cost: 5
-			- Result: -1, Expected: 0
-		Random Test 94
-			- choice1 cost: 3, choice2 cost: 5
-			- Result: 0, Expected: 0
+        Other issues do seem to appear as well if there are multiple treasure cards drawn, which were then discarded. This should not happen either, and it is
+        probably a side effect of the implemented bugs from my original versions of the files.
 
-	Cost of gainCard < Cost of trashCard + 2:
-		Random Test 3
-			- choice1 cost: 4, choice2 cost: 0
-			- Result: 0, Expected: 0
-		Random Test 9
-			- choice1 cost: 4, choice2 cost: 0
-			- Result: -1, Expected: 0
+             7000:   98:			if(temphand[j] == 4 || temphand[j] == 5 || temphand[j] == 6)
+                    branch  0 taken 96% (fallthrough)
+                    branch  1 taken 4%
+                    branch  2 taken 96% (fallthrough)
+                    branch  3 taken 4%
+                    branch  4 taken 4% (fallthrough)
+                    branch  5 taken 96%
 
-	Testing reveals that there are inconsistencies in the behavior of playRemodel. We may have the same combination of
-	the cost of choice1 and choice2 but different results. We see more inconsistencies now that the hand is made of
-	random cards rather than consisting of the same control card which is the approach I used for Assignment 3.
-	Random testing confirms that even though we should only be examining the card to trash and the card to gain, the
-	other cards in the hand influence the result which violates the intended logic of remodel and exposes the bug that
-	that playRemodel is using the wrong index for the hand.
+                -- early on is a branch where the treasure cards are randomly drawn. It is fairly rare that treasure is drawn, given we have a full
+                suite of cards to choose from. This testing suite also shows an inconsistency in how the Adventurer card plays out, given the bug that exists
+                where cards are not properly discarded and shuffled too many times if the treasure draw is under two. The random chance here reveals the potential
+                cascade of problems that can occur because this functionality is not implemented correctly and based on the previous tests, we have confirmation that it is
+                something that has to do with the treasure draw.
+
+Village Tests:
+
+        My original card tests were reasonably thorough and random testing improved this further. The tests were much smaller scale; however, and there were only 14 branches versus 20 in the new
+        update. I reviewed my original tests and trimmed the branches to focus primarily on the area where bugs might have been. The other player's play was also added into the suite, and I found
+        that this error tends to grow over time, between both players, especially if endTurn is used, in particular if both cards are not discarded properly.
+
+        The improvement in coverage means we are also more likely to find the bugs. Both versions of the test suit had 100% branch execution, which is good, but with an increase in proportional line execution
+        we can also further isolate the bugs. And as 90.70% of all calls are now being executed with nearly twice the number, we are getting closer to an ideal test suite. There are still areas and scenarios
+        that probably were not considered in this version of the test. However, the village bug is fairly simple and card discarding is easily fixed by uncommenting out the discard function.
+
+        Currently, test failures to successes are 50/50. The discardCount for both players does not work properly, and it appears the second player does not pick up the card properly either. Whether this is a
+        bug of the testing suite or an actual bug within the card itself will require further testing. A big positive of this suite, is that it shows a bug that is consistent and can be readily isolated and
+        hammered out with further testing and debugging. This test suite also confirms the improper discard bug from the previous tests.

@@ -1,8 +1,9 @@
 /* -----------------------------------------------------------------------
- * Unit test for gainCard() function
+ * Testing isGameOver() method - using testUpdateCoins.c as the base code.
+ *
  * Include the following lines in your makefile:
  *
- * unittest4: unittest4.c dominion.o rngs.o
+ * unittest1: unittest4.c dominion.o rngs.o
  *      gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
@@ -13,86 +14,83 @@
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include <time.h>
-#include <math.h>
-#include <stdlib.h>
 
+int main() {
+    int seed = rand() % 1000;
+    int numPlayers = 2;
+    int p, round;
+    int randPro, randSup;
+    int k[10] = {adventurer, council_room, feast, gardens, mine
+               , remodel, smithy, village, baron, great_hall};
+    struct gameState oldGame;
+	struct gameState newGame;
+    int maxHandCount = 10;
+    int failCount = 0;
+    int passCount = 0;
 
-int checkGainCard(int supplyPos, int p, struct gameState *post) {
-  srand(time(NULL));
-  struct gameState pre;
-  memcpy (&pre, post, sizeof(struct gameState));
+    printf ("<< TESTING unittest4 - isGameOver() >>\n");
+	
+	for(p = 0; p < maxHandCount; p++)
+	{
+		memset(&oldGame, 23, sizeof(struct gameState));         //clear the game state
+		memset(&newGame, 23, sizeof(struct gameState));         //clear the game state
+		initializeGame(numPlayers, k, seed, &newGame);
+		for(round = 0; round < 10; round++)
+		{
+			randPro = rand() % 2;
+			randSup = rand() % 26;
+			memcpy(&oldGame, &newGame, sizeof(struct gameState));
+			if(randPro == 1)
+			{
+				if(newGame.supplyCount[province] > 0)
+					newGame.supplyCount[province]--;
+			}		
+			if( newGame.supplyCount[randSup] > 0)
+			{
+				newGame.supplyCount[randSup]--;
+			}
 
-  int j;
-  
-  int toTag = 0;   
- 
-  for (j = 0; j < 100; j++) 
-  {
-    toTag = rand() % 3;
+			if(isGameOver(&newGame) == 0)
+			{
 
-    if (toTag == 1) {
-        pre.deck[p][pre.deckCount[p]] = supplyPos;
-        pre.deckCount[p]++;
-      } else if (toTag == 2) {
-        pre.hand[p][pre.handCount[p]] = supplyPos;
-        pre.handCount[p]++;
-      } else {
-        pre.discard[p][pre.discardCount[p]] = supplyPos;
-        pre.discardCount[p]++;
-      }
-    pre.supplyCount[supplyPos]--;
-    assert (gainCard (supplyPos, post, toTag, p) == 0);
-    assert(memcmp(&pre, post, sizeof(struct gameState)) == 0);
-  }
-  //printf ("Testing gainCard() function on player %d passed!", p);
-  return 0;
-}
+				printf("Game is not over\n");
+				printf("Old province count: %d Last supply: %d\n", oldGame.supplyCount[province], oldGame.supplyCount[randSup]);
+				printf("New province count: %d Last supply: %d\n", newGame.supplyCount[province], newGame.supplyCount[randSup]);
 
-int main () {
+				if((newGame.supplyCount[province] < 1 && newGame.supplyCount[province] == oldGame.supplyCount[province] - 1) || (newGame.supplyCount[randSup] < 1 && newGame.supplyCount[randSup] == oldGame.supplyCount[randSup] - 1))
+				{
+					failCount++;
+					printf("Fail\n");
+				}
+				else
+				{
+					passCount++;
+//					printf("Pass\n");
+				}
+			}
+			else
+			{
 
-  int i, n, p;
+				printf("Game is over\n");	
+				printf("Old province count: %d Last supply: %d\n", oldGame.supplyCount[province], oldGame.supplyCount[randSup]);
+				printf("New province count: %d Last supply: %d\n", newGame.supplyCount[province], newGame.supplyCount[randSup]);
 
-  struct gameState G;
+				if((newGame.supplyCount[province] < 1 && newGame.supplyCount[province] == oldGame.supplyCount[province] - 1) || (newGame.supplyCount[randSup] < 1 && newGame.supplyCount[randSup] == oldGame.supplyCount[randSup] - 1))
+				{
+					passCount++;
+//					printf("Pass\n");
+				}
+				else
+				{
+					failCount++;
+					printf("Fail\n");
+				}
+	
+			}		
+		}		
+	}
+    printf("Number of cases passed: %d\n", passCount);
+    printf("Number of cases failed: %d\n", failCount);
 
-  printf ("Testing gainCard() \n");
-
-  SelectStream(2);
-  PutSeed(3);
-
-  for (n = 0; n < 2000; n++) {
-    for (i = 0; i < sizeof(struct gameState); i++) {
-      ((char*)&G)[i] = floor(Random() * 256);
-    }
-  p = floor(Random() * 2);
-
-  int randDeckCount = floor(Random() * MAX_DECK);
-  G.deckCount[p] = randDeckCount;
-  for (i = 0; i < randDeckCount; i++) 
-    {
-      G.deck[p][i] = rand() % 27;
-    }
-
-    int randHandCount = floor(Random() * MAX_HAND);
-    G.handCount[p] = randHandCount;
-    for (i = 0; i < randHandCount; i++) 
-    {
-      G.hand[p][i] = rand() % 27;
-    }
-
-    int randDiscardCount = floor(Random() * MAX_DECK);
-    G.discardCount[p] = randDiscardCount;
-    for (i = 0; i < randDiscardCount; i++) 
-    {
-      G.discard[p][i] = rand() % 27;
-    }
-
-    int supplyPos = rand() % 27;
-    G.supplyCount[supplyPos] = 1000;     
-    
-    checkGainCard(supplyPos, p, &G);
-  }
-  printf("Testing gainCard() function passed! \n");
-  return 0;
-
+    return 0;
 }

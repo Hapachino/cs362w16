@@ -1,134 +1,138 @@
-/* -----------------------------------------------------------------------
- * test isGameOver()
- * 
- *
- * unittest3: unittest3.c dominion.o rngs.o
- *      gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
- * -----------------------------------------------------------------------
- */
+// Andrew M. Calhoun
+// UNIT TEST - ASSIGNMENT 3
+// unitTest3.c
+// Unit Test for buyCard function.
 
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <stdbool.h>
-#include "rngs.h"
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdlib.h>
 
-// set NOISY_TEST to 0 to remove printfs from output
+#define DEBUG 0
 #define NOISY_TEST 1
 
-int main() {
-    int seed = 1000;
+// Ensures that buyCard function works properly and asserts properly.
 
-    int numPlayer = 2;
-    int r;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-               , remodel, smithy, village, tribute, embargo};
 
-    struct gameState G;
-    int result;
+/* function for reference
 
-    memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+int buyCard(int supplyPos, struct gameState *state) {
+  int who;
+  if (DEBUG){
+    printf("Entering buyCard...\n");
+  }
 
-#if (NOISY_TEST == 1)
-    printf("----------------- TESTING isGameOver():\n");
-#endif
+  // I don't know what to do about the phase thing.
 
-    // Test without any changes
-    result = isGameOver(&G);
-#if (NOISY_TEST == 1)
-    printf("Test 1: No changes\n");
-    printf("Game is over: %d, expected: 0\n\n", result);
-#endif
-    // False
-    assert(result == 0);
+  who = state->whoseTurn;
 
-    // Test with empty province pile
-    G.supplyCount[province] = 0;
-    result = isGameOver(&G);
-#if (NOISY_TEST == 1)
-    printf("Test 2: Empty province pile\n");
-    printf("Game is over: %d, expected: 1\n\n", result);
-#endif
-    // True
-    assert(result == 1);
+  if (state->numBuys < 1){
+    if (DEBUG)
+      printf("You do not have any buys left\n");
+    return -1;
+  } else if (supplyCount(supplyPos, state) <1){
+    if (DEBUG)
+      printf("There are not any of that type of card left\n");
+    return -1;
+  } else if (state->coins < getCost(supplyPos)){
+    if (DEBUG)
+      printf("You do not have enough money to buy that. You have %d coins.\n", state->coins);
+    return -1;
+  } else {
+    state->phase=1;
+    //state->supplyCount[supplyPos]--;
+    gainCard(supplyPos, state, 0, who); //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
 
-    memset(&G, 23, sizeof(struct gameState));   // clear the game state
-    r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+    state->coins = (state->coins) - (getCost(supplyPos));
+    state->numBuys--;
+    if (DEBUG)
+      printf("You bought card number %d for %d coins. You now have %d buys and %d coins.\n", supplyPos, getCost(supplyPos), state->numBuys, state->coins);
+  }
 
-    // Test with 1 empty supply pile
-    G.supplyCount[adventurer] = 0;
-    result = isGameOver(&G);
-#if (NOISY_TEST == 1)
-    printf("Test 3: 1 empty supply pile\n");
-    printf("Game is over: %d, expected: 0\n\n", result);
-#endif
-    // False
-    assert(result == 0);
+  //state->discard[who][state->discardCount[who]] = supplyPos;
+  //state->discardCount[who]++;
 
-    // Test with 2 empty supply piles
-    G.supplyCount[village] = 0;
-    result = isGameOver(&G);
-#if (NOISY_TEST == 1)
-    printf("Test 4: 2 empty supply piles\n");
-    printf("Game is over: %d, expected: 0\n\n", result);
-#endif
-    // False
-    assert(result == 0);
+  return 0;
+} */
+int checkBuyCard(int supplyPos, struct gameState *state)
+{
+    int who;
+    // if needed
+    struct gameState pre;
+    memcpy(&pre, state, sizeof(struct gameState));
+    //
+    printf("Testing Buy Card Functionality\n\n");
 
-    // Test with 3 empty supply piles
-    G.supplyCount[great_hall] = 0;
-    result = isGameOver(&G);
-#if (NOISY_TEST == 1)
-    printf("Test 5: 3 empty supply piles\n");
-    printf("Game is over: %d, expected: 1\n\n", result);
-#endif
-    // True
-    assert(result == 1);
+    who = state->whoseTurn;
 
-    // Re-test with 2 empty supply piles
-    G.supplyCount[great_hall] = 10;
-    result = isGameOver(&G);
-#if (NOISY_TEST == 1)
-    printf("Test 6: Re-test with 2 empty supply piles\n");
-    printf("Game is over: %d, expected: 0\n\n", result);
-#endif
-    // False
-    assert(result == 0);
+    if(state->numBuys < 1)
+    {
+        assert(state->numBuys > -1); // Make sure it doesn't go below 0.
+        printf("You have no buys left. 0 Buy Test Passed.\n\n");
+        return 0;
+    }
+    else
+    {
+        assert(state->phase=1); // Ensure that the game is in buy phase.
+        assert(state->numBuys >= 1);
+        printf("One or more buys available test passed.\n");
+        if(supplyCount(supplyPos, state) < 1)
+        {
+            printf("Out of that particular card!\n");
+            return 0;
+        }
+        printf("Card supply available.\n");
+        if (state->coins >= getCost(supplyPos))
+        {
+            printf("Can buy card with available gold. Yes!\n");
+        }
+        else
+        {
+            printf("Thou hast not enough gold!\n");
+        }
+        buyCard(supplyPos, state);
+        assert(state->numBuys == pre.numBuys - 1);
+        assert(state->numBuys >= 0);
+        assert(state->coins == (pre.coins - getCost(supplyPos)));
 
-    // Re-test with 1 empty supply pile
-    G.supplyCount[village] = 10;
-    result = isGameOver(&G);
-#if (NOISY_TEST == 1)
-    printf("Test 7: Re-test with 1 empty supply piles\n");
-    printf("Game is over: %d, expected: 0\n\n", result);
-#endif
-    // False
-    assert(result == 0);
+        return 0;
+    }
 
-    // Re-test with 0 supply piles
-    G.supplyCount[adventurer] = 10;
-    result = isGameOver(&G);
-#if (NOISY_TEST == 1)
-    printf("Test 8: Re-test with 0 empty supply piles\n");
-    printf("Game is over: %d, expected: 0\n\n", result);
-#endif
-    // False
-    assert(result == 0);
+}
 
-   // Test with an almost empty province pile
-    G.supplyCount[province] = 1;
-    result = isGameOver(&G);
-#if (NOISY_TEST == 1)
-    printf("Test 9: Re-test with almost empty province pile\n");
-    printf("Game is over: %d, expected: 0\n\n", result);
-#endif
-    // False
-    assert(result == 0);
+int main()
+{
+    srand(time(NULL));
+    int seed = rand() % 65535;
+    int coinage, buyage;
+    int supplyPos;
+    int i;
+    int k[10] = { adventurer, smithy, village, baron, salvager, sea_hag, great_hall, minion, council_room, gardens };
+    struct gameState *state = malloc(sizeof(struct gameState));
 
-    printf("All tests passed!\n");
+    initializeGame(2, k, seed, state);
 
+    for(i=0; i<200; i++)
+    {
+        supplyPos = rand() % 9; // tried with all cards, but can only allow kingdom cards.
+        coinage = rand() % 16 + 8;
+        buyage = rand() % 8;
+        state->coins = coinage;
+        state->numBuys = buyage; // for random testing.
+
+        checkBuyCard(supplyPos, state);
+    }
+
+    printf("\n\nAll tests passed!\n");
+
+
+    free(state);
     return 0;
+
 }

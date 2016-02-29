@@ -1,67 +1,36 @@
-Nancy Chan
-CS 362
-Winter 2016
-Assignment 3: bug1.c
+Andrew M. Calhoun
+calhouna@oregonstate.edu
+CS 362 - Assignment 3
+bugs1.c
 
-Bugs found:
+Bugs Found:
+    updateCoins() - unitTest1.c
+        No glaring errors or bugs found. Originally, there was an error found with failing tests, but it was a result of my unit test improperly comparing a value. Once this was fixed, no errors were found.
 
-scoreFor():
-	unittest4 detected a bug in the calculation of the gardens effect. A gardens card is worth
-	1 victory point for every 10 cards in the player's deck (the player's discard pile and hand
-	are a part of the player's deck at that point) rounded down. Instead of counting all of the
-	player's cards and then dividing by 10. scoreFor() uses fullDeckCount() to only get the
-	player's total number of curse cards and then dividing by 10.
+    discardCard() - unitTest2.c
+        No bugs found during testing.
 
-	unittest4 also detected a bug in the score calculation of the player's deck. scoreFor() fails
-	to consider cards in the player's deck when the player's discard pile count is zero.
+    buyCard() - unitTest3.c
+        No bugs found during testing. All buys are successful as long as player has enough coins to make the purchase.
 
-playSmithy():
-	cardtest1 detected incorrect counts of the player's cards after playing smithy. Instead of 7
-	cards in the deck, there were 6. Instead of 8 cards in the hand, there were 9. This means that
-	there was an extra card in the hand and one missing card from the deck and so smithy drew 4
-	cards instead of 3 since the other player's cards, victory card piles, and kingdom card piles
-	were unaffected.
-	
-	Additionally, the discard pile was empty which means that after being played,
-	smithy was trashed rather than discarded.
+    endTurn() - unitTest4.c
+        No bugs found during unit testing.
 
-playAdventurer():
-	cardtest2 detected that non-treasure cards revealed are not properly discarded. They could not be
-	accounted for in the player's own piles, the other player's piles, nor the estate pile (only the
-	initial coppers and estates were used). Instead of being discarded, it seems that they have been
-	removed from play.
+    playAdventurer() - cardTest1.c
+        Adventurer card will give two drawnTreasures instead of one, causing the loop to terminate early. This affects the seeding results in games, as well as affects the ratio.
+        As an interesting note, the deck count is randomized within the check itself to ensure consistency in testing. Also, the game shuffle the cards again if the player has one card.
+        It should be only if the player has less than 1 card. This can result in strange results depending on the seed. The test can sometimes succeed 100% of the time, othertimes it fails
+        frequently. The chosen seed is randomized and reset during each test. 20 tests are given.
 
-playCutpurse():
-	cardtest3 detected that the last (highest numbered) player is always skipped and thus, is unaffected 
-	by the card's effect of having to discard a copper despite having coppers in their hand. 
+    playSmithy() - cardTest2.c
+        Smithy does not properly add 3 cards due to an incrementation error. Rather than using a post-increment (i++), the code is using a prefix increment (++i), this results in only two cards
+        being given. During tests, a +4 is taken into account because the card is granted to the player. If the player does not have 4 more cards in their hand during a test, then the test fails.
 
-	Additionally, cardtest3 detected that even though a player may have no coppers in their hand, they
-	are not forced to reveal their hand per the card's effect.
+    playVillage() - cardTest3.c
+        The village is not properly discarded, which causes it to remain in the player's hand.
 
-playRemodel():
-	cardtest4 detected that remodel was often not correctly trashing and gaining cards. Sometimes, it would
-	trash a card to gain a card that was worth over 2 coins more than the card being trashed. Sometimes, it
-	would fail to trash a card to gain a card that was worth 2 coins or fewer more than the card being trashed.
+    playMinion() - cardTest4.c
+        The minion proved to be very buggy. The minion properly increments actions, but removes coins from the player's stash under choice 1. Under choice 2, it does not properly grant cards or discard them. This
+        results in other players ending up with additional cards, on top of the one's they already have in their hand and does not force other players to discard their cards. The current way the system is set up as well,
+        it does not appear that cards are properly incremented into player hands.
 
-	By setting up control cards in the player's hand, cardtest4 discovered that choice1 and choice2 were not
-	being correctly processed. Instead of the respective values of choice1 and choice2 determining whether or not
-	choice1 could be trashed to gain choice2, the selection of control cards in the deck was the determining factor.
-
-	When the control cards are all set to copper, remodel always trashes to gain a card regardless of the card values.
-	When the control cards are all set to estate, remodel always fails to trash to gain a card regardless of the
-	card values.
-
-	This is because of the conditional statement:
-  	if ( (getCost(state->hand[currentPlayer][choice2]) + 2) > getCost(choice1) )
-  	{
-    	return -1;
-  	}
-  	
-	Control cards = copper:
-		Left side = 0 + 2. Right side = 2. 2 > 2 = False so we do not return -1 and remodel succeeds.
-
-	Control cards = estate:
-		Left side = 2 + 2. Right side = 2. 4 > 2 = True so we return -1 and remodel fails.
-
-	Additionally, cardtest4 detected that even when remodel was correctly trashing and gaining cards, remodel
-	itself was not being added to the discard pile after being played.

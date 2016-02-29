@@ -84,6 +84,12 @@ int main(){
       randomDiscardCount= floor(Random()*MAX_DECK);
     } while ((randomDeckCount+randomHandCount+randomDiscardCount)>MAX_DECK); 
 
+    /* set playedCards to 0*/
+      for (int i =0; i < MAX_DECK; i++){
+          pre->playedCards[i]=0;
+      }
+      pre->playedCardCount=0;
+      
     /* pick one card in the hand to be the Smithy*/
     int randomSmithyPos = floor(Random()*randomHandCount); 
 
@@ -265,10 +271,10 @@ int checkSmithy(int player, struct gameState *pre, int position, FILE *f){
   preDiscardCounter=pre->discardCount[player];
 
   /* Check the 2 cards added to the end of the hand*/
-  for (int i = 0; i < 2; i++){
+  for (int i = 0; i < 3; i++){
     preCards[i] = pre->deck[player][preDeckCounter-(1+i)];
     //preDeckCounter--;
-    if (post->hand[player][preHandCounter+i] != preCards[i]){
+    if (post->hand[player][preHandCounter-1+i] != preCards[i]){
       printf("\nBusiness rule #2 fails: Next 3 cards from the deck not moved to the hand.\n");
       fprintf(f,"\nBusiness rule #2 fails: Next 3 cards from the deck not moved to the hand.\n");
     }
@@ -276,15 +282,8 @@ int checkSmithy(int player, struct gameState *pre, int position, FILE *f){
 
   /* 3. The smithy card should be removed from the player's hand, and go to the discard deck.*/ 
 
-  /* check that the 3rd card was moved to the hand in the same position as the discarded Smithy*/
-  /* (This also finishes test of business rule 2.*/ 
-  if (post->hand[player][position] !=pre->deck[player][preDeckCounter-3]){
-    printf("\nBusiness rule #2 fails: Next 3 cards from the deck not moved to the hand.\n");
-    fprintf(f,"\nBusiness rule #2 fails: Next 3 cards from the deck not moved to the hand.\n");
-  }
-
   /* Check that the most recent discard is Smithy*/    
-  if (post->discard[player][preDiscardCounter+1] != smithy){
+  if (post->discard[player][preDiscardCounter] != smithy){
     printf("Business rule #3 fails: smithy not in the discard pile");
     fprintf(f,"Business rule #3 fails: smithy not in the discard pile");
   }

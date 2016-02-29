@@ -399,7 +399,7 @@ int isGameOver(struct gameState *state) {
 
   //if three supply pile are at 0, the game ends
   j = 0;
-  for (i = 0; i < 25; i++)
+  for (i = 0; i < 27; i++)
     {
       if (state->supplyCount[i] == 0)
 	{
@@ -649,7 +649,7 @@ int getCost(int cardNumber)
 
 int playAdventurer(int currentPlayer, struct gameState *state){
 
-     int drawntreasure = 1;
+     int drawntreasure = 0;
      int cardDrawn;
      int z = 0;// this is the counter for the temp hand
      int temphand[MAX_HAND];// moved above the if statement
@@ -680,7 +680,7 @@ int playSmithy(int currentPlayer, struct gameState *state, int handPos){
 
      int i;
      //+3 Cards
-     for (i = 1; i < 3; i++)
+     for (i = 0; i < 3; i++)
      {
           drawCard(currentPlayer, state);
      }
@@ -698,7 +698,7 @@ int playVillage(int currentPlayer, struct gameState *state, int handPos){
      drawCard(currentPlayer, state);
 
      //+2 Actions
-     state->numActions = state->numActions + 3;
+     state->numActions = state->numActions + 2;
 
      //discard played card from hand
      discardCard(handPos, currentPlayer, state, 0);
@@ -735,7 +735,7 @@ int playCutpurse(int currentPlayer, struct gameState *state, int handPos){
           {
                for (j = 0; j < state->handCount[i]; j++)
                {
-                    if (state->hand[i][j] == silver)
+                    if (state->hand[i][j] == copper)
                     {
                          discardCard(j, i, state, 0);
                          break;
@@ -1029,7 +1029,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 			
       if (choice1)		//+2 coins
 	{
-	  state->coins = state->coins + 2;
+           //Bug Fix
+	  //state->coins = state->coins + 2; //this is cleared when updateCoins() is called
+           updateCoins(currentPlayer, state, 2);
 	}
 			
       else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4

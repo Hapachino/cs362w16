@@ -1,0 +1,46 @@
+ProjectPartA.txt
+Team Members: 
+	-David Profio
+	-Christopher French Loomis
+	-Nathan Thunem
+CS362 Winter 2016
+
+1.	Explain testIsValid Function of UrlValidator test code:
+	testIsValid calls two functions: 
+		testIsValid(testUrlParts, UrlValidator.ALLOW_ALL_SCHEMES);
+			-creates new UrlValidator object
+			-asserts "http://www.google.com" is valid
+			-asserts "http://www.google.com/" is valid
+			-do while urls exist to test
+			-creates new StringBuffer object
+			-combines separate url elements into single url
+			-calls isValid() on the url and stores result
+			-compares the result with the expected result
+			-if result = true, print out the url to the console
+		setUp();
+			-makes each index of the url = 0
+
+2.	Give how many total number of urls it is testing:
+	-testUrlScheme 		= 9
+	-testUrlAuthority 	= 19
+	-testUrlPort		= 7
+	-testPath			= 10
+	-testUrlQuery 		= 3
+		9 * 19 * 7 * 10 * 3 = 35910 URL's
+
+3.	Explain how it is building all the urls:
+	Each url has the following parts: scheme, authority, port, path, and query.  
+	Each part is stored in a different ResultPair array.  Each array element 
+	contains a string and a boolean value. The function then loops through every
+	combination of the ResultPair arrays and matches the result with an AND 
+	operation of the boolean value in each array element.
+
+4.	Give an example of valid url being tested and an invalid url:
+	valid URL:		http://www.google.com:80/test1?action=view
+	invalid URL:	http:/www.google.com:80/test1?action=view
+
+5.	Do you think that a real world test is very different than the unit tests and 
+	card tests that we wrote?
+	The real world test and the tests used in the Dominion code base are 
+	very similar.  In both tests, an object is created, the test is run given 
+	various possible inputs expected, and then compared to what is expected.

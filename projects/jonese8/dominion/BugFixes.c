@@ -60,4 +60,117 @@ int runCouncilRm(struct gameState *state, int currentPlayer, int handPos)
 				
 	}	
 	      //+1 Buy
-      state->numBuys++;    
+      state->numBuys++; 
+	  
+Bug Fix for Smithy Card
+
+The bug was that so that the next player gets an extra card.
+
+From: 
+
+int runSmithy(struct gameState *state, int currentPlayer, int handPos, int nextPlayer)
+{
+    int i;
+/*+3 Cards   */
+      for (i = 0; i < 3; i++) //refactor to provide the next player an extra card on iteration 3
+	{
+	  if (i == 2)
+	  {
+		   drawCard(currentPlayer, state);
+		   drawCard(nextPlayer, state);
+	  }	
+	  else	  
+	  drawCard(currentPlayer, state);
+To:	
+int runSmithy(struct gameState *state, int currentPlayer, int handPos, int nextPlayer)
+{
+      for (i = 0; i < 3; i++) 
+	{
+	  drawCard(currentPlayer, state);
+	}
+	  
+Bug Fix for Steward Card
+
+The bug was Get error message shows under test steward card trash 2 cards: played card number not correct. The played the played card number +3 after run. One of the three card should be the steward. Other two could be cards need to trash.
+
+
+From: 
+
+int runSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos) 
+{
+  if (choice1 == 1)
+	{
+	  //+2 cards
+	  drawCard(currentPlayer, state);
+	  drawCard(currentPlayer, state);
+	}
+      else if (choice1 == 2)
+	{
+	  //+2 coins
+	  state->coins = state->coins + 2;
+	}
+      else
+	{
+	  //trash 2 cards in hand
+	  discardCard(choice2, currentPlayer, state, 0);//refactor so that cards are discarded to deck instead of trash
+	  discardCard(choice3, currentPlayer, state, 0);
+To:	
+int runSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos) 
+{
+  if (choice1 == 1)
+	{
+	  //+2 cards
+	  drawCard(currentPlayer, state);
+	  drawCard(currentPlayer, state);
+	}
+      else if (choice1 == 2)
+	{
+	  //+2 coins
+	  state->coins = state->coins + 2;
+	}
+      else
+	{
+	  //trash 2 cards in hand
+	  discardCard(choice2, currentPlayer, state, 1); 
+	  discardCard(choice3, currentPlayer, state, 1); 
+
+	  
+Bug Fix for scoreFor
+
+There appears to be a bug where the wrong number of deck count is being used for 
+scoreFor.  The bug only shows if the number of cards between discardCount and
+deckCount is different. 
+	  
+From: 
+	  
+int scoreFor (int player, struct gameState *state) {
+
+  ...
+
+  //score from deck
+  for (i = 0; i < state->discardCount[player]; i++)
+    {
+      if (state->deck[player][i] == curse) { score = score - 1; };
+      if (state->deck[player][i] == estate) { score = score + 1; };
+      if (state->deck[player][i] == duchy) { score = score + 3; };
+      if (state->deck[player][i] == province) { score = score + 6; };
+      if (state->deck[player][i] == great_hall) { score = score + 1; };
+      if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+    }
+
+To: 
+
+ int scoreFor (int player, struct gameState *state) {
+
+  ...
+
+  //score from deck
+  for (i = 0; i < state->deckCount[player]; i++)
+    {
+      if (state->deck[player][i] == curse) { score = score - 1; };
+      if (state->deck[player][i] == estate) { score = score + 1; };
+      if (state->deck[player][i] == duchy) { score = score + 3; };
+      if (state->deck[player][i] == province) { score = score + 6; };
+      if (state->deck[player][i] == great_hall) { score = score + 1; };
+      if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+    }

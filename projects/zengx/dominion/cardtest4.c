@@ -2,7 +2,8 @@
 1: it has 3 choice
 		if choice1 ==1, check if card in hand +2 and -1 the one used(choose to discard) and if card on deck -2 
 		if choice1 ==2, check if money +2
-		if choice1 ==3, set 5 card, random choose trash 2 of them check card on hand and card on deck are correct.
+		if choice1 ==3, set 5 card, random choose trash 2 of them check card on hand and card on deck are correct played card keep the same.
+		
 */
 #include <stdio.h>
 #include "minunit.h"
@@ -64,7 +65,7 @@ static char * test_add_2_coins() {
 	mu_assert("-error: coins number not correct", G.coins == testG.coins - 2);
 	return 0;
 }
-//if choice1 ==3, set 5 card, random choose trash 2 of them check card on hand and card on deck are correct.
+//if choice1 ==3, set 5 card, random choose trash 2 of them check card on hand , played card and card on deck are correct.
 static char * test_trash_2_cards() {
 	printf("============test steward card trash 2 cards ===========\n");
 	choice1 = 3;
@@ -107,6 +108,8 @@ static char * test_trash_2_cards() {
 	//	printf("befor run on deck: %d ; after run on deck: %d\n", G.deckCount[thisPlayer], testG.deckCount[thisPlayer]);
 		mu_assert("-error:card number not correct", G.handCount[thisPlayer] == testG.handCount[thisPlayer] + 3);
 		mu_assert("-error: deck number not correct", G.deckCount[thisPlayer] == testG.deckCount[thisPlayer]);
+		printf("G:%d testG:%d", G.playedCardCount, testG.playedCardCount);
+		mu_assert("-error: played card number not correct", G.playedCardCount + 1 == testG.playedCardCount);
 		count++;
 	}
 	return 0;

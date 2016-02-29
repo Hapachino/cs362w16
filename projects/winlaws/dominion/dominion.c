@@ -701,7 +701,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
   {
     case adventurer:
-      return playAdventurer(state);
+      return playAdventurer(state, handPos); //*Bug Fix*
 			
     case council_room:
       return playCouncil_Room(state, handPos);
@@ -1323,8 +1323,8 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-//Bug Introduced
-int playAdventurer(struct gameState *state)
+//Bug Introduced and Fixed
+int playAdventurer(struct gameState *state, int handPos)//*Bug Fix*
 { 
   int currentPlayer = whoseTurn(state);
   int temphand[MAX_HAND];// moved above the if statement
@@ -1340,8 +1340,8 @@ int playAdventurer(struct gameState *state)
     }
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-    //if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) *ORIGINAL CODE*
-    if (cardDrawn == copper || cardDrawn == gold) //*BUG INTRODUCED* - Omit check for silver
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) // *Bug Fix*
+    //if (cardDrawn == copper || cardDrawn == gold) //*BUG INTRODUCED* - Omit check for silver
       drawntreasure++;
     else
     {
@@ -1356,18 +1356,22 @@ int playAdventurer(struct gameState *state)
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
   }
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);//*Bug Fix*
+  
   return 0;
 }
 
-//Bug Introduced
+//Bug Introduced and Fixed
 int playSmithy(struct gameState *state, int handPos)
 {
   int i;
   int currentPlayer = whoseTurn(state);
   
   //+3 Cards
-  //for (i = 0; i < 3; i++) *ORIGINAL CODE*
-  for (i = 0; i <= 3; i++) //*BUG INTRODUCED* - wrong logical operator -> Off-By-One error 
+  for (i = 0; i < 3; i++) //*Bug Fix*  
+  //for (i = 0; i <= 3; i++) //*BUG INTRODUCED* - wrong logical operator -> Off-By-One error 
   {
     drawCard(currentPlayer, state);
   }
@@ -1392,7 +1396,7 @@ int playVillage(struct gameState *state, int handPos)
   return 0;
 }
 
-//Bug Introduced
+//Bug Introduced and Fixed
 int playGreat_Hall(struct gameState *state, int handPos)
 {
   int currentPlayer = whoseTurn(state);
@@ -1401,15 +1405,15 @@ int playGreat_Hall(struct gameState *state, int handPos)
   drawCard(currentPlayer, state);
 
   //+1 Actions
-  //state->numActions++; *ORIGINAL CODE*
-  state->numBuys++; //*BUG INTRODUCED* - increment wrong variable
+  state->numActions++; // *Bug Fix*
+  //state->numBuys++; //*BUG INTRODUCED* - increment wrong variable
       
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
   return 0;
 }
 
-//Bug Introduced
+//Bug Introduced and Fixed
 int playCouncil_Room(struct gameState *state, int handPos)
 {
   int i;
@@ -1427,8 +1431,8 @@ int playCouncil_Room(struct gameState *state, int handPos)
   //Each other player draws a card
   for (i = 0; i < state->numPlayers; i++)
   {
-    //if ( i != currentPlayer ) *ORIGINAL CODE*
-    if ( i == currentPlayer ) //*BUG INTRODUCED* - Wrong logical operator
+    if ( i != currentPlayer ) //*Bug Fix*
+    //if ( i == currentPlayer ) //*BUG INTRODUCED* - Wrong logical operator
     {
       drawCard(i, state);
     }

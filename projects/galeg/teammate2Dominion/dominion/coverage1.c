@@ -1,37 +1,122 @@
-Note: if, the grader, did not already notice.  You can run my makefile by running the command
-	make unittestresults.out
+Scott Williams
+CS 362 - Assignment 3
+coverage1.c
+
+Tests require expansion, even though many of them have decent coverage. There is likely a variety of cases that I did not consider when I first set up the tests and began the testing.
+
+----- unitTest1.c ------
+updateCoin() function
+
+Lines executed:74.58% of 118
+unitTest1.c:creating 'unitTest1.c.gcov'
+
+File 'unitTest1.c'
+Lines executed:74.58% of 118
+Branches executed:100.00% of 36
+Taken at least once:66.67% of 36
+Calls executed:78.26% of 46
+unitTest1.c:creating 'unitTest1.c.gcov'
+
+Implications: While a good amount of the code is executed and the branches are all covered, there are likely areas that are being missed or need to be further investigated to make sure there are no underlying
+bugs that I have missed based on the creation of my tests. Because there is perfect branch coverage, it may mean that I need to expand my branching for this test, as everything was done in a fairly straight
+forward manner and I relied on assertions rather than if/else statements for testing. However, if there were any bugs detected or miscalculations, the program would abort, rather than complete.
+
+----- unitTest2.c -----
+discardCard() function
+
+File 'unitTest2.c'
+Lines executed:95.92% of 49
+Branches executed:91.67% of 24
+Taken at least once:54.17% of 24
+Calls executed:68.00% of 25
+unitTest2.c:creating 'unitTest2.c.gcov'
+
+Implications: The suite is either complete and there is little issue with the discardCard() function. The test is very streamlined, and may actually not cover a set of parameters that need to be investigated. However, the
+tests are based on assertions and if they were unsuccessful, the program would abort. Not all branches are taken either, as I was focusing on making sure discard counts were correct.
+
+----- unitTest3.c -----
+buyCard() function
 
 
-Regarding coverage:
+File 'unitTest3.c'
+Lines executed:97.44% of 39
+Branches executed:100.00% of 18
+Taken at least once:66.67% of 18
+Calls executed:76.00% of 25
+unitTest3.c:creating 'unitTest3.c.gcov'
 
-According to gcov, I have 37.22% of the lines executed of 634 possible lines.  Regarding
-function coverage, there are 22 functions.  7 had 0% coverage and 3 more had less than 50%
-coverage.  The reset were quite high levels of coverage if not at 100%.  It is worth mentioning
-that the functions with a low, but non-zero, level of coverage includes cardEffect.  cardEffect 
-is far and away the largest function and it only has 14% coverage.  
+Implications:  This is either a very complete or limited test, basaed on a If a player does not have the coins to purchase the card, the purchase is rejected, and if they do, it is allowed. The function is very
+straight forward, so there really should not be much in the way of variance. Either the player can buy a card with their allocated coins/gold or they cannot. Again, this uses assertions, so if anything went awry,
+then the program should abort. There are likely forced-failure cases which might be worth looking into.
 
-The reason cardEffect is so low is because I only tested 4 out of the many possible cards, and 
-there are other parts of the function that are not tested either.
+----- unitTest4.c -----
+endTurn() Function
 
-I am happy to note that 100% of the statements ran in the four functions I unit tested.  
-Those being, isGameOver, fullDeckCount, buyCard, and scoreFor.  That said, I did not explicetly
-test some of the lines that were run.  For example, I did not test the counting of great_hall, 
-which I probably should have, and I did not test gardens.  I actually made the choice to not
-test gardens, becasue it is really just testing fullDeckCount, which I tested in another unit test.
+File 'unitTest4.c'
+Lines executed:95.45% of 44
+Branches executed:94.44% of 36
+Taken at least once:52.78% of 36
+Calls executed:50.00% of 30
+unitTest4.c:creating 'unitTest4.c.gcov'
 
-The principle thing that I would need to do to increase coverage is to first, make sure I cover 
-every single card, and then most, if not all, functions.  This would make a huge difference, and
-it would probably illuminate other areas of the code that have bugs.  Now that I have spent quite
-a bit of time thinking about how these functions work, it makes more sense to me what I need to do 
-when I see an untested line.  At this point when reading through and looking at untested lines though,
-it is mostly just cards, or functions that I did not test.
+Implications: The endTurn function is well balanced and works okay. However, only 50% of the calls were executed. There may need to be expansion of tests to ensure that every potential test case is covered and the
+function is seen as "bug-free".
 
-I had 50.62 percent of branches executed and took 32.35% of them at least once.  This along with the
-fact that I only had 37.22 percent line coverage, indicates that there are large swaths of the program
-that I did not cover.  The branching, indicates that there are many decision tree branches that are untested.
-If I went down the path of covering all the functions, it would do quite a bit toward covering the branches.
-The hard part would be catching the little pieces of the cardEffect function.  
+----- cardTest1.c ----
+playAdventurer() function
 
-If I had the freedom and time to look into making this program work, I would break it appart into many 
-smaller functions, and probably (more) separate files as well.  The fact that a function exists that's 
-200+ lines long is absurd.  It's almost impossible to test and can easily be broken into component parts.
+Lines executed:88.06% of 67
+Branches executed:84.62% of 26
+Taken at least once:69.23% of 26
+Calls executed:92.31% of 26
+cardTest1.c:creating 'cardTest1.c.gcov'
+
+Implications: We have decent, but not great coverage here. There is definite room for improvement and likely places where things need to be expanded or streamlined to ensure that we get better coverage. However, most of the calls were executed
+and that shows there is at least a fair amount of things being found. The lines not being executed may also have to do with the fact of the refactored bugs and branches not being met under any condition with the current seed setting. Given there
+is a heavy amount of branching in this particular file. There are likely other bugs that are not being founded in this coverage test.
+
+----- cardTest2.c -----
+playSmithy() function
+
+File 'cardTest2.c'
+Lines executed:84.43% of 122
+Branches executed:100.00% of 64
+Taken at least once:60.94% of 64
+Calls executed:59.26% of 54
+cardTest2.c:creating 'cardTest2.c.gcov'
+
+Implications: Most of the code and all of the branches are being executed, but slightly less than 60% of the calls are. This means there needs to be an expansion of the test cases to ensure that more calls are met
+and that gives us the informaiton we need to properly debug the code.
+
+----- cardTest3.c -----
+playVillage() function
+
+Lines executed:73.17% of 41
+Branches executed:100.00% of 20
+Taken at least once:55.00% of 20
+Calls executed:50.00% of 24
+cardTest3.c:creating 'cardTest3.c.gcov'
+
+Implications: There are a number of lines that are not being taken, but all branches are covered at least once. Half the calls are likely not being executed as they are on branches that are not being covered as the
+requirements are not being met. This is likely due to the extensive branching I wrote into my test cases. However, this also means I may need to narrow down my test cases in the future to be more effective, as only
+half of the 24 calls are being run. This means we are missing half of the potential bugs and test results on a regular basis.
+
+------ cardTest4.c ------
+playMinion() function
+
+
+Lines executed:79.79% of 94
+Branches executed:100.00% of 26
+Taken at least once:57.69% of 26
+Calls executed:73.21% of 56
+cardTest4.c:creating 'cardTest4.c.gcov'
+
+Implications: Again, we have decent coverage, but there are areas where it can be improved. An expansion of test cases might help to ensure that more calls are executed and more lines are run over with the coverage. Again, the lines
+not executed very well may be part of branches not followed because the conditions are not met and thus cannot be pursued.
+
+
+Overall Implications: By reviewing the coverage files, I found many of my suspicions were correct. AS I focused on making sure that the functions were processed correctly and functioning to the standards of the
+game rules, I generally did not account for wilder cases. As we refactored in certain bugs, many tests were guaranteed to fail over time. When calls are not made, it is generally because the conditions required to make them
+are not met or there is a bug hiding somewhere that prevents the call from being made. Reviewing the code will help me find areas in which to improve my test suite, generally by having more expansive cases and making
+subtle in program adjustments to make sure that as much of the files is covered as possible.
+

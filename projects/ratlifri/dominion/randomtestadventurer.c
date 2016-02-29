@@ -8,12 +8,12 @@
 #include <stdlib.h>
 #include "interface.h"
 
-int checkAdventurer(int p, struct gameState *post) {
+int checkAdventurer(int p, struct gameState *post, int handpos) {
 	int i, j, r;
 	struct gameState pre;
 	memcpy (&pre, post, sizeof(struct gameState));
 
-	r = cardEffectAdventurer(p, post);
+	r = cardEffectAdventurer(p, post, handpos);
 
 	i = pre.deckCount[p];
 	j = 0;
@@ -71,7 +71,7 @@ int checkAdventurer(int p, struct gameState *post) {
 
 int main () {
 
-	int i, j, x, n, p;
+	int i, j, x, n, p, pos;
 
 	int k[10] = {adventurer, council_room, feast, gardens, mine,
 				 remodel, smithy, village, baron, great_hall};
@@ -96,7 +96,8 @@ int main () {
 		G.deckCount[p] = floor(Random() * MAX_HAND) + 5;
 		G.discardCount[p] = floor(Random() * MAX_DECK) + 5;
 		// randomize cards in hand but ensure at least one adventurer
-		G.hand[p][0] = adventurer;
+		pos = 0;
+		G.hand[p][pos] = adventurer;
 		for (i = 1; i < G.handCount[p]; i++) {
 			x = floor(Random() * 10);
 			if ( x < 5 ) {
@@ -120,7 +121,7 @@ int main () {
 		}
 		// initialization complete, check adventurer
 		printf("Test# %d: ", n+1);
-		checkAdventurer(p, &G);
+		checkAdventurer(p, &G, pos);
 		printf ("\n");
 	}
 

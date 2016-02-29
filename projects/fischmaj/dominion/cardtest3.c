@@ -275,7 +275,7 @@ int checkGreatHall(struct gameState *pre, int player, int handPosition,
   /* 1. Playing the great hall card should result in the next card on the 
         deck moving to the player's hand. */
   nextCard= pre->deck[player][preDeckCounter -1];
-  if (nextCard != post->hand[player][handPosition]){
+  if (nextCard != post->hand[player][pre->handCount[player]-1]){
     printf("Business rule #1 fails: next deck card not delivered to hand\n");
     fprintf(f,"Business rule #1 fails: next deck card not delivered to hand\n");
     testFail=1;

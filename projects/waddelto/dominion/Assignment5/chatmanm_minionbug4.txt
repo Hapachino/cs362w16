@@ -1,0 +1,59 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:    Dominion/Minion Path 2 Always discards other players hands
+
+Class: Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:   2/21/2016
+Reported By:   Todd Waddell
+Email:      waddelto@oregonstate.edu
+
+
+Product:    Dominion.c          Version:
+Platform:                       Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Yes 
+
+Description
+===========
+In 50000 randomized tests of minion path 2, Minon discarded player hands
+everytime.  
+
+
+Steps to Produce/Reproduce
+--------------------------
+Run minion with path 2 track other player hands
+
+
+Expected Results
+----------------
+Other players should only discard when they have five or 
+more cards.
+
+
+
+Actual Results
+--------------
+Tests included randomized handsizes set to include sizes gt and lt 
+5.  Minion discarded every time. 
+
+
+Workarounds
+-----------
+None.
+
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+
+

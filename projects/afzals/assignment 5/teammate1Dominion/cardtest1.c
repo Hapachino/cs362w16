@@ -25,12 +25,12 @@ int main()
 	memcpy(&testG, &G, sizeof(struct gameState));
 	testG.hand[testG.whoseTurn][0] = minion;
 
-	play_adventurer(&testG, 0);
+	cardEffect(adventurer, 0, 0, 1, &testG, 0, 0);
 	printf("Expected: %d, Result: %d\n", G.handCount[G.whoseTurn] + 2, testG.handCount[testG.whoseTurn]);
 
 	G.discardCount[G.whoseTurn] = 5;	
 	memcpy(&testG, &G, sizeof(struct gameState));
-	play_adventurer(&testG, 0);
+	cardEffect(adventurer, 0, 0, 1, &testG, 0, 0);
 	
 	while(treas<2){
 	drawCard(G.whoseTurn, &G);

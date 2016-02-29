@@ -14,20 +14,20 @@ int main()
 	int k[10] = {copper, minion, mine, silver, gold, cutpurse,
 		sea_hag, tribute, smithy, council_room};
 
-	printf("Testing smithy\n");
+	printf("Testing village card\n");
 	
 	initializeGame(numPlayers, k, seed, &G);
 	memcpy(&testG, &G, sizeof(struct gameState));
-	play_smithy(&testG, 0);
-	printf("Expected: %d, Result: %d\n", G.handCount[G.whoseTurn] + 3, testG.handCount[testG.whoseTurn]);
+	cardEffect(village, 0, 0, 0, &testG, 0, 0);
 
-	G.discardCount[G.whoseTurn] = 5;	
+	printf("Expected: %d, Result: %d\n", G.handCount[G.whoseTurn] + 1, testG.handCount[testG.whoseTurn]);
+
 	memcpy(&testG, &G, sizeof(struct gameState));
-	play_smithy(&testG, 0);
+	cardEffect(village, 0, 0, 0, &testG, 0, 0);
+
 	
-	discardCard(0, G.whoseTurn, &G, 0);
      
-	printf("Expected discard count: %d, Result: %d\n", G.discardCount[G.whoseTurn], testG.discardCount[testG.whoseTurn]);
+	printf("Expected action count: %d, Result: %d\n", G.numActions + 2, testG.numActions);
 	
 	return 0;
 }

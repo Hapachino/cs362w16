@@ -18,12 +18,12 @@ int main()
 	
 	initializeGame(numPlayers, k, seed, &G);
 	memcpy(&testG, &G, sizeof(struct gameState));
-	play_smithy(&testG, 0);
+	play_smithy(0, &testG, 0);
 	printf("Expected: %d, Result: %d\n", G.handCount[G.whoseTurn] + 3, testG.handCount[testG.whoseTurn]);
 
 	G.discardCount[G.whoseTurn] = 5;	
 	memcpy(&testG, &G, sizeof(struct gameState));
-	play_smithy(&testG, 0);
+	play_smithy(0, &testG, 0);
 	
 	discardCard(0, G.whoseTurn, &G, 0);
      

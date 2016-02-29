@@ -1,0 +1,258 @@
+        -:    0:Source:randomtestcard.c
+        -:    0:Graph:randomtestcard.gcno
+        -:    0:Data:randomtestcard.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* ---------------------------------------------------------------------------
+        -:    2: * David Vogel
+        -:    3: * CS362 Assignment 4
+        -:    4: * Due Feb 14, 2016
+        -:    5: * Filename: randomtestcard.c
+        -:    6: *   random test smithy card
+        -:    7: *
+        -:    8: * Include the following lines in your makefile:
+        -:    9: *   randomtestcard: randomtestcard.c dominion.o rngs.o
+        -:   10: *     gcc -o randomtestcard -g randomtestcard.c dominion.o rngs.o $(CFLAGS)
+        -:   11: *  
+        -:   12: * Requirements for smithy:
+        -:   13: *   - Current player should receive exactly 3 cards.
+        -:   14: *   - Current player should discard exactly 1 cards.
+        -:   15: *   - 3 cards should come from his own pile.
+        -:   16: *   - No state change should occur for other players.
+        -:   17: *   - No state change should occur to the Victory card piles and Kingdom card piles.
+        -:   18: * ---------------------------------------------------------------------------*/
+        -:   19:// #include "myTests.h"
+        -:   20:#include "dominion.h"
+        -:   21:#include "dominion_helpers.h"
+        -:   22:#include "rngs.h"
+        -:   23:#include <string.h>
+        -:   24:#include <stdio.h>
+        -:   25:#include <stdlib.h>
+        -:   26:#include <time.h>
+        -:   27:#include <sys/stat.h>
+        -:   28:#include <unistd.h>
+        -:   29:#include <limits.h>
+        -:   30:#include <math.h>
+        -:   31:#include <sys/time.h>
+        -:   32:
+        -:   33:
+        -:   34:#define MAX_HAND_SIZE 5
+        -:   35:#define MIN_HAND_SIZE 1
+        -:   36:// #define RAND_SEED 1000 //random seed for game init
+        -:   37:#define NUM_PLAYERS 2           //num players for game init
+        -:   38:#define TEST_PLAYER 0           //test player is always 0
+        -:   39:#define OTHER_PLAYER 1          //this is the computer
+        -:   40:enum MY_CARDS {
+        -:   41:  CURSE = 0, ESTATE = 1, DUCHY = 2, PROVINCE = 3, COPPER = 4, SILVER = 5, GOLD = 6, ADVENTURER = 7, COUNCIL_ROOM = 8, FEAST = 9, GARDENS = 10,
+        -:   42:  MINE = 11, REMODEL = 12, SMITHY = 13, VILLAGE = 14, BARON = 15, GREAT_HALL = 16, MINION = 17, STEWARD = 18, TRIBUTE = 19, AMBASSADOR = 20,
+        -:   43:  CUTPURSE = 21, EMBARGO = 22, OUTPOST = 23, SALVAGER = 24, SEA_HAG = 25, TREASURE_MAP = 26
+        -:   44:};
+        -:   45:
+        -:   46:/* 
+        -:   47:http://stackoverflow.com/questions/6127503/shuffle-array-in-c
+        -:   48:Arrange the N elements of ARRAY in random order.
+        -:   49:Only effective if N is much smaller than RAND_MAX;
+        -:   50:if this may not be the case, use a better random
+        -:   51:number generator. */
+function myShuffle called 1000 returned 100% blocks executed 100%
+        -:   52:void myShuffle(int *rooms, int n) {
+        -:   53:  struct timeval t1;
+     1000:   54:  gettimeofday(&t1, NULL);
+     1000:   55:  srand(t1.tv_usec * t1.tv_sec);
+     1000:   56:  if (n > 1) {
+branch  0 taken 100%
+branch  1 taken 0%
+        -:   57:    int i;
+    38000:   58:    for (i = 0; i < n - 1; i++) {
+branch  0 taken 95%
+branch  1 taken 5%
+    18000:   59:      int j = i + rand() / (RAND_MAX / (n - i) + 1);
+    18000:   60:      int t = rooms[j];
+    18000:   61:      rooms[j] = rooms[i];
+    18000:   62:      rooms[i] = t;
+    18000:   63:    }
+     1000:   64:  }
+     1000:   65:}
+        -:   66:
+        -:   67:
+        -:   68:// void randomtestcard_func() {
+function main called 1 returned 100% blocks executed 84%
+        -:   69:int main() {
+        1:   70:  int shuffledCards = 0;        //cards gained if deck becomes empty
+        1:   71:  int i = 0, j = 0;                    //index counters
+        1:   72:  int expectedHandCount = 0;    //desired value for hand count
+        1:   73:  int actualHandCount = 0;      //actual value for expected hand count
+        1:   74:  int expectedDeckCount = 0;    //desired value for deck count
+        1:   75:  int actualDeckCount = 0;      //actual value for expected hand count
+        1:   76:  int successfulTests = 0;      //number of successful tests
+        1:   77:  int failedTests = 0;          //number of failed tests
+        1:   78:  int totalNumberOfTests = 0;   //total number of tests run
+        1:   79:  int cardsGained = 3;          //should gain 3 cards
+        1:   80:  int cardsDiscarded = 1;       //should have discarded 1 card after playing smithy
+        -:   81:  int handSize;                 //from 1 to 5 cards in hand
+        -:   82:
+        1:   83:  srand(time(NULL));
+        -:   84:  //passed to cardEffect
+        1:   85:  int choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0, handPos = 0;
+        -:   86:
+        -:   87:  //actual game state & tested game state
+        -:   88:  struct gameState actualGameState, testGameState;
+        -:   89:
+        -:   90:  //kingdom cards for game
+        -:   91:  int kingdom_Cards[10]; //to be shuffled from all_k_cards
+        1:   92:  int all_k_cards[] =
+        -:   93:      {ADVENTURER, COUNCIL_ROOM, FEAST, GARDENS, MINE, REMODEL, SMITHY, VILLAGE, BARON, GREAT_HALL, MINION, STEWARD, TRIBUTE, AMBASSADOR, CUTPURSE,
+        -:   94:       EMBARGO, OUTPOST, SALVAGER, SEA_HAG, TREASURE_MAP};
+        -:   95:
+        -:   96:  //victory cards for game
+        1:   97:  int victory_Cards[3] = {ESTATE, DUCHY, PROVINCE}; //to be shuffled
+        -:   98:  // int all_vict_cards[] = {CURSE, ESTATE, DUCHY, PROVINCE};
+        -:   99:  // int all_tres_cards[] = {COPPER, SILVER, GOLD};
+        -:  100:
+        -:  101:  //random test loop
+     2002:  102:  for (i = 0; i < 1000; i++) {
+branch  0 taken 99%
+branch  1 taken 1%
+     1000:  103:    myShuffle(all_k_cards, 19);
+        -:  104:    //copy first 10 cards
+    22000:  105:    for (j = 0; j < 10; j++) {
+branch  0 taken 91%
+branch  1 taken 9%
+    10000:  106:      kingdom_Cards[j] = all_k_cards[j];
+    10000:  107:    }
+        -:  108:    //initialize game & copy state for reference
+     1000:  109:    initializeGame(NUM_PLAYERS, kingdom_Cards, 2, &actualGameState);
+     1000:  110:    memcpy(&testGameState, &actualGameState, sizeof(struct gameState));
+     1000:  111:    handSize = rand() % MAX_HAND_SIZE + 1; //rand handSize between 1 & 5
+     1000:  112:    handPos = rand() % handSize; //rand handPos between 0 & handSize
+        -:  113:
+        -:  114:    //call the smithy card
+        -:  115:    // cardEffect(smithy, choice1, choice2, choice3, &testGameState, handPos, &bonus);
+     1000:  116:    playSmithy(TEST_PLAYER, &testGameState, 0); //testing ian's smithy refactor
+        -:  117:
+        -:  118:    //begin tests
+     1000:  119:    printf("\n\n>>>>>>>>>> TEST ITERATION %d <<<<<<<<<<<<<<\n", i);
+     1000:  120:    printf("**************************** TESTING SMITHY CARD ****************************\n");
+        -:  121:    /* ---------------------- TEST 1 --------------------- */
+        -:  122:    //test player should receive 3 cards and discard 1, ending with 7 in hand
+     1000:  123:    printf("---------------- TEST 1: TESTING CARDS RECEIVED AND DISCARDED ----------------\n");
+     1000:  124:    printf("Current player should receive 3 cards, discard 1...\n");
+        -:  125:
+     1000:  126:    actualHandCount = testGameState.handCount[TEST_PLAYER];
+     1000:  127:    expectedHandCount = actualGameState.handCount[TEST_PLAYER] + cardsGained - cardsDiscarded;
+     1000:  128:    printf("Actual hand count: %d\n", actualHandCount);
+     1000:  129:    printf("Expected hand count: %d\n", expectedHandCount);
+     1000:  130:    if (actualHandCount == expectedHandCount) {
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  131:      printf("***SUCCESS: HAND COUNT GAME STATE FOR CURRENT PLAYER IS THE SAME!\n");
+    #####:  132:      ++successfulTests;
+    #####:  133:    }
+        -:  134:    else {
+     1000:  135:      printf("***FAIL: HAND COUNT GAME STATE FOR CURRENT PLAYER IS DIFFERENT!\n");
+     1000:  136:      ++failedTests;
+        -:  137:    }
+     1000:  138:    ++totalNumberOfTests;
+     1000:  139:    printf("\n");
+        -:  140:
+        -:  141:    /* ---------------------- TEST 2 --------------------- */
+        -:  142:    //The 3 cards should come from the test player's pile
+     1000:  143:    printf("------------------------- TEST 2: TESTING DECK COUNT -------------------------\n");
+     1000:  144:    printf("Cards should come from current player's deck count...\n");
+     1000:  145:    actualDeckCount = testGameState.deckCount[TEST_PLAYER];
+     1000:  146:    expectedDeckCount = actualGameState.deckCount[TEST_PLAYER] - cardsGained + shuffledCards;
+     1000:  147:    printf("Actual deck count: %d\n", actualDeckCount);
+     1000:  148:    printf("Expected deck count: %d\n", expectedDeckCount);
+        -:  149:
+        -:  150:    //test game state of deckCount for test player
+     1000:  151:    if (expectedDeckCount == actualDeckCount) {
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  152:      printf("***SUCCESS: DECK COUNT GAME STATE FOR CURRENT PLAYER IS THE SAME!\n");
+    #####:  153:      ++successfulTests;
+    #####:  154:    }
+        -:  155:    else {
+     1000:  156:      printf("***FAIL: DECK COUNT GAME STATE FOR CURRENT PLAYER IS DIFFERENT!\n");
+     1000:  157:      ++failedTests;
+        -:  158:    }
+     1000:  159:    ++totalNumberOfTests;
+     1000:  160:    printf("\n");
+        -:  161:
+        -:  162:    /* ---------------------- TEST 3 --------------------- */
+        -:  163:    //test that game state for victory cards did not change
+     1000:  164:    printf("-------- TEST 3: TESTING THAT NUMBER OF VICTORY CARDS HAS NOT CHANGED --------\n");
+     8000:  165:    for (j = 0; j < 3; j++) {
+branch  0 taken 75%
+branch  1 taken 25%
+     3000:  166:      if (testGameState.supplyCount[victory_Cards[j]] == actualGameState.supplyCount[victory_Cards[j]]) {
+branch  0 taken 100%
+branch  1 taken 0%
+     3000:  167:        printf("***SUCCESS: VICTORY CARD %d SUCCEEDED!\n", j);
+     3000:  168:        ++successfulTests;
+     3000:  169:      }
+        -:  170:      else {
+    #####:  171:        printf("***FAIL: VICTORY CARD %d FAILED!\n", j);
+    #####:  172:        ++failedTests;
+        -:  173:      }
+     3000:  174:      ++totalNumberOfTests;
+     3000:  175:    }
+     1000:  176:    printf("\n");
+        -:  177:
+        -:  178:    /* ---------------------- TEST 4 --------------------- */
+        -:  179:    //test that game state for kingdom cards did not change
+     1000:  180:    printf("-------- TEST 4: TESTING THAT NUMBER OF KINGDOM CARDS HAS NOT CHANGED --------\n");
+    22000:  181:    for (j = 0; j < 10; j++) {
+branch  0 taken 91%
+branch  1 taken 9%
+    10000:  182:      if (testGameState.supplyCount[kingdom_Cards[j]] == actualGameState.supplyCount[kingdom_Cards[j]]) {
+branch  0 taken 100%
+branch  1 taken 0%
+    10000:  183:        printf("***SUCCESS: KINGDOM CARD %d SUCCEEDED!\n", j);
+    10000:  184:        ++successfulTests;
+    10000:  185:      }
+        -:  186:      else {
+    #####:  187:        printf("***FAIL: KINGDOM CARD %d FAILED!\n", j);
+    #####:  188:        ++failedTests;
+        -:  189:      }
+    10000:  190:      ++totalNumberOfTests;
+    10000:  191:    }
+     1000:  192:    printf("\n");
+        -:  193:
+        -:  194:    /* ---------------------- TEST 5 --------------------- */
+     1000:  195:    printf("------ TEST 5: TESTING THAT GAME STATE FOR OTHER PLAYER HASN'T CHANGED ------\n");
+        -:  196:    //test that game state hasn't changed for other player
+     1000:  197:    printf("Testing game state for other player...\n");
+     2000:  198:    if (testGameState.handCount[OTHER_PLAYER] == actualGameState.handCount[OTHER_PLAYER]
+branch  0 taken 100%
+branch  1 taken 0%
+     2000:  199:        && testGameState.deckCount[OTHER_PLAYER] == actualGameState.deckCount[OTHER_PLAYER]
+branch  0 taken 100%
+branch  1 taken 0%
+     2000:  200:        && testGameState.discardCount[OTHER_PLAYER] == actualGameState.discardCount[OTHER_PLAYER]) {
+branch  0 taken 100%
+branch  1 taken 0%
+     1000:  201:      printf("***SUCCESS: GAME STATE FOR OTHER PLAYER IS THE SAME!\n\n");
+     1000:  202:      ++successfulTests;
+     1000:  203:    }
+        -:  204:    else {
+    #####:  205:      printf("***FAIL: GAME STATE FOR OTHER PLAYER IS DIFFERENT!\n\n");
+    #####:  206:      ++failedTests;
+        -:  207:    }
+     1000:  208:    ++totalNumberOfTests;
+        -:  209:
+        -:  210:    /* ---------------------- TEST RESULTS --------------------- */
+     1000:  211:    if (totalNumberOfTests == successfulTests) {
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  212:      printf("************ SUCCESS: ALL TESTS PASSED FOR SMITHY CARD ************\n");
+    #####:  213:    }
+        -:  214:    else {
+     1000:  215:      printf("************ FAIL: NOT ALL TESTS PASSED FOR SMITHY CARD ************\n");
+        -:  216:    }
+     1000:  217:    printf("The number of tests run was: %d\n", totalNumberOfTests);
+     1000:  218:    printf("The number of tests passed was: %d\n", successfulTests);
+     1000:  219:    printf("The number of tests failed was: %d\n", failedTests);
+     1000:  220:  }
+        -:  221:
+        1:  222:  return 0;
+        -:  223:}

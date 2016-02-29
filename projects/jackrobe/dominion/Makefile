@@ -60,8 +60,8 @@ sndbx: sndbx.c rngs.o
 
 alltests: playdom player rSmithy rAdv cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 
-	./rSmithy 2 5000 0 &> post-Test.out
-	./rAdv 2 5000 0 >> post-Test.out
+	./rSmithy 2 50000 0 &> post-Test.out
+	./rAdv 2 50000 0 >> post-Test.out
 	./cardtest1 2 >> post-Test.out
 	./cardtest2 2 >> post-Test.out
 	./cardtest3 2 >> post-Test.out

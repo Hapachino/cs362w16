@@ -99,6 +99,7 @@ int main() {
 	numHand2 = G.handCount[p1];
 	numDeck2 = G.deckCount[p1];
 	numActions2 = G.numActions;	
+	printf("%d  %d", numActions1, numActions2);
 	assert(numActions1 +2 == numActions2);
 	assert(numDeck1 -1 == numDeck2);
 	//assert(numHand1 +1 == numHand2);

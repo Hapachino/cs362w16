@@ -523,7 +523,8 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
 }
 
 int drawCard(int player, struct gameState *state)
-{	int count;
+{
+  int count;
   int deckCounter;
   if (state->deckCount[player] <= 0){//Deck is empty
     
@@ -702,10 +703,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
 	{
-	  if ( i != currentPlayer )
-	    {
-	      drawCard(i, state);
-	    }
+	//  if ( i != currentPlayer )
+	//    {
+	//      drawCard(i, state);
+	//    }
 	}
 			
       //put played card in played card pile
@@ -1344,7 +1345,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 int smithy_function(int handPos, int currentPlayer, struct gameState *state)
 {
     int i = 3;
-    for(i; i >= 0; i--)
+    for(i; i > 0; i--)
     {
         drawCard(currentPlayer, state);
     }
@@ -1358,7 +1359,7 @@ int adventurer_function(int handPos, int currentPlayer, struct gameState *state,
     int z = 0;
     int cardDrawn = 0;
 //    int temphand(MAX_HAND);
-    while(drawntreasure<=2){
+    while(drawntreasure<2){
         if (state->deckCount[currentPlayer] <1)
             shuffle(currentPlayer, state);
         
@@ -1374,7 +1375,7 @@ int adventurer_function(int handPos, int currentPlayer, struct gameState *state,
           z++;
         }
       }
-    while(z-1>0)
+    while(z-1>=0)
     {
         state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1];
         z=z-1;

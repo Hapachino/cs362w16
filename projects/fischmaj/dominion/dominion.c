@@ -400,7 +400,7 @@ int isGameOver(struct gameState *state) {
 
   //if three supply pile are at 0, the game ends
   j = 0;
-  for (i = 0; i < NUMTYPECARDS; i++)
+  for (i = 0; i < NUMCARDTYPES; i++)
     {
       if (state->supplyCount[i] == 0)
 	{
@@ -1116,12 +1116,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
 {
 	
-  //if card is not trashed, added to Played pile 
+  //if card is not trashed, added to discard pile
   if (trashFlag < 1)
     {
       //add card to played pile
-      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-      state->playedCardCount++;
+      state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][handPos];
+      state->discardCount[currentPlayer]++;
     }
 	
   //set played card to -1
@@ -1242,8 +1242,9 @@ int playAdventurer (struct gameState *state, int currentPlayer ){
     }
   }
   while(z-1>=0){
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+    state->discard[currentPlayer][state->discardCount[currentPlayer]]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
+    state->discardCount[currentPlayer]++;
   }
   return 0;
 
@@ -1251,13 +1252,16 @@ int playAdventurer (struct gameState *state, int currentPlayer ){
 
 int playSmithy(struct gameState *state, int currentPlayer, int handPos){
   int i;
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+
+
   //+3 Cards
   for (i = 0; i < 3; i++){
     drawCard(currentPlayer, state);
   }
 			
-  //discard card from hand
-  discardCard(handPos, currentPlayer, state, 0);
   return 0;
 }
 
@@ -1346,7 +1350,7 @@ int playFeast(struct gameState *state, int currentPlayer, int choice1){
       }
 
     }
-  }     
+     
 
   //Reset Hand
   for (i = 0; i <= state->handCount[currentPlayer]; i++){

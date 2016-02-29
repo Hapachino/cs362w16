@@ -36,40 +36,40 @@ call    0 never executed
         -:   22:	}
     10000:   23:}
         -:   24:
-function isUnique called 11190474 returned 100% blocks executed 100%
- 11190474:   25:int isUnique(int k[]) {
+function isUnique called 10917295 returned 100% blocks executed 100%
+ 10917295:   25:int isUnique(int k[]) {
         -:   26:	int i, j;
- 18328062:   27:	for(i = 0; i < NUMCARDS; i++)
+ 17880898:   27:	for(i = 0; i < NUMCARDS; i++)
 branch  0 taken 99%
 branch  1 taken 1% (fallthrough)
         -:   28:	{
-123709173:   29:		for(j = 1; j < NUMCARDS; j++)
+120691388:   29:		for(j = 1; j < NUMCARDS; j++)
 branch  0 taken 94%
 branch  1 taken 6% (fallthrough)
         -:   30:		{	
-116571585:   31:			if(j!=i && k[i] == k[j])
+113727785:   31:			if(j!=i && k[i] == k[j])
 branch  0 taken 94% (fallthrough)
 branch  1 taken 6%
 branch  2 taken 10% (fallthrough)
 branch  3 taken 90%
- 11186474:   32:				return NO;	
+ 10913295:   32:				return NO;	
         -:   33:		}	
         -:   34:	}
      4000:   35:	return YES;
         -:   36:}
         -:   37:
-function makeK called 11190474 returned 100% blocks executed 100%
- 11190474:   38:void makeK(int k[])
+function makeK called 10917295 returned 100% blocks executed 100%
+ 10917295:   38:void makeK(int k[])
         -:   39:{
         -:   40:	int i;
-123095214:   41:	for(i = 0; i < NUMCARDS; i++)
+120090245:   41:	for(i = 0; i < NUMCARDS; i++)
 branch  0 taken 91%
 branch  1 taken 9% (fallthrough)
         -:   42:	{
-111904740:   43:		k[i] = rand()%NUMCARDS;
+109172950:   43:		k[i] = rand()%NUMCARDS;
 call    0 returned 100%
         -:   44:	}
- 11190474:   45:}	
+ 10917295:   45:}	
         -:   46:
 function initI called 0 returned 0% blocks executed 0%
     #####:   47:void initI(struct infosStruct *infos) 
@@ -119,10 +119,10 @@ branch  1 taken 1% (fallthrough)
         -:   82:		//make unique kingdom cards
         -:   83:		do 
         -:   84:		{
-  5694413:   85:			makeK(k);
+  5511733:   85:			makeK(k);
 call    0 returned 100%
         -:   86:		}
-  5694413:   87:		while(!isUnique(k));
+  5511733:   87:		while(!isUnique(k));
 call    0 returned 100%
 branch  1 taken 99%
 branch  2 taken 1% (fallthrough)
@@ -152,77 +152,77 @@ call    0 returned 100%
 call    0 returned 100%
         -:  103:
         -:  104:		//randomized player hands
-     6912:  105:		for(i = 0; i < numPlayers; i++)
+     6940:  105:		for(i = 0; i < numPlayers; i++)
 branch  0 taken 71%
 branch  1 taken 29% (fallthrough)
         -:  106:		{
         -:  107:			int numCards;
         -:  108:			do
         -:  109:			{
-     5348:  110:				numCards = floor(rand()%(MAX_HAND/3));
+     5362:  110:				numCards = floor(rand()%(MAX_HAND/3));
 call    0 returned 100%
         -:  111:			}
-     5348:  112:			while(numCards < 13);
+     5362:  112:			while(numCards < 13);
 branch  0 taken 8%
 branch  1 taken 92% (fallthrough)
         -:  113:
-   439082:  114:			for(j = 0; j < numCards; j++)
+   444014:  114:			for(j = 0; j < numCards; j++)
 branch  0 taken 99%
 branch  1 taken 1% (fallthrough)
         -:  115:			{
-   434170:  116:				g->hand[i][j] = rand()%15;
+   439074:  116:				g->hand[i][j] = rand()%15;
 call    0 returned 100%
         -:  117:			}
-     4912:  118:			g->handCount[i] = numCards;
+     4940:  118:			g->handCount[i] = numCards;
         -:  119:		}
         -:  120:
         -:  121:		//randomized player decks
-     6912:  122:		for(i = 0; i < numPlayers; i++)
+     6940:  122:		for(i = 0; i < numPlayers; i++)
 branch  0 taken 71%
 branch  1 taken 29% (fallthrough)
         -:  123:		{
         -:  124:			int numCards;
         -:  125:
-     4912:  126:			numCards = rand()%(MAX_HAND/3);
+     4940:  126:			numCards = rand()%(MAX_HAND/3);
 call    0 returned 100%
         -:  127:
         -:  128:
-   414704:  129:			for(j = 0; j < numCards; j++)
+   407391:  129:			for(j = 0; j < numCards; j++)
 branch  0 taken 99%
 branch  1 taken 1% (fallthrough)
         -:  130:			{
-   409792:  131:				g->deck[i][j] = rand()%15;
+   402451:  131:				g->deck[i][j] = rand()%15;
 call    0 returned 100%
         -:  132:			}
-     4912:  133:			g->deckCount[i] = numCards;
+     4940:  133:			g->deckCount[i] = numCards;
         -:  134:		}
      2000:  135:		deckCount = g->deckCount[numPlayers-1];
         -:  136:
         -:  137:		//randomized player discard counts
-     6912:  138:		for(i = 0; i < numPlayers; i++)
+     6940:  138:		for(i = 0; i < numPlayers; i++)
 branch  0 taken 71%
 branch  1 taken 29% (fallthrough)
         -:  139:		{
         -:  140:			int numCards;
         -:  141:			do
         -:  142:			{
-     4913:  143:				numCards = rand()%(MAX_HAND/3);
+     4940:  143:				numCards = rand()%(MAX_HAND/3);
 call    0 returned 100%
         -:  144:			}
-     4913:  145:			while(numCards == 0 && g->deckCount[i] == 0);
+     4940:  145:			while(numCards == 0 && g->deckCount[i] == 0);
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
-branch  2 taken 3%
-branch  3 taken 97% (fallthrough)
+branch  2 taken 0%
+branch  3 taken 100% (fallthrough)
         -:  146:
-   407630:  147:			for(j = 0; j < numCards; j++)
+   417451:  147:			for(j = 0; j < numCards; j++)
 branch  0 taken 99%
 branch  1 taken 1% (fallthrough)
         -:  148:			{
-   402718:  149:				g->discard[i][j] = rand()%15;
+   412511:  149:				g->discard[i][j] = rand()%15;
 call    0 returned 100%
         -:  150:			}
-     4912:  151:			g->discardCount[i] = numCards;
+     4940:  151:			g->discardCount[i] = numCards;
         -:  152:		}
      2000:  153:		discardCount = g->discardCount[numPlayers-1];
         -:  154:		//initialize infosStruct
@@ -241,12 +241,12 @@ call    0 returned 100%
         -:  164:		//randomly select current player
         -:  165:		do
         -:  166:		{
-     4366:  167:			infos.currentPlayer = rand()%MAX_PLAYERS;
+     4192:  167:			infos.currentPlayer = rand()%MAX_PLAYERS;
 call    0 returned 100%
         -:  168:		}
-     4366:  169:		while(infos.currentPlayer >= numPlayers);
-branch  0 taken 54%
-branch  1 taken 46% (fallthrough)
+     4192:  169:		while(infos.currentPlayer >= numPlayers);
+branch  0 taken 52%
+branch  1 taken 48% (fallthrough)
         -:  170:
         -:  171:		//get gameState values before calling drawCard()
      2000:  172:		handCount = g->handCount[numPlayers-1];
@@ -255,14 +255,14 @@ branch  1 taken 46% (fallthrough)
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
         -:  175:		{
-       15:  176:			deckCountExp = discardCount;
-       15:  177:			deckCountExp--; //because draw card
-       15:  178:			discardCountExp = 0;
+       12:  176:			deckCountExp = discardCount;
+       12:  177:			deckCountExp--; //because draw card
+       12:  178:			discardCountExp = 0;
         -:  179:		}
         -:  180:		else //discardCount is not affected
         -:  181:		{
-     1985:  182:			discardCountExp = discardCount;
-     1985:  183:			deckCountExp = deckCount - 1;
+     1988:  182:			discardCountExp = discardCount;
+     1988:  183:			deckCountExp = deckCount - 1;
         -:  184:		}
         -:  185:		
      2000:  186:		handCountExp = handCount + 1;
@@ -291,10 +291,10 @@ branch  1 taken 1% (fallthrough)
         -:  202:		//make unique kingdom cards
         -:  203:		do 
         -:  204:		{
-  5496061:  205:			makeK(k);
+  5405562:  205:			makeK(k);
 call    0 returned 100%
         -:  206:		}
-  5496061:  207:		while(!isUnique(k));
+  5405562:  207:		while(!isUnique(k));
 call    0 returned 100%
 branch  1 taken 99%
 branch  2 taken 1% (fallthrough)
@@ -309,12 +309,12 @@ call    0 returned 100%
         -:  214:		//randomly select current player
         -:  215:		do
         -:  216:		{
-     4249:  217:			infos.currentPlayer = rand()%MAX_PLAYERS;
+     4052:  217:			infos.currentPlayer = rand()%MAX_PLAYERS;
 call    0 returned 100%
         -:  218:		}
-     4249:  219:		while(infos.currentPlayer >= numPlayers);
-branch  0 taken 53%
-branch  1 taken 47% (fallthrough)
+     4052:  219:		while(infos.currentPlayer >= numPlayers);
+branch  0 taken 51%
+branch  1 taken 49% (fallthrough)
         -:  220:
         -:  221:		//randomize unused properties
      2000:  222:		g->outpostPlayed = rand();
@@ -333,96 +333,96 @@ call    0 returned 100%
 call    0 returned 100%
         -:  229:
         -:  230:		//randomized player hands
-     7011:  231:		for(i = 0; i < numPlayers; i++)
-branch  0 taken 71%
-branch  1 taken 29% (fallthrough)
+     7140:  231:		for(i = 0; i < numPlayers; i++)
+branch  0 taken 72%
+branch  1 taken 28% (fallthrough)
         -:  232:		{
         -:  233:			int numCards;
         -:  234:			do
         -:  235:			{
-     5467:  236:				numCards = floor(rand()%(MAX_HAND/3));
+     5541:  236:				numCards = floor(rand()%(MAX_HAND/3));
 call    0 returned 100%
         -:  237:			}
-     5467:  238:			while(numCards < 13);
-branch  0 taken 8%
-branch  1 taken 92% (fallthrough)
+     5541:  238:			while(numCards < 13);
+branch  0 taken 7%
+branch  1 taken 93% (fallthrough)
         -:  239:
-   449922:  240:			for(j = 0; j < numCards; j++)
+   463444:  240:			for(j = 0; j < numCards; j++)
 branch  0 taken 99%
 branch  1 taken 1% (fallthrough)
         -:  241:			{
-   444911:  242:				g->hand[i][j] = rand()%15;
+   458304:  242:				g->hand[i][j] = rand()%15;
 call    0 returned 100%
         -:  243:			}
-     5011:  244:			g->handCount[i] = numCards;
+     5140:  244:			g->handCount[i] = numCards;
         -:  245:		}
         -:  246:
         -:  247:		//randomized player decks
-     7011:  248:		for(i = 0; i < numPlayers; i++)
-branch  0 taken 71%
-branch  1 taken 29% (fallthrough)
+     7140:  248:		for(i = 0; i < numPlayers; i++)
+branch  0 taken 72%
+branch  1 taken 28% (fallthrough)
         -:  249:		{
         -:  250:			int numCards;
-     5011:  251:			int coinCount = 0;
+     5140:  251:			int coinCount = 0;
         -:  252:			do
         -:  253:			{
         -:  254:
-     5345:  255:			numCards = rand()%(MAX_HAND/3);
+     5455:  255:			numCards = rand()%(MAX_HAND/3);
 call    0 returned 100%
-   445835:  256:				for(j = 0; j < numCards; j++)
+   459390:  256:				for(j = 0; j < numCards; j++)
 branch  0 taken 99%
 branch  1 taken 1% (fallthrough)
         -:  257:				{
-   440490:  258:					int coin = rand()%15;
+   453935:  258:					int coin = rand()%15;
 call    0 returned 100%
-   440490:  259:					if(coin == copper)
+   453935:  259:					if(coin == copper)
 branch  0 taken 7% (fallthrough)
 branch  1 taken 93%
-    29373:  260:						coinCount++;
-   440490:  261:					if(coin == silver)
+    30233:  260:						coinCount++;
+   453935:  261:					if(coin == silver)
 branch  0 taken 7% (fallthrough)
 branch  1 taken 93%
-    29255:  262:						coinCount++;
-   440490:  263:					if(coin == gold)
+    30089:  262:						coinCount++;
+   453935:  263:					if(coin == gold)
 branch  0 taken 7% (fallthrough)
 branch  1 taken 93%
-    29409:  264:						coinCount++;
-   440490:  265:					g->deck[i][j] = coin;
+    30252:  264:						coinCount++;
+   453935:  265:					g->deck[i][j] = coin;
         -:  266:				}
         -:  267:			}
-     5345:  268:			while(coinCount < 2);
+     5455:  268:			while(coinCount < 2);
 branch  0 taken 6%
 branch  1 taken 94% (fallthrough)
-     5011:  269:			g->deckCount[i] = numCards;
+     5140:  269:			g->deckCount[i] = numCards;
         -:  270:		}
      2000:  271:		deckCount = g->deckCount[infos.currentPlayer];
         -:  272:		
         -:  273:
         -:  274:		//randomized player discard counts
-     7011:  275:		for(i = 0; i < numPlayers; i++)
-branch  0 taken 71%
-branch  1 taken 29% (fallthrough)
+     7140:  275:		for(i = 0; i < numPlayers; i++)
+branch  0 taken 72%
+branch  1 taken 28% (fallthrough)
         -:  276:		{
         -:  277:			int numCards;
         -:  278:			do
         -:  279:			{
-     5011:  280:				numCards = rand()%(MAX_HAND/3);
+     5140:  280:				numCards = rand()%(MAX_HAND/3);
 call    0 returned 100%
         -:  281:			}
-     5011:  282:			while(numCards == 0 && g->deckCount[i] == 0);
+     5140:  282:			while(numCards == 0 && g->deckCount[i] == 0);
 branch  0 taken 1% (fallthrough)
 branch  1 taken 99%
 branch  2 taken 0%
 branch  3 taken 100% (fallthrough)
         -:  283:
-   423123:  284:			for(j = 0; j < numCards; j++)
+   429511:  284:			for(j = 0; j < numCards; j++)
 branch  0 taken 99%
 branch  1 taken 1% (fallthrough)
         -:  285:			{
-   418112:  286:				g->discard[i][j] = rand()%15;
+   424371:  286:				g->discard[i][j] = rand()%15;
 call    0 returned 100%
         -:  287:			}
-     5011:  288:			g->discardCount[i] = numCards;
+     5140:  288:			g->discardCount[i] = numCards;
         -:  289:		}
      2000:  290:		discardCount = g->discardCount[infos.currentPlayer];
         -:  291:

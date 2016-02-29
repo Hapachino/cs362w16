@@ -84,7 +84,7 @@ int main() {
             score = scoreFor(p, &G);
             if (i == 5)
             {
-                expectedVal = (fullDeckCount(p, 0, &G) / 10) * 2 * maxDiscardCount * handCount;
+                expectedVal = ((maxDeckCount + maxHandCount + maxDiscardCount) / 10) * (maxDiscardCount + maxHandCount + maxDiscardCount);
             }
             else
             {

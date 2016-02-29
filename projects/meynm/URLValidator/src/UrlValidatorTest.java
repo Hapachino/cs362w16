@@ -15,7 +15,13 @@
  * limitations under the License.
  */
 
+import java.io.BufferedReader;
 import java.io.Console;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -65,13 +71,60 @@ public class UrlValidatorTest extends TestCase {
 		return sb.toString();
 	}
 
-	public void testYourFirstPartition() {
+	public ArrayList<String> getLines(FileReader f) {
+		ArrayList<String> lines = new ArrayList<String>();
+		BufferedReader inStream = new BufferedReader(f);
+		try 
+		{
+			String line;
+			while( (line = inStream.readLine()) != null ) {
+				lines.add(line.toLowerCase());
+			}
+			inStream.close();
+			return lines;
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+			return null;
+		} 		
+	}
+	
+
+/* ******************************************************************************************************************************
+ * 
+ * First Partition: All URLs in the form
+ * 
+ * {AlphaFirstString}://{AlphaNumString}.{AlphaNumString}.{tldString}:{int16}/{AlphaNumString}?{AlphaNumString}={AlphaNumString}
+ * 
+ * should be valid,
+ * 
+ * where 	AlphaNumString : string of letters/numbers
+ * 			AlphaFirstString : AlphaNumString starting with a letter
+ * 			tldString : one of accepted top-level domains
+ *
+ * and everything after TLD is optional, the path may have more than one string, and the query may have more than one parameter
+ * 
+ *******************************************************************************************************************************/
+	
+	public void testRandomValid() {
 		Random r = new Random();
 		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+		String[] tldList;
+		try {
+			FileReader tldReader = new FileReader("src/tldList.txt");
+			tldList = getLines(tldReader).toArray(new String[]{});
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}	
 		String testUrl;
 		int testCount = 0;
 		int failCount = 0;
-		for (int i = 0; i < 1000; i++) {
+		
+		for (int i = 0; i < 1000; i++) 
+		{
 			java.lang.StringBuffer urlSb = new StringBuffer();
 
 			// generate random scheme
@@ -89,14 +142,45 @@ public class UrlValidatorTest extends TestCase {
 			urlSb.append(auth);
 			urlSb.append(".");
 
-			auth = generateRandomAlphaNumString(1 + r.nextInt(100));
-			urlSb.append(auth);
+			// generate random second-level domain
+			String dom = generateRandomAlphaNumString(1 + r.nextInt(100));
+			urlSb.append(dom);
 			urlSb.append(".");
 
-			auth = generateRandomAlphaNumString(1 + r.nextInt(3));			
-			urlSb.append(auth);			
-			urlSb.append("/");
+			// use a top-level domain from list
+			urlSb.append(tldList[testCount % tldList.length]);					
 
+			// generate a random port number, or no port number
+			int port = r.nextInt(131072);
+			if(port < 65536) {
+				urlSb.append(":" + port);
+			}
+			
+			// generate a random path, or none
+			for(int j = 0; j < r.nextInt(3); j++) 
+			{
+				String path = generateRandomAlphaNumString(1 + r.nextInt(10));
+				if(path.length() > 0) {
+					urlSb.append("/" + path);
+				}
+			}
+			
+			// generate a random query, or none
+			int numPairs = r.nextInt(5);
+			if(numPairs > 0) {
+				urlSb.append("?");
+			}
+			for(int j = 1; j <= numPairs; j++) 
+			{
+				String query = generateRandomAlphaNumString(1 + r.nextInt(10));
+				urlSb.append(query + "=");
+				query = generateRandomAlphaNumString(1 + r.nextInt(10));
+				urlSb.append(query);
+				if(j < numPairs) {
+					urlSb.append("&");
+				}
+			}
+			
 			testUrl = urlSb.toString();
 			if (!urlVal.isValid(testUrl)) {
 				System.out.println("FAIL. Returned not valid:\t" + urlSb);
@@ -131,3 +215,5 @@ public class UrlValidatorTest extends TestCase {
 	 */
 
 }
+
+

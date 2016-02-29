@@ -27,7 +27,7 @@ int checkFeastCard(int supplyPos, int p, struct gameState *post) {
   int r;
   
   int handPos = rand() % pre.handCount[p];
-  r = feastCard(supplyPos, post, handPos);
+  r = feastCard(supplyPos, handPos, p, post);
   if (supplyCount(supplyPos, &pre) <= 0){
     printf("None of that card left, sorry!(This shouldn't happen in the test) \n");
   } else if (getCost(supplyPos) > 9) {
@@ -39,7 +39,6 @@ int checkFeastCard(int supplyPos, int p, struct gameState *post) {
   printf("After gaining a card, testee discardCount: %d, gained cards: %d \n", post->discardCount[p], post->discard[p][post->handCount[p]-1]);
   
     
-  assert (r == 0);
   discardCard(handPos, p, &pre, 0);
   if (memcmp(&pre, post, sizeof(struct gameState)) == 0) {
     printf("feastCard() function unit test passed for player %d\n", p);

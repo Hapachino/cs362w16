@@ -338,7 +338,32 @@ int main (int argc, char** argv) {
 
       alarm(0);
 
+      printf("TEST6: Adventurer Hand Effects and 3 Treasures in Discard Pile\n");
+      resetCards(&G,player);
 
+      //add 1 copper, 1 silver, and 1 estate to discard in that order
+      gainCard(copper,&G,0,player);
+      gainCard(silver,&G,0,player);
+      gainCard(estate,&G,0,player);
+      //put 5 estates in deck (non treasures)
+      deck_count = G.deckCount[player];
+      for (j = deck_count; j < (deck_count + 5); j++){
+        gainCard(estate,&G,1,player);
+      }
+      //put the adventurer in hand
+      gainCard(adventurer,&G,2,player);
+      alarm(2);
+      previousG = G;
+      play_adventurer(&G,player,G.handCount[player] - 1);
+      printf("    TEST6.1: Hand Effects\n");
+      checkError(previousG.handCount[player] + 1 == G.handCount[player]);
+      checkError(contains(G.hand[player], G.handCount[player], copper) == 1);
+      checkError(contains(G.hand[player], G.handCount[player], silver) == 1);
+      checkError(contains(G.hand[player], G.handCount[player], estate) == 0);
+      printResults();
+      resetError();
+
+      alarm(0);
 
     }
     

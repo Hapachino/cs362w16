@@ -27,7 +27,7 @@ int checkFeastCard(int supplyPos, int p, struct gameState *post) {
   int r;
   
   int handPos = rand() % pre.handCount[p];
-  r = feastCard(supplyPos, post, handPos);
+  r = playFeast(post, p, supplyPos);
   if (supplyCount(supplyPos, &pre) <= 0){
     printf("None of that card left, sorry!(This shouldn't happen in the test) \n");
   } else if (getCost(supplyPos) > 9) {

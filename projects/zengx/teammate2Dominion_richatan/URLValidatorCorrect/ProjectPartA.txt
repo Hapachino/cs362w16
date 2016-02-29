@@ -1,0 +1,70 @@
+﻿CS362 – Final Project Part A
+Date: 02/09/2016
+Emmalee Jones, Tanna Richardson, Xiaohan Zeng
+
+
+1. UrlValidator Test Code
+
+a. Explain testIsValid Function of UrlValidator test code. It is available under christia/UrlValidator folder. 
+The testIsValid function is a test subroutine for testing valid and invalid urls against the Apache UrlValidator 
+application. testIsValid sends in an object to test thousands of permutations into UrlValiditor application of 
+various kinds of valid and invalid urls. The object contains parts of a URL including the scheme (e.g. http), 
+authority (hostname), port, path and query that can be combined into different permutations.  The ALLOW_ALL_SCHEMES 
+is set for this test which allows all valid URLs to pass and does not restrict URLs that fall into specific schemes 
+such as 2 slashes, fragments, or local hosts. There is a global variable printStatus in the function for print out 
+the test result or not. The function is built using the JAVA programming language and JUNIT, a framework for 
+testing JAVA applications. 
+
+b. Give how many total number of urls it is testing. 
+URLValidatorTest is hard-coded with 9 schemes, 19 authorities, 7 ports, 10 paths and 3 queries known to be valid 
+or invalid. The total number of URLs is therefore:
+(9*19*7*10*3) = 35910   
+
+c. Also, explain how it is building all the urls. 
+The testIsValid Function reads in an Object array to build urls from a list of five components of urls (scheme, 
+authority, port, path and query) made of ResultPair arrays. The testIsValid function combines the five components 
+in every possible way, allowing for the creation of thousands of permutations of urls. Each element in the ResultPair 
+array includes the component value (e.g. http) and a valid flag (true/false). For a URL to be valid, each individual 
+component contained in the URL must be valid.
+
+To build the url, an array called testPartIndex, which is initialized as {0,0,0,0,0}, is used to build every url. 
+The number at different index locations specifies which one in this part to choose for the url. 
+For example, {0,0,1,2,3} means for the first part of url choose the one in testParts[0][0], the second part of url 
+choose the one in testPart[1][0], the third part of url choose the one in testPart[2][1], etc. 
+
+The function incrementTestPartsIndex(int[] testPartsIndex, Objext[] testParts) is used to dynamically set the 
+testPartIndex array. It will add “1” from the last index of testPartIndex each time if it is not over the size of 
+available choices. For example, the availability of the last part of URL (testPart[4]) has 3 different choice 
+(size of testPart[4] is 3 ; max index is 2). If testPartIndex[4] hits 2 and needs to add 1, it will carry 1 to 
+testPartIndex[3] and change testPartIndex[4] to 0. This process continues until all url parts are at their max index.
+testPartIndex will increase as follows:
+
+{0,0,0,0,0} -> {0,0,0,0,1} ->  {0,0,0,0,2} -> carry 1 to [3]
+{0,0,0,1,0}->{0,0,0,1,1}->{0,0,0,1,2} ……..  if all index hit max this adding will stop
+
+d. Give an example of valid url being tested and an invalid url being tested by testIsValid() method. 
+http://www.google.com:80         valid
+  scheme: http:// valid
+  + authority: www.google.com valid
+  + path: “” valid
+  + port: :80 valid
+  + query: “” valid
+
+http://go.1aa/test1                  invalid
+  scheme: http:// valid
+  + authority: go.1aa invalid
+  + path: /test1 valid
+  + port: “” valid
+  + query: “” valid
+
+
+2.  UrlValidator code is a direct copy paste of apache commons url validator code. The test file/code is also direct copy 
+paste of apache commons test code. Do you think that a real world test (URL Validator's testIsValid() test in this case) 
+is very different than the unit tests and card tests that we wrote (in terms of concepts & complexity)? Explain in few lines. 
+
+testIsValid is similar to what we did when we built unit tests and card tests for the dominon.c application except more robust.  
+Both tests are testing a very specific function. The tests are trying to test all the statements, trying to take each branch in 
+the code, and testing the boundaries of valid data. However the testIsValid does use more robust assert statements to test each 
+criteria, where we used “if” statements to mimic asserts. Also we had to understand how dominion.c worked to be able to create 
+a valid test and it is similar for testIsValid where we need to understand a valid URL and how UrlValidator tests the urls.
+

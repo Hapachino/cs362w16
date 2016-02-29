@@ -1,0 +1,55 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:    Dominion/Adventurer Drew the wrong amount of treasure
+
+Class:  Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date:  2/2116         
+Reported By: Todd Waddell  
+Email:       waddelto@oregonstate.edu
+
+
+Product:  Dominion/Adventurer   Version:
+Platform:                       Version:
+Browser:                        Version:
+URL:        
+
+Is it reproducible: Yes 
+
+Description
+===========
+In 25000 randomized tests, Adventurer drew the wrong amount of treasure
+each time 
+
+
+Steps to Produce/Reproduce
+--------------------------
+Run adventurer, track the amount of treasure drawn.
+
+
+Expected Results
+----------------
+Adventurer should add two treasure cards from your deck into your hand.
+
+
+Actual Results
+--------------
+Adventurer drew more or less than two treasure cards.
+
+
+Workarounds
+-----------
+None
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+
+

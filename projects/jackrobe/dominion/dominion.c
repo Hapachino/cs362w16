@@ -648,24 +648,29 @@ int getCost(int cardNumber)
   return -1;
 }
 
-int adventurerCard( struct gameState * state ){
+int adventurerCard( struct gameState * state, int currentPlayer ){
 
   //local vars that I have the feeling need to be adapted
   //somehowe else b/c they get reused for every card...hmm class and constructor time?
   int z = 0;
-  int currentPlayer = whoseTurn(state);
+
   int cardDrawn;
   int temphand[MAX_HAND];
   int drawntreasure = 0;
 
   while (drawntreasure<2){
+
     if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
+
     drawCard(currentPlayer, state);
+
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];//top card of hand is most recently drawn card.
+
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
       drawntreasure++;
+
     else{
       temphand[z] = cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
@@ -835,7 +840,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   {
     case adventurer:
 
-      adventurerCard(state);
+      adventurerCard(state, currentPlayer);
 
 
     case council_room:

@@ -1,6 +1,6 @@
 /******************
  * Eric Olson
- * CS362_Assignment3
+ * CS362_Assignment5
  * Council Room Function Test
  ******************/
 
@@ -16,6 +16,7 @@ void basic_setup(struct gameState *pre, struct gameState *post);
 
 int main(){
   struct gameState *pre = malloc(sizeof(struct gameState)), *post = malloc(sizeof(struct gameState));
+  struct infosStruct infos;
   int i, errors = 0;
   srand(time(NULL));
   
@@ -27,8 +28,11 @@ int main(){
   printf("Running Scenario 1...\n");
   //Setup Scenario:
   basic_setup(pre, post);
+  //Stage infos for teammates function
+  infos.currentPlayer = 0;
+  infos.handPos = 5;
   //Have player 0 play Council Room card.
-  council_room_play(0, post, 5);
+  effectCouncil(post, &infos);
   //Check hand went from 6 to 9, deck went from 5 to 1, buy from 1 - 2, and played went from 0 - 1.
   errors = validate(pre, post, errors);
   
@@ -44,8 +48,11 @@ int main(){
   pre->deckCount[0] = post->deckCount[0] = pre->deckCount[1] = post->deckCount[1] = 0;
   for (i = 0; i < 10; i++){ pre->discard[0][i] = post->discard[0][i] = pre->discard[1][i] = post->discard[1][i] = rand() % 26; }
   pre->discardCount[0] = post->discardCount[0] = pre->discardCount[1] = post->discardCount[1] = 10;
-  //Have player 0 play council Room card.
-  council_room_play(0, post, 5);
+  //Stage infos for teammates function
+  infos.currentPlayer = 0;
+  infos.handPos = 5;
+  //Have player 0 play Council Room card.
+  effectCouncil(post, &infos);
   //Check hand went from 6 to 8, deck went from 0 to 7, played went from 0 - 1, and other player drew 1.
   errors = validate(pre, post, errors);
   

@@ -441,7 +441,7 @@ int scoreFor (int player, struct gameState *state) {
     }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };
@@ -836,23 +836,20 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 
     case steward:
-      if (choice1 == 1)
-	{
+  if (choice1 == 1) {
 	  //+2 cards
 	  drawCard(currentPlayer, state);
 	  drawCard(currentPlayer, state);
 	}
-      else if (choice1 == 2)
-	{
-	  //+2 coins
-	  state->coins = state->coins + 2;
-	}
-      else
-	{
-	  //trash 2 cards in hand
-	  discardCard(choice2, currentPlayer, state, 1);
-	  discardCard(choice3, currentPlayer, state, 1);
-	}
+      else if (choice1 == 2) {
+	       //+2 coins
+  	  state->coins = state->coins + 2;
+	 }
+      else {
+    	  //trash 2 cards in hand
+    	  discardCard(choice2, currentPlayer, state, 1);
+    	  discardCard(choice3, currentPlayer, state, 1);
+    	}
 
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
@@ -1212,15 +1209,12 @@ int playAdventurer(struct gameState *state) {
         }
         drawCard(currentPlayer, state);
         cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-        drawntreasure++;
       if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
         drawntreasure++;
       else{
         temphand[z]=cardDrawn;
         state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
         z++;
-        drawntreasure++;
-
       }
     }
     while(z-1>=0){
@@ -1245,7 +1239,7 @@ int playFeast(int choice1, struct gameState *state) {
   //Backup hand
 
   //Update Coins for Buy
-  updateCoins(currentPlayer, state, 15);
+  updateCoins(currentPlayer, state, 5);
   x = 1;//Condition to loop on
   while( x == 1) {//Buy one card
     if (supplyCount(choice1, state) <= 0){

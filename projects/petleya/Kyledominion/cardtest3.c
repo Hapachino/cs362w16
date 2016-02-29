@@ -1,119 +1,34 @@
-/*********************************************************************
-** Program Filename: cardtest3.c
-** Author: Kyle Johnson
-** Date: 2/2/2016
-** Description: implementation file for village card test
-*********************************************************************/ 
-
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
 #include "rngs.h"
+#include <stdio.h>
+#include <math.h>
 #include <stdlib.h>
 
-#define TESTCARD "village"
+//testing stew function
 
-//set-up and initialization based on cardtest4.c, week 4 module CS362W16
-int main() {
-    int newCards = 0;
-    int discarded = 1;
-    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
-    int seed = 1000;
-    int numPlayers = 2;
-    int currentPlayer = 0;
-    int nextPlayer = 1;
-	int playedCards = 1;
-	int newActions = 0;
-	
+int main(){
 	struct gameState G, testG;
-	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
-			sea_hag, tribute, smithy, council_room};
-
-	// initialize a game state and player cards
-	initializeGame(numPlayers, k, seed, &G);
-
-	printf("----------------- Testing cardtest3: %s ----------------\n", TESTCARD);
-
-	// ----------- TEST 1: +1 cards --------------
-	printf("TEST 1: +1 card\n");
-
-	// copy the game state to a test case
-	memcpy(&testG, &G, sizeof(struct gameState));
-	cardEffect(village, choice1, choice2, choice3, &testG, handpos, &bonus);
-	newCards = 1;
-	newActions = 2;
-	
-	//check player hand count
-	printf("hand count = %d, expected = %d\n", testG.handCount[currentPlayer], G.handCount[currentPlayer] + newCards - discarded);
-	if (testG.handCount[currentPlayer] == G.handCount[currentPlayer] + newCards - discarded) 
-        printf("PASSED - player hand count matches\n");    
-	else 	
-        printf("FAILED - player hand count does not match\n");
-	
-	//check player deck count
-	printf("deck count = %d, expected = %d\n", testG.deckCount[currentPlayer], G.deckCount[currentPlayer] - newCards);
-	if (testG.deckCount[currentPlayer] == G.deckCount[currentPlayer] - newCards)  
-        printf("PASSED - player deck count did not change\n");
-    else 
-        printf("FAILED - player deck count changed\n");
-	
-	//check next player hand count
-	printf("hand count = %d, expected = %d\n", testG.handCount[nextPlayer], G.handCount[nextPlayer]);
-    if (testG.handCount[nextPlayer] == G.handCount[nextPlayer])
-        printf("PASSED - next player hand count matches\n");    
-	else 	
-        printf("FAILED - next player hand count does not match\n");
-	
-	//check next player deck count
-	printf("deck count = %d, expected = %d\n", testG.deckCount[nextPlayer], G.deckCount[nextPlayer]);
-	if (testG.deckCount[nextPlayer] == G.deckCount[nextPlayer])  
-        printf("PASSED - next player deck count does not change\n");
-    else 
-        printf("FAILED - next player deck count changed\n");
-	
-	//check that card is added to played cards count
-	printf("played card count = %d, expected = %d\n", testG.playedCardCount, G.playedCardCount + playedCards);
-	if (testG.playedCardCount == G.playedCardCount + playedCards)
-		printf("PASSED - played card count matches\n");
-	else
-		printf("FAILED - played card count does not match\n");
-	
-	// ----------- TEST 2: +2 actions --------------
-	printf("TEST 2: +2 actions\n");
-	
-	//check number of player actions
-	printf("actions count = %d, expected = %d\n", testG.numActions, G.numActions + newActions);
-	if (testG.numActions == G.numActions + newActions)
-		printf("PASSED - number of actions matches\n");
-	else
-		printf("FAILED - number of actions does not match\n");
-	
-	//check victory card piles
-	printf("estate = %d, expected = %d\n", testG.supplyCount[estate], G.supplyCount[estate]);
-	if (testG.supplyCount[estate] == G.supplyCount[estate])  
-        printf("PASSED - supply count matches\n");
-    else 
-        printf("FAILED - supply count does not match\n");
-	
-	printf("duchy = %d, expected = %d\n", testG.supplyCount[duchy], G.supplyCount[duchy]);
-	if (testG.supplyCount[duchy] == G.supplyCount[duchy])  
-        printf("PASSED - supply count matches\n");
-    else 
-        printf("FAILED - supply count does not match\n");
-	
-	printf("province = %d, expected = %d\n", testG.supplyCount[province], G.supplyCount[province]);
-	if (testG.supplyCount[province] == G.supplyCount[province])  
-        printf("PASSED - supply count matches\n");
-    else 
-        printf("FAILED - supply count does not match\n");
-	
-	printf("village card testing completed.\n");
-	
-	return 0;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
+	initializeGame(3, k, 76, &G);
+	int hcount = G.handCount[0];
+	if(G.handCount[0] < 4){
+		printf("Fail: the hand count is too low\n");
+	}
+	cardEffect(steward, 2, 2, 2, &G, 3, 0);
+	if(G.handCount[0]==hcount + 1){
+		printf("Pass: Hand count up by one card 2 added 1 discarded\n");
+	}
+	else{
+		printf("Fail: Hand count not adjusted correctly\n");
+	}
+	int ccount = G.coins;
+	cardEffect(steward, 2, 2, 2, &G, 3, 0);
+	if(G.coins == ccount +2){
+		printf("Pass: The amount of coins increases by 2\n");
+	}
+	else{
+		printf("Fail: The amount of coins increase by 2\n");
+	}
+return 0;
 }
-	
-	
-	
-	

@@ -26,7 +26,7 @@ int checkCutpurseCard(int p, struct gameState *post) {
   int i, j, r;
   
   int handPos = rand() % pre.handCount[p];
-  r = cutpurseCard(post, handPos);
+  r = cardEffect(cutpurse,0,0,0,post,handPos,0);
 
   updateCoins(p, &pre, 2);
    printf("After gaining 2 coins, tester coinCount: %d\n", pre.coins);

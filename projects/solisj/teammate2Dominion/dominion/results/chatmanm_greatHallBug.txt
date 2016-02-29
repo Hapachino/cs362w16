@@ -1,0 +1,56 @@
+Noverse Bug Reporting Template
+==============================
+
+Title:   Great Hall card effect is not correctly increasing number of actions by exactly 1.  
+
+Class: Serious Bug
+e.g. "Feature Request", "System Error", "Serious Bug"
+
+Date: 2/22/2016          
+Reported By: Juan Solis  
+Email: solisj@oregonstate.edu      
+
+
+Product:   dominion.c/playGreatHall()            Version:
+Platform:    C                                  Version:
+Browser:                                        Version:
+URL:        
+
+Is it reproducible: Yes
+
+Description
+===========
+The great hall card should add exactly 1 action to the game state but is instead adding 2. 
+
+
+Steps to Produce/Reproduce
+--------------------------
+1) Run playGreatHall(struct gameState *state, int currentPlayer, int handPos)
+2) Check number of gameState actions
+
+
+Expected Results
+----------------
+PreviousGameState..numActions + 1
+
+
+Actual Results
+--------------
+Iteration #92: Testing that number of actions has increased by 1 has failed.
+prevState.numActions = 1, postState.numActions = 3, expected = 2
+
+
+Workarounds
+-----------
+none
+
+
+Attachments
+-----------
+
+
+
+Other Information
+-----------------
+In the playGreatHall() function:
+"state->numActions += 2;" should be "state->numActions += 1;"

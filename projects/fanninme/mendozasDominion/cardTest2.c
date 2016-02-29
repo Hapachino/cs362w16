@@ -12,19 +12,26 @@
 #define DEBUG 0
 #define NOISY_TEST 1
 
-//Unit test for Feast Card
-//function accepts: current player, struct gameState *state, int choice 
 
 //oracle makes sure returns valid 
-int unitTest(int player, struct gameState *post,int choice){
+int unitTest(int player, struct gameState *post,int handPos, int choice){
     srand(time(NULL));
 
     //define variables
     struct gameState pre;
     memcpy(&pre,post,sizeof(struct gameState));
-    
+
     //call function
-    feast(player,post,choice);
+    int success;
+    success=playSalvager(post, handPos, choice);
+    if (success!=0){
+        #if (NOISY_TEST == 1)
+        printf("error returned from function \n");
+        #endif
+        return 1;
+
+    }
+
 
     //memcmp game state size
     if (memcmp(&pre,post, sizeof(struct gameState))!=0){
@@ -35,27 +42,37 @@ int unitTest(int player, struct gameState *post,int choice){
 
     }
     //card specific checks
-    if(post->handCount != pre.handCount+1){
+    if(post->numBuys != pre.numBuys+1){
         #if (NOISY_TEST == 1)
-        printf("hand count was not incrimented by 1 \n");
+        printf("numbuys not incrimented by 1 \n");
         #endif
         return 2;
+    }   
+
+    //card specific checks
+    if(post->handCount < pre.handCount){
+        #if (NOISY_TEST == 1)
+        printf("hand count was not decrimented \n");
+        #endif
+        return 3;
     }    
+ 
     return 0;
 }
 
 
 int main () {
   //define variables  
-  int i, n, r, p,error,errorA,errorB;
+  int i, n, r, p,error,errorA,errorB,errorC;
   errorA =0;
   errorB =0;
+  errorC=0;
   //define a array of cards
 
   //define a gamestate
   struct gameState G;
 
-  printf ("Testing Feast Card.\n");
+  printf ("Testing Salvager Card.\n");
 
   printf ("RANDOM TESTS.\n");
   //create random seed
@@ -73,22 +90,29 @@ int main () {
     G.handCount[p] = floor(Random() * MAX_HAND);
     G.numPlayers = floor(Random()* MAX_PLAYERS);
     int choice= floor(Random() *MAX_DECK); 
+    int handPos=floor(Random() * MAX_DECK);    
+
    //call function with test input
-    error=unitTest(G.numPlayers,&G,choice);
+    error=unitTest(G.numPlayers,&G,handPos,choice);
 
     if (error > 0){
         if(error == 1){
             errorA++;
         }else if(error > 1){
             errorB++;
+        }else if(error > 2){
+            errorC++;
         }
+
     }
   }
   printf ("ALL Random TESTS Complete\n");
   printf ("Errors type 1: %d ",errorA);
   printf ("memory not same size \n");
   printf ("Errors type 2: %d ",errorB);
-  printf("hand count not incrimented \n");
+  printf("buy count not incrimented \n");
+  printf ("Errors type 3: %d ",errorB);
+  printf("hand count not decrimented \n");
 
   return 0;
 }

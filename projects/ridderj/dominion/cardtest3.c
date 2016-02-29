@@ -96,7 +96,9 @@ int main() {
 
        
        printf("    Total %d cards in hand,expected 5\n", G.handCount[0]);
-       assert(G.handCount[0] == 5);
+       //assert(G.handCount[0] == 5);
+       if(G.handCount[0] != 5)
+          printf("TEST FAILED\n");
      
      
      
@@ -134,7 +136,9 @@ int main() {
 
        
        printf("     Current Actions %d ,expected 3\n", G.numActions);
-       assert(G.numActions == 3);
+       //assert(G.numActions == 3);
+       if(G.numActions != 3)
+          printf("TEST FAILED\n");
        
      printf("TEST 3: Increase current players hand +1 card and +2 actions with different player sizes.\n");
 
@@ -177,8 +181,9 @@ int main() {
             printf("       TEST FAIL\n");
           };
           printf("     Total %d cards in hand,expected 5\n", G.handCount[0]);
-          assert(G.handCount[0] == 5);
-       
+          //assert(G.handCount[0] == 5);
+          if(G.handCount[0] != 5)
+            printf("       TEST FAIL\n");
        }
        
        

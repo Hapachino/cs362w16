@@ -1,0 +1,45 @@
+Business Rules
+
+updateCoins:
+	1.	For each copper card, add 1 coin
+	2.	For each silver card, add 2 coins
+	3.	For each gold card, add 3 coins
+	4.	Add the bonus to the coin count
+
+isGameOver:
+	1.	if the stack of province cards is empty, game is over
+	2.	if three supply piles are empty, the game is over
+	3.	if neither of these are true, the game continues
+
+getCost:
+  1.  Each card should return its correct cost
+  2.  Invalid card should return -1
+
+gainCard:
+  1.  If supply pile is empty or a card is invalid, dont let user gain a card
+  2.  With a toFlag = 0, add a card to discard
+  3.  With a toFlag = 1, add a card to the deck
+  4.  With a toFlag = 2, add a card to the hand
+  5.  Supply count must be decremented. 
+  6.  Victory card and Kingdom card piles should not be changed
+
+Smithy Card:
+  1.  Current player should receive exactly 3 cards
+  2.  3 cards should come from his own pile
+  3.  No state change should occur
+  4.  Current card should be discarded
+
+Adventurer Card:
+  1.  Current player should receive exactly 2 cards
+  2.  2 cards should come from his own pile
+  3.  No state change should occur
+
+Village Card:
+  1.  Current player's hand count should not change
+  2.  Current player gains 2 actions
+  3.  No state change should occur
+
+Great Hall Card:
+  1.  Current player should receive exactly 1 card
+  2.  Current player gains 1 action
+  3.  No state change should occur

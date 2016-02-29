@@ -1,0 +1,101 @@
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* Author:      Ian Bender
+        -:    2: * Course:      CS362
+        -:    3: * Due Date:    2/3/2016
+        -:    4: * Description: Unit test for Smithy card.
+        -:    5: * Requirements
+        -:    6: *      - player draws 3 new cards
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <assert.h>
+        -:   14:#include "rngs.h"
+        -:   15:
+function main called 1 returned 100% blocks executed 74%
+        1:   16:int main() 
+        -:   17:{
+        -:   18:    int i, j;
+        -:   19:    int outcome;
+        1:   20:    int seed = 1000;
+        1:   21:    int numPlayers = 2;
+        1:   22:    int thisPlayer = 0;
+        -:   23:    struct gameState G, testG;
+        1:   24:    int k[10] = {adventurer, council_room, feast, gardens, mine,
+        -:   25:                    remodel, smithy, village, baron, great_hall};
+        -:   26:
+        1:   27:    printf("TESTING - SMITHY CARD\n");
+call    0 returned 100%
+        -:   28:    //initialize game state
+        1:   29:    outcome = initializeGame(numPlayers, k, seed, &G);
+call    0 returned 100%
+        1:   30:    if (outcome == -1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   31:        printf("ERROR - Game initialization failed.\n");
+call    0 never executed
+        1:   32:    memcpy(&testG, &G, sizeof(struct gameState));
+        -:   33:
+        -:   34:    //give Smithy card to player
+        1:   35:    testG.hand[thisPlayer][testG.handCount[thisPlayer]] = smithy;
+        1:   36:    testG.handCount[thisPlayer]++;
+        1:   37:    if (G.handCount[thisPlayer] + 1 == testG.handCount[thisPlayer])
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   38:        printf("SUCCESS - Smithy card given to player.\n");
+call    0 returned 100%
+        -:   39:    else
+    #####:   40:        printf("ERROR - Smithy card not given.\n");
+call    0 never executed
+        -:   41:
+        -:   42:    //play Smithy
+        -:   43:    //line below adjusted for testing on teammate1 code
+        1:   44:    playSmithy(&testG, 0, thisPlayer);
+call    0 returned 100%
+        -:   45:    //playSmithy(thisPlayer, &testG, 0);
+        1:   46:    if (G.handCount[thisPlayer] + 3 == testG.handCount[thisPlayer])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   47:        printf("SUCCESS - Player gained 3 new cards, discarded 1.\n");
+call    0 never executed
+        -:   48:    else
+        1:   49:        printf("ERROR - Player did not gain/discard correct # of cards.\n");
+call    0 returned 100%
+        -:   50:
+        -:   51:    //test game state to verify same number of Victory cards
+        1:   52:    if (G.supplyCount[estate] == testG.supplyCount[estate])
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   53:       printf("SUCCESS - Count of estate cards unchanged.\n");
+call    0 returned 100%
+        -:   54:    else
+    #####:   55:       printf("ERROR - Count of estate cards has changed.\n");
+call    0 never executed
+        1:   56:    if (G.supplyCount[duchy] == testG.supplyCount[duchy])
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   57:       printf("SUCCESS - Count of duchy cards unchanged.\n");
+call    0 returned 100%
+        -:   58:    else
+    #####:   59:       printf("ERROR - Count of duchy cards has changed.\n");
+call    0 never executed
+        1:   60:    if (G.supplyCount[province] == testG.supplyCount[province])
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   61:       printf("SUCCESS - Count of province cards unchanged.\n");
+call    0 returned 100%
+        -:   62:    else
+    #####:   63:       printf("ERROR - Count of province cards has changed.\n");
+call    0 never executed
+        -:   64:
+        1:   65:    printf("TEST COMPLETE\n\n");
+call    0 returned 100%
+        -:   66:
+        1:   67:    return 0;
+        -:   68:}

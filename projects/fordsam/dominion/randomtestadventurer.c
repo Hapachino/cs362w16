@@ -150,7 +150,7 @@ int randomlyTestAdventurer() {
         perror("Error forking");
       } else if (pid == 0) {
         /* Execute the test in the child process */
-        result = playAdventurer(&state);
+        result = playAdventurer(handPos, &state);
 
         exit(result);
       } else if (pid > 0) {
@@ -196,7 +196,7 @@ int randomlyTestAdventurer() {
     }
 
     /* Test the function using the generated game state */
-    result = playAdventurer(&state);
+    result = playAdventurer(handPos, &state);
     compareState(&state, &preState, &gsc);
 
     /* Determine the number of treasure cards that should have been added to

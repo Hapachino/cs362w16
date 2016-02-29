@@ -1,14 +1,22 @@
 /******************************************************************************
+BugsInTeammates.c
+by Matthew Meyn
+2016/2/22
+
+
+
+*******************************************************************************
 Bugs in Teammate 1's dominion.c
 *******************************************************************************
 
 Bug #1
 
-Title: smithy card causes player to draw wrong number of cards
+Title: 	smithy card causes player to draw wrong number of cards
 
 Classification: Severe
 
-Platform: Linux
+Platform: 	Linux 
+			3.13.0-74-generic #118-Ubuntu SMP
 
 Description:
 
@@ -32,11 +40,12 @@ Conditions to reproduce:
 
 Bug #2
 
-Title: After playSmithy(), player loses a card
+Title: 	After playSmithy(), player loses a card
 
 Classification: Severe
 
-Platform: Linux
+Platform: 	Linux 
+			3.13.0-74-generic #118-Ubuntu SMP
 
 Description:
 
@@ -56,11 +65,12 @@ Conditions:
 
 Bug #3
 
-Title: When playing adventurer, the player sometimes gains and/or loses cards
+Title: 	When playing adventurer, the player sometimes gains and/or loses cards
 
 Classification: Severe
 
-Platform: Linux
+Platform: 	Linux 
+			3.13.0-74-generic #118-Ubuntu SMP
 
 Description:
 
@@ -97,11 +107,12 @@ Bugs in Teammate 2's dominion.c
 
 Bug #1
 
-Title: After playing adventurer, the player's deck contains different cards
+Title: 	After playing adventurer, the player's deck contains different cards
 
 Classification: Severe
 
-Platform: Linux
+Platform: 	Linux 
+			3.13.0-74-generic #118-Ubuntu SMP
 
 Description:
 

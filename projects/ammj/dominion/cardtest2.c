@@ -154,58 +154,7 @@ struct cardResults* declCardResults() {
   return result;
 }
 
-/**
- * Function: calcCoins
- * Inputs: array of cards, array element count
- * Outputs: coin calculation
- * Description:  Calculates coins in a given hand
- */
-int calcCoins(int *hand, int handCount){
 
-	int i;
-	int coinCount = 0;
-
-	for(i=0; i < handCount; i++)
-	{
-		if(hand[i] == gold)
-		{
-			coinCount = coinCount + GOLD_VALUE;
-		}
-		else if(hand[i] == silver)
-		{
-			coinCount = coinCount + SILVER_VALUE;
-		}
-		else if(hand[i] == copper)
-		{
-			coinCount = coinCount + COPPER_VALUE;
-		}
-	}
-
-	return coinCount;
-}
-
-/**
- * Function: calcCoinsCards
- * Inputs: array of cards, array element count
- * Outputs: treasure Card summation
- * Description:  Calculates treasureCards in a given hand
- */
-int calcCoinCards(int *hand, int handCount){
-
-	int i;
-	int cardCount = 0;
-
-	for(i=0; i < handCount; i++)
-	{
-		if(hand[i] == gold || hand[i] == silver || hand[i] == copper)
-		{
-			cardCount++;
-		}
-
-	}
-
-	return cardCount;
-}
 
 /**
  * Function: verifyResults
@@ -223,6 +172,7 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 	int preCoinDeck = 0;
 	int start = 0;
 	int end = 0;
+	int addedCards = 0; // updated to pull up value
 
 	// if there were at least two coins between the deck and discard
 	// verify the handCount went up by 1 (2 added - 1 played)
@@ -230,7 +180,7 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 			controlGame->deckCount[curPlayer]);
 	int countDiscardCoins = calcCoins(controlGame->discard[curPlayer],
 			controlGame->discardCount[curPlayer]);
-	int addedCards = 0;
+
 	if(countDeckCoins + countDiscardCoins >= result->cardsToAdd)
 		addedCards = 2;
 	else
@@ -283,7 +233,7 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 	// cards would have to be shuffled and all discard cards would be checked
 	// else only the last few cards would need to be checked.
 
-	preCoinDeck = calcCoinCards(controlGame->deck[curPlayer], controlGame->deckCount[curPlayer]);
+	/*preCoinDeck = calcCoinCards(controlGame->deck[curPlayer], controlGame->deckCount[curPlayer]);
 	if(preCoinDeck >= result->cardsToAdd)
 		nonCoinCards = activeGame->discard[curPlayer] - controlGame->discard[curPlayer];
 
@@ -293,12 +243,55 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 		assert(activeGame->discard[curPlayer][i] != silver);
 		assert(activeGame->discard[curPlayer][i] != gold);
 		result->testsPassed++;
+	}*/
+	// if the deck was shuffled all discard cards should not contain coins
+	// if the deck was not shuffled all newly discarded cards should not contain coins
+
+	// if deck had to be shuffled start verification at discard[0]
+	if(countDeckCoins < result->cardsToAdd)
+		nonCoinCards = 0;
+	else
+	{
+		// start at the end of the original discard pile index
+		nonCoinCards = controlGame->discardCount[curPlayer] - 1;
 	}
+
+	int discardCopper = 0;
+	int discardSilver = 0;
+	int discardGold = 0;
+	char discardResult[] = "PASS";
+
+	for(i = nonCoinCards; i < activeGame->discardCount[curPlayer]; i++)
+	{
+
+		if(!(activeGame->discard[curPlayer][i] != copper))
+		{
+			discardCopper++;
+			strcpy(discardResult, "FAIL");
+		}
+		else if(!(activeGame->discard[curPlayer][i] != silver))
+		{
+			discardSilver++;
+			strcpy(discardResult, "FAIL");
+		}
+		else if(!(activeGame->discard[curPlayer][i] != gold))
+		{
+			discardGold++;
+			strcpy(discardResult, "FAIL");
+		}
+		else
+			result->testsPassed++;
+
+	}
+	printf("Test %d: %s: Coins discarded: Gold: %d, Silver: %d, Copper: %d\n", result->testNum, discardResult,
+			discardGold, discardSilver, discardCopper);
 
 	// all added cards added should be coins
 	if(addedCards > 0){
-		start = controlGame->handCount[curPlayer] - 1;
-		end = start + addedCards;
+
+		start = activeGame->handCount[curPlayer] - addedCards;
+		end = start + addedCards - 1;
+
 		for(i = start; i < end; i++)
 		{
 			if(activeGame->hand[curPlayer][i] != copper &&
@@ -334,13 +327,17 @@ int verifyResults(struct gameState* activeGame, struct gameState* controlGame, s
 				controlGame->discardCount[curPlayer] - addedCards -
 				activeGame->deckCount[curPlayer];
 	}
+
+
 	if(activeGame->discardCount[curPlayer] != discardCheck)
 	{
 		printf("Test %d: FAIL: DiscardCount: %d, Expected: %d, ControlHandCount: %d, "
-				"PostHandCount: %d, ControlDeckCount: %d, PostDeckCount: %d\n", result->testNum,
+				"PostHandCount: %d, ControlDeckCount: %d, PostDeckCount: %d, "
+				"ControlDiscardCount: %d, PostDiscardCount: %d\n", result->testNum,
 				activeGame->discardCount[curPlayer], discardCheck, controlGame->handCount[curPlayer],
 				activeGame->handCount[curPlayer], controlGame->deckCount[curPlayer],
-				activeGame->deckCount[curPlayer] );
+				activeGame->deckCount[curPlayer], controlGame->discardCount[curPlayer],
+				activeGame->discardCount[curPlayer]);
 
 		result->testsFailed++;
 	}
@@ -419,7 +416,7 @@ void setupTest(struct gameState *activeGame, struct cardResults *result){
 		activeGame->deckCount[result->curPlayer] = result->deckCount;
 		for(i=0; i < result->deckCount; i++)
 		{
-			if(result->coinFlag == 1)
+			if(result->coinFlag == 1 || result->coinFlag == 2)
 				cardNum = smithy;
 			else
 				cardNum = random_number(0, treasure_map);
@@ -431,6 +428,8 @@ void setupTest(struct gameState *activeGame, struct cardResults *result){
 		{
 			if(result->coinFlag == 1)
 				cardNum = duchy;
+			else if(result->coinFlag == 2) // added to test bug1
+				cardNum = copper;
 			else
 				cardNum = random_number(0, treasure_map);
 			activeGame->discard[result->curPlayer][i] = cardNum;
@@ -470,7 +469,8 @@ void cardTest2(int printVal, int seed, struct cardResults *result){
 	// test case where adventurer is the first card played
 	printf("\nTEST FOR ADVENTURER FIRST CARD PLAYED\n");
 
-	r = playAdventurer(activeGame);
+	// refactored for Janel's code
+	r = playAdventurer(activeGame, result->advPos);
 	assert(r == 0);
 	result->testsPassed++;
 
@@ -514,7 +514,8 @@ void cardTest2(int printVal, int seed, struct cardResults *result){
 	// copy the data into the controlGame before running the function
 	memcpy(controlGame, activeGame, sizeof(struct gameState));
 
-    r = playAdventurer(activeGame);
+	// refactored for Janel's code
+  r = playAdventurer(activeGame, result->advPos);
 	assert(r == 0);
 	result->testsPassed++;
 
@@ -539,7 +540,8 @@ void cardTest2(int printVal, int seed, struct cardResults *result){
 	// copy the data into the controlGame before running the function
 	memcpy(controlGame, activeGame, sizeof(struct gameState));
 
-	r = playAdventurer(activeGame);
+	// refactored for Janel's code
+	r = playAdventurer(activeGame, result->advPos);
 	assert(r == 0);
 	result->testsPassed++;
 
@@ -578,7 +580,46 @@ void cardTest2(int printVal, int seed, struct cardResults *result){
 
 	// copy the data into the controlGame before running the function
 	memcpy(controlGame, activeGame, sizeof(struct gameState));
-	r = playAdventurer(activeGame);
+
+	// refactored for Janel's code
+	r = playAdventurer(activeGame, result->advPos);
+	assert(r == 0);
+	result->testsPassed++;
+
+	r = verifyResults(activeGame, controlGame, result);
+
+	// clean up memory
+	free(controlGame);
+	free(activeGame);
+	controlGame = newGame();
+	activeGame = newGame();
+
+	// added to test bug 1
+	result->deckCount = random_number(1, 5);
+	result->discardCount = random_number(1, 5);
+	result->initFlag = 1;
+	result->coinFlag = 2;
+
+	printf("\nTEST FOR NO COINS IN DECK but coins in DISCARD\n");
+
+	setupTest(activeGame, result);
+
+	// Ensure last card in hand is a treasure card to get around program crashing
+	if(result->advPos == activeGame->handCount[result->curPlayer] - 1)
+	{
+		activeGame->hand[result->curPlayer][result->advPos - 1] = activeGame->hand[result->curPlayer][result->advPos];
+		activeGame->hand[result->curPlayer][activeGame->handCount[result->curPlayer] - 1] = 5;
+		result->advPos--;
+	}
+	else
+	{
+		activeGame->hand[result->curPlayer][activeGame->handCount[result->curPlayer] - 1] = 5;
+	}
+
+	// copy the data into the controlGame before running the function
+	memcpy(controlGame, activeGame, sizeof(struct gameState));
+
+	r = playAdventurer(activeGame, result->advPos);
 	assert(r == 0);
 	result->testsPassed++;
 
@@ -603,7 +644,7 @@ int main(int argc, char *argv[]){
 
 	printf("\nSTARTING: Adventurer (cardtest2)\n");
 	cardTest2(printVal, seed, result);
-	//printResults(result->testsPassed, result->testsFailed);
+
 	free(result);
 	printf("\nFINISHED: Adventurer (cardtest2)\n");
 

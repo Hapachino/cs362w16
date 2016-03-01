@@ -23,17 +23,6 @@ import junit.framework.TestCase;
  *
  * @version $Revision: 1128446 $ $Date: 2011-05-27 13:29:27 -0700 (Fri, 27 May 2011) $
  */
-    //TODO manual test array
-    private void populateTestArray()
-    {
-    //create array of test strings
-    testURLs = new String[20];
-    
-    testURLs[0]="http://www.amazon.com";
-    testURLs[1]="http://www.amazšn.com";
-    //etc
-    }
-
 public class UrlValidatorTest extends TestCase {
 
    private boolean printStatus = false;

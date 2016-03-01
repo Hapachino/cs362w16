@@ -46,7 +46,7 @@ public class UrlValidatorTest extends TestCase {
     testURLs[3]="www.google";
     testURLs[4]="http://www.google.com";
     testURLs[5]="http://www.go.com";
-    //TODO etc
+    //TODO add rest of manual tests correct function to accept a integer that is the size of the number of manual tests?
     }
 
    //IsValid tests

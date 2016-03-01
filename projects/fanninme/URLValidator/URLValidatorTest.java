@@ -35,14 +35,14 @@ public class URLValidatorTest extends TestCase {
     {
     //create array of test strings
     String[] testURLs = new String[20];
-    
-    testURLs[0]="http://www.amazon.com";
-    testURLs[1]="http://www.amazšn.com";
-    testURLs[2]="www.amazon.comhttp://";
-    testURLs[3]="www.google";
-    testURLs[4]="http://www.google.com";
-    testURLs[5]="http://www.go.com";
-    //TODO add rest of manual tests correct function to accept a integer that is the size of the number of manual tests?
+    	testURLs[0]="http://www.amazon.com";
+    	testURLs[1]="http://www.amazšn.com";
+    	testURLs[2]="www.amazon.comhttp://";
+    	testURLs[3]="www.google";
+    	testURLs[4]="http://www.google.com";
+    	testURLs[5]="http://www.go.com";
+    	//TODO add rest of manual tests correct function to accept a integer that is the size of the number of manual tests?
+    	return testURLs;
     }
 	
    //IsValid tests

@@ -62,12 +62,13 @@ public class URLValidatorTest extends TestCase {
   	   }
  	   System.out.println("Test Completed");
    }
-}
+
    public void testIsValid(){
 	   	int numManualTests=5;//TODO fix
 	   	String[] manualTests=populateTestArray();
 	   	// Manual IsValid tests
-    for(int i;i<numManualTests;i++){
+    for(int i=0; i<numManualTests; i++){
         testManualTest(manualTests[i]);
     } 
-   } 
+   }
+}

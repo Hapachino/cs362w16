@@ -25,7 +25,7 @@ import junit.framework.TestCase;
  */
 
 
-public class UrlValidatorRancomTest extends TestCase {
+public class URLValidatorRandomTest extends TestCase {
 
    private boolean printStatus = false;
    private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
@@ -44,15 +44,12 @@ public class UrlValidatorRancomTest extends TestCase {
    private boolean printStatus = false;
    private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
-   public UrlValidatorTest(String testName) {
-      super(testName);
-   }
 
    //IsValid tests
    public void testRandomTest(int i)
    {
 	  UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-       testURL=new RandString();
+       String testURL=new RandString();
   	   boolean result;
        //URL Validation
   	   System.out.println("Testing valid URL address:"+testURL);
@@ -64,7 +61,7 @@ public class UrlValidatorRancomTest extends TestCase {
   	   else {
   		   System.out.println("Valid URL:"+testURL+" Fail");
   	   }
- 	   System.out.println("Test Completed);
+ 	   System.out.println("Test Completed");
    }
 
    }
@@ -86,7 +83,7 @@ public class UrlValidatorRancomTest extends TestCase {
        //call randomTests
 	   for(int i = 0;i<numTests;i++)
 	   {
-		   testRandomTest;
+		   testRandomTest(i);
 	   }
    }
    

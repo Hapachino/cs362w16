@@ -30,26 +30,24 @@ public class URLValidatorRandomTest extends TestCase {
    private boolean printStatus = false;
    private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
-
-   //generate random strings
-    public static String RandString()
-    {
-        //create string
-        String randuuid = UUID.randomUUID().toString();    
-        return randuuid;
-    }
-
    //Randomized Testing   
    public class RandomUrlValidatorTest extends TestCase {
    private boolean printStatus = false;
    private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
-
+   //generate random strings
+   public String RandString()
+   {
+       //create string
+       String randuuid = UUID.randomUUID().toString();    
+       return randuuid;
+   }
+   
    //IsValid tests
    public void testRandomTest(int i)
    {
 	  UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-       String testURL=new RandString();
+       String testURL=RandString();
   	   boolean result;
        //URL Validation
   	   System.out.println("Testing valid URL address:"+testURL);
@@ -62,6 +60,16 @@ public class URLValidatorRandomTest extends TestCase {
   		   System.out.println("Valid URL:"+testURL+" Fail");
   	   }
  	   System.out.println("Test Completed");
+   }
+   //Do random tests
+   public void testIsValid()
+   {
+       int numTests=2000;
+       //call randomTests
+	   for(int i = 0;i<numTests;i++)
+	   {
+		   testRandomTest(i);
+	   }
    }
 
    }
@@ -76,16 +84,6 @@ public class URLValidatorRandomTest extends TestCase {
 	   
    }
    
-   
-   public void testIsValid()
-   {
-       int numTests=2000;
-       //call randomTests
-	   for(int i = 0;i<numTests;i++)
-	   {
-		   testRandomTest(i);
-	   }
-   }
    
    public void testAnyOtherUnitTest()
    {

@@ -79,10 +79,10 @@ public class UrlValidatorTest extends TestCase {
   	   result= urlVal.isValid(testURL);
   	   if (result)
   	   { 
-  		   System.out.println("Valid URL...Pass");
+  		   System.out.println("Valid URL:"+testURL+" Pass");
   	   }
   	   else {
-  		   System.out.println("Valid URL...Fail");
+  		   System.out.println("Valid URL:"+testURL+" Fail");
   	   }
  	   System.out.println("Test Completed);
    }

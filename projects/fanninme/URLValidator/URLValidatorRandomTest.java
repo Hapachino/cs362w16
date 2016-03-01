@@ -24,6 +24,7 @@ import junit.framework.TestCase;
  * @version $Revision: 1128446 $ $Date: 2011-05-27 13:29:27 -0700 (Fri, 27 May 2011) $
  */
 
+
 public class UrlValidatorTest extends TestCase {
 
    private boolean printStatus = false;
@@ -33,22 +34,38 @@ public class UrlValidatorTest extends TestCase {
       super(testName);
    }
 
+    // manual test array
+    public String[] populateTestArray()
+    {
+    //create array of test strings
+    testURLs = new String[20];
+    
+    testURLs[0]="http://www.amazon.com";
+    testURLs[1]="http://www.amazšn.com";
+    testURLs[2]="www.amazon.comhttp://";
+    testURLs[3]="www.google";
+    testURLs[4]="http://www.google.com";
+    testURLs[5]="http://www.go.com";
+    //TODO etc
+    }
+
    //IsValid tests
-   public void testManualTest()
+   public void testManualTest(testURL)
    {
-	  	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	  UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
   	   boolean result;
-         //URL Validation
-  	   System.out.println("Testing valid URL address www.amazon.com");
-  	   result= urlVal.isValid("http://www.amazon.com");
+       //URL Validation
+  	   System.out.println("Testing valid URL address:"+testURL);
+  	   result= urlVal.isValid(testURL);
   	   if (result)
   	   { 
-  		   System.out.println("Valid URL...Pass");
+  		   System.out.println("Valid URL:"+testURL+" Pass");
   	   }
   	   else {
-  		   System.out.println("Valid URL...Fail");
+  		   System.out.println("Valid URL:"+testURL+" Fail");
   	   }
- 	   System.out.println("****Manual Tests Completed****");
+ 	   System.out.println("Test Completed);
+
    }
 
    //generate random strings
@@ -102,14 +119,19 @@ public class UrlValidatorTest extends TestCase {
    
    public void testIsValid()
    {
-       int numTests=2000
-       //call manual tests
-       UrlValidatorTest;
+       int numTests=2000;
+       int numManualTests=5;//TODO pass this back.
        //call randomTests
 	   for(int i = 0;i<numTests;i++)
 	   {
 		   testRandomTest;
 	   }
+
+   manualTests=populateTestArray();
+    // Manual IsValid tests
+    for(int i;i<numManualTests;i++){
+        testManualTest(manualTests[i])
+    } 
    }
    
    public void testAnyOtherUnitTest()

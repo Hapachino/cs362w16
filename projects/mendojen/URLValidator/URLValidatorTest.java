@@ -47,6 +47,7 @@ public class UrlValidatorTest extends TestCase {
 				  "http://www.amazon.com?action=edit&mode=up"};
 
 	   String[] testInvalidUrl= {"",
+			   		"http://yah oo.com",
 					"http://www.amazšn.com",
 					"www.amazon.comhttp://",
 					"www.google",

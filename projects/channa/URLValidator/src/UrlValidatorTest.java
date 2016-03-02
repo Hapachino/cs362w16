@@ -42,6 +42,7 @@ public class UrlValidatorTest extends TestCase {
 	   //System.out.println(urlVal.isValid("http://www.amazon.com:65535/example"));
 	   //System.out.println(urlVal.isValid("http://255.255.255.255"));
 	   //System.out.println(urlVal.isValid("http://256.256.256.256"));
+	   //System.out.println(urlVal.isValid("foo://www.amazon.com"));
    }
    
    public void testYourFirstPartition()
@@ -176,10 +177,16 @@ public class UrlValidatorTest extends TestCase {
 
 							if (url.valid) {
 								//assertTrue(urlVal.isValid(url.item));
+								if (!urlVal.isValid(url.item)) {
+									System.out.println(" - TEST FAILED, SHOULD BE VALID BUT RETURNED FALSE");
+								}
 							}
 
 							else {
 								//assertFalse(urlVal.isValid(url.item));
+								if (urlVal.isValid(url.item)) {
+									System.out.println(" - TEST FAILED, SHOULD BE INVALID BUT RETURNED TRUE");
+								}								
 							}
 					 	}
 				 	}
@@ -209,6 +216,8 @@ public class UrlValidatorTest extends TestCase {
    	ResultPair[] hosts = {
 		   new ResultPair("127.0.0.1", true),
 		   new ResultPair("127.0.1", false),
+		   new ResultPair("255.255.255.255", true),
+		   new ResultPair("256.256.256.256", false),
 		   new ResultPair("www.yahoo.com", true),
 		   new ResultPair("www.amazon.com", true),
 		   new ResultPair("www.bing.com", true),

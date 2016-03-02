@@ -35,34 +35,35 @@ public class UrlValidatorTest extends TestCase {
    //IsValid tests
    public void testManualTest()
    {
-	   String[] testValidUrl= {"www.amazon.com",
-			   				  "www.google.com",
-			   				  "http://www.go.com",
-			   				  "http://yahoo.com",
-			   				  "http://www.amazon.com:65535",
-			   				  "http://www.amazon.com:80",
-			   				  "http://www.amazon.com/test1",
-			   				  "http://www.amazon.com/test1/file",
-			   				  "http://www.amazon.com?action=edit&mode=up",
-	   						  "http://www.amazon.com?action=edit&mode=up"};
+	   String[] testValidUrl= {"http://www.amazon.com",
+				  "http://www.google.com",
+				  "http://www.go.com",
+				  "http://yahoo.com",
+				  "http://www.amazon.com:65535",
+				  "http://www.amazon.com:80",
+				  "http://www.amazon.com/test1",
+				  "http://www.amazon.com/test1/file",
+				  "http://www.amazon.com?action=edit&mode=up",
+				  "http://www.amazon.com?action=edit&mode=up"};
 
-	   String[] testInvalidUrl= {"http://www.amazšn.com",
-			   					"www.amazon.comhttp://",
-			   					"www.google",
-			   					"h2p:/www.go.com",
-			   					"http://google.4a",
-			   					"http://yahoo.arr",
-			   					"http://www.amazon.com:65d",
-			   					"http://www.amazon.com:-9",
-			   					"http://www.amazon.com//",
-			   					"http://www.amazon.com/test1/..",
-			   					"http://www.amazon.com&34",
-								"http://www.amazon.com>action"};	   
+	   String[] testInvalidUrl= {"",
+					"http://www.amazšn.com",
+					"www.amazon.comhttp://",
+					"www.google",
+					"h2p:/www.go.com",
+					"http://google.4a",
+					"http://yahoo.arr",
+					"http://www.amazon.com:65d",
+					"http://www.amazon.com:-9",
+					"http://www.amazon.com//",
+					"http://www.amazon.com/test1/..",
+					"http://www.amazon.com&34",
+					"http://www.amazon.com>action"};	   
 	   int i;      
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   boolean result;
 	   //URL Validation
-
+	
 	   for (i=0; i<testValidUrl.length;i++)
 	   {
 		   System.out.println("Testing valid URL address:"+testValidUrl[i]);
@@ -72,9 +73,9 @@ public class UrlValidatorTest extends TestCase {
 			   System.out.println("Valid URL:"+testValidUrl[i]+" Pass");
 		   }
 		   else {
-			   		System.out.println("Valid URL:"+testValidUrl[i]+" Fail");
+			   System.out.println("Valid URL:"+testValidUrl[i]+" Fail");
 		   }
-
+	
 	   }
 	   System.out.println();
 	   for (i=0; i<testInvalidUrl.length;i++)
@@ -86,11 +87,11 @@ public class UrlValidatorTest extends TestCase {
 			   System.out.println("Invalid URL:"+testInvalidUrl[i]+" Pass");
 		   }
 		   else {
-			   		System.out.println("Invalid URL:"+testInvalidUrl[i]+" Fail");
+			   System.out.println("Invalid URL:"+testInvalidUrl[i]+" Fail");
 		   }
-
+	
 	   }
-	System.out.println("Test Completed");
+	   System.out.println("Test Completed");
    }
 
    //Randomized Testing   

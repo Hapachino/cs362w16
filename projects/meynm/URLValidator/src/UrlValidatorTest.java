@@ -45,6 +45,30 @@ public class UrlValidatorTest extends TestCase {
 	}
 
 	public void testManualTest() {
+                UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+                System.out.println(urlVal.isValid("##://www.foo.com"));
+                System.out.println(urlVal.isValid("ftp://!!!.###.com"));
+                System.out.println(urlVal.isValid("://www.foo.com"));
+                System.out.println(urlVal.isValid("http://.foo.com"));
+                System.out.println(urlVal.isValid("\\10.1.1.1"));	
+                System.out.println(urlVal.isValid("http://massive.tv/")); 
+                System.out.println(urlVal.isValid("http://www.yahoo.co.jp"));    
+                System.out.println(urlVal.isValid("a://www.foo.com"));	   
+                System.out.println(urlVal.isValid("ftp://ftp.somed0main.com"));
+                System.out.println(urlVal.isValid("http://www.normalurl.com"));
+                System.out.println(urlVal.isValid("https://google.com"));
+                System.out.println(urlVal.isValid("ssh://onid.orst.edu"));
+                System.out.println(urlVal.isValid("http://www.1.com"));
+                System.out.println(urlVal.isValid("google.com"));
+                System.out.println(urlVal.isValid("www.google.com"));
+                System.out.println(urlVal.isValid("http://74.125.224.72/"));
+                System.out.println(urlVal.isValid("http://74.125.224.72:8080"));
+                System.out.println(urlVal.isValid("https://www.yahoo.com:493"));
+                System.out.println(urlVal.isValid("http://www.yahoo.com:8000"));
+                System.out.println(urlVal.isValid("http://www.yahoo.com:80"));
+                System.out.println(urlVal.isValid("a://www.foo./"));
+            
 		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 		Scanner s = new Scanner(System.in);
 		String testUrl;

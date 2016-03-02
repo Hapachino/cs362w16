@@ -50,7 +50,10 @@ public class URLValidatorRandomTest extends TestCase {
 			  "www.",
 			  "https://",
 			  "https://www.",
-			  "http://www.amazon.com/test1/file"};
+			  "http://wws.",//bad
+			  "htsp://",
+			  "",
+			  "//"};
    //
    String[] UrlPostfix= {
 			  ".com",
@@ -60,13 +63,16 @@ public class URLValidatorRandomTest extends TestCase {
 			  ".zzzy",
 			  "..",
 			  ".edu",
-			  ".gov"};
+			  ".gov",
+			  ".bob",
+			  ""};
    
    //IsValid tests
    public void testRandomTest(int i)
    {
 	  UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-       String testURL=RandString();
+       String randText=RandString();
+       String testURL=UrlPrefix[i]+randText+UrlPostfix[i];
   	   boolean result;
        //URL Validation
   	   System.out.println("Testing valid URL address:"+testURL);
@@ -83,7 +89,7 @@ public class URLValidatorRandomTest extends TestCase {
    //Do random tests
    public void testIsValid()
    {
-       int numTests=2000;
+       int numTests=10;
        //call randomTests
 	   for(int i = 0;i<numTests;i++)
 	   {

@@ -175,11 +175,11 @@ public class UrlValidatorTest extends TestCase {
 							System.out.println("Testing " + validUrl + " URL: " + url.item);
 
 							if (url.valid) {
-							  //assertTrue(urlVal.isValid(url.item));
+								//assertTrue(urlVal.isValid(url.item));
 							}
 
 							else {
-							  //assertFalse(urlVal.isValid(url.item));
+								//assertFalse(urlVal.isValid(url.item));
 							}
 					 	}
 				 	}
@@ -254,8 +254,8 @@ public class UrlValidatorTest extends TestCase {
 	{
 		boolean urlValidity;
 		
-		
-		if ((schIdx >= schemes.length) || (hostIdx >= hosts.length) || (portIdx >= ports.length) || ( pathIdx >= paths.length)|| (queryIdx >= queries.length)) {
+		if ((schIdx >= schemes.length) || (hostIdx >= hosts.length) || (portIdx >= ports.length) || ( pathIdx >= paths.length)|| (queryIdx >= queries.length))
+		{
 			return new ResultPair("Out of range", false);
 		}
 		
@@ -265,8 +265,10 @@ public class UrlValidatorTest extends TestCase {
 	
 			urlValidity = true;
 
-			if(!schemes[schIdx].valid || !hosts[hostIdx].valid || !ports[portIdx].valid || !paths[pathIdx].valid || !queries[pathIdx].valid) urlValidity = false;
-		
+			if(!schemes[schIdx].valid || !hosts[hostIdx].valid || !ports[portIdx].valid || !paths[pathIdx].valid || !queries[queryIdx].valid)
+			{
+				urlValidity = false;
+			}
 		
 			ResultPair builtURL = new ResultPair(urlString, urlValidity);
 	

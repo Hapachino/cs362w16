@@ -42,6 +42,25 @@ public class URLValidatorRandomTest extends TestCase {
        String randuuid = UUID.randomUUID().toString();    
        return randuuid;
    }
+   //address prefix
+   String[] UrlPrefix= {
+			  "http://",
+			  "http://www.",
+			  "http://",
+			  "www.",
+			  "https://",
+			  "https://www.",
+			  "http://www.amazon.com/test1/file"};
+   //
+   String[] UrlPostfix= {
+			  ".com",
+			  ".net",
+			  "/",
+			  ".eu",
+			  ".zzzy",
+			  "..",
+			  ".edu",
+			  ".gov"};
    
    //IsValid tests
    public void testRandomTest(int i)

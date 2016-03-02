@@ -81,7 +81,7 @@ public class UrlValidatorTest extends TestCase {
 	   {
 		   System.out.println("Testing invalid URL address:"+testInvalidUrl[i]);
 		   result= urlVal.isValid(testInvalidUrl[i]);
-		   if (result)
+		   if (!result)
 		   { 
 			   System.out.println("Invalid URL:"+testInvalidUrl[i]+" Pass");
 		   }

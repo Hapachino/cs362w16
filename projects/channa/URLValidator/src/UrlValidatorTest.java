@@ -152,41 +152,42 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
-   public void testAnyOtherUnitTest()
-   {
-	  int schIdx, hostIdx, portIdx, pathIdx, queryIdx;
-	  String validUrl;
-	  UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	  ResultPair url;
+   	public void testAnyOtherUnitTest()
+   	{
+		int schIdx, hostIdx, portIdx, pathIdx, queryIdx;
+		String validUrl;
+		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+		ResultPair url;
 	  
-	  for(schIdx=0; schIdx<schemes.length; schIdx++)
-	  {
-		  for(hostIdx=0; hostIdx<hosts.length; hostIdx++)
-		  {
-			  for(portIdx=0; portIdx<ports.length; portIdx++)
-			  {
-				  for(pathIdx=0; pathIdx<paths.length; pathIdx++)
-				  {
-					  for(queryIdx=0; queryIdx<queries.length; queryIdx++)
-					  {
-						  url = URLBuilder(schIdx, hostIdx, portIdx, pathIdx, queryIdx);
-						  validUrl = (url.valid) ? "VALID" : "INVALID"; // ternary operators make life easier
-						  
-						  System.out.println("Testing " + validUrl + " URL: " + url.item);
-						  
-						  if(url.valid) {
+		for (schIdx = 0; schIdx < schemes.length; schIdx++)
+		{
+			for (hostIdx = 0; hostIdx < hosts.length; hostIdx++)
+			{
+				for (portIdx = 0; portIdx < ports.length; portIdx++)
+				{
+					for (pathIdx = 0; pathIdx < paths.length; pathIdx++)
+					{
+						for (queryIdx = 0; queryIdx < queries.length; queryIdx++)
+						{
+							url = URLBuilder(schIdx, hostIdx, portIdx, pathIdx, queryIdx);
+							validUrl = (url.valid) ? "VALID" : "INVALID"; // ternary operators make life easier
+
+							System.out.println("Testing " + validUrl + " URL: " + url.item);
+
+							if (url.valid) {
 							  //assertTrue(urlVal.isValid(url.item));
-						  }
-						  else {
+							}
+
+							else {
 							  //assertFalse(urlVal.isValid(url.item));
-						  }
-					  }
-				  }
-			  }
-		  }
-	  }
-	  
-   }
+							}
+					 	}
+				 	}
+			 	}
+		 	}
+		}
+	}
+	
    /**
     * Create set of tests by taking the testUrlXXX arrays and
     * running through all possible permutations of their combinations.
@@ -194,7 +195,7 @@ public class UrlValidatorTest extends TestCase {
     * @param testObjects Used to create a url.
     */
    
-   ResultPair[] schemes = {
+   	ResultPair[] schemes = {
 		   new ResultPair("http://", true),
 		   new ResultPair("https://", true),
 		   new ResultPair("ftp://", true),
@@ -203,9 +204,9 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair("foo://", false),
 		   new ResultPair("bar://", false),
 		   new ResultPair("", true) // this should be true, because the web doesn't necessary penalize you if you don't use a protocol.
-   };
+   	};
    
-   ResultPair[] hosts = {
+   	ResultPair[] hosts = {
 		   new ResultPair("127.0.0.1", true),
 		   new ResultPair("127.0.1", false),
 		   new ResultPair("www.yahoo.com", true),
@@ -217,7 +218,7 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair("baidu", false),
 		   new ResultPair("oregonstate.edu", true),
 		   new ResultPair("", false)
-   };
+   	};
    
 	ResultPair[] ports = {
 			   new ResultPair(":80", true),
@@ -254,7 +255,7 @@ public class UrlValidatorTest extends TestCase {
 		boolean urlValidity;
 		
 		
-		if((schIdx >= schemes.length) || (hostIdx >= hosts.length) || (portIdx >= ports.length) || ( pathIdx >= paths.length)|| (queryIdx >= queries.length)) {
+		if ((schIdx >= schemes.length) || (hostIdx >= hosts.length) || (portIdx >= ports.length) || ( pathIdx >= paths.length)|| (queryIdx >= queries.length)) {
 			return new ResultPair("Out of range", false);
 		}
 		

@@ -351,14 +351,6 @@ public class UrlValidatorTest extends TestCase {
    
    public void testIsValid()
    {
-	   for(int i = 0;i<10000;i++)
-	   {
-		   
-	   }
-   }
-   
-   	public void testAnyOtherUnitTest()
-   	{
 		int schIdx, hostIdx, portIdx, pathIdx, queryIdx;
 		String validUrl;
 		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
@@ -399,6 +391,11 @@ public class UrlValidatorTest extends TestCase {
 			 	}
 		 	}
 		}
+   }
+   
+   	public void testAnyOtherUnitTest()
+   	{
+
 	}
 	
    /**

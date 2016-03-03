@@ -56,8 +56,6 @@ public class UrlValidatorTest extends TestCase {
 	   	String expected, actual;
 
 	   	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   	//UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_LOCAL_URLS);
-	   	//UrlValidator urlVal = new UrlValidator();
 	   	
 	   	System.out.println("\nManual Testing");
 
@@ -395,7 +393,148 @@ public class UrlValidatorTest extends TestCase {
    
    	public void testAnyOtherUnitTest()
    	{
+   		// UrlValidator();
+   		ResultPair[] otherUrls1 = {
+				new ResultPair("http://www.google.com/path/", true),
+				new ResultPair("http://www.google.com/path//", false),
+				new ResultPair("http://somesite.com/html/top.html", true),
+				new ResultPair("http://somesite.com/html/top.html#section_2", true),
+				new ResultPair("http://localhost/", false),
+				new ResultPair("http://machine/", false)
+		};
 
+		// UrlValidator(null, null, UrlValidator.ALLOW_2_SLASHES);
+		ResultPair[] otherUrls2 = {
+				new ResultPair("http://www.google.com/path/", true),
+				new ResultPair("http://www.google.com/path//", true),
+				new ResultPair("http://somesite.com/html/top.html", true),
+				new ResultPair("http://somesite.com/html/top.html#section_2", true),
+				new ResultPair("http://localhost/", false),
+				new ResultPair("http://machine/", false)
+		};
+
+		// UrlValidator(null, null, UrlValidator.ALLOW_LOCAL_URLS);
+		ResultPair[] otherUrls3 = {
+				new ResultPair("http://www.google.com/path/", true),
+				new ResultPair("http://www.google.com/path//", false),
+				new ResultPair("http://somesite.com/html/top.html", true),
+				new ResultPair("http://somesite.com/html/top.html#section_2", true),
+				new ResultPair("http://localhost/", true),
+				new ResultPair("http://machine/", true)
+		};
+
+		// UrlValidator(null, null, UrlValidator.NO_FRAGMENTS);
+		ResultPair[] otherUrls4 = {
+				new ResultPair("http://www.google.com/path/", true),
+				new ResultPair("http://www.google.com/path//", false),
+				new ResultPair("http://somesite.com/html/top.html", true),
+				new ResultPair("http://somesite.com/html/top.html#section_2", false),
+				new ResultPair("http://localhost/", false),
+				new ResultPair("http://machine/", false)
+		};
+
+		int otherIdx;
+	   	boolean e, a;
+	   	String expected, actual;
+
+	   	UrlValidator urlVal1 = new UrlValidator();
+   		UrlValidator urlVal2 = new UrlValidator(null, null, UrlValidator.ALLOW_2_SLASHES);
+   		UrlValidator urlVal3 = new UrlValidator(null, null, UrlValidator.ALLOW_LOCAL_URLS);
+   		UrlValidator urlVal4 = new UrlValidator(null, null, UrlValidator.NO_FRAGMENTS);
+	   	
+	   	System.out.println("\nOther Unit Tests");
+   		
+   		System.out.println("\nDefault schemes: http, https, ftp");
+   		for (otherIdx = 0; otherIdx < otherUrls1.length; otherIdx++) {
+		   
+		   // Value in ResultPair
+		   e = otherUrls1[otherIdx].valid;
+		   expected = (e) ? "VALID" : "INVALID";
+		   
+		   // Value returned from isValid()
+		   a = urlVal1.isValid(otherUrls1[otherIdx].item);
+		   actual = (a) ? "VALID" : "INVALID";
+		   
+		   	// Test failed
+		   	if (!expected.equals(actual)) {
+				System.out.println("Testing " + expected + " url: " + otherUrls1[otherIdx].item);
+				System.out.println("- TEST FAILED, expected " + expected + " but returned " + actual);
+			   
+		   	}
+		   	// Test passed
+		   	else {
+				System.out.println("Testing " + expected + " url: " + otherUrls1[otherIdx].item);
+		   	}
+	   	}
+	   	
+	   	System.out.println("\nALLOW_2_SLASHES");
+	   	for (otherIdx = 0; otherIdx < otherUrls2.length; otherIdx++) {
+		   
+		   // Value in ResultPair
+		   e = otherUrls2[otherIdx].valid;
+		   expected = (e) ? "VALID" : "INVALID";
+		   
+		   // Value returned from isValid()
+		   a = urlVal2.isValid(otherUrls2[otherIdx].item);
+		   actual = (a) ? "VALID" : "INVALID";
+		   
+		   	// Test failed
+		   	if (!expected.equals(actual)) {
+				System.out.println("Testing " + expected + " url: " + otherUrls2[otherIdx].item);
+				System.out.println("- TEST FAILED, expected " + expected + " but returned " + actual);
+			   
+		   	}
+		   	// Test passed
+		   	else {
+				System.out.println("Testing " + expected + " url: " + otherUrls2[otherIdx].item);
+		   	}
+	   	}
+
+	   	System.out.println("\nALLOW_LOCAL_URLS");
+	   	for (otherIdx = 0; otherIdx < otherUrls3.length; otherIdx++) {
+		   
+		   // Value in ResultPair
+		   e = otherUrls3[otherIdx].valid;
+		   expected = (e) ? "VALID" : "INVALID";
+		   
+		   // Value returned from isValid()
+		   a = urlVal3.isValid(otherUrls3[otherIdx].item);
+		   actual = (a) ? "VALID" : "INVALID";
+		   
+		   	// Test failed
+		   	if (!expected.equals(actual)) {
+				System.out.println("Testing " + expected + " url: " + otherUrls3[otherIdx].item);
+				System.out.println("- TEST FAILED, expected " + expected + " but returned " + actual);
+			   
+		   	}
+		   	// Test passed
+		   	else {
+				System.out.println("Testing " + expected + " url: " + otherUrls3[otherIdx].item);
+		   	}
+	   	}
+
+	   	System.out.println("\nNO_FRAGMENTS");
+	   	for (otherIdx = 0; otherIdx < otherUrls4.length; otherIdx++) {
+		   
+		   // Value in ResultPair
+		   e = otherUrls4[otherIdx].valid;
+		   expected = (e) ? "VALID" : "INVALID";
+		   
+		   // Value returned from isValid()
+		   a = urlVal4.isValid(otherUrls4[otherIdx].item);
+		   actual = (a) ? "VALID" : "INVALID";
+		   
+		   	// Test failed
+		   	if (!expected.equals(actual)) {
+				System.out.println("Testing " + expected + " url: " + otherUrls4[otherIdx].item);
+				System.out.println("- TEST FAILED, expected " + expected + " but returned " + actual);
+			   
+		   	}
+		   	// Test passed
+		   	else {
+				System.out.println("Testing " + expected + " url: " + otherUrls4[otherIdx].item);
+		   	}
+	   	}
 	}
 	
    /**
@@ -425,7 +564,6 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair("127.0.1", false),
 		   new ResultPair("255.255.255.255", true),
 		   new ResultPair("256.256.256.256", false),
-		   new ResultPair("localhost", true),
 		   new ResultPair("www.yahoo.com", true),
 		   new ResultPair("www.amazon.com", true),
 		   new ResultPair("www.bing.com", true),
@@ -466,7 +604,6 @@ public class UrlValidatorTest extends TestCase {
 			   new ResultPair("", true)
 	};
 		   
-
 	public ResultPair URLBuilder(int schIdx, int hostIdx, int portIdx, int pathIdx, int queryIdx)
 	{
 		boolean urlValidity;

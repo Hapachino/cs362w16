@@ -46,12 +46,19 @@ public class UrlValidatorTest extends TestCase {
 	   
    }
    
-   
+/* Partition1:
+ * OPTION 1: valid scheme, valid authority, valid port, valid path, invalid query -- etc., with subsets defined by invalid component
+ * OPTION 2: build around regex def
+ *
+ */
    public void testYourFirstPartition()
    {
 	   
    }
    
+/* Partition2:
+ *
+ */
    public void testYourSecondPartition(){
 	   
    }

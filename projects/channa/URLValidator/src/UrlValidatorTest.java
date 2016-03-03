@@ -38,11 +38,50 @@ public class UrlValidatorTest extends TestCase {
 
    public void testManualTest()
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   //System.out.println(urlVal.isValid("http://www.amazon.com:65535/example"));
-	   //System.out.println(urlVal.isValid("http://255.255.255.255"));
-	   //System.out.println(urlVal.isValid("http://256.256.256.256"));
-	   //System.out.println(urlVal.isValid("foo://www.amazon.com"));
+		ResultPair[] manualUrls = {
+			new ResultPair("ftp://ftp.funet.fi/pub/standards/RFC/rfc959.txt", true),
+			new ResultPair("https://piazza.com/class/iip31fywxe72b0", true),
+			new ResultPair("https://piazza.com/class/iip31fywxe72b0?cid=135", true),
+			new ResultPair("http://www.tutorialspoint.com/execute_python_online.php", true),
+			new ResultPair("https://secure.engr.oregonstate.edu:8000/teach.php?type=want_auth", true),
+			new ResultPair("https://travel.state.gov/content/passports/en/passports/renew.html", true),
+			new ResultPair("https://github.com/amchristi/cs362w16/commit/a75865dcf7d44615a9f61e4d7fc578283d5c74ea#diff-c593563edcbbbb47bab9b4f1d748176e", true),
+			new ResultPair("http://www.amazon.co.jp/", true),
+			new ResultPair("http://www.visualgo.net/", true),
+			new ResultPair("http://www.123.com", true)
+	    };
+
+	   	int manIdx;
+	   	boolean e, a;
+	   	String expected, actual;
+
+	   	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   	//UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_LOCAL_URLS);
+	   	//UrlValidator urlVal = new UrlValidator();
+	   	
+	   	System.out.println("\nManual Testing");
+
+	   	for (manIdx = 0; manIdx < manualUrls.length; manIdx++) {
+		   
+		   // Value in ResultPair
+		   e = manualUrls[manIdx].valid;
+		   expected = (e) ? "VALID" : "INVALID";
+		   
+		   // Value returned from isValid()
+		   a = urlVal.isValid(manualUrls[manIdx].item);
+		   actual = (a) ? "VALID" : "INVALID";
+		   
+		   	// Test failed
+		   	if (!expected.equals(actual)) {
+				System.out.println("Testing " + expected + " url: " + manualUrls[manIdx].item);
+				System.out.println("- TEST FAILED, expected " + expected + " but returned " + actual);
+			   
+		   	}
+		   	// Test passed
+		   	else {
+				System.out.println("Testing " + expected + " url: " + manualUrls[manIdx].item);
+		   	}
+	   	}
    }
    
    public void testYourFirstPartition()
@@ -69,29 +108,32 @@ public class UrlValidatorTest extends TestCase {
 	   
 	   // Valid
 	   if (urlVal.isValid(valid)) {
-		   System.out.println("VALID URL: " + valid + ", RETURNED VALID, TEST PASSED");
+		   System.out.println("Testing VALID url: " + valid);
 		   
 	   }
 	   else {
-		   System.out.println("VALID URL: " + valid + ", RETURNED INVALID, TEST FAILED");
+		   System.out.println("Testing VALID url: " + valid);
+		   System.out.println("- TEST FAILED, expected VALID but returned INVALID");
 	   }
 	   
 	   // Invalid
 	   if (urlVal.isValid(invalid)) {
-		   System.out.println("INVALID URL: " + invalid + ", RETURNED VALID, TEST FAILED");
+		   System.out.println("Testing INVALID url: " + invalid);
+		   System.out.println("- TEST FAILED, expected INVALID but returned VALID");
 		   
 	   }
 	   else {
-		   System.out.println("INVALID URL: " + invalid + ", RETURNED INVALID, TEST PASSED");
+		   System.out.println("Testing INVALID url: " + invalid);
 	   }
 	   
 	   // Empty
 	   if (urlVal.isValid(empty)) {
-		   System.out.println("EMPTY PART URL: " + empty + ", RETURNED VALID, TEST PASSED");
+		   System.out.println("Testing VALID URL: " + empty);
 		   
 	   }
 	   else {
-		   System.out.println("EMPTY PART URL: " + empty + ", RETURNED INVALID, TEST FAILED");
+		   System.out.println("Testing VALID URL: " + empty);
+		   System.out.println("- TEST FAILED, expected VALID but returned INVALID");
 	   }
    }
    
@@ -119,29 +161,191 @@ public class UrlValidatorTest extends TestCase {
 	   
 	   // Valid
 	   if (urlVal.isValid(valid)) {
-		   System.out.println("VALID URL: " + valid + ", RETURNED VALID, TEST PASSED");
+		   System.out.println("Testing VALID url: " + valid);
 		   
 	   }
 	   else {
-		   System.out.println("VALID URL: " + valid + ", RETURNED INVALID, TEST FAILED");
+		   System.out.println("Testing VALID url: " + valid);
+		   System.out.println("- TEST FAILED, expected VALID but returned INVALID");
 	   }
 	   
 	   // Invalid
 	   if (urlVal.isValid(invalid)) {
-		   System.out.println("INVALID URL: " + invalid + ", RETURNED VALID, TEST FAILED");
+		   System.out.println("Testing INVALID url: " + invalid);
+		   System.out.println("- TEST FAILED, expected INVALID but returned VALID");
 		   
 	   }
 	   else {
-		   System.out.println("INVALID URL: " + invalid + ", RETURNED INVALID, TEST PASSED");
+		   System.out.println("Testing INVALID url: " + invalid);
 	   }
 	   
 	   // Empty (authority is the only part that cannot be empty)
 	   if (urlVal.isValid(empty)) {
-		   System.out.println("EMPTY PART URL: " + empty + ", RETURNED VALID, TEST FAILED");
+		   System.out.println("Testing INVALID url: " + empty);
+		   System.out.println("- TEST FAILED, expected INVALID but returned VALID");
 		   
 	   }
 	   else {
-		   System.out.println("EMPTY PART URL: " + empty + ", RETURNED INVALID, TEST PASSED");
+		   System.out.println("Testing INVALID url: " + empty);
+	   }
+   }
+
+    public void testYourThirdPartition()
+   	{
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   // Valid parts
+	   String trueScheme = "http://";
+	   String trueAuthority = "www.amazon.com";
+	   String truePort = ":80";
+	   String truePath = "/example";
+	   String trueQuery = "?test=passed&result=true";
+	   
+	   // Parts to test
+	   String falsePort = ":-100abc000~";
+	   String emptyPort = "";
+	   
+	   // Construct urls
+	   String valid = trueScheme + trueAuthority + truePort + truePath + trueQuery;
+	   String invalid = trueScheme + trueAuthority + falsePort + truePath + trueQuery;
+	   String empty = trueScheme + trueAuthority + emptyPort + truePath + trueQuery;
+	   
+	   System.out.println("\nTesting Port Partition");
+	   
+	   // Valid
+	   if (urlVal.isValid(valid)) {
+		   System.out.println("Testing VALID url: " + valid);
+		   
+	   }
+	   else {
+		   System.out.println("Testing VALID url: " + valid);
+		   System.out.println("- TEST FAILED, expected VALID but returned INVALID");
+	   }
+	   
+	   // Invalid
+	   if (urlVal.isValid(invalid)) {
+		   System.out.println("Testing INVALID url: " + invalid);
+		   System.out.println("- TEST FAILED, expected INVALID but returned VALID");
+		   
+	   }
+	   else {
+		   System.out.println("Testing INVALID url: " + invalid);
+	   }
+	   
+	   // Empty
+	   if (urlVal.isValid(empty)) {
+		   System.out.println("Testing VALID URL: " + empty);
+		   
+	   }
+	   else {
+		   System.out.println("Testing VALID URL: " + empty);
+		   System.out.println("- TEST FAILED, expected VALID but returned INVALID");
+	   }
+   }
+
+   	public void testYourFourthPartition()
+   	{
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   // Valid parts
+	   String trueScheme = "http://";
+	   String trueAuthority = "www.amazon.com";
+	   String truePort = ":80";
+	   String truePath = "/example";
+	   String trueQuery = "?test=passed&result=true";
+	   
+	   // Parts to test
+	   String falsePath = "/..//...\\";
+	   String emptyPath = "";
+	   
+	   // Construct urls
+	   String valid = trueScheme + trueAuthority + truePort + truePath + trueQuery;
+	   String invalid = trueScheme + trueAuthority + truePort + falsePath + trueQuery;
+	   String empty = trueScheme + trueAuthority + truePort + emptyPath + trueQuery;
+	   
+	   System.out.println("\nTesting Path Partition");
+	   
+	   // Valid
+	   if (urlVal.isValid(valid)) {
+		   System.out.println("Testing VALID url: " + valid);
+		   
+	   }
+	   else {
+		   System.out.println("Testing VALID url: " + valid);
+		   System.out.println("- TEST FAILED, expected VALID but returned INVALID");
+	   }
+	   
+	   // Invalid
+	   if (urlVal.isValid(invalid)) {
+		   System.out.println("Testing INVALID url: " + invalid);
+		   System.out.println("- TEST FAILED, expected INVALID but returned VALID");
+		   
+	   }
+	   else {
+		   System.out.println("Testing INVALID url: " + invalid);
+	   }
+	   
+	   // Empty
+	   if (urlVal.isValid(empty)) {
+		   System.out.println("Testing VALID URL: " + empty);
+		   
+	   }
+	   else {
+		   System.out.println("Testing VALID URL: " + empty);
+		   System.out.println("- TEST FAILED, expected VALID but returned INVALID");
+	   }
+   }
+
+   public void testYourFifthPartition()
+   	{
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   // Valid parts
+	   String trueScheme = "http://";
+	   String trueAuthority = "www.amazon.com";
+	   String truePort = ":80";
+	   String truePath = "/example";
+	   String trueQuery = "?test=passed&result=true";
+	   
+	   // Parts to test
+	   String falseQuery = "querystringwithnoquestionmark";
+	   String emptyQuery = "";
+	   
+	   // Construct urls
+	   String valid = trueScheme + trueAuthority + truePort + truePath + trueQuery;
+	   String invalid = trueScheme + trueAuthority + truePort + truePath + falseQuery;
+	   String empty = trueScheme + trueAuthority + truePort + truePath + emptyQuery;
+	   
+	   System.out.println("\nTesting Query Partition");
+	   
+	   // Valid
+	   if (urlVal.isValid(valid)) {
+		   System.out.println("Testing VALID url: " + valid);
+		   
+	   }
+	   else {
+		   System.out.println("Testing VALID url: " + valid);
+		   System.out.println("- TEST FAILED, expected VALID but returned INVALID");
+	   }
+	   
+	   // Invalid
+	   if (urlVal.isValid(invalid)) {
+		   System.out.println("Testing INVALID url: " + invalid);
+		   System.out.println("- TEST FAILED, expected INVALID but returned VALID");
+		   
+	   }
+	   else {
+		   System.out.println("Testing INVALID url: " + invalid);
+	   }
+	   
+	   // Empty
+	   if (urlVal.isValid(empty)) {
+		   System.out.println("Testing VALID URL: " + empty);
+		   
+	   }
+	   else {
+		   System.out.println("Testing VALID URL: " + empty);
+		   System.out.println("- TEST FAILED, expected VALID but returned INVALID");
 	   }
    }
    
@@ -159,6 +363,8 @@ public class UrlValidatorTest extends TestCase {
 		String validUrl;
 		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 		ResultPair url;
+		
+		System.out.println("\nProgramming based testing");
 	  
 		for (schIdx = 0; schIdx < schemes.length; schIdx++)
 		{
@@ -178,14 +384,14 @@ public class UrlValidatorTest extends TestCase {
 							if (url.valid) {
 								//assertTrue(urlVal.isValid(url.item));
 								if (!urlVal.isValid(url.item)) {
-									System.out.println(" - TEST FAILED, SHOULD BE VALID BUT RETURNED FALSE");
+									System.out.println("- TEST FAILED, expected VALID but returned INVALID");
 								}
 							}
 
 							else {
 								//assertFalse(urlVal.isValid(url.item));
 								if (urlVal.isValid(url.item)) {
-									System.out.println(" - TEST FAILED, SHOULD BE INVALID BUT RETURNED TRUE");
+									System.out.println("- TEST FAILED, expected INVALID but returned VALID");
 								}								
 							}
 					 	}
@@ -222,6 +428,7 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair("127.0.1", false),
 		   new ResultPair("255.255.255.255", true),
 		   new ResultPair("256.256.256.256", false),
+		   new ResultPair("localhost", true),
 		   new ResultPair("www.yahoo.com", true),
 		   new ResultPair("www.amazon.com", true),
 		   new ResultPair("www.bing.com", true),

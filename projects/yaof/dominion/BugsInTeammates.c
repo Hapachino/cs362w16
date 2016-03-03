@@ -3,6 +3,16 @@ Faye Yao
 CS 362
 Assignment 5 - Part 1
 
+Refactoring
+---------------
+Overall, I did detect some bugs in my tests based on my teammate's feedback, like my playVillage test 
+expecting 1 more numAction than it should've. I also changed my tests to use playCard instead of 
+directly calling playAdventurer or playVillage, so I wouldn't be making any assumptions about my
+teammates' refactoring the card effects that I did. This also helps in making sure that the
+numActions is accurate when we play a card, as numActions is decremented in playCard, not cardEffect.
+As a whole, I didn't need to do too much refactoring as I used functions that were already available
+in dominion.c to set up my tests.
+
 Shaun Stapleton
 ---------------
 Village Card:

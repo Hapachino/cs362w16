@@ -1,6 +1,15 @@
 #ifndef _TEST_FUNCTIONS_H
 #define _TEST_FUNCTIONS_H
 
+#define KNRM  "\x1B[0m"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
+#define RESET "\033[0m"
 
 //Used for compare state
 enum game_state_vars {
@@ -56,7 +65,12 @@ int contains(int* array, int size, int val);
 void resetCards(struct gameState *state, int player); 
 int testAdventurer(struct gameState *state, int player, int handPos);
 int testSmithy(struct gameState *state, int player, int handPos);
-
+int play_smithy(struct gameState *state, int currentPlayer, int handPos);
+int play_adventurer(struct gameState *state, int currentPlayer,int handPos);
+void play_village(struct gameState *state, int currentPlayer, int handPos);
+void play_great_hall(struct gameState *state, int currentPlayer, int handPos);
+void play_feast(struct gameState *state, int currentPlayer, int choice1);
+char* getCardName(int card);
 //signal handlers
 void timeout(int signum);
 void handle_segfault(int signum);

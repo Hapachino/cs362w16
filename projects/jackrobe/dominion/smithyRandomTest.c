@@ -44,9 +44,9 @@ void makeRandomState (int players, struct gameState * G){
     maxDeck = MAX_DECK;
     float l = Random();
 
-    //30% of the time the deck or Hand is 0
+    //30% of the time the deck  0
     if(l < 0.3){
-        maxDeck = 0;
+        maxDeck = 2;
     }
 
     //set up a  deck for  each player
@@ -96,11 +96,11 @@ int testSmithy(struct gameState *state, int currentPlayer, int verbose ){
     state->deck[currentPlayer][handPos] = smithy;
 
     //run smithy
-    smithyCard(state, handPos);
+    smithyCard(state, handPos, currentPlayer);
 
     //smithy should draw three cards
     //But discard the card being used for a net gain of 2 to the current hand.
-    if(state->handCount[currentPlayer] != beginHandCount+2){
+    if(state->handCount[currentPlayer] != preState.handCount[currentPlayer]+2){
         status++;
         if(verbose == 1){
             printf("BeginHand Count was: %i \n", beginHandCount);
@@ -108,7 +108,7 @@ int testSmithy(struct gameState *state, int currentPlayer, int verbose ){
             printf("Hand Count should be: %i \n", beginHandCount+2);
         }else if(verbose == 2){
             printf("HandCount Failed \n");
-            printf("summary:  DeckCount-%i, DisCC - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
+            printf("summary:  DeckCount - %i, DisardCountt - %i, HandCount - %i \n", preState.deckCount[currentPlayer],
                    preState.discardCount[currentPlayer], preState.handCount[currentPlayer]);
         }
     }else{
@@ -207,17 +207,17 @@ int main(int argc, char** argv) {
         cp = Random()* atoi(argv[1]);
 
         testResult = testSmithy(&G, cp, verbose);
-
+        maxTestsFailed = MAX(maxTestsFailed, testResult);
         if (testResult != 0) {
             totalFailed++;
 
         }
 
     }
-    if (testResult == 0)
+    if (totalFailed == 0)
         printf("testSmithy: OK\n");
 
-    printf("Most Failed : %i tests \n", MAX(maxTestsFailed, testResult));
+    printf("Most Failed : %i tests \n", maxTestsFailed);
     printf("Total Failed : %i tests of %i \n", totalFailed, n);
 
 

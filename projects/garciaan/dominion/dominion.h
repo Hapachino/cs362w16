@@ -19,40 +19,41 @@
 
 enum CARD
   {curse = 0,
-   estate,
-   duchy,
-   province,
+   estate, // 1
+   duchy, // 2
+   province, // 3
 
-   copper,
-   silver,
-   gold,
+   copper, // 4
+   silver, // 5
+   gold, // 6
 
-   adventurer,
+   adventurer, // 7
    /* If no/only 1 treasure found, stop when full deck seen */
-   council_room,
-   feast, /* choice1 is supply # of card gained) */
-   gardens,
-   mine, /* choice1 is hand# of money to trash, choice2 is supply# of
+   council_room, // 8 
+   feast, // 9 /* choice1 is supply # of card gained) */
+   gardens, // 10 
+   mine, // 11 
+   /* choice1 is hand# of money to trash, choice2 is supply# of
 	    money to put in hand */
-   remodel, /* choice1 is hand# of card to remodel, choice2 is supply# */
-   smithy,
-   village,
+   remodel, // 12 /* choice1 is hand# of card to remodel, choice2 is supply# */
+   smithy, // 13 
+   village, // 14
 
-   baron, /* choice1: boolean for discard of estate */
+   baron, // 15 /* choice1: boolean for discard of estate */
    /* Discard is always of first (lowest index) estate */
-   great_hall,
-   minion, /* choice1:  1 = +2 coin, 2 = redraw */
-   steward, /* choice1: 1 = +2 card, 2 = +2 coin, 3 = trash 2 (choice2,3) */
-   tribute,
+   great_hall,// 16 
+   minion, // 17 /* choice1:  1 = +2 coin, 2 = redraw */
+   steward, // 18/* choice1: 1 = +2 card, 2 = +2 coin, 3 = trash 2 (choice2,3) */
+   tribute, // 19
 
-   ambassador, /* choice1 = hand#, choice2 = number to return to supply */
-   cutpurse,
-   embargo, /* choice1 = supply# */
-   outpost,
-   salvager, /* choice1 = hand# to trash */
-   sea_hag,
-   treasure_map,
-   last_card = treasure_map
+   ambassador, // 20 /* choice1 = hand#, choice2 = number to return to supply */
+   cutpurse, // 21
+   embargo, // 22 /* choice1 = supply# */
+   outpost, // 23
+   salvager,  // 24 /* choice1 = hand# to trash */
+   sea_hag, // 25
+   treasure_map, // 26
+   last_card = treasure_map // 26
   };
 
 struct gameState {
@@ -131,16 +132,15 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
-int playAdventurer(struct gameState *state);
+int playAdventurer(struct gameState *state, int handPos);
 int playSmithy(struct gameState *state, int handPos);
+int playMine(struct gameState *state, int handPos, int choice1, int choice2);
+int playTribute(struct gameState *state);
+int playBaron(struct gameState *state, int choice1);
 int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
+int playGreat_Hall(struct gameState *state, int handPos);
 
-int play_smithy(struct gameState *state, int currentPlayer, int handPos);
-int play_adventurer(struct gameState *state, int currentPlayer,int handPos);
-void play_village(struct gameState *state, int currentPlayer, int handPos);
-void play_great_hall(struct gameState *state, int currentPlayer, int handPos);
-void play_feast(struct gameState *state, int currentPlayer, int choice1);
 
 #endif

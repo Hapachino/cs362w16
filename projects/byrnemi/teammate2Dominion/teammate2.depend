@@ -1,0 +1,67 @@
+# depslib dependency file v1.0
+1454452844 source:c:\c_s\se2\dominion\dom\unittest1.c
+	"dominion.h"
+	<stdio.h>
+	"rngs.h"
+	<stdlib.h>
+	<assert.h>
+
+1454104302 c:\c_s\se2\dominion\dom\dominion.h
+
+1453788322 c:\c_s\se2\dominion\dom\rngs.h
+
+1456292271 source:c:\c_s\se2\dominion\teammate1\dominion.c
+	"dominion.h"
+	"dominion_helpers.h"
+	"rngs.h"
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+
+1456201253 c:\c_s\se2\dominion\teammate1\dominion.h
+
+1456201248 c:\c_s\se2\dominion\teammate1\dominion_helpers.h
+	"dominion.h"
+
+1456201237 c:\c_s\se2\dominion\teammate1\rngs.h
+
+1456201239 source:c:\c_s\se2\dominion\teammate1\rngs.c
+	<stdio.h>
+	<time.h>
+	"rngs.h"
+
+1456293401 source:c:\c_s\se2\dominion\teammate2\rngs.c
+	<stdio.h>
+	<time.h>
+	"rngs.h"
+
+1456293402 c:\c_s\se2\dominion\teammate2\rngs.h
+
+1456370148 source:c:\c_s\se2\dominion\teammate2\dominion.c
+	"dominion.h"
+	"dominion_helpers.h"
+	"rngs.h"
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+
+1456293401 c:\c_s\se2\dominion\teammate2\dominion.h
+
+1456293401 c:\c_s\se2\dominion\teammate2\dominion_helpers.h
+	"dominion.h"
+
+1456370900 source:c:\c_s\se2\dominion\dom\cardtest4.c
+	"dominion.h"
+	<stdio.h>
+	"rngs.h"
+	<stdlib.h>
+	<assert.h>
+
+1456371749 source:c:\c_s\se2\dominion\dom\cardtest3.c
+	"dominion.h"
+	<stdio.h>
+	"rngs.h"
+	<stdlib.h>
+	<assert.h>
+	<time.h>
+

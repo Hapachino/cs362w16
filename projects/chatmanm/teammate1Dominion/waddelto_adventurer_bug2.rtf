@@ -1,0 +1,63 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww33400\viewh18140\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+Noverse Bug Reporting Template\
+==============================\
+Title:    Dominion Adventurer Card current player\'92s deck receives three cards\
+\
+Class:	 Serious Bug\
+e.g. "Feature Request", "System Error", "Serious Bug"\
+\
+Date:           2/22/16\
+Reported By:    Myles Chatman\
+Email:      	  chatmanm@oregonstate.edu\
+\
+\
+Product: dominion.c                       Version:\
+Platform: C                      		 Version:\
+Browser:                        			 Version:\
+URL:        \
+\
+Is it reproducible: Yes\
+\
+Description\
+===========\
+Current player\'92s deck contains one excessive card because of the issue\
+of the player being able to draw three cards.\
+\
+\
+Steps to Produce/Reproduce\
+--------------------------\
+Run an exact test that calls the function cardEffect for the adventurer card. \
+Pay special attention to the deckCount of the current player drawing cards.\
+\
+\
+Expected Results\
+----------------\
+After playing the adventure card, current player\'92s deckCount should only\
+increase by two.\
+\
+\
+Actual Results\
+--------------\
+The deckCount always increments to a total value of three.\
+\
+\
+Workarounds\
+-----------\
+none.\
+\
+\
+Attachments\
+-----------\
+none.\
+\
+\
+Other Information\
+-----------------\
+none.}

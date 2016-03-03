@@ -38,7 +38,7 @@ int main() {
   updateCoins(p1, &G, 0);
   updateCoins(p1, &storeG, 0);
   printf("Cards in Hand:  %d, Cards Expected: %d\n",
-           G.handCount[p1], storeG.handCount[p1]+2);
+           G.handCount[p1], storeG.handCount[p1]+1);
   printf("Cards in Deck: %d, cards Expected: %d\n",
           G.deckCount[p1], storeG.deckCount[p1]-coinsInDeck);
   printf("Cards in discard:  %d, Cards Expected: %d\n",

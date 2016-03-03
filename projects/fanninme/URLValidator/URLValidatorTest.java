@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 import junit.framework.TestCase;
 
 /**
@@ -23,179 +22,53 @@ import junit.framework.TestCase;
  *
  * @version $Revision: 1128446 $ $Date: 2011-05-27 13:29:27 -0700 (Fri, 27 May 2011) $
  */
-public class UrlValidatorTest extends TestCase {
+public class URLValidatorTest extends TestCase {
 
-   private boolean printStatus = false;
-   private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
+	   private boolean printStatus = false;
+	   private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
-   public UrlValidatorTest(String testName) {
-      super(testName);
-   }
-
+	   public URLValidatorTest(String testName) {
+	      super(testName);
+	   }
+    // manual test array
+    public String[] populateTestArray()
+    {
+    //create array of test strings
+    String[] testURLs = new String[20];
+    	testURLs[0]="http://www.amazon.com";
+    	testURLs[1]="http://www.amazšn.com";
+    	testURLs[2]="www.amazon.comhttp://";
+    	testURLs[3]="www.google";
+    	testURLs[4]="http://www.google.com";
+    	testURLs[5]="http://www.go.com";
+    	//TODO add rest of manual tests correct function to accept a integer that is the size of the number of manual tests?
+    	return testURLs;
+    }
+	
    //IsValid tests
-   public void testManualTest()
+   public void testManualTest(String testURL)
    {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   boolean result;
+  	   boolean result;
        //URL Validation
-	   System.out.println("****Testing valid URL address www.amazon.com");
-	   result= urlVal.isValid("http://www.amazon.com");
-	   if (result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   System.out.println("****Testing invalid ASCII character in URL address (http://www.amazšn.com)");
-	   result= urlVal.isValid("http://www.amazšn.com");
-	   if (!result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   System.out.println("****Testing invalid URL pattern (www.amazon.comhttp://)");
-	   result= urlVal.isValid("www.amazon.comhttp://");
-	   if (!result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   System.out.println("****Testing valid schemes (http://www.google.com");
-	   result= urlVal.isValid("http://www.google.com");
-	   if(result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   System.out.println("http://www.google.com");
-	   result= urlVal.isValid("http://www.google.com");
-	   if(result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   System.out.println("****Testing valid authority (http://go.com)");
-	   result= urlVal.isValid("http://go.com");
-	   if(result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }	   
-	   System.out.println("****Testing valid port (http://www.amazon.com:65535)");
-	   //bug!
-	   result= urlVal.isValid("http://www.amazon.com:65535");
-	   if(result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   System.out.println("http://www.amazon.com:80");
-	   result= urlVal.isValid("http://www.amazon.com:80");
-	   if(result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   System.out.println("****Testing valid path (http://www.amazon.com/test1)");
-	   result= urlVal.isValid("http://www.amazon.com/test1");
-	   if(result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   System.out.println("http://www.amazon.com/test1/file");
-	   result= urlVal.isValid("http://www.amazon.com/test1/file");
-	   if(result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   //bug!
-	   System.out.println("****Testing valid query (http://www.amazon.com?action=view)");
-	   result= urlVal.isValid("http://www.amazon.com?action=view");
-	   if(result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-	   System.out.println("http://www.amazon.com?action=edit&mode=up");
-	   result= urlVal.isValid("http://www.amazon.com?action=edit&mode=up");
-	   if(result)
-	   { 
-		   System.out.println("Pass");
-	   }
-	   else {
-		   System.out.println("Fail");
-	   }
-   }
-   
-   public class RandomUrlValidatorTest extends TestCase {
-
-   private boolean printStatus = false;
-   private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
-
-   public UrlValidatorTest(String testName) {
-      super(testName);
+  	   System.out.println("Testing valid URL address:"+testURL);
+  	   result= urlVal.isValid(testURL);
+  	   if (result)
+  	   { 
+  		   System.out.println("Valid URL:"+testURL+" Pass");
+  	   }
+  	   else {
+  		   System.out.println("Valid URL:"+testURL+" Fail");
+  	   }
+ 	   System.out.println("Test Completed");
    }
 
-   //IsValid tests
-   public void testRandomTest()
-   {
+   public void testIsValid(){
+	   	int numManualTests=5;//TODO fix
+	   	String[] manualTests=populateTestArray();
+	   	// Manual IsValid tests
+    for(int i=0; i<numManualTests; i++){
+        testManualTest(manualTests[i]);
+    } 
    }
-
-   }
-   public void testYourFirstPartition()
-   {
-	   
-   }
-   
-   public void testYourSecondPartition(){
-	   
-   }
-   
-   
-   public void testIsValid()
-   {
-       //call manual tests
-       UrlValidatorTest;
-
-	   for(int i = 0;i<10000;i++)
-	   {
-		   
-	   }
-   }
-   
-   public void testAnyOtherUnitTest()
-   {
-	   
-   }
-   /**
-    * Create set of tests by taking the testUrlXXX arrays and
-    * running through all possible permutations of their combinations.
-    *
-    * @param testObjects Used to create a url.
-    */
-   
-
 }

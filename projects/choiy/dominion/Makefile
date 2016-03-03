@@ -1,24 +1,30 @@
 # Name: YUNSIK CHOI
 # CS 362 Winter 16
-# Creates randomtestcard.out and randomtestadventurer.out
+#
+# ************************************************************************************************
+# Please change file name of dominion_bug_introduced.c to dominion.c before running this makefile.
+# ************************************************************************************************
+#
+# Creates BugsInTeammate1.out
 # makefile
+# Usage: make -f Makefile
 
-CFLAGS = -Wall -coverage -fpic -lm
+MEMBERFLAG = 0
+CFLAGS = -Wall -lm
 
-all: randomtestcard randomtestadventurer runrandomtestcard runrandomtestadventurer
+all: testcard runtestcard_adventurer runtestcard_smithy runtestcard_village runtestcard_great_hall
 
-randomtestcard: randomtestcard.c dominion.c rngs.c
-	gcc -o randomtestcard randomtestcard.c dominion.c rngs.c $(CFLAGS)
-
-randomtestadventurer: randomtestadventurer.c dominion.c rngs.c
-	gcc -o randomtestadventurer randomtestadventurer.c dominion.c rngs.c $(CFLAGS)
+testcard: testcard.c dominion.c rngs.c
+	gcc -o testcard testcard.c dominion.c rngs.c $(CFLAGS)
 	
-runrandomtestcard: randomtestcard
-	./randomtestcard
-	gcov randomtestcard.c -b > randomtestcard.out
-	cat randomtestcard.c.gcov >> randomtestcard.out
+runtestcard_adventurer: testcard
+	./testcard adventurer > BugsInTeammate$(MEMBERFLAG).out
+	
+runtestcard_smithy: testcard
+	./testcard smithy >> BugsInTeammate$(MEMBERFLAG).out
 
-runrandomtestadventurer: randomtestadventurer
-	./randomtestadventurer
-	gcov randomtestadventurer.c -b > randomtestadventurer.out
-	cat randomtestadventurer.c.gcov >> randomtestadventurer.out
+runtestcard_village: testcard
+	./testcard village >> BugsInTeammate$(MEMBERFLAG).out
+
+runtestcard_great_hall: testcard
+	./testcard great_hall >> BugsInTeammate$(MEMBERFLAG).out

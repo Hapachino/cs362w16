@@ -210,6 +210,10 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair("http:///", false),
 		   new ResultPair("foo://", false),
 		   new ResultPair("bar://", false),
+		   new ResultPair("1http://", false),
+		   new ResultPair("h1ttp://", false),
+		   new ResultPair("http:/", false),
+		   new ResultPair("http//", false),
 		   new ResultPair("", true) // this should be true, because the web doesn't necessary penalize you if you don't use a protocol.
    	};
    

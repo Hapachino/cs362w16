@@ -46,25 +46,25 @@ public class URLValidatorRandomTest extends TestCase {
    String[] UrlPrefix= {
 			  "http://",
 			  "http://www.",
-			  "http://",
+			  "https://www",
 			  "www.",
 			  "https://",
 			  "https://www.",
-			  "http://wws.",//bad
-			  "htsp://",
+			  "http://www.",
+			  "https://",
 			  "",
-			  "//"};
+			  "http://www."};
    //
    String[] UrlPostfix= {
 			  ".com",
 			  ".net",
-			  "/",
+			  ".edu/",
 			  ".eu",
-			  ".zzzy",
-			  "..",
 			  ".edu",
 			  ".gov",
-			  ".bob",
+			  ".us",
+			  ".html",
+			  "/mail/",
 			  ""};
    
    //IsValid tests

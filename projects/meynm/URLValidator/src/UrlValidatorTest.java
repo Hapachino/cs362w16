@@ -78,8 +78,12 @@ public class UrlValidatorTest extends TestCase {
         System.out.println(urlVal.isValid("https://www.yahoo.com:493"));
         System.out.println(urlVal.isValid("http://www.yahoo.com:8000"));
         System.out.println(urlVal.isValid("http://www.yahoo.com:80"));
+        System.out.println(urlVal.isValid("http://www.yahoo.com:abc"));
         System.out.println(urlVal.isValid("a://www.foo./"));
-
+        System.out.println(urlVal.isValid("a:www.foo.com"));
+        System.out.println(urlVal.isValid("http://www.1.com/subPage/main.html"));
+        System.out.println(urlVal.isValid("http://www. .com"));
+        System.out.println(urlVal.isValid("http://www.yahoo.com:65536"));
 		Scanner s = new Scanner(System.in);
 		String testUrl;
 		while (true) {
@@ -202,7 +206,7 @@ public class UrlValidatorTest extends TestCase {
 		int testCount = 0;
 		int failCount = 0;
 		
-		for (int i = 0; i < 1000; i++) 
+		for (int i = 0; i < numTests; i++) 
 		{
 			java.lang.StringBuffer urlSb = new StringBuffer();
 

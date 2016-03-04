@@ -16,6 +16,8 @@
  */
 
 
+import java.util.Random;
+
 import junit.framework.TestCase;
 
 
@@ -52,7 +54,58 @@ public class UrlValidatorTest extends TestCase {
     
     public void testYourFirstPartition()
     {
-        
+    	int count = 1000; 
+    	Random r = new Random();
+    	String testString = "";
+    	//can not appear in scheme
+    	char[] excludedCharacters = {';', '/', '?', ':', '@', '&', '=', 
+    			'$', ',', '"', '>', '<', '#', '%', '{', '}', '|', '\\', '^', 
+    			'[', ']', '`', '!', '\'', '(', ')', '*', '/', '_' };
+    	UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+    	for (int i = 1; i < count; i++)
+    	{
+    		boolean expected = true;
+    		testString = "";
+    		for (int j = 0; j <3 ; j++)
+    		{
+    			int t = r.nextInt(126-33) + 33;
+    			//test character
+    			//scheme must begin with a letter
+    			if (j == 0 ){
+    				//if number is not ASCII upper or lower case letter
+    				//set expected result = false
+    				if (!(t >= 65 && t<= 90) && !(t >= 97 && t <= 122))
+    				{
+    					expected &= false;
+    				}
+    			}
+    		char[] tempChar = Character.toChars(t); 
+    		if (new String(excludedCharacters).contains(Character.toString(tempChar[0])))
+    		{
+    			expected &= false;
+    		}
+    			testString += tempChar[0];
+    		}
+
+    		//append generic domain 
+    		testString = testString + "://google.com";
+
+    		boolean result = urlVal.isValid(testString);
+    		System.out.print("String: " + testString + "\tExpeected: " + expected + 
+    				"\tResult: " + result + "\n");
+    		assertEquals(expected, result);
+    		if (printStatus) {
+    			if (result == expected) {
+    				System.out.print('.');
+    			} else {
+    				System.out.print('X');
+    			}
+    		}
+    	}
+    	if (printStatus) {
+    		System.out.println();
+    	}
+
     }
     
     public void testYourSecondPartition()

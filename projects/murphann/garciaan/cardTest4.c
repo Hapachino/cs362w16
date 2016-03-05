@@ -26,14 +26,19 @@ int main() {
    cardEffect(council_room, 0, 0, 0, &G, 0, 0);
 
    printf("Player 1 Cards in Hand:  %d, Cards Expected: %d\n",
-            G.handCount[p1], storeG.handCount[p1]+4);
+            G.handCount[p1], storeG.handCount[p1]+3);
    printf("Cards in Deck: %d, cards Expected: %d\n",
-           G.deckCount[p1], storeG.deckCount[p1]-4);
+            G.deckCount[p1], storeG.deckCount[p1]-4);
+   printf("Cards in Discard: %d, cards Expected: %d\n",
+            G.discardCount[p1], storeG.discardCount[p1]+1);
 
    printf("Player 2 Cards in Hand:  %d, Cards Expected: %d\n",
             G.handCount[p2], storeG.handCount[p2]+1);
    printf("Cards in Deck: %d, cards Expected: %d\n",
-           G.deckCount[p2], storeG.deckCount[p2]-1);
+            G.deckCount[p2], storeG.deckCount[p2]-1);
+   printf("Cards in Discard: %d, cards Expected: %d\n",
+            G.discardCount[p2], storeG.discardCount[p2]+1);
+
 
 
    printf("Number of Buys:  %d, Number Expected: %d\n",

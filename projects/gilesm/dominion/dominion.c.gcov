@@ -731,12 +731,12 @@ branch  1 never executed
     #####:  522:  return 0;
         -:  523:}
         -:  524:
-function drawCard called 49 returned 100% blocks executed 36%
-       49:  525:int drawCard(int player, struct gameState *state)
+function drawCard called 48 returned 100% blocks executed 36%
+       48:  525:int drawCard(int player, struct gameState *state)
         -:  526:{	
         -:  527:	int count;	
         -:  528:  	int deckCounter;
-       49:  529: 	 if (state->deckCount[player] <= 0){//Deck is empty
+       48:  529: 	 if (state->deckCount[player] <= 0){//Deck is empty
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -:  530:    
@@ -783,18 +783,18 @@ branch  1 never executed
         -:  566:  }
         -:  567:
         -:  568:  else{
-       49:  569:    int count = state->handCount[player];//Get current hand count for player
+       48:  569:    int count = state->handCount[player];//Get current hand count for player
         -:  570:    int deckCounter;
-       49:  571:    if (DEBUG){//Debug statements
+       48:  571:    if (DEBUG){//Debug statements
         -:  572:      printf("Current hand count: %d\n", count);
         -:  573:    }
         -:  574:
-       49:  575:    deckCounter = state->deckCount[player];//Create holder for the deck count
-       49:  576:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-       49:  577:    state->deckCount[player]--;
-       49:  578:    state->handCount[player]++;//Increment hand count
+       48:  575:    deckCounter = state->deckCount[player];//Create holder for the deck count
+       48:  576:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+       48:  577:    state->deckCount[player]--;
+       48:  578:    state->handCount[player]++;//Increment hand count
         -:  579:  }
-       49:  580:  return 0;
+       48:  580:  return 0;
         -:  581:}
         -:  582:
 function getCost called 9 returned 100% blocks executed 23%
@@ -889,7 +889,7 @@ branch 27 taken 0%
     #####:  643:  return -1;
         -:  644:}
         -:  645:
-function adventurerEffect called 1 returned 100% blocks executed 86%
+function adventurerEffect called 1 returned 100% blocks executed 93%
         1:  646:int adventurerEffect(int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], struct gameState *state) {
         1:  647:	int z = 0;
         6:  648:	while(drawntreasure < 2) {
@@ -916,96 +916,96 @@ branch  5 taken 100%
         -:  657:		else {
         1:  658:			temphand[z] = cardDrawn;
         1:  659:			state->handCount[currentPlayer]--;
-        -:  660:		}
-        -:  661:	}
-        2:  662:	while (z - 1 >= 0) {
-branch  0 taken 0%
-branch  1 taken 100% (fallthrough)
-    #####:  663:		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1];
-    #####:  664:		z = z - 1;
-        -:  665:	}
-        -:  666:
-        1:  667:	return 0;
-        -:  668:}
-        -:  669:
+        1:  660:			z++;
+        -:  661:		}
+        -:  662:	}
+        3:  663:	while (z - 1 >= 0) {
+branch  0 taken 50%
+branch  1 taken 50% (fallthrough)
+        1:  664:		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1];
+        1:  665:		z = z - 1;
+        -:  666:	}
+        -:  667:
+        1:  668:	return 0;
+        -:  669:}
+        -:  670:
 function smithyEffect called 1 returned 100% blocks executed 100%
-        1:  670:int smithyEffect(int currentPlayer, struct gameState *state, int handpos) {
-        1:  671:	int i = 0;
-        -:  672:	// add three cards
-        5:  673:	for (i = 0; i <= 3; i++) {
-branch  0 taken 80%
-branch  1 taken 20% (fallthrough)
-        4:  674:		drawCard(currentPlayer, state);
+        1:  671:int smithyEffect(int currentPlayer, struct gameState *state, int handpos) {
+        1:  672:	int i = 0;
+        -:  673:	// add three cards
+        4:  674:	for (i = 0; i < 3; i++) {
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
+        3:  675:		drawCard(currentPlayer, state);
 call    0 returned 100%
-        -:  675:	}
-        -:  676:
-        -:  677:	// discard card from hand
-        1:  678:	discardCard(handpos, currentPlayer, state, 0);
+        -:  676:	}
+        -:  677:
+        -:  678:	// discard card from hand
+        1:  679:	discardCard(handpos, currentPlayer, state, 0);
 call    0 returned 100%
-        -:  679:
-        1:  680:	return 0;
-        -:  681:}
-        -:  682:
+        -:  680:
+        1:  681:	return 0;
+        -:  682:}
+        -:  683:
 function villageEffect called 1 returned 100% blocks executed 100%
-        1:  683:int villageEffect(int currentPlayer, struct gameState *state, int handpos) {
-        -:  684:	// add one card
-        1:  685:	drawCard(currentPlayer, state);
+        1:  684:int villageEffect(int currentPlayer, struct gameState *state, int handpos) {
+        -:  685:	// add one card
+        1:  686:	drawCard(currentPlayer, state);
 call    0 returned 100%
-        -:  686:
-        -:  687:	// add two actions
-        1:  688:	state->numActions = state->numActions++;
-        -:  689:
-        -:  690:	// discard played card from hand
-        1:  691:	discardCard(handpos, currentPlayer, state, 0);
+        -:  687:
+        -:  688:	// add two actions
+        1:  689:	state->numActions = state->numActions + 2;
+        -:  690:
+        -:  691:	// discard played card from hand
+        1:  692:	discardCard(handpos, currentPlayer, state, 0);
 call    0 returned 100%
-        -:  692:
-        1:  693:	return 0;
-        -:  694:}
-        -:  695:
+        -:  693:
+        1:  694:	return 0;
+        -:  695:}
+        -:  696:
 function remodelEffect called 3 returned 100% blocks executed 93%
-        3:  696:int remodelEffect(int currentPlayer, int choice1, int choice2, struct gameState *state, int handpos) {
-        3:  697:	int i = 0,
-        3:  698:		j = 0;
-        3:  699:	j = state->hand[currentPlayer][choice1];
-        3:  700:	if ((getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2)) {
+        3:  697:int remodelEffect(int currentPlayer, int choice1, int choice2, struct gameState *state, int handpos) {
+        3:  698:	int i = 0,
+        3:  699:		j = 0;
+        3:  700:	j = state->hand[currentPlayer][choice1];
+        3:  701:	if ((getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2)) {
 call    0 returned 100%
 call    1 returned 100%
 branch  2 taken 33% (fallthrough)
 branch  3 taken 67%
-        1:  701:		return -1;
-        -:  702:	}
-        -:  703:	
-        2:  704:	gainCard(choice2, state, 0, currentPlayer);
+        1:  702:		return -1;
+        -:  703:	}
+        -:  704:	
+        2:  705:	gainCard(choice2, state, 0, currentPlayer);
 call    0 returned 100%
-        -:  705:
-        -:  706:	// discard card from hand
-        2:  707:	discardCard(handpos, currentPlayer, state, 0);
+        -:  706:
+        -:  707:	// discard card from hand
+        2:  708:	discardCard(handpos, currentPlayer, state, 0);
 call    0 returned 100%
-        -:  708:
-        -:  709:	// discard trashed card
-        2:  710:	for (i = 1; i < state->handCount[currentPlayer]; i++) {
+        -:  709:
+        -:  710:	// discard trashed card
+        2:  711:	for (i = 0; i < state->handCount[currentPlayer]; i++) {
 branch  0 taken 100%
 branch  1 taken 0% (fallthrough)
-        2:  711:		if (state->hand[currentPlayer][i] == j) {
+        2:  712:		if (state->hand[currentPlayer][i] == j) {
 branch  0 taken 100% (fallthrough)
 branch  1 taken 0%
-        2:  712:			discardCard(i, currentPlayer, state, 0);
+        2:  713:			discardCard(i, currentPlayer, state, 0);
 call    0 returned 100%
-        2:  713:			break;
-        -:  714:		}
-        -:  715:	}
-        -:  716:
-        2:  717:	return 0;
-        -:  718:}
-        -:  719:
+        2:  714:			break;
+        -:  715:		}
+        -:  716:	}
+        -:  717:
+        2:  718:	return 0;
+        -:  719:}
+        -:  720:
 function greatHallEffect called 0 returned 0% blocks executed 0%
-    #####:  720:int greatHallEffect(int currentPlayer, struct gameState *state, int handpos) {
-        -:  721:	// add one card
-    #####:  722:	drawCard(currentPlayer, state);
+    #####:  721:int greatHallEffect(int currentPlayer, struct gameState *state, int handpos) {
+        -:  722:	// add one card
+    #####:  723:	drawCard(currentPlayer, state);
 call    0 never executed
-        -:  723:
-        -:  724:	// add one action
-    #####:  725:	state->numActions++;
+        -:  724:
+        -:  725:	// add one action
     #####:  726:	state->numActions++;
         -:  727:
         -:  728:	// discard card from hand

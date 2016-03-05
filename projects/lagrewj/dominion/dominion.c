@@ -418,6 +418,9 @@ int scoreFor (int player, struct gameState *state) {
 
   int i;
   int score = 0;
+  int gardenCount;
+  int completeDeckCount;
+  int gardenCardEffect;
   //score from hand
   for (i = 0; i < state->handCount[player]; i++)
     {
@@ -441,16 +444,25 @@ int scoreFor (int player, struct gameState *state) {
     }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)//changed to deckCount from discardCount
     {
       if (state->deck[player][i] == curse) { score = score - 1; };
       if (state->deck[player][i] == estate) { score = score + 1; };
       if (state->deck[player][i] == duchy) { score = score + 3; };
       if (state->deck[player][i] == province) { score = score + 6; };
       if (state->deck[player][i] == great_hall) { score = score + 1; };
-      if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+      //if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); }; assignment 5 bug fix
     }
 
+  //counting the amount of gardens 
+  gardenCount = fullDeckCount(player, 10, state);
+  //discard plus hand are part of the complete deck count after the game is over
+  completeDeckCount = state->handCount[player] + state->discardCount[player] + state->deckCount[player];
+  //garden is worth 1 victory point per 10 cards in deck, always rounded down 
+  gardenCardEffect = (completeDeckCount / 10) * gardenCount;
+  //score plus the new garden card effect score
+  score = score + gardenCardEffect;
+  
   return score;
 }
 
@@ -655,7 +667,7 @@ int playSmithy(struct gameState *state, int handPos)
 	}
 
 	//discard card from hand
-	discardCard(handPos, currentPlayer, state, 1);
+	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
  
@@ -679,7 +691,7 @@ int playAdventurer(struct gameState *state)
 			z++;
 		}
 	}
-	while(z-1>0){
+	while(z-1>=0){
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 		z=z-1;
 	}
@@ -1156,7 +1168,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		    {
 		      for (k = 0; k < state->handCount[i]; k++)
 			{
-			  if (DEBUG)
+			  //if (DEBUG)
 			    printf("Player %d reveals card number %d\n", i, state->hand[i][k]);
 			}	
 		      break;

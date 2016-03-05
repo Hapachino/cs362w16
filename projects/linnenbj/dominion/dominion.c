@@ -432,7 +432,7 @@ int isGameOver(struct gameState *state)
 
     //if three supply pile are at 0, the game ends
     j = 0;
-    for (i = 0; i < 25; i++)
+    for (i = 0; i < 27; i++)
     {
         if (state->supplyCount[i] == 0)
         {
@@ -921,7 +921,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         return playCardSmithy(state, currentPlayer, handPos);
 
     case village:
-        return playCardVillage(state, currentPlayer);
+        return playCardVillage(state, currentPlayer, handPos);
 
     case baron:
         state->numBuys++;//Increase buys by 1!
@@ -1275,21 +1275,23 @@ int playCardSmithy(struct gameState *state, int currentPlayer, int handPos)
     for (i = 0; i < 3; i++)
     {
         drawCard(currentPlayer, state);
-        handPos++;    //adjust position of smithy card to allow for card just drawn.
     }
 
     //discard card from hand
-    discardCard(handPos, currentPlayer, state, 1);
+    discardCard(handPos, currentPlayer, state, 0);
     return 0;
 }
 
-int playCardVillage(struct gameState *state, int currentPlayer)
+int playCardVillage(struct gameState *state, int currentPlayer, int handPos)
 {
     //+1 Card
     drawCard(currentPlayer, state);
 
+    //discardVillage card
+    discardCard(handPos, currentPlayer, state, 0);
+
     //+2 Actions
-    state->numActions = 2;
+    state->numActions += 2;
     return 0;
 }
 
@@ -1298,8 +1300,12 @@ int playCardGreatHall(struct gameState *state, int currentPlayer, int handPos)
     //+1 Card
     drawCard(currentPlayer, state);
 
+
+    //+1 Action
+    state->numActions += 1;
+
     //discard card from hand
-    discardCard(handPos, currentPlayer, state, 1);
+    discardCard(handPos, currentPlayer, state, 0);
     return 0;
 }
 
@@ -1313,7 +1319,7 @@ int playCardAdventurer(struct gameState *state, int currentPlayer, int handPos)
 
     discardCard(handPos, currentPlayer, state, 0);  //Discard the adventurer card
 
-    while(drawntreasure<=2)                         //As long as 2 treasures have not been drawn
+    while(drawntreasure<2)                         //As long as 2 treasures have not been drawn
     {
 
         if (state->deckCount[currentPlayer] <1)     //if the deck is empty we need to shuffle
@@ -1360,19 +1366,21 @@ int playCardMinion(struct gameState *state, int currentPlayer, int handPos, int 
         int position = 0;
         int i;
         //discard hand and draw 4
-        for (i = 0; i < 4; i++)
-        {
-            drawCard(currentPlayer, state);
-        }
 
-        while(numHandCards(state) > 4)
+        while(numHandCards(state) > 0)
         {
             discardCard(position, currentPlayer, state, 0);
             position++;
         }
 
+
+        for (i = 0; i < 4; i++)
+        {
+            drawCard(currentPlayer, state);
+        }
+
         //other players discard hand and redraw if hand size > 4
-        for (i = currentPlayer; i < state->numPlayers; i++)
+        for (i = 0; i < state->numPlayers; i++)
         {
             if (i != currentPlayer)
             {

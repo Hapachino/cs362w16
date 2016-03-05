@@ -28,7 +28,7 @@ int adventurerCard(int currentPlayer, struct gameState *state)
 	int z = 0;	// this is the counter for the temp hand
 	int ret =0;
 
-  	while(drawntreasure <= 2)
+  	while(drawntreasure < 2)
   	{
 		if (state->deckCount[currentPlayer] < 1)	//if the deck is empty we need to shuffle discard and add to deck
 		{
@@ -67,7 +67,7 @@ int council_roomCard ( int currentPlayer, int handPos,  struct gameState *state)
 	}
 			
      //+1 Buy
-     state->numBuys--;
+     state->numBuys = state->numBuys + 1;
 			
      //Each other player draws a card
     for (i = 0; i < state->numPlayers; i++)
@@ -90,7 +90,7 @@ int villageCard(int handPos, int currentPlayer, struct gameState *state)
       drawCard(currentPlayer, state);
 			
       //+2 Actions
-      state->numActions = state->numActions ++;
+      state->numActions = state->numActions + 2;
 			
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
@@ -505,7 +505,7 @@ int isGameOver(struct gameState *state) {
 
   //if three supply pile are at 0, the game ends
   j = 0;
-  for (i = 0; i < 25; i++)
+  for (i = 0; i < 27; i++)
     {
       if (state->supplyCount[i] == 0)
 	{

@@ -6,4 +6,3 @@
 void testFunc();
 
 #endif
-

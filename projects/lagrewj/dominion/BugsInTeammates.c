@@ -3,11 +3,11 @@ CS362 Assignment 5
 Winter 2016
 
 
-******************
+****************************
 Teammate1: Nancy Chan
-******************	
+****************************	
 
-Pass Tests 1,2, and 3. First bug found on unittest4 with scoreFor().
+TEST SUMMARY:
 
 Test 1: tested updateCoins()
 All Tests Passed
@@ -19,7 +19,32 @@ Test 3: tested isGameOver():
 All Tests Passed
 
 Test 4: tested scoreFor():
-Test failed. First bug found. 
+Test failed. First bug found. See below.
+
+Test 5: PlaySmithy():
+Bug found. See below.
+
+Test 6: Adventurer
+Bug found. See below. 
+
+Test 7: Village
+Refactoring because Nancy did not have a playVillage function, so changed my test to work on her code. 
+Instead of using the playVillage function that I created in my code, I used cardEffect function in dominion.c
+to test the village card with the post game state for comparision of before and after the card being played. 
+All the village tests passed because Nancy did not refactor this function to create bugs. 
+
+Test 8: Council_room
+Refactored my council_room test to use the cardEffect() function instead of the playCouncil_Room function. This
+allowed me to use my test without changing Nancy's code. Because Nancy did not refactor this function, council_room
+returned no errors. 
+
+Test 9: tested random test for Adventurer 
+All Tests Passed. 
+
+Test 10: tested random test for Great Hall
+Slight refactoring to give more clarity that all tests were working correctly, so that I didn't have the same
+problem I had with Andrew's code where the bug broke my unit test function. 
+Test failed. Discard count after card was played not correct. Sometimes it was equal, and sometimes discard pile equaled 0. 
 
 ======================================================
 Bug 1 Nancy Chan - scoreFor() Testing
@@ -100,9 +125,58 @@ ERROR 1: Total card count difference! Should be 2 less than before total. Before
 ERROR 3: Not enough treasure cards added to hand. Before: 4229273 After: 63
 
 
-********************
+======================================================
+Bug 4 Nancy Chan - Adventurer Testing
+======================================================
+Random test for Great_Hall 
+Slight refactoring to give more clarity that all tests were working correctly, so that I didn't have the same
+problem I had with Andrew's code where the bug broke my unit test function. 
+Test failed. Discard count after card was played not correct. Sometimes it was equal, and sometimes discard pile equaled 0. 
+
+*****************************
 Teammate2: Andrew Calhoun 
-*********************
+*****************************
+
+TEST SUMMARY:
+
+Test 1: tested updateCoins()
+All Tests Passed
+
+Test 2: tested fullDeckCount():
+All Tests Passed
+
+Test 3: tested isGameOver():
+All Tests Passed
+
+Test 4: tested scoreFor():
+Test failed. First bug found. See below.
+
+Test 5: PlaySmithy():
+Bug found. See below.
+
+Test 6: Adventurer
+Bug found. See below. 
+
+Test 7: cardtest3.c 
+Refactored playVillage() with additional arguments to match Andrew's code. 
+Error 1 occured, test failed. Details below in bug report. 
+
+Test 8:
+Refactored playCounRoom to change name of function and number of arguments to match Andrew's code. 
+Tests passed. No bug found. 
+
+Test 9: tested random test for Adventurer 
+randomtestadventurer.c did not need refactoring to work with Andrew's code. I ran a suite of different tests to determine
+if the segmentation fault that was occuring was because my test wasn't running. However, it is due to the bug introduced 
+in Andrew's refactoring that allowed for my test to assert on line 74 when checking for the cardEffect = 0. My test did 
+find this bug however, because I set up the assert before the suite of tests, I initially could not see more detail on the
+assert. 
+		
+Test 10: tested random test for Great Hall
+Slight refactoring in test to show that the discard count was indeed failing the test. This has to not with an error
+introduced by Andrew in great hall, but in a discard function issue in the dominion code. 
+Test failed. Discard count after card was played not correct. Sometimes it was equal, and sometimes discard pile equaled 0. 
+
 
 ======================================================
 Bug 1 Andrew Calhoun - scoreFor() Testing
@@ -197,3 +271,31 @@ ERROR 1: Total card count difference! Should be 2 less than before total. Before
 ERROR 2: Hand count difference! Before: 409 After: 412
 ERROR 3: Not enough treasure cards added to hand. Before: 155 After: 146
 
+
+
+======================================================
+Bug 4 Andrew Calhoun - Testing Village
+======================================================
+For testcard3.c this card tested the Village card. The refactoring was minimal because Andrew had already made
+playVillage, which was only off by one argument from my original function. The bug we found was that the hand count
+difference before and after the card was played was equal to 1. This should be the same because the village card 
+card is played, which is -1 cards from the hand count then the card's effect is +1 which should then equalize the 
+before and after hand counts. 
+
+Results from the test print out: 
+----------------- Testing Card: Village ----------------
+ERROR 1: Hand count difference! Before: 191 After: 192
+ERROR 1: Hand count difference! Before: 486 After: 487
+ERROR 1: Hand count difference! Before: 119 After: 120
+ERROR 1: Hand count difference! Before: 35 After: 36
+ERROR 1: Hand count difference! Before: 254 After: 255
+ERROR 1: Hand count difference! Before: 316 After: 317
+
+
+======================================================
+Bug 5 Andrew Calhoun - Random Testing Adventurer
+======================================================
+Segmentation fault introduced during this test for my random tester. Assert failed on line 74. 
+
+Results:
+Failed test, Player 1 hand count is incorrect.

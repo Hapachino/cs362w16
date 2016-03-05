@@ -39,6 +39,13 @@ Expected Results: numBuys is 1 more than previous amount recorded in step 3.
 
 Actual Results: numBuys is 4 more than previous amount recorded in step 3.
 
+------------------------------------------------------------------------------------------
+
+Test Refactoring: the only change I made was to cardtest2.c to avoid the segmentation
+fault discovered in bug 1 so that I could continue testing. I changed the line
+#define TREASURE copper to #define TREASURE gold so that the treasure cards I stacked
+the deck with were gold cards that allowed the full test to complete.
+
 
 -------------------------------------------------------------------------------------------
 	Xiaohan Zeng (zengx)
@@ -78,3 +85,8 @@ Expected Results: player's deck count is decreased by 3
 
 Actual Results: player's deck count is decreased by 2
 				player's hand count is increased by 2
+
+------------------------------------------------------------------------------------------
+
+Test Refactoring: none; the tests worked as is
+

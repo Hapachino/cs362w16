@@ -106,7 +106,11 @@ public class UrlValidatorTest extends TestCase {
         inputUrl.add("ftp://!!!.###.com");
         inputUrl.add("://www.foo.com");
         inputUrl.add("http://.foo.com");
-        inputUrl.add("\\10.1.1.1");	
+        inputUrl.add("\\10.1.1.1");
+        inputUrl.add("http://0.0.0.0");
+        inputUrl.add("http://-1.0.0.0");
+        inputUrl.add("http://256.66.32.1");
+        inputUrl.add("http://174.80.32.4352");
         inputUrl.add("http://massive.tv/"); 
         inputUrl.add("http://www.yahoo.co.jp");
         inputUrl.add("http://www.yahoo.co.fj");

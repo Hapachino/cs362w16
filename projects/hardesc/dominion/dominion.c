@@ -676,7 +676,7 @@ int refactoredSmithy(struct gameState *state, int handPos) {
 	}
 			
       //discard card from hand
-      discardCard(handPos + 1, currentPlayer, state, 0);//DISCARDS WRONG CARD
+      discardCard(handPos, currentPlayer, state, 0);//DISCARDS WRONG CARD
       return 0;
 }
 
@@ -719,10 +719,11 @@ int refactoredAdventurer(struct gameState *state, int handpos) {
 	  z++;
 	}
       }
-      while(z-1>0){//SHOULD BE (z-1>=0)
+      while(z-1>=0){//SHOULD BE (z-1>=0)
 	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 	z=z-1;
       }
+      discardCard(handpos, currentPlayer, state, 0);
       return 0;
 }
 

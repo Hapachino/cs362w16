@@ -53,7 +53,7 @@ public class UrlValidatorTest extends TestCase {
 	public UrlValidatorTest(String testName) {
 		super(testName);
 	}
-
+	
 	public void testManualTest() {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 
@@ -85,6 +85,7 @@ public class UrlValidatorTest extends TestCase {
         System.out.println(urlVal.isValid("http://www.yahoo.com:0"));
         System.out.println(urlVal.isValid("http://www.yahoo.com:65535"));
         System.out.println(urlVal.isValid("http://www.yahoo.com:65536"));
+        
 		Scanner s = new Scanner(System.in);
 		String testUrl;
 		while (true) {
@@ -97,6 +98,47 @@ public class UrlValidatorTest extends TestCase {
 		s.close();
 	}
 
+	public void testManual() {
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        ArrayList<String> inputUrl = new ArrayList<String>();
+        
+        inputUrl.add("##://www.foo.com");
+        inputUrl.add("ftp://!!!.###.com");
+        inputUrl.add("://www.foo.com");
+        inputUrl.add("http://.foo.com");
+        inputUrl.add("\\10.1.1.1");	
+        inputUrl.add("http://massive.tv/"); 
+        inputUrl.add("http://www.yahoo.co.jp");
+        inputUrl.add("http://www.yahoo.co.fj");
+        inputUrl.add("a://www.foo.com");	   
+        inputUrl.add("ftp://ftp.somed0main.com");
+        inputUrl.add("http://www.normalurl.com");
+        inputUrl.add("https://google.com");
+        inputUrl.add("ssh://onid.orst.edu");
+        inputUrl.add("http://www.1.com");
+        inputUrl.add("google.com");
+        inputUrl.add("www.google.com");
+        inputUrl.add("http://74.125.224.72/");
+        inputUrl.add("http://74.125.224.72:8080");
+        inputUrl.add("https://www.yahoo.com:493");
+        inputUrl.add("http://www.yahoo.com:8000");
+        inputUrl.add("http://www.yahoo.com:80");
+        inputUrl.add("http://www.yahoo.com:abc");
+        inputUrl.add("a://www.foo./");
+        inputUrl.add("a:www.foo.com");
+        inputUrl.add("http://www.1.com/subPage/main.html");
+        inputUrl.add("http://www. .com");
+        inputUrl.add("http://www.yahoo.com:0");
+        inputUrl.add("http://www.yahoo.com:65535");
+        inputUrl.add("http://www.yahoo.com:65536");
+        
+        for(String s : inputUrl)
+        {
+        	System.out.println(urlVal.isValid(s) + "\t" + s);
+        }
+		
+	}
+	
 	// generateRandomValidString: generate a random string of letters, numbers
 	// and valid substrings
 	// int length: how many characters
@@ -473,7 +515,9 @@ public class UrlValidatorTest extends TestCase {
 
 
 		
-		
+	public void testYourFirstPartition() {
+
+	}
 		
 	public void testYourSecondPartition() {
 

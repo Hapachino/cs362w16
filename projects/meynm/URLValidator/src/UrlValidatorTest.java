@@ -540,7 +540,306 @@ public class UrlValidatorTest extends TestCase {
 	 *            Used to create a url.
 	 */
 
-}
+	
+	/* ******************************************************************************************************************************
+	 * testValidPartitions: Runs tests for all possible combinations of components that make up a valid URL
+	 * 
+	 * {AlphaFirstString}://{AlphaNumString}.{AlphaNumString}.{tldString}:{int16}/{AlphaNumString}?{AlphaNumString}={AlphaNumString}
+	 * {scheme}			 ://{authority}	    .{sld}		     .{tld}      :{port} /{path}	      ?{query}
+	 * 
+	 * should be valid,
+	 * 
+	 * where 	AlphaNumString : string of letters/numbers
+	 * 			AlphaFirstString : AlphaNumString starting with a letter
+	 * 			tldString : one of accepted top-level domains
+	 * 			sld, port, path, and query are all optional (e.g. can be valid or empty)
+	 * 			
+	 * 
+	 *******************************************************************************************************************************/
+	public void testValidPartitions() {
+		int numTests = 100;
+		
+		//All components are valid
+		ArrayList<TestResult> r1 = testRandom(
+				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good,
+				TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good);
+		printResults(r1, numTests, 0);
+		
+		//No query
+		ArrayList<TestResult> r2 = testRandom(
+				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good,
+				TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Empty);
+		printResults(r2, numTests, 0);
 
+		//No path
+		ArrayList<TestResult> r3 = testRandom(
+				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good,
+				TestParam.Good, TestParam.Good, TestParam.Empty, TestParam.Good);
+		printResults(r3, numTests, 0);
+
+		//No port
+		ArrayList<TestResult> r4 = testRandom(
+				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good,
+				TestParam.Good, TestParam.Empty, TestParam.Good, TestParam.Good);
+		printResults(r4, numTests, 0);
+
+		//No query or path
+		ArrayList<TestResult> r5 = testRandom(
+				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good,
+				TestParam.Good, TestParam.Good, TestParam.Empty, TestParam.Empty);
+		printResults(r5, numTests, 0);
+
+<<<<<<< Updated upstream
+=======
+		//No query or port
+		ArrayList<TestResult> r6 = testRandom(
+				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good,
+				TestParam.Good, TestParam.Empty, TestParam.Good, TestParam.Empty);
+		printResults(r6, numTests, 0);
+
+		//No path or port
+		ArrayList<TestResult> r7 = testRandom(
+				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good,
+				TestParam.Good, TestParam.Empty, TestParam.Empty, TestParam.Good);
+		printResults(r7, numTests, 0);
+		
+		//No query, path or port
+		ArrayList<TestResult> r8 = testRandom(
+				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good,
+				TestParam.Good, TestParam.Empty, TestParam.Empty, TestParam.Empty);
+		printResults(r8, numTests, 0);
+	}
+	
+	/* ******************************************************************************************************************************
+	 * testInvalidPartitions: Runs tests for all "bad" and "empty" case for all mandatotry components of a URL
+	 * 
+	 * {AlphaFirstString}://{AlphaNumString}.{AlphaNumString}.{tldString}:{int16}/{AlphaNumString}?{AlphaNumString}={AlphaNumString}
+	 * {scheme}			 ://{authority}	    .{sld}		     .{tld}      :{port} /{path}	      ?{query}
+	 * 
+	 * should be invalid,
+	 * 
+	 * where 	AlphaNumString : string of letters/numbers
+	 * 			AlphaFirstString : AlphaNumString starting with a letter
+	 * 			tldString : one of accepted top-level domains
+	 * 			sld, port, path, and query are all optional (e.g. can be invalid or empty)
+	 * 			
+	 * 
+	 *******************************************************************************************************************************/
+	public void testInvalidPartitions() {
+		int numTests = 100;
+		int scheme, sep, auth, sld, tld, port, path, query;
+		ArrayList<TestParam> params = new ArrayList<TestParam>();
+		params.add(0, TestParam.Good);
+		params.add(1, TestParam.Bad);
+		params.add(2, TestParam.Empty);
+		
+		//Generate tests for every possible combination with specified component being bad or empty
+		//Bad scheme
+		for (sep = 0; sep < 3; sep++) {
+			for (auth = 0; auth < 3; auth++) {
+				for (sld = 0; sld < 3; sld++) {
+					for (tld = 0; tld < 3; tld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> badScheme = testRandom (
+											numTests, TestParam.Bad, params.get(sep), params.get(auth),
+											params.get(sld), params.get(tld), params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(badScheme, numTests, 1);
+								}}}}}}}
+		
+		//Empty scheme
+		for (sep = 0; sep < 3; sep++) {
+			for (auth = 0; auth < 3; auth++) {
+				for (sld = 0; sld < 3; sld++) {
+					for (tld = 0; tld < 3; tld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> noScheme = testRandom (
+											numTests, TestParam.Empty, params.get(sep), params.get(auth),
+											params.get(sld), params.get(tld), params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(noScheme, numTests, 1);
+								}}}}}}}
+	
+		//Bad separator
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (auth = 0; auth < 3; auth++) {
+				for (sld = 0; sld < 3; sld++) {
+					for (tld = 0; tld < 3; tld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> badSep = testRandom (
+											numTests, params.get(scheme), TestParam.Bad, params.get(auth),
+											params.get(sld), params.get(tld), params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(badSep, numTests, 1);
+								}}}}}}}
+		
+		//Empty separator
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (auth = 0; auth < 3; auth++) {
+				for (sld = 0; sld < 3; sld++) {
+					for (tld = 0; tld < 3; tld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> noSep = testRandom (
+											numTests, params.get(scheme), TestParam.Empty, params.get(auth),
+											params.get(sld), params.get(tld), params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(noSep, numTests, 1);
+								}}}}}}}
+		
+		;
+		//Bad authority
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (sep = 0; sep < 3; sep++) {
+				for (sld = 0; sld < 3; sld++) {
+					for (tld = 0; tld < 3; tld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> badAuth = testRandom (
+											numTests, params.get(scheme), params.get(sep), TestParam.Bad,
+											params.get(sld), params.get(tld), params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(badAuth, numTests, 1);
+								}}}}}}}
+		
+		//Empty authority
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (sep = 0; sep < 3; sep++) {
+				for (sld = 0; sld < 3; sld++) {
+					for (tld = 0; tld < 3; tld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> noAuth = testRandom (
+											numTests, params.get(scheme), params.get(sep), TestParam.Empty,
+											params.get(sld), params.get(tld), params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(noAuth, numTests, 1);
+								}}}}}}}
+		
+		//Bad second level domain
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (sep = 0; sep < 3; sep++) {
+				for (auth = 0; auth < 3; auth++) {
+					for (tld = 0; tld < 3; tld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> badSld= testRandom (
+											numTests, params.get(scheme), params.get(sep), params.get(auth),
+											TestParam.Bad, params.get(tld), params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(badSld, numTests, 1);
+								}}}}}}}
+		
+		//Empty second level domain
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (sep = 0; sep < 3; sep++) {
+				for (auth = 0; auth < 3; auth++) {
+					for (tld = 0; tld < 3; tld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> noSld= testRandom (
+											numTests, params.get(scheme), params.get(sep), params.get(auth),
+											TestParam.Empty, params.get(tld), params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(noSld, numTests, 1);
+								}}}}}}}
+		//Bad top level domain
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (sep = 0; sep < 3; sep++) {
+				for (auth = 0; auth < 3; auth++) {
+					for (sld = 0; sld < 3; sld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> badTld= testRandom (
+											numTests, params.get(scheme), params.get(sep), params.get(auth),
+											params.get(sld), TestParam.Bad, params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(badTld, numTests, 1);
+								}}}}}}}
+		
+		//Empty top level domain
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (sep = 0; sep < 3; sep++) {
+				for (auth = 0; auth < 3; auth++) {
+					for (sld = 0; sld < 3; sld++) {
+						for (port = 0; port < 3; port++) {
+							for (path = 0; path < 3; path++) {
+								for (query = 0; query < 3; query++) {
+									ArrayList<TestResult> noTld= testRandom (
+											numTests, params.get(scheme), params.get(sep), params.get(auth),
+											params.get(sld), TestParam.Empty, params.get(port), 
+											params.get(path), params.get(query)
+											);
+									printResults(noTld, numTests, 1);
+								}}}}}}}	
+	}
+	
+	public ArrayList<TestParam> randParams() {
+		ArrayList<TestParam> params = new ArrayList<TestParam>();
+		Random r = new Random();
+		for (int i = 0; i < 8; i++) {
+			int randInt = r.nextInt(3);
+			if (randInt == 0) {
+				params.add(i, TestParam.Good);
+			}
+			else if (randInt == 1) {
+				params.add(i, TestParam.Bad);
+			}
+			else {
+				params.add(i, TestParam.Empty);
+			}
+		}
+		return params;
+	}
+	
+	public void printResults(ArrayList<TestResult> res, int numTests, int flag) {
+		int failedTests = 0;
+		
+		//Test result should be valid
+		if (flag == 0) {
+			for (TestResult t: res) {
+				System.out.println(t.valid + "\t" + t.url);
+				if(t.valid == false) {		// all should be valid
+					failedTests++;
+					//System.out.println(t.valid + "\t" + t.url);
+				}	
+			}
+			System.out.println(numTests + " tests\n" + failedTests + " failures.");
+		}
+		//Test result should be invalid
+		if (flag == 1) {
+			for (TestResult t: res) {
+				System.out.println(t.valid + "\t" + t.url);
+				if(t.valid != false) {		// all should be valid
+					failedTests++;
+					//System.out.println(t.valid + "\t" + t.url);
+				}	
+			}
+			System.out.println(numTests + " tests\n" + failedTests + " failures.");
+		}
+	}
+}
+>>>>>>> Stashed changes
 	
 

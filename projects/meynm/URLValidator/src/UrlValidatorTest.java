@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.Console;
 import java.io.File;
@@ -22,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -55,50 +57,6 @@ public class UrlValidatorTest extends TestCase {
 	}
 	
 	public void testManualTest() {
-        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-
-        System.out.println(urlVal.isValid("##://www.foo.com"));
-        System.out.println(urlVal.isValid("ftp://!!!.###.com"));
-        System.out.println(urlVal.isValid("://www.foo.com"));
-        System.out.println(urlVal.isValid("http://.foo.com"));
-        System.out.println(urlVal.isValid("\\10.1.1.1"));	
-        System.out.println(urlVal.isValid("http://massive.tv/")); 
-        System.out.println(urlVal.isValid("http://www.yahoo.co.jp"));    
-        System.out.println(urlVal.isValid("a://www.foo.com"));	   
-        System.out.println(urlVal.isValid("ftp://ftp.somed0main.com"));
-        System.out.println(urlVal.isValid("http://www.normalurl.com"));
-        System.out.println(urlVal.isValid("https://google.com"));
-        System.out.println(urlVal.isValid("ssh://onid.orst.edu"));
-        System.out.println(urlVal.isValid("http://www.1.com"));
-        System.out.println(urlVal.isValid("google.com"));
-        System.out.println(urlVal.isValid("www.google.com"));
-        System.out.println(urlVal.isValid("http://74.125.224.72/"));
-        System.out.println(urlVal.isValid("http://74.125.224.72:8080"));
-        System.out.println(urlVal.isValid("https://www.yahoo.com:493"));
-        System.out.println(urlVal.isValid("http://www.yahoo.com:8000"));
-        System.out.println(urlVal.isValid("http://www.yahoo.com:80"));
-        System.out.println(urlVal.isValid("http://www.yahoo.com:abc"));
-        System.out.println(urlVal.isValid("a://www.foo./"));
-        System.out.println(urlVal.isValid("a:www.foo.com"));
-        System.out.println(urlVal.isValid("http://www.1.com/subPage/main.html"));
-        System.out.println(urlVal.isValid("http://www. .com"));
-        System.out.println(urlVal.isValid("http://www.yahoo.com:0"));
-        System.out.println(urlVal.isValid("http://www.yahoo.com:65535"));
-        System.out.println(urlVal.isValid("http://www.yahoo.com:65536"));
-        
-		Scanner s = new Scanner(System.in);
-		String testUrl;
-		while (true) {
-			System.out.print("Enter test URL:\t");
-			testUrl = s.nextLine();
-			if (testUrl.isEmpty())
-				break;
-			System.out.println(urlVal.isValid(testUrl));
-		}
-		s.close();
-	}
-
-	public void testManual() {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         ArrayList<String> inputUrl = new ArrayList<String>();
         
@@ -244,19 +202,6 @@ public class UrlValidatorTest extends TestCase {
 		
 		Random r = new Random();
 		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-		ArrayList<String> tldList;
-		ArrayList<String> urlEncodeList;
-		try {
-			FileReader f = new FileReader("src/tldList.txt");
-			tldList = getLines(f);
-			f.close();
-			f = new FileReader("src/urlEncodeList.txt");
-			urlEncodeList = getLines(f);
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}	
 		
 		ArrayList<TestResult> results = new ArrayList<TestResult>();
 		String testUrl;
@@ -436,6 +381,7 @@ public class UrlValidatorTest extends TestCase {
 				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good, 
 				TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good
 			);
+			
 			for(TestResult t : results) 
 			{
 				if(t.valid == false) {		// all should be valid
@@ -885,6 +831,9 @@ public class UrlValidatorTest extends TestCase {
 			System.out.println(numTests + " tests\n" + failedTests + " failures.");
 		}
 	}
+	
+	ArrayList<String> tldList =   new ArrayList<>(Arrays.asList("ac", "ad", "ae", "aero", "af", "ag", "ai", "al", "am", "an", "ao", "aq", "ar", "arpa", "as", "asia", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "biz", "bj", "bm", "bn", "bo", "br", "bs", "bt", "bv", "bw", "by", "bz", "ca", "cat", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm", "cn", "co", "com", "coop", "cr", "cu", "cv", "cx", "cy", "cz", "de", "dj", "dk", "dm", "do", "dz", "ec", "edu", "ee", "eg", "er", "es", "et", "eu", "fi", "fj", "fk", "fm", "fo", "fr", "ga", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm", "gn", "gov", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy", "hk", "hm", "hn", "hr", "ht", "hu", "id", "ie", "il", "im", "in", "info", "int", "io", "iq", "ir", "is", "it", "je", "jm", "jo", "jobs", "jp", "ke", "kg", "kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz", "la", "lb", "lc", "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly", "ma", "mc", "md", "me", "mg", "mh", "mil", "mk", "ml", "mm", "mn", "mo", "mobi", "mp", "mq", "mr", "ms", "mt", "mu", "museum", "mv", "mw", "mx", "my", "mz", "na", "name", "nc", "ne", "net", "nf", "ng", "ni", "nl", "no", "np", "nr", "nu", "nz", "om", "org", "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "pro", "ps", "pt", "pw", "py", "qa", "re", "ro", "root", "rs", "ru", "rw", "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl", "sm", "sn", "so", "sr", "st", "su", "sv", "sy", "sz", "tc", "td", "tel", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to", "tp", "tr", "travel", "tt", "tv", "tw", "tz", "ua", "ug", "uk", "um", "us", "uy", "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "ye", "yt", "yu", "za", "zm", "zw" ));
+	ArrayList<String> urlEncodeList = new ArrayList<>(Arrays.asList("%20", "%20", "%21", "%21", "%22", "%22", "%23", "%23", "%24", "%24", "%", "%25", "%25", "%26", "%26", "%27", "%27", "%28", "%28", "%29", "%29", "%2A", "%2A", "%2B", "%2B", "%2C", "%2C", "%2D", "%2D", "%2E", "%2E", "%2F", "%2F", "%30", "%30", "%31", "%31", "%32", "%32", "%33", "%33", "%34", "%34", "%35", "%35", "%36", "%36", "%37", "%37", "%38", "%38", "%39", "%39", "%3A", "%3A", "%3B", "%3B", "%3C", "%3C", "%3D", "%3D", "%3E", "%3E", "%3F", "%3F", "%40", "%40", "%41", "%41", "%42", "%42", "%43", "%43", "%44", "%44", "%45", "%45", "%46", "%46", "%47", "%47", "%48", "%48", "%49", "%49", "%4A", "%4A", "%4B", "%4B", "%4C", "%4C", "%4D", "%4D", "%4E", "%4E", "%4F", "%4F", "%50", "%50", "%51", "%51", "%52", "%52", "%53", "%53", "%54", "%54", "%55", "%55", "%56", "%56", "%57", "%57", "%58", "%58", "%59", "%59", "%5A", "%5A", "%5B", "%5B", "%5C", "%5C", "%5D", "%5D", "%5E", "%5E", "%5F", "%5F", "%60", "%60", "%61", "%61", "%62", "%62", "%63", "%63", "%64", "%64", "%65", "%65", "%66", "%66", "%67", "%67", "%68", "%68", "%69", "%69", "%6A", "%6A", "%6B", "%6B", "%6C", "%6C", "%6D", "%6D", "%6E", "%6E", "%6F", "%6F", "%70", "%70", "%71", "%71", "%72", "%72", "%73", "%73", "%74", "%74", "%75", "%75", "%76", "%76", "%77", "%77", "%78", "%78", "%79", "%79", "%7A", "%7A", "%7B", "%7B", "%7C", "%7C", "%7D", "%7D", "%7E", "%7E", "%7F", "%7F", "%80", "%E2%82%AC", "%81", "%81", "%82", "%E2%80%9A", "%83", "%C6%92", "%84", "%E2%80%9E", "%85", "%E2%80%A6", "%86", "%E2%80%A0", "%87", "%E2%80%A1", "%88", "%CB%86", "%89", "%E2%80%B0", "%8A", "%C5%A0", "%8B", "%E2%80%B9", "%8C", "%C5%92", "%8D", "%C5%8D", "%8E", "%C5%BD", "%8F", "%8F", "%90", "%C2%90", "%91", "%E2%80%98", "%92", "%E2%80%99", "%93", "%E2%80%9C", "%94", "%E2%80%9D", "%95", "%E2%80%A2", "%96", "%E2%80%93", "%97", "%E2%80%94", "%98", "%CB%9C", "%99", "%E2%84", "%9A", "%C5%A1", "%9B", "%E2%80", "%9C", "%C5%93", "%9D", "%9D", "%9E", "%C5%BE", "%9F", "%C5%B8", "%A0", "%C2%A0", "%A1", "%C2%A1", "%A2", "%C2%A2", "%A3", "%C2%A3", "%A4", "%C2%A4", "%A5", "%C2%A5", "%A6", "%C2%A6", "%A7", "%C2%A7", "%A8", "%C2%A8", "%A9", "%C2%A9", "%AA", "%C2%AA", "%AB", "%C2%AB", "%AC", "%C2%AC", "%AD", "%C2%AD", "%AE", "%C2%AE", "%AF", "%C2%AF", "%B0", "%C2%B0", "%B1", "%C2%B1", "%B2", "%C2%B2", "%B3", "%C2%B3", "%B4", "%C2%B4", "%B5", "%C2%B5", "%B6", "%C2%B6", "%B7", "%C2%B7", "%B8", "%C2%B8", "%B9", "%C2%B9", "%BA", "%C2%BA", "%BB", "%C2%BB", "%BC", "%C2%BC", "%BD", "%C2%BD", "%BE", "%C2%BE", "%BF", "%C2%BF", "%C0", "%C3%80", "%C1", "%C3%81", "%C2", "%C3%82", "%C3", "%C3%83", "%C4", "%C3%84", "%C5", "%C3%85", "%C6", "%C3%86", "%C7", "%C3%87", "%C8", "%C3%88", "%C9", "%C3%89", "%CA", "%C3%8A", "%CB", "%C3%8B", "%CC", "%C3%8C", "%CD", "%C3%8D", "%CE", "%C3%8E", "%CF", "%C3%8F", "%D0", "%C3%90", "%D1", "%C3%91", "%D2", "%C3%92", "%D3", "%C3%93", "%D4", "%C3%94", "%D5", "%C3%95", "%D6", "%C3%96", "%D7", "%C3%97", "%D8", "%C3%98", "%D9", "%C3%99", "%DA", "%C3%9A", "%DB", "%C3%9B", "%DC", "%C3%9C", "%DD", "%C3%9D", "%DE", "%C3%9E", "%DF", "%C3%9F", "%E0", "%C3%A0", "%E1", "%C3%A1", "%E2", "%C3%A2", "%E3", "%C3%A3", "%E4", "%C3%A4", "%E5", "%C3%A5", "%E6", "%C3%A6", "%E7", "%C3%A7", "%E8", "%C3%A8", "%E9", "%C3%A9", "%EA", "%C3%AA", "%EB", "%C3%AB", "%EC", "%C3%AC", "%ED", "%C3%AD", "%EE", "%C3%AE", "%EF", "%C3%AF", "%F0", "%C3%B0", "%F1", "%C3%B1", "%F2", "%C3%B2", "%F3", "%C3%B3", "%F4", "%C3%B4", "%F5", "%C3%B5", "%F6", "%C3%B6", "%F7", "%C3%B7", "%F8", "%C3%B8", "%F9", "%C3%B9", "%FA", "%C3%BA", "%FB", "%C3%BB", "%FC", "%C3%BC", "%FD", "%C3%BD", "%FE", "%C3%BE", "%FF", "%C3%BF"));
 }
 	
 

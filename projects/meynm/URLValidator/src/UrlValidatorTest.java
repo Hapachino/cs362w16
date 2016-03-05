@@ -454,7 +454,7 @@ public class UrlValidatorTest extends TestCase {
  *******************************************************************************************************************************/
 		
 		public void testRandomValidNoPPQ() {
-			int numTests = 100;
+			int numTests = 1000;
 			int failedTests = 0;
 			ArrayList<TestResult> results = testRandom(
 				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good, 
@@ -498,4 +498,5 @@ public class UrlValidatorTest extends TestCase {
 
 }
 
+	
 

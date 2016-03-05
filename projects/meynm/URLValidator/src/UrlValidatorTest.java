@@ -589,8 +589,6 @@ public class UrlValidatorTest extends TestCase {
 				TestParam.Good, TestParam.Good, TestParam.Empty, TestParam.Empty);
 		printResults(r5, numTests, 0);
 
-<<<<<<< Updated upstream
-=======
 		//No query or port
 		ArrayList<TestResult> r6 = testRandom(
 				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good,
@@ -739,7 +737,7 @@ public class UrlValidatorTest extends TestCase {
 						for (port = 0; port < 3; port++) {
 							for (path = 0; path < 3; path++) {
 								for (query = 0; query < 3; query++) {
-									ArrayList<TestResult> badSld= testRandom (
+									ArrayList<TestResult> badSld = testRandom (
 											numTests, params.get(scheme), params.get(sep), params.get(auth),
 											TestParam.Bad, params.get(tld), params.get(port), 
 											params.get(path), params.get(query)
@@ -755,7 +753,7 @@ public class UrlValidatorTest extends TestCase {
 						for (port = 0; port < 3; port++) {
 							for (path = 0; path < 3; path++) {
 								for (query = 0; query < 3; query++) {
-									ArrayList<TestResult> noSld= testRandom (
+									ArrayList<TestResult> noSld = testRandom (
 											numTests, params.get(scheme), params.get(sep), params.get(auth),
 											TestParam.Empty, params.get(tld), params.get(port), 
 											params.get(path), params.get(query)
@@ -770,7 +768,7 @@ public class UrlValidatorTest extends TestCase {
 						for (port = 0; port < 3; port++) {
 							for (path = 0; path < 3; path++) {
 								for (query = 0; query < 3; query++) {
-									ArrayList<TestResult> badTld= testRandom (
+									ArrayList<TestResult> badTld = testRandom (
 											numTests, params.get(scheme), params.get(sep), params.get(auth),
 											params.get(sld), TestParam.Bad, params.get(port), 
 											params.get(path), params.get(query)
@@ -786,13 +784,61 @@ public class UrlValidatorTest extends TestCase {
 						for (port = 0; port < 3; port++) {
 							for (path = 0; path < 3; path++) {
 								for (query = 0; query < 3; query++) {
-									ArrayList<TestResult> noTld= testRandom (
+									ArrayList<TestResult> noTld = testRandom (
 											numTests, params.get(scheme), params.get(sep), params.get(auth),
 											params.get(sld), TestParam.Empty, params.get(port), 
 											params.get(path), params.get(query)
 											);
 									printResults(noTld, numTests, 1);
 								}}}}}}}	
+		
+		//Bad port
+				for (scheme = 0; scheme < 3; scheme++) {
+					for (sep = 0; sep < 3; sep++) {
+						for (auth = 0; auth < 3; auth++) {
+							for (sld = 0; sld < 3; sld++) {
+								for (tld = 0; tld < 3; tld++) {
+									for (path = 0; path < 3; path++) {
+										for (query = 0; query < 3; query++) {
+											ArrayList<TestResult> badPort = testRandom (
+													numTests, params.get(scheme), params.get(sep), params.get(auth),
+													params.get(sld), params.get(tld), TestParam.Bad, 
+													params.get(path), params.get(query)
+													);
+											printResults(badPort, numTests, 1);
+										}}}}}}}	
+				
+				//Bad path
+				for (scheme = 0; scheme < 3; scheme++) {
+					for (sep = 0; sep < 3; sep++) {
+						for (auth = 0; auth < 3; auth++) {
+							for (sld = 0; sld < 3; sld++) {
+								for (tld = 0; tld < 3; tld++) {
+									for (port = 0; port < 3; port++) {
+										for (query = 0; query < 3; query++) {
+											ArrayList<TestResult> badPath = testRandom (
+													numTests, params.get(scheme), params.get(sep), params.get(auth),
+													params.get(sld), params.get(tld), params.get(port), 
+													TestParam.Bad, params.get(query)
+													);
+											printResults(badPath, numTests, 1);
+										}}}}}}}	
+				
+				//Bad query
+				for (scheme = 0; scheme < 3; scheme++) {
+					for (sep = 0; sep < 3; sep++) {
+						for (auth = 0; auth < 3; auth++) {
+							for (sld = 0; sld < 3; sld++) {
+								for (tld = 0; tld < 3; tld++) {
+									for (port = 0; port < 3; port++) {
+										for (path = 0; path < 3; path++) {
+											ArrayList<TestResult> badQuery = testRandom (
+													numTests, params.get(scheme), params.get(sep), params.get(auth),
+													params.get(sld), params.get(tld), params.get(port), 
+													params.get(path), TestParam.Bad
+													);
+											printResults(badQuery, numTests, 1);
+										}}}}}}}	
 	}
 	
 	public ArrayList<TestParam> randParams() {
@@ -840,6 +886,5 @@ public class UrlValidatorTest extends TestCase {
 		}
 	}
 }
->>>>>>> Stashed changes
 	
 

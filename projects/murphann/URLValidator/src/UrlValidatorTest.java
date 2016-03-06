@@ -46,15 +46,14 @@ public class UrlValidatorTest extends TestCase {
         System.out.println("Beginning manual tests\n");
         /*----- VALID TEST CASES -----*/
         System.out.println("Valid URLs:\n");
-        ResultPair[] validUrls = {
-            new ResultPair("www.google.com", true),
-            new ResultPair("http://www.google.com", true),
-            new ResultPair("google.com", true),
-            new ResultPair("http://www.google.com/", true),
-            new ResultPair("https://google.com/", true),
-            new ResultPair("http://www.google.com:65636", true),
-            new ResultPair("h3t://www.google.com/", true),
-            new ResultPair("http://google.com/test1/file", true)};
+        ResultPair[] validUrls = {new ResultPair("www.google.com", true),
+                                  new ResultPair("http://www.google.com", true),
+                                  new ResultPair("google.com", true),
+                                  new ResultPair("http://www.google.com/", true),
+                                  new ResultPair("https://google.com/", true),
+                                  new ResultPair("http://www.google.com:65636", true),
+                                  new ResultPair("h3t://www.google.com/", true),
+                                  new ResultPair("http://google.com/test1/file", true)};
 
         int i;
         int numTests = validUrls.length;
@@ -74,15 +73,14 @@ public class UrlValidatorTest extends TestCase {
 	   
         /*----- INVALID TEST CASES -----*/
         System.out.println("Invalid URLs:\n");
-        ResultPair[] invalidUrls = {
-            new ResultPair("httpgoogle", false),
-            new ResultPair("www.google.com.www", false),
-            new ResultPair("file:///c:\\", false),
-            new ResultPair("google.com//", false),
-            new ResultPair("http:/google.com", false),
-            new ResultPair("http://google.com:-1", false),
-            new ResultPair("http://google.com/test1//file", false),
-            new ResultPair("", false)};
+        ResultPair[] invalidUrls = {new ResultPair("httpgoogle", false),
+                                    new ResultPair("www.google.com.www", false),
+                                    new ResultPair("file:///c:\\", false),
+                                    new ResultPair("google.com//", false),
+                                    new ResultPair("http:/google.com", false),
+                                    new ResultPair("http://google.com:-1", false),
+                                    new ResultPair("http://google.com/test1//file", false),
+                                    new ResultPair("", false)};
 
         numTests = invalidUrls.length;
         for (i = 0; i < numTests; i++)
@@ -101,23 +99,54 @@ public class UrlValidatorTest extends TestCase {
 	   
    }
    
+/* Partition Setup:
+ * The partitions are based on the different components of a URL, where an equivalence class is defined on valid and invalid substrings. For example, a generic URL has the form:
+ * “scheme://authority:port/path?query” i
+ * This function returns a string with the desired valid and invalid components. */
+    public String partitionString(boolean scheme, boolean authority,
+        boolean port, boolean path, boolean query)
+    {
+        
+    }
+
 /* Partition1:
- * OPTION 1: valid scheme, valid authority, valid port, valid path, invalid query -- etc., with subsets defined by invalid component
- * OPTION 2: build around regex def
- *
+ * invalid scheme + valid authority + valid port + valid path + valid query
  */
-   public void testYourFirstPartition()
-   {
-	   
-   }
+    public void testYourFirstPartition()
+    {
+    }
    
 /* Partition2:
- *
+ * valid scheme + invalid authority + valid port + valid path + valid query
  */
-   public void testYourSecondPartition(){
-	   
-   }
+    public void testYourSecondPartition()
+    {
+       
+    }
    
+/* Partition3:
+ * valid scheme + invalid authority + valid port + valid path + valid query
+ */
+    public void testYourThirdPartition()
+    {
+       
+    }
+   
+/* Partition4:
+ * valid scheme + invalid authority + valid port + valid path + valid query
+ */
+    public void testYourFourthPartition()
+    {
+       
+    }
+   
+/* Partition5:
+ * valid scheme + invalid authority + valid port + valid path + valid query
+ */
+    public void testYourFifthPartition()
+    {
+       
+    }
    
    public void testIsValid()
    {

@@ -62,6 +62,8 @@ public class unitTesting {
 				}
 			}
 		}
+
+		outFile.close();
 	}
 	
 	static ResultPair[] protocol = {

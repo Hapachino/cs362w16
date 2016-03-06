@@ -40,9 +40,64 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest()
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   //System.out.println(urlVal.isValid("http://www.amazon.com"));
+
+        System.out.println("Beginning manual tests\n");
+        /*----- VALID TEST CASES -----*/
+        System.out.println("Valid URLs:\n");
+        ResultPair[] validUrls = {
+            new ResultPair("www.google.com", true),
+            new ResultPair("http://www.google.com", true),
+            new ResultPair("google.com", true),
+            new ResultPair("http://www.google.com/", true),
+            new ResultPair("https://google.com/", true),
+            new ResultPair("http://www.google.com:65636", true),
+            new ResultPair("h3t://www.google.com/", true),
+            new ResultPair("http://google.com/test1/file", true)};
+
+        int i;
+        int numTests = validUrls.length;
+        for (i = 0; i < numTests; i++)
+        {
+            // Test passes (EXPECTED)
+            if (urlVal.isValid(validUrls[i].item) == true)
+            {
+                System.out.println(validUrls[i].item + "passed\n");
+            }
+            // Test fails (BUG!)
+            else if (urlVal.isValid(validUrls[i].item) == false)
+            {
+                System.out.println("ERROR: " + validUrls[i].item + "failed\n");
+            }
+        }
 	   
+        /*----- INVALID TEST CASES -----*/
+        System.out.println("Invalid URLs:\n");
+        ResultPair[] invalidUrls = {
+            new ResultPair("httpgoogle", false),
+            new ResultPair("www.google.com.www", false),
+            new ResultPair("file:///c:\\", false),
+            new ResultPair("google.com//", false),
+            new ResultPair("http:/google.com", false),
+            new ResultPair("http://google.com:-1", false),
+            new ResultPair("http://google.com/test1//file", false),
+            new ResultPair("", false)};
+
+        numTests = invalidUrls.length;
+        for (i = 0; i < numTests; i++)
+        {
+            // Test passes (BUG!)
+            if (urlVal.isValid(invalidUrls[i].item) == true)
+            {
+                System.out.println("ERROR: " + invalidUrls[i].item + "passed\n");
+            }
+            // Test fails (EXPECTED)
+            else if (urlVal.isValid(invalidUrls[i].item) == false)
+            {
+                System.out.println(invalidUrls[i].item + "failed\n");
+            }
+        }
 	   
    }
    

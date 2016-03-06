@@ -82,7 +82,7 @@ public class UrlValidatorTest extends TestCase {
         inputUrl.add("www.google.com");
         inputUrl.add("http://74.125.224.72/");
         inputUrl.add("http://74.125.224.72:8080");
-        inputUrl.add("https://www.yahoo.com:493");
+        inputUrl.add("https://www.yahoo.com:443");
         inputUrl.add("http://www.yahoo.com:8000");
         inputUrl.add("http://www.yahoo.com:80");
         inputUrl.add("http://www.yahoo.com:abc");
@@ -93,12 +93,61 @@ public class UrlValidatorTest extends TestCase {
         inputUrl.add("http://www.yahoo.com:0");
         inputUrl.add("http://www.yahoo.com:65535");
         inputUrl.add("http://www.yahoo.com:65536");
+        inputUrl.add("https://www.yahoo.com:443");
+        inputUrl.add("ftp://www.yahoo.com:20");
+        inputUrl.add("ftp://www.yahoo.com:21");
+        inputUrl.add("pop3://www.yahoo.com:110");
+        inputUrl.add("custprot://www.yahoo.com:7020");
+        inputUrl.add("http://www.oregonstate.edu/~somestudent");
+        
+        // <scheme>://<username>:<password>@<host>:<port>/<path>;<parameters>?<query>#<fragment>
+        inputUrl.add("ftp://user:p@ssw0rd@domain.com");
+        inputUrl.add("ftp://user:p@ssw0rd@domain.com:21");
+        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com");
+        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/sub");
+        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub");
+        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub;param");
+        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub;param?query");
+        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub;param?query#fragment");
         
         for(String s : inputUrl)
         {
         	System.out.println(urlVal.isValid(s) + "\t" + s);
         }
 		
+	}
+	
+	public int getPortForScheme(String scheme){
+		Boolean use2ndPort = (new Random()).nextInt(2) == 1 ? true : false;
+		int port;
+		
+		switch (scheme){
+		case "FTP": port = use2ndPort ? 21 : 20; break;
+		case "TFTP": port = 69; break;
+		case "NFS": port = 111; break;
+		case "SNMP": port = use2ndPort ? 162 : 161; break;
+		case "SMTP": port = use2ndPort ? 587 : 25; break;
+		case "HTTP": port = 80; break;
+		case "HTTPS": port = 443; break;
+		case "BOOTP": port = 68; break;
+		case "DHCP": port = use2ndPort ? 68 : 67; break;
+		case "BGP": port = 179; break;
+		case "EGP": port = 8; break;
+		case "IGP": port = 9; break;
+		case "RIP": port = 520; break;
+		case "OSPF": port = use2ndPort ? 89 : 88; break;
+		case "POP2": port = 109; break;
+		case "POP3": port = 110; break;
+		case "IMAP": port = 143; break;
+		case "Telnet": port = 23; break;
+		case "TCP": port = 6; break;
+		case "UDP": port = use2ndPort ? 21 : 20; break;
+		case "ICMP": port = 1; break;
+		case "CBT": port = 6; break;
+		default: port = 0; break;
+		}
+		
+		return port;
 	}
 	
 	// Schemes/protocols can be any string of any length that begins with a letter
@@ -114,7 +163,8 @@ public class UrlValidatorTest extends TestCase {
 			// If we don't use one the established ones, we generate a valid one so simulate a real-world 
 			// scenario where a user creates their own. The coin flip is biased (66.6% chance) toward using
 			// an established protocol such as http, udp, dns, etc....
-			Boolean useCommonScheme = (r.nextInt(3) < 2) ? true : false;
+			// TODO: Nelson - Discuss and decide whether valid scheme should mean common scheme
+			Boolean useCommonScheme = true; //(r.nextInt(3) < 2) ? true : false;
 			
 			if (useCommonScheme){
 				// Return a randomly selected scheme from the common scheme list
@@ -264,6 +314,7 @@ public class UrlValidatorTest extends TestCase {
  *			When generating a scheme, we now call some new methods specifically design to handle schemes. You can pass true/false
  *			for the 'valid' param, which will result in a valid/invalid scheme string. That method also makes use of commonly used
  *			known good schemes such as ftp, dns, https, etc...
+ *
  *******************************************************************************************************************************/
 
 	public ArrayList<TestResult> testRandom(
@@ -281,19 +332,21 @@ public class UrlValidatorTest extends TestCase {
 		for (int i = 0; i < numTests; i++) 
 		{
 			java.lang.StringBuffer urlSb = new StringBuffer();
-
+			String schemeStr = "";
+			
 			// generate random scheme
 			StringBuffer sb = new StringBuffer();
 			if(scheme == TestParam.Good) {
-				sb.append((char) ('a' + r.nextInt(26)));
-				String rString = generateRandomScheme(true, r.nextInt(5)); //generateRandomValidString(r.nextInt(5), new ArrayList<String>());
+				//sb.append((char) ('a' + r.nextInt(26)));
+				String rString = schemeStr = generateRandomScheme(true, 1 + r.nextInt(5)); //generateRandomValidString(r.nextInt(5), new ArrayList<String>());
 				sb.append(rString);
 			} else if(scheme == TestParam.Bad) {
 				String rString = generateRandomScheme(false, r.nextInt(5) ); //generateRandomString(r.nextInt(5));
 				if (rString.length() > 0) {
 					sb.append(rString);
 				}
-			}			
+			}	
+			
 			if(separator == TestParam.Good) {
 				sb.append("://");
 			} else if(separator == TestParam.Bad) {
@@ -307,26 +360,25 @@ public class UrlValidatorTest extends TestCase {
 			
 			// generate random authority
 			if(authority == TestParam.Good) {
-				urlSb.append( generateRandomValidString( 1 + r.nextInt( 3 ), new ArrayList<String>() ) + "." );
+				urlSb.append(generateRandomString(1 + r.nextInt(3), false, false) + "."); //urlSb.append( generateRandomValidString( 1 + r.nextInt( 3 ), new ArrayList<String>() ) + "." );
 			}
 			else if(authority == TestParam.Bad) {
-				urlSb.append( generateRandomString( 1 + r.nextInt( 3 ) ) + "." );
+				urlSb.append(generateRandomString(1 + r.nextInt(3), true, true) + "."); //urlSb.append( generateRandomString( 1 + r.nextInt( 3 ) ) + "." );
 			}					
 
 			// generate random second-level domain
 			for(int j = 0; j < 1 + r.nextInt(5); j++) 
 			{
 				if(sld == TestParam.Good) {
-					urlSb.append( generateRandomValidString( 1 + r.nextInt( 100 ), new ArrayList<String>() ) + "." );
+					urlSb.append(generateRandomString(1 + r.nextInt(100), false, false) + "."); //urlSb.append( generateRandomValidString( 1 + r.nextInt( 100 ), new ArrayList<String>() ) + "." );
 				} else if (sld == TestParam.Bad) {
-					urlSb.append( generateRandomString( 1 + r.nextInt( 100 ) ) + "." );
+					urlSb.append(generateRandomString(1 + r.nextInt(100), true, true) + "."); //urlSb.append( generateRandomString( 1 + r.nextInt( 100 ) ) + "." );
 				} 
 			}
 
 			// use a top-level domain from list
 			if(tld == TestParam.Good) {
-				//urlSb.append(tldList[testCount % tldList.length]);
-				urlSb.append(tldList.get(testCount % tldList.size()));
+				urlSb.append("com"); // TODO: Revert back to this once the path code has been fixed-> tldList.get(testCount % tldList.size()));
 			} else if(tld == TestParam.Bad) {
 				if(r.nextInt(2) == 0) {
 					urlSb.append( generateRandomString( 1 + r.nextInt(5) ) );
@@ -345,49 +397,64 @@ public class UrlValidatorTest extends TestCase {
 			}			
 					
 			// generate a random port number, or no port number
-			if(port == TestParam.Good) {
+			// attaching a port only makes sense to the validator if the correct port is used
+			// for the given scheme. 
+			/*if(port == TestParam.Good) {
 				int portNum = 1 + r.nextInt(65535);
-				urlSb.append(":" + portNum);
-			} else if(port == TestParam.Bad) {
-				int portNum = 65536 + r.nextInt(Integer.MAX_VALUE - 65536);
-				if(testCount % 10 == 0) {
-					portNum = 0 - r.nextInt();
+				urlSb.append(":" + portNum); */
+			if (port != TestParam.Empty) {
+				int portNum = 0;
+				
+				if (port == TestParam.Good && schemeList.contains(schemeStr)) {
+					portNum = getPortForScheme(schemeStr);
+				} else if(port == TestParam.Bad) {
+					portNum = 65536 + r.nextInt(Integer.MAX_VALUE - 65536);
+					if(testCount % 10 == 0) {
+						portNum = 0 - r.nextInt();
+					}
 				}
+				
 				urlSb.append( ":" + portNum );
 			}
 			
+			
 			// generate a random path, or none
 			if(path == TestParam.Good) {	
-				for(int j = 0; j < 1 + r.nextInt(3); j++) 
-				{
-					String pathString = generateRandomValidString(1 + r.nextInt(10), urlEncodeList);
+					//String pathString = generateRandomValidString(1 + r.nextInt(10), urlEncodeList);
+					
+					// Start with some randomly generated alphanumeric string
+					String pathString = generateRandomString(1 + r.nextInt(10), false, false);
+					
 					if(pathString.length() > 0) {
 						urlSb.append("/");
+						
 						if(r.nextInt(5) == 0) {
-							urlSb.append("~");
+							String unreservedSet = "-_.!~*'()";
+							urlSb.append(r.nextInt(unreservedSet.length()));
 						}
+						
 						urlSb.append(pathString);
 					}
-				}
 			} else if(path == TestParam.Bad) {
 				for(int j = 0; j < 1 + r.nextInt(3); j++) 
 				{
-					String pathString = generateRandomString(1 + r.nextInt(10));
+					//String pathString = generateRandomString(1 + r.nextInt(10));					
+					Boolean useWhiteSpace = r.nextInt(7) == 0; 
+					String pathString = generateRandomString(1 + r.nextInt(10), false, useWhiteSpace);
 					if(pathString.length() > 0) {
 						urlSb.append("/" + pathString);
 					}
 				}
 			}
 			
+			// TODO: Nelson - Figure this part out and fix it
 			// generate a random query, or none
-			
 			// ****** NEED TO ADD testing for allowed "special" characters:
 			//		$	-	+	!	*	'	()	;	@
 			
 			// How about these?
 			//		<	>	#	%	|	\	^	[	]	`
-			
-			int numPairs;
+			/*int numPairs;
 			if(query != TestParam.Empty) {
 				numPairs = r.nextInt(5);
 			}
@@ -415,7 +482,8 @@ public class UrlValidatorTest extends TestCase {
 				if(j < numPairs) {
 					urlSb.append("&");
 				}
-			}
+			}*/
+			
 			testUrl = urlSb.toString();
 			results.add(new TestResult(testUrl, urlVal.isValid(testUrl)));
 			testCount++;
@@ -446,7 +514,7 @@ public class UrlValidatorTest extends TestCase {
 		
 		public void testRandomAllPartsValid()
 		{
-			int numTests = 100;
+			int numTests = 1000;
 			int failedTests = 0;
 			ArrayList<TestResult> results = testRandom(
 				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good, 
@@ -904,8 +972,8 @@ public class UrlValidatorTest extends TestCase {
 	}
 	
 	ArrayList<String> tldList =   new ArrayList<>(Arrays.asList("ac", "ad", "ae", "aero", "af", "ag", "ai", "al", "am", "an", "ao", "aq", "ar", "arpa", "as", "asia", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "biz", "bj", "bm", "bn", "bo", "br", "bs", "bt", "bv", "bw", "by", "bz", "ca", "cat", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm", "cn", "co", "com", "coop", "cr", "cu", "cv", "cx", "cy", "cz", "de", "dj", "dk", "dm", "do", "dz", "ec", "edu", "ee", "eg", "er", "es", "et", "eu", "fi", "fj", "fk", "fm", "fo", "fr", "ga", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm", "gn", "gov", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy", "hk", "hm", "hn", "hr", "ht", "hu", "id", "ie", "il", "im", "in", "info", "int", "io", "iq", "ir", "is", "it", "je", "jm", "jo", "jobs", "jp", "ke", "kg", "kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz", "la", "lb", "lc", "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly", "ma", "mc", "md", "me", "mg", "mh", "mil", "mk", "ml", "mm", "mn", "mo", "mobi", "mp", "mq", "mr", "ms", "mt", "mu", "museum", "mv", "mw", "mx", "my", "mz", "na", "name", "nc", "ne", "net", "nf", "ng", "ni", "nl", "no", "np", "nr", "nu", "nz", "om", "org", "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "pro", "ps", "pt", "pw", "py", "qa", "re", "ro", "root", "rs", "ru", "rw", "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl", "sm", "sn", "so", "sr", "st", "su", "sv", "sy", "sz", "tc", "td", "tel", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to", "tp", "tr", "travel", "tt", "tv", "tw", "tz", "ua", "ug", "uk", "um", "us", "uy", "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "ye", "yt", "yu", "za", "zm", "zw" ));
-	ArrayList<String> urlEncodeList = new ArrayList<>(Arrays.asList("%20", "%20", "%21", "%21", "%22", "%22", "%23", "%23", "%24", "%24", "%", "%25", "%25", "%26", "%26", "%27", "%27", "%28", "%28", "%29", "%29", "%2A", "%2A", "%2B", "%2B", "%2C", "%2C", "%2D", "%2D", "%2E", "%2E", "%2F", "%2F", "%30", "%30", "%31", "%31", "%32", "%32", "%33", "%33", "%34", "%34", "%35", "%35", "%36", "%36", "%37", "%37", "%38", "%38", "%39", "%39", "%3A", "%3A", "%3B", "%3B", "%3C", "%3C", "%3D", "%3D", "%3E", "%3E", "%3F", "%3F", "%40", "%40", "%41", "%41", "%42", "%42", "%43", "%43", "%44", "%44", "%45", "%45", "%46", "%46", "%47", "%47", "%48", "%48", "%49", "%49", "%4A", "%4A", "%4B", "%4B", "%4C", "%4C", "%4D", "%4D", "%4E", "%4E", "%4F", "%4F", "%50", "%50", "%51", "%51", "%52", "%52", "%53", "%53", "%54", "%54", "%55", "%55", "%56", "%56", "%57", "%57", "%58", "%58", "%59", "%59", "%5A", "%5A", "%5B", "%5B", "%5C", "%5C", "%5D", "%5D", "%5E", "%5E", "%5F", "%5F", "%60", "%60", "%61", "%61", "%62", "%62", "%63", "%63", "%64", "%64", "%65", "%65", "%66", "%66", "%67", "%67", "%68", "%68", "%69", "%69", "%6A", "%6A", "%6B", "%6B", "%6C", "%6C", "%6D", "%6D", "%6E", "%6E", "%6F", "%6F", "%70", "%70", "%71", "%71", "%72", "%72", "%73", "%73", "%74", "%74", "%75", "%75", "%76", "%76", "%77", "%77", "%78", "%78", "%79", "%79", "%7A", "%7A", "%7B", "%7B", "%7C", "%7C", "%7D", "%7D", "%7E", "%7E", "%7F", "%7F", "%80", "%E2%82%AC", "%81", "%81", "%82", "%E2%80%9A", "%83", "%C6%92", "%84", "%E2%80%9E", "%85", "%E2%80%A6", "%86", "%E2%80%A0", "%87", "%E2%80%A1", "%88", "%CB%86", "%89", "%E2%80%B0", "%8A", "%C5%A0", "%8B", "%E2%80%B9", "%8C", "%C5%92", "%8D", "%C5%8D", "%8E", "%C5%BD", "%8F", "%8F", "%90", "%C2%90", "%91", "%E2%80%98", "%92", "%E2%80%99", "%93", "%E2%80%9C", "%94", "%E2%80%9D", "%95", "%E2%80%A2", "%96", "%E2%80%93", "%97", "%E2%80%94", "%98", "%CB%9C", "%99", "%E2%84", "%9A", "%C5%A1", "%9B", "%E2%80", "%9C", "%C5%93", "%9D", "%9D", "%9E", "%C5%BE", "%9F", "%C5%B8", "%A0", "%C2%A0", "%A1", "%C2%A1", "%A2", "%C2%A2", "%A3", "%C2%A3", "%A4", "%C2%A4", "%A5", "%C2%A5", "%A6", "%C2%A6", "%A7", "%C2%A7", "%A8", "%C2%A8", "%A9", "%C2%A9", "%AA", "%C2%AA", "%AB", "%C2%AB", "%AC", "%C2%AC", "%AD", "%C2%AD", "%AE", "%C2%AE", "%AF", "%C2%AF", "%B0", "%C2%B0", "%B1", "%C2%B1", "%B2", "%C2%B2", "%B3", "%C2%B3", "%B4", "%C2%B4", "%B5", "%C2%B5", "%B6", "%C2%B6", "%B7", "%C2%B7", "%B8", "%C2%B8", "%B9", "%C2%B9", "%BA", "%C2%BA", "%BB", "%C2%BB", "%BC", "%C2%BC", "%BD", "%C2%BD", "%BE", "%C2%BE", "%BF", "%C2%BF", "%C0", "%C3%80", "%C1", "%C3%81", "%C2", "%C3%82", "%C3", "%C3%83", "%C4", "%C3%84", "%C5", "%C3%85", "%C6", "%C3%86", "%C7", "%C3%87", "%C8", "%C3%88", "%C9", "%C3%89", "%CA", "%C3%8A", "%CB", "%C3%8B", "%CC", "%C3%8C", "%CD", "%C3%8D", "%CE", "%C3%8E", "%CF", "%C3%8F", "%D0", "%C3%90", "%D1", "%C3%91", "%D2", "%C3%92", "%D3", "%C3%93", "%D4", "%C3%94", "%D5", "%C3%95", "%D6", "%C3%96", "%D7", "%C3%97", "%D8", "%C3%98", "%D9", "%C3%99", "%DA", "%C3%9A", "%DB", "%C3%9B", "%DC", "%C3%9C", "%DD", "%C3%9D", "%DE", "%C3%9E", "%DF", "%C3%9F", "%E0", "%C3%A0", "%E1", "%C3%A1", "%E2", "%C3%A2", "%E3", "%C3%A3", "%E4", "%C3%A4", "%E5", "%C3%A5", "%E6", "%C3%A6", "%E7", "%C3%A7", "%E8", "%C3%A8", "%E9", "%C3%A9", "%EA", "%C3%AA", "%EB", "%C3%AB", "%EC", "%C3%AC", "%ED", "%C3%AD", "%EE", "%C3%AE", "%EF", "%C3%AF", "%F0", "%C3%B0", "%F1", "%C3%B1", "%F2", "%C3%B2", "%F3", "%C3%B3", "%F4", "%C3%B4", "%F5", "%C3%B5", "%F6", "%C3%B6", "%F7", "%C3%B7", "%F8", "%C3%B8", "%F9", "%C3%B9", "%FA", "%C3%BA", "%FB", "%C3%BB", "%FC", "%C3%BC", "%FD", "%C3%BD", "%FE", "%C3%BE", "%FF", "%C3%BF"));
-	ArrayList<String> schemeList =   new ArrayList<>(Arrays.asList("FTP", "TFTP", "NFS", "SNMP", "SMTP", "HTTP", "HTTPS", "BOOTP", "DHCP", "BGP", "EGP", "IGP", "RIP", "OSPF", "POP3", "IMAP4", "Telnet", "BAP", "BACP", "IP", "SLIP", "CSLIP", "PPP", "Ethernet", "TCP", "UDP", "SNMP", "ICMP", "ARP", "BOOTP", "DHCP", "RARP", "SMTP", "IGMP", "BGP", "EGP", "IGP", "OSPF"));
+	ArrayList<String> urlEncodeList = new ArrayList<>(Arrays.asList("%20", "%20", "%21", "%21", "%22", "%22", "%23", "%23", "%24", "%24", "%", "%25", "%25", "%26", "%26", "%27", "%27", "%28", "%28", "%29", "%29", "%2A", "%2A", "%2B", "%2B", "%2C", "%2C", "%2D", "%2D", "%2E", "%2E", "%2F", "%2F", "%30", "%30", "%31", "%31", "%32", "%32", "%33", "%33", "%34", "%34", "%35", "%35", "%36", "%36", "%37", "%37", "%38", "%38", "%39", "%39", "%3A", "%3A", "%3B", "%3B", "%3C", "%3C", "%3D", "%3D", "%3E", "%3E", "%3F", "%3F", "%40", "%40", "%41", "%41", "%42", "%42", "%43", "%43", "%44", "%44", "%45", "%45", "%46", "%46", "%47", "%47", "%48", "%48", "%49", "%49", "%4A", "%4A", "%4B", "%4B", "%4C", "%4C", "%4D", "%4D", "%4E", "%4E", "%4F", "%4F", "%50", "%50", "%51", "%51", "%52", "%52", "%53", "%53", "%54", "%54", "%55", "%55", "%56", "%56", "%57", "%57", "%58", "%58", "%59", "%59", "%5A", "%5A", "%5B", "%5B", "%5C", "%5C", "%5D", "%5D", "%5E", "%5E", "%5F", "%5F", "%60", "%60", "%61", "%61", "%62", "%62", "%63", "%63", "%64", "%64", "%65", "%65", "%66", "%66", "%67", "%67", "%68", "%68", "%69", "%69", "%6A", "%6A", "%6B", "%6B", "%6C", "%6C", "%6D", "%6D", "%6E", "%6E", "%6F", "%6F", "%70", "%70", "%71", "%71", "%72", "%72", "%73", "%73", "%74", "%74", "%75", "%75", "%76", "%76", "%77", "%77", "%78", "%78", "%79", "%79", "%7A", "%7A", "%7B", "%7B", "%7C", "%7C", "%7D", "%7D", "%7E", "%7E", "%7F", "%7F", "%80", "%E2%82%AC", "%81", "%81", "%82", "%E2%80%9A", "%83", "%C6%92", "%84", "%E2%80%9E", "%85", "%E2%80%A6", "%86", "%E2%80%A0", "%87", "%E2%80%A1", "%88", "%CB%86", "%89", "%E2%80%B0", "%8A", "%C5%A0", "%8B", "%E2%80%B9", "%8C", "%C5%92", "%8D", "%C5%8D", "%8E", "%C5%BD", "%8F", "%8F", "%90", "%C2%90", "%91", "%E2%80%98", "%92", "%E2%80%99", "%93", "%E2%80%9C", "%94", "%E2%80%9D", "%95", "%E2%80%A2", "%96", "%E2%80%93", "%97", "%E2%80%94", "%98", "%CB%9C", "%99", "%E2%84", "%9A", "%C5%A1", "%9B", "%E2%80", "%9C", "%C5%93", "%9D", "%9D", "%9E", "%C5%BE", "%9F", "%C5%B8", "%A0", "%C2%A0", "%A1", "%C2%A1", "%A2", "%C2%A2", "%A3", "%C2%A3", "%A4", "%C2%A4", "%A5", "%C2%A5", "%A6", "%C2%A6", "%A7", "%C2%A7", "%A8", "%C2%A8", "%A9", "%C2%A9", "%AA", "%C2%AA", "%AB", "%C2%AB", "%AC", "%C2%AC", "%AD", "%C2%AD", "%AE", "%C2%AE", "%AF", "%C2%AF", "%B0", "%C2%B0", "%B1", "%C2%B1", "%B2", "%C2%B2", "%B3", "%C2%B3", "%B4", "%C2%B4", "%B5", "%C2%B5", "%B6", "%C2%B6", "%B7", "%C2%B7", "%B8", "%C2%B8", "%B9", "%C2%B9", "%BA", "%C2%BA", "%BB", "%C2%BB", "%BC", "%C2%BC", "%BD", "%C2%BD", "%BE", "%C2%BE", "%BF", "%C2%BF", "%C0", "%C3%80", "%C1", "%C3%81", "%C2", "%C3%82", "%C3", "%C3%83", "%C4", "%C3%84", "%C5", "%C3%85", "%C6", "%C3%86", "%C7", "%C3%87", "%C8", "%C3%88", "%C9", "%C3%89", "%CA", "%C3%8A", "%CB", "%C3%8B", "%CC", "%C3%8C", "%CD", "%C3%8D", "%CE", "%C3%8E", "%CF", "%C3%8F", "%D0", "%C3%90", "%D1", "%C3%91", "%D2", "%C3%92", "%D3", "%C3%93", "%D4", "%C3%94", "%D5", "%C3%95", "%D6", "%C3%96", "%D7", "%C3%97", "%D8", "%C3%98", "%D9", "%C3%99", "%DA", "%C3%9A", "%DB", "%C3%9B", "%DC", "%C3%9C", "%DD", "%C3%9D", "%DE", "%C3%9E", "%DF", "%C3%9F", "%E0", "%C3%A0", "%E1", "%C3%A1", "%E2", "%C3%A2", "%E3", "%C3%A3", "%E4", "%C3%A4", "%E5", "%C3%A5", "%E6", "%C3%A6", "%E7", "%C3%A7", "%E8", "%C3%A8", "%E9", "%C3%A9", "%EA", "%C3%AA", "%EB", "%C3%AB", "%EC", "%C3%AC", "%ED", "%C3%AD", "%EE", "%C3%AE", "%EF", "%C3%AF", "%F0", "%C3%B0", "%F1", "%C3%B1", "%F2", "%C3%B2", "%F3", "%C3%B3", "%F4", "%C3%B4", "%F5", "%C3%B5", "%F6", "%C3%B6", "%F7", "%C3%B7", "%F8", "%C3%B8", "%F9", "%C3%B9", "%FA", "%C3%BA", "%FB", "%C3%BB", "%FC", "%C3%BC", "%FD", "%C3%BD", "%FE", "%C3%BE", "%FF", "%C3%BF", "CBT"));
+	ArrayList<String> schemeList =   new ArrayList<>(Arrays.asList("FTP", "TFTP", "NFS", "SNMP", "SMTP", "HTTP", "HTTPS", "BOOTP", "DHCP", "BGP", "EGP", "IGP", "RIP", "OSPF", "POP3", "IMAP", "Telnet", "POP2", "TCP", "UDP", "ICMP"));
 }
 	
 

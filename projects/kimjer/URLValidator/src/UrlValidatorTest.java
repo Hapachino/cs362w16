@@ -22,6 +22,7 @@ import junit.framework.TestCase;
 
 
 
+
 /**
  * Performs Validation Test for url validations.
  *
@@ -40,22 +41,101 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest()
    {
+	   //mutiple dots, http://10.10.10.999, https://google.com.; https://google.com.com
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
-	   
+	   ////System.out.println("Value of isValid() is: ");
+	   //System.out.println(urlVal.isValid("https://google.com:09"));
 	   
    }
    
    
    public void testYourFirstPartition()
    {
-	   
+	   //TEST ports 0 to 999
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   for(int i=1; i<1000; i++)
+	   {
+		   String URLauthority = "https://xyz.com:" + Integer.toString(i);
+		   //System.out.println(i);
+		   boolean res = urlVal.isValid(URLauthority);
+		   assertEquals(res, true);
+	   }
    }
    
-   public void testYourSecondPartition(){
-	   
+//   public void testYourSecondPartition(){
+//	   //test 1000 to 65535
+//	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+//	   for(int i=1000; i<65536; i++)
+//	   {
+//		   String URLauthority = "https://xyz.com:" + Integer.toString(i);
+//		   //System.out.println(i);
+//		   boolean res = urlVal.isValid(URLauthority);
+//		   assertEquals(res, true);
+//	   }
+//   }
+   
+   public void testYourThirdPartition(){
+	   //test 65636 to 100000
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   for(int i=65536; i<100001; i++)
+	   {
+		   String URLauthority = "https://xyz.com:" + Integer.toString(i);
+		   //System.out.println(i);
+		   boolean res = urlVal.isValid(URLauthority);
+		   assertEquals(res, false);
+	   }
    }
    
+   public void testYourFourthPartition(){
+	   //test 0 padded valid ports
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+   
+	   for(int i=1; i<65536; i++)
+	   {
+		   assertEquals(urlVal.isValid("https://xyz.com:0" +Integer.toString(i)), true);
+	   }
+   }
+   
+   public void testYourFifthPartition(){
+	   //test 0 padded valid ports
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+   
+	   for(int i=1; i<65536; i++)
+	   {
+		   assertEquals(urlVal.isValid("https://xyz.com:00" +Integer.toString(i)), true);
+	   }
+   }
+   
+   public void testYourSixthPartition(){
+	   //test 0 padded valid ports
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+   
+	   for(int i=1; i<65536; i++)
+	   {
+		   assertEquals(urlVal.isValid("https://xyz.com:000" +Integer.toString(i)), true);
+	   }
+   }
+   
+   public void testYourSeventhPartition(){
+	   //test 0 padded valid ports
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+   
+	   for(int i=1; i<65536; i++)
+	   {
+		   assertEquals(urlVal.isValid("https://xyz.com:0000" +Integer.toString(i)), true);
+	   }
+   }
+   
+   
+   public void testYourEighthPartition(){
+	   //test 0 padded valid ports
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+   
+	   for(int i=1; i<65536; i++)
+	   {
+		   assertEquals(urlVal.isValid("https://xyz.com:00000" +Integer.toString(i)), true);
+	   }
+   }
    
    public void testIsValid()
    {

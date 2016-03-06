@@ -49,7 +49,7 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
-   public void testYourFirstPartition()
+   public void partition1Bug3()
    {
 	   //TEST ports 0 to 999
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
@@ -62,19 +62,19 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
-//   public void testYourSecondPartition(){
-//	   //test 1000 to 65535
-//	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-//	   for(int i=1000; i<65536; i++)
-//	   {
-//		   String URLauthority = "https://xyz.com:" + Integer.toString(i);
-//		   //System.out.println(i);
-//		   boolean res = urlVal.isValid(URLauthority);
-//		   assertEquals(res, true);
-//	   }
-//   }
+   public void partition2Bug3(){
+	   //test 1000 to 65535
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   for(int i=1000; i<65536; i++)
+	   {
+		   String URLauthority = "https://xyz.com:" + Integer.toString(i);
+		   //System.out.println(i);
+		   boolean res = urlVal.isValid(URLauthority);
+		   assertEquals(res, true);
+	   }
+   }
    
-   public void testYourThirdPartition(){
+   public void partition3Bug3(){
 	   //test 65636 to 100000
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   for(int i=65536; i<100001; i++)
@@ -86,7 +86,7 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
-   public void testYourFourthPartition(){
+   public void partition4Bug3(){
 	   //test 0 padded valid ports
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
    
@@ -96,7 +96,7 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
-   public void testYourFifthPartition(){
+   public void partition5Bug3(){
 	   //test 0 padded valid ports
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
    
@@ -106,7 +106,7 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
-   public void testYourSixthPartition(){
+   public void partition6Bug3(){
 	   //test 0 padded valid ports
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
    
@@ -116,7 +116,7 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
-   public void testYourSeventhPartition(){
+   public void partition7Bug3(){
 	   //test 0 padded valid ports
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
    
@@ -127,7 +127,7 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
-   public void testYourEighthPartition(){
+   public void partition8Bug3(){
 	   //test 0 padded valid ports
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
    

@@ -101,12 +101,20 @@ public class UrlValidatorTest extends TestCase {
    
 /* Partition Setup:
  * The partitions are based on the different components of a URL, where an equivalence class is defined on valid and invalid substrings. For example, a generic URL has the form:
- * “scheme://authority:port/path?query” i
- * This function returns a string with the desired valid and invalid components. */
-    public String partitionString(boolean scheme, boolean authority,
-        boolean port, boolean path, boolean query)
+ * scheme + authority + port + path + query
+ * This function returns a string with the desired invalid (0) and valid (1)components. */
+    private String partitionString(int scheme, int authority,
+        int port, int path, int query)
     {
-        
+        String[] schemes = {"http:/", "http://"};
+        String[] authorities = {"", "www.google.com"};
+        String[] ports = {":-1", ":65535"};
+        String[] paths = {"/..", "/test1"};
+        String[] queries = {"action=view", "?action=view"};
+
+        String url = schemes[scheme] + authorities[authority] + ports[port] + paths[path] + queries[query];
+
+        return url; 
     }
 
 /* Partition1:
@@ -114,6 +122,18 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourFirstPartition()
     {
+        System.out.println("Testing first partition:\n");
+
+        String url = partitionString(0, 1, 1, 1, 1);
+        boolean valid = urlVal.isValid(url);
+        if (valid)
+        {
+            System.out.println("ERROR: " + url + " passed with invalid scheme.\n");
+        }
+        else
+        {
+            System.out.println(url + " failed with invalid scheme.\n");
+        }
     }
    
 /* Partition2:
@@ -121,7 +141,18 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourSecondPartition()
     {
-       
+        System.out.println("Testing second partition:\n");
+
+        String url = partitionString(1, 0, 1, 1, 1);
+        boolean valid = urlVal.isValid(url);
+        if (valid)
+        {
+            System.out.println("ERROR: " + url + " passed with invalid authority.\n");
+        }
+        else
+        {
+            System.out.println(url + " failed with invalid authority.\n");
+        }
     }
    
 /* Partition3:
@@ -129,7 +160,18 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourThirdPartition()
     {
-       
+        System.out.println("Testing third partition:\n");
+
+        String url = partitionString(1, 1, 0, 1, 1);
+        boolean valid = urlVal.isValid(url);
+        if (valid)
+        {
+            System.out.println("ERROR: " + url + " passed with invalid port.\n");
+        }
+        else
+        {
+            System.out.println(url + " failed with invalid port.\n");
+        }
     }
    
 /* Partition4:
@@ -137,7 +179,18 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourFourthPartition()
     {
-       
+        System.out.println("Testing fourth partition:\n");
+
+        String url = partitionString(1, 1, 1, 0, 1);
+        boolean valid = urlVal.isValid(url);
+        if (valid)
+        {
+            System.out.println("ERROR: " + url + " passed with invalid path.\n");
+        }
+        else
+        {
+            System.out.println(url + " failed with invalid path.\n");
+        }
     }
    
 /* Partition5:
@@ -145,7 +198,18 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourFifthPartition()
     {
-       
+        System.out.println("Testing fifth partition:\n");
+
+        String url = partitionString(1, 1, 1, 1, 0);
+        boolean valid = urlVal.isValid(url);
+        if (valid)
+        {
+            System.out.println("ERROR: " + url + " passed with invalid query.\n");
+        }
+        else
+        {
+            System.out.println(url + " failed with invalid query.\n");
+        }
     }
    
    public void testIsValid()

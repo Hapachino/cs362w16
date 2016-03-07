@@ -163,8 +163,7 @@ public class UrlValidatorTest extends TestCase {
 			// If we don't use one the established ones, we generate a valid one so simulate a real-world 
 			// scenario where a user creates their own. The coin flip is biased (66.6% chance) toward using
 			// an established protocol such as http, udp, dns, etc....
-			// TODO: Nelson - Discuss and decide whether valid scheme should mean common scheme
-			Boolean useCommonScheme = true; //(r.nextInt(3) < 2) ? true : false;
+			Boolean useCommonScheme = (r.nextInt(3) < 2) ? true : false;
 			
 			if (useCommonScheme){
 				// Return a randomly selected scheme from the common scheme list
@@ -209,6 +208,9 @@ public class UrlValidatorTest extends TestCase {
 	
 	public String generateRandomString(int length, Boolean useSpecialChars, Boolean useWhiteSpace) {
 		String retStr = "";
+		if(length == 0){
+			return retStr;
+		}
 		Random r = new Random();
 		String alphaNumericChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456890";
 		String specialChars = "~`!@#$%^&*()_+-={}|[]:;'<>?,./'; +";
@@ -229,8 +231,14 @@ public class UrlValidatorTest extends TestCase {
 		
 		if (useWhiteSpace){
 			// Choose a random spot in the string to add white space
+			/*
 			String charToReplace = "" + retStr.charAt(r.nextInt(retStr.length()));
-			retStr = retStr.replaceFirst(charToReplace, " ");
+			retStr = retStr.replaceFirst(charToReplace, " ");	// this seems to be causing a problem so at least for now I'll do it manually
+			*/
+			StringBuffer rsb = new StringBuffer();
+			rsb.append(retStr);
+			rsb.setCharAt(r.nextInt(rsb.length()), ' ');
+			retStr = rsb.toString();
 		}
 		
 		return retStr;
@@ -381,7 +389,7 @@ public class UrlValidatorTest extends TestCase {
 
 			// use a top-level domain from list
 			if(tld == TestParam.Good) {
-				urlSb.append("com"); // TODO: Nelson - Revert back to this once the path code has been fixed-> tldList.get(testCount % tldList.size()));
+				urlSb.append(tldList.get(testCount % tldList.size()));
 			} else if(tld == TestParam.Bad) {
 				if(r.nextInt(2) == 0) {
 					urlSb.append( generateRandomString( 1 + r.nextInt(5) ) );
@@ -419,7 +427,7 @@ public class UrlValidatorTest extends TestCase {
 				
 				urlSb.append( ":" + portNum );
 			}
-			
+		 	
 			
 			// generate a random path, or none
 			if(path == TestParam.Good) {	
@@ -450,7 +458,6 @@ public class UrlValidatorTest extends TestCase {
 				}
 			}
 			
-			// TODO: Nelson - The validator seems to not support queries at all. Discuss with team.
 			// generate a random query, or none
 			int numPairs;
 			if(query != TestParam.Empty) {
@@ -657,6 +664,7 @@ public class UrlValidatorTest extends TestCase {
 	 *******************************************************************************************************************************/
 	public void testValidPartitions() {
 		int numTests = 100;
+		
 		
 		//All components are valid
 		ArrayList<TestResult> r1 = testRandom(

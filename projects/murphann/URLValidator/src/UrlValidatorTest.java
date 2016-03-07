@@ -79,12 +79,26 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("---------------------");
    }
    
-   public void testManualTest()
+   public void testManualTest() throws IOException
    {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   //System.out.println(urlVal.isValid("http://www.amazon.com"));
 
         System.out.println("Beginning manual tests\n");
+        List<ResultPair> urls = createResultPairs("/Users/JARVIS/cs362w16/projects/murphann/URLValidator/src/urls.csv");
+        for(ResultPair url : urls){
+           if (urlVal.isValid(url.item) == true && url.valid == true)
+           {
+               System.out.println("PASS: " + url.valid + " -- " + url.item);
+           }
+           else if (urlVal.isValid(url.item) == false && url.valid == false)
+           {
+        	   System.out.println("PASS: " + url.valid + " -- " + url.item);
+           }
+           else {
+        	   System.out.println("-> FAIL: " + url.valid + " -- " + url.item);
+           }
+ 	   }
         /*----- VALID TEST CASES -----*/
         System.out.println("Valid URLs:\n");
         ResultPair[] validUrls = {new ResultPair("www.google.com", true),

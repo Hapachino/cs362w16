@@ -9,7 +9,7 @@ http://google.com:80,valid
 http://google.com/test1/file,valid
 h3t://google.com,valid
 httpgoogle,invalid
-www.google.com.www,valid
+www.google.com.www,invalid
 file:///c:\\,invalid
 google.com//,valid
 http://google.com:-1,invalid

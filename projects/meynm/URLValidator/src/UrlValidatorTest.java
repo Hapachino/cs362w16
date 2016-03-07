@@ -209,6 +209,9 @@ public class UrlValidatorTest extends TestCase {
 	
 	public String generateRandomString(int length, Boolean useSpecialChars, Boolean useWhiteSpace) {
 		String retStr = "";
+		if(length == 0){
+			return retStr;
+		}
 		Random r = new Random();
 		String alphaNumericChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456890";
 		String specialChars = "~`!@#$%^&*()_+-={}|[]:;'<>?,./'; +";
@@ -229,8 +232,14 @@ public class UrlValidatorTest extends TestCase {
 		
 		if (useWhiteSpace){
 			// Choose a random spot in the string to add white space
+			/*
 			String charToReplace = "" + retStr.charAt(r.nextInt(retStr.length()));
-			retStr = retStr.replaceFirst(charToReplace, " ");
+			retStr = retStr.replaceFirst(charToReplace, " ");	// this seems to be causing a problem so at least for now I'll do it manually
+			*/
+			StringBuffer rsb = new StringBuffer();
+			rsb.append(retStr);
+			rsb.setCharAt(r.nextInt(rsb.length()), ' ');
+			retStr = rsb.toString();
 		}
 		
 		return retStr;
@@ -419,7 +428,7 @@ public class UrlValidatorTest extends TestCase {
 				
 				urlSb.append( ":" + portNum );
 			}
-			
+		 	
 			
 			// generate a random path, or none
 			if(path == TestParam.Good) {	
@@ -657,6 +666,7 @@ public class UrlValidatorTest extends TestCase {
 	 *******************************************************************************************************************************/
 	public void testValidPartitions() {
 		int numTests = 100;
+		
 		
 		//All components are valid
 		ArrayList<TestResult> r1 = testRandom(

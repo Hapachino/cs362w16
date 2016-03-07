@@ -136,7 +136,7 @@ public class URLValidatorRandomTest extends TestCase {
    {
        int numTests=10;
        //call randomTests
-  	   System.out.println("Testing Randoms Letters and punctuation");
+  	   System.out.println("Testing Randoms Letters and numbers");
 	   for(int i = 0;i<numTests;i++)
 	   {
 		   testRandomTest(i);
@@ -146,7 +146,7 @@ public class URLValidatorRandomTest extends TestCase {
    public void testYourSecondPartition(){
        int numTests=10;
        //call randomTests
-  	   System.out.println("Testing Randoms Letters and numbers");
+  	   System.out.println("Testing Randoms Letters and punctuation");
 	   for(int i = 0;i<numTests;i++)
 	   {
 		   testRandomlettersTest(i);

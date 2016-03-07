@@ -67,7 +67,7 @@ public class UrlValidatorTest extends TestCase {
 	   }
 	   return urls;
    }
-   public void testprintManualTests() throws IOException{
+   public void printManualTests() throws IOException{
 	   List<ResultPair> urls;
 	   urls = createResultPairs(System.getProperty("user.dir") + "/src/urls.csv");
 	   System.out.println("---------------------");
@@ -85,7 +85,7 @@ public class UrlValidatorTest extends TestCase {
 	   //System.out.println(urlVal.isValid("http://www.amazon.com"));
 
         System.out.println("Beginning manual tests\n");
-        List<ResultPair> urls = createResultPairs("/Users/JARVIS/cs362w16/projects/murphann/URLValidator/src/urls.csv");
+        List<ResultPair> urls = createResultPairs(System.getProperty("user.dir") + "/src/urls.csv");
         for(ResultPair url : urls){
            if (urlVal.isValid(url.item) == true && url.valid == true)
            {

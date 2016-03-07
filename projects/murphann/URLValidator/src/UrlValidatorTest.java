@@ -67,9 +67,9 @@ public class UrlValidatorTest extends TestCase {
 	   }
 	   return urls;
    }
-   public void printManualTests() throws IOException{
+   public void testprintManualTests() throws IOException{
 	   List<ResultPair> urls;
-	   urls = createResultPairs("/Users/JARVIS/cs362w16/projects/murphann/URLValidator/src/urls.csv");
+	   urls = createResultPairs(System.getProperty("user.dir") + "/src/urls.csv");
 	   System.out.println("---------------------");
 	   System.out.println("File Result Pairs");
 	   System.out.println("---------------------");

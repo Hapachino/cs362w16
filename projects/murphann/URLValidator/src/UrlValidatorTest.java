@@ -18,6 +18,11 @@
 
 import junit.framework.TestCase;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -36,7 +41,43 @@ public class UrlValidatorTest extends TestCase {
       super(testName);
    }
 
-   
+   public List<ResultPair> createResultPairs(String filename) throws IOException{
+	  List<ResultPair> urls = new ArrayList<ResultPair>();
+	   BufferedReader br = null;
+	   String line = "";
+	   String splitBy = ",";
+	   boolean valid = false;
+	   try {
+		   br = new BufferedReader(new FileReader(filename));
+		   while ((line = br.readLine()) != null){
+			   String[] url = line.split(splitBy);
+			   if (url[1].equals("valid")){
+				   valid = true;
+			   }
+			   else {
+				   valid = false;
+			   }
+			   urls.add(new ResultPair(url[0],valid));
+			   
+		   }
+	   } finally {
+		   if (br != null){
+				br.close();	
+		   }
+	   }
+	   return urls;
+   }
+   public void printManualTests() throws IOException{
+	   List<ResultPair> urls;
+	   urls = createResultPairs("/Users/JARVIS/cs362w16/projects/murphann/URLValidator/src/urls.csv");
+	   System.out.println("---------------------");
+	   System.out.println("File Result Pairs");
+	   System.out.println("---------------------");
+	   for(ResultPair url : urls){
+		   System.out.println(url.item + "," + url.valid);
+	   }
+	   System.out.println("---------------------");
+   }
    
    public void testManualTest()
    {
@@ -122,6 +163,7 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourFirstPartition()
     {
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         System.out.println("Testing first partition:\n");
 
         String url = partitionString(0, 1, 1, 1, 1);
@@ -141,6 +183,7 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourSecondPartition()
     {
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         System.out.println("Testing second partition:\n");
 
         String url = partitionString(1, 0, 1, 1, 1);
@@ -160,6 +203,7 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourThirdPartition()
     {
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         System.out.println("Testing third partition:\n");
 
         String url = partitionString(1, 1, 0, 1, 1);
@@ -179,6 +223,7 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourFourthPartition()
     {
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         System.out.println("Testing fourth partition:\n");
 
         String url = partitionString(1, 1, 1, 0, 1);
@@ -198,6 +243,7 @@ public class UrlValidatorTest extends TestCase {
  */
     public void testYourFifthPartition()
     {
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         System.out.println("Testing fifth partition:\n");
 
         String url = partitionString(1, 1, 1, 1, 0);

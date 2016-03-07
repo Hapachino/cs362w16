@@ -1,0 +1,17 @@
+https://www.google.com,valid
+https://///www.google.com,invalid
+www.google.com,valid
+http://www.google.com,valid
+google.com,valid
+http://google.com,valid
+https://google.com,valid
+http://google.com:80,valid
+http://google.com/test1/file,valid
+h3t://google.com,valid
+httpgoogle,invalid
+www.google.com.www,valid
+file:///c:\\,invalid
+google.com//,valid
+http://google.com:-1,invalid
+http://google.com/test1/file,valid
+http://google.com,valid

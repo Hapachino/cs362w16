@@ -92,7 +92,7 @@ public class URLValidatorRandomTest extends TestCase {
        String testURL=UrlPrefix[i]+randText+UrlPostfix[i];
   	   boolean result;
        //URL Validation
-  	   System.out.println("Testing valid URL address:"+testURL);
+  	   System.out.println("URL address:"+testURL);
   	   result= urlVal.isValid(testURL);
   	   assertTrue(result);
   	   
@@ -115,7 +115,7 @@ public class URLValidatorRandomTest extends TestCase {
        String testURL=UrlPrefix[i]+randText+UrlPostfix[i];
   	   boolean result;
        //URL Validation
-  	   System.out.println("Testing valid URL address:"+testURL);
+  	   System.out.println("URL address:"+testURL);
   	   result= urlVal.isValid(testURL);
   	   assertTrue(result);
   	   
@@ -136,6 +136,7 @@ public class URLValidatorRandomTest extends TestCase {
    {
        int numTests=10;
        //call randomTests
+  	   System.out.println("Testing Randoms Letters and punctuation");
 	   for(int i = 0;i<numTests;i++)
 	   {
 		   testRandomTest(i);
@@ -145,6 +146,7 @@ public class URLValidatorRandomTest extends TestCase {
    public void testYourSecondPartition(){
        int numTests=10;
        //call randomTests
+  	   System.out.println("Testing Randoms Letters and numbers");
 	   for(int i = 0;i<numTests;i++)
 	   {
 		   testRandomlettersTest(i);

@@ -91,8 +91,8 @@ public class UrlValidatorTest extends TestCase {
     		testString = testString + "://google.com";
 
     		boolean result = urlVal.isValid(testString);
-    		System.out.print("String: " + testString + "\tExpeected: " + expected + 
-    				"\tResult: " + result + "\n");
+    		//System.out.print("String: " + testString + "\tExpeected: " + expected + 
+    		//		"\tResult: " + result + "\n");
     		assertEquals(expected, result);
     		if (printStatus) {
     			if (result == expected) {
@@ -108,10 +108,230 @@ public class UrlValidatorTest extends TestCase {
 
     }
     
-    public void testYourSecondPartition()
-    {
-        
-    }
+    public void testYourSecondPartition(){
+ 	   
+ 	   //Project Version
+ 	   
+ 	   /*******************************
+ 	    * WE're going to cut this into pieces.
+ 	    * We're going to instantiate an instance of UrlValidator
+ 	    * Then we're going to test traditional alphanumeric authorities.
+ 	    * Then we'll test numeric, dotted decimal IP addresses.
+ 	    * 
+ 	    * 
+ 	    * ********************************/
+ 	   
+ 	   int count = 10000;
+ 	   Random r = new Random();
+ 	   String scheme[] = { "http:", "ftp:", "smtp:", "mailto:", "file:", 
+ 			   "news:", "telnet:"};
+ 	  
+ 	   String connector[] = {"//" } ;
+ 	   String terminator[] = {"/", ""};
+ 	   String domain[] = {".edu", ".gov", ".org", ".com", ".mil"};
+
+ 	   String testURL = "";
+ 	   
+ 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+ 	   try {
+ 		   assertTrue(urlVal.isValid("http://www.google.com"));
+ 		   assertTrue(urlVal.isValid("http://www.google.com/"));
+ 	   } catch (AssertionError ex) {
+ 		   System.out.println("Assertions failed.\n");
+ 		   System.exit(1);
+ 	   }
+ 	   
+ 	   System.out.print("Test Domains\n");
+ 	   for (int i = 0; i < count; i++)
+ 	   {
+ 		   
+ 		   //let's test a set of good addresses
+ 		   String host[] = { "google", "ibm", "amazon", "apple","dell", "oracle",
+ 				   "cisco", "toshiba", "lg", "samsung", "belkin", "microsoft"};
+ 		   
+ 		   	testURL = "http://" + host[i % host.length] + ".com";
+ 		   	boolean expected = true;
+ 		   	
+ 		   	boolean result = urlVal.isValid(testURL);
+ 		   	assertEquals(result, expected);
+ 	   		if (result == expected) 
+ 	   		{
+ 	   			System.out.print(".");
+ 	   			if ((i % 72) == 0)
+ 	   				System.out.print("\n");
+ 	   		}
+ 	   		else {
+ 	   			System.out.print("X");
+ 	   		}
+ 		   }
+ 	   
+ 	   System.out.print("Dotted Decimal IP\n");
+ 	   	for (int i = 0; i < count; i++)
+ 	   	{
+ 	   		
+ 	   		int octet[] = {0, 0, 0, 0};
+ 	   		
+ 	   		for (int j = 0; j < 4; j++)
+ 	   			octet[j] = r.nextInt(255);
+ 	   		
+ 	   		String host = Integer.toString(octet[0]) + "." + 
+ 	   				Integer.toString(octet[1]) + "." +
+ 	   				Integer.toString(octet[2]) + "." +
+ 	   				Integer.toString(octet[3]);
+ 	   		
+ 		   	testURL = "http://" + host;
+ 		   	boolean expected = true;
+ 		   	
+ 		   	boolean result = urlVal.isValid(testURL);
+ 		   	//System.out.print("String: " + testURL + "\tExpected: " + expected +
+ 		   	//		"\tResult: " + result + "\n");
+ 	   		assertEquals(expected, result);
+ 	   		if (result == expected) 
+ 	   		{
+ 	   			System.out.print(".");
+ 	   			if ((i % 72) == 0)
+ 	   				System.out.print("\n");
+ 	   		}
+ 	   		else {
+ 	   			System.out.print("X");
+ 	   		}
+ 	   	}
+ 		   
+ 		   //Random authority string
+ 	   	System.out.print("\nRandom authority String\n");
+ 	   	for (int i = 0; i < 1000; i++){
+ 	   		
+ 	   		String host = "";
+ 	   		
+ 	   		for (int j = 0; j < 10; j++)
+ 	   		{
+ 	   			//generate and validate random character
+ 	   			while (true)
+ 	   			{
+ 	   				int asciiNumber = r.nextInt(123 - 48) + 48;
+ 	   				if (j == 0) //make sure that the first character is a letter
+ 	   				{
+ 	   					if (((asciiNumber >=65) && (asciiNumber <= 90)) ||
+ 	   							((asciiNumber >= 97) && (asciiNumber <= 122)))
+ 	   					{
+ 	   						host = Character.toString((char) asciiNumber);
+ 	   						break;
+ 	   					}
+ 	   				}
+ 	   				else if (((asciiNumber >=65) && (asciiNumber <= 90)) ||
+ 	   							((asciiNumber >= 97) && (asciiNumber <= 122))
+ 	   							|| ((asciiNumber >= 48) && (asciiNumber <= 57))) 
+ 	   				 
+ 	   				{
+ 	   					host = host + Character.toString((char) asciiNumber);
+ 	   					break;
+ 	   				}
+ 	   			}
+ 	   		}
+ 		   	testURL = "http://" + host + ".com";
+ 		   	boolean expected = true;
+ 		   	
+ 		   	boolean result = urlVal.isValid(testURL);
+ 		   	//System.out.print("String: " + testURL + "\tExpected: " + expected +
+ 		   	//		"\tResult: " + result + "\n");
+ 	   		assertEquals(expected, result);
+ 	   		if (result == expected) 
+ 	   		{
+ 	   			System.out.print(".");
+ 	   			if ((i % 72) == 0)
+ 	   				System.out.print("\n");
+ 	   		}
+ 	   		else {
+ 	   			System.out.print("X");
+ 	   		}
+ 	   		
+ 	   		/******************************
+ 	   		 * After we run a basic alphanumeric test of the authority space,
+ 	   		 * we're going to run a test that tests the authority with different
+ 	   		 * schemes and connectors
+ 	   		 * 
+ 	   		 * We're going to use the same randomized host that we just tested in
+ 	   		 * this i loop.  And we're going to alternate the connections
+ 	   		 */
+ 	   		
+ 	   		int schemeNo = r.nextInt(scheme.length);
+ 	   		int connectorNo = r.nextInt(connector.length);
+ 	   		int terminatorNo = r.nextInt(terminator.length);
+ 	   		int domainNo = r.nextInt(domain.length);
+ 	   		
+ 	   		testURL = scheme[schemeNo];
+ 	   		testURL = testURL + connector[connectorNo];
+ 	   		testURL = testURL + host;
+ 	   		testURL = testURL + domain[domainNo];
+ 	   		testURL = testURL + terminator[terminatorNo];
+ 	   
+ 		   	result = urlVal.isValid(testURL);
+ 		   	//System.out.print("String: " + testURL + "\tExpected: " + expected +
+ 		   	//		"\tResult: " + result + "\n");
+ 	   		assertEquals(expected, result);
+ 	   		if (result == expected) 
+ 	   		{
+ 	   			System.out.print(".");
+ 	   			if ((i % 72) == 0)
+ 	   				System.out.print("\n");
+ 	   		}
+ 	   		else {
+ 	   			System.out.print("X");
+ 	   		}
+ 		   
+ 	   }
+    
+    //Random string length
+ 	System.out.print("\nRandom string length\n");
+ 	for (int i = 0; i < 1000; i++){
+ 		
+ 		String host = "";
+ 		
+ 		for (int j = 0; j < r.nextInt(255 - 11) + 1; j++)
+ 		{
+ 			//generate and validate random character
+ 			while (true)
+ 			{
+ 				int asciiNumber = r.nextInt(123 - 48) + 48;
+ 				if (j == 0) //make sure that the first character is a letter
+ 				{
+ 					if (((asciiNumber >=65) && (asciiNumber <= 90)) ||
+ 							((asciiNumber >= 97) && (asciiNumber <= 122)))
+ 					{
+ 						host = Character.toString((char) asciiNumber);
+ 						break;
+ 					}
+ 				}
+ 				else if (((asciiNumber >=65) && (asciiNumber <= 90)) ||
+ 							((asciiNumber >= 97) && (asciiNumber <= 122))
+ 							|| ((asciiNumber >= 48) && (asciiNumber <= 57))) 
+ 				 
+ 				{
+ 					host = host + Character.toString((char) asciiNumber);
+ 					break;
+ 				}
+ 			}
+ 		}
+    	testURL = "http://" + host + ".com";
+    	boolean expected = true;
+    	
+    	boolean result = urlVal.isValid(testURL);
+    	//System.out.print("String: " + testURL + "\tExpected: " + expected +
+    	//		"\tResult: " + result + "\n");
+ 		assertEquals(expected, result);
+ 		if (result == expected) 
+ 		{
+ 			System.out.print(".");
+ 			if ((i % 72) == 0)
+ 				System.out.print("\n");
+ 		}
+ 		else {
+ 			System.out.print("X");
+ 		}   
+ 	}
+ 	
+
+    } 
     
     // A port number is a 16-bit unsigned integer that ranges from 0 - 65535. Ports 49152-65536 are never assigned.
     // source: http://tools.ietf.org/html/rfc6335

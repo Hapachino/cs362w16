@@ -138,6 +138,33 @@ public class UrlValidatorTest extends TestCase {
         }
     }
     
+    public void testYourThirdPartition()
+    {
+    	//testing queries
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    	String testString = "";
+    	
+    	ResultPair[] testQuery = {new ResultPair("?action=delete", true),
+                new ResultPair("?foo=bar&bar=foo", true),
+                new ResultPair("?=foo&bar=foo", false),                      
+                new ResultPair("", true)
+    	};
+    	
+    	//Test that http://www.google.com to be used with all test schemes is valid
+    	System.out.println("Testing http://www.google.com \nResult: " +  urlVal.isValid("http://www.google.com"));     // test typical URL
+    	
+    	System.out.println("\nTesting queries...\n");
+    	for (int i = 0; i < testQuery.length; i++)
+    	{
+    		testString = "http://www.google.com" + testQuery[i].item;
+    		
+    		System.out.println(testString + " \nExpected: " + testQuery[i].valid);
+            System.out.println("Actual: " + urlVal.isValid(testString) + "\n");		
+    	}
+    	
+    	
+        
+    }
     
     public void testIsValid()
     {
@@ -149,14 +176,135 @@ public class UrlValidatorTest extends TestCase {
     
     public void testAnyOtherUnitTest()
     {
+    	
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    	String testString = "";
+    	int iterationNumber = 1;
+    	  	
+        /**
+         * Create set of tests by taking the testUrlXXX arrays and
+         * running through all possible permutations of their combinations.
+         *
+         * @param testObjects Used to create a url.
+         */
+    	
+    	ResultPair[] testScheme = {new ResultPair("http://", true),
+                new ResultPair("ftp://", true),
+                new ResultPair("mailto://", true),
+                new ResultPair("ht4://", false),
+                new ResultPair("http:/", false),
+                new ResultPair("http:", false),
+                new ResultPair("http/", false),
+                new ResultPair("://", false),
+                new ResultPair("https://", true),
+                new ResultPair("", true)};
+    		
+    	ResultPair[] testAuthority = {new ResultPair("www.google.com", true),
+                new ResultPair("wikipedia.org", true),
+                new ResultPair("amazon.com", true),
+                new ResultPair("0.0.0.0", true),
+                new ResultPair("255.255.255.255", true),
+                new ResultPair("256.256.256.256", false),
+                new ResultPair("255.com", true),
+                new ResultPair("1.2.3.4.5", false),
+                new ResultPair("1.2.3.4.", false),
+                new ResultPair("1.2.3", false),
+                new ResultPair(".1.2.3.4", false),
+                new ResultPair("abcde.", false),
+                new ResultPair(".abc", false),
+                new ResultPair("abcde", false),
+                new ResultPair("", false)
+    	};
+    	ResultPair[] testPort = {new ResultPair("", true),               //empty port
+    			new ResultPair(":", false),								// If the port is omitted, the colon is as well. source: RFC 1738 Uniform Resource Locators
+                new ResultPair(":-1", false),							// Negative value
+                new ResultPair(":8", true),
+                new ResultPair(":80", true),								// Standard HTTP port value.
+                new ResultPair(":800", true),
+                new ResultPair(":8000", true),
+                new ResultPair(":65535", true),							// Maximum limit to port value
+                new ResultPair(":65536", false)							// Exceeds maximum limit of port value
+    	};
+    	ResultPair[] testPath = {new ResultPair("/test1", true),
+    	        new ResultPair("/foo123", true),
+    	        new ResultPair("/$17", true),
+    	        new ResultPair("/..", false),
+    	        new ResultPair("/../", false),
+    	        new ResultPair("/foo/", true),
+    	        new ResultPair("", true),
+    	        new ResultPair("/foo/bar", true),
+    	        new ResultPair("/test1//file", false)
+    	};
+    	
+    	
+    	ResultPair[] testQuery = {new ResultPair("?action=delete", true),
+                new ResultPair("?foo=bar&bar=foo", true),
+                new ResultPair("?=foo&bar=foo", false),                      
+                new ResultPair("", true)
+    	};
+    	
+    	
+    	 /*
+    	   A complete URL is composed of a scheme+authority+port+path+query,
+    	   all of which must be individually valid for the entire URL to be considered
+    	   valid.
+    	 */
+    	System.out.println("Testing complete URLs...");
+    	
+    	for (int schemeIndex = 0; schemeIndex < testScheme.length; schemeIndex++)
+    	{
+    		for (int authorityIndex = 0; authorityIndex < testAuthority.length; authorityIndex++)
+        	{
+    			for (int portIndex = 0; portIndex < testPort.length; portIndex++)
+            	{
+    				for (int pathIndex = 0; pathIndex < testPath.length; pathIndex++)
+                	{
+    					for (int queryIndex = 0; queryIndex < testQuery.length; queryIndex++)
+                    	{
+    						//build the URL to test
+    						testString = testScheme[schemeIndex].item + testAuthority[authorityIndex].item + testPort[portIndex].item + testPath[pathIndex].item + testQuery[queryIndex].item;
+    						
+    						boolean expected = true;
+    						
+    						//set the expected result
+    						if(!testScheme[schemeIndex].valid  || !testAuthority[authorityIndex].valid  || !testPort[portIndex].valid  || !testPath[pathIndex].valid  || !testQuery[queryIndex].valid)
+    						{
+    							expected = false;
+    						}
+    						
+    						//run isValid()
+    						boolean result = urlVal.isValid(testString);
+    						
+    						
+    						if (expected != result)
+    						{
+    							
+    							System.out.println("Test#" + iterationNumber + "\n===========================");
+    							System.out.println(testString + " \nExpected: " + expected);
+        			            System.out.println("Actual: " + result + "\n");
+        			            
+        			            //try to hone in on the problem by pairing each part with other valid parts
+        			            System.out.println("Scheme: "+ testScheme[schemeIndex].item + ", " + testScheme[schemeIndex].valid);
+        			            System.out.println("Authority: " + testAuthority[authorityIndex].item + ", " + testAuthority[authorityIndex].valid);
+        			            System.out.println("Port: " + testPort[portIndex].item + ", " + testPort[portIndex].valid);
+        			            System.out.println("Path: " + testPath[pathIndex].item + ", " + testPath[pathIndex].valid);
+        			            System.out.println("Query: " + testQuery[queryIndex].item + ", " + testQuery[queryIndex].valid);
+        			            System.out.println("\n");
+        			               
+    						}
+    						
+    			            //assertEquals(expected, result);
+    						iterationNumber++;
+                    	}
+                	}
+            	}
+        	}
+    	}//end all for loops
+    	
         
     }
-    /**
-     * Create set of tests by taking the testUrlXXX arrays and
-     * running through all possible permutations of their combinations.
-     *
-     * @param testObjects Used to create a url.
-     */
+
+    
     
     
 }

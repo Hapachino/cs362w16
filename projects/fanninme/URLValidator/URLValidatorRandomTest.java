@@ -33,9 +33,9 @@ public class URLValidatorRandomTest extends TestCase {
    private boolean printStatus = false;
    private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
-   //
+   //37 characters
    char[] LetterPunct= {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t',
-'u','v','w','x','y','z','-','/','[','&','#','@','!'};
+'u','v','w','x','y','z','-','/','[','&','#','@','!','?',')','(',']'};
 
    //generate random strings
    public String RandNumString()
@@ -51,7 +51,7 @@ public class URLValidatorRandomTest extends TestCase {
 	   StringBuilder sb = new StringBuilder();
 	   
 	   for(int i=0;i<size;i++){
-		   int value = rand.nextInt(33);//length of LetterPunct  
+		   int value = rand.nextInt(37);//length of LetterPunct  
 		   sb.append(LetterPunct[value]);
 		   //create string
 	   }

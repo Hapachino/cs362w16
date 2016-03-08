@@ -69,7 +69,12 @@ public class URLValidatorRandomTest extends TestCase {
 			  "http://www.",
 			  "https://",
 			  "",
-			  "http://www."};
+			  "http://www.",
+			  "localhost://",
+			  "root//",
+			  "http://",
+			  "www.",
+			  "http://",};
    //
    String[] UrlPostfix= {
 			  ".com",
@@ -81,7 +86,12 @@ public class URLValidatorRandomTest extends TestCase {
 			  ".us",
 			  ".html",
 			  ".com/mail/",
-			  ""};
+			  "",
+			  ".uk",
+			  ".bb",
+			  ".it",
+			  ".biz",
+			  ".mil"};
    
    //IsValid tests
    @Test
@@ -134,7 +144,7 @@ public class URLValidatorRandomTest extends TestCase {
    //first partition numbers and letters
    public void testYourFirstPartition()
    {
-       int numTests=10;
+       int numTests=15;//TODO correct magic number to account for dynamic number of tests.
        //call randomTests
   	   System.out.println("Testing Randoms Letters and numbers");
 	   for(int i = 0;i<numTests;i++)

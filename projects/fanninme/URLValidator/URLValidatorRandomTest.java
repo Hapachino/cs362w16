@@ -62,7 +62,7 @@ public class URLValidatorRandomTest extends TestCase {
    String[] UrlPrefix= {
 			  "http://",
 			  "http://www.",
-			  "https://www",
+			  "https://www.",
 			  "www.",
 			  "https://",
 			  "https://www.",
@@ -72,7 +72,7 @@ public class URLValidatorRandomTest extends TestCase {
 			  "http://www.",
 			  "localhost://",
 			  "root//",
-			  "http://",
+			  "https://",
 			  "www.",
 			  "http://",};
    //

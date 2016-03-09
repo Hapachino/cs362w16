@@ -180,7 +180,7 @@ public class UrlValidatorTest extends TestCase {
         "go.cc"
     };
 
-    String[] falsetestUrlAuthority = {
+    String[] falseTestUrlAuthority = {
         "256.256.256.256",
         "1.2.3.4.5",
         "1.2.3.4.",

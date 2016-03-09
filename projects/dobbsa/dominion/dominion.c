@@ -1262,6 +1262,7 @@ int _adventurer(struct gameState *state, int handPos, int currentPlayer) {
             drawntreasure++;
         else{
             temphand[z]=cardDrawn;
+	    state->handCount[currentPlayer]--;
             z++;
         }
     }

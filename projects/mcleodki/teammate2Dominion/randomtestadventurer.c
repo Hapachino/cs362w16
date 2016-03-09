@@ -1,334 +1,409 @@
-/*****************************************************
- * Regina Imhoff
- * stabbymcduck on github
- * imhoffr@oregonstate.edu
- * Date due: 02/14/2016
- * randomtestadventurer.c
- * random test of the adventurer card
- *
- * randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
- *      gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
- ******************************************************/
+/* Author: Kim McLeod
+ * Assignment: 4
+ * File: randomtestadventurer.c
+ * 
+ * 
+ * adventurer - make sure deck doesn't need to be shuffled
+ *		see if card drawn is treasure card, 
+ *		increment until 2 treasure cards or deck is empty
+ *		discard all drawn cards that aren't treasure cards
+ *	- stops when 2 treasure cards are revealed
+ * 	- all revealed non-treasure cards are discarded
+ *	- no treasure cards in deck (end of deck)
+ *	- deck is shuffled when needed (at beginning and middle) **
+ */
 
-#include <assert.h>
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
+
 
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include <stdio.h>
 #include "rngs.h"
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <math.h>
 
-#define DECK_SIZE 10
-#define KINGDOM_CARDS_SIZE 10
-#define ADVENTURER_COIN_COUNT 2
+
 #define TESTCARD "adventurer"
-#define TEST_COUNT 2
 
-int isCoin(int card) {
-    return card == copper || card == silver || card == gold;
+int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed,
+		   struct gameState *state);
+
+int main() {
+
+    int i, n, deckCount = 0, error1 = 0, error2 = 0, error3 = 0, error4 = 0, error5 = 0;
+    int handPos = 0;
+    int seed = 2000;
+    int numPlayers = floor(Random() * MAX_PLAYERS);
+    int player;
+    int numBefore;
+    int numAfter;
+    int coinsBefore;
+    int coinsAfter;
+
+    int card = 0;
+    int bonus = 0;
+
+	struct gameState G, testG, oldG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, gardens, smithy, council_room};
+
+	printf("----------------- Random Testing for %s Begin----------------\n", TESTCARD);
+for(n = 0; n < seed; n++){
+	player = floor(Random() * 2);
+	G.deckCount[player] = floor(Random() * MAX_DECK);
+	G.discardCount[player] = floor(Random() * MAX_DECK);
+	G.handCount[player] = floor(Random() * MAX_HAND);	
+	numPlayers = floor(Random() * MAX_PLAYERS);
+
+	// initialize a game state and player cards
+	initTestGame(numPlayers, k, seed, &G);
+
+
+
+	
+
+	/*************** TEST 1: Two treasure cards are revealed ***********/
+	
+
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+	player = testG.whoseTurn;
+
+	// make sure the player has treasure cards
+	gainCard(copper,&testG,1,player);
+	gainCard(silver,&testG,1,player);
+	gainCard(gold,&testG,1,player);
+
+	// record coin amount before card is played
+	updateCoins(player, &testG, 0);
+	coinsBefore = testG.coins;
+
+
+	// fill players deck with gardens cards
+	for (i = deckCount; i < (deckCount + 5); i++)
+	{
+        	gainCard(k[rand() % 9 + 1],&testG,1,player);
+      	}
+
+	// give player an adventurer card and play it
+	gainCard(adventurer,&testG,2,player);
+	cardEffect(card, 0, 0, 0, &testG, handPos, &bonus);
+
+	// get coin amounts after card is played
+	updateCoins(player, &testG, 0);
+	coinsAfter = testG.coins;
+
+	endTurn(&testG);
+
+
+	// this will fail due to the altered dominion.c code
+	if(coinsAfter != 5)
+	{	printf("Error 1 'Two treasure cards in deck' Expected: 5, Actual: %d\n", coinsAfter);
+		error1++;
+	}
+	if(numHandCards(&testG) != (numHandCards(&G) + 1))
+	{ 	printf("Error 5 'Number of cards in hand updated' Expected: %d, Actual: %d\n", (numHandCards(&G) + 1), numHandCards(&testG));
+		error5++; 
+	}
+
+
+
+
+	/*************** TEST 2: No treasure cards in deck ***********/
+	
+
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+	player = testG.whoseTurn;
+
+	// record coin amount before card is played
+	updateCoins(player, &testG, 0);
+	coinsBefore = testG.coins;
+
+	// fill players deck with gardens cards
+	for (i = deckCount; i < (deckCount + 5); i++)
+	{
+        	gainCard(k[rand() % 9 + 1],&testG,1,player);
+      	}
+
+	// give player an adventurer card and play it
+	gainCard(adventurer,&testG,2,player);
+	cardEffect(card, 0, 0, 0, &testG, handPos, &bonus);
+
+	// get coin amounts after card is played
+	updateCoins(player, &testG, 0);
+	coinsAfter = testG.coins;
+
+	endTurn(&testG);
+
+	// test fails if player gains coins from playing the adventurer card	
+	if(coinsAfter != 0)
+	{	printf("Error 2 'No treasure cards in deck' Expected: 0, Actual: %d\n", coinsAfter);
+		error2++;//printf("PASS: No treasure cards in deck\n\n\n");
+		
+	}
+	if(numHandCards(&testG) != numHandCards(&G))
+	{	printf("Error 5 'Number of cards in hand updated' Expected: %d, Actual: %d\n", numHandCards(&G), numHandCards(&testG));
+		 error5++; 
+	}
+
+
+
+	/*************** TEST 3: One treasure card in deck ***********/
+	
+
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+	player = testG.whoseTurn;
+
+	// record coin amount before card is played
+	gainCard(copper,&testG,1,player);
+	
+	updateCoins(player, &testG, 0);
+	coinsBefore = testG.coins;
+
+	// fill players deck with gardens cards
+	for (i = deckCount; i < (deckCount + 5); i++)
+	{
+        	gainCard(k[rand() % 9 + 1],&testG,1,player);
+      	}
+
+	// give player an adventurer card and play it
+	gainCard(adventurer,&testG,2,player);
+	cardEffect(card, 0, 0, 0, &testG, handPos, &bonus);
+
+	// get coin amounts after card is played
+	updateCoins(player, &testG, 0);
+	coinsAfter = testG.coins;
+
+	endTurn(&testG);
+
+	// test fails if player gains no coins from playing the adventurer card
+	// will fail due to altered dominion.c code
+	if(coinsAfter == 0)
+	{	printf("Error 3 'One treasure card in deck' Expected: 1, Actual: %d\n", coinsAfter);
+		error3++;//printf("PASS: One treasure card in deck\n\n\n");
+		
+	}
+	if(numHandCards(&testG) != numHandCards(&G))
+	{ 	printf("Error 5 'Number of cards in hand updated' Expected: %d, Actual: %d\n", numHandCards(&G), numHandCards(&testG));
+		error5++; 
+	}
+
+
+
+	/*************** TEST 4: All revealed non-treasure cards are discarded ***********/
+	
+
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+	player = testG.whoseTurn;
+
+	// give player treasure cards and record card amounts before card is played
+	gainCard(silver,&testG,1,player);
+	gainCard(silver,&testG,1,player);
+	gainCard(silver,&testG,1,player);
+	numBefore = numHandCards(&testG);
+
+	// fill players deck with gardens cards
+	for (i = deckCount; i < (deckCount + 5); i++)
+	{
+        	gainCard(k[rand() % 9 + 1],&testG,1,player);
+      	}
+
+	// give player an adventurer card and play it
+	gainCard(adventurer,&testG,2,player);
+	cardEffect(card, 0, 0, 0, &testG, handPos, &bonus);
+
+	// get card amounts after card is played
+	oldG = testG;	
+	endTurn(&testG);
+	numAfter = numHandCards(&oldG);
+
+
+	// test passes if player's hand cointains only the adventurer card 
+	if(numAfter != (numBefore + 1))
+	{	printf("Error 4 'All revealed non-treasure cards discarded' failed. Expected: %d, actual: %d\n", (numBefore+1), numAfter);
+		error4++;	
+	}
+	
+
+    }
+
+	
+
+
+	printf("\n >>>>> SUCCESS: Random Testing Complete for %s <<<<<\n\n", TESTCARD);
+	printf("Error 1 'Two treasure cards in deck' failed %d of %d times\n", error1, seed);
+	printf("Error 2 'No treasure cards in deck' failed %d of %d times\n", error2, seed);
+	printf("Error 3 'One treasure card in deck' failed %d of %d times\n", error3, seed);
+	printf("Error 4 'All revealed non-treasure cards discarded' failed %d of %d times\n", error4, seed);
+	printf("Error 5 'Number of cards in hand updated' failed %d of %d times\n\n\n\n", error5, (seed * 3));
+
+	return 0;
 }
 
-int deckCoinCount(int player, struct gameState *state) {
-    int coinCount = 0;
-    
-    for(int i = 0; i < state->deckCount[player]; i++){
-        if(isCoin(state->deck[player][i])) {
-            coinCount++;
+// added my own game initialization to use with assignment 3
+int initTestGame(int numPlayers, int kingdomCards[10], int randomSeed,
+		   struct gameState *state) {
+
+  int i;
+  int j;
+  int it;			
+  //set up random number generator
+  SelectStream(1);
+  PutSeed((long)randomSeed);
+  
+  //check number of players
+  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+    {
+      return -1;
+    }
+
+  //set number of players
+  state->numPlayers = numPlayers;
+
+  //check selected kingdom cards are different
+  for (i = 0; i < 10; i++)
+    {
+      for (j = 0; j < 10; j++)
+        {
+	  if (j != i && kingdomCards[j] == kingdomCards[i])
+	    {
+	      return -1;
+	    }
         }
     }
-    
-    return coinCount;
+
+
+  //initialize supply
+  ///////////////////////////////
+
+  //set number of Curse cards
+  if (numPlayers == 2)
+    {
+      state->supplyCount[curse] = 10;
+    }
+  else if (numPlayers == 3)
+    {
+      state->supplyCount[curse] = 20;
+    }
+  else
+    {
+      state->supplyCount[curse] = 30;
+    }
+
+  //set number of Victory cards
+  if (numPlayers == 2)
+    {
+      state->supplyCount[estate] = 8;
+      state->supplyCount[duchy] = 8;
+      state->supplyCount[province] = 8;
+    }
+  else
+    {
+      state->supplyCount[estate] = 12;
+      state->supplyCount[duchy] = 12;
+      state->supplyCount[province] = 12;
+    }
+
+  //set number of Treasure cards
+  state->supplyCount[copper] = 60 - (7 * numPlayers);
+  state->supplyCount[silver] = 40;
+  state->supplyCount[gold] = 30;
+
+  //set number of Kingdom cards
+  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+    {
+      for (j = 0; j < 10; j++)           		//loop chosen cards
+	{
+	  if (kingdomCards[j] == i)
+	    {
+	      //check if card is a 'Victory' Kingdom card
+	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+		{
+		  if (numPlayers == 2){ 
+		    state->supplyCount[i] = 8; 
+		  }
+		  else{ state->supplyCount[i] = 12; }
+		}
+	      else
+		{
+		  state->supplyCount[i] = 10;
+		}
+	      break;
+	    }
+	  else    //card is not in the set choosen for the game
+	    {
+	      state->supplyCount[i] = -1;
+	    }
+	}
+
+    }
+
+  ////////////////////////
+  //supply intilization complete
+
+  //set player decks
+  // start all players with empty decks for the test games
+ 
+  for (i = 0; i < numPlayers; i++)
+    {
+      state->deckCount[i] = 0;
+      for (j = 0; j < 3; j++)
+	{
+	  state->deck[i][j] = estate;
+	  state->deckCount[i]++;
+	}
+      for (j = 3; j < 10; j++)
+	{
+	  state->deck[i][j] = copper;
+	  state->deckCount[i]++;		
+	}
+    }
+
+  //shuffle player decks
+  for (i = 0; i < numPlayers; i++)
+    {
+      if ( shuffle(i, state) < 0 )
+	{
+	  return -1;
+	}
+    }
+
+  // set counts to 0
+  for (i = 0; i < numPlayers; i++)
+    {  
+      //initialize hand size to zero
+      state->handCount[i] = 0;
+      state->discardCount[i] = 0;
+    }
+  
+  //set embargo tokens to 0 for all supply piles
+  for (i = 0; i <= treasure_map; i++)
+    {
+      state->embargoTokens[i] = 0;
+    }
+
+  //initialize first player's turn
+  state->outpostPlayed = 0;
+  state->phase = 0;
+  state->numActions = 1;
+  state->numBuys = 1;
+  state->playedCardCount = 0;
+  state->whoseTurn = 0;
+  state->handCount[state->whoseTurn] = 0;
+  //int it; move to top
+
+  //Moved draw cards to here, only drawing at the start of a turn
+  //for (it = 0; it < 5; it++){
+  //  drawCard(state->whoseTurn, state);
+  //}
+
+  updateCoins(state->whoseTurn, state, 0);
+
+  return 0;
 }
 
-char *cardName(int card) {
-    char *name = NULL;
-    
-    switch (card) {
-        case ambassador:
-            name = "ambassador";
-            break;
-        case adventurer:
-            name = "adventurer";
-            break;
-        case baron:
-            name = "baron";
-            break;
-        case copper:
-            name = "copper";
-            break;
-        case council_room:
-            name = "council room";
-            break;
-        case curse:
-            name = "curse";
-            break;
-        case cutpurse:
-            name = "cutpurse";
-            break;
-        case duchy:
-            name = "duchy";
-            break;
-        case embargo:
-            name = "embargo";
-            break;
-        case estate:
-            name = "estate";
-            break;
-        case feast:
-            name = "feast";
-            break;
-        case gardens:
-            name = "gardens";
-            break;
-        case gold:
-            name = "gold";
-            break;
-        case great_hall:
-            name = "great hall";
-            break;
-        case mine:
-            name = "mine";
-            break;
-        case minion:
-            name = "minion";
-            break;
-        case outpost:
-            name = "outpost";
-            break;
-        case province:
-            name = "province";
-            break;
-        case remodel:
-            name = "remodel";
-            break;
-        case salvager:
-            name = "salvager";
-            break;
-        case sea_hag:
-            name = "sea hag";
-            break;
-        case silver:
-            name = "silver";
-            break;
-        case smithy:
-            name = "smithy";
-            break;
-        case steward:
-            name = "steward";
-        case treasure_map:
-            name = "treasure map";
-            break;
-        case tribute:
-            name = "tribute";
-            break;
-        case village:
-            name = "village";
-            break;
-    }
-    
-    return name;
-}
-
-void printPositionCard(int position, int card) {
-    printf("  Position %d, Card: ", position);
-    
-    char *name = cardName(card);
-    
-    if (name == NULL) {
-        printf("%d", card);
-    } else {
-        printf("%s", name);
-    }
-    
-    printf("\n");
-}
-
-void printDeck(int player, struct gameState *state) {
-    printf("Deck:\n");
-    
-    for(int i = 0; i < state->deckCount[player]; i++){
-        printPositionCard(i, state->deck[player][i]);
-    }
-}
-
-void printDiscard(int player, struct gameState* state) {
-    printf("Discard:\n");
-    
-    for(int i = 0; i < state->discardCount[player]; i++){
-        printPositionCard(i, state->discard[player][i]);
-    }
-}
-
-void printHand(int player, struct gameState *state) {
-    printf("Hand:\n");
-    
-    for(int i = 0; i < state->handCount[player]; i++){
-        printPositionCard(i, state->hand[player][i]);
-    }
-}
-
-int randomCard() {
-    int card = floor(Random() * (treasure_map + 1));
-    
-    assert(card >= 0 && card <= treasure_map + 1);
-    
-    return card;
-}
-
-void randomDeck(int player, int size, struct gameState *state) {
-    state->deckCount[player] = 0;
-    
-    for(int i = 0; i < size; i++){
-        state->deck[player][i] = randomCard();
-        state->deckCount[player]++;
-    }
-}
-
-#define DECK_COIN_INDEX_NOT_FOUND -1
-
-int deckCoinIndex(int player, int coinCount, struct gameState *state) {
-    int foundCoinCount = 0;
-    // -1 for not found
-    int coinCountIndex = DECK_COIN_INDEX_NOT_FOUND;
-    
-    for(int i = 0; i < state->deckCount[player]; i++){
-        if (isCoin(state->deck[player][i])) {
-            foundCoinCount++;
-            
-            if(foundCoinCount == coinCount) {
-                coinCountIndex = i;
-                break;
-            }
-        }
-    }
-    
-    return coinCountIndex;
-}
-
-bool randomTest(struct gameState *originalGame, int cards[KINGDOM_CARDS_SIZE]) {
-    int player = 0;
-    struct gameState testGame;
-    bool allPassed = true;
-    
-    memcpy(&testGame, originalGame, sizeof(struct gameState));
-    
-    randomDeck(player, DECK_SIZE, &testGame);
-    int deckCoinCountBefore = deckCoinCount(player, &testGame);
-    int secondDeckCoinIndex = deckCoinIndex(player, ADVENTURER_COIN_COUNT, &testGame);
-    
-    // empty discard pile
-    testGame.discardCount[player] = 0;
-    
-    int deckCountBefore = testGame.deckCount[player];
-    int handCountBefore = testGame.handCount[player];
-    
-    printf("Before Play Adventurer\n");
-    printDeck(player, &testGame);
-    printHand(player, &testGame);
-    printDiscard(player, &testGame);
-    
-    playAdventurer(player, &testGame);
-    printf("After Play Adventurer\n");
-    
-    
-    /* Test 1 */
-    printf(" ------ TEST 1 ------\n");
-    printHand(player, &testGame);
-    
-    int actualHandCountAfter = testGame.handCount[player];
-    int expectedHandCoinCountDelta;
-    
-    if (deckCoinCountBefore >= ADVENTURER_COIN_COUNT) {
-        expectedHandCoinCountDelta = ADVENTURER_COIN_COUNT;
-    } else {
-        expectedHandCoinCountDelta = deckCoinCountBefore;
-    }
-    
-    int expectedHandCountAfter = handCountBefore + expectedHandCoinCountDelta;
-    printf("Hand count: %d, Expected: %d\n", actualHandCountAfter, expectedHandCountAfter);
-    
-    if(actualHandCountAfter != expectedHandCountAfter){
-        printf(">>>>>>> ERROR: TEST 1 FAILED >>>>>>>\n");
-        allPassed &= false;
-    }
-    
-    /* Test Failed Statements */
-    /* Test 2 */
-    printf(" ------ TEST 2 ------\n");
-
-    printDeck(player, &testGame);
-    int actualDeckCountAfter = testGame.deckCount[player];
-    int expectedDeckCountAfter;
-    
-    if (secondDeckCoinIndex == DECK_COIN_INDEX_NOT_FOUND) {
-       expectedDeckCountAfter = 0;
-    } else {
-       expectedDeckCountAfter = deckCountBefore - (secondDeckCoinIndex + 1);
-    }
-    
-    printf("Deck count: %d, Expected: %d\n", actualDeckCountAfter, expectedDeckCountAfter);
-    
-    if(actualDeckCountAfter != expectedDeckCountAfter){
-        printf(">>>>>>> ERROR: TEST 2 FAILED: >>>>>>>\n");
-        allPassed &= false;
-    }
-    
-    /* Test 3 */
-    /* THIS IS EXPECTED TO FAIL!!! */
-    /* This is catching a bug I introduced in assignment, an off by one error */
-    printf(" ------ TEST 3 ------\n");
-
-    printDiscard(player, &testGame);
-    int actualDiscardCountAfter = testGame.discardCount[player];
-    int expectedDiscardCountAfter;
-    
-    if (secondDeckCoinIndex == DECK_COIN_INDEX_NOT_FOUND) {
-        expectedDiscardCountAfter = deckCountBefore - deckCoinCountBefore;
-    } else {
-        expectedDiscardCountAfter = secondDeckCoinIndex - ADVENTURER_COIN_COUNT;
-    }
-    
-    printf("Discard count: %d, Expected: %d\n", actualDiscardCountAfter, expectedDiscardCountAfter);
-    
-    if(actualDiscardCountAfter != expectedDiscardCountAfter){
-        printf(">>>>>>> ERROR: TEST 3 FAILED: >>>>>>>\n");
-        allPassed &= false;
-    }
-    
-    return allPassed;
-}
-
-
-int main(){
-    int cards[KINGDOM_CARDS_SIZE] = {adventurer, embargo, village, minion, mine, cutpurse,
-        sea_hag, tribute, smithy, council_room};
-    // int seed = 4; /* Garaunteed at least 4 coins */
-    int seed = 1;
-    int numberOfPlayers = 2;
-    
-    bool allPassed = true;
-    
-    struct gameState originalGame;
-    
-    initializeGame(numberOfPlayers, cards, seed, &originalGame);
-    
-    printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
-    
-    // run through random test 1000 times
-    for(int i = 0; i < TEST_COUNT; i++){
-        printf("Random Test %d/%d\n", i + 1, TEST_COUNT);
-        allPassed &= randomTest(&originalGame, cards);
-    }
-    
-    if(allPassed){
-        printf("\n ####  ALL TESTS PASSED  #### \n");
-        printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
-    }else{
-        printf("\n >>>>>> ONE OR MORE TESTS FAILED >>>>>>\n");
-    }
-    
-    
-    return 0;
-}

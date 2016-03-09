@@ -23,9 +23,11 @@ int main() {
 
   cardEffect(smithy, 0, 0, 0, &G, 0, 0);
   printf("Cards in Hand:  %d, Cards Expected: %d\n",
-           G.handCount[p1], storeG.handCount[p1]+3);
+          G.handCount[p1], storeG.handCount[p1]+2);
   printf("Cards in Deck: %d, cards Expected: %d\n",
           G.deckCount[p1], storeG.deckCount[p1]-3);
+  printf("Cards in Deck: %d, cards Expected: %d\n",
+          G.discardCount[p1], storeG.discardCount[p1]+1);
 
   printf("End of %s test\n", TESTCARD);
 

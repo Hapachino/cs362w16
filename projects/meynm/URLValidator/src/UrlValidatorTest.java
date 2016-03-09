@@ -179,7 +179,9 @@ public class UrlValidatorTest extends TestCase {
 		} else {
 			// Randomly decide whether or not to use white space
 			Boolean useWhiteSpace = (r.nextInt(2) == 0) ? true : false;
-			retStr = generateRandomString(length, true, useWhiteSpace);
+			// Ensure we get an invalid scheme by sticking a special char in it
+			retStr += "" + "#$%^&".charAt(r.nextInt(5));
+			retStr += generateRandomString(length, true, useWhiteSpace);
 		}
 		
 		return retStr;
@@ -213,10 +215,23 @@ public class UrlValidatorTest extends TestCase {
 		}
 		Random r = new Random();
 		String alphaNumericChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456890";
+		String numbers = "123456890";
 		String specialChars = "~`!@#$%^&*()_+-={}|[]:;'<>?,./'; +";
 		
+		// Treat lengths of 1 slightly differently
+		if (length == 1) {
+			int randomRes = r.nextInt(3);
+			
+			if (randomRes == 0 && useWhiteSpace)
+				return " ";
+			else if (randomRes == 1 && useSpecialChars)
+				return "" + specialChars.charAt(r.nextInt(specialChars.length()));	
+			else
+				return "" + numbers.charAt(r.nextInt(numbers.length()));
+		}
+		
 		if (useSpecialChars){
-			while (retStr.length() < length){
+			while (retStr.length() < length){			
 				// Flip coin for whether to the next char will be alphanumeric or special
 				if (r.nextInt(432) % 2 == 0)
 					retStr += alphaNumericChars.charAt(r.nextInt(alphaNumericChars.length()));

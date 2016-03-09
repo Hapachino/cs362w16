@@ -240,7 +240,7 @@ int testscoreFor(int cPlayer, struct gameState *state ) {
        handScore = get_value(c2, cPlayer, state);
        disScore = get_value(c3, cPlayer, state);
 
-       sumScore = (maxDeck*deckScore + maxHand*handScore + maxDis*disScore);
+       sumScore = ((maxDeck*deckScore) + (maxHand*handScore) + (maxDis*disScore));
 
        score = scoreFor(cPlayer, state);
 
@@ -248,12 +248,16 @@ int testscoreFor(int cPlayer, struct gameState *state ) {
            status ++;
            char name[MAX_STRING_LENGTH];
            cardNumToName(card[c1], name);
-           printf("Scenario: %-13s , ", name);
+           printf("Deck Scenario: %-13s , ", name);
            cardNumToName(card[c2], name);
-           printf("Scenario: %-13s , ", name);
+           printf("Hand Scenario: %-13s , ", name);
            cardNumToName(card[c3], name);
-           printf("Scenario: %-13s \n", name);
-           printf("Score is not correct scoreFor retuned: %i, but should have returned %i\n",score,sumScore);
+           printf("discard Scenario: %-13s \n", name);
+           printf("DECK COUNT: %i \n", state->deckCount[cPlayer]);
+           printf("Hand COUNT: %i \n", state->handCount[cPlayer]);
+           printf("discard COUNT: %i \n", state->discardCount[cPlayer]);
+           printf("full Deck COUNT div 10: %i \n", (fullDeckCount(cPlayer, 0, state) / 10));
+           printf("Score is not correct scoreFor returned: %i, but should have returned %i\n",score,sumScore);
        }
 
    }

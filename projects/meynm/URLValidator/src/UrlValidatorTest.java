@@ -99,16 +99,8 @@ public class UrlValidatorTest extends TestCase {
         inputUrl.add("pop3://www.yahoo.com:110");
         inputUrl.add("custprot://www.yahoo.com:7020");
         inputUrl.add("http://www.oregonstate.edu/~somestudent");
-        
-        // <scheme>://<username>:<password>@<host>:<port>/<path>;<parameters>?<query>#<fragment>
-        inputUrl.add("ftp://user:p@ssw0rd@domain.com");
-        inputUrl.add("ftp://user:p@ssw0rd@domain.com:21");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/sub");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub;param");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub;param?query");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub;param?query#fragment");
+        inputUrl.add("http://www.yahoo.com:999");
+        inputUrl.add("http://www.yahoo.com:1000");
         
         for(String s : inputUrl)
         {
@@ -179,7 +171,9 @@ public class UrlValidatorTest extends TestCase {
 		} else {
 			// Randomly decide whether or not to use white space
 			Boolean useWhiteSpace = (r.nextInt(2) == 0) ? true : false;
-			retStr = generateRandomString(length, true, useWhiteSpace);
+			// Ensure we get an invalid scheme by sticking a special char in it
+			retStr += "" + "#$%^&".charAt(r.nextInt(5));
+			retStr += generateRandomString(length, true, useWhiteSpace);
 		}
 		
 		return retStr;
@@ -213,10 +207,23 @@ public class UrlValidatorTest extends TestCase {
 		}
 		Random r = new Random();
 		String alphaNumericChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456890";
+		String numbers = "123456890";
 		String specialChars = "~`!@#$%^&*()_+-={}|[]:;'<>?,./'; +";
 		
+		// Treat lengths of 1 slightly differently
+		if (length == 1) {
+			int randomRes = r.nextInt(3);
+			
+			if (randomRes == 0 && useWhiteSpace)
+				return " ";
+			else if (randomRes == 1 && useSpecialChars)
+				return "" + specialChars.charAt(r.nextInt(specialChars.length()));	
+			else
+				return "" + numbers.charAt(r.nextInt(numbers.length()));
+		}
+		
 		if (useSpecialChars){
-			while (retStr.length() < length){
+			while (retStr.length() < length){			
 				// Flip coin for whether to the next char will be alphanumeric or special
 				if (r.nextInt(432) % 2 == 0)
 					retStr += alphaNumericChars.charAt(r.nextInt(alphaNumericChars.length()));
@@ -516,128 +523,7 @@ public class UrlValidatorTest extends TestCase {
 		return results;
 	}
 	
-	
-	
-/* ******************************************************************************************************************************
- * Example test: All URLs in the form
- * 
- * {AlphaFirstString}://{AlphaNumString}.{AlphaNumString}.{tldString}:{int16}/{AlphaNumString}?{AlphaNumString}={AlphaNumString}
- * 
- * should be valid,
- * 
- * where 	AlphaNumString : string of letters/numbers
- * 			AlphaFirstString : AlphaNumString starting with a letter
- * 			tldString : one of accepted top-level domains
- *
- * and everything after TLD is optional, the path may have more than one string, and the query may have more than one parameter
- * 
- *******************************************************************************************************************************/
-		
-		public void testRandomAllPartsValid()
-		{
-			int numTests = 1000;
-			int failedTests = 0;
-			ArrayList<TestResult> results = testRandom(
-				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good, 
-				TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good
-			);
-			
-			for(TestResult t : results) 
-			{
-				if(t.valid == false) {		// all should be valid
-					failedTests++;
-					System.out.println(t.valid + "\t" + t.url);
-				}		
-			}
-			System.out.println(numTests + " tests\n" + failedTests + " failures.");
-		}
-		
-		
-		
-/* ******************************************************************************************************************************
- * Example test: All URLs in the form
- * 
- * {AlphaFirstString}://{String}.{AlphaNumString}.{tldString}:{int16}/{AlphaNumString}?{AlphaNumString}={AlphaNumString}
- * 
- * should be invalid,
- * 
- * where	String : string with non-alphaNum chars
- * 		 	AlphaNumString : string of letters/numbers
- * 			AlphaFirstString : AlphaNumString starting with a letter
- * 			tldString : one of accepted top-level domains
- * 
- *******************************************************************************************************************************/
-		
-		public void testRandomBadScheme()
-		{
-			int numTests = 100;
-			int failedTests = 0;
-			ArrayList<TestResult> results = testRandom(
-				numTests, TestParam.Bad, TestParam.Good, TestParam.Good, TestParam.Good, 
-				TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good
-			);
-			for(TestResult t : results) 
-			{
-				System.out.println(t.valid + "\t" + t.url);
-				if(t.valid == true) {		// all should be invalid
-					failedTests++;					
-				}		
-			}
-			System.out.println(numTests + " tests\n" + failedTests + " failures.");
-		}
-		
-		
-		
-/* ******************************************************************************************************************************
- * Example test: All URLs in the form
- * 
- * {AlphaFirstString}://{AlphaNumString}.{AlphaNumString}.{tldString}
- * 
- * should be valid,
- * 
- * where 	AlphaNumString : string of letters/numbers
- * 			AlphaFirstString : AlphaNumString starting with a letter
- * 			tldString : one of accepted top-level domains
- * 
- *******************************************************************************************************************************/
-		
-		public void testRandomValidNoPPQ() {
-			int numTests = 1000;
-			int failedTests = 0;
-			ArrayList<TestResult> results = testRandom(
-				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good, 
-				TestParam.Good, TestParam.Empty, TestParam.Empty, TestParam.Empty
-			);
-			for(TestResult t : results) 
-			{
-				System.out.println(t.valid + "\t" + t.url);
-				if(t.valid == false) {		// all should be valid
-					failedTests++;
-					//System.out.println(t.valid + "\t" + t.url);
-				}		
-			}
-			System.out.println(numTests + " tests\n" + failedTests + " failures.");
-		}
 
-
-		
-	public void testYourFirstPartition() {
-
-	}
-		
-	public void testYourSecondPartition() {
-
-	}
-
-	public void testIsValid() {
-		for (int i = 0; i < 10000; i++) {
-
-		}
-	}
-
-	public void testAnyOtherUnitTest() {
-
-	}
 	/**
 	 * Create set of tests by taking the testUrlXXX arrays and running through
 	 * all possible permutations of their combinations.
@@ -972,25 +858,28 @@ public class UrlValidatorTest extends TestCase {
 		//Test result should be valid
 		if (flag == 0) {
 			for (TestResult t: res) {
-				System.out.println(t.valid + "\t" + t.url);
+				//System.out.println(t.valid + "\t" + t.url);
 				if(t.valid == false) {		// all should be valid
 					failedTests++;
-					//System.out.println(t.valid + "\t" + t.url);
+					System.out.println(t.valid + "\t" + t.url);
 				}	
 			}
-			System.out.println(numTests + " tests\n" + failedTests + " failures.");
+			//System.out.println(numTests + " tests\n" + failedTests + " failures.");
 		}
 		//Test result should be invalid
 		if (flag == 1) {
 			for (TestResult t: res) {
-				System.out.println(t.valid + "\t" + t.url);
+				//System.out.println(t.valid + "\t" + t.url);
 				if(t.valid != false) {		// all should be valid
 					failedTests++;
-					//System.out.println(t.valid + "\t" + t.url);
+					System.out.println(t.valid + "\t" + t.url);
 				}	
 			}
-			System.out.println(numTests + " tests\n" + failedTests + " failures.");
+			//System.out.println(numTests + " tests\n" + failedTests + " failures.");
 		}
+		
+		if (failedTests > 0)
+			System.out.println(numTests + " tests\n" + failedTests + " failures.");
 	}
 	
 	ArrayList<String> tldList =   new ArrayList<>(Arrays.asList("ac", "ad", "ae", "aero", "af", "ag", "ai", "al", "am", "an", "ao", "aq", "ar", "arpa", "as", "asia", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "biz", "bj", "bm", "bn", "bo", "br", "bs", "bt", "bv", "bw", "by", "bz", "ca", "cat", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm", "cn", "co", "com", "coop", "cr", "cu", "cv", "cx", "cy", "cz", "de", "dj", "dk", "dm", "do", "dz", "ec", "edu", "ee", "eg", "er", "es", "et", "eu", "fi", "fj", "fk", "fm", "fo", "fr", "ga", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm", "gn", "gov", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy", "hk", "hm", "hn", "hr", "ht", "hu", "id", "ie", "il", "im", "in", "info", "int", "io", "iq", "ir", "is", "it", "je", "jm", "jo", "jobs", "jp", "ke", "kg", "kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz", "la", "lb", "lc", "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly", "ma", "mc", "md", "me", "mg", "mh", "mil", "mk", "ml", "mm", "mn", "mo", "mobi", "mp", "mq", "mr", "ms", "mt", "mu", "museum", "mv", "mw", "mx", "my", "mz", "na", "name", "nc", "ne", "net", "nf", "ng", "ni", "nl", "no", "np", "nr", "nu", "nz", "om", "org", "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "pro", "ps", "pt", "pw", "py", "qa", "re", "ro", "root", "rs", "ru", "rw", "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl", "sm", "sn", "so", "sr", "st", "su", "sv", "sy", "sz", "tc", "td", "tel", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to", "tp", "tr", "travel", "tt", "tv", "tw", "tz", "ua", "ug", "uk", "um", "us", "uy", "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "ye", "yt", "yu", "za", "zm", "zw" ));

@@ -1,0 +1,27 @@
+/*
+queryBug.txt
+Team Members: 
+	-David Profio
+	-Christopher French Loomis
+	-Nathan Thunem
+CS362 Winter 2016
+
+
+	URLs with a query string marked invalid
+
+	UrlValidator.java
+
+	Serious Bug
+
+	Can be reproduced everytime
+
+	Run UrlValidator.java
+	Pass any URL with a query (ie - "http://www.google.com?action=view") to method isValid()
+	Always returns false (it is invalid)
+
+	isValid() should return true, as these are legitimate URLs
+
+	This bug does not result in a crash, but is noted as a serious bug as it's function is wrong.
+	It is marked serious as this product cannot ship with this bug, due to being fundamentally wrong.
+
+*/

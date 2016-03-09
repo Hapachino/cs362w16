@@ -149,6 +149,7 @@ public class RegexValidator implements Serializable {
         if (value == null) {
             return null;
         }
+        //System.out.println("regexval.match: first");
         for (int i = 0; i < patterns.length; i++) {
             Matcher matcher = patterns[i].matcher(value);
             if (matcher.matches()) {
@@ -160,6 +161,8 @@ public class RegexValidator implements Serializable {
                 return groups;
             }
         }
+        //System.out.println("regexval.match: second");
+        
         return null;
     }
 

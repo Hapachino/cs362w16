@@ -132,7 +132,13 @@ public class DomainValidator implements Serializable {
      * @return true if the parameter is a valid domain name
      */
     public boolean isValid(String domain) {
+    	//System.out.println("domainval: domain is: ");
+    	//System.out.println(domain);
         String[] groups = domainRegex.match(domain);
+        //System.out.println("length is:" + groups.length);
+       //System.out.println("groups are: ");
+        for(int i = 0; i < groups.length; i++)
+        	//System.out.println(groups[i]);
         if (groups != null && groups.length > 0) {
             return isValidTld(groups[0]);
         } else if(allowLocal) {

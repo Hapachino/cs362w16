@@ -277,11 +277,7 @@ int playSmithy(int currentPlayer, struct gameState * state, int handPos) {
   int i;
   int j;
 
-  if (currentPlayer != 0) {
-    j = 4;
-  } else {
-    j = 3;
-  }
+  j = 4;
 
   for (i = 0; i < j; i++)
   {
@@ -310,7 +306,7 @@ int playAdventurer(int currentPlayer, struct gameState * state, int drawntreasur
       z++;
     }
   }
-  z--;
+
   while(z-1>=0) {
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
@@ -327,7 +323,6 @@ int playGreatHall(int currentPlayer, struct gameState * state, int handPos) {
   state->numActions++;
   
   //discard card from hand
-  currentPlayer = 1 - currentPlayer;
   discardCard(handPos, currentPlayer, state, 0);
   return 0;
 }
@@ -336,12 +331,7 @@ int playEmbargo(int currentPlayer, struct gameState * state, int choice1, int ha
   //+2 Coins
   int num_coins = 0;
 
-  int rand_select = handPos;
-  if (rand_select % 2 == 0) {
-    num_coins = 4;
-  } else {
-    num_coins = 2;
-  }
+  num_coins = 2;
 
   state->coins = state->coins + num_coins;
   

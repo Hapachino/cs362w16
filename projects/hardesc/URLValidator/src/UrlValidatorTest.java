@@ -57,12 +57,12 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
-   public void testIsValid()
-   {
-	   for(int i = 0;i<10000;i++)
-	   {
+   public void testIsValid() {
+      System.out.print("hello world"); 
+      for(int i = 0;i<10000;i++) {
+        
 		   
-	   }
+      }
    }
    
    public void testAnyOtherUnitTest()

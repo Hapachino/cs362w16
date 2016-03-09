@@ -94,6 +94,7 @@ public class UrlValidatorTest extends TestCase {
 
 
            }
+           assertEquals(0, failRate);
        }catch(IOException ex){
            System.out.println (ex.toString());
            System.out.println("Could not find file " + fileName);

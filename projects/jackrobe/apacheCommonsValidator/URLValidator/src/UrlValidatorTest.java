@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//TODO make the system out put to a file for use, not just screen output
 
 import junit.framework.TestCase;
 import java.net.*;
@@ -137,6 +137,73 @@ class helperFunctions {
         return badUrls;
     }
 
+
+    // Runs the test on the section specified by int
+    //Returns the failrate for that test
+    //prints out the fails
+    public int sectionTest(int test){
+
+        //define some stuff
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        helperFunctions h = new helperFunctions();
+        List<String> failedUrls = new ArrayList<String>();
+        List<String> badUrls = new ArrayList<String>();
+
+        String fileName = "src\\UrlsToVerify.txt";
+        String[] urls = null;
+
+        int failRate =0;
+        boolean testWhole, testAuth, testPath, testPort, testQu, testScheme ;
+
+        URL aURL = null;
+
+
+        //read in Valid urls
+        try{
+            urls = h.readLines(fileName);
+        }catch(IOException ex){
+            System.out.println (ex.toString());
+            System.out.println("Could not find file " + fileName);
+        };
+
+        badUrls = h.makeInvalidPart(urls, test);
+
+        //Mostly the same as the KnownValid except looking for passing b/c it should be failing in these cases
+        //todo possibly refactor if we make more
+        //pass them to isValid
+
+        for (String url: badUrls) {
+            try {
+                aURL = new URL(url);
+
+            }catch(IOException ex) {
+
+                //System.out.println (ex.toString());
+                //System.out.println("URL didn't work " + fileName);
+            }
+
+            testWhole = urlVal.isValid(url);
+
+            if (testWhole) {
+
+                failRate++;
+                failedUrls.add(url);
+                System.out.println("URL: " + url);
+            }
+        }
+
+        if (failRate > 0) {
+
+            System.out.println("Failed Testing " + failRate + " test(s) of " + urls.length);
+            System.out.println("The following Urls Passed But MAYBE should not have " + failedUrls);
+
+        }else{
+            System.out.println("Passed"+ urls.length+ " test(s)");
+        }
+
+        return failRate;
+
+    }
 }
 
 
@@ -153,6 +220,8 @@ public class UrlValidatorTest extends TestCase {
     //Tests Known Valid URLS, using a text file
     public void testKnownValid()
    {
+
+       System.out.println("TESTING KNOWN GOOD URLS ------------------------------- ");
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 
        //read in Valid urls
@@ -230,24 +299,43 @@ public class UrlValidatorTest extends TestCase {
    }
 
    public void testPort(){
-       //todo add code similar to testBadAuthority()
+       //todo add code similar to others
+       //todo first verify that the testSection is dealing with the port
    }
 
    public void testPath()
    {
-       //todo add code similar to testBadAuthority()
+       System.out.println("TESTING PATHS ------------------------------- ");
+       helperFunctions h = new helperFunctions();
+       int fails;
+       fails = h.sectionTest(2);
+       assertEquals(0,fails);
    }
     public void testHost()
     {
-        //todo add code similar to testBadAuthority()
+        //todo add code similar to others
+        //todo first verify that the testSection is doing this correctly
     }
     public void testQuery()
     {
-        //todo add code similar to testBadAuthority()
+        //todo add code similar others
     }
     public void testProtocol()
     {
-        //todo add code similar to testBadAuthority()
+        System.out.println("TESTING PROTOCOL ------------------------------- ");
+        helperFunctions h = new helperFunctions();
+        int fails;
+        fails = h.sectionTest(4);
+        assertEquals(0,fails);
+    }
+    public void testBadAuthority() {
+
+        System.out.println("TESTING AUTHORITY ------------------------------- ");
+        helperFunctions h = new helperFunctions();
+        int fails;
+        fails = h.sectionTest(1);
+        assertEquals(0,fails);
+
     }
 
     //This is a not a test so much as usfule for checking the output of the
@@ -290,71 +378,5 @@ public class UrlValidatorTest extends TestCase {
 
     }
 
-    public void testBadAuthority() {
-
-        //define some stuff
-        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-        helperFunctions h = new helperFunctions();
-        List<String> failedUrls = new ArrayList<String>();
-        List<String> badUrls = new ArrayList<String>();
-
-        String fileName = "src\\UrlsToVerify.txt";
-        String[] urls = null;
-
-        int failRate =0;
-        boolean testWhole, testAuth, testPath, testPort, testQu, testScheme ;
-
-        URL aURL = null;
-
-
-        //read in Valid urls
-        try{
-            urls = h.readLines(fileName);
-        }catch(IOException ex){
-                System.out.println (ex.toString());
-                System.out.println("Could not find file " + fileName);
-        };
-
-        //TODO I'm only changing one part; we'll need to do this for all parts
-        //TODO refactor so that it's portable to checking different parts
-        //TODO add this to separate tests
-        badUrls = h.makeInvalidPart(urls, 1);
-
-        //Mostly the same as the KnownValid except looking for passing b/c it should be failing in these cases
-        //todo possibly refactor if we make more
-        //pass them to isValid
-
-        for (String url: badUrls) {
-            try {
-                aURL = new URL(url);
-
-            }catch(IOException ex) {
-
-                System.out.println (ex.toString());
-                System.out.println("URL didn't work " + fileName);
-            }
-
-            testWhole = urlVal.isValid(url);
-
-            if (testWhole) {
-
-                failRate++;
-                failedUrls.add(url);
-                System.out.println("URL: " + url);
-            }
-        }
-
-        if (failRate > 0) {
-
-            System.out.println("Failed Testing " + failRate + " test(s) of " + urls.length);
-            System.out.println("The following Urls Passed But MAYBE should not have " + failedUrls);
-
-        }else{
-            System.out.println("Passed"+ urls.length+ " test(s)");
-        }
-        assertEquals(0, failRate);
-
-    }
-   
 
 }

@@ -160,46 +160,46 @@ public class UrlValidatorTest extends TestCase {
        helperFunctions h = new helperFunctions();
        int failRate =0;
        List<String> failedUrls = new ArrayList<String>();
-       boolean testWhole, testAuth, testPath, testHost, testQu, testProtocol ;
-
+       boolean testWhole, testAuth, testPath, testHost, testQuery, testProtocol ;
 
        try {
+
            String[] urls = h.readLines(fileName);
 
-           //pass them to isValid
+           //pass the lines to isValid parts
            for (String url: urls) {
+
                URL aURL = new URL(url);
                //TODO make it test the host too!
                //todo make sure I'm hitting all the parts
 
                testAuth = urlVal.isValidAuthority(aURL.getAuthority());
                testPath = urlVal.isValidPath(aURL.getPath());
-               testQu = urlVal.isValidQuery(aURL.getQuery());
+               testQuery = urlVal.isValidQuery(aURL.getQuery());
                testProtocol = urlVal.isValidScheme(aURL.getProtocol());
                testWhole = urlVal.isValid(url);
-
 
                if (!testAuth) {
 
                    //assertEquals(true,testAuth);
-                   System.out.println("Authority failed ");
+                   System.out.println(" Authority failed");
                }
 
                else if (!testPath) {
 
                    //assertEquals(true,testPath);
-                   System.out.println("Test Path failed");
+                   System.out.println(" Test Path failed");
                }
 
-               else if (!testQu) {
+               else if (!testQuery) {
 
-                   System.out.println("Query failed");
+                   System.out.println(" Query failed");
                }
 
                else if (!testProtocol) {
 
 
-                   System.out.println("Scheme failed");
+                   System.out.println(" Scheme failed");
                }
 
 
@@ -207,7 +207,7 @@ public class UrlValidatorTest extends TestCase {
 
                    failRate++;
                    failedUrls.add(url);
-                   System.out.println("URL: " + url);
+                   System.out.print(" URL: " + url);
                }
 
            }
@@ -229,11 +229,9 @@ public class UrlValidatorTest extends TestCase {
 
    }
 
-
    public void testPort(){
        //todo add code similar to testBadAuthority()
    }
-
 
    public void testPath()
    {
@@ -252,6 +250,8 @@ public class UrlValidatorTest extends TestCase {
         //todo add code similar to testBadAuthority()
     }
 
+    //This is a not a test so much as usfule for checking the output of the
+    //function that generates bad URL's
     public void testPRINTBAD()
     {
         //define some stuff

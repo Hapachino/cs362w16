@@ -89,39 +89,45 @@ public class UrlValidatorTest extends TestCase {
                //todo I know this next section needs to be refactored but I have to run and want the thought/idea to be there
                //when I come back Also it's not giving useful information at all, I thought I could add more than one assert to thetest
                // but I guess I'm mistaken
-               if ( !testAuth  ){
+
+               if (!testAuth) {
 
                    //assertEquals(true,testAuth);
                    System.out.println("Authority failed ");
                }
-               if ( !testPath  ){
+
+               if (!testPath) {
 
                    //assertEquals(true,testPath);
-                   System.out.println("Test Path failed" );
-               }
-               if ( !testQu  ){
-
-                   System.out.println("Query failed" );
-               }
-               if ( !testScheme  ){
-
-
-                   System.out.println("Scheme failed" );
+                   System.out.println("Test Path failed");
                }
 
-               if ( !testWhole  ){
+               if (!testQu) {
+
+                   System.out.println("Query failed");
+               }
+               if (!testScheme) {
+
+
+                   System.out.println("Scheme failed");
+               }
+
+               if (!testWhole) {
 
                    failRate++;
                    failedUrls.add(url);
-                   System.out.println("URL: " + url );
+                   System.out.println("URL: " + url);
+               }
 
-           if( failRate > 0){
+               if (failRate > 0) {
 
-               System.out.println("Failed Testing " + failRate + " test(s) of " + urls.length);
-               System.out.println("The following Urls Failed " + failedUrls);
+                   System.out.println("Failed Testing " + failRate + " test(s) of " + urls.length);
+                   System.out.println("The following Urls Failed " + failedUrls);
 
+               }
            }
-           assertEquals(0, failRate);
+
+                   assertEquals(0, failRate);
        }catch(IOException ex){
            System.out.println (ex.toString());
            System.out.println("Could not find file " + fileName);

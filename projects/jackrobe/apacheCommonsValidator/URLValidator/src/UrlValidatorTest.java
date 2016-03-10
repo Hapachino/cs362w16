@@ -17,7 +17,7 @@
 
 
 import junit.framework.TestCase;
-
+import java.net.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -72,26 +72,60 @@ public class UrlValidatorTest extends TestCase {
        helperFunctions h = new helperFunctions();
        int failRate =0;
        List<String> failedUrls = new ArrayList<String>();
-
+       boolean testWhole, testAuth, testPath, testPort, testQu, testScheme ;
        try {
            String[] urls = h.readLines(fileName);
 
            //pass them to isValid
            for (String url: urls) {
-               boolean test = urlVal.isValid(url);
+               URL aURL = new URL(url);
 
-               if ( !test){
+               testAuth = urlVal.isValidAuthority(aURL.getAuthority());
+               testPath = urlVal.isValidPath(aURL.getPath());
+               testQu = urlVal.isValidQuery(aURL.getQuery());
+               testScheme = urlVal.isValidScheme(aURL.getProtocol());
+               testWhole = urlVal.isValid(url);
 
-                   failRate++;
-                   failedUrls.add(url);
+               //todo I know this next section needs to be refactored but I have to run and want the thought/idea to be there
+               //when I come back Also it's not giving useful information at all, I thought I could add more than one assert to thetest
+               // but I guess I'm mistaken
+               if ( !testAuth  ){
+
+                   assertEquals(true,testAuth);
+               }
+               if ( !testPath  ){
+
+                   assertEquals(true,testPath);
+               }
+               if ( !testQu  ){
+
+
+                   assertEquals(true,testQu);
+               }
+               if ( !testScheme  ){
+
+
+                   assertEquals(true,testScheme);
+               }
+
+               if ( !testWhole  ){
+
+
+                   assertEquals(true,testWhole);
+               }
+
+               // todo probably for got a few when I redid this part .. in a hurry.
+              if(!testPath || !testQu || !testWhole || !testScheme){
+                  failRate++;
+                  failedUrls.add(url);
+
                }
            }
 
            if( failRate > 0){
 
-               System.out.println("Failed Testing " + failRate + " test(s) of" + urls.length);
+               System.out.println("Failed Testing " + failRate + " test(s) of " + urls.length);
                System.out.println("The following Urls Failed " + failedUrls);
-
 
            }
            assertEquals(0, failRate);

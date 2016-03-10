@@ -91,36 +91,29 @@ public class UrlValidatorTest extends TestCase {
                // but I guess I'm mistaken
                if ( !testAuth  ){
 
-                   assertEquals(true,testAuth);
+                   //assertEquals(true,testAuth);
+                   System.out.println("Authority failed ");
                }
                if ( !testPath  ){
 
-                   assertEquals(true,testPath);
+                   //assertEquals(true,testPath);
+                   System.out.println("Test Path failed" );
                }
                if ( !testQu  ){
 
-
-                   assertEquals(true,testQu);
+                   System.out.println("Query failed" );
                }
                if ( !testScheme  ){
 
 
-                   assertEquals(true,testScheme);
+                   System.out.println("Scheme failed" );
                }
 
                if ( !testWhole  ){
 
-
-                   assertEquals(true,testWhole);
-               }
-
-               // todo probably for got a few when I redid this part .. in a hurry.
-              if(!testPath || !testQu || !testWhole || !testScheme){
-                  failRate++;
-                  failedUrls.add(url);
-
-               }
-           }
+                   failRate++;
+                   failedUrls.add(url);
+                   System.out.println("URL: " + url );
 
            if( failRate > 0){
 

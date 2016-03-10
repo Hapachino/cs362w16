@@ -21,7 +21,9 @@ import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -39,7 +41,8 @@ public class UrlValidatorTest extends TestCase {
 
 	private boolean printStatus = false;
 	private boolean printIndex = false; // print index that indicates current scheme, host, port, path, query test we're using.
-
+	String randomBadTestResultsPath = "randomBadTestResults.txt";
+	
 	enum TestParam { Good, Bad, Empty };
 	
 	public class TestResult {
@@ -615,7 +618,58 @@ public class UrlValidatorTest extends TestCase {
 	 * 			sld, port, path, and query are all optional (e.g. can be invalid or empty)
 	 * 			
 	 * 
-	 *******************************************************************************************************************************/
+	 *******************************************************************************************************************************/	
+	public void testInvalidPartitions() {
+		
+		try{
+			FileWriter fw = new FileWriter(randomBadTestResultsPath, false);
+			fw.close();
+		}
+		catch(IOException e) {
+			System.out.println("Error resetting random bad test result file.");
+			return;
+		}
+		
+		int numTests = 100;
+		int scheme, sep, auth, sld, tld, port, path, query;
+		ArrayList<TestParam> params = new ArrayList<TestParam>();
+		params.add(0, TestParam.Good);
+		params.add(1, TestParam.Bad);
+		params.add(2, TestParam.Empty);
+		
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (sep = 0; sep < 3; sep++) {
+				for (auth = 0; auth < 3; auth++) {
+					for (sld = 0; sld < 3; sld++) {
+						for (tld = 0; tld < 3; tld++) {
+							for (port = 0; port < 3; port++) {
+								for (path = 0; path < 3; path++) {
+									for (query = 0; query < 3; query++) {
+										if(scheme+sep+auth+sld+tld == 0 && port != 1 && path != 1 && query != 1) {
+												continue;																						
+										} else {
+											String header = 
+													"scheme: " + scheme +
+													"\tseparator: " + sep + 
+													"\tauthority: " + auth + 
+													"\tSLD: " + sld +
+													"\tTLD: " + tld +
+													"\tport: " + port +
+													"\tpath: " + path +
+													"\tquery: " + query;
+											System.out.println("Testing " + header);
+											ArrayList<TestResult> tResults = testRandom (
+													numTests, TestParam.Bad, params.get(sep), params.get(auth),
+													params.get(sld), params.get(tld), params.get(port), 
+													params.get(path), params.get(query)
+											);											
+											logResults( randomBadTestResultsPath, header, tResults, numTests, false);
+										}
+										
+									
+		}}}}}}}}
+	}
+	/*
 	public void testInvalidPartitions() {
 		int numTests = 100;
 		int scheme, sep, auth, sld, tld, port, path, query;
@@ -833,6 +887,7 @@ public class UrlValidatorTest extends TestCase {
 											printResults(badQuery, numTests, 1);
 										}}}}}}}	
 	}
+	*/
 	
 	public ArrayList<TestParam> randParams() {
 		ArrayList<TestParam> params = new ArrayList<TestParam>();
@@ -880,6 +935,36 @@ public class UrlValidatorTest extends TestCase {
 		
 		if (failedTests > 0)
 			System.out.println(numTests + " tests\n" + failedTests + " failures.");
+	}
+	
+	public void logResults(String path, String header, ArrayList<TestResult> res, int numTests, boolean flag) {
+		FileWriter fw = null;
+		PrintWriter pw = null;
+		try {
+			if(null != (fw = new FileWriter(path,true) )) {
+				pw = new PrintWriter(fw);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}		
+		pw.println("\n\t**********\t" + header + "\t**********");
+		int failCount = 0, testCount = 0;
+		for(TestResult t : res) 
+		{
+			testCount++;
+			if(t.valid != flag) {
+				pw.print("FAIL:\t" + t.valid + "\t" + t.url + "\n");
+				failCount++;
+			}		
+		}
+		pw.println("\t" + testCount + " tests");
+		if(failCount > 0) {
+			pw.println("\t" + failCount + " failures");
+		}
+		if(pw != null) {
+			pw.close();
+		}
 	}
 	
 	ArrayList<String> tldList =   new ArrayList<>(Arrays.asList("ac", "ad", "ae", "aero", "af", "ag", "ai", "al", "am", "an", "ao", "aq", "ar", "arpa", "as", "asia", "at", "au", "aw", "ax", "az", "ba", "bb", "bd", "be", "bf", "bg", "bh", "bi", "biz", "bj", "bm", "bn", "bo", "br", "bs", "bt", "bv", "bw", "by", "bz", "ca", "cat", "cc", "cd", "cf", "cg", "ch", "ci", "ck", "cl", "cm", "cn", "co", "com", "coop", "cr", "cu", "cv", "cx", "cy", "cz", "de", "dj", "dk", "dm", "do", "dz", "ec", "edu", "ee", "eg", "er", "es", "et", "eu", "fi", "fj", "fk", "fm", "fo", "fr", "ga", "gb", "gd", "ge", "gf", "gg", "gh", "gi", "gl", "gm", "gn", "gov", "gp", "gq", "gr", "gs", "gt", "gu", "gw", "gy", "hk", "hm", "hn", "hr", "ht", "hu", "id", "ie", "il", "im", "in", "info", "int", "io", "iq", "ir", "is", "it", "je", "jm", "jo", "jobs", "jp", "ke", "kg", "kh", "ki", "km", "kn", "kp", "kr", "kw", "ky", "kz", "la", "lb", "lc", "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly", "ma", "mc", "md", "me", "mg", "mh", "mil", "mk", "ml", "mm", "mn", "mo", "mobi", "mp", "mq", "mr", "ms", "mt", "mu", "museum", "mv", "mw", "mx", "my", "mz", "na", "name", "nc", "ne", "net", "nf", "ng", "ni", "nl", "no", "np", "nr", "nu", "nz", "om", "org", "pa", "pe", "pf", "pg", "ph", "pk", "pl", "pm", "pn", "pr", "pro", "ps", "pt", "pw", "py", "qa", "re", "ro", "root", "rs", "ru", "rw", "sa", "sb", "sc", "sd", "se", "sg", "sh", "si", "sj", "sk", "sl", "sm", "sn", "so", "sr", "st", "su", "sv", "sy", "sz", "tc", "td", "tel", "tf", "tg", "th", "tj", "tk", "tl", "tm", "tn", "to", "tp", "tr", "travel", "tt", "tv", "tw", "tz", "ua", "ug", "uk", "um", "us", "uy", "uz", "va", "vc", "ve", "vg", "vi", "vn", "vu", "wf", "ws", "ye", "yt", "yu", "za", "zm", "zw" ));

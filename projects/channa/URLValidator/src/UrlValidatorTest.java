@@ -39,6 +39,26 @@ public class UrlValidatorTest extends TestCase {
    	public void testManualTest()
    	{
 		ResultPair[] manualUrls = {
+			new ResultPair("http://www.reddit.com/r/osuonlinecs/", true),
+			new ResultPair("http://www.reddit.com/osuonlinecs/", true),
+			new ResultPair("http://github.com", true),
+			new ResultPair("h3tp:/\\something.wlel.wakyyy", false),
+			new ResultPair("ftp://127.0.0.1", true),
+			new ResultPair("https://///127.0.0.1", false),
+			new ResultPair("hppt://www.kpcc.com", false),
+			new ResultPair("sftp://student@access.engr.oregon.edu", false),
+			new ResultPair("http://www.yahoo.com", true),
+			new ResultPair("htt:/\\www.yahoo.com", false),
+			new ResultPair("http://www.oregonstate.edu", true),
+			new ResultPair("http://www.amazon123.com", true),
+			new ResultPair("http:///www.google.com", false),
+			new ResultPair("httpz://www.amazon.com", false),
+			new ResultPair("http://vww.amazon.com", false),
+			new ResultPair("http://www.amazon.notacountry", false),
+			new ResultPair("httP://www.cnn.com", true),
+			new ResultPair("https://www.codecademy.com/learn", true),
+			new ResultPair("http://www.realclearpolitics.com/", true),
+			new ResultPair("https://www.google.com/webhp?hl=en", true),
 			new ResultPair("ftp://ftp.funet.fi/pub/standards/RFC/rfc959.txt", true),
 			new ResultPair("https://piazza.com/class/iip31fywxe72b0", true),
 			new ResultPair("https://piazza.com/class/iip31fywxe72b0?cid=135", true),
@@ -49,7 +69,7 @@ public class UrlValidatorTest extends TestCase {
 			new ResultPair("http://www.amazon.co.jp/", true),
 			new ResultPair("http://www.visualgo.net/", true),
 			new ResultPair("http://www.123.com", true)
-	    };
+	    	};
 
 	   	int manIdx;
 	   	boolean e, a;

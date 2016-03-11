@@ -21,7 +21,9 @@ import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -39,7 +41,8 @@ public class UrlValidatorTest extends TestCase {
 
 	private boolean printStatus = false;
 	private boolean printIndex = false; // print index that indicates current scheme, host, port, path, query test we're using.
-
+	String randomBadTestResultsPath = "randomBadTestResults.txt";
+	
 	enum TestParam { Good, Bad, Empty };
 	
 	public class TestResult {
@@ -99,16 +102,8 @@ public class UrlValidatorTest extends TestCase {
         inputUrl.add("pop3://www.yahoo.com:110");
         inputUrl.add("custprot://www.yahoo.com:7020");
         inputUrl.add("http://www.oregonstate.edu/~somestudent");
-        
-        // <scheme>://<username>:<password>@<host>:<port>/<path>;<parameters>?<query>#<fragment>
-        inputUrl.add("ftp://user:p@ssw0rd@domain.com");
-        inputUrl.add("ftp://user:p@ssw0rd@domain.com:21");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/sub");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub;param");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub;param?query");
-        inputUrl.add("ftp://user:p@ssw0rd@www.domain.com/~sub;param?query#fragment");
+        inputUrl.add("http://www.yahoo.com:999");
+        inputUrl.add("http://www.yahoo.com:1000");
         
         for(String s : inputUrl)
         {
@@ -179,7 +174,9 @@ public class UrlValidatorTest extends TestCase {
 		} else {
 			// Randomly decide whether or not to use white space
 			Boolean useWhiteSpace = (r.nextInt(2) == 0) ? true : false;
-			retStr = generateRandomString(length, true, useWhiteSpace);
+			// Ensure we get an invalid scheme by sticking a special char in it
+			retStr += "" + "#$%^&".charAt(r.nextInt(5));
+			retStr += generateRandomString(length, true, useWhiteSpace);
 		}
 		
 		return retStr;
@@ -213,10 +210,23 @@ public class UrlValidatorTest extends TestCase {
 		}
 		Random r = new Random();
 		String alphaNumericChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456890";
+		String numbers = "123456890";
 		String specialChars = "~`!@#$%^&*()_+-={}|[]:;'<>?,./'; +";
 		
+		// Treat lengths of 1 slightly differently
+		if (length == 1) {
+			int randomRes = r.nextInt(3);
+			
+			if (randomRes == 0 && useWhiteSpace)
+				return " ";
+			else if (randomRes == 1 && useSpecialChars)
+				return "" + specialChars.charAt(r.nextInt(specialChars.length()));	
+			else
+				return "" + numbers.charAt(r.nextInt(numbers.length()));
+		}
+		
 		if (useSpecialChars){
-			while (retStr.length() < length){
+			while (retStr.length() < length){			
 				// Flip coin for whether to the next char will be alphanumeric or special
 				if (r.nextInt(432) % 2 == 0)
 					retStr += alphaNumericChars.charAt(r.nextInt(alphaNumericChars.length()));
@@ -516,128 +526,7 @@ public class UrlValidatorTest extends TestCase {
 		return results;
 	}
 	
-	
-	
-/* ******************************************************************************************************************************
- * Example test: All URLs in the form
- * 
- * {AlphaFirstString}://{AlphaNumString}.{AlphaNumString}.{tldString}:{int16}/{AlphaNumString}?{AlphaNumString}={AlphaNumString}
- * 
- * should be valid,
- * 
- * where 	AlphaNumString : string of letters/numbers
- * 			AlphaFirstString : AlphaNumString starting with a letter
- * 			tldString : one of accepted top-level domains
- *
- * and everything after TLD is optional, the path may have more than one string, and the query may have more than one parameter
- * 
- *******************************************************************************************************************************/
-		
-		public void testRandomAllPartsValid()
-		{
-			int numTests = 1000;
-			int failedTests = 0;
-			ArrayList<TestResult> results = testRandom(
-				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good, 
-				TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good
-			);
-			
-			for(TestResult t : results) 
-			{
-				if(t.valid == false) {		// all should be valid
-					failedTests++;
-					System.out.println(t.valid + "\t" + t.url);
-				}		
-			}
-			System.out.println(numTests + " tests\n" + failedTests + " failures.");
-		}
-		
-		
-		
-/* ******************************************************************************************************************************
- * Example test: All URLs in the form
- * 
- * {AlphaFirstString}://{String}.{AlphaNumString}.{tldString}:{int16}/{AlphaNumString}?{AlphaNumString}={AlphaNumString}
- * 
- * should be invalid,
- * 
- * where	String : string with non-alphaNum chars
- * 		 	AlphaNumString : string of letters/numbers
- * 			AlphaFirstString : AlphaNumString starting with a letter
- * 			tldString : one of accepted top-level domains
- * 
- *******************************************************************************************************************************/
-		
-		public void testRandomBadScheme()
-		{
-			int numTests = 100;
-			int failedTests = 0;
-			ArrayList<TestResult> results = testRandom(
-				numTests, TestParam.Bad, TestParam.Good, TestParam.Good, TestParam.Good, 
-				TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good
-			);
-			for(TestResult t : results) 
-			{
-				System.out.println(t.valid + "\t" + t.url);
-				if(t.valid == true) {		// all should be invalid
-					failedTests++;					
-				}		
-			}
-			System.out.println(numTests + " tests\n" + failedTests + " failures.");
-		}
-		
-		
-		
-/* ******************************************************************************************************************************
- * Example test: All URLs in the form
- * 
- * {AlphaFirstString}://{AlphaNumString}.{AlphaNumString}.{tldString}
- * 
- * should be valid,
- * 
- * where 	AlphaNumString : string of letters/numbers
- * 			AlphaFirstString : AlphaNumString starting with a letter
- * 			tldString : one of accepted top-level domains
- * 
- *******************************************************************************************************************************/
-		
-		public void testRandomValidNoPPQ() {
-			int numTests = 1000;
-			int failedTests = 0;
-			ArrayList<TestResult> results = testRandom(
-				numTests, TestParam.Good, TestParam.Good, TestParam.Good, TestParam.Good, 
-				TestParam.Good, TestParam.Empty, TestParam.Empty, TestParam.Empty
-			);
-			for(TestResult t : results) 
-			{
-				System.out.println(t.valid + "\t" + t.url);
-				if(t.valid == false) {		// all should be valid
-					failedTests++;
-					//System.out.println(t.valid + "\t" + t.url);
-				}		
-			}
-			System.out.println(numTests + " tests\n" + failedTests + " failures.");
-		}
 
-
-		
-	public void testYourFirstPartition() {
-
-	}
-		
-	public void testYourSecondPartition() {
-
-	}
-
-	public void testIsValid() {
-		for (int i = 0; i < 10000; i++) {
-
-		}
-	}
-
-	public void testAnyOtherUnitTest() {
-
-	}
 	/**
 	 * Create set of tests by taking the testUrlXXX arrays and running through
 	 * all possible permutations of their combinations.
@@ -729,7 +618,58 @@ public class UrlValidatorTest extends TestCase {
 	 * 			sld, port, path, and query are all optional (e.g. can be invalid or empty)
 	 * 			
 	 * 
-	 *******************************************************************************************************************************/
+	 *******************************************************************************************************************************/	
+	public void testInvalidPartitions() {
+		
+		try{
+			FileWriter fw = new FileWriter(randomBadTestResultsPath, false);
+			fw.close();
+		}
+		catch(IOException e) {
+			System.out.println("Error resetting random bad test result file.");
+			return;
+		}
+		
+		int numTests = 100;
+		int scheme, sep, auth, sld, tld, port, path, query;
+		ArrayList<TestParam> params = new ArrayList<TestParam>();
+		params.add(0, TestParam.Good);
+		params.add(1, TestParam.Bad);
+		params.add(2, TestParam.Empty);
+		
+		for (scheme = 0; scheme < 3; scheme++) {
+			for (sep = 0; sep < 3; sep++) {
+				for (auth = 0; auth < 3; auth++) {
+					for (sld = 0; sld < 3; sld++) {
+						for (tld = 0; tld < 3; tld++) {
+							for (port = 0; port < 3; port++) {
+								for (path = 0; path < 3; path++) {
+									for (query = 0; query < 3; query++) {
+										if(scheme+sep+auth+sld+tld == 0 && port != 1 && path != 1 && query != 1) {
+												continue;																						
+										} else {
+											String header = 
+													"scheme: " + scheme +
+													"\tseparator: " + sep + 
+													"\tauthority: " + auth + 
+													"\tSLD: " + sld +
+													"\tTLD: " + tld +
+													"\tport: " + port +
+													"\tpath: " + path +
+													"\tquery: " + query;
+											System.out.println("Testing " + header);
+											ArrayList<TestResult> tResults = testRandom (
+													numTests, TestParam.Bad, params.get(sep), params.get(auth),
+													params.get(sld), params.get(tld), params.get(port), 
+													params.get(path), params.get(query)
+											);											
+											logResults( randomBadTestResultsPath, header, tResults, numTests, false);
+										}
+										
+									
+		}}}}}}}}
+	}
+	/*
 	public void testInvalidPartitions() {
 		int numTests = 100;
 		int scheme, sep, auth, sld, tld, port, path, query;
@@ -947,6 +887,7 @@ public class UrlValidatorTest extends TestCase {
 											printResults(badQuery, numTests, 1);
 										}}}}}}}	
 	}
+	*/
 	
 	public ArrayList<TestParam> randParams() {
 		ArrayList<TestParam> params = new ArrayList<TestParam>();
@@ -972,24 +913,57 @@ public class UrlValidatorTest extends TestCase {
 		//Test result should be valid
 		if (flag == 0) {
 			for (TestResult t: res) {
-				System.out.println(t.valid + "\t" + t.url);
+				//System.out.println(t.valid + "\t" + t.url);
 				if(t.valid == false) {		// all should be valid
 					failedTests++;
-					//System.out.println(t.valid + "\t" + t.url);
+					System.out.println(t.valid + "\t" + t.url);
 				}	
 			}
-			System.out.println(numTests + " tests\n" + failedTests + " failures.");
+			//System.out.println(numTests + " tests\n" + failedTests + " failures.");
 		}
 		//Test result should be invalid
 		if (flag == 1) {
 			for (TestResult t: res) {
-				System.out.println(t.valid + "\t" + t.url);
+				//System.out.println(t.valid + "\t" + t.url);
 				if(t.valid != false) {		// all should be valid
 					failedTests++;
-					//System.out.println(t.valid + "\t" + t.url);
+					System.out.println(t.valid + "\t" + t.url);
 				}	
 			}
+			//System.out.println(numTests + " tests\n" + failedTests + " failures.");
+		}
+		
+		if (failedTests > 0)
 			System.out.println(numTests + " tests\n" + failedTests + " failures.");
+	}
+	
+	public void logResults(String path, String header, ArrayList<TestResult> res, int numTests, boolean flag) {
+		FileWriter fw = null;
+		PrintWriter pw = null;
+		try {
+			if(null != (fw = new FileWriter(path,true) )) {
+				pw = new PrintWriter(fw);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}		
+		pw.println("\n\t**********\t" + header + "\t**********");
+		int failCount = 0, testCount = 0;
+		for(TestResult t : res) 
+		{
+			testCount++;
+			if(t.valid != flag) {
+				pw.print("FAIL:\t" + t.valid + "\t" + t.url + "\n");
+				failCount++;
+			}		
+		}
+		pw.println("\t" + testCount + " tests");
+		if(failCount > 0) {
+			pw.println("\t" + failCount + " failures");
+		}
+		if(pw != null) {
+			pw.close();
 		}
 	}
 	

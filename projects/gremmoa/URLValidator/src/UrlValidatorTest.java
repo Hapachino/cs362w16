@@ -50,7 +50,35 @@ public class UrlValidatorTest extends TestCase {
 
   ResultPair[] portParts = {new ResultPair(":80", true)};
 
-  ResultPair[] pathParts = {new ResultPair("/test", true)};
+  ResultPair[] pathParts = { new ResultPair("/",true),
+      new ResultPair("/#",false),
+      new ResultPair("/abcdefghijklmnopqrstuvwxyz",true),
+      new ResultPair("/ABCDEFGHIJKLMNOPQRSTUVWXYZ",true),
+      new ResultPair("/0123456789",true),
+      new ResultPair("/-:@&?=+,.!~*'%$_;()",true),
+      new ResultPair("/|",false),
+      new ResultPair("/`",false),
+      new ResultPair("/<",false),
+      new ResultPair("/>",false),
+      new ResultPair("/file/",true),
+      new ResultPair("/path123//file456",false),
+      new ResultPair("/../file",false),
+      new ResultPair("/../path1/file",true)/**/}; 
+  
+  ResultPair[] pathPartsSlashes = { new ResultPair("/",true),
+      new ResultPair("/#",false),
+      new ResultPair("/abcdefghijklmnopqrstuvwxyz",true),
+      new ResultPair("/ABCDEFGHIJKLMNOPQRSTUVWXYZ",true),
+      new ResultPair("/0123456789",true),
+      new ResultPair("/-:@&?=+,.!~*'%$_;()",true),
+      new ResultPair("/|",false),
+      new ResultPair("/`",false),
+      new ResultPair("/<",false),
+      new ResultPair("/>",false),
+      new ResultPair("/file/",true),
+      new ResultPair("/path123//file456",true),
+      new ResultPair("/../file",false),
+      new ResultPair("/../path1/file",true)};
 
   ResultPair[] queryParts = {new ResultPair("?test=true", true)};
 
@@ -71,8 +99,9 @@ public class UrlValidatorTest extends TestCase {
     assertFalse(urlVal.isValid("this_is_not_a_url"));
   }
 
-   public void testURLScheme()
-   {
+  
+  public void testURLScheme()
+  {
     //Test allowing only "test" scheme
     String[] schemes = {"test"};
     UrlValidator urlValStrictScheme = new UrlValidator(schemes);
@@ -93,6 +122,23 @@ public class UrlValidatorTest extends TestCase {
     assertFalse(urlValAnyScheme.isValid("https//www.amazon.com"));
     assertFalse(urlValAnyScheme.isValid("httpswww.amazon.com"));
     assertTrue(urlValAnyScheme.isValid("anything://www.amazon.com"));
+  }
+
+  public void testIsValidPath() {
+    
+    //test with ALLOW_2_Slashes option
+    UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
+    //iterates over each path in pathParts
+    for(int i = 0; i < pathParts.length; i++) {
+      assertEquals(pathParts[i].valid, urlVal.isValidPath(pathParts[i].item));
+    }
+    
+    //test with ALLOW_2_Slashes option
+    UrlValidator urlValSlashes = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
+    //iterates over each path in pathPartsSlashes
+    for(int i = 0; i < pathPartsSlashes.length; i++) {
+      assertEquals(pathPartsSlashes[i].valid, urlValSlashes.isValidPath(pathPartsSlashes[i].item));
+    }
   }
 
   public void testAllPartsCombinations()

@@ -24,10 +24,4 @@ CS362 Winter 2016
 	This bug does not result in a crash, but is noted as a serious bug as it's function is wrong.
 	It is marked serious as this product cannot ship with this bug, due to being fundamentally wrong.
 
-	Bug manifests at line 446 of URLValidator.java
-
-	446	return !QUERY_PATTERN.matcher(query).matches();
-
-	This returns the opposite boolean it should.
-
 */

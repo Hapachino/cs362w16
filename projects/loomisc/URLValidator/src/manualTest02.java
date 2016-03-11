@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class manualTest01 {
+public class manualTest02 {
 
 	@Before
 	public void setUp() throws Exception {
@@ -175,3 +175,4 @@ public class manualTest01 {
 	}
 
 }
+

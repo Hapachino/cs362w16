@@ -104,6 +104,8 @@ public class UrlValidatorTest extends TestCase {
         inputUrl.add("http://www.oregonstate.edu/~somestudent");
         inputUrl.add("http://www.yahoo.com:999");
         inputUrl.add("http://www.yahoo.com:1000");
+        inputUrl.add("http:///www.yahoo.com");
+        inputUrl.add("http://www.yahoo.com//foobar");
         
         for(String s : inputUrl)
         {
@@ -203,9 +205,42 @@ public class UrlValidatorTest extends TestCase {
 		return sb.toString();
 	}
 	
+	// This overload of generateRandomString() guarantees the string returned will contain at least one of the characters in the 
+	// string specialChars
+	public String generateRandomString(int length, String specialChars) {
+		if(length == 0) {
+			return "";
+		}
+		StringBuffer randomStringBuffer = new StringBuffer();
+		Random r = new Random();
+		String alphaNumericChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456890";
+		String numbers = "123456890";
+		boolean includesSpecialChars = false;
+		for(int i = 0; i < length; i++) 
+		{
+			if(r.nextInt() % 3 == 0) {
+				randomStringBuffer.append( specialChars.charAt( r.nextInt( specialChars.length() ) ) );
+				includesSpecialChars = true;
+			}
+			else if(r.nextInt() % 5 == 0) {
+				randomStringBuffer.append( numbers.charAt( r.nextInt( numbers.length() ) ) );
+			}
+			else {
+				randomStringBuffer.append( alphaNumericChars.charAt(r.nextInt( alphaNumericChars.length() ) ) );
+			}
+		}
+		if(!includesSpecialChars) {
+			randomStringBuffer.setCharAt( 
+					r.nextInt( randomStringBuffer.length() ), 
+					specialChars.charAt( r.nextInt( specialChars.length() ) ) 
+			);
+		}
+		return randomStringBuffer.toString();
+	}
+	
 	public String generateRandomString(int length, Boolean useSpecialChars, Boolean useWhiteSpace) {
 		String retStr = "";
-		if(length == 0){
+		if(length == 0) {
 			return retStr;
 		}
 		Random r = new Random();
@@ -243,7 +278,7 @@ public class UrlValidatorTest extends TestCase {
 			// Choose a random spot in the string to add white space
 			/*
 			String charToReplace = "" + retStr.charAt(r.nextInt(retStr.length()));
-			retStr = retStr.replaceFirst(charToReplace, " ");	// this seems to be causing a problem so at least for now I'll do it manually
+			retStr = retStr.replaceFirst(charToReplace, " ");
 			*/
 			StringBuffer rsb = new StringBuffer();
 			rsb.append(retStr);
@@ -318,17 +353,6 @@ public class UrlValidatorTest extends TestCase {
  *
  * Recent changes: 
  * 			
- * 			all components can be empty.
- * 
- * 			testRandom takes new parameter:		TestParam separator		can be valid, which right now is :// or invalid, which 
- * 																		is a random string, or empty
- * 
- * 			for bad ports, now using only random numbers outside allowable range. (Not specifically testing 0, this can be a
- * 			manual test or we can add it to the randomizer.)
- * 
- * 			now using an extra param for generateValidString: ArrayList<String> containing additional substrings besides alphanum
- * 			which should be considered valid. This is empty except for path and query. (Not sure about whether path should be.)
- *
  *			When generating a scheme, we now call some new methods specifically design to handle schemes. You can pass true/false
  *			for the 'valid' param, which will result in a valid/invalid scheme string. That method also makes use of commonly used
  *			known good schemes such as ftp, dns, https, etc...
@@ -346,6 +370,8 @@ public class UrlValidatorTest extends TestCase {
 		ArrayList<TestResult> results = new ArrayList<TestResult>();
 		String testUrl;
 		int testCount = 0;
+		
+		String badChars = " %\\";
 		
 		for (int i = 0; i < numTests; i++) 
 		{
@@ -370,7 +396,7 @@ public class UrlValidatorTest extends TestCase {
 			} else if(separator == TestParam.Bad) {
 				String s;
 				do {
-					s = generateRandomString(1 + r.nextInt(4));
+					s = generateRandomString(1 + r.nextInt(4), badChars);
 				} while("://" == s);
 				sb.append(s);
 			}			
@@ -402,7 +428,7 @@ public class UrlValidatorTest extends TestCase {
 				urlSb.append(tldList.get(testCount % tldList.size()));
 			} else if(tld == TestParam.Bad) {
 				if(r.nextInt(2) == 0) {
-					urlSb.append( generateRandomString( 1 + r.nextInt(5) ) );
+					urlSb.append( generateRandomString( 1 + r.nextInt(5), badChars ) );
 				} 
 				else {
 					String s;
@@ -491,7 +517,7 @@ public class UrlValidatorTest extends TestCase {
 					queryString = "" + letters.charAt(r.nextInt(letters.length())); 
 					queryString += generateRandomString(1 + r.nextInt(10), false, false);
 				} else {
-					queryString = generateRandomString(1 + r.nextInt(10));
+					queryString = generateRandomString(1 + r.nextInt(10), badChars);
 				}
 				
 				urlSb.append(queryString + "=");
@@ -505,7 +531,7 @@ public class UrlValidatorTest extends TestCase {
 					valueStr = valueStr.replace("=", "");
 					queryString = valueStr;
 				} else {
-					queryString = generateRandomString(1 + r.nextInt(10)) + generateRandomString(1 + r.nextInt(5), true, false);
+					queryString = generateRandomString(1 + r.nextInt(10), badChars) + generateRandomString(1 + r.nextInt(5), true, false);
 				}
 				
 				urlSb.append(queryString);
@@ -630,7 +656,7 @@ public class UrlValidatorTest extends TestCase {
 			return;
 		}
 		
-		int numTests = 100;
+		int numTests = 1000;
 		int scheme, sep, auth, sld, tld, port, path, query;
 		ArrayList<TestParam> params = new ArrayList<TestParam>();
 		params.add(0, TestParam.Good);
@@ -669,6 +695,7 @@ public class UrlValidatorTest extends TestCase {
 									
 		}}}}}}}}
 	}
+	
 	/*
 	public void testInvalidPartitions() {
 		int numTests = 100;

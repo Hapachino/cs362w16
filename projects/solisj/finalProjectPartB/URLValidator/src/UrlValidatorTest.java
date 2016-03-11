@@ -388,10 +388,94 @@ public class UrlValidatorTest extends TestCase {
     
     public void testIsValid()
     {
-        for(int i = 0;i<10000;i++)
-        {
-            
-        }
+       testIsNull();
+       testASCII_PATTERN();
+       testUrlMatcher();
+    }
+    
+    public void testUrlMatcher()
+    {
+    	
+    	/***************************************
+    	 * okay, this one's going to be fun.  
+    	 * We've got to test this mama-jamma regex string:
+    	 * ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?
+    	 * Parsing this thing is a bear, and I don't know that I can
+    	 * spend the time digging into every nook and cranny of this expression.
+    	 * 
+    	 * So, I'm going to try to start simple.  Just some basic tests, to check
+    	 * basic functionality and add to our code coverage.
+    	 * 
+    	 * I'm going to fuzz this.  Starting with a valid string and injecting 
+    	 * different characters into the test string. 
+    	 * 
+    	 * I'm pretty sure that there's not a bug in here.  But just to be sure,
+    	 * I'm going to write this function in the correct version then copy it 
+    	 * over here. -waddelto
+    	 *********************************************/
+    	
+    		UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    		String testString = "http://www.amazon.com";
+    		
+    		boolean expected = true;
+    		
+    		boolean result = urlVal.isValid(testString);
+    		assertEquals(expected, result);
+    		
+    		StringBuilder fuzzedString = new StringBuilder(testString);
+    		fuzzedString.setCharAt(3, '#');
+    		
+    		/*********************************
+    		 * We could do more work on this fuzzer, modifying different 
+    		 * components of the URL.
+    		 * 
+    		 **************************************/
+    		
+    		expected = false;
+    		result = urlVal.isValid(fuzzedString.toString());
+    		assertEquals(expected, result);
+    	
+    }
+
+    
+    public void testASCII_PATTERN()
+    {
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    	String nonASCIIString = "";
+    	
+    	//we're going to try building some invalid escape characters into a string
+    	//java compiler errors on string = "\x01\x02...."
+    	//So we're building the string a character at a time.
+    	for (int i = 0; i < 5; i++){
+    		nonASCIIString = nonASCIIString + "\\";
+    		nonASCIIString = nonASCIIString + "x";
+    		nonASCIIString = nonASCIIString + "0";
+    		nonASCIIString = nonASCIIString + Integer.toString(i);
+
+    	}
+    	
+    	boolean expected = false;
+    	
+    	boolean result = urlVal.isValid(nonASCIIString);
+    	
+    	assertEquals(expected, result);
+    	if (result != expected)
+    		System.out.println("ASCII check failed.");
+    }
+    
+    public void testIsNull()
+    {
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    	String nullString = "";
+    	
+    	boolean expected = false;
+    	
+    	boolean result = urlVal.isValid(nullString);
+    	//System.out.print("String: " + testURL + "\tExpected: " + expected +
+    	//		"\tResult: " + result + "\n");
+ 		assertEquals(expected, result);
+ 		if (result != expected) 
+ 			System.out.println("Null check failed");
     }
     
     public void testAnyOtherUnitTest()

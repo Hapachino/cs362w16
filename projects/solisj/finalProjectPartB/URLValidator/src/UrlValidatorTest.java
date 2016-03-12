@@ -43,12 +43,14 @@ public class UrlValidatorTest extends TestCase {
     public void testManualTest()
     {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-        System.out.println(urlVal.isValid("http://www.amazon.com"));							// default URL given
-        System.out.println(urlVal.isValid("http://www.google.com"));							// test typical URL
-        System.out.println(urlVal.isValid(""));												// test empty URL
-        System.out.println(urlVal.isValid("https://www.google.com"));						// test scheme https://
-        System.out.println(urlVal.isValid("https://www.maps.google.com"));					// test subdomain
-        System.out.println(urlVal.isValid("http://www.google.com:8000"));					// test port
+        System.out.println("\nRunning manual tests...");
+        System.out.println("\nTesting http://www.google.com \nResult: " +  urlVal.isValid("http://www.google.com"));    // test typical URL
+        System.out.println("\nTesting http://www.amazon.com \nResult: " +  urlVal.isValid("http://www.amazon.com"));    // default URL given
+        System.out.println("\nTesting empty URL \nResult: " +  urlVal.isValid(""));                                     // test empty URL
+        System.out.println("\nTesting https://www.google.com \nResult: " +  urlVal.isValid("https://www.google.com"));    // test scheme https://
+        System.out.println("\nTesting https://www.maps.google.com \nResult: " +  urlVal.isValid("https://www.maps.google.com"));    //test subdomain
+        System.out.println("\nTesting http://www.google.com:8000 \nResult: " +  urlVal.isValid("http://www.google.com:8000"));    //test port
+      
     }
     
     
@@ -358,39 +360,15 @@ public class UrlValidatorTest extends TestCase {
         }
     }
     
-    public void testYourThirdPartition()
-    {
-    	//testing queries
-    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-    	String testString = "";
-    	
-    	ResultPair[] testQuery = {new ResultPair("?action=delete", true),
-                new ResultPair("?foo=bar&bar=foo", true),
-                new ResultPair("?=foo&bar=foo", false),                      
-                new ResultPair("", true)
-    	};
-    	
-    	//Test that http://www.google.com to be used with all test schemes is valid
-    	System.out.println("Testing http://www.google.com \nResult: " +  urlVal.isValid("http://www.google.com"));     // test typical URL
-    	
-    	System.out.println("\nTesting queries...\n");
-    	for (int i = 0; i < testQuery.length; i++)
-    	{
-    		testString = "http://www.google.com" + testQuery[i].item;
-    		
-    		System.out.println(testString + " \nExpected: " + testQuery[i].valid);
-            System.out.println("Actual: " + urlVal.isValid(testString) + "\n");		
-    	}
-    	
-    	
-        
-    }
-    
+   
     public void testIsValid()
     {
        testIsNull();
        testASCII_PATTERN();
        testUrlMatcher();
+       testIsValidQuery();
+       testIsValidPath();
+       
     }
     
     public void testUrlMatcher()
@@ -460,7 +438,14 @@ public class UrlValidatorTest extends TestCase {
     	
     	assertEquals(expected, result);
     	if (result != expected)
-    		System.out.println("ASCII check failed.");
+    	{
+    		System.out.println("\nASCII check failed.");
+    	}
+    	else
+    	{
+    		System.out.println("\nASCII check passed.");
+    	}
+    		
     }
     
     public void testIsNull()
@@ -472,11 +457,136 @@ public class UrlValidatorTest extends TestCase {
     	
     	boolean result = urlVal.isValid(nullString);
     	//System.out.print("String: " + testURL + "\tExpected: " + expected +
-    	//		"\tResult: " + result + "\n");
+    			//"\tResult: " + result + "\n");
  		assertEquals(expected, result);
- 		if (result != expected) 
- 			System.out.println("Null check failed");
+ 		if (result != expected)
+ 		{
+ 			System.out.println("\nNull check failed");
+ 		}
+ 		else
+ 		{
+ 			System.out.println("\nNull check passed");
+ 		}
+ 			
     }
+    
+    public void testIsValidQuery()
+    {
+    	//testing queries
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    	String testString = "";
+    	
+    	ResultPair[] testQuery = {new ResultPair("?action=delete", true),
+                new ResultPair("?foo=bar&bar=foo", true),
+                new ResultPair("?=foo&bar=foo", false),                      
+                new ResultPair("", true)                         //should return true for null queries
+    	};
+    	
+    	System.out.println("\nTesting queries...\n");
+    	//Test that http://www.google.com to be used with all test queries is valid
+    	System.out.println("First testing that http://www.google.com \nResult: " +  urlVal.isValid("http://www.google.com"));     // test typical URL
+    	
+    	
+    	for (int i = 0; i < testQuery.length; i++)
+    	{
+    		testString = "http://www.google.com" + testQuery[i].item;
+    		
+    		System.out.println(testString + " \nExpected: " + testQuery[i].valid);
+            System.out.println("Actual: " + urlVal.isValid(testString) + "\n");		
+    	}
+    	      
+    }
+    
+    public void testIsValidPath()
+    {
+    	//testing path
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    	String testString = "";
+    	
+    	ResultPair[] testPath = {new ResultPair("/test1", true),
+    	        new ResultPair("/foo123", true),
+    	        new ResultPair("/$17", true),
+    	        new ResultPair("/..", false),
+    	        new ResultPair("/../", false),
+    	        new ResultPair("/foo/", true),
+    	        new ResultPair("", true),
+    	        new ResultPair("/foo/bar", true),
+    	        new ResultPair("/test1//file", false)
+    	};
+    	
+    	System.out.println("\nTesting paths...\n");
+    	//Test that http://www.google.com to be used with all test paths is valid
+    	System.out.println("First testing that http://www.google.com \nResult: " +  urlVal.isValid("http://www.google.com") + "\n");     // test typical URL
+    	
+    	for (int i = 0; i < testPath.length; i++)
+    	{
+    		testString = "http://www.google.com" + testPath[i].item;
+    		
+    		System.out.println(testString + " \nExpected: " + testPath[i].valid);
+            System.out.println("Actual: " + urlVal.isValid(testString) + "\n");		
+    	}
+    	
+    }
+    
+    public void testIsValidFragment()
+    {
+    	String testFragmentString = "";
+    	
+    	ResultPair[] testFragment = {new ResultPair("test", true),
+                new ResultPair("1", true),
+                new ResultPair("*", true),
+                new ResultPair("//", true),
+                new ResultPair("http:/", true),
+                new ResultPair("http:", true),
+                new ResultPair("http/", true),
+                new ResultPair(".", true),
+                new ResultPair("abc", true),
+                new ResultPair("foo", true),
+                new ResultPair("", true)};
+    	
+    	ResultPair[] testNullFragment = {
+                new ResultPair(null, true)};
+    	
+    	System.out.println("\nTesting fragments with default NO_FRAGMENTS option set to off...\n");
+    	
+    	UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    	
+    	for (int i = 0; i < testFragment.length; i++)
+    	{   		
+    		testFragmentString = testFragment[i].item;
+    		//run isValidFragment
+    		boolean result = urlVal.isValidFragment(testFragmentString);
+    		
+    		System.out.println("\nTesting \"" + testFragment[i].item + "\" \nExpected: " + testFragment[i].valid);
+            System.out.println("Actual: " + result + "\n");		
+    	}
+    	
+    	//test null fragment
+    	System.out.println("\nTesting \"" + testNullFragment[0].item + "\" \nExpected: " + testNullFragment[0].valid);
+        System.out.println("Actual: " + urlVal.isValidFragment(testNullFragment[0].item) + "\n");
+    	
+    	
+    	System.out.println("\nTesting fragments with NO_FRAGMENTS option set to on...\n");
+    	
+    	UrlValidator urlVal2 = new UrlValidator(null, null, UrlValidator.NO_FRAGMENTS);
+    	
+    	for (int i = 0; i < testFragment.length; i++)
+    	{   		
+    		testFragmentString = testFragment[i].item;
+    		//run isValidFragment
+    		boolean result = urlVal2.isValidFragment(testFragmentString);
+    		
+    		System.out.println("\nTesting \"" + testFragment[i].item + "\" \nExpected: " + !testFragment[i].valid); //expected value will be false since no fragments are allowed
+            System.out.println("Actual: " + result + "\n");		
+    	}
+    	
+    	//test null fragment
+    	System.out.println("\nTesting \"" + testNullFragment[0].item + "\" \nExpected: " + testNullFragment[0].valid);
+        System.out.println("Actual: " + urlVal2.isValidFragment(testNullFragment[0].item) + "\n");
+    		
+    }
+    
+    
     
     public void testAnyOtherUnitTest()
     {
@@ -546,8 +656,7 @@ public class UrlValidatorTest extends TestCase {
                 new ResultPair("?=foo&bar=foo", false),                      
                 new ResultPair("", true)
     	};
-    	
-    	
+    	   	
     	 /*
     	   A complete URL is composed of a scheme+authority+port+path+query,
     	   all of which must be individually valid for the entire URL to be considered
@@ -578,11 +687,9 @@ public class UrlValidatorTest extends TestCase {
     						
     						//run isValid()
     						boolean result = urlVal.isValid(testString);
-    						
-    						
+    												
     						if (expected != result)
-    						{
-    							
+    						{    							
     							System.out.println("Test#" + iterationNumber + "\n===========================");
     							System.out.println(testString + " \nExpected: " + expected);
         			            System.out.println("Actual: " + result + "\n");
@@ -593,10 +700,8 @@ public class UrlValidatorTest extends TestCase {
         			            System.out.println("Port: " + testPort[portIndex].item + ", " + testPort[portIndex].valid);
         			            System.out.println("Path: " + testPath[pathIndex].item + ", " + testPath[pathIndex].valid);
         			            System.out.println("Query: " + testQuery[queryIndex].item + ", " + testQuery[queryIndex].valid);
-        			            System.out.println("\n");
-        			               
+        			            System.out.println("\n");               
     						}
-    						
     			            //assertEquals(expected, result);
     						iterationNumber++;
                     	}
@@ -604,11 +709,7 @@ public class UrlValidatorTest extends TestCase {
             	}
         	}
     	}//end all for loops
-    	
-        
+  
     }
-
-    
-    
-    
+   
 }

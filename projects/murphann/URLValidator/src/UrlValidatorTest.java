@@ -304,6 +304,7 @@ public class UrlValidatorTest extends TestCase {
     {
        
     }
+
     /**
     * Create set of tests by taking the testUrlXXX arrays and
     * running through all possible permutations of their combinations.

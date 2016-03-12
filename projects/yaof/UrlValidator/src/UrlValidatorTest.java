@@ -38,7 +38,7 @@ Did you find any failures? Submit your test files and test cases as part of your
 
 When you find out any failure, debug using Eclipse debugger and try to localize 
 its cause.    Provide at what line/lines in what file the failure manifested 
-itself. Did you use any of Agan’s principle in debugging URLValidator?  (5 points)
+itself. Did you use any of Aganâ€™s principle in debugging URLValidator?  (5 points)
 
 Provide a report called URLValidator.pdf/URLValidator.txt (5 points). 
 You need to provide following details in the report. Clearly mention 
@@ -140,9 +140,9 @@ public class UrlValidatorTest extends TestCase {
    
    //Input for testUrlQuery
    ResultPair[] testUrlQuery = {
-	//throws error
-	new ResultPair("?action=view", true),
-	//throws error
+	   //throws error
+	   new ResultPair("?action=view", true),
+	   //throws error
            new ResultPair("?action=edit&mode=up", true),
            new ResultPair("?action=edit/mode=up", false),
            new ResultPair("??==?", false),
@@ -174,7 +174,7 @@ public class UrlValidatorTest extends TestCase {
    
    //Input for testPath
    ResultPair[] testPath = {
-		   new ResultPair("/test1", true),
+	   new ResultPair("/test1", true),
            new ResultPair("/t123", true),
            new ResultPair("/$23", true),
            new ResultPair("/..", false),
@@ -215,13 +215,13 @@ public class UrlValidatorTest extends TestCase {
 
    //Input for testUrlAuthority
    ResultPair[] testUrlAuthority = {
-		   new ResultPair("www.google.com", true),
+	   new ResultPair("www.google.com", true),
            new ResultPair("go.com", true),
            new ResultPair("go.au", true),
            new ResultPair("0.0.0.0", true),
            new ResultPair("255.255.255.255", true),
 	
-	//appears to be bug
+	   //appears to be bug
            new ResultPair("256.256.256.256", false),
            new ResultPair("255.com", true),
            new ResultPair("1.2.3.4.5", false),

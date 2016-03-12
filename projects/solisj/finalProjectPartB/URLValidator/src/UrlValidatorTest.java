@@ -368,6 +368,7 @@ public class UrlValidatorTest extends TestCase {
        testUrlMatcher();
        testIsValidQuery();
        testIsValidPath();
+       testIsValidFragment();
        
     }
     

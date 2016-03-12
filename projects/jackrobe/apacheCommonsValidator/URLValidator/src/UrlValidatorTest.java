@@ -53,10 +53,12 @@ class helperFunctions {
     }
 
     List<String> makeIP(int n){
-        String ip =null;
+
         List<String> ipList = new ArrayList<String>();
 
         for(int j = 0; j < n; j++){
+            String ip =null;
+
             for (int i = 0; i < 4; i++) {
 
                 int rand = ThreadLocalRandom.current().nextInt(0, 254);
@@ -69,6 +71,7 @@ class helperFunctions {
                     ip += String.valueOf(rand);
                 }
             }
+
             ipList.add(ip);
         }
 

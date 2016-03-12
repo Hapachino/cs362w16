@@ -63,12 +63,9 @@ class helperFunctions {
 
                 int rand = ThreadLocalRandom.current().nextInt(0, 254);
                 if (ip == null) {
-                    ip = String.valueOf(rand) + ".";
-                } else if (ip != null && i < 3) {
-                    ip += String.valueOf(rand) + ".";
-                } else {
-
-                    ip += String.valueOf(rand);
+                    ip = String.valueOf(rand);
+                } else if (ip != null) {
+                    ip += "." + String.valueOf(rand) ;
                 }
             }
 

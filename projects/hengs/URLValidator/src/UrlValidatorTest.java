@@ -71,7 +71,7 @@ public class UrlValidatorTest extends TestCase {
 	   String validPort = ":80";
 	   String validPath = "/test123";
 	   String validOption = "/test1/file";
-	   String validQuery = "?action=view";
+	   String validQuery = "";
 	   
 	   System.out.println("\nTesting Expected Good Schemes");
 	   for(int i = 0; i < 4; i++){
@@ -127,7 +127,7 @@ public class UrlValidatorTest extends TestCase {
 	   String validPort = ":80";
 	   String validPath = "/test123";
 	   String validOption = "/test1/file";
-	   String validQuery = "?action=view";
+	   String validQuery = "";
 	   
 	   System.out.println("\n\nTesting Expected Good Authority:");
 	   for(int i = 0; i < 7; i++){
@@ -181,7 +181,7 @@ public class UrlValidatorTest extends TestCase {
 	   //String validPort = ":80";
 	   String validPath = "/test123";
 	   String validOption = "/test1/file";
-	   String validQuery = "?action=view";
+	   String validQuery = "";
 	   
 	   System.out.println("\n\nTesting Expected Good Port:");
 	   for(int i = 0; i < 5; i++){
@@ -235,7 +235,7 @@ public void testYourFourthPartition(){
 	   String validPort = ":80";
 	   //String validPath = "/test123";
 	   String validOption = "/test1/file";
-	   String validQuery = "?action=view";
+	   String validQuery = "";
 	   
 	   System.out.println("\n\nTesting Expected Good Path:");
 	   for(int i = 0; i < 6; i++){
@@ -291,7 +291,7 @@ public void testYourFourthPartition(){
 	   String validPort = ":80";
 	   String validPath = "/test123";
 	   //String validOption = "/test1/file";
-	   String validQuery = "?action=view";
+	   String validQuery = "";
 	   
 	   System.out.println("\n\nTesting Expected Good Option:");
 	   for(int i = 0; i < 9; i++){
@@ -322,7 +322,7 @@ public void testYourFourthPartition(){
 		   System.out.println("\n\nTesting Sixth Partition: Query");
 		   
 		   String[] goodquery = new String[3];
-		   String[] badquery = new String[2];
+		   String[] badquery = new String[3];
 		   	   
 		   goodquery[0] = "?action=view";
 		   goodquery[1] = "?action=edit&mode=up";
@@ -330,6 +330,7 @@ public void testYourFourthPartition(){
 		  
 		   badquery[0] = "/dog/?action=";
 		   badquery[1] = "justquerying";
+		   badquery[2] = "/dog/action=";
 		      
 		   String validScheme = "http://";
 		   String validAuthority = "www.amazon.com";
@@ -349,7 +350,7 @@ public void testYourFourthPartition(){
 			   }
 		   }
 		   System.out.println("\n\nTesting Expected Bad Query");
-		   for(int i = 0; i < 2; i++){
+		   for(int i = 0; i < 3; i++){
 			   String testUrl = validScheme + validAuthority + validPort + validPath + validOption + badquery[i];
 			   if(urlVal.isValid(testUrl)){
 				   System.out.println("\nFAIL!!! Incorrect Expecation, URL is valid: " + testUrl);

@@ -70,6 +70,7 @@ public class unitTesting {
 			new ResultPair("", false),
 			new ResultPair("https://", true),
 			new ResultPair("http://", true),
+			new ResultPair("http:////", false),
 			new ResultPair("5®67", false),
 			new ResultPair("hfjhasfhsdkjhcbksjhdbckhjgfuweerugskjdascjhbasdjhgasjhfbljsdhcbkasdhfcjhsbcljbscjhbsdlbashgflashgfysagdcjhbschbasdfhgasuifgasdjbsdlcblsahgfljsabcljasbcljasfljgaiusefgehgfljsbcljsbdfljhgasdkfjuhaswiufhlskjcbnlsdjdbfljsdahfuysifcbasjchaspiawylafljsabcljasdhdfhgasygasdhcbbcsjhfgljweagfusdgljjhsdbckjhasdfjgsdfugwefhvasdkhfvashkfuyaevfuberyflgbrtuhjbskfhvdkjhikuajelfbhouerygjhbedcvjkhgduvcygdjkhbvfhjksgvuagfbaewfgbuchvsdkjhgfwegfusgdcjhbsdacjhguaedyfrugcjkhsdbckjhsdgfuygtewfytsdchvdsjkhcvsdakjagfuyaewtgfusdgkhsdkcjhvskjdhgfyuwetfrjhsgdfjkhvjkhvdgfyweagtrhbsfchvjkhgwejfgjhsdfjhsdvcjhsdgfywetruygdsfjkhvsdkchjvdkygfrewygfkjsdhvckhjsdgfhgewyruthjksdvcjksdhgfhgewyrgtsjkhdcvskjhdgfkyetwghjcjs://", false)
 	};
@@ -85,6 +86,12 @@ public class unitTesting {
 	static ResultPair[] domain = {
 		new ResultPair("", false),
 		new ResultPair("google.com", true),
+		new ResultPair("google", false),
+		new ResultPair("google com", false),
+		new ResultPair("google.com", true),
+		new ResultPair("apple-things.com", true),
+		new ResultPair("apple!.com", false),
+		new ResultPair("pickle@home.com", true),
 		new ResultPair("aplace.org", true),
 		new ResultPair("µ¶the±.com", false),
 		new ResultPair("fjhsdgfkjhsdkjfhvsdkjhfgkjhsdgfkhbsdkjcbsdjkhbfjksdgfkjhgsdkjhcbsdkjhfvkjhdgsfkjsdahgfljhdbsfljkbhsdajlcvbdlfbvlkjfdhglkjbfvlvkbdhvlkjdglkjvljbfdljbvhkdfhbkgvhfdgureytuiyreoituyerpterquypiueyroeruyijhdgfkjhdgfdjskhgfkdshlfdashljfglhdsgafljdfhglkjsfdhglhfiuadyouiyterquwotruoiewyupiorewyrweiotuerpiotudfjghdjkgfasdnhbvmbnxzvcmbnvcmbnvcbxmxmznbvxjhfgdkfjghdalkahureytuioyretiuoyrewuithgrewjgkfdshgfdioauysjegrtkyoyuipuiyy.net", true)
@@ -94,6 +101,7 @@ public class unitTesting {
 		new ResultPair("", true),
 		new ResultPair(":80", true),
 		new ResultPair(":443", true),
+		new ResultPair(":bill", false),
 		new ResultPair(":£¤¥", false),
 		new ResultPair(":1234567891234890", false) /* Will it be false? */
 	};
@@ -102,6 +110,7 @@ public class unitTesting {
 		new ResultPair("", true),
 		new ResultPair("/yes/alsoyes/", true),
 		new ResultPair("/okay/sure", true),
+		new ResultPair("\\okay\\sure", false),
 		new ResultPair("/¦§¨«", false),
 		new ResultPair("/sdhfkjsdahfk/asdjkfhaskdjfhkajsfh/fkjhasdkfjhasdkfjh/kjsdhfkajsdhfkjasdf/lkadsfkasdfkjsdahf/lkasdflkjasdfkjasdh/ouerotiueroiu/sdkfhkasdhfkjasdfh/lksdfjlkjsdhafkjasdh/kjasdflksdahfkjhasdkj/lksdhjflkasdjflkasjdf/ksdjhflkasdjflksdja/kjasjflksdjflkdsjaf/ikjdsflkasdjfioujasdkflj/klsdjflksdjfldkasf/", true)
 	};

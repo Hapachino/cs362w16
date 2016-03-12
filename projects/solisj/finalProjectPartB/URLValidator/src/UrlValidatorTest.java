@@ -43,14 +43,22 @@ public class UrlValidatorTest extends TestCase {
     public void testManualTest()
     {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        
         System.out.println("\nRunning manual tests...");
+        
+        //Expected valid tests   
         System.out.println("\nTesting http://www.google.com \nResult: " +  urlVal.isValid("http://www.google.com"));    // test typical URL
-        System.out.println("\nTesting http://www.amazon.com \nResult: " +  urlVal.isValid("http://www.amazon.com"));    // default URL given
-        System.out.println("\nTesting empty URL \nResult: " +  urlVal.isValid(""));                                     // test empty URL
+        System.out.println("\nTesting http://www.amazon.com \nResult: " +  urlVal.isValid("http://www.amazon.com"));    // default URL given                                          
         System.out.println("\nTesting https://www.google.com \nResult: " +  urlVal.isValid("https://www.google.com"));    // test scheme https://
         System.out.println("\nTesting https://www.maps.google.com \nResult: " +  urlVal.isValid("https://www.maps.google.com"));    //test subdomain
         System.out.println("\nTesting http://www.google.com:8000 \nResult: " +  urlVal.isValid("http://www.google.com:8000"));    //test port
-      
+          
+        //expected invalid tests
+        System.out.println("\nTesting empty URL \nResult: " +  urlVal.isValid(""));   // test empty URL
+        System.out.println("\nTesting htt://www.amazon.com \nResult: " +  urlVal.isValid("htt://www.amazon.com"));
+        System.out.println("\nTesting https://www.maps google.com \nResult: " +  urlVal.isValid("https://www.maps google.com"));
+        System.out.println("\nTesting http://www.google.com:123456789 \nResult: " +  urlVal.isValid("http://www.google.com:123456789"));    //test port
+        System.out.println("\nTesting http://www.amazon.123 \nResult: " +  urlVal.isValid("http://www.amazon.123"));
     }
     
     

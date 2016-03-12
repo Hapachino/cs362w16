@@ -272,24 +272,45 @@ public class UrlValidatorTest extends TestCase {
         }
     }
    
-   public void testIsValid()
-   {
-	   for(int i = 0;i<10000;i++)
-	   {
-		   
-	   }
-   }
-   
-   public void testAnyOtherUnitTest()
-   {
-	   
-   }
-   /**
+/* Partition6: (no optional components)
+ * (no scheme) + valid authority + (no port) + (no path) + (no query)
+ */
+    public void testYourFifthPartition()
+    {
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        System.out.println("Testing fifth partition:\n");
+
+        String url = partitionString(1, 1, 1, 1, 0);
+        boolean valid = urlVal.isValid(url);
+        if (valid)
+        {
+            System.out.println(url + " passed with valid authority and no optional components.\n");
+        }
+        else
+        {
+            System.out.println("ERROR: " + url + " failed with valid authority and no optional components.\n");
+        }
+    }
+
+    public void testIsValid()
+    {
+       for(int i = 0;i<10000;i++)
+       {
+           
+       }
+    }
+
+    public void testAnyOtherUnitTest()
+    {
+       
+    }
+
+    /**
     * Create set of tests by taking the testUrlXXX arrays and
     * running through all possible permutations of their combinations.
     *
     * @param testObjects Used to create a url.
     */
-   
+
 
 }

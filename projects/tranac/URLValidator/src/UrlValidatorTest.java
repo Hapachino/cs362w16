@@ -48,7 +48,8 @@ public class UrlValidatorTest extends TestCase {
 				  "http://www.amazon.com?action=edit&mode=up",
 				  "http://www.yahoo.co.uk",
 				  "ftp://www.thisshouldwork.com",
-				  "www.thisshouldalsowork.com"};
+				  "http://121.133.145.254",
+				  "ftp://192.168.100.002"};
 
 	   String[] testInvalidUrl= {"",
 			   		"http://yah oo.com",
@@ -65,7 +66,8 @@ public class UrlValidatorTest extends TestCase {
 					"http://www.amazon.com&34",
 					"http://www.amazon.com>action",
 					"http://go.33",
-					"http://.com"};	   
+					"http://256.256.256.256",
+					"ftp://192.256.256.256"};	   
 	   int i;      
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   boolean result;

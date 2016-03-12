@@ -52,6 +52,28 @@ class helperFunctions {
         return lines;
     }
 
+    List<String> makeIP(int n){
+        String ip =null;
+        List<String> ipList = new ArrayList<String>();
+
+        for(int j = 0; j < n; j++){
+            for (int i = 0; i < 4; i++) {
+
+                int rand = ThreadLocalRandom.current().nextInt(0, 254);
+                if (ip == null) {
+                    ip = String.valueOf(rand) + ".";
+                } else if (ip != null && i < 3) {
+                    ip += String.valueOf(rand) + ".";
+                } else {
+
+                    ip += String.valueOf(rand);
+                }
+            }
+            ipList.add(ip);
+        }
+
+        return ipList;
+    };
 
 }
 
@@ -274,5 +296,9 @@ public class UrlValidatorTest extends TestCase {
             System.out.println("Could not find file " + fileName);
         }
     }
+    public void testThis(){
+        helperFunctions h = new helperFunctions();
+        System.out.println(h.makeIP(10));
 
+    }
 }

@@ -46,11 +46,180 @@ public class UrlValidatorTest extends TestCase {
 
   ResultPair[] schemeParts = {new ResultPair("http://", true)};
 
-  ResultPair[] authorityParts = {new ResultPair("www.google.com", true)};
+  ResultPair[] authorityParts = { new ResultPair("www.google.com",true),
+      new ResultPair("www.google.com:3000",true),
+      new ResultPair("www.google.com:0",true),
+      new ResultPair("www.google.com:-1",false),
+      new ResultPair("www.google.com:99999",true),
+      new ResultPair("www.google.com:000000",false),
+      new ResultPair("www.google.com:a",false),
+      new ResultPair("www.google.com:99999a",false),    
+      new ResultPair("www.google.com:10000.999",false),
+      new ResultPair("asvr23.google.com",true),
+      new ResultPair("www.www.google.com",true),
+      new ResultPair("asdsader.435g.f82kfd1.google.com",true),
+      new ResultPair(".com",false),
+      new ResultPair("google.",false),
+      new ResultPair("google",false),
+      new ResultPair("google.com",true),
+      new ResultPair("google.com     ",true),
+      new ResultPair("abcdefghijklmnopqrstuvwxyz.com",true),
+      new ResultPair("ABCDEFGHIJKLMNOPQRSTUVWXYZ.COM",true),
+      new ResultPair("#.com",false),
+      new ResultPair("0123456789.com",true),
+      new ResultPair("-.com",false),
+      new ResultPair(":.com",false),
+      new ResultPair("@.com",false),
+      new ResultPair("&.com",false),
+      new ResultPair("?.com",false),
+      new ResultPair("=.com",false),
+      new ResultPair("+.com",false),
+      new ResultPair(",.com",false),
+      new ResultPair("!.com",false),
+      new ResultPair("~.com",false),
+      new ResultPair("*.com",false),
+      new ResultPair("'.com",false),
+      new ResultPair("%.com",false),
+      new ResultPair("_.com",false),
+      new ResultPair(";.com",false),
+      new ResultPair("(.com",false),
+      new ResultPair(").com",false),
+      new ResultPair("|.com",false),
+      new ResultPair("`.com",false),
+      new ResultPair("<.com",false),
+      new ResultPair(">.com",false),
+      new ResultPair("[.com",false),
+      new ResultPair("].com",false),
+      new ResultPair("{.com",false),
+      new ResultPair("}.com",false),
+      new ResultPair("google.arpa",true),
+      new ResultPair("google.ARPA",true),
+      new ResultPair("google.biz",true),
+      new ResultPair("google.name",true),
+      new ResultPair("google.az",true),
+      new ResultPair("google.is",true),
+      new ResultPair("google.na",true),
+      new ResultPair("google.za",true),
+      new ResultPair("google.a",false), 
+      new ResultPair("google.zldsjry",false),
+      new ResultPair("google.123",false),
+      new ResultPair("localhost",false),
+      new ResultPair("localdomain",false),
+      new ResultPair("0.0.0.0",true),
+      new ResultPair("0.0.0.-1",false),
+      new ResultPair("255.255.255.255",true),
+      new ResultPair("256.256.256.256",false),
+      new ResultPair("1.246.58.39",true),
+      new ResultPair("43.0.222.167.53",false),
+      new ResultPair("111.111.111",false),
+      new ResultPair(".111.111.111",false),
+      new ResultPair("",false)};
+  
+  
+  //I'm not sure whether the Result pairs that are commented out in this array
+  //should be valid? I tested with the correct version of URLValidator and 
+  //it was finding them to be valid (true) but I would like to have one or
+  //both of you take a look at it with me to see what you think. (Could be a bug?)
+  ResultPair[] authorityPartsLocal = { new ResultPair("www.google.com",true),
+      new ResultPair("www.google.com:3000",true),
+      new ResultPair("www.google.com:0",true),
+      new ResultPair("www.google.com:-1",false),
+      new ResultPair("www.google.com:99999",true),
+      new ResultPair("www.google.com:000000",false),
+      new ResultPair("www.google.com:a",false),
+      new ResultPair("www.google.com:99999a",false),    
+      new ResultPair("www.google.com:10000.999",false),
+      new ResultPair("asvr23.google.com",true),
+      new ResultPair("www.www.google.com",true),
+      new ResultPair("asdsader.435g.f82kfd1.google.com",true),
+      new ResultPair(".com",false),
+      new ResultPair("google.",false),
+      /*new ResultPair("google",false),*/
+      new ResultPair("google.com",true),
+      new ResultPair("google.com     ",true),
+      new ResultPair("abcdefghijklmnopqrstuvwxyz.com",true),
+      new ResultPair("ABCDEFGHIJKLMNOPQRSTUVWXYZ.COM",true),
+      new ResultPair("#.com",false),
+      new ResultPair("0123456789.com",true),
+      new ResultPair("-.com",false),
+      new ResultPair(":.com",false),
+      new ResultPair("@.com",false),
+      new ResultPair("&.com",false),
+      new ResultPair("?.com",false),
+      new ResultPair("=.com",false),
+      new ResultPair("+.com",false),
+      new ResultPair(",.com",false),
+      new ResultPair("!.com",false),
+      new ResultPair("~.com",false),
+      new ResultPair("*.com",false),
+      new ResultPair("'.com",false),
+      new ResultPair("%.com",false),
+      new ResultPair("_.com",false),
+      new ResultPair(";.com",false),
+      new ResultPair("(.com",false),
+      new ResultPair(").com",false),
+      new ResultPair("|.com",false),
+      new ResultPair("`.com",false),
+      new ResultPair("<.com",false),
+      new ResultPair(">.com",false),
+      new ResultPair("[.com",false),
+      new ResultPair("].com",false),
+      new ResultPair("{.com",false),
+      new ResultPair("}.com",false),
+      new ResultPair("google.arpa",true),
+      new ResultPair("google.ARPA",true),
+      new ResultPair("google.biz",true),
+      new ResultPair("google.name",true),
+      new ResultPair("google.az",true),
+      new ResultPair("google.is",true),
+      new ResultPair("google.na",true),
+      new ResultPair("google.za",true),
+      new ResultPair("google.a",false), 
+      /*new ResultPair("google.zldsjry",false),
+      new ResultPair("google.123",false),*/
+      new ResultPair("localhost",true),
+      new ResultPair("localdomain",true),
+      new ResultPair("0.0.0.0",true),
+      new ResultPair("0.0.0.-1",false),
+      new ResultPair("255.255.255.255",true),
+      new ResultPair("256.256.256.256",false),
+      new ResultPair("1.246.58.39",true),
+      new ResultPair("43.0.222.167.53",false),
+      new ResultPair("111.111.111",false),
+      new ResultPair(".111.111.111",false),
+      new ResultPair("",false)};
 
   ResultPair[] portParts = {new ResultPair(":80", true)};
 
-  ResultPair[] pathParts = {new ResultPair("/test", true)};
+  ResultPair[] pathParts = { new ResultPair("/",true),
+      new ResultPair("/#",false),
+      new ResultPair("/abcdefghijklmnopqrstuvwxyz",true),
+      new ResultPair("/ABCDEFGHIJKLMNOPQRSTUVWXYZ",true),
+      new ResultPair("/0123456789",true),
+      new ResultPair("/-:@&?=+,.!~*'%$_;()",true),
+      new ResultPair("/|",false),
+      new ResultPair("/`",false),
+      new ResultPair("/<",false),
+      new ResultPair("/>",false),
+      new ResultPair("/file/",true),
+      new ResultPair("/path123//file456",false),
+      new ResultPair("/../file",false),
+      new ResultPair("/../path1/file",true)}; 
+  
+  ResultPair[] pathPartsSlashes = { new ResultPair("/",true),
+      new ResultPair("/#",false),
+      new ResultPair("/abcdefghijklmnopqrstuvwxyz",true),
+      new ResultPair("/ABCDEFGHIJKLMNOPQRSTUVWXYZ",true),
+      new ResultPair("/0123456789",true),
+      new ResultPair("/-:@&?=+,.!~*'%$_;()",true),
+      new ResultPair("/|",false),
+      new ResultPair("/`",false),
+      new ResultPair("/<",false),
+      new ResultPair("/>",false),
+      new ResultPair("/file/",true),
+      new ResultPair("/path123//file456",true),
+      new ResultPair("/../file",false),
+      new ResultPair("/../path1/file",true)};
 
   ResultPair[] queryParts = {new ResultPair("?test=true", true)};
 
@@ -71,8 +240,9 @@ public class UrlValidatorTest extends TestCase {
     assertFalse(urlVal.isValid("this_is_not_a_url"));
   }
 
-   public void testURLScheme()
-   {
+
+  public void testURLScheme()
+  {
     //Test allowing only "test" scheme
     String[] schemes = {"test"};
     UrlValidator urlValStrictScheme = new UrlValidator(schemes);
@@ -93,6 +263,40 @@ public class UrlValidatorTest extends TestCase {
     assertFalse(urlValAnyScheme.isValid("https//www.amazon.com"));
     assertFalse(urlValAnyScheme.isValid("httpswww.amazon.com"));
     assertTrue(urlValAnyScheme.isValid("anything://www.amazon.com"));
+  }
+
+  public void testIsValidAuthority() {
+    //test without ALLOW_LOCAL_URLS option
+    UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
+    //iterates over each authority in authorityParts
+    for(int i = 0; i < authorityParts.length; i++) {
+      assertEquals(authorityParts[i].valid, urlVal.isValidAuthority(authorityParts[i].item));
+    }
+    
+    //test with ALLOW_LOCAL_URLS option
+    UrlValidator urlValLocal = new UrlValidator(null, null, (UrlValidator.ALLOW_LOCAL_URLS + UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
+    //iterates over each authority in authorityParts
+    for(int i = 0; i < authorityPartsLocal.length; i++) {
+      assertEquals(authorityPartsLocal[i].valid, urlValLocal.isValidAuthority(authorityPartsLocal[i].item));
+    }
+  
+  }
+
+  public void testIsValidPath() {
+    
+    //test without ALLOW_2_Slashes option
+    UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
+    //iterates over each path in pathParts
+    for(int i = 0; i < pathParts.length; i++) {
+      assertEquals(pathParts[i].valid, urlVal.isValidPath(pathParts[i].item));
+    }
+    
+    //test with ALLOW_2_Slashes option
+    UrlValidator urlValSlashes = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
+    //iterates over each path in pathPartsSlashes
+    for(int i = 0; i < pathPartsSlashes.length; i++) {
+      assertEquals(pathPartsSlashes[i].valid, urlValSlashes.isValidPath(pathPartsSlashes[i].item));
+    }
   }
 
   public void testAllPartsCombinations()

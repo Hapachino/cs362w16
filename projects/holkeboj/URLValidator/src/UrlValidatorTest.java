@@ -41,8 +41,45 @@ public class UrlValidatorTest extends TestCase {
    public void testManualTest()
    {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   System.out.println("Should Return True:");
 	   System.out.println(urlVal.isValid("http://www.amazon.com"));
-	   System.out.println(urlVal.isValid("bad?23r2url"));
+	   System.out.println(urlVal.isValid("http://www.google.com/valid/"));
+	   System.out.println(urlVal.isValid("http://stuff.amazon.com/231?get=h/"));
+	   System.out.println(urlVal.isValid("http://www.amazon.com/test1?action=view/"));
+	   System.out.println(urlVal.isValid("http://www.msn.com//valid?valid"));
+	   System.out.println(urlVal.isValid("http://www.msn.com/valid=valid"));
+	   System.out.println(urlVal.isValid("http://www.msn.com/$23"));
+	   System.out.println(urlVal.isValid("http://www.msn.com/t123?action=view"));
+	   System.out.println(urlVal.isValid("http://www.msn.com/?/"));
+	   System.out.println(urlVal.isValid("http://www.msn.com/$/"));
+	   System.out.println(urlVal.isValid("http://www.amazon.com"));
+	   System.out.println(urlVal.isValid("http://www.yahoo.com"));
+	   System.out.println(urlVal.isValid("http://www.paypal.com"));
+	   System.out.println(urlVal.isValid("http://www.blazersedge.com"));
+	   System.out.println(urlVal.isValid("http://www.amazon.com/1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16"));
+	   System.out.println(urlVal.isValid("http://www.amazon.com/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz/"));
+	   
+	   System.out.println("Should Return False:");
+	   System.out.println(urlVal.isValid("http://www.msn.com/valid123//"));
+	   System.out.println(urlVal.isValid("http//www.amazon.com"));
+	   System.out.println(urlVal.isValid("a://www.msn.com"));
+	   System.out.println(urlVal.isValid("ab://www.msn.com"));
+	   System.out.println(urlVal.isValid("abc://www.msn.com"));
+	   System.out.println(urlVal.isValid("abcd://www.msn.com"));
+	   System.out.println(urlVal.isValid("abcde://www.msn.com"));
+	   System.out.println(urlVal.isValid("abcdef://www.msn.com"));
+	   System.out.println(urlVal.isValid("abcdefg://www.msn.com"));
+	   System.out.println(urlVal.isValid("abcdefgh://www.msn.com"));
+	   System.out.println(urlVal.isValid("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa://www.msn.com"));
+	   System.out.println(urlVal.isValid("htp://www.amazon.com"));
+	   System.out.println(urlVal.isValid("www.amazon.com"));
+	   System.out.println(urlVal.isValid(""));
+	   System.out.println(urlVal.isValid("yo"));
+	   System.out.println(urlVal.isValid("false://www.amazon.com"));
+	   System.out.println(urlVal.isValid("4://www.msn.com"));
+	   System.out.println(urlVal.isValid("91872398u8r9jiej"));
+	   System.out.println(urlVal.isValid("18://444.23145.9804"));
+	   System.out.println(urlVal.isValid("http:/www.amazon.com"));
 	   
 	   
    }

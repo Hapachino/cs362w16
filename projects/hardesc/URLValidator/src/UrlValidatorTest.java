@@ -40,10 +40,8 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest(String url)
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   UrlValidator urlVal = new UrlValidator();
 	   System.out.println(urlVal.isValid(url));
-	   
-	   
    }
    
    

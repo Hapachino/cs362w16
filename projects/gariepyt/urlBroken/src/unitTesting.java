@@ -43,18 +43,18 @@ public class unitTesting {
 
 									boolean actRes = urlVal.isValid(testURL);
 
-									outFile.println("URL: " + testURL);
-									outFile.println("Expected Results: " + expRes);
-									outFile.println("Actual Results: " + actRes);
 
-									if (expRes == actRes) {
-										outFile.println("Success!");
-									}
-									else {
+
+									if (expRes != actRes) {
+										// outFile.println("Success!");
+										outFile.println("URL: " + testURL);
+										outFile.println("Expected Results: " + expRes);
+										outFile.println("Actual Results: " + actRes);
 										outFile.println("Failed!");
+										outFile.println();
 									}
 
-									outFile.println();
+									
 								}
 							}
 						}
@@ -94,7 +94,7 @@ public class unitTesting {
 		new ResultPair("apple!.com", false),
 		new ResultPair("pickle@home.com", false),
 		new ResultPair("http://", false),
-		new ResultPair("localhost", true),
+		new ResultPair("localhost", false),
 		new ResultPair("172.16.254.1", true),
 		new ResultPair("172.16.254.1", true),
 		new ResultPair("172.16.255.1", true),

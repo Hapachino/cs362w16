@@ -194,8 +194,8 @@ public class UrlValidatorTest extends TestCase {
  	   
  	   String[] paths ={"","/test1", "/$23", "/test/", "/..", "/#",
  			   "/test1/file", "/$23/file", "/test/file1", "/../file", "/#/file"};
- 	   boolean[] pathValid ={true, true, true, true, false, false,
- 			   true, true, true, false, false };
+ 	   boolean[] pathValid ={true, true, true, true, false, true,
+ 			   true, true, true, false, true};
  	   
  	   String[] queries = {"", "?view=true", "?id=12345" };
  	   boolean[] queryValid ={true, true, true};

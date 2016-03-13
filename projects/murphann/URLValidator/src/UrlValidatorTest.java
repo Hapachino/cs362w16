@@ -275,7 +275,7 @@ public class UrlValidatorTest extends TestCase {
 /* Partition6: (no optional components)
  * (no scheme) + valid authority + (no port) + (no path) + (no query)
  */
-    public void testYourFifthPartition()
+    public void testYourSixthPartition()
     {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         System.out.println("Testing fifth partition:\n");
@@ -292,6 +292,7 @@ public class UrlValidatorTest extends TestCase {
         }
     }
 
+// For this test, consider different *specific* tests to isValidScheme, isValidAuthority, isValidPath, isValidQuery, and isValidFragment
     public void testIsValid()
     {
        for(int i = 0;i<10000;i++)

@@ -28,7 +28,7 @@ int testSmithy(struct gameState *state ){
     }
 
     //run smithy
-    smithyCard(state, handPos);
+    smithyCard(state, handPos, currentPlayer);
 
     //smithy should draw three cards
     //But discard the card being used for a net gain of 2 to the current hand.

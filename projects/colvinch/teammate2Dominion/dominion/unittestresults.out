@@ -1,0 +1,2879 @@
+Results for running dominion unit and card tests
+ 
+Unit test 1
+TESTING updateCoins():
+Test player 0 with 1 treasure card(s) and 0 bonus.
+G.coins = 1, expected = 1
+Number of coins is correct
+G.coins = 2, expected = 2
+Number of coins is correct
+G.coins = 3, expected = 3
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 1 bonus.
+G.coins = 2, expected = 2
+Number of coins is correct
+G.coins = 3, expected = 3
+Number of coins is correct
+G.coins = 4, expected = 4
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 2 bonus.
+G.coins = 3, expected = 3
+Number of coins is correct
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 5, expected = 5
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 3 bonus.
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 4 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 5 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 6 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 7 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 8 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 9 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+Test player 0 with 1 treasure card(s) and 10 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 0 bonus.
+G.coins = 2, expected = 2
+Number of coins is correct
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 1 bonus.
+G.coins = 3, expected = 3
+Number of coins is correct
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 2 bonus.
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 3 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 4 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 5 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 6 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 7 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 8 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 9 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+Test player 0 with 2 treasure card(s) and 10 bonus.
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 0 bonus.
+G.coins = 3, expected = 3
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 1 bonus.
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 2 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 3 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 4 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 5 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 6 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 7 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 8 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 9 bonus.
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+Test player 0 with 3 treasure card(s) and 10 bonus.
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+G.coins = 19, expected = 19
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 0 bonus.
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 1 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 2 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 3 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 4 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 5 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 6 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 7 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+G.coins = 19, expected = 19
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 8 bonus.
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+G.coins = 20, expected = 20
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 9 bonus.
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+G.coins = 21, expected = 21
+Number of coins is correct
+Test player 0 with 4 treasure card(s) and 10 bonus.
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+G.coins = 22, expected = 22
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 0 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 1 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 2 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 3 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 4 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 19, expected = 19
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 5 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+G.coins = 20, expected = 20
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 6 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+G.coins = 21, expected = 21
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 7 bonus.
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+G.coins = 22, expected = 22
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 8 bonus.
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+G.coins = 23, expected = 23
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 9 bonus.
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 19, expected = 19
+Number of coins is correct
+G.coins = 24, expected = 24
+Number of coins is correct
+Test player 0 with 5 treasure card(s) and 10 bonus.
+G.coins = 15, expected = 15
+Number of coins is correct
+G.coins = 20, expected = 20
+Number of coins is correct
+G.coins = 25, expected = 25
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 0 bonus.
+G.coins = 1, expected = 1
+Number of coins is correct
+G.coins = 2, expected = 2
+Number of coins is correct
+G.coins = 3, expected = 3
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 1 bonus.
+G.coins = 2, expected = 2
+Number of coins is correct
+G.coins = 3, expected = 3
+Number of coins is correct
+G.coins = 4, expected = 4
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 2 bonus.
+G.coins = 3, expected = 3
+Number of coins is correct
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 5, expected = 5
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 3 bonus.
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 4 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 5 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 6 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 7 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 8 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 9 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+Test player 1 with 1 treasure card(s) and 10 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 0 bonus.
+G.coins = 2, expected = 2
+Number of coins is correct
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 1 bonus.
+G.coins = 3, expected = 3
+Number of coins is correct
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 2 bonus.
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 3 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 4 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 5 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 6 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 7 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 8 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 9 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+Test player 1 with 2 treasure card(s) and 10 bonus.
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 0 bonus.
+G.coins = 3, expected = 3
+Number of coins is correct
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 1 bonus.
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 2 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 3 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 4 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 5 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 6 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 7 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 8 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 9 bonus.
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+Test player 1 with 3 treasure card(s) and 10 bonus.
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+G.coins = 19, expected = 19
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 0 bonus.
+G.coins = 4, expected = 4
+Number of coins is correct
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 1 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 2 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 3 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 4 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 5 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 6 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 7 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+G.coins = 19, expected = 19
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 8 bonus.
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+G.coins = 20, expected = 20
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 9 bonus.
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+G.coins = 21, expected = 21
+Number of coins is correct
+Test player 1 with 4 treasure card(s) and 10 bonus.
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+G.coins = 22, expected = 22
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 0 bonus.
+G.coins = 5, expected = 5
+Number of coins is correct
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 1 bonus.
+G.coins = 6, expected = 6
+Number of coins is correct
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 2 bonus.
+G.coins = 7, expected = 7
+Number of coins is correct
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 3 bonus.
+G.coins = 8, expected = 8
+Number of coins is correct
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 4 bonus.
+G.coins = 9, expected = 9
+Number of coins is correct
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 19, expected = 19
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 5 bonus.
+G.coins = 10, expected = 10
+Number of coins is correct
+G.coins = 15, expected = 15
+Number of coins is correct
+G.coins = 20, expected = 20
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 6 bonus.
+G.coins = 11, expected = 11
+Number of coins is correct
+G.coins = 16, expected = 16
+Number of coins is correct
+G.coins = 21, expected = 21
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 7 bonus.
+G.coins = 12, expected = 12
+Number of coins is correct
+G.coins = 17, expected = 17
+Number of coins is correct
+G.coins = 22, expected = 22
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 8 bonus.
+G.coins = 13, expected = 13
+Number of coins is correct
+G.coins = 18, expected = 18
+Number of coins is correct
+G.coins = 23, expected = 23
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 9 bonus.
+G.coins = 14, expected = 14
+Number of coins is correct
+G.coins = 19, expected = 19
+Number of coins is correct
+G.coins = 24, expected = 24
+Number of coins is correct
+Test player 1 with 5 treasure card(s) and 10 bonus.
+G.coins = 15, expected = 15
+Number of coins is correct
+G.coins = 20, expected = 20
+Number of coins is correct
+G.coins = 25, expected = 25
+Number of coins is correct
+File 'unittest1.c'
+Lines executed:91.89% of 37
+unittest1.c:creating 'unittest1.c.gcov'
+
+ 
+Unit test 2
+TESTING discardCard():
+Test player 0 with 1 in hand, 0 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 1 in hand, 0 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 1 in hand, 0 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 1 in hand, 0 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 1 in hand, 1 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 1 in hand, 1 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 1 in hand, 1 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 1 in hand, 1 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 1 in hand, 2 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 1 in hand, 2 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 1 in hand, 2 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 1 in hand, 2 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 1 in hand, 3 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 1 in hand, 3 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 1 in hand, 3 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 1 in hand, 3 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 1 in hand, 4 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 1 in hand, 4 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 1 in hand, 4 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 1 in hand, 4 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 1 in hand, 5 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 1 in hand, 5 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 1 in hand, 5 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 1 in hand, 5 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 1 in hand, 6 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 0 with 1 in hand, 6 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 1 in hand, 6 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 1 in hand, 6 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 2 in hand, 0 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 2 in hand, 0 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 2 in hand, 0 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 2 in hand, 0 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 2 in hand, 1 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 2 in hand, 1 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 2 in hand, 1 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 2 in hand, 1 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 2 in hand, 2 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 2 in hand, 2 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 2 in hand, 2 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 2 in hand, 2 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 2 in hand, 3 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 2 in hand, 3 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 2 in hand, 3 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 2 in hand, 3 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 2 in hand, 4 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 2 in hand, 4 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 2 in hand, 4 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 2 in hand, 4 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 2 in hand, 5 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 2 in hand, 5 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 2 in hand, 5 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 2 in hand, 5 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 2 in hand, 6 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 0 with 2 in hand, 6 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 2 in hand, 6 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 2 in hand, 6 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 3 in hand, 0 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 3 in hand, 0 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 3 in hand, 0 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 3 in hand, 0 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 3 in hand, 1 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 3 in hand, 1 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 3 in hand, 1 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 3 in hand, 1 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 3 in hand, 2 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 3 in hand, 2 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 3 in hand, 2 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 3 in hand, 2 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 3 in hand, 3 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 3 in hand, 3 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 3 in hand, 3 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 3 in hand, 3 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 3 in hand, 4 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 3 in hand, 4 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 3 in hand, 4 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 3 in hand, 4 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 3 in hand, 5 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 3 in hand, 5 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 3 in hand, 5 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 3 in hand, 5 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 3 in hand, 6 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 0 with 3 in hand, 6 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 3 in hand, 6 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 3 in hand, 6 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 4 in hand, 0 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 4 in hand, 0 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 4 in hand, 0 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 4 in hand, 0 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 4 in hand, 1 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 4 in hand, 1 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 4 in hand, 1 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 4 in hand, 1 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 4 in hand, 2 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 4 in hand, 2 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 4 in hand, 2 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 4 in hand, 2 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 4 in hand, 3 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 4 in hand, 3 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 4 in hand, 3 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 4 in hand, 3 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 4 in hand, 4 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 4 in hand, 4 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 4 in hand, 4 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 4 in hand, 4 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 4 in hand, 5 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 4 in hand, 5 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 4 in hand, 5 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 4 in hand, 5 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 4 in hand, 6 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 0 with 4 in hand, 6 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 4 in hand, 6 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 4 in hand, 6 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 5 in hand, 0 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 5 in hand, 0 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 5 in hand, 0 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 5 in hand, 0 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 0 with 5 in hand, 1 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 5 in hand, 1 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 5 in hand, 1 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 5 in hand, 1 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 0 with 5 in hand, 2 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 5 in hand, 2 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 5 in hand, 2 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 5 in hand, 2 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 0 with 5 in hand, 3 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 5 in hand, 3 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 5 in hand, 3 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 5 in hand, 3 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 0 with 5 in hand, 4 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 5 in hand, 4 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 5 in hand, 4 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 5 in hand, 4 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 0 with 5 in hand, 5 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 5 in hand, 5 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 5 in hand, 5 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 5 in hand, 5 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 0 with 5 in hand, 6 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 0 with 5 in hand, 6 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 5 in hand, 6 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 0 with 5 in hand, 6 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 1 in hand, 0 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 1 in hand, 0 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 1 in hand, 0 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 1 in hand, 0 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 1 in hand, 1 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 1 in hand, 1 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 1 in hand, 1 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 1 in hand, 1 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 1 in hand, 2 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 1 in hand, 2 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 1 in hand, 2 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 1 in hand, 2 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 1 in hand, 3 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 1 in hand, 3 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 1 in hand, 3 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 1 in hand, 3 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 1 in hand, 4 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 1 in hand, 4 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 1 in hand, 4 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 1 in hand, 4 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 1 in hand, 5 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 1 in hand, 5 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 1 in hand, 5 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 1 in hand, 5 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 1 in hand, 6 in played, and 0 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 1 with 1 in hand, 6 in played, and 1 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 1 in hand, 6 in played, and 2 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 1 in hand, 6 in played, and 3 flag
+G.handCount = 0, expected = 0
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 2 in hand, 0 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 2 in hand, 0 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 2 in hand, 0 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 2 in hand, 0 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 2 in hand, 1 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 2 in hand, 1 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 2 in hand, 1 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 2 in hand, 1 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 2 in hand, 2 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 2 in hand, 2 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 2 in hand, 2 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 2 in hand, 2 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 2 in hand, 3 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 2 in hand, 3 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 2 in hand, 3 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 2 in hand, 3 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 2 in hand, 4 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 2 in hand, 4 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 2 in hand, 4 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 2 in hand, 4 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 2 in hand, 5 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 2 in hand, 5 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 2 in hand, 5 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 2 in hand, 5 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 2 in hand, 6 in played, and 0 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 1 with 2 in hand, 6 in played, and 1 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 2 in hand, 6 in played, and 2 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 2 in hand, 6 in played, and 3 flag
+G.handCount = 1, expected = 1
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 3 in hand, 0 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 3 in hand, 0 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 3 in hand, 0 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 3 in hand, 0 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 3 in hand, 1 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 3 in hand, 1 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 3 in hand, 1 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 3 in hand, 1 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 3 in hand, 2 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 3 in hand, 2 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 3 in hand, 2 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 3 in hand, 2 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 3 in hand, 3 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 3 in hand, 3 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 3 in hand, 3 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 3 in hand, 3 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 3 in hand, 4 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 3 in hand, 4 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 3 in hand, 4 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 3 in hand, 4 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 3 in hand, 5 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 3 in hand, 5 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 3 in hand, 5 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 3 in hand, 5 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 3 in hand, 6 in played, and 0 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 1 with 3 in hand, 6 in played, and 1 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 3 in hand, 6 in played, and 2 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 3 in hand, 6 in played, and 3 flag
+G.handCount = 2, expected = 2
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 4 in hand, 0 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 4 in hand, 0 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 4 in hand, 0 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 4 in hand, 0 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 4 in hand, 1 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 4 in hand, 1 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 4 in hand, 1 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 4 in hand, 1 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 4 in hand, 2 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 4 in hand, 2 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 4 in hand, 2 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 4 in hand, 2 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 4 in hand, 3 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 4 in hand, 3 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 4 in hand, 3 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 4 in hand, 3 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 4 in hand, 4 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 4 in hand, 4 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 4 in hand, 4 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 4 in hand, 4 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 4 in hand, 5 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 4 in hand, 5 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 4 in hand, 5 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 4 in hand, 5 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 4 in hand, 6 in played, and 0 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 1 with 4 in hand, 6 in played, and 1 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 4 in hand, 6 in played, and 2 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 4 in hand, 6 in played, and 3 flag
+G.handCount = 3, expected = 3
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 5 in hand, 0 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 5 in hand, 0 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 5 in hand, 0 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 5 in hand, 0 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 0, expected = 0
+The counts are correct
+Test player 1 with 5 in hand, 1 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 5 in hand, 1 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 5 in hand, 1 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 5 in hand, 1 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 1, expected = 1
+The counts are correct
+Test player 1 with 5 in hand, 2 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 5 in hand, 2 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 5 in hand, 2 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 5 in hand, 2 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 2, expected = 2
+The counts are correct
+Test player 1 with 5 in hand, 3 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 5 in hand, 3 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 5 in hand, 3 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 5 in hand, 3 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 3, expected = 3
+The counts are correct
+Test player 1 with 5 in hand, 4 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 5 in hand, 4 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 5 in hand, 4 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 5 in hand, 4 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 4, expected = 4
+The counts are correct
+Test player 1 with 5 in hand, 5 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 5 in hand, 5 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 5 in hand, 5 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 5 in hand, 5 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 5, expected = 5
+The counts are correct
+Test player 1 with 5 in hand, 6 in played, and 0 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 7, expected = 7
+The counts are correct
+Test player 1 with 5 in hand, 6 in played, and 1 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 5 in hand, 6 in played, and 2 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 6, expected = 6
+The counts are correct
+Test player 1 with 5 in hand, 6 in played, and 3 flag
+G.handCount = 4, expected = 4
+G.playedCardCount = 6, expected = 6
+The counts are correct
+File 'unittest2.c'
+Lines executed:96.77% of 31
+unittest2.c:creating 'unittest2.c.gcov'
+
+ 
+Unit test 3
+TESTING whoseTurn():
+Testing 0 players with player 0's turn
+turn =  0, expected = 0 
+The turn is correct
+Testing 0 players with player 1's turn
+turn =  1, expected = 1 
+The turn is correct
+Testing 0 players with player 2's turn
+turn =  0, expected = 0 
+The turn is correct
+Testing 1 players with player 0's turn
+turn =  0, expected = 0 
+The turn is correct
+Testing 1 players with player 1's turn
+turn =  1, expected = 1 
+The turn is correct
+Testing 1 players with player 2's turn
+turn =  0, expected = 0 
+The turn is correct
+File 'unittest3.c'
+Lines executed:95.83% of 24
+unittest3.c:creating 'unittest3.c.gcov'
+
+ 
+Unit test 4
+TESTING endTurn():
+Testing start player 0 with 1 end turns and 0 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 2 end turns and 0 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 3 end turns and 0 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 4 end turns and 0 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 5 end turns and 0 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 6 end turns and 0 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 7 end turns and 0 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 8 end turns and 0 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 9 end turns and 0 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 10 end turns and 0 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 1 end turns and 1 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 2 end turns and 1 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 3 end turns and 1 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 4 end turns and 1 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 5 end turns and 1 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 6 end turns and 1 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 7 end turns and 1 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 8 end turns and 1 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 9 end turns and 1 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 10 end turns and 1 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 1 end turns and 2 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 2 end turns and 2 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 3 end turns and 2 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 4 end turns and 2 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 5 end turns and 2 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 6 end turns and 2 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 7 end turns and 2 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 8 end turns and 2 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 9 end turns and 2 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 10 end turns and 2 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 1 end turns and 3 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 2 end turns and 3 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 3 end turns and 3 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 4 end turns and 3 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 5 end turns and 3 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 6 end turns and 3 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 7 end turns and 3 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 8 end turns and 3 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 9 end turns and 3 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 10 end turns and 3 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 1 end turns and 4 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 2 end turns and 4 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 3 end turns and 4 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 4 end turns and 4 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 5 end turns and 4 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 6 end turns and 4 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 7 end turns and 4 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 8 end turns and 4 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 9 end turns and 4 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 10 end turns and 4 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 1 end turns and 5 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 2 end turns and 5 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 3 end turns and 5 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 4 end turns and 5 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 5 end turns and 5 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 6 end turns and 5 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 7 end turns and 5 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 8 end turns and 5 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 0 with 9 end turns and 5 cards in discard pile
+turn =  0, expected = 1 
+The turn is not correct
+Testing start player 0 with 10 end turns and 5 cards in discard pile
+turn =  0, expected = 0 
+The turn is correct
+Testing start player 1 with 1 end turns and 0 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 2 end turns and 0 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 3 end turns and 0 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 4 end turns and 0 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 5 end turns and 0 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 6 end turns and 0 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 7 end turns and 0 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 8 end turns and 0 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 9 end turns and 0 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 10 end turns and 0 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 1 end turns and 1 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 2 end turns and 1 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 3 end turns and 1 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 4 end turns and 1 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 5 end turns and 1 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 6 end turns and 1 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 7 end turns and 1 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 8 end turns and 1 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 9 end turns and 1 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 10 end turns and 1 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 1 end turns and 2 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 2 end turns and 2 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 3 end turns and 2 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 4 end turns and 2 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 5 end turns and 2 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 6 end turns and 2 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 7 end turns and 2 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 8 end turns and 2 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 9 end turns and 2 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 10 end turns and 2 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 1 end turns and 3 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 2 end turns and 3 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 3 end turns and 3 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 4 end turns and 3 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 5 end turns and 3 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 6 end turns and 3 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 7 end turns and 3 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 8 end turns and 3 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 9 end turns and 3 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 10 end turns and 3 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 1 end turns and 4 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 2 end turns and 4 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 3 end turns and 4 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 4 end turns and 4 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 5 end turns and 4 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 6 end turns and 4 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 7 end turns and 4 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 8 end turns and 4 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 9 end turns and 4 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 10 end turns and 4 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 1 end turns and 5 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 2 end turns and 5 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 3 end turns and 5 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 4 end turns and 5 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 5 end turns and 5 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 6 end turns and 5 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 7 end turns and 5 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 8 end turns and 5 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+Testing start player 1 with 9 end turns and 5 cards in discard pile
+turn =  1, expected = 1 
+The turn is correct
+Testing start player 1 with 10 end turns and 5 cards in discard pile
+turn =  1, expected = 0 
+The turn is not correct
+File 'unittest4.c'
+Lines executed:100.00% of 24
+unittest4.c:creating 'unittest4.c.gcov'
+
+ 
+Card test 1
+TESTING adventurer card:
+Test player 0 playing adventurer card, hand size: 1
+G.handCount = 3, 0 <= expected <= 2
+The adventure card did not work correctly
+Test player 0 playing adventurer card, hand size: 2
+G.handCount = 4, 1 <= expected <= 3
+The adventure card did not work correctly
+Test player 0 playing adventurer card, hand size: 3
+G.handCount = 5, 2 <= expected <= 4
+The adventure card did not work correctly
+Test player 0 playing adventurer card, hand size: 4
+G.handCount = 6, 3 <= expected <= 5
+The adventure card did not work correctly
+Test player 0 playing adventurer card, hand size: 5
+G.handCount = 7, 4 <= expected <= 6
+The adventure card did not work correctly
+Test player 1 playing adventurer card, hand size: 1
+G.handCount = 3, 0 <= expected <= 2
+The adventure card did not work correctly
+Test player 1 playing adventurer card, hand size: 2
+G.handCount = 4, 1 <= expected <= 3
+The adventure card did not work correctly
+Test player 1 playing adventurer card, hand size: 3
+G.handCount = 5, 2 <= expected <= 4
+The adventure card did not work correctly
+Test player 1 playing adventurer card, hand size: 4
+G.handCount = 6, 3 <= expected <= 5
+The adventure card did not work correctly
+Test player 1 playing adventurer card, hand size: 5
+G.handCount = 7, 4 <= expected <= 6
+The adventure card did not work correctly
+File 'cardtest1.c'
+Lines executed:95.45% of 22
+cardtest1.c:creating 'cardtest1.c.gcov'
+
+ 
+Card test 2
+TESTING smithy card:
+Test player 0 playing Smithy card, hand size: 0
+G.handCount = 0, expected = 2
+The Smithy card did not work correctly
+Test player 0 playing Smithy card, hand size: 1
+G.handCount = 3, expected = 3
+The Smithy card worked correctly
+Test player 0 playing Smithy card, hand size: 2
+G.handCount = 4, expected = 4
+The Smithy card worked correctly
+Test player 0 playing Smithy card, hand size: 3
+G.handCount = 5, expected = 5
+The Smithy card worked correctly
+Test player 0 playing Smithy card, hand size: 4
+G.handCount = 6, expected = 6
+The Smithy card worked correctly
+Test player 0 playing Smithy card, hand size: 5
+G.handCount = 7, expected = 7
+The Smithy card worked correctly
+Test player 1 playing Smithy card, hand size: 0
+G.handCount = 0, expected = 2
+The Smithy card did not work correctly
+Test player 1 playing Smithy card, hand size: 1
+G.handCount = 3, expected = 3
+The Smithy card worked correctly
+Test player 1 playing Smithy card, hand size: 2
+G.handCount = 4, expected = 4
+The Smithy card worked correctly
+Test player 1 playing Smithy card, hand size: 3
+G.handCount = 5, expected = 5
+The Smithy card worked correctly
+Test player 1 playing Smithy card, hand size: 4
+G.handCount = 6, expected = 6
+The Smithy card worked correctly
+Test player 1 playing Smithy card, hand size: 5
+G.handCount = 7, expected = 7
+The Smithy card worked correctly
+File 'cardtest2.c'
+Lines executed:100.00% of 22
+cardtest2.c:creating 'cardtest2.c.gcov'
+
+ 
+Card test 3
+TESTING village card:
+Test player 0 playing Village card, hand size: 0
+G.handCount = 0, expected = 0
+G.numActions = 1, expected = 2
+The Village card did not work correctly
+Test player 0 playing Village card, hand size: 1
+G.handCount = 1, expected = 1
+G.numActions = 2, expected = 2
+The Village card worked correctly
+Test player 0 playing Village card, hand size: 2
+G.handCount = 2, expected = 2
+G.numActions = 2, expected = 2
+The Village card worked correctly
+Test player 0 playing Village card, hand size: 3
+G.handCount = 3, expected = 3
+G.numActions = 2, expected = 2
+The Village card worked correctly
+Test player 0 playing Village card, hand size: 4
+G.handCount = 4, expected = 4
+G.numActions = 2, expected = 2
+The Village card worked correctly
+Test player 0 playing Village card, hand size: 5
+G.handCount = 5, expected = 5
+G.numActions = 2, expected = 2
+The Village card worked correctly
+Test player 1 playing Village card, hand size: 0
+G.handCount = 0, expected = 0
+G.numActions = 1, expected = 2
+The Village card did not work correctly
+Test player 1 playing Village card, hand size: 1
+G.handCount = 1, expected = 1
+G.numActions = 2, expected = 2
+The Village card worked correctly
+Test player 1 playing Village card, hand size: 2
+G.handCount = 2, expected = 2
+G.numActions = 2, expected = 2
+The Village card worked correctly
+Test player 1 playing Village card, hand size: 3
+G.handCount = 3, expected = 3
+G.numActions = 2, expected = 2
+The Village card worked correctly
+Test player 1 playing Village card, hand size: 4
+G.handCount = 4, expected = 4
+G.numActions = 2, expected = 2
+The Village card worked correctly
+Test player 1 playing Village card, hand size: 5
+G.handCount = 5, expected = 5
+G.numActions = 2, expected = 2
+The Village card worked correctly
+File 'cardtest3.c'
+Lines executed:100.00% of 24
+cardtest3.c:creating 'cardtest3.c.gcov'
+
+ 
+Card test 4
+TESTING Salvager card:
+Test player 0 playing Salvager card, hand size: 2, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 3, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 3, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 4, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 4, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 4, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 5, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 5, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 5, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 5, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 6, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 6, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 6, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 6, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 6, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 7, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 7, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 7, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 7, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 7, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 7, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 8, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 8, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 8, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 8, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 8, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 8, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 8, hand to trash: 7
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 9, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 9, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 9, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 9, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 9, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 9, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 9, hand to trash: 7
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 9, hand to trash: 8
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 7
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 10, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 10, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 10, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 10, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 10, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 10, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 10, hand to trash: 7
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 10, hand to trash: 8
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 7
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 10, hand to trash: 9
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 7
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 8
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 7
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 9
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 0 playing Salvager card, hand size: 11, hand to trash: 10
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 7
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 2, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 3, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 3, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 4, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 4, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 4, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 5, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 5, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 5, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 5, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 6, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 6, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 6, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 6, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 6, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 7, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 7, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 7, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 7, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 7, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 7, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 8, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 8, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 8, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 8, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 8, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 8, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 8, hand to trash: 7
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 9, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 9, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 9, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 9, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 9, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 9, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 9, hand to trash: 7
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 9, hand to trash: 8
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 7
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 10, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 10, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 10, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 10, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 10, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 10, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 10, hand to trash: 7
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 10, hand to trash: 8
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 7
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 10, hand to trash: 9
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 1
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 10
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 2
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 3
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 4
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 5
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 9
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 6
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 7
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 8
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 7
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 9
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 8
+The Salvager card did not work correctly
+Test player 1 playing Salvager card, hand size: 11, hand to trash: 10
+G.numBuys = 2, expected = 2
+G.coins = 0, expected = 7
+The Salvager card did not work correctly
+File 'cardtest4.c'
+Lines executed:96.15% of 26
+cardtest4.c:creating 'cardtest4.c.gcov'
+

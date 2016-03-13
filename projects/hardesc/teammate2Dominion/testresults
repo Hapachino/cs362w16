@@ -1,0 +1,7188 @@
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 3
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 18
+	k[1] = 25
+	k[2] = 12
+	k[3] = 20
+	k[4] = 24
+	k[5] = 7
+	k[6] = 15
+	k[7] = 22
+	k[8] = 9
+	k[9] = 17
+initializing game...
+numactions = 1
+coins = 2
+numbuys = 3
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 2
+
+player 0 playing adventurer from handpos 2
+
+player 0:  handCount = 9	deckCount = 15	discardCount = 17
+player 1:  handCount = 1	deckCount = 20	discardCount = 16
+player 2:  handCount = 1	deckCount = 28	discardCount = 4
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 11, expected = 10	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 30; expected = 30	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 1; expected = 1	PASS
+		testG.deckCount[1] = 20; expected = 20	PASS
+		testG.discardCount[1] = 16; expected = 16	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 1; expected = 1	PASS
+		testG.deckCount[2] = 28; expected = 28	PASS
+		testG.discardCount[2] = 4; expected = 4	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 4
+player playing adventurer = 3
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 21
+	k[1] = 25
+	k[2] = 20
+	k[3] = 16
+	k[4] = 7
+	k[5] = 17
+	k[6] = 8
+	k[7] = 12
+	k[8] = 14
+	k[9] = 24
+initializing game...
+numactions = 0
+coins = 2
+numbuys = 0
+whoseTurn = 3
+phase = 0
+
+numCardsPlayed = 2
+
+player 3 playing adventurer from handpos 3
+
+player 0:  handCount = 3	deckCount = 10	discardCount = 138
+player 1:  handCount = 5	deckCount = 6	discardCount = 12
+player 2:  handCount = 10	deckCount = 33	discardCount = 4
+player 3:  handCount = 9	deckCount = 10	discardCount = 1
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 10, expected = 10	PASS
+	treasureCount = 1, expected = 2	FAIL
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 10; expected = 9	FAIL
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 3; expected = 3	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 138; expected = 138	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 6; expected = 6	PASS
+		testG.discardCount[1] = 12; expected = 12	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 10; expected = 10	PASS
+		testG.deckCount[2] = 33; expected = 33	PASS
+		testG.discardCount[2] = 4; expected = 4	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 4
+player playing adventurer = 3
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 10
+	k[1] = 13
+	k[2] = 17
+	k[3] = 7
+	k[4] = 16
+	k[5] = 11
+	k[6] = 20
+	k[7] = 24
+	k[8] = 12
+	k[9] = 21
+initializing game...
+numactions = 2
+coins = 0
+numbuys = 3
+whoseTurn = 3
+phase = 0
+
+numCardsPlayed = 3
+
+player 3 playing adventurer from handpos 3
+
+player 0:  handCount = 20	deckCount = 357	discardCount = 23
+player 1:  handCount = 1	deckCount = 170	discardCount = 10
+player 2:  handCount = 15	deckCount = 10	discardCount = 10
+player 3:  handCount = 5	deckCount = 15	discardCount = 23
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 36; expected = 36	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 20; expected = 20	PASS
+		testG.deckCount[0] = 357; expected = 357	PASS
+		testG.discardCount[0] = 23; expected = 23	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 1; expected = 1	PASS
+		testG.deckCount[1] = 170; expected = 170	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 15; expected = 15	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 3
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 12
+	k[1] = 20
+	k[2] = 13
+	k[3] = 26
+	k[4] = 7
+	k[5] = 11
+	k[6] = 18
+	k[7] = 21
+	k[8] = 16
+	k[9] = 9
+initializing game...
+numactions = 1
+coins = 0
+numbuys = 1
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 330
+
+player 0 playing adventurer from handpos 2
+
+player 0:  handCount = 4	deckCount = 10	discardCount = 47
+player 1:  handCount = 6	deckCount = 10	discardCount = 43
+player 2:  handCount = 5	deckCount = 7	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 6, expected = 5	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 55; expected = 55	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 330, expected = 331	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 6; expected = 6	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 43; expected = 43	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 7; expected = 7	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[6] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 25
+	k[1] = 24
+	k[2] = 16
+	k[3] = 7
+	k[4] = 21
+	k[5] = 22
+	k[6] = 11
+	k[7] = 19
+	k[8] = 8
+	k[9] = 14
+initializing game...
+numactions = 4
+coins = 1
+numbuys = 1
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 1
+
+player 0 playing adventurer from handpos 20
+
+player 0:  handCount = 21	deckCount = 45	discardCount = 275
+player 1:  handCount = 16	deckCount = 10	discardCount = 16
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 20, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 23, expected = 22	FAIL
+	treasureCount = 10, expected = 10	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 318; expected = 318	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 1, expected = 2	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 16; expected = 16	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 16; expected = 16	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 16
+	k[1] = 7
+	k[2] = 23
+	k[3] = 24
+	k[4] = 9
+	k[5] = 25
+	k[6] = 17
+	k[7] = 19
+	k[8] = 22
+	k[9] = 20
+initializing game...
+numactions = 1
+coins = 4
+numbuys = 3
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 0
+
+player 0 playing adventurer from handpos 0
+
+player 0:  handCount = 3	deckCount = 119	discardCount = -46
+player 1:  handCount = 2	deckCount = 10	discardCount = 48
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 71; expected = 71	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 2; expected = 2	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 48; expected = 48	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[8] position.
+number of players = 4
+player playing adventurer = 3
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 19
+	k[1] = 13
+	k[2] = 22
+	k[3] = 10
+	k[4] = 18
+	k[5] = 7
+	k[6] = 9
+	k[7] = 11
+	k[8] = 14
+	k[9] = 16
+initializing game...
+numactions = 4
+coins = 0
+numbuys = 1
+whoseTurn = 3
+phase = 0
+
+numCardsPlayed = 1
+
+player 3 playing adventurer from handpos 0
+
+player 0:  handCount = 11	deckCount = 385	discardCount = 40
+player 1:  handCount = 23	deckCount = 0	discardCount = 6
+player 2:  handCount = 8	deckCount = 10	discardCount = 20
+player 3:  handCount = 1	deckCount = 30	discardCount = 4
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 3, expected = 2	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 32; expected = 32	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 1, expected = 2	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 11; expected = 11	PASS
+		testG.deckCount[0] = 385; expected = 385	PASS
+		testG.discardCount[0] = 40; expected = 40	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 23; expected = 23	PASS
+		testG.deckCount[1] = 0; expected = 0	PASS
+		testG.discardCount[1] = 6; expected = 6	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 8; expected = 8	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 20; expected = 20	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 4
+player playing adventurer = 3
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 21
+	k[1] = 9
+	k[2] = 7
+	k[3] = 12
+	k[4] = 11
+	k[5] = 22
+	k[6] = 16
+	k[7] = 20
+	k[8] = 25
+	k[9] = 26
+initializing game...
+numactions = 4
+coins = 0
+numbuys = 1
+whoseTurn = 3
+phase = 0
+
+numCardsPlayed = 2
+
+player 3 playing adventurer from handpos 2
+
+player 0:  handCount = 5	deckCount = 179	discardCount = 25
+player 1:  handCount = 5	deckCount = 10	discardCount = 4
+player 2:  handCount = 3	deckCount = 5	discardCount = 10
+player 3:  handCount = 3	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 18; expected = 18	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 179; expected = 179	PASS
+		testG.discardCount[0] = 25; expected = 25	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 4; expected = 4	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 3; expected = 3	PASS
+		testG.deckCount[2] = 5; expected = 5	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 18
+	k[1] = 25
+	k[2] = 14
+	k[3] = 23
+	k[4] = 8
+	k[5] = 24
+	k[6] = 12
+	k[7] = 7
+	k[8] = 10
+	k[9] = 11
+initializing game...
+numactions = 0
+coins = 4
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 3
+
+player 0 playing adventurer from handpos 5
+
+player 0:  handCount = 8	deckCount = 14	discardCount = 1
+player 1:  handCount = 10	deckCount = 12	discardCount = 5
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 5, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 10, expected = 9	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 13; expected = 13	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 10; expected = 10	PASS
+		testG.deckCount[1] = 12; expected = 12	PASS
+		testG.discardCount[1] = 5; expected = 5	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[8] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 26
+	k[1] = 17
+	k[2] = 22
+	k[3] = 25
+	k[4] = 11
+	k[5] = 7
+	k[6] = 20
+	k[7] = 15
+	k[8] = 14
+	k[9] = 13
+initializing game...
+numactions = 0
+coins = 2
+numbuys = 4
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 5
+
+player 1 playing adventurer from handpos 2
+
+player 0:  handCount = 5	deckCount = 105	discardCount = 10
+player 1:  handCount = 10	deckCount = 4	discardCount = 10
+player 2:  handCount = 4	deckCount = 10	discardCount = 368
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 12, expected = 11	FAIL
+	treasureCount = 6, expected = 6	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 12; expected = 12	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 5, expected = 6	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 105; expected = 105	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 4; expected = 4	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 368; expected = 368	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 9
+	k[1] = 11
+	k[2] = 23
+	k[3] = 13
+	k[4] = 7
+	k[5] = 8
+	k[6] = 17
+	k[7] = 21
+	k[8] = 19
+	k[9] = 10
+initializing game...
+numactions = 0
+coins = 2
+numbuys = 3
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 0
+
+player 1 playing adventurer from handpos 0
+
+player 0:  handCount = 2	deckCount = 36	discardCount = 10
+player 1:  handCount = 2	deckCount = 10	discardCount = 3
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 11; expected = 11	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 2; expected = 2	PASS
+		testG.deckCount[0] = 36; expected = 36	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 22
+	k[2] = 18
+	k[3] = 19
+	k[4] = 10
+	k[5] = 7
+	k[6] = 20
+	k[7] = 17
+	k[8] = 21
+	k[9] = 15
+initializing game...
+numactions = 0
+coins = 4
+numbuys = 0
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 3
+
+player 1 playing adventurer from handpos 1
+
+player 0:  handCount = 5	deckCount = 15	discardCount = 17
+player 1:  handCount = 4	deckCount = 122	discardCount = 22
+player 2:  handCount = 1	deckCount = 30	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 6, expected = 5	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 142; expected = 142	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 15; expected = 15	PASS
+		testG.discardCount[0] = 17; expected = 17	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 1; expected = 1	PASS
+		testG.deckCount[2] = 30; expected = 30	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[6] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 21
+	k[1] = 14
+	k[2] = 12
+	k[3] = 22
+	k[4] = 24
+	k[5] = 15
+	k[6] = 7
+	k[7] = 8
+	k[8] = 10
+	k[9] = 19
+initializing game...
+numactions = 1
+coins = 4
+numbuys = 0
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 5
+
+player 2 playing adventurer from handpos 1
+
+player 0:  handCount = 17	deckCount = 10	discardCount = 3
+player 1:  handCount = 3	deckCount = 10	discardCount = 3
+player 2:  handCount = 5	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 18; expected = 18	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 5, expected = 6	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 17; expected = 17	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 3; expected = 3	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 3; expected = 3	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 3; expected = 3	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 24
+	k[1] = 26
+	k[2] = 13
+	k[3] = 7
+	k[4] = 8
+	k[5] = 10
+	k[6] = 19
+	k[7] = 16
+	k[8] = 14
+	k[9] = 18
+initializing game...
+numactions = 3
+coins = 1
+numbuys = 3
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 0
+
+player 2 playing adventurer from handpos 1
+
+player 0:  handCount = 17	deckCount = 46	discardCount = 36
+player 1:  handCount = 5	deckCount = 10	discardCount = 199
+player 2:  handCount = 5	deckCount = 191	discardCount = -27
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 162; expected = 162	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 17; expected = 17	PASS
+		testG.deckCount[0] = 46; expected = 46	PASS
+		testG.discardCount[0] = 36; expected = 36	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 199; expected = 199	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 4
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 21
+	k[1] = 7
+	k[2] = 19
+	k[3] = 23
+	k[4] = 18
+	k[5] = 10
+	k[6] = 25
+	k[7] = 15
+	k[8] = 24
+	k[9] = 17
+initializing game...
+numactions = 3
+coins = 1
+numbuys = 2
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 327
+
+player 1 playing adventurer from handpos 0
+
+player 0:  handCount = 3	deckCount = 0	discardCount = 347
+player 1:  handCount = 1	deckCount = 485	discardCount = 1
+player 2:  handCount = 5	deckCount = 334	discardCount = 13
+player 3:  handCount = 5	deckCount = 65	discardCount = 18
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 3, expected = 2	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 484; expected = 484	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 327, expected = 328	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 3; expected = 3	PASS
+		testG.deckCount[0] = 0; expected = 0	PASS
+		testG.discardCount[0] = 347; expected = 347	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 334; expected = 334	PASS
+		testG.discardCount[2] = 13; expected = 13	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 5; expected = 5	PASS
+		testG.deckCount[3] = 65; expected = 65	PASS
+		testG.discardCount[3] = 18; expected = 18	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 15
+	k[1] = 14
+	k[2] = 19
+	k[3] = 7
+	k[4] = 20
+	k[5] = 11
+	k[6] = 24
+	k[7] = 8
+	k[8] = 12
+	k[9] = 13
+initializing game...
+numactions = 0
+coins = 1
+numbuys = 2
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 97
+
+player 1 playing adventurer from handpos 2
+
+player 0:  handCount = 2	deckCount = 3	discardCount = 48
+player 1:  handCount = 5	deckCount = 1	discardCount = 108
+player 2:  handCount = 1	deckCount = 45	discardCount = 42
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 107; expected = 107	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 97, expected = 98	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 2; expected = 2	PASS
+		testG.deckCount[0] = 3; expected = 3	PASS
+		testG.discardCount[0] = 48; expected = 48	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 1; expected = 1	PASS
+		testG.deckCount[2] = 45; expected = 45	PASS
+		testG.discardCount[2] = 42; expected = 42	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 24
+	k[1] = 20
+	k[2] = 18
+	k[3] = 8
+	k[4] = 26
+	k[5] = 10
+	k[6] = 14
+	k[7] = 7
+	k[8] = 23
+	k[9] = 12
+initializing game...
+numactions = 4
+coins = 1
+numbuys = 0
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 0
+
+player 1 playing adventurer from handpos 1
+
+player 0:  handCount = 1	deckCount = 477	discardCount = -291
+player 1:  handCount = 5	deckCount = 10	discardCount = 17
+player 2:  handCount = 4	deckCount = 11	discardCount = 403
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 25; expected = 25	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 1; expected = 1	PASS
+		testG.deckCount[0] = 477; expected = 477	PASS
+		testG.discardCount[0] = -291; expected = -291	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 4; expected = 4	PASS
+		testG.deckCount[2] = 11; expected = 11	PASS
+		testG.discardCount[2] = 403; expected = 403	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[8] position.
+number of players = 4
+player playing adventurer = 3
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 18
+	k[1] = 13
+	k[2] = 23
+	k[3] = 21
+	k[4] = 17
+	k[5] = 24
+	k[6] = 16
+	k[7] = 22
+	k[8] = 7
+	k[9] = 19
+initializing game...
+numactions = 0
+coins = 1
+numbuys = 4
+whoseTurn = 3
+phase = 0
+
+numCardsPlayed = 3
+
+player 3 playing adventurer from handpos 1
+
+player 0:  handCount = 10	deckCount = 43	discardCount = 12
+player 1:  handCount = 4	deckCount = 20	discardCount = 10
+player 2:  handCount = 3	deckCount = 231	discardCount = 60
+player 3:  handCount = 2	deckCount = 10	discardCount = 16
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 24; expected = 24	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 10; expected = 10	PASS
+		testG.deckCount[0] = 43; expected = 43	PASS
+		testG.discardCount[0] = 12; expected = 12	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 4; expected = 4	PASS
+		testG.deckCount[1] = 20; expected = 20	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 3; expected = 3	PASS
+		testG.deckCount[2] = 231; expected = 231	PASS
+		testG.discardCount[2] = 60; expected = 60	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 4
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 20
+	k[1] = 25
+	k[2] = 23
+	k[3] = 10
+	k[4] = 17
+	k[5] = 7
+	k[6] = 13
+	k[7] = 15
+	k[8] = 19
+	k[9] = 8
+initializing game...
+numactions = 1
+coins = 2
+numbuys = 4
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 3
+
+player 1 playing adventurer from handpos 2
+
+player 0:  handCount = 4	deckCount = 28	discardCount = 10
+player 1:  handCount = 13	deckCount = 6	discardCount = 18
+player 2:  handCount = 5	deckCount = 18	discardCount = 30
+player 3:  handCount = 5	deckCount = 10	discardCount = 26
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 15, expected = 14	FAIL
+	treasureCount = 7, expected = 7	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 22; expected = 22	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 4; expected = 4	PASS
+		testG.deckCount[0] = 28; expected = 28	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 18; expected = 18	PASS
+		testG.discardCount[2] = 30; expected = 30	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 5; expected = 5	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 26; expected = 26	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 21
+	k[1] = 24
+	k[2] = 26
+	k[3] = 13
+	k[4] = 15
+	k[5] = 7
+	k[6] = 20
+	k[7] = 17
+	k[8] = 9
+	k[9] = 16
+initializing game...
+numactions = 4
+coins = 0
+numbuys = 0
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 1
+
+player 2 playing adventurer from handpos 12
+
+player 0:  handCount = 5	deckCount = 16	discardCount = 8
+player 1:  handCount = 3	deckCount = 178	discardCount = 10
+player 2:  handCount = 20	deckCount = 16	discardCount = 33
+player 3:  handCount = 4	deckCount = 10	discardCount = 4
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 12, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 22, expected = 21	FAIL
+	treasureCount = 8, expected = 8	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 47; expected = 47	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 1, expected = 2	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 16; expected = 16	PASS
+		testG.discardCount[0] = 8; expected = 8	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 3; expected = 3	PASS
+		testG.deckCount[1] = 178; expected = 178	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 4; expected = 4	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 4; expected = 4	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 3
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 25
+	k[1] = 7
+	k[2] = 17
+	k[3] = 13
+	k[4] = 14
+	k[5] = 8
+	k[6] = 23
+	k[7] = 9
+	k[8] = 22
+	k[9] = 24
+initializing game...
+numactions = 2
+coins = 0
+numbuys = 2
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 2
+
+player 0 playing adventurer from handpos 7
+
+player 0:  handCount = 9	deckCount = 32	discardCount = 10
+player 1:  handCount = 2	deckCount = 33	discardCount = 39
+player 2:  handCount = 16	deckCount = 14	discardCount = 81
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 7, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 11, expected = 10	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 40; expected = 40	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 2; expected = 2	PASS
+		testG.deckCount[1] = 33; expected = 33	PASS
+		testG.discardCount[1] = 39; expected = 39	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 16; expected = 16	PASS
+		testG.deckCount[2] = 14; expected = 14	PASS
+		testG.discardCount[2] = 81; expected = 81	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 4
+player playing adventurer = 3
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 13
+	k[1] = 18
+	k[2] = 14
+	k[3] = 12
+	k[4] = 8
+	k[5] = 9
+	k[6] = 19
+	k[7] = 23
+	k[8] = 7
+	k[9] = 10
+initializing game...
+numactions = 1
+coins = 1
+numbuys = 1
+whoseTurn = 3
+phase = 0
+
+numCardsPlayed = 4
+
+player 3 playing adventurer from handpos 0
+
+player 0:  handCount = 3	deckCount = 5	discardCount = 15
+player 1:  handCount = 13	deckCount = 10	discardCount = 17
+player 2:  handCount = 5	deckCount = 240	discardCount = -218
+player 3:  handCount = 4	deckCount = 21	discardCount = 11
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 6, expected = 5	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 30; expected = 30	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 4, expected = 5	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 3; expected = 3	PASS
+		testG.deckCount[0] = 5; expected = 5	PASS
+		testG.discardCount[0] = 15; expected = 15	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 13; expected = 13	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 17; expected = 17	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 240; expected = 240	PASS
+		testG.discardCount[2] = -218; expected = -218	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[6] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 26
+	k[1] = 25
+	k[2] = 8
+	k[3] = 9
+	k[4] = 24
+	k[5] = 14
+	k[6] = 7
+	k[7] = 19
+	k[8] = 20
+	k[9] = 10
+initializing game...
+numactions = 1
+coins = 1
+numbuys = 1
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 0
+
+player 0 playing adventurer from handpos 1
+
+player 0:  handCount = 5	deckCount = 13	discardCount = 375
+player 1:  handCount = 5	deckCount = 93	discardCount = 39
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 386; expected = 386	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 93; expected = 93	PASS
+		testG.discardCount[1] = 39; expected = 39	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 3
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 24
+	k[1] = 25
+	k[2] = 7
+	k[3] = 19
+	k[4] = 20
+	k[5] = 13
+	k[6] = 21
+	k[7] = 12
+	k[8] = 16
+	k[9] = 11
+initializing game...
+numactions = 1
+coins = 4
+numbuys = 2
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 5
+
+player 0 playing adventurer from handpos 1
+
+player 0:  handCount = 4	deckCount = 5	discardCount = 10
+player 1:  handCount = 2	deckCount = 13	discardCount = 100
+player 2:  handCount = 5	deckCount = 22	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 6, expected = 5	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 13; expected = 13	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 5, expected = 6	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 2; expected = 2	PASS
+		testG.deckCount[1] = 13; expected = 13	PASS
+		testG.discardCount[1] = 100; expected = 100	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 22; expected = 22	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 4
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 24
+	k[1] = 26
+	k[2] = 7
+	k[3] = 20
+	k[4] = 14
+	k[5] = 11
+	k[6] = 17
+	k[7] = 15
+	k[8] = 16
+	k[9] = 19
+initializing game...
+numactions = 0
+coins = 4
+numbuys = 3
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 192
+
+player 1 playing adventurer from handpos 0
+
+player 0:  handCount = 2	deckCount = 22	discardCount = -15
+player 1:  handCount = 5	deckCount = 10	discardCount = 22
+player 2:  handCount = 5	deckCount = 10	discardCount = 6
+player 3:  handCount = 4	deckCount = 10	discardCount = 36
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 30; expected = 30	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 192, expected = 193	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 2; expected = 2	PASS
+		testG.deckCount[0] = 22; expected = 22	PASS
+		testG.discardCount[0] = -15; expected = -15	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 6; expected = 6	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 4; expected = 4	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 36; expected = 36	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 4
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 24
+	k[2] = 22
+	k[3] = 20
+	k[4] = 9
+	k[5] = 10
+	k[6] = 13
+	k[7] = 7
+	k[8] = 25
+	k[9] = 16
+initializing game...
+numactions = 1
+coins = 3
+numbuys = 2
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 3
+
+player 0 playing adventurer from handpos 2
+
+player 0:  handCount = 3	deckCount = 18	discardCount = 44
+player 1:  handCount = 1	deckCount = 27	discardCount = 103
+player 2:  handCount = 5	deckCount = 10	discardCount = 10
+player 3:  handCount = 3	deckCount = 42	discardCount = 317
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 60; expected = 60	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 1; expected = 1	PASS
+		testG.deckCount[1] = 27; expected = 27	PASS
+		testG.discardCount[1] = 103; expected = 103	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 3; expected = 3	PASS
+		testG.deckCount[3] = 42; expected = 42	PASS
+		testG.discardCount[3] = 317; expected = 317	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 17
+	k[1] = 11
+	k[2] = 21
+	k[3] = 7
+	k[4] = 10
+	k[5] = 23
+	k[6] = 16
+	k[7] = 14
+	k[8] = 20
+	k[9] = 9
+initializing game...
+numactions = 1
+coins = 4
+numbuys = 2
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 2
+
+player 2 playing adventurer from handpos 2
+
+player 0:  handCount = 8	deckCount = 21	discardCount = 10
+player 1:  handCount = 2	deckCount = 179	discardCount = 136
+player 2:  handCount = 7	deckCount = 13	discardCount = 394
+player 3:  handCount = 5	deckCount = 10	discardCount = 13
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 9, expected = 8	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 405; expected = 405	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 8; expected = 8	PASS
+		testG.deckCount[0] = 21; expected = 21	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 2; expected = 2	PASS
+		testG.deckCount[1] = 179; expected = 179	PASS
+		testG.discardCount[1] = 136; expected = 136	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 5; expected = 5	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 13; expected = 13	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 12
+	k[1] = 22
+	k[2] = 7
+	k[3] = 8
+	k[4] = 26
+	k[5] = 10
+	k[6] = 21
+	k[7] = 23
+	k[8] = 9
+	k[9] = 20
+initializing game...
+numactions = 3
+coins = 4
+numbuys = 2
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 315
+
+player 1 playing adventurer from handpos 4
+
+player 0:  handCount = 18	deckCount = 6	discardCount = 10
+player 1:  handCount = 5	deckCount = 10	discardCount = 22
+player 2:  handCount = 8	deckCount = 435	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 4, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 30; expected = 30	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 315, expected = 316	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 18; expected = 18	PASS
+		testG.deckCount[0] = 6; expected = 6	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 8; expected = 8	PASS
+		testG.deckCount[2] = 435; expected = 435	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 4
+player playing adventurer = 3
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 15
+	k[1] = 7
+	k[2] = 9
+	k[3] = 8
+	k[4] = 20
+	k[5] = 26
+	k[6] = 11
+	k[7] = 17
+	k[8] = 21
+	k[9] = 18
+initializing game...
+numactions = 2
+coins = 2
+numbuys = 2
+whoseTurn = 3
+phase = 0
+
+numCardsPlayed = 0
+
+player 3 playing adventurer from handpos 2
+
+player 0:  handCount = 2	deckCount = 12	discardCount = 10
+player 1:  handCount = 9	deckCount = 10	discardCount = 10
+player 2:  handCount = 5	deckCount = 172	discardCount = 281
+player 3:  handCount = 7	deckCount = 10	discardCount = 6
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 9, expected = 8	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 14; expected = 14	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 2; expected = 2	PASS
+		testG.deckCount[0] = 12; expected = 12	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 9; expected = 9	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 172; expected = 172	PASS
+		testG.discardCount[2] = 281; expected = 281	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 11
+	k[1] = 10
+	k[2] = 26
+	k[3] = 24
+	k[4] = 13
+	k[5] = 8
+	k[6] = 7
+	k[7] = 12
+	k[8] = 14
+	k[9] = 22
+initializing game...
+numactions = 2
+coins = 1
+numbuys = 1
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 473
+
+player 1 playing adventurer from handpos 11
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 10
+player 1:  handCount = 20	deckCount = 8	discardCount = 18
+player 2:  handCount = 5	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 11, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 22, expected = 21	FAIL
+	treasureCount = 6, expected = 6	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 24; expected = 24	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 473, expected = 474	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 16
+	k[1] = 21
+	k[2] = 7
+	k[3] = 15
+	k[4] = 25
+	k[5] = 23
+	k[6] = 11
+	k[7] = 14
+	k[8] = 18
+	k[9] = 8
+initializing game...
+numactions = 3
+coins = 1
+numbuys = 1
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 1
+
+player 1 playing adventurer from handpos 1
+
+player 0:  handCount = 4	deckCount = 10	discardCount = 386
+player 1:  handCount = 3	deckCount = 7	discardCount = 18
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 23; expected = 23	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 1, expected = 2	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 4; expected = 4	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 386; expected = 386	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 4
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 8
+	k[1] = 15
+	k[2] = 10
+	k[3] = 25
+	k[4] = 7
+	k[5] = 23
+	k[6] = 11
+	k[7] = 18
+	k[8] = 16
+	k[9] = 17
+initializing game...
+numactions = 1
+coins = 3
+numbuys = 1
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 4
+
+player 0 playing adventurer from handpos 1
+
+player 0:  handCount = 3	deckCount = 10	discardCount = 10
+player 1:  handCount = 5	deckCount = 114	discardCount = 14
+player 2:  handCount = 5	deckCount = 10	discardCount = 2
+player 3:  handCount = 4	deckCount = 2	discardCount = 126
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 18; expected = 18	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 4, expected = 5	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 114; expected = 114	PASS
+		testG.discardCount[1] = 14; expected = 14	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 2; expected = 2	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 4; expected = 4	PASS
+		testG.deckCount[3] = 2; expected = 2	PASS
+		testG.discardCount[3] = 126; expected = 126	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 3
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 14
+	k[1] = 7
+	k[2] = 18
+	k[3] = 11
+	k[4] = 23
+	k[5] = 15
+	k[6] = 20
+	k[7] = 10
+	k[8] = 16
+	k[9] = 13
+initializing game...
+numactions = 3
+coins = 1
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 0
+
+player 0 playing adventurer from handpos 4
+
+player 0:  handCount = 10	deckCount = 29	discardCount = 5
+player 1:  handCount = 5	deckCount = 29	discardCount = 10
+player 2:  handCount = 5	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 4, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 12, expected = 11	FAIL
+	treasureCount = 6, expected = 6	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 32; expected = 32	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 29; expected = 29	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 25
+	k[1] = 20
+	k[2] = 7
+	k[3] = 14
+	k[4] = 23
+	k[5] = 15
+	k[6] = 18
+	k[7] = 13
+	k[8] = 22
+	k[9] = 26
+initializing game...
+numactions = 0
+coins = 4
+numbuys = 3
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 3
+
+player 1 playing adventurer from handpos 4
+
+player 0:  handCount = 3	deckCount = 9	discardCount = 41
+player 1:  handCount = 5	deckCount = 27	discardCount = 27
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 4, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 52; expected = 52	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 3; expected = 3	PASS
+		testG.deckCount[0] = 9; expected = 9	PASS
+		testG.discardCount[0] = 41; expected = 41	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 17
+	k[1] = 10
+	k[2] = 12
+	k[3] = 11
+	k[4] = 23
+	k[5] = 7
+	k[6] = 19
+	k[7] = 20
+	k[8] = 13
+	k[9] = 15
+initializing game...
+numactions = 2
+coins = 3
+numbuys = 3
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 33
+
+player 2 playing adventurer from handpos 2
+
+player 0:  handCount = 1	deckCount = 10	discardCount = 23
+player 1:  handCount = 5	deckCount = 1	discardCount = 10
+player 2:  handCount = 5	deckCount = 10	discardCount = 10
+player 3:  handCount = 2	deckCount = 25	discardCount = 47
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 18; expected = 18	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 33, expected = 34	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 1; expected = 1	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 23; expected = 23	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 1; expected = 1	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 2; expected = 2	PASS
+		testG.deckCount[3] = 25; expected = 25	PASS
+		testG.discardCount[3] = 47; expected = 47	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[0] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 7
+	k[1] = 20
+	k[2] = 15
+	k[3] = 9
+	k[4] = 19
+	k[5] = 10
+	k[6] = 25
+	k[7] = 14
+	k[8] = 23
+	k[9] = 8
+initializing game...
+numactions = 1
+coins = 1
+numbuys = 1
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 2
+
+player 1 playing adventurer from handpos 3
+
+player 0:  handCount = 5	deckCount = 14	discardCount = 10
+player 1:  handCount = 5	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 18; expected = 18	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 14; expected = 14	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[8] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 16
+	k[1] = 15
+	k[2] = 13
+	k[3] = 8
+	k[4] = 18
+	k[5] = 19
+	k[6] = 23
+	k[7] = 20
+	k[8] = 7
+	k[9] = 25
+initializing game...
+numactions = 1
+coins = 2
+numbuys = 3
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 0
+
+player 2 playing adventurer from handpos 1
+
+player 0:  handCount = 5	deckCount = 13	discardCount = 10
+player 1:  handCount = 5	deckCount = 105	discardCount = 10
+player 2:  handCount = 8	deckCount = 5	discardCount = 461
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 10, expected = 9	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 464; expected = 464	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 13; expected = 13	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 105; expected = 105	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 13
+	k[1] = 15
+	k[2] = 9
+	k[3] = 16
+	k[4] = 23
+	k[5] = 21
+	k[6] = 7
+	k[7] = 24
+	k[8] = 11
+	k[9] = 25
+initializing game...
+numactions = 3
+coins = 1
+numbuys = 2
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 41
+
+player 2 playing adventurer from handpos 1
+
+player 0:  handCount = 1	deckCount = 10	discardCount = 206
+player 1:  handCount = 5	deckCount = 10	discardCount = 351
+player 2:  handCount = 2	deckCount = 262	discardCount = 3
+player 3:  handCount = 5	deckCount = 28	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 263; expected = 263	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 41, expected = 42	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 1; expected = 1	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 206; expected = 206	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 351; expected = 351	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 5; expected = 5	PASS
+		testG.deckCount[3] = 28; expected = 28	PASS
+		testG.discardCount[3] = 10; expected = 10	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 17
+	k[1] = 10
+	k[2] = 19
+	k[3] = 7
+	k[4] = 12
+	k[5] = 18
+	k[6] = 16
+	k[7] = 21
+	k[8] = 22
+	k[9] = 8
+initializing game...
+numactions = 1
+coins = 2
+numbuys = 3
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 2
+
+player 0 playing adventurer from handpos 0
+
+player 0:  handCount = 2	deckCount = 10	discardCount = 14
+player 1:  handCount = 1	deckCount = 10	discardCount = 7
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 22; expected = 22	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 1; expected = 1	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 7; expected = 7	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 13
+	k[1] = 14
+	k[2] = 7
+	k[3] = 21
+	k[4] = 26
+	k[5] = 19
+	k[6] = 15
+	k[7] = 24
+	k[8] = 18
+	k[9] = 9
+initializing game...
+numactions = 0
+coins = 0
+numbuys = 2
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 0
+
+player 2 playing adventurer from handpos 0
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 38
+player 1:  handCount = 5	deckCount = 12	discardCount = 294
+player 2:  handCount = 3	deckCount = 10	discardCount = 40
+player 3:  handCount = 10	deckCount = 10	discardCount = 39
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 48; expected = 48	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 38; expected = 38	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 12; expected = 12	PASS
+		testG.discardCount[1] = 294; expected = 294	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 10; expected = 10	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 39; expected = 39	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 15
+	k[1] = 10
+	k[2] = 20
+	k[3] = 8
+	k[4] = 21
+	k[5] = 7
+	k[6] = 9
+	k[7] = 11
+	k[8] = 13
+	k[9] = 16
+initializing game...
+numactions = 0
+coins = 2
+numbuys = 0
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 109
+
+player 1 playing adventurer from handpos 3
+
+player 0:  handCount = 6	deckCount = 22	discardCount = 10
+player 1:  handCount = 5	deckCount = 10	discardCount = 255
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 263; expected = 263	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 109, expected = 110	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 6; expected = 6	PASS
+		testG.deckCount[0] = 22; expected = 22	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 3
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 15
+	k[1] = 20
+	k[2] = 19
+	k[3] = 7
+	k[4] = 14
+	k[5] = 24
+	k[6] = 25
+	k[7] = 21
+	k[8] = 18
+	k[9] = 22
+initializing game...
+numactions = 1
+coins = 0
+numbuys = 2
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 433
+
+player 0 playing adventurer from handpos 1
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 10
+player 1:  handCount = 5	deckCount = 8	discardCount = 25
+player 2:  handCount = 1	deckCount = 17	discardCount = 13
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 18; expected = 18	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 433, expected = 434	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 8; expected = 8	PASS
+		testG.discardCount[1] = 25; expected = 25	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 1; expected = 1	PASS
+		testG.deckCount[2] = 17; expected = 17	PASS
+		testG.discardCount[2] = 13; expected = 13	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 4
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 16
+	k[1] = 18
+	k[2] = 24
+	k[3] = 9
+	k[4] = 12
+	k[5] = 25
+	k[6] = 19
+	k[7] = 8
+	k[8] = 23
+	k[9] = 7
+initializing game...
+numactions = 3
+coins = 0
+numbuys = 1
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 339
+
+player 1 playing adventurer from handpos 2
+
+player 0:  handCount = 20	deckCount = 24	discardCount = 14
+player 1:  handCount = 4	deckCount = 431	discardCount = 6
+player 2:  handCount = 1	deckCount = 28	discardCount = 17
+player 3:  handCount = 6	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 6, expected = 5	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 435; expected = 435	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 339, expected = 340	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 20; expected = 20	PASS
+		testG.deckCount[0] = 24; expected = 24	PASS
+		testG.discardCount[0] = 14; expected = 14	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 1; expected = 1	PASS
+		testG.deckCount[2] = 28; expected = 28	PASS
+		testG.discardCount[2] = 17; expected = 17	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 6; expected = 6	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 10; expected = 10	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 7
+	k[1] = 22
+	k[2] = 20
+	k[3] = 10
+	k[4] = 16
+	k[5] = 17
+	k[6] = 26
+	k[7] = 25
+	k[8] = 19
+	k[9] = 12
+initializing game...
+numactions = 0
+coins = 2
+numbuys = 1
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 0
+
+player 2 playing adventurer from handpos 0
+
+player 0:  handCount = 24	deckCount = 9	discardCount = 10
+player 1:  handCount = 5	deckCount = 10	discardCount = 107
+player 2:  handCount = 2	deckCount = 175	discardCount = 5
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 178; expected = 178	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 24; expected = 24	PASS
+		testG.deckCount[0] = 9; expected = 9	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 107; expected = 107	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 12
+	k[1] = 15
+	k[2] = 14
+	k[3] = 20
+	k[4] = 8
+	k[5] = 7
+	k[6] = 18
+	k[7] = 16
+	k[8] = 24
+	k[9] = 9
+initializing game...
+numactions = 1
+coins = 2
+numbuys = 1
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 127
+
+player 1 playing adventurer from handpos 2
+
+player 0:  handCount = 2	deckCount = 46	discardCount = 10
+player 1:  handCount = 4	deckCount = 232	discardCount = 31
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 6, expected = 5	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 261; expected = 261	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 127, expected = 128	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 2; expected = 2	PASS
+		testG.deckCount[0] = 46; expected = 46	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 12
+	k[1] = 8
+	k[2] = 15
+	k[3] = 7
+	k[4] = 9
+	k[5] = 14
+	k[6] = 11
+	k[7] = 25
+	k[8] = 13
+	k[9] = 10
+initializing game...
+numactions = 3
+coins = 3
+numbuys = 2
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 232
+
+player 0 playing adventurer from handpos 0
+
+player 0:  handCount = 1	deckCount = 178	discardCount = -58
+player 1:  handCount = 1	deckCount = 14	discardCount = 16
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 3, expected = 2	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 118; expected = 118	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 232, expected = 233	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 1; expected = 1	PASS
+		testG.deckCount[1] = 14; expected = 14	PASS
+		testG.discardCount[1] = 16; expected = 16	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 7
+	k[1] = 14
+	k[2] = 23
+	k[3] = 10
+	k[4] = 9
+	k[5] = 11
+	k[6] = 8
+	k[7] = 15
+	k[8] = 25
+	k[9] = 21
+initializing game...
+numactions = 1
+coins = 2
+numbuys = 3
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 220
+
+player 1 playing adventurer from handpos 8
+
+player 0:  handCount = 5	deckCount = 416	discardCount = 10
+player 1:  handCount = 12	deckCount = 20	discardCount = 22
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 8, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 14, expected = 13	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 40; expected = 40	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 220, expected = 221	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 416; expected = 416	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[8] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 15
+	k[1] = 26
+	k[2] = 22
+	k[3] = 14
+	k[4] = 12
+	k[5] = 17
+	k[6] = 10
+	k[7] = 21
+	k[8] = 7
+	k[9] = 16
+initializing game...
+numactions = 2
+coins = 2
+numbuys = 3
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 2
+
+player 2 playing adventurer from handpos 3
+
+player 0:  handCount = 22	deckCount = 12	discardCount = 41
+player 1:  handCount = 5	deckCount = 22	discardCount = 10
+player 2:  handCount = 7	deckCount = 10	discardCount = 0
+player 3:  handCount = 5	deckCount = 29	discardCount = 9
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 9, expected = 8	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 8; expected = 8	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 22; expected = 22	PASS
+		testG.deckCount[0] = 12; expected = 12	PASS
+		testG.discardCount[0] = 41; expected = 41	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 22; expected = 22	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 5; expected = 5	PASS
+		testG.deckCount[3] = 29; expected = 29	PASS
+		testG.discardCount[3] = 9; expected = 9	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 22
+	k[1] = 7
+	k[2] = 19
+	k[3] = 9
+	k[4] = 11
+	k[5] = 17
+	k[6] = 20
+	k[7] = 13
+	k[8] = 14
+	k[9] = 24
+initializing game...
+numactions = 4
+coins = 1
+numbuys = 2
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 0
+
+player 2 playing adventurer from handpos 0
+
+player 0:  handCount = 24	deckCount = 16	discardCount = 15
+player 1:  handCount = 5	deckCount = 10	discardCount = 26
+player 2:  handCount = 1	deckCount = 108	discardCount = 257
+player 3:  handCount = 3	deckCount = 10	discardCount = 16
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 3, expected = 2	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 363; expected = 363	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 24; expected = 24	PASS
+		testG.deckCount[0] = 16; expected = 16	PASS
+		testG.discardCount[0] = 15; expected = 15	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 26; expected = 26	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 3; expected = 3	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 16; expected = 16	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[6] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 9
+	k[1] = 18
+	k[2] = 19
+	k[3] = 17
+	k[4] = 13
+	k[5] = 11
+	k[6] = 7
+	k[7] = 23
+	k[8] = 14
+	k[9] = 16
+initializing game...
+numactions = 0
+coins = 3
+numbuys = 2
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 14
+
+player 2 playing adventurer from handpos 10
+
+player 0:  handCount = 4	deckCount = 8	discardCount = 3
+player 1:  handCount = 5	deckCount = 82	discardCount = 10
+player 2:  handCount = 23	deckCount = 46	discardCount = 10
+player 3:  handCount = 5	deckCount = 3	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 10, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 25, expected = 24	FAIL
+	treasureCount = 8, expected = 8	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 54; expected = 54	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 14, expected = 15	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 4; expected = 4	PASS
+		testG.deckCount[0] = 8; expected = 8	PASS
+		testG.discardCount[0] = 3; expected = 3	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 82; expected = 82	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 5; expected = 5	PASS
+		testG.deckCount[3] = 3; expected = 3	PASS
+		testG.discardCount[3] = 10; expected = 10	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 8
+	k[1] = 11
+	k[2] = 7
+	k[3] = 10
+	k[4] = 25
+	k[5] = 24
+	k[6] = 15
+	k[7] = 19
+	k[8] = 14
+	k[9] = 16
+initializing game...
+numactions = 1
+coins = 4
+numbuys = 4
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 1
+
+player 1 playing adventurer from handpos 0
+
+player 0:  handCount = 10	deckCount = 123	discardCount = 10
+player 1:  handCount = 3	deckCount = 10	discardCount = 27
+player 2:  handCount = 6	deckCount = 5	discardCount = 6
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 35; expected = 35	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 1, expected = 2	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 10; expected = 10	PASS
+		testG.deckCount[0] = 123; expected = 123	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 6; expected = 6	PASS
+		testG.deckCount[2] = 5; expected = 5	PASS
+		testG.discardCount[2] = 6; expected = 6	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 7
+	k[1] = 23
+	k[2] = 18
+	k[3] = 10
+	k[4] = 11
+	k[5] = 13
+	k[6] = 25
+	k[7] = 9
+	k[8] = 14
+	k[9] = 26
+initializing game...
+numactions = 4
+coins = 4
+numbuys = 1
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 3
+
+player 2 playing adventurer from handpos 0
+
+player 0:  handCount = 2	deckCount = 467	discardCount = 17
+player 1:  handCount = 6	deckCount = 23	discardCount = 42
+player 2:  handCount = 1	deckCount = 102	discardCount = 14
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 3, expected = 2	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 114; expected = 114	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 2; expected = 2	PASS
+		testG.deckCount[0] = 467; expected = 467	PASS
+		testG.discardCount[0] = 17; expected = 17	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 6; expected = 6	PASS
+		testG.deckCount[1] = 23; expected = 23	PASS
+		testG.discardCount[1] = 42; expected = 42	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[0] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 7
+	k[1] = 11
+	k[2] = 8
+	k[3] = 22
+	k[4] = 15
+	k[5] = 16
+	k[6] = 9
+	k[7] = 24
+	k[8] = 17
+	k[9] = 18
+initializing game...
+numactions = 2
+coins = 4
+numbuys = 0
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 360
+
+player 2 playing adventurer from handpos 0
+
+player 0:  handCount = 5	deckCount = 18	discardCount = 5
+player 1:  handCount = 5	deckCount = 21	discardCount = 1
+player 2:  handCount = 5	deckCount = 48	discardCount = 21
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 67; expected = 67	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 360, expected = 361	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 18; expected = 18	PASS
+		testG.discardCount[0] = 5; expected = 5	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 21; expected = 21	PASS
+		testG.discardCount[1] = 1; expected = 1	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 19
+	k[1] = 7
+	k[2] = 21
+	k[3] = 18
+	k[4] = 12
+	k[5] = 24
+	k[6] = 20
+	k[7] = 23
+	k[8] = 22
+	k[9] = 17
+initializing game...
+numactions = 3
+coins = 0
+numbuys = 0
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 3
+
+player 1 playing adventurer from handpos 0
+
+player 0:  handCount = 5	deckCount = 6	discardCount = 5
+player 1:  handCount = 3	deckCount = 10	discardCount = 346
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 354; expected = 354	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 6; expected = 6	PASS
+		testG.discardCount[0] = 5; expected = 5	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 4
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 24
+	k[1] = 18
+	k[2] = 20
+	k[3] = 26
+	k[4] = 17
+	k[5] = 7
+	k[6] = 14
+	k[7] = 21
+	k[8] = 9
+	k[9] = 15
+initializing game...
+numactions = 0
+coins = 3
+numbuys = 3
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 0
+
+player 1 playing adventurer from handpos 1
+
+player 0:  handCount = 5	deckCount = 1	discardCount = 29
+player 1:  handCount = 5	deckCount = 1	discardCount = 314
+player 2:  handCount = 9	deckCount = 13	discardCount = 12
+player 3:  handCount = 7	deckCount = 246	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 313; expected = 313	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 1; expected = 1	PASS
+		testG.discardCount[0] = 29; expected = 29	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 9; expected = 9	PASS
+		testG.deckCount[2] = 13; expected = 13	PASS
+		testG.discardCount[2] = 12; expected = 12	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 7; expected = 7	PASS
+		testG.deckCount[3] = 246; expected = 246	PASS
+		testG.discardCount[3] = 10; expected = 10	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 24
+	k[1] = 15
+	k[2] = 25
+	k[3] = 26
+	k[4] = 7
+	k[5] = 20
+	k[6] = 10
+	k[7] = 18
+	k[8] = 13
+	k[9] = 21
+initializing game...
+numactions = 1
+coins = 1
+numbuys = 4
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 142
+
+player 0 playing adventurer from handpos 1
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 16
+player 1:  handCount = 5	deckCount = 169	discardCount = 30
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 24; expected = 24	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 142, expected = 143	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 169; expected = 169	PASS
+		testG.discardCount[1] = 30; expected = 30	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 12
+	k[1] = 13
+	k[2] = 16
+	k[3] = 22
+	k[4] = 21
+	k[5] = 24
+	k[6] = 17
+	k[7] = 7
+	k[8] = 14
+	k[9] = 10
+initializing game...
+numactions = 4
+coins = 2
+numbuys = 4
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 2
+
+player 1 playing adventurer from handpos 0
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 6
+player 1:  handCount = 5	deckCount = 10	discardCount = 372
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 380; expected = 380	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 6; expected = 6	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 10
+	k[1] = 7
+	k[2] = 13
+	k[3] = 18
+	k[4] = 21
+	k[5] = 24
+	k[6] = 25
+	k[7] = 8
+	k[8] = 22
+	k[9] = 17
+initializing game...
+numactions = 3
+coins = 0
+numbuys = 4
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 0
+
+player 0 playing adventurer from handpos 17
+
+player 0:  handCount = 19	deckCount = 10	discardCount = 203
+player 1:  handCount = 3	deckCount = 173	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 17, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 21, expected = 20	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 211; expected = 211	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 3; expected = 3	PASS
+		testG.deckCount[1] = 173; expected = 173	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 4
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 16
+	k[1] = 17
+	k[2] = 15
+	k[3] = 22
+	k[4] = 13
+	k[5] = 7
+	k[6] = 9
+	k[7] = 19
+	k[8] = 20
+	k[9] = 24
+initializing game...
+numactions = 4
+coins = 2
+numbuys = 0
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 0
+
+player 1 playing adventurer from handpos 1
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 100
+player 1:  handCount = 3	deckCount = 209	discardCount = 2
+player 2:  handCount = 8	deckCount = 10	discardCount = 15
+player 3:  handCount = 4	deckCount = 42	discardCount = 238
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 209; expected = 209	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 100; expected = 100	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 8; expected = 8	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 15; expected = 15	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 4; expected = 4	PASS
+		testG.deckCount[3] = 42; expected = 42	PASS
+		testG.discardCount[3] = 238; expected = 238	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[8] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 9
+	k[2] = 20
+	k[3] = 10
+	k[4] = 26
+	k[5] = 15
+	k[6] = 12
+	k[7] = 19
+	k[8] = 7
+	k[9] = 14
+initializing game...
+numactions = 2
+coins = 1
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 2
+
+player 0 playing adventurer from handpos 1
+
+player 0:  handCount = 4	deckCount = 10	discardCount = 17
+player 1:  handCount = 5	deckCount = 3	discardCount = 11
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 6, expected = 5	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 25; expected = 25	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 3; expected = 3	PASS
+		testG.discardCount[1] = 11; expected = 11	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 15
+	k[1] = 21
+	k[2] = 18
+	k[3] = 14
+	k[4] = 7
+	k[5] = 11
+	k[6] = 17
+	k[7] = 23
+	k[8] = 25
+	k[9] = 20
+initializing game...
+numactions = 1
+coins = 3
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 3
+
+player 0 playing adventurer from handpos 1
+
+player 0:  handCount = 2	deckCount = 10	discardCount = 26
+player 1:  handCount = 2	deckCount = 12	discardCount = 12
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 34; expected = 34	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 2; expected = 2	PASS
+		testG.deckCount[1] = 12; expected = 12	PASS
+		testG.discardCount[1] = 12; expected = 12	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[8] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 21
+	k[2] = 7
+	k[3] = 20
+	k[4] = 12
+	k[5] = 18
+	k[6] = 22
+	k[7] = 19
+	k[8] = 11
+	k[9] = 8
+initializing game...
+numactions = 1
+coins = 0
+numbuys = 4
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 413
+
+player 2 playing adventurer from handpos 2
+
+player 0:  handCount = 1	deckCount = 3	discardCount = 8
+player 1:  handCount = 6	deckCount = 106	discardCount = 327
+player 2:  handCount = 6	deckCount = 206	discardCount = 13
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 8, expected = 7	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 217; expected = 217	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 413, expected = 414	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 1; expected = 1	PASS
+		testG.deckCount[0] = 3; expected = 3	PASS
+		testG.discardCount[0] = 8; expected = 8	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 6; expected = 6	PASS
+		testG.deckCount[1] = 106; expected = 106	PASS
+		testG.discardCount[1] = 327; expected = 327	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 7
+	k[1] = 23
+	k[2] = 13
+	k[3] = 14
+	k[4] = 10
+	k[5] = 12
+	k[6] = 8
+	k[7] = 18
+	k[8] = 24
+	k[9] = 20
+initializing game...
+numactions = 3
+coins = 4
+numbuys = 2
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 2
+
+player 0 playing adventurer from handpos 4
+
+player 0:  handCount = 5	deckCount = 329	discardCount = -326
+player 1:  handCount = 24	deckCount = 31	discardCount = 4
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 4, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 1; expected = 1	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 24; expected = 24	PASS
+		testG.deckCount[1] = 31; expected = 31	PASS
+		testG.discardCount[1] = 4; expected = 4	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[8] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 17
+	k[1] = 14
+	k[2] = 18
+	k[3] = 20
+	k[4] = 7
+	k[5] = 19
+	k[6] = 16
+	k[7] = 9
+	k[8] = 26
+	k[9] = 22
+initializing game...
+numactions = 4
+coins = 1
+numbuys = 1
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 212
+
+player 0 playing adventurer from handpos 1
+
+player 0:  handCount = 2	deckCount = 12	discardCount = 12
+player 1:  handCount = 3	deckCount = 14	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 22; expected = 22	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 212, expected = 213	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 3; expected = 3	PASS
+		testG.deckCount[1] = 14; expected = 14	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 3
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 11
+	k[1] = 9
+	k[2] = 7
+	k[3] = 23
+	k[4] = 26
+	k[5] = 19
+	k[6] = 25
+	k[7] = 8
+	k[8] = 15
+	k[9] = 12
+initializing game...
+numactions = 3
+coins = 4
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 94
+
+player 0 playing adventurer from handpos 21
+
+player 0:  handCount = 23	deckCount = 10	discardCount = 396
+player 1:  handCount = 2	deckCount = 22	discardCount = 29
+player 2:  handCount = 19	deckCount = 10	discardCount = 76
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 21, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 25, expected = 24	FAIL
+	treasureCount = 10, expected = 10	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 404; expected = 404	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 94, expected = 95	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 2; expected = 2	PASS
+		testG.deckCount[1] = 22; expected = 22	PASS
+		testG.discardCount[1] = 29; expected = 29	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 19; expected = 19	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 76; expected = 76	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 8
+	k[1] = 7
+	k[2] = 22
+	k[3] = 24
+	k[4] = 11
+	k[5] = 15
+	k[6] = 12
+	k[7] = 21
+	k[8] = 9
+	k[9] = 14
+initializing game...
+numactions = 0
+coins = 3
+numbuys = 2
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 236
+
+player 1 playing adventurer from handpos 4
+
+player 0:  handCount = 4	deckCount = 12	discardCount = 20
+player 1:  handCount = 5	deckCount = 42	discardCount = 12
+player 2:  handCount = 9	deckCount = 15	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 4, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 52; expected = 52	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 236, expected = 237	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 4; expected = 4	PASS
+		testG.deckCount[0] = 12; expected = 12	PASS
+		testG.discardCount[0] = 20; expected = 20	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 9; expected = 9	PASS
+		testG.deckCount[2] = 15; expected = 15	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 4
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 22
+	k[1] = 23
+	k[2] = 24
+	k[3] = 13
+	k[4] = 19
+	k[5] = 16
+	k[6] = 12
+	k[7] = 15
+	k[8] = 26
+	k[9] = 7
+initializing game...
+numactions = 3
+coins = 3
+numbuys = 1
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 1
+
+player 1 playing adventurer from handpos 0
+
+player 0:  handCount = 5	deckCount = 11	discardCount = 17
+player 1:  handCount = 5	deckCount = 16	discardCount = 3
+player 2:  handCount = 5	deckCount = 1	discardCount = 10
+player 3:  handCount = 5	deckCount = 8	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 17; expected = 17	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 1, expected = 2	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 11; expected = 11	PASS
+		testG.discardCount[0] = 17; expected = 17	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 1; expected = 1	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 5; expected = 5	PASS
+		testG.deckCount[3] = 8; expected = 8	PASS
+		testG.discardCount[3] = 10; expected = 10	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 4
+player playing adventurer = 3
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 20
+	k[1] = 7
+	k[2] = 11
+	k[3] = 17
+	k[4] = 9
+	k[5] = 19
+	k[6] = 12
+	k[7] = 13
+	k[8] = 21
+	k[9] = 16
+initializing game...
+numactions = 4
+coins = 2
+numbuys = 0
+whoseTurn = 3
+phase = 0
+
+numCardsPlayed = 57
+
+player 3 playing adventurer from handpos 7
+
+player 0:  handCount = 9	deckCount = 10	discardCount = 70
+player 1:  handCount = 5	deckCount = 265	discardCount = 8
+player 2:  handCount = 5	deckCount = 48	discardCount = 186
+player 3:  handCount = 10	deckCount = 10	discardCount = 12
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 7, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 12, expected = 11	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 20; expected = 20	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 57, expected = 58	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 9; expected = 9	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 70; expected = 70	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 265; expected = 265	PASS
+		testG.discardCount[1] = 8; expected = 8	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 48; expected = 48	PASS
+		testG.discardCount[2] = 186; expected = 186	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 2; expected = 2		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 17
+	k[2] = 12
+	k[3] = 7
+	k[4] = 13
+	k[5] = 14
+	k[6] = 10
+	k[7] = 19
+	k[8] = 8
+	k[9] = 24
+initializing game...
+numactions = 1
+coins = 1
+numbuys = 2
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 4
+
+player 0 playing adventurer from handpos 3
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 109
+player 1:  handCount = 18	deckCount = 10	discardCount = 11
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 117; expected = 117	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 4, expected = 5	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 18; expected = 18	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 11; expected = 11	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 24
+	k[1] = 22
+	k[2] = 10
+	k[3] = 7
+	k[4] = 20
+	k[5] = 19
+	k[6] = 12
+	k[7] = 17
+	k[8] = 25
+	k[9] = 21
+initializing game...
+numactions = 0
+coins = 4
+numbuys = 3
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 2
+
+player 2 playing adventurer from handpos 4
+
+player 0:  handCount = 9	deckCount = 15	discardCount = 10
+player 1:  handCount = 3	deckCount = 25	discardCount = 10
+player 2:  handCount = 10	deckCount = 462	discardCount = 13
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 4, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 12, expected = 11	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 473; expected = 473	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 9; expected = 9	PASS
+		testG.deckCount[0] = 15; expected = 15	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 3; expected = 3	PASS
+		testG.deckCount[1] = 25; expected = 25	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 14
+	k[1] = 7
+	k[2] = 16
+	k[3] = 9
+	k[4] = 10
+	k[5] = 13
+	k[6] = 26
+	k[7] = 18
+	k[8] = 24
+	k[9] = 12
+initializing game...
+numactions = 4
+coins = 0
+numbuys = 3
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 3
+
+player 0 playing adventurer from handpos 3
+
+player 0:  handCount = 5	deckCount = 7	discardCount = 34
+player 1:  handCount = 3	deckCount = 27	discardCount = 211
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 39; expected = 39	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 3; expected = 3	PASS
+		testG.deckCount[1] = 27; expected = 27	PASS
+		testG.discardCount[1] = 211; expected = 211	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 9
+	k[1] = 11
+	k[2] = 12
+	k[3] = 7
+	k[4] = 14
+	k[5] = 21
+	k[6] = 16
+	k[7] = 18
+	k[8] = 13
+	k[9] = 25
+initializing game...
+numactions = 2
+coins = 0
+numbuys = 4
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 0
+
+player 1 playing adventurer from handpos 0
+
+player 0:  handCount = 1	deckCount = 3	discardCount = 10
+player 1:  handCount = 2	deckCount = 35	discardCount = 37
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 70; expected = 70	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 1; expected = 1	PASS
+		testG.deckCount[0] = 3; expected = 3	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 13
+	k[1] = 9
+	k[2] = 17
+	k[3] = 16
+	k[4] = 20
+	k[5] = 11
+	k[6] = 23
+	k[7] = 7
+	k[8] = 22
+	k[9] = 15
+initializing game...
+numactions = 1
+coins = 1
+numbuys = 2
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 2
+
+player 2 playing adventurer from handpos 6
+
+player 0:  handCount = 9	deckCount = 10	discardCount = 92
+player 1:  handCount = 5	deckCount = 52	discardCount = 42
+player 2:  handCount = 13	deckCount = 29	discardCount = 43
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 6, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 15, expected = 14	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 70; expected = 70	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 9; expected = 9	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 92; expected = 92	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 52; expected = 52	PASS
+		testG.discardCount[1] = 42; expected = 42	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 7
+	k[2] = 14
+	k[3] = 13
+	k[4] = 20
+	k[5] = 18
+	k[6] = 26
+	k[7] = 17
+	k[8] = 24
+	k[9] = 25
+initializing game...
+numactions = 3
+coins = 0
+numbuys = 3
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 4
+
+player 2 playing adventurer from handpos 0
+
+player 0:  handCount = 3	deckCount = 10	discardCount = 14
+player 1:  handCount = 8	deckCount = 25	discardCount = 11
+player 2:  handCount = 1	deckCount = 3	discardCount = 0
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 3, expected = 2	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 1; expected = 1	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 4, expected = 5	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 3; expected = 3	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 14; expected = 14	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 8; expected = 8	PASS
+		testG.deckCount[1] = 25; expected = 25	PASS
+		testG.discardCount[1] = 11; expected = 11	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[6] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 13
+	k[1] = 15
+	k[2] = 8
+	k[3] = 26
+	k[4] = 7
+	k[5] = 20
+	k[6] = 25
+	k[7] = 18
+	k[8] = 23
+	k[9] = 11
+initializing game...
+numactions = 0
+coins = 1
+numbuys = 0
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 3
+
+player 2 playing adventurer from handpos 1
+
+player 0:  handCount = 17	deckCount = 230	discardCount = 10
+player 1:  handCount = 4	deckCount = 174	discardCount = 73
+player 2:  handCount = 5	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 18; expected = 18	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 17; expected = 17	PASS
+		testG.deckCount[0] = 230; expected = 230	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 4; expected = 4	PASS
+		testG.deckCount[1] = 174; expected = 174	PASS
+		testG.discardCount[1] = 73; expected = 73	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[8] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 8
+	k[2] = 24
+	k[3] = 21
+	k[4] = 18
+	k[5] = 15
+	k[6] = 13
+	k[7] = 16
+	k[8] = 7
+	k[9] = 12
+initializing game...
+numactions = 4
+coins = 3
+numbuys = 3
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 2
+
+player 1 playing adventurer from handpos 5
+
+player 0:  handCount = 23	deckCount = 12	discardCount = 188
+player 1:  handCount = 7	deckCount = 271	discardCount = 22
+player 2:  handCount = 3	deckCount = 30	discardCount = 14
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 5, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 9, expected = 8	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 291; expected = 291	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 23; expected = 23	PASS
+		testG.deckCount[0] = 12; expected = 12	PASS
+		testG.discardCount[0] = 188; expected = 188	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 3; expected = 3	PASS
+		testG.deckCount[2] = 30; expected = 30	PASS
+		testG.discardCount[2] = 14; expected = 14	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 11
+	k[1] = 24
+	k[2] = 22
+	k[3] = 18
+	k[4] = 7
+	k[5] = 21
+	k[6] = 9
+	k[7] = 13
+	k[8] = 8
+	k[9] = 25
+initializing game...
+numactions = 4
+coins = 1
+numbuys = 0
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 4
+
+player 2 playing adventurer from handpos 1
+
+player 0:  handCount = 1	deckCount = 10	discardCount = 11
+player 1:  handCount = 4	deckCount = 14	discardCount = 10
+player 2:  handCount = 4	deckCount = 10	discardCount = 3
+player 3:  handCount = 3	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 6, expected = 5	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 11; expected = 11	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 4, expected = 5	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 1; expected = 1	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 11; expected = 11	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 4; expected = 4	PASS
+		testG.deckCount[1] = 14; expected = 14	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 3; expected = 3	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 10; expected = 10	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 19
+	k[1] = 17
+	k[2] = 11
+	k[3] = 7
+	k[4] = 13
+	k[5] = 18
+	k[6] = 22
+	k[7] = 12
+	k[8] = 20
+	k[9] = 14
+initializing game...
+numactions = 0
+coins = 3
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 0
+
+player 0 playing adventurer from handpos 0
+
+player 0:  handCount = 3	deckCount = 2	discardCount = 10
+player 1:  handCount = 19	deckCount = 10	discardCount = 2
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 5, expected = 4	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 10; expected = 10	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 19; expected = 19	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 2; expected = 2	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 3
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 20
+	k[1] = 14
+	k[2] = 11
+	k[3] = 19
+	k[4] = 13
+	k[5] = 7
+	k[6] = 10
+	k[7] = 24
+	k[8] = 15
+	k[9] = 23
+initializing game...
+numactions = 0
+coins = 1
+numbuys = 4
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 11
+
+player 0 playing adventurer from handpos 3
+
+player 0:  handCount = 9	deckCount = 12	discardCount = 447
+player 1:  handCount = 7	deckCount = 8	discardCount = 36
+player 2:  handCount = 4	deckCount = 7	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 11, expected = 10	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 457; expected = 457	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 11, expected = 12	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 7; expected = 7	PASS
+		testG.deckCount[1] = 8; expected = 8	PASS
+		testG.discardCount[1] = 36; expected = 36	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 4; expected = 4	PASS
+		testG.deckCount[2] = 7; expected = 7	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[6] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 16
+	k[2] = 8
+	k[3] = 9
+	k[4] = 26
+	k[5] = 20
+	k[6] = 7
+	k[7] = 12
+	k[8] = 11
+	k[9] = 25
+initializing game...
+numactions = 1
+coins = 1
+numbuys = 3
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 1
+
+player 1 playing adventurer from handpos 4
+
+player 0:  handCount = 3	deckCount = 36	discardCount = 64
+player 1:  handCount = 5	deckCount = 48	discardCount = 10
+player 2:  handCount = 4	deckCount = 28	discardCount = 8
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 4, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 56; expected = 56	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 1, expected = 2	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 3; expected = 3	PASS
+		testG.deckCount[0] = 36; expected = 36	PASS
+		testG.discardCount[0] = 64; expected = 64	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 4; expected = 4	PASS
+		testG.deckCount[2] = 28; expected = 28	PASS
+		testG.discardCount[2] = 8; expected = 8	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 3; expected = 3	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[0] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 7
+	k[1] = 26
+	k[2] = 11
+	k[3] = 25
+	k[4] = 12
+	k[5] = 23
+	k[6] = 13
+	k[7] = 15
+	k[8] = 24
+	k[9] = 9
+initializing game...
+numactions = 4
+coins = 0
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 0
+
+player 0 playing adventurer from handpos 2
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 129
+player 1:  handCount = 7	deckCount = 351	discardCount = 22
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 137; expected = 137	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 7; expected = 7	PASS
+		testG.deckCount[1] = 351; expected = 351	PASS
+		testG.discardCount[1] = 22; expected = 22	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 4
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 26
+	k[1] = 23
+	k[2] = 15
+	k[3] = 10
+	k[4] = 20
+	k[5] = 11
+	k[6] = 25
+	k[7] = 7
+	k[8] = 21
+	k[9] = 14
+initializing game...
+numactions = 1
+coins = 4
+numbuys = 2
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 3
+
+player 1 playing adventurer from handpos 1
+
+player 0:  handCount = 1	deckCount = 21	discardCount = 11
+player 1:  handCount = 5	deckCount = 10	discardCount = 19
+player 2:  handCount = 3	deckCount = 202	discardCount = 10
+player 3:  handCount = 18	deckCount = 36	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 27; expected = 27	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 1; expected = 1	PASS
+		testG.deckCount[0] = 21; expected = 21	PASS
+		testG.discardCount[0] = 11; expected = 11	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 3; expected = 3	PASS
+		testG.deckCount[2] = 202; expected = 202	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 18; expected = 18	PASS
+		testG.deckCount[3] = 36; expected = 36	PASS
+		testG.discardCount[3] = 10; expected = 10	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 20
+	k[1] = 12
+	k[2] = 9
+	k[3] = 16
+	k[4] = 7
+	k[5] = 13
+	k[6] = 15
+	k[7] = 19
+	k[8] = 22
+	k[9] = 18
+initializing game...
+numactions = 3
+coins = 3
+numbuys = 0
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 435
+
+player 1 playing adventurer from handpos 0
+
+player 0:  handCount = 1	deckCount = 10	discardCount = 39
+player 1:  handCount = 6	deckCount = 10	discardCount = 7
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 8, expected = 7	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 15; expected = 15	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 435, expected = 436	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 1; expected = 1	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 39; expected = 39	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 21
+	k[1] = 18
+	k[2] = 22
+	k[3] = 14
+	k[4] = 11
+	k[5] = 7
+	k[6] = 17
+	k[7] = 16
+	k[8] = 25
+	k[9] = 19
+initializing game...
+numactions = 4
+coins = 4
+numbuys = 1
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 213
+
+player 0 playing adventurer from handpos 1
+
+player 0:  handCount = 2	deckCount = 13	discardCount = 306
+player 1:  handCount = 9	deckCount = 214	discardCount = 18
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 317; expected = 317	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 213, expected = 214	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 9; expected = 9	PASS
+		testG.deckCount[1] = 214; expected = 214	PASS
+		testG.discardCount[1] = 18; expected = 18	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[0] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 7
+	k[1] = 14
+	k[2] = 19
+	k[3] = 11
+	k[4] = 22
+	k[5] = 23
+	k[6] = 15
+	k[7] = 24
+	k[8] = 26
+	k[9] = 13
+initializing game...
+numactions = 4
+coins = 4
+numbuys = 0
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 3
+
+player 2 playing adventurer from handpos 2
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 245
+player 1:  handCount = 5	deckCount = 131	discardCount = 141
+player 2:  handCount = 10	deckCount = 161	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 12, expected = 11	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 169; expected = 169	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 245; expected = 245	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 131; expected = 131	PASS
+		testG.discardCount[1] = 141; expected = 141	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 3
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 13
+	k[1] = 17
+	k[2] = 16
+	k[3] = 14
+	k[4] = 22
+	k[5] = 7
+	k[6] = 18
+	k[7] = 15
+	k[8] = 23
+	k[9] = 19
+initializing game...
+numactions = 3
+coins = 4
+numbuys = 2
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 3
+
+player 0 playing adventurer from handpos 8
+
+player 0:  handCount = 9	deckCount = 10	discardCount = 278
+player 1:  handCount = 1	deckCount = 11	discardCount = 47
+player 2:  handCount = 9	deckCount = 11	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 8, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 11, expected = 10	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 286; expected = 286	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 1; expected = 1	PASS
+		testG.deckCount[1] = 11; expected = 11	PASS
+		testG.discardCount[1] = 47; expected = 47	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 9; expected = 9	PASS
+		testG.deckCount[2] = 11; expected = 11	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 21
+	k[1] = 16
+	k[2] = 17
+	k[3] = 10
+	k[4] = 8
+	k[5] = 20
+	k[6] = 19
+	k[7] = 7
+	k[8] = 25
+	k[9] = 13
+initializing game...
+numactions = 3
+coins = 4
+numbuys = 4
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 3
+
+player 1 playing adventurer from handpos 2
+
+player 0:  handCount = 5	deckCount = 6	discardCount = 10
+player 1:  handCount = 5	deckCount = 34	discardCount = 35
+player 2:  handCount = 5	deckCount = 18	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 67; expected = 67	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 6; expected = 6	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 18; expected = 18	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 11
+	k[1] = 26
+	k[2] = 21
+	k[3] = 7
+	k[4] = 15
+	k[5] = 17
+	k[6] = 20
+	k[7] = 23
+	k[8] = 19
+	k[9] = 24
+initializing game...
+numactions = 2
+coins = 0
+numbuys = 1
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 0
+
+player 1 playing adventurer from handpos 1
+
+player 0:  handCount = 2	deckCount = 10	discardCount = 10
+player 1:  handCount = 5	deckCount = 9	discardCount = 24
+player 2:  handCount = 5	deckCount = 1	discardCount = 293
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 31; expected = 31	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 2; expected = 2	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 5; expected = 5	PASS
+		testG.deckCount[2] = 1; expected = 1	PASS
+		testG.discardCount[2] = 293; expected = 293	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[6] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 11
+	k[1] = 26
+	k[2] = 10
+	k[3] = 7
+	k[4] = 21
+	k[5] = 20
+	k[6] = 12
+	k[7] = 16
+	k[8] = 9
+	k[9] = 14
+initializing game...
+numactions = 1
+coins = 4
+numbuys = 1
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 0
+
+player 0 playing adventurer from handpos 0
+
+player 0:  handCount = 1	deckCount = 18	discardCount = 44
+player 1:  handCount = 19	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 3, expected = 2	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 60; expected = 60	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 19; expected = 19	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 10; expected = 10	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 18
+	k[1] = 10
+	k[2] = 7
+	k[3] = 19
+	k[4] = 17
+	k[5] = 26
+	k[6] = 25
+	k[7] = 21
+	k[8] = 16
+	k[9] = 8
+initializing game...
+numactions = 0
+coins = 4
+numbuys = 1
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 0
+
+player 1 playing adventurer from handpos 1
+
+player 0:  handCount = 5	deckCount = 38	discardCount = 10
+player 1:  handCount = 2	deckCount = 183	discardCount = 18
+player 2:  handCount = 9	deckCount = 10	discardCount = 6
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 199; expected = 199	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 38; expected = 38	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 9; expected = 9	PASS
+		testG.deckCount[2] = 10; expected = 10	PASS
+		testG.discardCount[2] = 6; expected = 6	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 1; expected = 1	PASS
+	coins = 4; expected = 4		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[2] position.
+number of players = 3
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 13
+	k[2] = 7
+	k[3] = 10
+	k[4] = 21
+	k[5] = 11
+	k[6] = 9
+	k[7] = 8
+	k[8] = 15
+	k[9] = 26
+initializing game...
+numactions = 2
+coins = 1
+numbuys = 4
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 3
+
+player 1 playing adventurer from handpos 4
+
+player 0:  handCount = 2	deckCount = 14	discardCount = 449
+player 1:  handCount = 5	deckCount = 37	discardCount = 33
+player 2:  handCount = 3	deckCount = 19	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 4, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 6, expected = 6	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 68; expected = 68	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 2; expected = 2	PASS
+		testG.deckCount[0] = 14; expected = 14	PASS
+		testG.discardCount[0] = 449; expected = 449	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 3; expected = 3	PASS
+		testG.deckCount[2] = 19; expected = 19	PASS
+		testG.discardCount[2] = 10; expected = 10	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[1] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 16
+	k[1] = 7
+	k[2] = 8
+	k[3] = 15
+	k[4] = 19
+	k[5] = 12
+	k[6] = 26
+	k[7] = 10
+	k[8] = 14
+	k[9] = 18
+initializing game...
+numactions = 4
+coins = 1
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 0
+
+player 0 playing adventurer from handpos 0
+
+player 0:  handCount = 5	deckCount = 1	discardCount = 128
+player 1:  handCount = 1	deckCount = 183	discardCount = 18
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 127; expected = 127	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 1; expected = 1	PASS
+		testG.deckCount[1] = 183; expected = 183	PASS
+		testG.discardCount[1] = 18; expected = 18	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[3] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 14
+	k[1] = 11
+	k[2] = 12
+	k[3] = 7
+	k[4] = 16
+	k[5] = 13
+	k[6] = 24
+	k[7] = 20
+	k[8] = 23
+	k[9] = 15
+initializing game...
+numactions = 2
+coins = 3
+numbuys = 2
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 1
+
+player 2 playing adventurer from handpos 4
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 4
+player 1:  handCount = 5	deckCount = 5	discardCount = 157
+player 2:  handCount = 6	deckCount = 1	discardCount = 10
+player 3:  handCount = 5	deckCount = 10	discardCount = 39
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 4, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 8, expected = 7	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 9; expected = 9	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 1, expected = 2	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 4; expected = 4	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 5; expected = 5	PASS
+		testG.discardCount[1] = 157; expected = 157	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 5; expected = 5	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 39; expected = 39	PASS
+
+
+	numActions = 2; expected = 2	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 3; expected = 3		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[4] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 20
+	k[1] = 25
+	k[2] = 19
+	k[3] = 11
+	k[4] = 7
+	k[5] = 21
+	k[6] = 10
+	k[7] = 12
+	k[8] = 14
+	k[9] = 13
+initializing game...
+numactions = 1
+coins = 0
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 2
+
+player 0 playing adventurer from handpos 0
+
+player 0:  handCount = 1	deckCount = 326	discardCount = 37
+player 1:  handCount = 3	deckCount = 30	discardCount = 70
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 0, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 3, expected = 2	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 361; expected = 361	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 3; expected = 3	PASS
+		testG.deckCount[1] = 30; expected = 30	PASS
+		testG.discardCount[1] = 70; expected = 70	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 4
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 25
+	k[1] = 14
+	k[2] = 13
+	k[3] = 21
+	k[4] = 17
+	k[5] = 26
+	k[6] = 7
+	k[7] = 19
+	k[8] = 9
+	k[9] = 20
+initializing game...
+numactions = 0
+coins = 1
+numbuys = 0
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 3
+
+player 1 playing adventurer from handpos 3
+
+player 0:  handCount = 5	deckCount = 10	discardCount = 13
+player 1:  handCount = 5	deckCount = 9	discardCount = 7
+player 2:  handCount = 1	deckCount = 1	discardCount = 46
+player 3:  handCount = 22	deckCount = 317	discardCount = -155
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 14; expected = 14	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 3, expected = 4	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 5; expected = 5	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 13; expected = 13	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 1; expected = 1	PASS
+		testG.deckCount[2] = 1; expected = 1	PASS
+		testG.discardCount[2] = 46; expected = 46	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 22; expected = 22	PASS
+		testG.deckCount[3] = 317; expected = 317	PASS
+		testG.discardCount[3] = -155; expected = -155	PASS
+
+
+	numActions = 0; expected = 0	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[6] position.
+number of players = 4
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 15
+	k[1] = 10
+	k[2] = 17
+	k[3] = 24
+	k[4] = 13
+	k[5] = 12
+	k[6] = 7
+	k[7] = 23
+	k[8] = 26
+	k[9] = 9
+initializing game...
+numactions = 1
+coins = 0
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 2
+
+player 0 playing adventurer from handpos 3
+
+player 0:  handCount = 4	deckCount = 15	discardCount = 10
+player 1:  handCount = 5	deckCount = 478	discardCount = -402
+player 2:  handCount = 6	deckCount = 8	discardCount = 380
+player 3:  handCount = 1	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 6, expected = 5	FAIL
+	treasureCount = 4, expected = 4	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 23; expected = 23	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 2, expected = 3	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 5; expected = 5	PASS
+		testG.deckCount[1] = 478; expected = 478	PASS
+		testG.discardCount[1] = -402; expected = -402	PASS
+
+		Player[2]: 
+		testG.handCount[2] = 6; expected = 6	PASS
+		testG.deckCount[2] = 8; expected = 8	PASS
+		testG.discardCount[2] = 380; expected = 380	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 1; expected = 1	PASS
+		testG.deckCount[3] = 10; expected = 10	PASS
+		testG.discardCount[3] = 10; expected = 10	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 0; expected = 0		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[9] position.
+number of players = 2
+player playing adventurer = 0
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 25
+	k[1] = 19
+	k[2] = 20
+	k[3] = 13
+	k[4] = 16
+	k[5] = 18
+	k[6] = 24
+	k[7] = 14
+	k[8] = 17
+	k[9] = 7
+initializing game...
+numactions = 1
+coins = 1
+numbuys = 0
+whoseTurn = 0
+phase = 0
+
+numCardsPlayed = 0
+
+player 0 playing adventurer from handpos 14
+
+player 0:  handCount = 23	deckCount = 10	discardCount = 58
+player 1:  handCount = 14	deckCount = 412	discardCount = -270
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 14, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 25, expected = 24	FAIL
+	treasureCount = 13, expected = 13	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 66; expected = 66	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[1]: 
+		testG.handCount[1] = 14; expected = 14	PASS
+		testG.deckCount[1] = 412; expected = 412	PASS
+		testG.discardCount[1] = -270; expected = -270	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 0; expected = 0	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[7] position.
+number of players = 3
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 24
+	k[1] = 7
+	k[2] = 9
+	k[3] = 18
+	k[4] = 23
+	k[5] = 8
+	k[6] = 22
+	k[7] = 20
+	k[8] = 26
+	k[9] = 15
+initializing game...
+numactions = 1
+coins = 1
+numbuys = 2
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 0
+
+player 2 playing adventurer from handpos 2
+
+player 0:  handCount = 19	deckCount = 10	discardCount = 3
+player 1:  handCount = 3	deckCount = 10	discardCount = 113
+player 2:  handCount = 8	deckCount = 10	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 2, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 10, expected = 9	FAIL
+	treasureCount = 5, expected = 5	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 18; expected = 18	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 19; expected = 19	PASS
+		testG.deckCount[0] = 10; expected = 10	PASS
+		testG.discardCount[0] = 3; expected = 3	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 3; expected = 3	PASS
+		testG.deckCount[1] = 10; expected = 10	PASS
+		testG.discardCount[1] = 113; expected = 113	PASS
+
+
+	numActions = 1; expected = 1	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[6] position.
+number of players = 2
+player playing adventurer = 1
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 14
+	k[1] = 13
+	k[2] = 18
+	k[3] = 9
+	k[4] = 20
+	k[5] = 8
+	k[6] = 7
+	k[7] = 25
+	k[8] = 23
+	k[9] = 24
+initializing game...
+numactions = 4
+coins = 1
+numbuys = 2
+whoseTurn = 1
+phase = 0
+
+numCardsPlayed = 1
+
+player 1 playing adventurer from handpos 1
+
+player 0:  handCount = 4	deckCount = 238	discardCount = 10
+player 1:  handCount = 2	deckCount = 5	discardCount = 14
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 1, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 4, expected = 3	FAIL
+	treasureCount = 2, expected = 2	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 17; expected = 17	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 1, expected = 2	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 4; expected = 4	PASS
+		testG.deckCount[0] = 238; expected = 238	PASS
+		testG.discardCount[0] = 10; expected = 10	PASS
+
+
+	numActions = 4; expected = 4	PASS
+	numBuys = 2; expected = 2	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+
+
+
+
+-------------------------Random Testing adventurer-------------------
+
+adventurer card at k[5] position.
+number of players = 4
+player playing adventurer = 2
+randomizing kingdom cards...
+
+kingdom cards:
+	k[0] = 23
+	k[1] = 10
+	k[2] = 18
+	k[3] = 12
+	k[4] = 9
+	k[5] = 7
+	k[6] = 13
+	k[7] = 24
+	k[8] = 26
+	k[9] = 15
+initializing game...
+numactions = 3
+coins = 1
+numbuys = 4
+whoseTurn = 2
+phase = 0
+
+numCardsPlayed = 0
+
+player 2 playing adventurer from handpos 3
+
+player 0:  handCount = 3	deckCount = 12	discardCount = 41
+player 1:  handCount = 3	deckCount = 201	discardCount = 15
+player 2:  handCount = 5	deckCount = 9	discardCount = 10
+player 3:  handCount = 5	deckCount = 3	discardCount = 10
+
+copying game state G to testG
+calling cardEffect(adventurer, 0, 0, &testG, handPos = 3, &bonus = 0)
+
+TEST 1: DRAW 2 TREASURE CARDS - player has 2 new treasure cards - 1 discard
+	handCount = 7, expected = 6	FAIL
+	treasureCount = 3, expected = 3	PASS
+
+TEST 2: CARDS TAKEN FROM DECK/DISCARD - deck + discard has 2 fewer cards 
+	discardCount + deckCount = 17; expected = 17	PASS
+
+TEST 3: PLAYED CARDS PILE - advevnturer card is played 
+	playedCardsCount = 0, expected = 1	FAIL
+
+TEST 4: NO STATE CHANGE - state remains unchanged in unaffected variables
+	Supply Counts:	PASS
+
+	Other Player States:
+		Player[0]: 
+		testG.handCount[0] = 3; expected = 3	PASS
+		testG.deckCount[0] = 12; expected = 12	PASS
+		testG.discardCount[0] = 41; expected = 41	PASS
+
+		Player[1]: 
+		testG.handCount[1] = 3; expected = 3	PASS
+		testG.deckCount[1] = 201; expected = 201	PASS
+		testG.discardCount[1] = 15; expected = 15	PASS
+
+		Player[3]: 
+		testG.handCount[3] = 5; expected = 5	PASS
+		testG.deckCount[3] = 3; expected = 3	PASS
+		testG.discardCount[3] = 10; expected = 10	PASS
+
+
+	numActions = 3; expected = 3	PASS
+	numBuys = 4; expected = 4	PASS
+	coins = 1; expected = 1		PASS
+
+
+----------------------adventurer test complete------------------------
+
+

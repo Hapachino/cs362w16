@@ -171,39 +171,27 @@ public class UrlValidatorTest extends TestCase {
 	    */
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   //valid, unreserved chars (in authority)
-	   String url = "http://www.123-abc.456-xyz.com";	
-	   assertTrue(urlVal.isValid(url));
+	   assertTrue(urlVal.isValid("http://www.123-abc.456-xyz.com"));
 	   //invalid, unreserved chars (in authority)
-	   url = "http://www.123_abc~456_xyz.com";	
-	   assertFalse(urlVal.isValid(url));
+	   assertFalse(urlVal.isValid("http://www.123_abc~456_xyz.com"));
 	   //valid, unreserved chars (in path)
-	   url = "http://www.oregonstate.edu/~user_first.last-name";	
-	   assertTrue(urlVal.isValid(url));
+	   assertTrue(urlVal.isValid("http://www.oregonstate.edu/~user_first.last-name"));
+	   //invalid chars	
+	   assertFalse(urlVal.isValid("http://www<google>com"));
 	   //invalid chars
-	   url = "http://www<google>com";	
-	   assertFalse(urlVal.isValid(url));
-	   //invalid chars
-	   url = "http://www google com";
-	   assertFalse(urlVal.isValid(url));
+	   assertFalse(urlVal.isValid("http://www google com"));
 	   //invalid non-printable chars, 8=backspace, 27=escape
-	   url = "http://www" + (char)8 + "google" + (char)27 + "com";	
+	   String url = "http://www" + (char)8 + "google" + (char)27 + "com";	
 	   assertFalse(urlVal.isValid(url));
 	   //invalid extended ASCII chars (cafe with accent)
 	   url = "http://www.caf" + (char)130 + ".com";	
 	   assertFalse(urlVal.isValid(url));
 	   //encoded characters (in authority)
-	   url = "http://www.my%20company.com";	
-	   assertFalse(urlVal.isValid(url));
+	   assertFalse(urlVal.isValid("http://www.my%20company.com"));
 	   //encoded characters (in path), %20=space
-	   url = "http://www.mycompany.com/my%20file";	
-	   assertTrue(urlVal.isValid(url));
+	   assertTrue(urlVal.isValid("http://www.mycompany.com/my%20file"));
 	   //encoded characters (in path), %E9=accented e
-	   url = "http://www.mycompany.com/caf%E9";	
-	   assertTrue(urlVal.isValid(url));
-   	   
-	   
-	   //TODO: Test full URLs based on URL_PATTERN
-	  
+	   assertTrue(urlVal.isValid("http://www.mycompany.com/caf%E9"));	   	  
    }
    
    public void testYourSecondPartition(){
@@ -227,8 +215,7 @@ public class UrlValidatorTest extends TestCase {
 	   assertFalse(customUrlVal.isValid("zoo://www.google.com"));
 	   assertFalse(customUrlVal.isValid("http://www.google.com"));
 	   assertFalse(customUrlVal.isValid("https://www.google.com"));
-	   assertFalse(customUrlVal.isValid("ftp://www.google.com"));
-	   
+	   assertFalse(customUrlVal.isValid("ftp://www.google.com"));   
    }
    
    public void testYourThirdPartition(){
@@ -267,7 +254,10 @@ public class UrlValidatorTest extends TestCase {
 	   assertFalse(customUrlVal.isValid("http://123:80"));
 	   assertFalse(customUrlVal.isValid("http://abc:a"));
 	   assertTrue(customUrlVal.isValid("http://www.google.com"));	//should be false
-	   	   
+	   
+	   //Test "extra" added to end of authority (after port digits and before /, ?, or #)
+	   assertTrue(urlVal.isValid("http://www.google.com:80/next"));
+	   assertFalse(urlVal.isValid("http://www.google.com:80abc/next"));
    }
    
    public void testYourFourthPartition(){
@@ -298,6 +288,11 @@ public class UrlValidatorTest extends TestCase {
 		   ResultPair url = URLmaker(0,0,0,0,0,i);
 		   assertEquals(url.valid, urlVal.isValid(url.item));
 	   }
+	   
+	   //Test fragment when NO_FRAGMENTS option is set
+	   UrlValidator fragVal = new UrlValidator(null, null, UrlValidator.NO_FRAGMENTS);
+	   assertTrue(fragVal.isValid("http://www.google.com"));
+	   assertFalse(fragVal.isValid("http://www.google.com#top"));
    }
    
    
@@ -375,23 +370,47 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair("http://", true),
 		   new ResultPair("https://", true),
 		   new ResultPair("ftp://", true),
-		   new ResultPair("bob://", true),	//should be false
+		   new ResultPair("bob://", true),
+		   new ResultPair("ft.p://", true),
+		   new ResultPair("ht-tp://", true),
+		   new ResultPair("ht+tp://", true),
+		   new ResultPair("http123://", true),
+		   new ResultPair("123http://", false),
+		   new ResultPair("+http://", false),
+		   new ResultPair("-http://", false),
+		   new ResultPair(".http://", false),
 		   new ResultPair("http:////", false),
 		   new ResultPair("http//", false),
 		   new ResultPair("http:/", false),
-		   new ResultPair("", false) 	// Should be true
+		   new ResultPair("", false), 	// Should be true
+		   new ResultPair("://", false)
 	};
 	//Hosts
 	ResultPair[] testHosts = {
 		   new ResultPair("www.amazon.com", true),
 		   new ResultPair("www.bing.com", true),
 		   new ResultPair("127.0.0.1", true),
+		   new ResultPair("amazon.com", true),
+		   new ResultPair("flip.engr.oregonstate.edu", true),
+		   new ResultPair("www.amazon-is-great.com", true),
+		   new ResultPair("foo.gov", true),
+		   new ResultPair("foo.biz", true),
+		   new ResultPair("foo.arpa", true),
+		   new ResultPair("foo.edu", true),
+		   new ResultPair("foo.mil", true),
+		   new ResultPair("foo.ai", true),
+		   new ResultPair("foo.bd", true),
+		   new ResultPair("user@foo.gov", false),	//Should be true
+		   new ResultPair("user:pass@foo.gov", false),	//Should be true
 		   new ResultPair("", false),
 		   new ResultPair("amazon", false),
 		   new ResultPair("amazon.", false),
 		   new ResultPair(".amazon", false),
 		   new ResultPair("www.amazon", false),
 		   new ResultPair("amazon com", false),
+		   new ResultPair("www.amazon_is_great.com", false),
+		   new ResultPair("www.amazon-is-great!.com", false),
+		   new ResultPair("www.amazon%20is%20great.com", false),
 		   new ResultPair("127..0.1", false),
 		   new ResultPair("127.1", false),
 		   new ResultPair(".127.0.0.1", false),
@@ -406,7 +425,8 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair(":65535", false),   //Should be true
 		   new ResultPair(":65536", false),
 		   new ResultPair(":24b", false),
-		   new ResultPair(":-80", false)
+		   new ResultPair(":-80", false),
+		   new ResultPair(":AA", false)
 	};
 	//Paths,  should start with slash
 	ResultPair[] testPaths = {
@@ -415,20 +435,25 @@ public class UrlValidatorTest extends TestCase {
 		   new ResultPair("/path/name", true), 
 		   new ResultPair("/path2/../path1", true),
 		   new ResultPair("/path2/..path1", false),
-
+		   new ResultPair("/name;v=1.1", true),
+		   new ResultPair("/name,v=1.1", true)
 	};
 	//Queries 
 	ResultPair[] testQueries = {
 		   new ResultPair("", true),
 		   new ResultPair("?lvalue=rvalue", false),	//Should be true
 		   new ResultPair("?lvalue=rvalue&lvalue2=rvalue2", false),	//Should be true
-		   new ResultPair("?lvalue=rvalue:lvalue2=rvalue2", false),
-		   new ResultPair("?=rvalueonly", false) 
+		   new ResultPair("?lvalue=rvalue:lvalue2=rvalue2", false), //Should be true
+		   new ResultPair("?=rvalueonly", false)  //Should be true
 	};   
 	//Fragments
 	ResultPair[] testFragments = {
 			new ResultPair("", true),
-			new ResultPair("#top", true)
+			new ResultPair("#top", true),
+			new ResultPair("#top/one/two", true),
+			new ResultPair("#bottom?top", true),
+			new ResultPair("#top..bottom", true),
+			new ResultPair("#123", true)
 	};
    
 

@@ -1235,6 +1235,13 @@ int playAdventurer(struct gameState *state)
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
   }
+  for ( z = 0; z < state->handCount[currentPlayer]; z++) {
+    if (state->hand[currentPlayer][z] == adventurer)
+    {
+      discardCard(z, currentPlayer, state, 0);
+      break;
+    }
+  }
   return 0;
 }
 

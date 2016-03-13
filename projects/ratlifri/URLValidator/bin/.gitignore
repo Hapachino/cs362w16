@@ -1,4 +1,3 @@
-/UrlsToVerify.txt
 /.classpath
 /.project
 /.settings/
@@ -7,3 +6,6 @@
 /ProjectPartA.txt
 /RegexValidator.class
 /ResultPair.class
+/UrlValidator.class
+/UrlValidatorTest.class
+/UrlsToVerify.txt

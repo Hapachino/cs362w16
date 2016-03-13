@@ -1,0 +1,355 @@
+
+                URLVALIDATOR TESTING INFORMATION AND BUG REPORTS
+                       CS 362 - SOFTWARE ENGINEERING II
+                            FINAL PROJECT - Part B
+                                
+                                 GROUP MEMBERS     
+                                 -------------
+                                  Mark Giles
+                                  Jerry Kim
+                                  Eric Olson
+
+
+  PROJECT OVERVIEW
+===============================================================================
+Per the requirements for the Project this team developed and implemented a test
+suite for .isValid() method of the UrlValidator provided in the URLValidator
+folder in the course Git Repository. The testing implemented contained manual
+testing, partition testing, programmatic testing, as well as option set
+testing. Once the testing was implemented the results were reviewed, we
+utilized debugging techniques to identify 3 specific bugs. These bugs were
+documented in the bug reports at the end of this report, and additional test
+cases were developed to 'validate' any code fixes that attempted to correct
+these bugs in the future.
+
+
+  TEAM COLLABORATION
+===============================================================================
+Our team collaborated on this (and Part A) project through a number of tools.
+We utilized Email, Google, and Git to share produced material, with each 
+contributing to the overall project. We didn't have set assignments rather
+taking on portions of the assignment as our availability allowed. Team members
+would then review the work done, comment and enhance until the final product
+was approved by all team members. As a group we were responsive and were able
+to stay ahead of schedule on the project deliverables.
+
+
+  MANUAL TESTING
+===============================================================================
+We put together a manual test suite that took some basic input URL's and tested
+them with the .isValid() method. In an effort to maximize coverage, we
+attempted to include both basic 'low hanging fruit' URL's that should obviously
+return a true/false, as well as edge/border cases at the URL level such as a 
+blank entry or numeric only entry. For all test cases we utilized the
+ResultPair object defined in ResultPair.java file, with the URL as the first
+component, and the expected true/false response as the second.
+
+Some example URL's tested:
+  - ("http://www.google.com", true)
+  - ("www.google.com", true)
+  - ("http://125.125.125.125", true)
+  - ("www.google.com:50/directory?param=valid", true)
+  - ("", false)
+  - ("555", false)
+  - ("\n\0", false)
+
+
+  PARTITION TESTING
+===============================================================================
+To partition our input domain we looked at the UrlValidator code itself. The
+code separates and individually validates 5 portions of a full URL. These are
+Scheme, Authority, Port, Path and Query Parameters. We leveraged this logic to
+partition our input in the same way. For each of the 5 partitions we examined
+that portion of a URL and the rules that would apply. We came up with a set of
+Url Components that we believe fully test these partitions including clear
+valid cases, cleary invalid cases, as well as edge/border cases for each. A
+good portion of our bugs were identified out of the results of the edge/border
+cases in our partition testing.
+
+For each of the partition tests we combined the partition component under test
+with a minimal and otherwise valid URL as to ensure that only our partition
+component would direct the result. We again leveraged the ResultPair object
+to build our URL's.
+
+Some examples from each partition are provided below:
+	Scheme - <test> + www.google.com
+	  - ("http://", true)
+	  - ("https://", true)
+	  - ("ftp://", true)
+	  - ("", true)
+	  - ("httttp://", false)
+	  - ("htp://", false)
+
+	Authority - http:// + <test>
+	  - ("www.google.com", true)
+	  - (".net", false)
+	  - ("google.c0m", false)
+	  - ("255.255.255.255", true)
+	  - ("256.256.256.256", false)
+
+	Port - http://www.google.com + <test>
+	  - (":65535", true)
+	  - (":65536", false)
+	  - (":", false)
+	  - (":port", false)
+	  - (":256.256", false)
+
+	Path - http://www.google.com + <test>
+	  - ("/dir/index.html", true)
+	  - ("/index.html", true)
+	  - ("/", true)
+	  - ("/dir/index.html/dir", false)
+	  - ("", true)
+
+	Query - http://www.google.com + <test>
+	  - ("?param=valid&param2=valid", true),
+	  - ("?", true),
+	  - ("?param=valid&&", false),
+	  - ("?param=valid?param=valid", false),
+	  - ("", true)
+
+
+  PROGRAMMATIC TESTING
+===============================================================================
+The partition testing did a good job of isolating a single input component and
+testing how that individual component affects the results. That type of
+testing has value but may miss situations in which combinations of inputs
+trigger an error that wouldn't have been seen by testing the components
+individually. To that end we developed a combinatory programmatic test to
+explore how combinations of 2, 3, 4 and 5 of these inputs interact to produce
+.isValid() results.
+
+We took the components defined in the partition testing and wrote a loop to
+test every possible combination (187,200 tests).  For each we combined the
+individual components, and as we built the URL we considered the components
+individual expected outcome. If our URL under test contained any components
+that were expected to return a false, we expected the combined URL to return
+false. Given the large number of bugs present in the code, we opted to limit
+the # of the failed tests that printed to screen, instead providing a sampling.
+In the real world we would limit or remove this sampling as bug fixes were
+completed.
+
+
+  DEBUGGING
+===============================================================================
+It should be noted that likely in the real world each of our tests would have
+included an assertion insisting that the return value of the .isValid() method
+call was equal to the expected return value. In practice for this assignment,
+given the large number of bugs that were not going to be fixed immediately we
+opted to go with a print to screen solution instead.  This way all of our tests
+would execute and any failed tests would simply be presented to the tester
+rather then halt the testing program.
+
+The test program produced a lot of failed tests, so we began our debugging
+effort by 'reducing' the output into categories and patterns. Where we found
+many similar failed results we would try to find an example of a URL input that
+was the most basic. For example there were many query related failures, so we
+found a failed test with a query but an otherwise passing URL
+('http://www.google.com?param=valid' for example). We would then isolate that
+one URL and run a single manual test to confirm it triggered the fault.
+
+Once a simplified URL was identified we utilized the Eclipse debugging tools.
+We placed a breakpoint everywhere UrlValidator had a 'return false;' statement,
+as well as everywhere a component evaluation completed and moved on without
+returning false. Then we ran the debugger and continued to each breakpoint in
+turn. At each breakpoint we would consider the evaluation being done and the
+return value being generated. If there was a discrepancy we knew where the bug
+was, and then ran through that evaluation section step by step to see where the
+logic failed.
+
+Three of the failures we identified were written up in the bug reports that
+follow. In each case using these debugging techniques we were successful in
+identifying the line of code that caused our errors which are noted in the
+reports below.
+
+
+  AGAN's RULE
+===============================================================================
+Our debugging efforts corresponded well with several of the components of
+Agan's rule. In some ways, the first component, "Understand the System,"
+proved to be more challenging than some of the other more technical aspects.
+For our team, Java was a new experience, which added to the learning curve of
+the validator program itself. A large portion of our planning process
+revolved around learning the development environment, the language, and
+most importantly the system itself. While the time allocation was more than
+initially expected, focusing on this component of Agan's rule proved to be
+extremely valuable. It allowed for intelligently moving into development of
+tests with accuracy and efficiency.
+
+In the case of this project, "Make It Fail" was the simplest of the rules, as
+there were a lot of bugs available, and some were easy to identify. Mostly
+through carefully planned tests, we were quickly able to identify that a bug
+exists, and localize it to some degree. "Quit Thinking and Look" was made
+simpler by utilizing components such as the watch window and break points,
+which allowed us to take the obvious existence of bugs and focus on the areas
+that seemed to produce them. 
+
+"Check the Plug" focuses on skepticism, and combining a solid understanding of
+the system, carefully designed tests, and localized debugging techniques, we 
+were able to view the results of failed tests with confidence. This allowed us
+to work through the code assertively and quickly identify the areas responsible
+for the failures.
+
+"Get a Fresh View" was made readily available in the project as we worked as a
+remote team. With solid communication early in the project, all work was
+provided to the other team members for validation and/or expansion depending
+on what team members identified.
+
+
+  BUG REPORTS
+===============================================================================
+
+-------------------------------------------------------------------------------
+                Bug Report #1 - Group Project_UrlValidator
+-------------------------------------------------------------------------------
+Title: Invalid numeric IP address returns as valid.
+Bug ID: #001_UrlValidator
+
+Date: 3/5/2016
+Reported By: Mark Giles/Jerry Kim/Eric Olson
+
+Program: UrlValidator
+Tested On: Windows v7
+Reproducible: Yes
+Severity - (1-10): 7 (High)
+Priority - (1-10): 7 (High)
+
+Description of Bug:
+  When passing the isValid() method of UrlValidator a URL containing a IPv4
+  numeric address that includes a node/octet with value greater then 255 (the
+  max allowed value in 8 bit octet) the method returns true. The method should
+  return false in this case. This occurs for all 4 nodes/octets.
+
+Impacts:
+  This results in invalid IPv4 web addresses returning a isValid() result of
+  true, when it should return false.
+
+Steps to Produce/Reproduce:
+  This bug will manifest with any of the nodes > 255, but an example provided
+  below:
+    1)  Declare a new UrlValidator object with URLValidator.ALLOW_ALL_SCHEMES
+        option parameter.
+    2)  Generate an otherwise valid URL containing an invalid node - 
+        http://255.255.255.256
+    3)  Call the isValid() method of the UrlValidator object and pass it the
+        URL.
+
+Expected Results:
+  .isValid() should return false due to invalid node value greater then 255.
+
+Actual Results:
+  .isValid() returns true.
+
+Localized Bug Code (if known):  - InetAddressValidator.java lines 94-98.
+  The InetAddressValidator.java file contains a public isValidInet4Address()
+  method.  Within this method numeric IPv4 addresses are validated. There is a
+  check on lines 94-98 for node value > 255, but if found the method returns
+  true, and should return false.
+
+
+-------------------------------------------------------------------------------
+                Bug Report #2 - Group Project_UrlValidator
+-------------------------------------------------------------------------------
+Title: Any query parameters trigger false isValid() method return.
+Bug ID: #002_UrlValidator
+
+Date: 3/5/2016
+Reported By: Mark Giles/Jerry Kim/Eric Olson
+
+Program: UrlValidator
+Tested On: Windows v7
+Reproducible: Yes
+Severity - (1-10): 9 (Very High)
+Priority - (1-10): 10 (Extreme)
+
+Description of Bug:
+  Any query parameters (data after the ?) in a URL will cause the isValid()
+  method to return false. This is an issue anytime the URL contains a ?. If no
+  ? and parameters are passed the expected return value is received.
+
+Impacts:
+  This results in a large percentage of likely URL's to return false, when they
+  are in fact valid.
+
+Steps to Produce/Reproduce:
+  This bug will manifest with any query parameter, but an example provided
+  below:
+    1)  Declare a new UrlValidator object with URLValidator.ALLOW_ALL_SCHEMES
+        option parameter.
+    2)  Generate an otherwise valid URL containing an invalid node -
+        http://www.valid.com?param=valid
+    3)  Call the isValid() method of the UrlValidator object and pass it the
+        URL.
+
+Expected Results:
+  .isValid() should return true.
+
+Actual Results:
+  .isValid() returns false.
+
+Localized Bug Code (if known):  - UrlValidator.java line 445
+  The UrlValidator.java file contains a protected isValidQuery() method.
+  Within this method two checks are made, the first correctly returns true if
+  no query exists. The second does a regex evaluation of the query portion of
+  the URL, and returns true for valid queries, but the isValidQuery retruns the
+  negation of this:
+      (return !QUERY_PATTERN.matcher(query).matches();)
+
+  This should instead return the direct result:
+      (return QUERY_PATTERN.matcher(query).matches();).
+
+  It should be noted that absolutely no validation is done against the query
+  string itself in regex and this may present a bug in itself.  The current
+  regex evaluation is simply "^(.*)$" essentially allowing for any combination
+  or string of characters.
+
+
+-------------------------------------------------------------------------------
+                 Bug Report #3 - Group Project_UrlValidator
+-------------------------------------------------------------------------------
+Title: Valid URL's with port value > 999 and <= 65535 return false.
+Bug ID: #003_UrlValidator
+
+Date: 3/5/2016
+Reported By: Mark Giles/Jerry Kim/Eric Olson
+
+Program: UrlValidator
+Tested On: Windows v7
+Reproducible: Yes
+Severity - (1-10): 8 (High)
+Priority - (1-10): 7 (High)
+
+Description of Bug:
+  Otherwise valid URL's containing a port number > 999 and <= 65535 when passed
+  to the isValid() method will incorrectly return false.
+
+Impacts:
+  This results in a some URL's that utilize port numbers to return false, when
+  they are in fact valid.
+
+Steps to Produce/Reproduce:
+  This bug will manifest with any port between 1000 - 65535, but an example
+  provided below:
+    1)  Declare a new UrlValidator object with URLValidator.ALLOW_ALL_SCHEMES
+        option parameter.
+    2)  Generate an otherwise valid URL containing an invalid node:
+          - http://www.valid.com:50000
+    3)  Call the isValid() method of the UrlValidator object and pass it the
+        URL.
+
+Expected Results:
+  .isValid() should return true.
+
+Actual Results:
+  .isValid() returns false.
+
+Localized Bug Code (if known):  - UrlValidator.java line 157
+  The UrlValidator.java file contains a protected isValidAuthority() method.
+  Within this method a check for port validity is done. This check utilizes a
+  regex matching method, and uses the regex logic:
+	'^:(\\d{1,3})$'
+  This logic ensures that the port has a ':' followed by between 1 to 3 digits.
+  However port #'s can be between 1 and 5 digits long (65535 max). Therefore
+  this regex logic should read:
+	'^:(\\d{1,5})$'
+

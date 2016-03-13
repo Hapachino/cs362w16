@@ -377,7 +377,70 @@ public class UrlValidatorTest extends TestCase {
        testIsValidQuery();
        testIsValidPath();
        testIsValidFragment();
+       testIPv4Value();
        
+    }
+    
+    public void testIPv4Value()
+    {
+ 	   
+ 	   String testString = "http://170.149.159.130";
+ 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+ 	   boolean result = urlVal.isValid(testString);
+ 	   boolean expected = true;
+ 	   try {
+ 		   assertEquals(expected, result);
+ 	   } catch (AssertionError ae) {
+ 	   if (expected != result)
+ 		   System.out.print("testIPv4 Failed base valid assertion\n");
+ 	   else 
+ 		   System.out.print("testIPv4 passed base valid assertion\n");
+ 	   }
+ 	   
+ 	   testString = "http://256.256.256.256";
+ 	   expected = false;
+ 	   System.out.println(testString + result+expected);
+ 	   result = urlVal.isValid(testString);
+ 	   try{ 
+ 	   	assertEquals(expected, result);
+ 	   }
+ 	   catch (AssertionError ae) {
+ 		   if (expected != result)
+ 			   System.out.print("testIPv4 Failed base invalid assertion\n");
+ 		   else 
+ 			   System.out.print("testIPv4 passed base invalid assertion\n");
+ 	   }
+ 	   Random r = new Random();
+ 	   
+ 	   
+ 	   int count = 10000;
+ 	   for (int i = 0; i < count; i++){
+ 		   testString = "http://";
+ 		   expected = true;
+ 		   for(int j = 0; j < 4; j++)
+ 		   {
+ 			   int number = r.nextInt(500);
+ 			   testString = testString + number;
+ 			   if (j != 3)
+ 				   testString = testString + ".";
+ 			   
+ 			   if (number >255)
+ 				   expected = false;
+ 		   }
+ 		   result = urlVal.isValid(testString);
+ 		   try {
+ 			   assertEquals(expected, result);
+ 		   } catch (AssertionError ae) {
+ 			   if ((expected != result) && (expected == true))
+ 				   System.out.print("Expected == True: " + testString);
+ 			   else if ((expected != result) && (expected == false))
+ 				   System.out.print("Expected = False: " + testString);
+ 		   }
+ 		   
+ 	   }
+ 	   
+ 	   
+ 	   
     }
     
     public void testUrlMatcher()

@@ -109,6 +109,8 @@ public class unitTesting {
 		new ResultPair(":80", true),
 		new ResultPair(":443", true),
 		new ResultPair("2:43", false),
+		new ResultPair(":1090", true),
+		new ResultPair(":65535", true),
 		new ResultPair("http://", false),
 		new ResultPair(":bill", false),
 		new ResultPair(":£¤¥", false),

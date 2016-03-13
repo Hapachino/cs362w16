@@ -61,7 +61,8 @@ public class UrlValidatorTest extends TestCase {
 			   "http://eecs.oregonstate.edu/current%20students",
 			   "http://localhost/", 
 			   "http://www.amazon.com:80",
-			   "https://mail.google.com/mail/u/0/?hl=en&shva=1#inbox"};
+			   "https://mail.google.com/mail/u/0/?hl=en&shva=1#inbox",
+			   "http://blog.yourwebsite.com"};
 	   
 	   String[] invalidUrls = {"amazon.com",
 			   "google",
@@ -105,14 +106,224 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
+   /******************************************
+    * Part 2: Input Partitioning
+    ******************************************/
    
    public void testYourFirstPartition()
    {
+	   //Testing Schemes
 	   
+	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   boolean passed = true;
+	   
+	   String validOne = "http://";
+	   String validTwo = "https://";
+	   String validThree = "ftp://";
+	   
+	   String invalidOne = "h3pp://";
+	   
+	   String urlBig = "www.google.com";
+	   
+	   String validUrl = validOne + urlBig;
+	   String invalidUrl = invalidOne + urlBig;
+	   
+	   System.out.println("");
+	   System.out.println("Testing Schemes");
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   validUrl = validTwo + urlBig;
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   validUrl = validThree + urlBig;
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   if(urlVal.isValid(invalidUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected invalid for URL: " + invalidUrl);
+		   passed = false;
+	   }
+	   
+	   if(passed)
+	   {
+		   System.out.println("Scheme Test Passed");
+	   }
+	   else
+	   {
+		   System.out.println("Scheme Test Failed");
+	   }
    }
    
-   public void testYourSecondPartition(){
+   public void testYourSecondPartition()
+   {
+	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
 	   
+	   System.out.println("");
+	   System.out.println("Testing Authority");
+	   
+	   boolean passed = true;
+	   
+	   String validOne = "www.google.com";
+	   String validTwo = "amazon.com";
+	   String validThree = "127.0.0.1";
+	   
+	   String invalidOne = "google";
+	   String invalidTwo = ".google.com";
+	   
+	   String urlBig = "http://";
+	   
+	   String validUrl = urlBig + validOne;
+	   String invalidUrl = urlBig + invalidOne;
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   validUrl = urlBig + validTwo;
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   validUrl = urlBig + validThree;
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   if(urlVal.isValid(invalidUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected invalid for URL: " + invalidUrl);
+		   passed = false;
+	   }
+	   
+	   invalidUrl = urlBig + invalidTwo;
+	   
+	   if(urlVal.isValid(invalidUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected invalid for URL: " + invalidUrl);
+		   passed = false;
+	   }
+	   
+	   if(passed)
+	   {
+		   System.out.println("Authority Test Passed");
+	   }
+	   else
+	   {
+		   System.out.println("Authority Test Failed");
+	   }
+   }
+   
+   public void testYourThirdPartition()
+   {
+	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   System.out.println("");
+	   System.out.println("Testing Path");
+	   
+	   boolean passed = true;
+	   
+	   String validOne = "/test1";
+	   String validTwo = "/test1/pics";
+	   
+	   String invalidOne = "/..";
+
+	   String urlBig = "http://www.google.com";
+	   
+	   String validUrl = urlBig + validOne;
+	   String invalidUrl = urlBig + invalidOne;
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   validUrl = urlBig + validTwo;
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   if(urlVal.isValid(invalidUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected invalid for URL: " + invalidUrl);
+		   passed = false;
+	   }
+	   
+	   if(passed)
+	   {
+		   System.out.println("Path Test Passed");
+	   }
+	   else
+	   {
+		   System.out.println("Path Test Failed");
+	   }
+   }
+   
+   public void testYourFourthPartition()
+   {
+	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   System.out.println("");
+	   System.out.println("Testing Query");
+	   
+	   boolean passed = true;
+	   
+	   String validOne = "?action=view";
+	   String validTwo = "?action=edit&mode=up";
+
+	   String urlBig = "http://www.google.com";
+	   
+	   String validUrl = urlBig + validOne;
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   validUrl = urlBig + validTwo;
+	   
+	   if(!urlVal.isValid(validUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   passed = false;
+	   }
+	   
+	   if(passed)
+	   {
+		   System.out.println("Path Test Passed");
+	   }
+	   else
+	   {
+		   System.out.println("Query Test Failed");
+	   }
    }
    
    

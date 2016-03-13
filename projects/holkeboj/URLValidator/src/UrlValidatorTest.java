@@ -40,7 +40,7 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest()
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_LOCAL_URLS);
 	   System.out.println("Should Return True:");
 	   System.out.println(urlVal.isValid("http://www.amazon.com"));
 	   System.out.println(urlVal.isValid("http://www.google.com/valid/"));

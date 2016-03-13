@@ -260,4 +260,37 @@ public class HelpFunctions {
 
         };
 
+    public String makeValidDomain(){
+        List<String>  domainList =  new ArrayList<String>();
+
+        String tld = null;
+        String domain;
+
+
+        //loads a list of valid Authorities from RFC http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml
+        String domainFile = "src" + File.separator + "validDomains.txt";
+
+        try {
+
+            domainList = this.readLines(domainFile);
+
+            //convert to Array for random Access
+            String[] domainArray = domainList.toArray(new String[domainList.size()]);
+
+            //picks one at random
+            int randNum = ThreadLocalRandom.current().nextInt(0, domainList.size()-1);
+
+            //ToDo Add possibility of sub domains and localhost/localdomain
+
+            return domainArray[randNum];
+
+        }catch(IOException ex){
+            System.out.println (ex.toString());
+            System.out.println("Could not find file " );
+            return null;
+        }
+
+
+    }
+
 }

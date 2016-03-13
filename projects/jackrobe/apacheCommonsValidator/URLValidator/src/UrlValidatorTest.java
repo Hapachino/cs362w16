@@ -178,15 +178,28 @@ public class UrlValidatorTest extends TestCase {
 
         List<String> urls =new ArrayList<String>();
         String builtURL;
+        RandomString rnd;
 
         for(int i =0; i < n ; i ++){
 
             HelpFunctions h = new HelpFunctions();
 
             builtURL = h.getRandomProtocol()+"://";
-            //TODO MAKE THIS PART SWITCH TO GET either an IP or a valid HOST name
-            builtURL += h.makeIP();
-            //TODO Function to make a valid Host
+
+            if(i%2 == 0) {
+                builtURL += h.makeIP();
+            }else{
+
+                //make a random string for the domain name
+                int dsize = ThreadLocalRandom.current().nextInt(3, 10);
+                rnd = new RandomString(dsize);
+
+                //add the tld
+                builtURL += rnd.aString() + ".";
+                builtURL += h.makeValidDomain();
+
+            }
+
             builtURL += "/"; // this depending on if there are parts added after the host
             //TODO make this change  sometimes path sometimes query sometimes both
             builtURL += h.makePath();
@@ -242,7 +255,7 @@ public class UrlValidatorTest extends TestCase {
                     }
                 }
             }catch (IOException e) {
-                System.out.println("FAILED the JAVA URL VALIDATION");
+                System.out.println("FAILED the JAVA URL VALIDATION" + url);
             }
 
             //limit number of urls for dev testing
@@ -337,36 +350,6 @@ public class UrlValidatorTest extends TestCase {
 
     }
 
-
-    public void testKnownBadHost()
-    {
-        HelpFunctions h = new HelpFunctions();
-        int failRate=0, passRate=0, maxTests=0;
-        List<String> failedUrls = new ArrayList<String>();
-        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-        String fileName = "src" + File.separator + "UrlsToVerify.txt";
-
-        System.out.println("---------------------------TESTING LIKELY BAD URLS ------------------------------- ");
-        //read in Valid urls
-        try {
-            List<String> urls = h.readLines(fileName);
-            maxTests = 1000;	//change to urls.length for full testing
-            //change urlPart to either - protocol/host/port/path/query urlPart.protocol.get()
-            failedUrls = makeInvalidPart(urls, partName.host );
-
-            //pass altered (bad) urls to isValid for testing
-            //pass the lines to isValid parts
-            //TODO add section here
-            System.out.println( "Section we are testing..." + " -------------------------------");
-            reporter(failedUrls, passRate, failRate, maxTests );
-
-            assertEquals(maxTests, failRate);  // Makes sure
-
-        }catch(IOException ex){
-            System.out.println (ex.toString());
-            System.out.println("Could not find file " + fileName);
-        }
-    }
     public void testThis(){
        HelpFunctions h = new HelpFunctions();
 //        System.out.println(h.makeIP(10));

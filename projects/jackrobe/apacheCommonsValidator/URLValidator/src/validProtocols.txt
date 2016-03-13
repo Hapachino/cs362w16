@@ -2,4 +2,4 @@ http
 ftp
 https
 mailto
-ftps
+file

@@ -80,7 +80,7 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println(urlVal.isValid("91872398u8r9jiej"));
 	   System.out.println(urlVal.isValid("18://444.23145.9804"));
 	   System.out.println(urlVal.isValid("http:/www.amazon.com"));
-	   
+	   System.out.println(urlVal.isValid("http://256.256.256.256"));
 	   
    }
    

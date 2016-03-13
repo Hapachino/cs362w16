@@ -44,9 +44,9 @@ import java.util.regex.Pattern;
  *    String[] schemes = {"http","https"}.
  *    UrlValidator urlValidator = new UrlValidator(schemes);
  *    if (urlValidator.isValid("ftp://foo.bar.com/")) {
- *       //System.out.println("url is valid");
+ *       System.out.println("url is valid");
  *    } else {
- *       //System.out.println("url is invalid");
+ *       System.out.println("url is invalid");
  *    }
  *
  *    prints "url is invalid"
@@ -54,9 +54,9 @@ import java.util.regex.Pattern;
  *
  *    UrlValidator urlValidator = new UrlValidator();
  *    if (urlValidator.isValid("ftp://foo.bar.com/")) {
- *       //System.out.println("url is valid");
+ *       System.out.println("url is valid");
  *    } else {
- *       //System.out.println("url is invalid");
+ *       System.out.println("url is invalid");
  *    }
  *
  *   prints out "url is valid"
@@ -105,12 +105,8 @@ public class UrlValidator implements Serializable {
      * This expression derived/taken from the BNF for URI (RFC2396).
      */
     private static final String URL_REGEX =
-            "^(([^:/?#]+):)?"
-            + "(//([^/?#]*))?"
-            + "([^?#]*)"
-            + "(\\?([^#]*))?"
-            + "(#(.*))?";
-    //           12            3  4          5       6   7        8 9
+            "^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?";
+    //                                                                      12            3  4          5       6   7        8 9
     private static final Pattern URL_PATTERN = Pattern.compile(URL_REGEX);
 
     /**
@@ -164,7 +160,7 @@ public class UrlValidator implements Serializable {
 
     /**
      * Holds the set of current validation options.
-     */	
+     */
     private final long options;
 
     /**
@@ -302,8 +298,6 @@ public class UrlValidator implements Serializable {
         }
 
         String authority = urlMatcher.group(PARSE_URL_AUTHORITY);
-        ////System.out.println("authority is: ");
-        //System.out.println(authority);
         if ("file".equals(scheme) && "".equals(authority)) {
            // Special case - file: allows an empty authority
         } else {
@@ -379,7 +373,6 @@ public class UrlValidator implements Serializable {
         if (!authorityMatcher.matches()) {
             return false;
         }
-        //System.out.println("passed first");
 
         String hostLocation = authorityMatcher.group(PARSE_AUTHORITY_HOST_IP);
         // check if authority is hostname or IP address:
@@ -394,18 +387,11 @@ public class UrlValidator implements Serializable {
                 return false;
             }
         }
-        //System.out.println("passed second");
 
         String port = authorityMatcher.group(PARSE_AUTHORITY_PORT);
-        //System.out.println("(urlval, 400, port is: " + port);
         if (port != null) {
             if (!PORT_PATTERN.matcher(port).matches()) {
-            	//System.out.println("urlval, 403, didn't match port");
                 return false;
-            }
-            else
-            {
-            	//System.out.println("urlval, 407, match port");
             }
         }
 
@@ -466,8 +452,6 @@ public class UrlValidator implements Serializable {
      * @return true if fragment is valid.
      */
     protected boolean isValidFragment(String fragment) {
-    	//System.out.println("The frag is: ");
-    	//System.out.println(fragment);
         if (fragment == null) {
             return true;
         }

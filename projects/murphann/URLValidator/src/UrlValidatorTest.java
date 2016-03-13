@@ -275,7 +275,7 @@ public class UrlValidatorTest extends TestCase {
 /* Partition6: (no optional components)
  * (no scheme) + valid authority + (no port) + (no path) + (no query)
  */
-    public void testYourFifthPartition()
+    public void testYourSixthPartition()
     {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         System.out.println("Testing fifth partition:\n");
@@ -292,6 +292,7 @@ public class UrlValidatorTest extends TestCase {
         }
     }
 
+// For this test, consider different *specific* tests to isValidScheme, isValidAuthority, isValidPath, isValidQuery, and isValidFragment
     public void testIsValid()
     {
        for(int i = 0;i<10000;i++)
@@ -312,5 +313,85 @@ public class UrlValidatorTest extends TestCase {
     * @param testObjects Used to create a url.
     */
 
+/* Some very basic unit tests to tease out the bugs from isValid() method */
+    public void testIsValidScheme() {
+        // Test a valid scheme
+        String validScheme = "http://";
+        if (!isValidScheme(validScheme)) {
+            System.out.println("ERROR: " + validScheme + " failed with valid scheme.\n");
+        }
+        else {
+            System.out.println(validScheme + " passed with valid scheme.\n");
+        }
+        
+        // Test an invalid scheme
+        String invalidScheme = "3ht://";
+        if (isValidScheme(invalidScheme) {
+            System.out.println("ERROR: " + invalidScheme + " passed with invalid scheme.\n");
+        }
+        else {
+            System.out.println(invalidScheme + " failed with invalid scheme.\n");
+        }
+    }
+
+    public void testIsValidAuthority() {
+        // Test a valid authority
+        String validAuthority = "www.google.com:65535";
+        if (!isValidAuthority(validAuthority)) {
+            System.out.println("ERROR: " + validAuthority + " failed with valid authority.\n");
+        }
+        else {
+            System.out.println(validAuthority + " passed with valid authority.\n");
+        }
+        
+        // Test an invalid authority
+        String invalidAuthority = "256.256.256.256";
+        if (isValidAuthority(invalidAuthority) {
+            System.out.println("ERROR: " + invalidAuthority + " passed with invalid authority.\n");
+        }
+        else {
+            System.out.println(invalidScheme + " failed with invalid authority.\n");
+        }
+    }
+
+    public void testIsValidPath() {
+        // Test a valid path
+        String validPath = "/test1";
+        if (!isValidPath(validPath)) {
+            System.out.println("ERROR: " + validPath + " failed with valid path.\n");
+        }
+        else {
+            System.out.println(validPath + " passed with valid path.\n");
+        }
+        
+        // Test an invalid path
+        String invalidPath = "/..//file";
+        if (isValidPath(invalidPath) {
+            System.out.println("ERROR: " + invalidPath + " passed with invalid path.\n");
+        }
+        else {
+            System.out.println(invalidPath + " failed with invalid path.\n");
+        }
+    }
+
+    public void testIsValidQuery() {
+        // Test a valid query
+        String validQuery = "?action=view";
+        if (!isValidQuery(validQuery)) {
+            System.out.println("ERROR: " + validQuery + " failed with valid query.\n");
+        }
+        else {
+            System.out.println(validQuery + " passed with valid query.\n");
+        }
+        
+        // Test an invalid query
+        String invalidQuery = "action=view";
+        if (isValidQuery(invalidQuery) {
+            System.out.println("ERROR: " + invalidQuery + " passed with invalid query.\n");
+        }
+        else {
+            System.out.println(invalidQuery + " failed with invalid query.\n");
+        }
+    }
 
 }

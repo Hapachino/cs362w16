@@ -40,7 +40,7 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest()
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_LOCAL_URLS);
 	   System.out.println("Should Return True:");
 	   System.out.println(urlVal.isValid("http://www.amazon.com"));
 	   System.out.println(urlVal.isValid("http://www.google.com/valid/"));
@@ -80,8 +80,9 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println(urlVal.isValid("91872398u8r9jiej"));
 	   System.out.println(urlVal.isValid("18://444.23145.9804"));
 	   System.out.println(urlVal.isValid("http:/www.amazon.com"));
-	   
-	   
+	   System.out.println(urlVal.isValid("http://256.256.256.256"));
+	   System.out.println(urlVal.isValid("http://google.kjfwoei"));
+	   System.out.println(urlVal.isValid("http://google.BLAHBLAH"));
    }
    
    

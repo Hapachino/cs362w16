@@ -101,7 +101,7 @@ public class UrlValidatorTest extends TestCase {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   System.out.println("\n\nTesting Second Partition: Authority");
 	   
-	   String[] goodauthority = new String[7];
+	   String[] goodauthority = new String[9];
 	   String[] badauthority = new String[8];
 	   
 	   
@@ -112,6 +112,8 @@ public class UrlValidatorTest extends TestCase {
 	   goodauthority[4] = "255.255.255.255";
 	   goodauthority[5] = "255.com";
 	   goodauthority[6] = "go.cc";
+	   goodauthority[7] = "www.google.co.uk";
+	   goodauthority[8] = "amazon.ca";
 	   
 	   badauthority[0] = "256.256.256.256";
 	   badauthority[1] = "1.2.3.4.5";
@@ -130,7 +132,7 @@ public class UrlValidatorTest extends TestCase {
 	   String validQuery = "";
 	   
 	   System.out.println("\n\nTesting Expected Good Authority:");
-	   for(int i = 0; i < 7; i++){
+	   for(int i = 0; i < 9; i++){
 		   String testUrl = validScheme + goodauthority[i] + validPort + validPath + validOption + validQuery;
 		   if(urlVal.isValid(testUrl)){
 			   System.out.println("\nSUCCESS!!! Correct Expecation, URL is valid: " + testUrl);

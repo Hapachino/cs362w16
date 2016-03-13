@@ -5,7 +5,7 @@ Testing Methodology
 
 Manual Testing Examples:
 
-"http:/en.wikipediA.org"	
+"http:/en.wikipediA.org"
 "http//en.wikipediA.org"
 "http:///en.wikipediA.org"
 "http://www.en.wikipediA.org"
@@ -23,8 +23,8 @@ Manual Testing Examples:
 "http://en.wik'i'pediA.org"
 "http://en.w>ikipediA.org"
 "http://en.wikipediA0.org"
-"http://www.1234.com"	
-"http://en.wikipediA.org"	
+"http://www.1234.com"
+"http://en.wikipediA.org"
 "htps://www.oregonstate.edu"
 "tttt://www.oregonstate.edu"
 
@@ -224,8 +224,8 @@ test == false
 
 Other Information
 -----------------
-The fault is located in UrlValidator.java at line 158. This is where the program splits the input string into the 
-various elements that make up a URL. When the program gets the port number from the string, it only iterates up 
+The fault is located in UrlValidator.java at line 158. This is where the program splits the input string into the
+various elements that make up a URL. When the program gets the port number from the string, it only iterates up
 to three characters.
 
 
@@ -249,7 +249,7 @@ Is it reproducible: Yes
 
 Description
 ===========
- When a top-level domain authority is entered other than the United States, the 
+ When a top-level domain authority is entered other than the United States, the
  urls are marked as invalid.
 
 
@@ -286,13 +286,125 @@ Other Information
 -----------------
 Localizing the bug with Agan's principles: I first began by observing url's in my test results that look like they should have passed
 but were failing. Since I wasn't sure of the domain that was causing the fault I began to do an in depth review of the isValid()
-method. This was using Agan's first rule "Understand the system under test". Next I used the "Make if Fail" principle 
+method. This was using Agan's first rule "Understand the system under test". Next I used the "Make if Fail" principle
 and directly passed failing urls into the isValid() method, that way I was sure it was isValid creating the error and not
 something in our test suite. None of my results where change by passing urls directly into isValid so that means
 there is a bug in isValid. Next I removed invalid input domain's one at a time until I only had 'valid' input domains (every url
 I generated should pass). This was Agan's 5 principle, "Change one thing at a time". This allowed me to fully localize
-the input domain causing the fault, the url authority. I then returned to Agan's first rule to ensure I understood how 
-the authority was validated with my urls that were failing. Stepping through the isValid code line by line lead me to 
+the input domain causing the fault, the url authority. I then returned to Agan's first rule to ensure I understood how
+the authority was validated with my urls that were failing. Stepping through the isValid code line by line lead me to
 COUNTRY_CODE_TLDS array of strings being used to validate the top level domain. Since the url "google.ru" was failing I looked
 to see if it did contain the "ru" top level domain. It didn't, which caused isValid()'s call to isValidTld() to return
-false, making the url invalid. 
+false, making the url invalid.
+
+
+
+
+BUG REPORT:
+==============================
+Title: URL Validator does not validate the world wide web part.
+
+Class: “Logic Error”
+
+Date: 3/8/16
+Platform: Eclipse
+Browser: Chrome and Mozilla
+
+Description
+-----------------
+The URL validator does not check
+the www part in the URL’s host name. The program should return true
+when the URL has three w’ in its host name. Otherwise it should return false.
+However, the validator does not check the number of w’s in the host name.
+Using only one w in the host name returns true which should return false.
+
+Expected Results
+-----------------
+When we check the following URL http://w.nytimes.com/ manually in the URL
+Validator, the program should return false.
+
+Actual Results
+-----------------
+Using the http://w.nytimes.com/ URL address returned True which should
+return false.
+
+Workarounds
+-----------------
+Add a new function to the program that checks the number of w’s in the host
+name as well as the w, as this program returned True with three A’s in place of the W’s.
+
+
+
+BUG REPORT:
+==============================
+Title: URL Validator does not validate the word `http` part.
+
+Class: “Logic Error”
+
+Date: 3/8/16
+Platform: Eclipse
+Browser: Chrome and Mozilla
+
+Description
+-----------------
+The URL validator does not check the http part in the URL. The program
+should return true when the URL has `http` or `https` in its URL. Otherwise
+it should return false. However, the validator does not check the http part
+in the URL. Anything we replace http part returned true.
+
+Expected Results
+-----------------
+When we manually check the following URL `tttt://www.oregonstate.edu` in the
+URL Validator, the program should return false.
+
+Actual Results
+-----------------
+Using the tttt://www.oregonstate.edu` URL address returned True which should
+return false.
+
+Workarounds
+-----------------
+Add a new function to the program that checks http parts in the program.
+
+
+
+
+BUG REPORT:
+==============================
+Title: IsValidQuery Function returns wrong result.
+
+Class: “Logic Error”
+
+Date: 3/8/16
+Platform: Eclipse
+Browser: Chrome and Mozilla
+
+Is it reproducible: Yes
+
+Description
+-----------------
+The isValidQuery function returns true if the query is null. Otherwise the
+function returns the “QUERY_PATTERN.matcher(query).matches();” bool value. The
+exclamation point infront of the return statement makes changes the bool value
+to its opposite.
+
+Expected Results
+-----------------
+The function returns the following code if the query is not null:
+Return Query_Pattern.matcher(query).matches()
+
+
+Actual Results
+-----------------
+The function returns the following code:
+!QUERY_PATTERN.matcher(query).matches();
+
+Workarounds
+-----------------
+Take out the exclamation point in the second return statement.
+Return !Query_Pattern.matcher(query).matches() should change to
+Return Query_Pattern.matcher(query).matches()
+
+Attachments
+-----------
+none

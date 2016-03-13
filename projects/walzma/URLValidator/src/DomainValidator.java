@@ -136,7 +136,9 @@ public class DomainValidator implements Serializable {
         if (groups != null && groups.length > 0) {
             return isValidTld(groups[0]);
         } else if(allowLocal) {
-            if (!hostnameRegex.isValid(domain)) {
+            if (!hostnameRegex.isValid(domain)) { 
+ /*make change here. Remove NOT (!) from in front of hostnameRegex*/ 
+ //           if (hostnameRegex.isValid(domain)) {
                return true;
             }
         }
@@ -355,7 +357,7 @@ public class DomainValidator implements Serializable {
         "ir",                 // Iran
         "is",                 // Iceland
         "it",                 // Italy
-        
+/*make change here. Complete list of valid two-letter country domain codes*/         
     };
 
     private static final String[] LOCAL_TLDS = new String[] {

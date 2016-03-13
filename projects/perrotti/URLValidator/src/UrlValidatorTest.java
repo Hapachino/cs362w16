@@ -40,10 +40,69 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest()
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
+	   //Test Allow All Schemes
+	   //This is one way we could approach testing manually
+	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
+	   System.out.println("Schema Test - Allow All Schemes");
+	   assertTrue(urlVal.isValid("http://www.amazon.com"));
+	   assertTrue(urlVal.isValid("https://www.google.com"));
+	   assertTrue(urlVal.isValid("http://ww.google.com"));
+	   assertFalse(urlVal.isValid("google"));
+	   assertFalse(urlVal.isValid("amazon.com"));
+	   assertTrue(urlVal.isValid("http://google.com"));
 	   
+	   //Using arrays like this is easier. Feel free to add more valid URLs to either.
+	   String[] validUrls = {"", 
+			   "http://www.amazon.com", 
+			   "https://www.google.com", 
+			   "http://ww.google.com",
+			   "ftp://127.0.0.1", 
+			   "https://oregonstate.instructure.com/courses/1568425", 
+			   "http://eecs.oregonstate.edu/current%20students",
+			   "http://localhost/", 
+			   "http://www.amazon.com:80",
+			   "https://mail.google.com/mail/u/0/?hl=en&shva=1#inbox"};
 	   
+	   String[] invalidUrls = {"amazon.com",
+			   "google",
+			   "http://www.google.com:123r",
+			   "htp://google.com",
+			   "https:///www.google.com",
+			   "http//www.oregonstate.edu",
+			   "http:\\www.amazon.com"};
+	   
+	   int i;
+	   boolean isValid;
+	   
+	   for(i = 0; i < validUrls.length; i++)
+	   {
+		   System.out.println("Testing URL: " + validUrls[i]);
+		   isValid = urlVal.isValid(validUrls[i]);
+		   if (isValid)
+		   {
+			   System.out.println("TEST PASSED");
+		   }
+		   else
+		   {
+			   System.out.println("TEST FAILED");
+		   }
+	   }
+	   
+	   System.out.println();
+	   
+	   for(i = 0; i < invalidUrls.length; i++)
+	   {
+		   System.out.println("Testing invalid URL: " + invalidUrls[i]);
+		   isValid = urlVal.isValid(invalidUrls[i]);
+		   if (!isValid)
+		   {
+			   System.out.println("TEST PASSED");
+		   }
+		   else
+		   {
+			   System.out.println("TEST FAILED");
+		   }
+	   }
    }
    
    

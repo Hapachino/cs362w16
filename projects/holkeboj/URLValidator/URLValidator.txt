@@ -1,0 +1,139 @@
+[URLValidator.txt]
+Oregon State University
+Computer Science 362
+Course Project Part B report
+
+Group Members:
+Jack Holkeboer - holkeboj@onid.oregonstate.edu
+Kyle Collins - collikyl@oregonstate.edu
+Shaine Afzal - afzals@oregostate.edu
+
+
+All tests described here can be found in src/UrlValidatorTest.java
+
+HOW WE DIVIDED UP THE WORK AS A TEAM
+When we read the assignment instructions we noticed a natural division between three types of testing - manual, partition, and programmatic.  We decided that since we had 3 team members, each one of us would concentrate on one of these areas.  We started out working separately on each area, running our tests and finding bugs.  Then we came together and compared our results.  In most cases, bugs that were found in one testing methodology were also found in the others.  In other cases, we were able to point out elements of each others' tests that could be improved.  Once we agreed upon what the bugs were, we then simultaneously dug into the UrlValidator source code to isolate the causes of them.
+
+USE OF AGAN'S PRINCIPLES
+The main one of Agan's principles that was helpful to us was Rule #1: Understand the System.
+Just as we did with Dominion, it is important to understand the rules your are dealing with.  Otherwise it is impossible to debug effectively.  For Dominion, this meant playing the game and understading what the rules are (i.e. what happens when you play each card).  For UrlValidator, we first had to understand what makes a URL valid in the first place.  This involved first reading online about URL validity and then thoroughly examining the UrlValidatorCorrect code to see how the program is supposed to work.  We did this when we completed the Project Part A.
+
+
+EXPLANATION OF METHODOLOGY
+
+Manual Tests:
+-------------------------
+[explain manual testing method here]
+
+
+Partition Tests:
+-------------------------
+[explain partition testing method here]
+
+
+Programming based tests:
+-------------------------
+We used random testing in order to generate the widest possible variety of test cases.  We used the ResultPair object that is supplied with the URLValidator code, which contains a string of text (the property "item") and a boolean value (the property "valid").  Each pair is meant to be a certain part of the URL.  
+
+The idea behind constructing tests this way is that each URL segment is either valid or invalid.  If a URL string contains one invalid segment, the entire URL should be invalidated.  Therefore, we take the "and" value of the validity of each resultPair like this:
+
+    // How we derive URL validity
+    Boolean testURLValidity = schemeValidity && addressValidity && portValidity
+				   && pathValidity && queryStringValidity;
+                   
+Each validity boolean corresponds to one part of the URL:
+    - Scheme (http, ftp, etc)
+    - Address (e.g. yahoo.com, www.google.com, bbc.co.uk, etc)
+    - Port (e.g. no port, :80, :63353, etc)
+    - Path (e.g. /path, /path1/path2/file.txt, etc)
+    - Query String (e.g. ?value=1)
+
+To generate a random test case, first we supply a list of possible strings for each parameter.  You can see these in our UrlValidatorTest.java file in the testIsValid() function.  We then choose a random element from each list and concatenate them.  Parameters that are not mandatory will have an empty string ("") as one of the possible options, so not every test URL will contain every part.  The code that generates our test cases looks like this:
+
+        // generate test cases
+	   for(int i = 0;i<numberOfTests;i++)
+	   {
+		   // get random scheme
+		   int randomSchemeIndex = generator.nextInt(testSchemes.length);
+		   String scheme = testSchemes[randomSchemeIndex].item;
+		   Boolean schemeValidity = testSchemes[randomSchemeIndex].valid;
+		   
+		   // get random address
+		   int randomAddressIndex = generator.nextInt(testAddresses.length);
+		   String address = testAddresses[randomAddressIndex].item;
+		   Boolean addressValidity = testAddresses[randomAddressIndex].valid;	
+		   
+		   // get random port
+		   int randomPortIndex = generator.nextInt(testPorts.length);
+		   String port = testPorts[randomPortIndex].item;
+		   Boolean portValidity = testPorts[randomPortIndex].valid;
+		   
+		   // get random path
+		   int randomPathIndex = generator.nextInt(testPaths.length);
+		   String path = testPaths[randomPathIndex].item;
+		   Boolean pathValidity = testPaths[randomPathIndex].valid;	
+		   
+		   // get random query string
+		   int randomQueryStringIndex = generator.nextInt(testQueryStrings.length);
+		   String queryString = testQueryStrings[randomQueryStringIndex].item;
+		   Boolean queryStringValidity = testQueryStrings[randomQueryStringIndex].valid;
+		   
+		   // build test case
+		   String testURL = scheme + address + port + path + queryString;
+		   Boolean testURLValidity = schemeValidity && addressValidity && portValidity
+				   && pathValidity && queryStringValidity;
+		   
+		   // test the test case
+		   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_LOCAL_URLS);
+		   boolean result = urlVal.isValid(testURL);
+		   if (result != testURLValidity) {
+			   System.out.format("Failed for URL %s\n", testURL);
+			   testsFailed += 1;
+		   }
+	   }
+
+The benefit of this approach is that it allows us to run a large number of tests.  We set it to run 10,000 tests and on average had around 340 tests failing.  This lets us know that the program is accurate the majority of the time but there are definitely some buggy cases that come up consistently.  
+
+We found that although random testing is great for achiving broad code coverage, it was easier for us to find bugs by constructing manual and partition cases and concentrating on the differences between those.  The same bugs happen in the random tests, but there is extra work required to sift throught the results, detect patterns, and figure out what is causing them.
+
+
+
+DESCRIPTION OF BUGS FOUND
+
+Bug #1: isValid() invalidates any URL with a question mark
+-------------------------
+How it was detected: 
+In our manual and programmatic tests, we noticed a pattern that every url with a question mark was invalidated, even if it was otherwise valid.  Question marks are a common part of URLs so we knew this was a significant bug.
+
+Cause: 
+The query string part of the url is validated in isValid by this code in UrlValidator.java:
+        
+        // line 341
+        if (!isValidQuery(urlMatcher.group(PARSE_URL_QUERY))) {
+            return false;
+        }
+
+isValidQuery() checks the query string by comparing it to the following regular expression:
+
+    // line 151
+    private static final String QUERY_REGEX = "^(.*)$";
+
+We can see that this regular expression does not include a question mark, which means that any URL with a question mark will not match the pattern and therefore be invalidated.  
+
+
+Bug #2: 
+-------------------------
+How it was found:
+
+
+Cause:
+
+
+Bug #3: 
+-------------------------
+How it was found:
+
+
+Cause:
+
+

@@ -38,12 +38,10 @@ public class UrlValidatorTest extends TestCase {
 
    
    
-   public void testManualTest()
+   public void testManualTest(String url)
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
-	   
-	   
+	   UrlValidator urlVal = new UrlValidator();
+	   System.out.println(urlVal.isValid(url));
    }
    
    
@@ -57,12 +55,17 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
-   public void testIsValid()
-   {
-	   for(int i = 0;i<10000;i++)
-	   {
+   public void testIsValid() {
+      System.out.print("THIS TEST IS VALID!\n"); 
+      UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+      System.out.println(urlVal.isValid("http://www.amazon.com"));
+      System.out.println(urlVal.isValid("ttp://www.amazon.com"));
+   
+
+      /*      for(int i = 0;i<10000;i++) {
+        
 		   
-	   }
+      }*/
    }
    
    public void testAnyOtherUnitTest()

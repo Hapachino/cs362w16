@@ -78,12 +78,30 @@ public class UrlValidatorTest extends TestCase {
 	   }
 	   System.out.println("---------------------");
    }
-   
+   public List<String> getStuff(String filename) throws IOException {
+	   List<String> scheme = new ArrayList<String>();
+	   BufferedReader br = null;
+	   String line = "";
+	   try {
+		   br = new BufferedReader(new FileReader(filename));
+		   while ((line = br.readLine()) != null){
+			   scheme.add(line);
+			   
+		   }
+	   } finally {
+		   if (br != null){
+				br.close();	
+		   }
+	   }
+	   return scheme;
+	   
+	   
+   }
    public void testManualTest() throws IOException
    {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   //System.out.println(urlVal.isValid("http://www.amazon.com"));
-
+        
         System.out.println("Beginning manual tests\n");
         List<ResultPair> urls = createResultPairs(System.getProperty("user.dir") + "/src/urls.csv");
         for(ResultPair url : urls){
@@ -161,6 +179,7 @@ public class UrlValidatorTest extends TestCase {
     private String partitionString(int scheme, int authority,
         int port, int path, int query)
     {
+    	//List<String> schemes = getStuff(System.getProperty("user.dir") + "/src/paths.csv");
         String[] schemes = {"http:/", "http://"};
         String[] authorities = {"", "www.google.com"};
         String[] ports = {":-1", ":65535"};

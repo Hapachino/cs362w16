@@ -1,2 +1,0 @@
-In the drawCard function, the brackets were put around the else statement (bug introduced by me), which should fix the number of cards drawn in any of the card functions like effectSmithy. After running the tests on the village card, the hand count was decremented successfully. 
-in effectAdventurer, added call to discardCard at the end to make sure the adventurer card is discarded when finished. This corrected the assert statement that checked for the discard count before and after calling the function. 

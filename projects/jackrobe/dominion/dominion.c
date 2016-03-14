@@ -441,7 +441,7 @@ int scoreFor (int player, struct gameState *state) {
   }
 
   //score from deck
-  for (i = 0; i < state->discardCount[player]; i++)
+  for (i = 0; i < state->deckCount[player]; i++)
   {
     if (state->deck[player][i] == curse) { score = score - 1; };
     if (state->deck[player][i] == estate) { score = score + 1; };
@@ -678,7 +678,7 @@ int adventurerCard( struct gameState * state, int currentPlayer ){
     }
 
   }
-  while (z - 1 > 0){
+  while (z - 1 >= 0){
     state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
     z = z - 1;
   }
@@ -700,7 +700,7 @@ int councilRoomCard(struct gameState * state, int currentPlayer, int handPos){
   state->numBuys++;
 
   //Each other player draws a card
-  for (i; i < state->numPlayers; i++)
+  for (i=0; i < state->numPlayers; i++)
   {
     if (i != currentPlayer)
     {
@@ -715,12 +715,12 @@ int councilRoomCard(struct gameState * state, int currentPlayer, int handPos){
 
 }
 
-int smithyCard(struct gameState * state, int handPos){
+int smithyCard(struct gameState * state, int handPos, int currentPlayer){
 
-  int currentPlayer = whoseTurn(state);
+
   int i;
   //+3 Cards
-  for (i = 0; i <= 3; i++)
+  for (i = 0; i < 3; i++)
   {
     drawCard(currentPlayer, state);
   }
@@ -735,6 +735,9 @@ int smithyCard(struct gameState * state, int handPos){
 int villageCard(struct gameState* state, int handPos){
 
   int currentPlayer = whoseTurn(state);
+
+  //+1 Card
+  drawCard(currentPlayer, state);
 
   //+2 Actions
   state->numActions = state->numActions + 2;
@@ -966,7 +969,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
           return 0;
 
     case smithy:
-      smithyCard(state, handPos);
+      smithyCard(state, handPos, currentPlayer);
 
     case village:
       villageCard(state, handPos);

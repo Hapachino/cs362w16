@@ -1,0 +1,218 @@
+Methodology of testing
+
+    We used a hybrid of both combinatorial and random testing for this project. We decided on this approach because URLs are made up of many parts, so the idea of using many combinations of these parts made sense for the limited items such as the separator (:// and :), the scheme (only certain schemes are commonly used), and top-level domains (can only be certain ones to be considered valid). For those parts of the URL it made sense to try to test all combinations. For all other parts of the URL the possibilities are infinite. The query portion, for example, can be any string with or without special characters (except certain ones). This meant that we couldn’t take a purely combinatorial approach and needed to also use random testing techniques to randomly generate those parts of the URL.
+
+Some of the URLs used in manual testing:
+
+Urls that returned the expected value
+
+a://www.foo.com        Expected: true
+ftp://!!!.###.com        Expected: false
+ssh://onid.orst.edu        Expected: true
+http://.foo.com            Expected: false
+ftp://ftp.somed0main.com    Expected: true
+http://74.125.224.72/        Expected: true
+https://www.yahoo.com:493    Expected: true
+http://-1.0.0.0            Expected: false
+http://0.0.0.0            Expected: true
+http://174.80.32.4352        Expected: false
+
+Urls that are valid but cause URLValidator to return false
+
+http://www.yahoo.com:8000
+http://www.yahoo.co.jp
+http://massive.tv/
+http://74.125.224.72:8080
+http://www.yahoo.com:abc
+http://www.yahoo.com:65535
+http://www.yahoo.com:65536
+
+Urls that are not valid but get a return of true:
+
+http://256.66.32.1
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Partitions and reasons for choosing them
+
+    We are testing each URL as a combination of up to seven components: (1) scheme/protocol, (2) separator, (3) authority, (4) second level domain (SLD), (5) top level domain (TLD), (6) port, (7) path, and (8) query. Each of these three components can exist in one of the three discrete states of valid, invalid, or empty. 
+
+Our different input partitions are designed to map to each possible combination of the     seven components and their states. Since there are seven components with three states each, we have a total of 3^8 = 6,651 possible partitions. These partitions can be broken down into the subcategories of valid and invalid URLs. 
+
+As an illustration, let the three possible states for the components be represented as valid = 0, invalid = 1, and empty = 2. Keeping the same order for the components as there are listed in above, we can represent some of our partitions as follows:
+
+{scheme}{separator}{authority}{SLD}{TLD}{port}{path}{query}
+
+VALID URL PARTITIONS (all possibilities):
+    All components valid:                0 0 0 0 0 0 0 0
+    All valid, no query:                 0 0 0 0 0 0 0 2
+    All valid, no path:                  0 0 0 0 0 0 2 0
+    All valid, no port:                  0 0 0 0 0 2 0 0 
+All valid, no query or path:             0 0 0 0 0 0 2 2
+All valid, no query or port:             0 0 0 0 0 2 0 2
+All valid, no path or port               0 0 0 0 0 2 2 0
+All valid, no query, path, or port:      0 0 0 0 0 2 2 2
+
+INVALID URL PARTITIONS (invalid scheme examples):
+    Only scheme is invalid:    	1 0 0 0 0 0 0 
+    All invalid:            	1 1 1 1 1 1 1
+    Other examples:        		1 1 0 0 0 0 0 
+                    			1 1 1 0 0 0 0 
+                    			1 1 1 1 0 0 0 
+                    		etc.
+    Repeat for empty scheme
+    Repeat for separator, sld, tld
+
+There are a much smaller number of valid possibilities  as none of the components can be a “1” (invalid), and only a select few components can be empty while still generating a valid URL string. For the invalid combinations, one component at a time will be set to either invalid or empty with every possible combination of the the remaining components
+tested under that condition. 
+
+We chose this partitioning system due to the effectiveness of combinatorial testing at finding bugs and the role that combinations of different components plays in constructing URLs. This schema also allows for random generation of strings within each of the components, so we ended up with a very thorough test suite for the URL validator. 
+
+    All components are good = pass
+    All components are good but no SLD = pass
+    All components are good but no port?
+    All other partitions include a bad or missing component and should fail
+
+
+URL type	--> 	Expected Result
+All components are good		-->	 	pass
+All components are good, but missing some combination of:  SLD, port, path, query		--> 		pass
+bad or missing component other than SLD, port, path or query	-->		fail
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Names of tests
+
+As explained above, our test case generation is done in a dynamic fashion. We have some test methods that generate many similar cases. The test methods are:
+
+testValidPartitions: Creates 100 test cases where all parts of the URL are valid. This means that each URL part meets the specifications of TCP/IP. Below are descriptions of what makes each part valid.
+-Scheme/protocol: An alphanumeric string of any length that begins with a letter and has no special characters and no whitespace.
+-Separator: Can be either :// or just :
+-Authority: An alphanumeric string of any length that has no special characters and no whitespace.
+-Second-level domain:  An alphanumeric string of length 63 or less has no special characters and no whitespace.
+-Top-level domain: Must be one of the predefined strings such as .com and .edu.
+-Port: Any positive integer less than or equal to 65535 and greater than 0.
+-Path:  A string of any length that has special characters only at the beginning (if any) and no whitespace.
+-Query parameter:  An alphanumeric string of any length that begins with a letter and has no special characters and no whitespace. Is preceded by a ? and followed by a = character. 
+-Query value: Any string without an = character within.
+
+testInvalidPartitions: Similar to testValidPartitions (described above) but instead of forming known valid URL’s it creates and passes invalid URL’s. The purpose of this test to to ensure that the Validator returns false when an invalid URL is passed. This test uses all the same URL parts mentioned above, but sometimes will also leave out some parts of the URL, often required parts such as the scheme.
+
+testManualTest: This was the first test and was used mainly for exploratory testing. It calls the isValid method of the Validator API using  a wide variety of URLs. This test helped the team understand how the URL Validator works, and also enabled us to discover the first bug.
+
+Roles and work performed in the team
+
+ The whole team contributed to the research, code writing, bug discovery and analysis, and the writing of this document. Each team member’s role is described in detail below.
+
+Nelson: Wrote the manual tests that used a variety or URLs including some that may be evidence of bugs in the URLValidator code. Created and expanded the random string and int generators to generate valid and invalid schemes/protocols, ports, hostnames, and paths that are used in each part of the URL. Wrote test cases portion of write-up.
+
+Patrick: Defined and wrote the partitioning of the random testing. Wrote the combinatorial test methods (testValidPartitions and testInvalidPartitions) code that generates all dynamically created test cases.
+        
+Matthew: Wrote the main utility function that all test methods will use and in the process defined the schema for the partitions. Wrote the first iteration of random string generators to generate schemes, ports, hostnames, etc. 
+
+How work was divided in your team
+Before starting any of the project, our team created an outline that listed all the requirements of the project. We then went through each requirement and decided how to assign the work. The work for Part A was not divided and was done together.
+
+For part B we did a combination of delegated work and teamwork during our meetings. During each meeting we discussed the tasks that needed to be completed and assigned tasks to each team member. We also decided on a due date for each batch of tasks, so that we could ensure that we could assign a new batch of tasks at the next meeting.
+
+How teammates collaborated
+
+Part A was something that we could all work on together without needing to delegate pieces of work to each teammate. Part A was completed using a Google Document that we could all review and write at the same time without needing to worry about whether we had the latest copy or not. 
+
+The code used for testing was in Matthew’s URLValidator folder. We all pulled, edited, and pushed to Mathew’s folder to avoid issues merging later on. We used Google Hangouts for all of our meetings, which were held about every four days. Each team member was assigned and responsible for certain tasks, which were given a due date. Any progress reports or questions that came up outside of the meeting were discussed in email.
+
+All shared documents such as this one was first created, written, and edited on Google Docs. This allow all team members to edit simultaneously without fear of merge issues. Google Docs allowed us to chat about the document and discuss each other's edits.
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Bugs
+
+Bug #1
+Title: Valid TLD Country codes from .je to end of alphabet are rejected.
+Product: Apache URL Validator
+Classification: Sever
+Platform: Eclipse IDE running on Ubuntu 15.04
+Can it be reproduced?: Yes
+Description: When a URL is passed to the Validator that has a top-level domain of je (or alphabetically greater), the Validator returns false.
+Steps to reproduce: Run test method testManualTest from the UrlValidatorTest.java
+Expected results: The Validator should return true because URL’s such as http://www.yahoo.co.jp are valid and well known URLs.
+Actual results: False is returned from the Validator
+How we found it: To get a top-level domain, our random URL generator actually cycles through a list of valid TLDs. We noticed that when we tested valid URLs, at first most of them were found valid, but then a long list was found mostly invalid. It became clear that what the “invalid” URLs had in common was a country-code TLD in the second half or so of the alphabet.
+Suspected Cause: The array of strings COUNTRY_CODE_TLDS (line 248) in DomainValidator.java appears to be incomplete. It contains country codes alphabetically only up to Italy.
+
+Bug #2
+Title: Numeric IP addresses containing values between 256 and 999 are accepted.
+Product: Apache URL Validator
+Classification: Sever
+Platform: Eclipse IDE running on Ubuntu 15.04
+Can it be reproduced?: Yes
+Description: When a URL is passed to the Validator that has an IP address with one or more octets greater than 255, the Validator returns true.
+Steps to reproduce: Run test method testManualTest from the UrlValidatorTest.java
+Expected results: The Validator should return false because an IP address cannot have octects greater than 255. Such IP addresses are invalid.
+Actual results: True is returned from the Validator
+How we found it: Manual boundary case testing showed that IP addresses using the “octet” 256 were found to be valid.
+Suspected Cause: In method 
+
+boolean isValidInet4Address(String inet4Address) 
+
+found on line 73 in InetAddressValidator.java, the validator appears to be trying to determine whether a numeric IP address is valid. The condition 
+
+            if (iIpSegment > 255) {
+                
+                return true;
+                
+            }
+
+on line 94 is incorrect, because clearly an octet of a numeric IP address should be less than or equal to 255, not greater than. Therefore, the return should be false rather than true. There would appear to be more to this bug, however, because segments greater than 999 are correctly determined to be false.
+
+Bug #3
+Title: URLs with queries are rejected.
+Product: Apache URL Validator
+Classification: Sever
+Platform: Eclipse IDE running on Ubuntu 15.04
+Can it be reproduced?: Yes
+Description: When a URL is passed to the Validator that has any query, the Validator returns false.
+Steps to reproduce: Run test methods testManualTest or testValidPartitions from the UrlValidatorTest.java
+Expected results: The Validator should return true because URL’s such with query strings are common and valid.
+Actual results: False is returned from the Validator
+How we found it: We observed that all test cases in the partitions with a valid URL including a query were failing.
+Suspected Cause: Method isValidQuery(), line 441 of UrlValidator.java, has the line
+
+        return !QUERY_PATTERN.matcher(query).matches();
+
+This seems contrary to what would be expected. Presumably the method should return true if the query string matches the predefined pattern for queries, which is the opposite of what this line does. The ! is probably at fault here.
+
+Bug #4
+Title: Ports above 999 are rejected.
+Product: Apache URL Validator
+Classification: Sever
+Platform: Eclipse IDE running on Ubuntu 15.04
+Can it be reproduced?: Yes
+Description: When a URL is passed to the Validator that has a port greater than 999, the Validator returns false.
+Steps to reproduce: Run test methods testManualTest or testValidPartitions from the UrlValidatorTest.java
+Expected results: The Validator should return true because the largest allowed port for URL’s is 65535, well above 999.
+Actual results: False is returned from the Validator
+How we found it: We observed that many of the test cases in partitions with valid URLs including a port were failing. What the failing cases had in common was a large port number. Following up with manual testing, we discovered the boundary between success and failure to be 999-1000.
+Suspected Cause: The regular expression used for testing a valid port is established in line 158: 
+
+        private static String PORT_REGEX = “^\\d{1,3})$;
+
+This regex is looking strictly for a sequence of between 1-3 decimal characters, and it is set as the pattern to match in line 159 and tested inside of the isValidAuthority() function from lines 392-394.
+
+line 159:     private static String PORT_PATTERN = Pattern.compile(PORT_REGEX);
+line 392:    if (port != null) {
+            if (!PORT_PATTERN.matcher(port).matches()) {
+                return false;
+
+This part of the isValidAuthority() function will cause any port that does not consist of exactly 1, 2, or 3 digits to result in a failure for that URL. This is a bug because, as mentioned above, ports from 1000-65535 are valid ports but will always result in a failure in the test as currently written.
+
+
+Examples of Agan’s Principles used in debugging:
+Rule #2: Make it Fail
+    Our test suite was effective at causing failures, and the large numbers of tests that we ran made it easier to find patterns in what conditions did and did not cause failure even before we began to look more closely at the code. 
+
+Rule #4: Divide and Conquer, Rule #5: Change One Thing at a Time
+    Our test partitions included every combination of components, which made it very clear which conditions were the likely contributors to bugs. 
+
+
+

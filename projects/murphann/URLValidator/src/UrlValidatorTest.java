@@ -313,33 +313,33 @@ public class UrlValidatorTest extends TestCase {
     * @param testObjects Used to create a url.
     */
     
-/* Test different permutations of valid URL components. */
-public void permTest() {
-    String url;
-    String[] schemes = {"http://", "h3t://", ""};
-    String[] authorities = {"google.com", "www.amazon.com", "255.255.255.255"};
-    String[] ports = {"", ":80", ":65636"};
-    String[] paths = {"", "/test1", "/test1/file"};
-    String[] queries = {"", "?action=view"};
-    
-    for (s = 0; s < schemes.length; s++) {
-        for (a = 0; a < authorities.length; a++) {
-            for (po = 0; po < ports.length; po++) {
-                for (pa = 0; pa < paths.length; pa++) {
-                    for (q = 0; q < queries.length; q++) {
-                        url = schemes[s] + authorities[a] + ports[po] + paths[pa] + queries[q];
-                        if (isValid(url)) {
-                            System.out.println("OK: " url + " passed.\n");
-                        }
-                        else {
-                            System.out.println("ERROR: " + url + " failed.\n");
+    /* Test different permutations of valid URL components. */
+    public void permTest() {
+        String url;
+        String[] schemes = {"http://", "h3t://", ""};
+        String[] authorities = {"google.com", "www.amazon.com", "255.255.255.255"};
+        String[] ports = {"", ":80", ":65636"};
+        String[] paths = {"", "/test1", "/test1/file"};
+        String[] queries = {"", "?action=view"};
+        
+        for (s = 0; s < schemes.length; s++) {
+            for (a = 0; a < authorities.length; a++) {
+                for (po = 0; po < ports.length; po++) {
+                    for (pa = 0; pa < paths.length; pa++) {
+                        for (q = 0; q < queries.length; q++) {
+                            url = schemes[s] + authorities[a] + ports[po] + paths[pa] + queries[q];
+                            if (isValid(url)) {
+                                System.out.println("OK: " url + " passed.\n");
+                            }
+                            else {
+                                System.out.println("ERROR: " + url + " failed.\n");
+                            }
                         }
                     }
                 }
             }
         }
     }
-}
 
 /* Some very basic unit tests to tease out the bugs from isValid() method */
     public void testIsValidScheme() {

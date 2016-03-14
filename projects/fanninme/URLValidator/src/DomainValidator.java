@@ -203,7 +203,8 @@ public class DomainValidator implements Serializable {
         
     	return !LOCAL_TLD_LIST.contains(chompLeadingDot(iTld.toLowerCase()));
     }
-
+    
+    
     private String chompLeadingDot(String str) {
         if (str.startsWith(".")) {
             return str.substring(1);

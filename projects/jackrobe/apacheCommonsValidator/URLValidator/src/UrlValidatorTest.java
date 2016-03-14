@@ -266,7 +266,8 @@ public class UrlValidatorTest extends TestCase {
                     }
                 }
             }catch (IOException e) {
-                System.out.println("FAILED the JAVA URL VALIDATION" + url);
+                System.out.println("FAILED the JAVA URL VALIDATION: " + url);
+                failRate++;
             }
 
             //limit number of urls for dev testing
@@ -531,11 +532,21 @@ public class UrlValidatorTest extends TestCase {
     	HelpFunctions h = new HelpFunctions();
     	int failRate=0, passRate=0, maxTests=0;
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-    	List<String> urls = Arrays.asList("http://www.google.com","ftp://143.243.34.342");
+    	List<String> goodUrls = Arrays.asList("http://www.google.com",
+    									  	  "ftp://143.243.34.342:80",
+    										  "http://www.microsoft.com/testing",
+    										  "http://www.amazon.com/s/ref=nb_sb_noss_2/177-1505020-6778424?url=search-alias%3Daps&field-keywords=books");
+    	List<String> badUrls = Arrays.asList("httx://www.google.com",
+    										 "ftp://www.testing.zxcv/",
+    										 "http://zxc.123/testing/stuff",
+    										 "ftp://345.23.45.234:abc");
     	
-        System.out.println("---------------------------MANUAL TESTING OF GOOD/BAD URLS ------------------------------- ");
-    	int fails = reporter(urls, passRate, failRate, urls.size());
-    	//System.out.println(urls.get(1));
+        System.out.println("---------------------------MANUAL TESTING OF GOOD URLS ------------------------------- ");
+    	int fails = reporter(goodUrls, passRate, failRate, goodUrls.size());
+    	
+        System.out.println("---------------------------MANUAL TESTING OF BAD URLS ------------------------------- ");
+    	fails = reporter(badUrls, passRate, failRate, badUrls.size());
+
     }
     
 }

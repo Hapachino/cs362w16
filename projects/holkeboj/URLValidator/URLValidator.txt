@@ -121,19 +121,81 @@ isValidQuery() checks the query string by comparing it to the following regular 
 We can see that this regular expression does not include a question mark, which means that any URL with a question mark will not match the pattern and therefore be invalidated.  
 
 
-Bug #2: 
+Bug #2: isValid() does not detect invalid IP addresses
 -------------------------
-How it was found:
+How it was found:  We noticed that in our programmatic tests, all tests with an invalid IP address were failing.  Any IP address with a number over 255 is invalid.  Here are some examples of otherwise valid URLS with invalid IP addresses that should have been invalidated:
 
+ftp://255.256.255.255:80/i12iro3i
+http://300.168.0.110:0/testpath
+http://300.168.0.110:80/testpath1/testpath2
+
+To confirm this, we added the following test to the manual tests, to confirm that this wasn't caused by some other bug:
+
+    System.out.println(urlVal.isValid("http://256.256.256.256"));
+
+The above test evaluated to true when it should have been false.  Since everything else about the URL is valid, we can confirm that this is caused by a bug in IP address evaluation.
 
 Cause:
+The following lines of code show where the "authority" (combination of hostname and port) is checked by isValid()
 
+        // check if authority is hostname or IP address:
+        // try a hostname first since that's much more likely
+        DomainValidator domainValidator = DomainValidator.getInstance(isOn(ALLOW_LOCAL_URLS));
+        if (!domainValidator.isValid(hostLocation)) {
+            // try an IP address
+            InetAddressValidator inetAddressValidator =
+                InetAddressValidator.getInstance();
+            if (!inetAddressValidator.isValid(hostLocation)) {
+                // isn't either one, so the URL is invalid
+                return false;
+            }
+        }
 
-Bug #3: 
+We can see that first it checks to see if the host is valid, and if it's not a vaid hostname, it then uses InetAddressValidator to check if it's a valid IP address.
+
+The faulty section of the code starts on line 94 in InetAddressValidator.java:
+
+            if (iIpSegment > 255) {
+                
+            	return true;
+            	
+            }
+
+This is wrong because any IP segment greater than 255 is not valid.  This could be fixed by setting this condition to return false instead of true.
+
+Bug #3: isValid() does not detect invalid Top Level Domains
 -------------------------
 How it was found:
+We noticed in our programmatic tests that a lot of urls with invalid top level domains were failing.  For example, the url "http://google.kjfwoei" was evaluating to true.  
 
+To investigated further, we added the following manual tests:
+
+	   System.out.println(urlVal.isValid("http://google.kjfwoei"));
+	   System.out.println(urlVal.isValid("http://google.BLAHBLAH"));
+	   System.out.println(urlVal.isValid("http://www.google.123HFJ"));
+
+These were all expected to return false, but instead they all returned true.  Since these urls are valid except for the TLD, we can confirm that this is an issue with the TLD validation
 
 Cause:
+Domain validation is handled by the DomainValidator class.  We focused on this class file to isolate the problem.
 
+We then focused on the isValidTld() function contained within DomainValidator.  This is the part of the code that evaluates the TLD, starting on line 153 in DomainValidator.java:
 
+    public boolean isValidTld(String tld) {
+        if(allowLocal && isValidLocalTld(tld)) {
+           return true;
+        }
+        return isValidInfrastructureTld(tld)
+                || isValidGenericTld(tld)
+                || isValidCountryCodeTld(tld);
+    }
+
+We notice that isValidLocalTld() is only evaluated if allowLocal is true, and we are running with the ALLOW_LOCAL_URLS option.  So we were able to isolate this effect to the isValidLocalTld function, starting on line 202 in DomainValidator.java:
+
+    public boolean isValidLocalTld(String iTld) {
+        // the bug is in this line
+    	return !LOCAL_TLD_LIST.contains(chompLeadingDot(iTld.toLowerCase()));
+    }
+
+The bug here is the exclamation mark before the evaluation of LOCAL_TLD_LIST.contains().
+In the other similar functions, this exclamation mark is not present.  This is important beacuse it reverses the Boolean value we are expecting.  In other words, if our TLD is not in the list, it will return true, which is the opposite of the behavior we want.  When we remove this exclamation point, we get the expected behavior.

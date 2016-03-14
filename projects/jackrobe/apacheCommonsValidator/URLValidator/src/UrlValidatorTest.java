@@ -18,9 +18,11 @@
 
 import junit.framework.TestCase;
 
+import java.lang.reflect.Array;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -188,8 +190,15 @@ public class UrlValidatorTest extends TestCase {
 
             builtURL = h.getRandomProtocol()+"://";
 
+            //half the time make it an ip address or for some a localhost
             if(i%2 == 0) {
-                builtURL += h.makeIP();
+
+                if(i < .75*n) {
+                    builtURL += h.makeIP();
+                }else{
+                    builtURL += "localhost";
+                }
+
             }else{
 
                 //make a random string for the domain name
@@ -257,7 +266,8 @@ public class UrlValidatorTest extends TestCase {
                     }
                 }
             }catch (IOException e) {
-                System.out.println("FAILED the JAVA URL VALIDATION" + url);
+                System.out.println("FAILED the JAVA URL VALIDATION: " + url);
+                failRate++;
             }
 
             //limit number of urls for dev testing
@@ -278,6 +288,7 @@ public class UrlValidatorTest extends TestCase {
     {
        HelpFunctions h = new HelpFunctions();
         int failRate=0, passRate=0, maxTests=0;
+
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         String fileName = "src" + File.separator + "UrlsToVerify.txt";
 
@@ -303,7 +314,7 @@ public class UrlValidatorTest extends TestCase {
     {
        HelpFunctions h = new HelpFunctions();
         int failRate=0, passRate=0, maxTests=0;
-        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES );
 
         System.out.println("--------------------------- TESTING GOOD RANDOM URLS ------------------------------- ");
         //read in Valid urls
@@ -317,8 +328,76 @@ public class UrlValidatorTest extends TestCase {
 
     }
 
+    public void testKnownRandomValid_forQuery() {
+        HelpFunctions h = new HelpFunctions();
+        int failRate = 0, passRate = 0, maxTests = 0;
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+        System.out.println("--------------------------- TESTING GOOD RANDOM URLS FOR QUERY FUNCTION------------------------------- ");
+        //read in Valid urls
+        maxTests = 1000;    //change to urls.length for full testing
+        List<String> urls = makeValidURL(maxTests);
+
+        //pass the lines to isValid parts
+        //int fails = reporter(urls, passRate, failRate, maxTests );
+        for (String url : urls) {
+
+            //USE JAVAS OWN URL breakapart function
+            //To tell us which part is bad
+            URL jurl;
+            try {
+                jurl = new URL(url);
+
+                if (urlVal.isValidQuery(url)) {
+                    passRate++;
+                    System.out.println("Passed UrlValidator: " + url);
+                } else {
+                    failRate++;
+                    System.out.println("--Failed UrlValidator: " + url);
+                    System.out.print("--Java Says: ");
+                    if (urlVal.isValidQuery(jurl.getQuery())) {
+                        System.out.print("Query: OK, ");
+                    } else {
+                        System.out.print("Query: FAIL " + jurl.getQuery() + ", ");
+                    }
+
+                }
+            } catch (IOException e) {
+                System.out.println("FAILED the JAVA URL VALIDATION" + url);
+            }
 
 
+            assertEquals(0, failRate);  // Makes sure
+
+        }
+
+    }
+
+    public void testKnownRandomValid_forDomain() {
+        HelpFunctions h = new HelpFunctions();
+        int failRate = 0, passRate = 0, maxTests = 0;
+        //UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        DomainValidator domainValidator = DomainValidator.getInstance();
+
+        System.out.println("--------------------------- TESTING GOOD RANDOM URLS FOR DOMAIN/ TLD FUNCTION------------------------------- ");
+
+        //read in Valid TLDs
+
+        List<String> urls = h.makeValidDomainList();
+
+        for (String url : urls) {
+
+            if (domainValidator.isValidTld("." + url)) {
+                passRate++;
+                System.out.println("Passed UrlValidator: " + url);
+            } else {
+                failRate++;
+                System.out.println("--Failed UrlValidator: " + url);
+            }
+
+        }
+        assertEquals(0, failRate);  // Makes sure
+    }
 
     //Takes input from known good URLs, changes one part of the URL, and tests
     public void testKnownBadAuthority() {
@@ -326,7 +405,7 @@ public class UrlValidatorTest extends TestCase {
         HelpFunctions h = new HelpFunctions();
         int failRate = 0, passRate = 0, maxTests = 0;
         List<String> failedUrls = new ArrayList<String>();
-        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.ALLOW_LOCAL_URLS);
         String fileName = "src" + File.separator + "UrlsToVerify.txt";
 
         System.out.println("---------------------------TESTING BAD AUTHORITIES ------------------------------- ");
@@ -447,8 +526,27 @@ public class UrlValidatorTest extends TestCase {
 //        System.out.println(h.makeQuery(10));
         //System.out.println(makeValidURL(10));
 
-
-
+    }
+    
+    public void testManual() {
+    	HelpFunctions h = new HelpFunctions();
+    	int failRate=0, passRate=0, maxTests=0;
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    	List<String> goodUrls = Arrays.asList("http://www.google.com",
+    									  	  "ftp://143.243.34.342:80",
+    										  "http://www.microsoft.com/testing",
+    										  "http://www.amazon.com/s/ref=nb_sb_noss_2/177-1505020-6778424?url=search-alias%3Daps&field-keywords=books");
+    	List<String> badUrls = Arrays.asList("httx://www.google.com",
+    										 "ftp://www.testing.zxcv/",
+    										 "http://zxc.123/testing/stuff",
+    										 "ftp://345.23.45.234:abc");
+    	
+        System.out.println("---------------------------MANUAL TESTING OF GOOD URLS ------------------------------- ");
+    	int fails = reporter(goodUrls, passRate, failRate, goodUrls.size());
+    	
+        System.out.println("---------------------------MANUAL TESTING OF BAD URLS ------------------------------- ");
+    	fails = reporter(badUrls, passRate, failRate, badUrls.size());
 
     }
+    
 }

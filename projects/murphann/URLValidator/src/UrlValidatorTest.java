@@ -78,12 +78,30 @@ public class UrlValidatorTest extends TestCase {
 	   }
 	   System.out.println("---------------------");
    }
-   
+   public List<String> getStuff(String filename) throws IOException {
+	   List<String> scheme = new ArrayList<String>();
+	   BufferedReader br = null;
+	   String line = "";
+	   try {
+		   br = new BufferedReader(new FileReader(filename));
+		   while ((line = br.readLine()) != null){
+			   scheme.add(line);
+			   
+		   }
+	   } finally {
+		   if (br != null){
+				br.close();	
+		   }
+	   }
+	   return scheme;
+	   
+	   
+   }
    public void testManualTest() throws IOException
    {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   //System.out.println(urlVal.isValid("http://www.amazon.com"));
-
+        
         System.out.println("Beginning manual tests\n");
         List<ResultPair> urls = createResultPairs(System.getProperty("user.dir") + "/src/urls.csv");
         for(ResultPair url : urls){
@@ -161,6 +179,7 @@ public class UrlValidatorTest extends TestCase {
     private String partitionString(int scheme, int authority,
         int port, int path, int query)
     {
+    	//List<String> schemes = getStuff(System.getProperty("user.dir") + "/src/paths.csv");
         String[] schemes = {"http:/", "http://"};
         String[] authorities = {"", "www.google.com"};
         String[] ports = {":-1", ":65535"};
@@ -312,12 +331,46 @@ public class UrlValidatorTest extends TestCase {
     *
     * @param testObjects Used to create a url.
     */
+    
+    /* Test different permutations of valid URL components. */
+    public void permTest() {
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        System.out.println("Testing permutations:\n");
+
+        String url;
+        String[] schemes = {"http://", "h3t://", ""};
+        String[] authorities = {"google.com", "www.amazon.com", "255.255.255.255"};
+        String[] ports = {"", ":80", ":65636"};
+        String[] paths = {"", "/test1", "/test1/file"};
+        String[] queries = {"", "?action=view"};
+        
+        for (s = 0; s < schemes.length; s++) {
+            for (a = 0; a < authorities.length; a++) {
+                for (po = 0; po < ports.length; po++) {
+                    for (pa = 0; pa < paths.length; pa++) {
+                        for (q = 0; q < queries.length; q++) {
+                            url = schemes[s] + authorities[a] + ports[po] + paths[pa] + queries[q];
+                            if (urlVal.isValid(url)) {
+                                System.out.println("OK: " url + " passed.\n");
+                            }
+                            else {
+                                System.out.println("ERROR: " + url + " failed.\n");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 /* Some very basic unit tests to tease out the bugs from isValid() method */
     public void testIsValidScheme() {
         // Test a valid scheme
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        System.out.println("Testing schemes:\n");
+
         String validScheme = "http://";
-        if (!isValidScheme(validScheme)) {
+        if (!urlVal.isValidScheme(validScheme)) {
             System.out.println("ERROR: " + validScheme + " failed with valid scheme.\n");
         }
         else {
@@ -326,7 +379,7 @@ public class UrlValidatorTest extends TestCase {
         
         // Test an invalid scheme
         String invalidScheme = "3ht://";
-        if (isValidScheme(invalidScheme) {
+        if (urlVal.isValidScheme(invalidScheme) {
             System.out.println("ERROR: " + invalidScheme + " passed with invalid scheme.\n");
         }
         else {
@@ -335,9 +388,12 @@ public class UrlValidatorTest extends TestCase {
     }
 
     public void testIsValidAuthority() {
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        System.out.println("Testing authorities:\n");
+
         // Test a valid authority
         String validAuthority = "www.google.com:65535";
-        if (!isValidAuthority(validAuthority)) {
+        if (!urlVal.isValidAuthority(validAuthority)) {
             System.out.println("ERROR: " + validAuthority + " failed with valid authority.\n");
         }
         else {
@@ -346,7 +402,7 @@ public class UrlValidatorTest extends TestCase {
         
         // Test an invalid authority
         String invalidAuthority = "256.256.256.256";
-        if (isValidAuthority(invalidAuthority) {
+        if (urlVal.isValidAuthority(invalidAuthority) {
             System.out.println("ERROR: " + invalidAuthority + " passed with invalid authority.\n");
         }
         else {
@@ -355,9 +411,12 @@ public class UrlValidatorTest extends TestCase {
     }
 
     public void testIsValidPath() {
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        System.out.println("Testing paths:\n");
+
         // Test a valid path
         String validPath = "/test1";
-        if (!isValidPath(validPath)) {
+        if (!urlVal.isValidPath(validPath)) {
             System.out.println("ERROR: " + validPath + " failed with valid path.\n");
         }
         else {
@@ -366,7 +425,7 @@ public class UrlValidatorTest extends TestCase {
         
         // Test an invalid path
         String invalidPath = "/..//file";
-        if (isValidPath(invalidPath) {
+        if (urlVal.isValidPath(invalidPath) {
             System.out.println("ERROR: " + invalidPath + " passed with invalid path.\n");
         }
         else {
@@ -375,9 +434,12 @@ public class UrlValidatorTest extends TestCase {
     }
 
     public void testIsValidQuery() {
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        System.out.println("Testing queries:\n");
+
         // Test a valid query
         String validQuery = "?action=view";
-        if (!isValidQuery(validQuery)) {
+        if (!urlVal.isValidQuery(validQuery)) {
             System.out.println("ERROR: " + validQuery + " failed with valid query.\n");
         }
         else {
@@ -386,7 +448,7 @@ public class UrlValidatorTest extends TestCase {
         
         // Test an invalid query
         String invalidQuery = "action=view";
-        if (isValidQuery(invalidQuery) {
+        if (urlVal.isValidQuery(invalidQuery) {
             System.out.println("ERROR: " + invalidQuery + " passed with invalid query.\n");
         }
         else {

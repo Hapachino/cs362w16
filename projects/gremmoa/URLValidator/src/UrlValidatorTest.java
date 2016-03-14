@@ -29,14 +29,13 @@ import junit.framework.TestCase;
  */
 public class UrlValidatorTest extends TestCase {
 
+  private boolean printFlag = true;
   private boolean printStatus = false;
   private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
 
   public UrlValidatorTest(String testName) {
     super(testName);
   }
-
-
 
   public void testManualTest()
   {
@@ -189,8 +188,6 @@ public class UrlValidatorTest extends TestCase {
       new ResultPair(".111.111.111",false),
       new ResultPair("",false)};
 
-  ResultPair[] portParts = {new ResultPair(":80", true)};
-
   ResultPair[] pathParts = { new ResultPair("/",true),
       new ResultPair("/#",false),
       new ResultPair("/abcdefghijklmnopqrstuvwxyz",true),
@@ -220,10 +217,37 @@ public class UrlValidatorTest extends TestCase {
       new ResultPair("/path123//file456",true),
       new ResultPair("/../file",false),
       new ResultPair("/../path1/file",true)};
+   
+  ResultPair[] queryParts = {new ResultPair("",true),
+      new ResultPair("?",true),
+      new ResultPair("?\n", false),
+      new ResultPair("#",true),
+      new ResultPair("?#",true),
+      new ResultPair("?#",true),
+      new ResultPair("?abcdefghijklmnopqrstuvwxyz",true),
+      new ResultPair("?ABCDEFGHIJKLMNOPQRSTUVWXYZ",true),
+      new ResultPair("?0123456789",true),
+      new ResultPair("?-:@&=+,.!~*'%$_;()[]{}/|`~",true),
+      new ResultPair("?action=add", true),
+      new ResultPair("?test1=yes&test2=5&test3='string'",true)};
 
-  ResultPair[] queryParts = {new ResultPair("?test=true", true)};
-
-
+  ResultPair[] fragmentParts = {new ResultPair("",true),
+                  new ResultPair("#",true),
+                  new ResultPair("#\n",false),
+                  new ResultPair("##",true),
+                  new ResultPair("#abcdefghijklmnopqrstuvwxyz",true),
+                  new ResultPair("#ABCDEFGHIJKLMNOPQRSTUVWXYZ",true),
+                  new ResultPair("#0123456789",true),
+                  new ResultPair("#?-:@&=+,.!~*'%$_;()[]{}/|`~",true)};
+  
+  
+  ResultPair[] fragmentPartsNO = {new ResultPair("",true),
+                    new ResultPair("#",false),
+                    new ResultPair("##",false),
+                    new ResultPair("#abcdefghijklmnopqrstuvwxyz",false),
+                    new ResultPair("#ABCDEFGHIJKLMNOPQRSTUVWXYZ",false),
+                    new ResultPair("#0123456789",false),
+                    new ResultPair("#?-:@&=+,.!~*'%$_;()[]{}/|`~",false)};
 
   public void testYourFirstPartition()
   {
@@ -266,41 +290,156 @@ public class UrlValidatorTest extends TestCase {
   }
 
   public void testIsValidAuthority() {
+    boolean pass = true;
     //test without ALLOW_LOCAL_URLS option
     UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
     //iterates over each authority in authorityParts
     for(int i = 0; i < authorityParts.length; i++) {
-      assertEquals(authorityParts[i].valid, urlVal.isValidAuthority(authorityParts[i].item));
+      if(printFlag){
+        if(authorityParts[i].valid != urlVal.isValidAuthority(authorityParts[i].item)){
+          pass = false;
+          System.out.println("testIsValidAuthority(): " + authorityParts[i].item + " Failed");
+          System.out.println("expected: " + authorityParts[i].valid);
+        }
+      }
+      else{
+        assertEquals(authorityParts[i].valid, urlVal.isValidAuthority(authorityParts[i].item));
+      }
     }
     
     //test with ALLOW_LOCAL_URLS option
     UrlValidator urlValLocal = new UrlValidator(null, null, (UrlValidator.ALLOW_LOCAL_URLS + UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
     //iterates over each authority in authorityParts
     for(int i = 0; i < authorityPartsLocal.length; i++) {
-      assertEquals(authorityPartsLocal[i].valid, urlValLocal.isValidAuthority(authorityPartsLocal[i].item));
+      if(printFlag){
+        if(authorityPartsLocal[i].valid != urlValLocal.isValidAuthority(authorityPartsLocal[i].item)){
+          pass = false;
+          System.out.println("testIsValidAuthority() - ALLOW_LOCAL_URLS: " + authorityPartsLocal[i].item + " Failed");
+          System.out.println("expected: " + authorityPartsLocal[i].valid);
+        }
+      }
+      else{
+        assertEquals(authorityPartsLocal[i].valid, urlValLocal.isValidAuthority(authorityPartsLocal[i].item));
+      }
+    }
+    
+    if(printFlag && pass){
+      System.out.println("testIsValidAuthority(): All Tests Passed");
     }
   
   }
 
   public void testIsValidPath() {
     
+    boolean pass = true;
     //test without ALLOW_2_Slashes option
     UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
     //iterates over each path in pathParts
     for(int i = 0; i < pathParts.length; i++) {
-      assertEquals(pathParts[i].valid, urlVal.isValidPath(pathParts[i].item));
+      if(printFlag){
+        if(pathParts[i].valid != urlVal.isValidPath(pathParts[i].item)){
+          pass = false;
+          System.out.println("testIsValidPath(): " + pathParts[i].item + " Failed");
+          System.out.println("expected: " + pathParts[i].valid);
+        }
+      }
+      else{
+        assertEquals(pathParts[i].valid, urlVal.isValidPath(pathParts[i].item));
+      }
     }
     
     //test with ALLOW_2_Slashes option
     UrlValidator urlValSlashes = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
     //iterates over each path in pathPartsSlashes
     for(int i = 0; i < pathPartsSlashes.length; i++) {
-      assertEquals(pathPartsSlashes[i].valid, urlValSlashes.isValidPath(pathPartsSlashes[i].item));
+      if(printFlag){
+        if(pathPartsSlashes[i].valid != urlValSlashes.isValidPath(pathPartsSlashes[i].item)){
+          pass = false;
+          System.out.println("testIsValidPath() - ALLOW_2_SLASHES: " + pathPartsSlashes[i].item + " Failed");
+          System.out.println("expected: " + pathPartsSlashes[i].valid);
+
+        }
+      }
+      else{
+        assertEquals(pathPartsSlashes[i].valid, urlValSlashes.isValidPath(pathPartsSlashes[i].item));
+      }
+      
+    }
+    
+    if(printFlag && pass){
+      System.out.println("testIsValidPath(): All Tests Passed");
+    }
+  }
+
+  public void testIsValidQuery() {
+    
+    boolean pass = true;
+    
+    UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
+    //iterates over each path in queryParts
+    for(int i = 0; i < queryParts.length; i++) {
+      if(printFlag){
+        if(queryParts[i].valid != urlVal.isValidQuery(queryParts[i].item)){
+          pass = false;
+          System.out.println("testIsValidQuery(): " + queryParts[i].item + " Failed");
+          System.out.println("expected: " + queryParts[i].valid);
+        }
+      }
+      else{
+        assertEquals(queryParts[i].valid, urlVal.isValidQuery(queryParts[i].item));
+      }
+    }
+    
+    if(printFlag && pass){
+      System.out.println("testisValidQuery(): All Tests Passed");
+    }
+  }
+
+  public void testIsValidFragment() {
+    
+    boolean pass = true;
+    //test without NO_FRAGMENTS option
+    UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_ALL_SCHEMES));
+    //iterates over each path in fragmentParts
+    for(int i = 0; i < fragmentParts.length; i++) {
+      if(printFlag){
+        if(fragmentParts[i].valid != urlVal.isValidPath(fragmentParts[i].item)){
+          pass = false;
+          System.out.println("testIsValidFragment(): " + fragmentParts[i].item + " Failed");
+          System.out.println("expected: " + fragmentParts[i].valid);
+        }
+      }
+      else{
+        assertEquals(fragmentParts[i].valid, urlVal.isValidPath(fragmentParts[i].item));
+      }
+    }
+    
+    //test with NO_FRAGMAENTS option
+    UrlValidator urlValSlashes = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
+    //iterates over each path in fragmentPartsNO
+    for(int i = 0; i < fragmentPartsNO.length; i++) {
+      if(printFlag){
+        if(fragmentPartsNO[i].valid != urlValSlashes.isValidPath(fragmentPartsNO[i].item)){
+          pass = false;
+          System.out.println("testIsValidFragment() - NO_FRAGMENTS: " + fragmentPartsNO[i].item + " Failed");
+          System.out.println("expected: " + fragmentPartsNO[i].valid);
+        }
+      }
+      else{
+        assertEquals(fragmentPartsNO[i].valid, urlValSlashes.isValidPath(fragmentPartsNO[i].item));
+      }
+      
+    }
+    
+    if(printFlag && pass){
+      System.out.println("testIsValidFragment(): All Tests Passed");
     }
   }
 
   public void testAllPartsCombinations()
   {
+    boolean pass = true;
+
     for (int i = 0;i<schemeParts.length;i++)
     {
       for (int j = 0;j<authorityParts.length;j++)
@@ -328,11 +467,17 @@ public class UrlValidatorTest extends TestCase {
 
               System.out.println(testUrl);
 
-              if (result) {
-                //assertTrue();
-              } else {
-                //assertFalse();
-              }
+              
+              if(printFlag){
+                if(urlVal.isValidPath(testUrl) != result){
+                  pass = false;
+                  System.out.println("testIsValid: " + testUrl + " Failed");
+                  System.out.println("expected: " + result);
+                }
+                else{
+                  assertEquals(result, urlVal.isValidPath(testUrl));
+                }
+              } 
             }
           }
         }

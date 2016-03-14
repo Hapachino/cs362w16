@@ -156,6 +156,8 @@ public class UrlValidator implements Serializable {
     private static final Pattern ASCII_PATTERN = Pattern.compile(LEGAL_ASCII_REGEX);
 
     private static final String PORT_REGEX = "^:(\\d{1,3})$";
+/*make change here. Allow for 5 digit numbers instead of 3 digit numbers for the port value*/
+//    private static final String PORT_REGEX = "^:(\\d{1,5})$";
     private static final Pattern PORT_PATTERN = Pattern.compile(PORT_REGEX);
 
     /**
@@ -444,6 +446,8 @@ public class UrlValidator implements Serializable {
         }
         
         return !QUERY_PATTERN.matcher(query).matches();
+/*make change here. Remove NOT (!) from in front of return value*/
+//        return QUERY_PATTERN.matcher(query).matches();
     }
 
     /**

@@ -1,0 +1,6363 @@
+
+----------------- Testing Card: smithy ----------------
+handCount = 7, expected = 7
+deckCount = 2, expected = 2
+playedCardCount = 1, expected = 1
+playedCard = 13, expected = 13
+fullDeckCount(copper) = 6, expected = 6
+fullDeckCount(estate) = 3, expected = 3
+memcmp result = 0, expected = 0
+
+ >>>>> SUCCESS: Testing complete smithy <<<<<
+
+
+----------------- Testing Card: adventurer ----------------
+handCount = 7, expected = 6
+deckCount + discardCount = 3, expected = 3
+playedCardCount = 0, expected = 1
+playedCard = 1179403647, expected = 7
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+newTreasures in hand = 2, expected = 2
+memcmp result = 1, expected = 0
+
+ >>>>> SUCCESS: Testing complete adventurer <<<<<
+
+
+----------------- Testing Card: village ----------------
+handCount = 6, expected = 5
+deckCount = 4, expected = 4
+numActions = 3, expected = 3
+playedCardCount = 0, expected = 1
+playedCard = 4063235, expected = 14
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+ >>>>> SUCCESS: Testing complete village <<<<<
+
+
+----------------- Testing Card: embargo ----------------
+
+Test 1: pile #0 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 2: pile #1 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 3: pile #2 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 4: pile #3 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 5: pile #4 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 6: pile #5 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 7: pile #6 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 8: pile #7 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 9: pile #8 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 10: pile #9 --------------------------------
+handCount = 4, expected = 4
+deckCount = 5, expected = 5
+coins = 6, expected = 6
+playedCardCount = 0, expected = 0
+embargo tokens on k[i] = 1, expected = 1
+fullDeckCount(copper) = 7, expected = 7
+fullDeckCount(estate) = 2, expected = 2
+memcmp result = 0, expected = 0
+
+Test 11: invalid pile --------------------------------
+return value from cardEffect = -1, expected = -1
+memcmp result = 2, expected = 0
+
+
+ >>>>> SUCCESS: Testing complete embargo <<<<<
+
+
+----------------- Testing Function: discardCard ----------------
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 6, expected = 6
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 14, expected = 14
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 1, expected = 1
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 13, expected = 13
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 0, expected = 0
+playedCardCount = 1, expected = 1
+playedCard = 6, expected = 6
+memcmp result = 0, expected = 0
+handCount = 0, expected = 0
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 5, expected = 5
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 3, expected = 3
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 15, expected = 15
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 12, expected = 12
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 6, expected = 6
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 14, expected = 14
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 1, expected = 1
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 13, expected = 13
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 0, expected = 0
+playedCardCount = 1, expected = 1
+playedCard = 6, expected = 6
+memcmp result = 0, expected = 0
+handCount = 0, expected = 0
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 5, expected = 5
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 3, expected = 3
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 15, expected = 15
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 12, expected = 12
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 6, expected = 6
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 14, expected = 14
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 1, expected = 1
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 13, expected = 13
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 0, expected = 0
+playedCardCount = 1, expected = 1
+playedCard = 6, expected = 6
+memcmp result = 0, expected = 0
+handCount = 0, expected = 0
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 5, expected = 5
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 3, expected = 3
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 15, expected = 15
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 12, expected = 12
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 6, expected = 6
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 14, expected = 14
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 1, expected = 1
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 1, expected = 1
+playedCard = 13, expected = 13
+memcmp result = 0, expected = 0
+handCount = 4, expected = 4
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 0, expected = 0
+playedCardCount = 1, expected = 1
+playedCard = 6, expected = 6
+memcmp result = 0, expected = 0
+handCount = 0, expected = 0
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 5, expected = 5
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 3, expected = 3
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 15, expected = 15
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 12, expected = 12
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 1, expected = 1
+playedCard = 4, expected = 4
+memcmp result = 0, expected = 0
+handCount = 7, expected = 7
+playedCardCount = 0, expected = 0
+memcmp result = 0, expected = 0
+All tests passed!
+
+----------------- Testing Function: gainCard ----------------
+discardCount = 1, expected = 1
+last card of discard = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 6, expected = 6
+last card of deck = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 6, expected = 6
+last card of hand = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 0, expected = 0
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 1, expected = 1
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 2, expected = 2
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 3, expected = 3
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 4, expected = 4
+supplyCount = 31, expected = 31
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 5, expected = 5
+supplyCount = 39, expected = 39
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 6, expected = 6
+supplyCount = 29, expected = 29
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 7, expected = 7
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 8, expected = 8
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 9, expected = 9
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 10, expected = 10
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 11, expected = 11
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 12, expected = 12
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 13, expected = 13
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 14, expected = 14
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 15, expected = 15
+supplyCount = 9, expected = 9
+memcmp result = 0, expected = 0
+discardCount = 1, expected = 1
+last card of discard = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+deckCount = 11, expected = 11
+last card of deck = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+handCount = 1, expected = 1
+last card of hand = 16, expected = 16
+supplyCount = 11, expected = 11
+memcmp result = 0, expected = 0
+All tests passed!
+
+----------------- Testing Function: buyCard ----------------
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 8, expected = 8
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 0, expected = 0
+coins = 20, expected = 20
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 6, expected = 6
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 1, expected = 1
+coins = 18, expected = 18
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 2, expected = 2
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 3, expected = 3
+coins = 12, expected = 12
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 1, expected = 1
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 8, expected = 8
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 31, expected = 31
+discardCount = 1, expected = 1
+top of discard pile = 4, expected = 4
+coins = 20, expected = 20
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 39, expected = 39
+discardCount = 1, expected = 1
+top of discard pile = 5, expected = 5
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 2, expected = 2
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 29, expected = 29
+discardCount = 1, expected = 1
+top of discard pile = 6, expected = 6
+coins = 14, expected = 14
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 2, expected = 2
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 7, expected = 7
+coins = 14, expected = 14
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 8, expected = 8
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 9, expected = 9
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 10, expected = 10
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 3, expected = 3
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 11, expected = 11
+coins = 15, expected = 15
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 12, expected = 12
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 13, expected = 13
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 14, expected = 14
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 4, expected = 4
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 9, expected = 9
+discardCount = 1, expected = 1
+top of discard pile = 15, expected = 15
+coins = 16, expected = 16
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 0, expected = 0
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 1, expected = 1
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 2, expected = 2
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 0, expected = 0
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 5, expected = 5
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+supplyCount = 11, expected = 11
+discardCount = 1, expected = 1
+top of discard pile = 16, expected = 16
+coins = 17, expected = 17
+buys = 9, expected = 9
+phase = 1, expected = 1
+memcmp result = 0, expected = 0
+All tests passed!
+
+----------------- Testing Function: isGameOver ----------------
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+isGameOver = 0, expected = 0
+memcmp result = 0, expected = 0
+isGameOver = 1, expected = 1
+memcmp result = 0, expected = 0
+All tests passed!
+File 'dominion.c'
+Lines executed:49.61% of 649
+Branches executed:46.81% of 455
+Taken at least once:40.88% of 455
+Calls executed:44.44% of 135
+dominion.c:creating 'dominion.c.gcov'
+

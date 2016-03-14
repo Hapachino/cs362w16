@@ -654,7 +654,7 @@ int adventurer_func(struct gameState *state, int currentPlayer) {
     }
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-    if (cardDrawn == silver || cardDrawn == gold)
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
       drawntreasure++;
     else {
       temphand[z]=cardDrawn;
@@ -666,6 +666,7 @@ int adventurer_func(struct gameState *state, int currentPlayer) {
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
     z=z-1;
   }
+  discardCard(handPos, currentPlayer, state, 0);
   return 0;
 }
 
@@ -677,7 +678,7 @@ int smithy_func(struct gameState *state, int handPos, int currentPlayer) {
     drawCard(currentPlayer, state);
   }
   //discard card from hand
-  discardCard(handPos, currentPlayer, state, 1);
+  discardCard(handPos, currentPlayer, state, 0);
   return 0;
 }
 
@@ -694,7 +695,7 @@ int council_room_func(int currentPlayer, struct gameState *state, int handPos) {
   //Each other player draws a card
   for (i = 0; i < state->numPlayers; i++)
   {
-    if ( i == currentPlayer )
+    if ( i != currentPlayer )
       {
         drawCard(i, state);
       }
@@ -720,7 +721,7 @@ int remodel_func(int currentPlayer, int choice1, struct gameState *state, int ch
   int i;
   int j = state->hand[currentPlayer][choice1];  //store card we will trash
 
-  if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
+  if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
   {
     return -1;
   }

@@ -17,12 +17,15 @@
 //TODO make the system out put to a file for use, not just screen output
 
 import junit.framework.TestCase;
+
+import java.lang.reflect.Array;
 import java.net.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -361,4 +364,16 @@ public class UrlValidatorTest extends TestCase {
 
 
     }
+    
+    public void testManual() {
+    	HelpFunctions h = new HelpFunctions();
+    	int failRate=0, passRate=0, maxTests=0;
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+    	List<String> urls = Arrays.asList("http://www.google.com","ftp://143.243.34.342");
+    	
+        System.out.println("---------------------------MANUAL TESTING OF GOOD/BAD URLS ------------------------------- ");
+    	int fails = reporter(urls, passRate, failRate, urls.size());
+    	//System.out.println(urls.get(1));
+    }
+    
 }

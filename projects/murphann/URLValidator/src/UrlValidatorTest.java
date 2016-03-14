@@ -297,7 +297,7 @@ public class UrlValidatorTest extends TestCase {
     public void testYourSixthPartition()
     {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-        System.out.println("Testing fifth partition:\n");
+        System.out.println("Testing sixth partition:\n");
 
         String url = partitionString(1, 1, 1, 1, 0);
         boolean valid = urlVal.isValid(url);
@@ -343,7 +343,7 @@ public class UrlValidatorTest extends TestCase {
         String[] ports = {"", ":80", ":65636"};
         String[] paths = {"", "/test1", "/test1/file"};
         String[] queries = {"", "?action=view"};
-        
+        int s, a, po, pa, q;
         for (s = 0; s < schemes.length; s++) {
             for (a = 0; a < authorities.length; a++) {
                 for (po = 0; po < ports.length; po++) {
@@ -351,7 +351,7 @@ public class UrlValidatorTest extends TestCase {
                         for (q = 0; q < queries.length; q++) {
                             url = schemes[s] + authorities[a] + ports[po] + paths[pa] + queries[q];
                             if (urlVal.isValid(url)) {
-                                System.out.println("OK: " url + " passed.\n");
+                                System.out.println("OK: " + url + " passed.\n");
                             }
                             else {
                                 System.out.println("ERROR: " + url + " failed.\n");
@@ -379,7 +379,7 @@ public class UrlValidatorTest extends TestCase {
         
         // Test an invalid scheme
         String invalidScheme = "3ht://";
-        if (urlVal.isValidScheme(invalidScheme) {
+        if (urlVal.isValidScheme(invalidScheme)) {
             System.out.println("ERROR: " + invalidScheme + " passed with invalid scheme.\n");
         }
         else {
@@ -402,11 +402,11 @@ public class UrlValidatorTest extends TestCase {
         
         // Test an invalid authority
         String invalidAuthority = "256.256.256.256";
-        if (urlVal.isValidAuthority(invalidAuthority) {
+        if (urlVal.isValidAuthority(invalidAuthority)) {
             System.out.println("ERROR: " + invalidAuthority + " passed with invalid authority.\n");
         }
         else {
-            System.out.println(invalidScheme + " failed with invalid authority.\n");
+            System.out.println(invalidAuthority + " failed with invalid authority.\n");
         }
     }
 
@@ -425,7 +425,7 @@ public class UrlValidatorTest extends TestCase {
         
         // Test an invalid path
         String invalidPath = "/..//file";
-        if (urlVal.isValidPath(invalidPath) {
+        if (urlVal.isValidPath(invalidPath)) {
             System.out.println("ERROR: " + invalidPath + " passed with invalid path.\n");
         }
         else {
@@ -448,7 +448,7 @@ public class UrlValidatorTest extends TestCase {
         
         // Test an invalid query
         String invalidQuery = "action=view";
-        if (urlVal.isValidQuery(invalidQuery) {
+        if (urlVal.isValidQuery(invalidQuery)) {
             System.out.println("ERROR: " + invalidQuery + " passed with invalid query.\n");
         }
         else {

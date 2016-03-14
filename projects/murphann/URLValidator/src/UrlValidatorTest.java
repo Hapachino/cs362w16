@@ -299,7 +299,7 @@ public class UrlValidatorTest extends TestCase {
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         System.out.println("Testing sixth partition:\n");
 
-        String url = partitionString(1, 1, 1, 1, 0);
+        String url = "www.google.com";
         boolean valid = urlVal.isValid(url);
         if (valid)
         {

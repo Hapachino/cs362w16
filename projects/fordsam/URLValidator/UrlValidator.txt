@@ -1,0 +1,350 @@
+Joshua Curtis
+Samuel Ford
+Joseph Vidal
+CS 362-400, Winter 2016
+
+Final Project: Part B
+
+Testing
+=======
+
+Manual Testing
+--------------
+We did preliminary testing of the UrlValidator.isValid() function by executing it with some valid and invalid URLs.  Following the provided example, our testManualTest() function executes UrlValidator.isValid() on a given URL and prints out the result.  To make this more useful, our version prints out true or false based on whether the result from the UrlValidator.isValid() execution matches the expected result.
+
+The URLs we tested varied in terms of the scheme, authority, path, query, and fragment used.  Some examples of the URLs that were tested are below:
+
+* http://www.domain.com
+* http://www.domain.com:80
+* http://127.0.0.1
+* http://www.domain.com/testpath
+* http://www.domain.com/?key=value
+* http://www.domain.com/#fragment
+
+The following tests resulted in failures:
+
+* http://www.domain.com:30000
+* http://www.domain.us
+* http://www.domain.com/?key=value
+* http://www.domain.com/?key=value&key2=value2
+* http://192.168.1.300
+
+These ended up being four discrete issues and provided some early guidance as to what kind of bugs might exist in UrlValidator.isValid().  We followed up on these initial findings in the partition tests.
+
+
+Partition Testing
+-----------------
+To decide on the partitions for testing URLs, we referred to the "Syntax" section of the Uniform Resource Locator Wikipedia entry (https://en.wikipedia.org/wiki/Uniform_Resource_Locator#Syntax).  It was clear from the provided information that URLs can be divided up relatively easily, so we decided to use the following URL parts as our partitions:
+
+* Scheme (testSchemePartition())
+* Authority (testAuthorityPartition())
+* Port (testPortPartition())
+* Path (testPathPartition())
+* Query (testQueryPartition())
+* Fragment (testFragmentPartition())
+
+On a basic level, the scheme is required but the port, query, and fragment are optional.  The authority and path fall somewhere in between since they can be required or optional depending on the circumstances.
+
+We used the descriptions of these URL parts to guide how we tested each of these partitions.  For example, schemes must start with a letter and can be followed by letters, numbers, plus (+), period (.), or hyphen (-).  In general, we started with an otherwise valid URL and introduced modifications to a given part to see what happened under the following conditions:
+
+1. The URL part is missing.
+2. The URL part is provided and valid.
+3. The URL part is provided and invalid.
+
+Of course, the latter two conditions made up the vast majority of the testing.  As with the manual tests, we executed UrlValidator.isValid() on valid and invalid URLs and compared the observed result to the expected result.  To accomplish this comparison, we used JUnit's assertTrue() and assertFalse() methods (rather than printing the result of a comparison).
+
+From the partition tests, we were able to refine the four potential bugs that we found in manual testing into the following areas to investigate:
+
+1. isValid() returns an unexpected result for URLs that include a port number greater than three digits in length.
+
+2. isValid() returns an unexpected result for URLs that include country code TLDs beyond a certain point (alphabetically).
+
+3. isValid() returns an unexpected result for URLs that include a query string.
+
+4. isValid() returns an unexpected result for URLs that include an IP address containing one or more invalid number (i.e. greater than 255).
+
+We used these findings to guide our debugging and you'll find the results of our efforts in the Bug Reports section.
+
+
+Programming-Based Testing
+-------------------------
+The programming-based test, testIsValid(), programmatically creates and tests URLs based on established creation rules for each URL part (e.g. scheme, authority, port, etc.).  The makeURL() method is responsible for creating URLs and it has a roughly 50% chance of creating a valid or invalid URL.  The methods that makeUrl() uses to create the various URL parts (e.g. makeScheme(), makeAuthority(), etc.) take a boolean which tells the method to generate a valid or invalid part.
+
+When makeUrl() is going to make a valid URL, it passes true to all the part creation methods (so the entire URL is valid).  However, when makeURL() is set to make an invalid URL, there's a roughly 66% chance that each created URL part will be invalid.  Rather than making all the URL parts invalid, we instead get a mix of valid and invalid parts.  There's a chance that the URL that's intended to be invalid can end up valid but this is relatively insignificant (considering the number of URL parts involved).
+
+Each of the methods that create a given URL part contain sets of rules for creating a valid or invalid part.  Which rule gets used is determined by whether the provided "valid" argument is true or false.  Based on the "valid" argument, the method randomly chooses from the available rules that result in the desired validity.
+
+The testIsValid() method is currently set to go through 10,000 iterations, creating and testing URLs on each loop.  The programming-based tester uncovered the same bugs as the previous tests, with the addition of another.  Namely, the provided copy of UrlValidator doesn't handle authentication credentials in the URL (i.e. http://username:password@domain.com).
+
+
+
+Debugging
+=========
+
+In general, when we found failures (and narrowed down their scope by carefully crafting our tests), we used the Eclipse debugger to identify the source of the bug.  While debugging the aforementioned issues, we used a number of Agans's nine debugging rules.  Specifically:
+
+1. "Understand the system" -- We familiarized ourselves with the UrlValidator.isValid() method, how it utilizes other parts of the codebase (DomainValidator, InetAddressValidator, etc.), and how those dependencies operate.
+
+2. "Make it fail" -- Our initial tests made the isValid() function fail but we then went on to refine our tests to help isolate what particular input elicited failures (e.g. "The function fails with this URL but does it also fail with this slightly different URL?").
+
+4. "Divide and conquer" -- Besides carefully catering our input URLs to explore the behavior of isValid() failures, we used the Eclipse debugger to add breakpoints on failing tests and step into the execution.  We did this in an iterative fashion where our scope started out broad (watching the flow of the function's entire execution) and eventually narrowed down to the source of the bug.
+
+5. "Change one thing at a time" -- As mentioned in the "Make it fail" rule, we created our tests such that there were generally small modifications between each one.  This level of granularity allowed us to better understand if a bug affected an entire group (e.g. "URLs containing any type of query string") or only a specific subset (e.g. "URLs containing a port longer than three digits").
+
+6. "Keep an audit trail" -- We didn't keep a shared log but we did take notes while debugging so that we didn't have to keep everything in our head.  The notes helped to narrow the focus of our debugging efforts until we found the source of the bugs.
+
+9. "If you didn't fix it, it ain't fixed" -- Once the likely source of a bug was identified, we temporarily modified the code to determine whether a potential fix would actually resolve the issue.  We weren't tasked with fixing the bugs in this assignment but this allowed us to confirm whether we found the source of the problem or just a symptom.
+
+
+
+Working in a Team
+=================
+
+For part B of the final project, we continued with our existing methods of collaboration and made modifications as necessary.  For part A, we worked on documents in Google Docs and communicated over email (or Google Docs chat, as necessary) and that remained the same.  Part B involved writing some code, so we also established a Git repository on GitHub to work in (up until the final version is pushed to the class repository).
+
+The workload was largely divided on a first-come, first-served basis, while making sure that everyone was able to contribute.  As we progressed, we communicated over email and pushed changes to our Git repository so that the team could review changes as they occurred.
+
+
+
+Bug Reports
+===========
+
+Bug Report #1:
+
+Details
+=======
+
+Title: UrlValidator considers URLs with a query string to be invalid
+
+Type: Bug
+
+Priority: Major
+
+Date: 3 March 2016
+Reported By: Sam Ford
+Email: fordsam@oregonstate.edu
+
+Is it reproducible?: Yes
+
+Description
+===========
+While testing URLs with query strings, I found that UrlValidator seems to consider any URL with a query string to be invalid.  That is, valid URLs like the following are considered invalid:
+
+* "http://www.domain.com/?"
+* "http://www.domain.com/?key"
+* "http://www.domain.com/?key=value"
+* "http://www.domain.com/?key=value&key2=value2"
+
+UrlValidator uses the isValidQuery() method in its isValid() method to determine whether a provided query string is valid.  The description of the isValidQuery() method is: "Returns true if the query is null or it's a properly formatted query string."  The first part of this is correct (returns true if the query is null) but the second part seemed to be incorrect when I was debugging.
+
+Specifically, isValidQuery() returns the negation of the following check on line 446 of UrlValidator.java (if the query string isn't null):
+
+    return !QUERY_PATTERN.matcher(query).matches();
+
+Similar statements occur in other isValid______() functions but they're used as a condition where you would return false.  For example, isValidScheme() contains the following (lines 340-342):
+
+    if (!SCHEME_PATTERN.matcher(scheme).matches()) {
+        return false;
+    }
+
+You could modify isValidQuery() to do something similar but then you might not return a boolean in some cases.  The most simple solution is to remove the negation operator, so that line 446 of UrlValidator.java reads:
+
+    return QUERY_PATTERN.matcher(query).matches();
+
+With this modification, isValidQuery() would return true if the query is valid (or false if the query is invalid) and thusly exhibit the intended behavior.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Execute UrlValidator.isValid(), providing it with an otherwise valid URL that has a query string.  Ex. "http://www.domain.com/?key=value".
+
+
+Expected Results
+----------------
+UrlValidator.isValid() should return true.
+
+
+Actual Results
+--------------
+UrlValidator.isValid() returns false.
+
+
+Attachments
+-----------
+You can find a patch for the bug below:
+
+--- UrlValidator.java	2016-03-03 13:57:06.000000000 -0500
++++ UrlValidator.java	2016-03-03 13:57:18.000000000 -0500
+@@ -443,7 +443,7 @@
+             return true;
+         }
+
+-        return !QUERY_PATTERN.matcher(query).matches();
++        return QUERY_PATTERN.matcher(query).matches();
+     }
+
+     /**
+
+
+
+-------------------------------------------------------------------------------
+
+Bug Report #2:
+
+Details
+=======
+
+Title: UrlValidator considers some country code TLDs to be invalid
+
+Type: Bug
+
+Priority: Major
+
+Date: 3 March 2016
+Reported By: Sam Ford
+Email: fordsam@oregonstate.edu
+
+Is it reproducible?: Yes
+
+Description
+===========
+While testing an assortment of TLDs, I found that some valid country code TLDs were being reported as invalid.  I investigated this a little further and it seemed like country code TLDs beyond a certain point in the alphabet weren't being properly validated.
+
+When I debugged this, I found that DomainValidator's isValidTld() function was returning false when it should return true.  The return statement for this function is as follows (lines 157-159 of DomainValidator.java):
+
+    return isValidInfrastructureTld(tld)
+            || isValidGenericTld(tld)
+            || isValidCountryCodeTld(tld);
+
+isValidInfrastructureTld(), isValidGenericTld(), and isValidCountryCodeTld() all returned false for the "ke" TLD, for example.  However, isValidCountryCodeTld() should be returning true for the "ke" TLD, since it's a valid country code TLD (Kenya).
+
+isValidCountryCodeTld() only contains one statement (line 192 of DomainValidator.java):
+
+    return COUNTRY_CODE_TLD_LIST.contains(chompLeadingDot(ccTld.toLowerCase()));
+
+The source of this issue is that the COUNTRY_CODE_TLD_LIST only contains country code TLDs up to and including "it" (Italy).  All of the country code TLDs that should exist after "it" aren't included, so they end up being considered invalid.
+
+To fix this bug, you would need to include the missing country code TLDs after "it" in DomainValidator.java's COUNTRY_CODE_TLDS string array.  You can find a list of country code TLDs here: https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains#Country_code_top-level_domains
+
+
+Steps to Produce/Reproduce
+--------------------------
+Execute UrlValidator.isValid() with a domain name that uses a country code TLD past "it" (i.e. "je" (Jersey) to "zw" (Zimbabwe)).  Ex. "http://www.domain.om"
+
+
+Expected Results
+----------------
+UrlValidator.isValid() should return true.
+
+
+Actual Results
+--------------
+UrlValidator.isValid() returns false.
+
+
+
+-------------------------------------------------------------------------------
+
+Bug Report #3:
+
+Details
+=======
+
+Title: URLs containing IP address with number(s) above 255 are considered valid
+
+Type: Bug
+
+Priority: Major
+
+Date: 3/6/2016
+Reported By: Joshua Curtis
+Email: curtisjo@oregonstate.edu
+
+Is it reproducible?: Yes
+
+Description
+===========
+UrlValidator will consider invalid URLs containing an IP address with number(s) above 255 to be valid.  This was originally found using manual testing to debug UrlValidator.java.  The source of the bug was found using the Eclipse debugger to step through UrlValidator.java and InetAddressValidator.java, where the bug was found.
+
+The error appears in InetAddressValidator.java on lines 94-98 which are
+     if (iIpSegment > 255) {
+
+            	return true;
+
+            }
+
+The condition should return false if iIpSegment > 255.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Execute UrlValidator.isValid() with a URL containing an IP address where one or more of the byte segments is greater than 255 (e.g. http://299.0.115.23).
+
+
+Expected Results
+----------------
+UrlValidator.isValid() should return false.
+
+
+Actual Results
+--------------
+UrlValidator.isValid() returns true.
+
+
+Attachments
+-----------
+Wikipedia page on IP version 4: https://en.wikipedia.org/wiki/IPv4#Addressing
+
+
+
+-------------------------------------------------------------------------------
+
+Bug Report #4:
+
+Details
+=======
+
+Title: URLs containing a port number longer than 3 digits are considered invalid
+
+Type: Bug
+
+Priority: Major
+
+Date: March 10, 2016
+Reported By: Joseph Vidal
+Email: vidalj@oregonstate.edu
+
+Is it reproducible?: Yes
+
+Description
+===========
+When a selection of URLs and port number combinations were run in testing, otherwise valid URLs that contained a port number longer than 3 digits were found to be invalid.  This was first discovered through a series of manual tests, where the following URL failed: "http://www.domain.com:1234"
+
+After seeing this I set a breakpoint right before the failed test and stepped through the program using the Eclipse debugger.  I noticed the failure occurred at a condition on line 393 of UrlValidator.java:
+
+    if (!PORT_PATTERN.matcher(port).matches()) {
+        return false;
+    }
+
+I traced back PORT_PATTERN and found that PORT_REGEX was responsible for determining what values are allowed.
+
+I believe the cause of the failure is in the formatting of PORT_REGEX on line 158 of UrlValidator.java:
+
+    private static final String PORT_REGEX = "^:(\\d{1,3})$";
+
+This regex currently only allows for port numbers that are 1 to 3 digits in length (0-999).  Modifying the regex to have an upper bound of 5 ("^:(\\d{1,5})$") resolved the bug when the tests were re-run.  This, in conjunction with proper boundaries for maximum port value, should resolve the problem completely.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Call UrlValidator.isValid() with a URL containing a port number that's 4 digits or longer.
+
+
+Expected Results
+----------------
+Any valid numerical port value between 0 and 65535 inclusive should be considered valid.
+
+
+Actual Results
+--------------
+Any numerical port value longer than 3 digits returns false (not valid).

@@ -19,11 +19,8 @@
 import junit.framework.TestCase;
 
 import java.lang.reflect.Array;
+import java.io.*;
 import java.net.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -61,6 +58,9 @@ public class UrlValidatorTest extends TestCase {
     //Made these Global to the class so that the reporter function works, and enum too
     UrlPart partName;
     UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+
+
 
 
     //Makes part of the URL invalid
@@ -169,6 +169,7 @@ public class UrlValidatorTest extends TestCase {
         } catch (IOException ex) {
             System.out.println(ex.toString());
             System.out.println("Could not find file ");
+
         }
 
         return badUrls;
@@ -189,8 +190,15 @@ public class UrlValidatorTest extends TestCase {
 
             builtURL = h.getRandomProtocol()+"://";
 
+            //half the time make it an ip address or for some a localhost
             if(i%2 == 0) {
-                builtURL += h.makeIP();
+
+                if(i < .75*n) {
+                    builtURL += h.makeIP();
+                }else{
+                    builtURL += "localhost";
+                }
+
             }else{
 
                 //make a random string for the domain name
@@ -234,27 +242,27 @@ public class UrlValidatorTest extends TestCase {
                     if (urlVal.isValidScheme(jurl.getProtocol())) {
                         System.out.print("Protocol: OK, ");
                     } else {
-                        System.out.print("Protocol: FAIL, ");
+                        System.out.print("Protocol: FAIL, " + jurl.getProtocol() + ", ");
                     }
                     if (urlVal.isValidAuthority(jurl.getHost())) {
                         System.out.print("Host: OK, ");
                     } else {
-                        System.out.print("Host: FAIL, ");
+                        System.out.print("Host: FAIL " + jurl.getHost() + ", ");
                     }
                     if (urlVal.isValidAuthority(jurl.getAuthority())) {
                         System.out.print("Authority: OK, ");
                     } else {
-                        System.out.print("Authority: FAIL, ");
+                        System.out.print("Authority: FAIL " + jurl.getAuthority() + ", ");
                     }
                     if (urlVal.isValidQuery(jurl.getQuery())) {
                         System.out.print("Query: OK, ");
                     } else {
-                        System.out.print("Query: FAIL, "+ jurl.getQuery());
+                        System.out.print("Query: FAIL "+ jurl.getQuery() + ", ");
                     }
                     if (urlVal.isValidPath(jurl.getPath())) {
                         System.out.print("Path: OK\n");
                     } else {
-                        System.out.print("Path: FAIL\n");
+                        System.out.printf(" Path: FAIL %s \n",  jurl.getPath());
                     }
                 }
             }catch (IOException e) {
@@ -269,6 +277,7 @@ public class UrlValidatorTest extends TestCase {
         return failRate;
     }
 
+
     public UrlValidatorTest(String testName) {
         super(testName);
     }
@@ -278,6 +287,7 @@ public class UrlValidatorTest extends TestCase {
     {
        HelpFunctions h = new HelpFunctions();
         int failRate=0, passRate=0, maxTests=0;
+
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
         String fileName = "src" + File.separator + "UrlsToVerify.txt";
 
@@ -303,12 +313,10 @@ public class UrlValidatorTest extends TestCase {
     {
        HelpFunctions h = new HelpFunctions();
         int failRate=0, passRate=0, maxTests=0;
-        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES );
 
         System.out.println("--------------------------- TESTING GOOD RANDOM URLS ------------------------------- ");
         //read in Valid urls
-
         maxTests = 1000;	//change to urls.length for full testing
         List<String> urls = makeValidURL(maxTests);
 
@@ -319,18 +327,87 @@ public class UrlValidatorTest extends TestCase {
 
     }
 
+    public void testKnownRandomValid_forQuery() {
+        HelpFunctions h = new HelpFunctions();
+        int failRate = 0, passRate = 0, maxTests = 0;
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+
+        System.out.println("--------------------------- TESTING GOOD RANDOM URLS FOR QUERY FUNCTION------------------------------- ");
+        //read in Valid urls
+        maxTests = 1000;    //change to urls.length for full testing
+        List<String> urls = makeValidURL(maxTests);
+
+        //pass the lines to isValid parts
+        //int fails = reporter(urls, passRate, failRate, maxTests );
+        for (String url : urls) {
+
+            //USE JAVAS OWN URL breakapart function
+            //To tell us which part is bad
+            URL jurl;
+            try {
+                jurl = new URL(url);
+
+                if (urlVal.isValidQuery(url)) {
+                    passRate++;
+                    System.out.println("Passed UrlValidator: " + url);
+                } else {
+                    failRate++;
+                    System.out.println("--Failed UrlValidator: " + url);
+                    System.out.print("--Java Says: ");
+                    if (urlVal.isValidQuery(jurl.getQuery())) {
+                        System.out.print("Query: OK, ");
+                    } else {
+                        System.out.print("Query: FAIL " + jurl.getQuery() + ", ");
+                    }
+
+                }
+            } catch (IOException e) {
+                System.out.println("FAILED the JAVA URL VALIDATION" + url);
+            }
 
 
+            assertEquals(0, failRate);  // Makes sure
+
+        }
+
+    }
+
+    public void testKnownRandomValid_forDomain() {
+        HelpFunctions h = new HelpFunctions();
+        int failRate = 0, passRate = 0, maxTests = 0;
+        //UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        DomainValidator domainValidator = DomainValidator.getInstance();
+
+        System.out.println("--------------------------- TESTING GOOD RANDOM URLS FOR DOMAIN/ TLD FUNCTION------------------------------- ");
+
+        //read in Valid TLDs
+
+        List<String> urls = h.makeValidDomainList();
+
+        for (String url : urls) {
+
+            if (domainValidator.isValidTld("." + url)) {
+                passRate++;
+                System.out.println("Passed UrlValidator: " + url);
+            } else {
+                failRate++;
+                System.out.println("--Failed UrlValidator: " + url);
+            }
+
+        }
+        assertEquals(0, failRate);  // Makes sure
+    }
 
     //Takes input from known good URLs, changes one part of the URL, and tests
     public void testKnownBadAuthority() {
-       HelpFunctions h = new HelpFunctions();
+
+        HelpFunctions h = new HelpFunctions();
         int failRate = 0, passRate = 0, maxTests = 0;
         List<String> failedUrls = new ArrayList<String>();
-        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.ALLOW_LOCAL_URLS);
         String fileName = "src" + File.separator + "UrlsToVerify.txt";
 
-        System.out.println("---------------------------TESTING LIKELY BAD URLS ------------------------------- ");
+        System.out.println("---------------------------TESTING BAD AUTHORITIES ------------------------------- ");
         //read in Valid urls
         try {
             List<String> urls = h.readLines(fileName);
@@ -341,14 +418,102 @@ public class UrlValidatorTest extends TestCase {
             //pass altered (bad) urls to isValid for testing
             //pass the lines to isValid parts
             //TODO add section here
-            System.out.println("Section we are testing..." + " -------------------------------");
-            reporter(failedUrls, passRate, failRate, maxTests);
+            int fails = reporter(failedUrls, passRate, failRate, maxTests);
 
-            assertEquals(maxTests, failRate);  // Makes sure
+            assertEquals(maxTests, fails);  // Makes sure
 
         } catch (IOException ex) {
             System.out.println(ex.toString());
             System.out.println("Could not find file " + fileName);
+            failRate ++;
+        }
+
+    }
+    public void testKnownBadHosts() {
+        HelpFunctions h = new HelpFunctions();
+        int failRate = 0, passRate = 0, maxTests = 0;
+        List<String> failedUrls = new ArrayList<String>();
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        String fileName = "src" + File.separator + "UrlsToVerify.txt";
+
+        System.out.println("---------------------------TESTING BAD HOSTS ------------------------------- ");
+        //read in Valid urls
+        try {
+            List<String> urls = h.readLines(fileName);
+            maxTests = 1000;    //change to urls.length for full testing
+            //change urlPart to either - protocol/host/port/path/query urlPart.protocol.get()
+            failedUrls = makeInvalidPart(urls, partName.host);
+
+            //pass altered (bad) urls to isValid for testing
+            //pass the lines to isValid parts
+            //TODO add section here
+            int fails = reporter(failedUrls, passRate, failRate, maxTests);
+
+            assertEquals(maxTests, fails);  // Makes sure
+
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Could not find file " + fileName);
+            failRate ++;
+        }
+
+    }
+    public void testKnownBadQuery() {
+        HelpFunctions h = new HelpFunctions();
+        int failRate = 0, passRate = 0, maxTests = 0;
+        List<String> failedUrls = new ArrayList<String>();
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        String fileName = "src" + File.separator + "UrlsToVerify.txt";
+
+        System.out.println("---------------------------TESTING BAD Queries ------------------------------- ");
+        //read in Valid urls
+        try {
+            List<String> urls = h.readLines(fileName);
+            maxTests = 1000;    //change to urls.length for full testing
+            //change urlPart to either - protocol/host/port/path/query urlPart.protocol.get()
+            failedUrls = makeInvalidPart(urls, partName.query);
+
+            //pass altered (bad) urls to isValid for testing
+            //pass the lines to isValid parts
+            //TODO add section here
+            int fails = reporter(failedUrls, passRate, failRate, maxTests);
+
+            assertEquals(maxTests, fails);  // Makes sure
+
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Could not find file " + fileName);
+            failRate ++;
+        }
+
+    }
+    public void testKnownBadPaths() {
+        HelpFunctions h = new HelpFunctions();
+        int failRate = 0, passRate = 0, maxTests = 0;
+        List<String> failedUrls = new ArrayList<String>();
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        String fileName = "src" + File.separator + "UrlsToVerify.txt";
+
+        System.out.println("---------------------------TESTING BAD paths ------------------------------- ");
+        //read in Valid urls
+        try {
+            List<String> urls = h.readLines(fileName);
+            maxTests = 1000;    //change to urls.length for full testing
+            //change urlPart to either - protocol/host/port/path/query urlPart.protocol.get()
+            failedUrls = makeInvalidPart(urls, partName.path);
+
+            //pass altered (bad) urls to isValid for testing
+            //pass the lines to isValid parts
+            //TODO add section here
+            int fails = reporter(failedUrls, passRate, failRate, maxTests);
+
+            assertEquals(maxTests, fails);  // Makes sure
+
+        } catch (IOException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Could not find file " + fileName);
+            failRate ++;
+
         }
 
     }
@@ -359,9 +524,6 @@ public class UrlValidatorTest extends TestCase {
 //        System.out.println(h.makePath(10));
 //        System.out.println(h.makeQuery(10));
         //System.out.println(makeValidURL(10));
-
-
-
 
     }
     

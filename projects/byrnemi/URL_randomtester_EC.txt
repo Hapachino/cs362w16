@@ -1,0 +1,7 @@
+Author: Michael Byrne
+CS 362 Final Project Extra Credit
+
+
+Abstract: The randomized class takes 800 random URLs harvested from randomwebsite.com via the included Python script (source noted). The resulting file is then fed to the class, which applies three series of 20 random mutations: the addition of an invalid char, the addition of double slashes, and finally the removal of the (major, if present) top-level domain.
+
+It then outputs the invalid URLs caught by isValid() along with counts of valid and invalid URLs. Further analysis is done via inspection of the output, but the general algorithm could be easily expanded to automatically identify and isolate erroneous results.  

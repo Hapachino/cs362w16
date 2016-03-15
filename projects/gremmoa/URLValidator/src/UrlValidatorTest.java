@@ -256,6 +256,8 @@ public class UrlValidatorTest extends TestCase {
     System.out.println(urlVal.isValid("http://www.amazon.na"));
     System.out.println(urlVal.isValid("http://www.amazon.za"));
     System.out.println(urlVal.isValid("http://256.256.256.256"));
+    System.out.println(urlVal.isValid("http://www.google.com:124"));
+    System.out.println(urlVal.isValid("http://www.google.com:25565"));
     System.out.println(urlVal.isValid("http://localhost/"));
     System.out.println(urlVal.isValid("ftp://localdomain/"));
     System.out.println(urlVal.isValid("http://www.amazon¢.com"));

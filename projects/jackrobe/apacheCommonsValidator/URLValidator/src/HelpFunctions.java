@@ -268,7 +268,7 @@ public class HelpFunctions {
 
 
         //loads a list of valid Authorities from RFC http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml
-        String domainFile = "src" + File.separator + "validDomains.txt";
+        String domainFile = "src" + File.separator + "validTLDs.txt";
 
         try {
 
@@ -293,7 +293,7 @@ public class HelpFunctions {
 
     }
     //SAME as above only returns a list
-    public List<String> makeValidDomainList(){
+    public List<String> makeValidTLDList(){
         List<String>  domainList =  new ArrayList<String>();
 
         String tld = null;
@@ -301,7 +301,7 @@ public class HelpFunctions {
 
 
         //loads a list of valid Authorities from RFC http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml
-        String domainFile = "src" + File.separator + "validDomains.txt";
+        String domainFile = "src" + File.separator + "validTLDs.txt";
 
         try {
 

@@ -58,10 +58,10 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    86.1%
+    91.7%
   </span>
   <span class="absValue">
-    (31/ 36)
+    (33/ 36)
   </span>
 </td>
 </tr>
@@ -177,7 +177,7 @@
 <i>103</i>&nbsp;     * @return the singleton instance of this validator
 <i>104</i>&nbsp;     */
 <i>105</i>&nbsp;    public static DomainValidator getInstance() {
-<b class="fc"><i>106</i>&nbsp;        return DOMAIN_VALIDATOR;</b>
+<b class="nc"><i>106</i>&nbsp;        return DOMAIN_VALIDATOR;</b>
 <i>107</i>&nbsp;    }
 <i>108</i>&nbsp;
 <i>109</i>&nbsp;    /**
@@ -188,7 +188,7 @@
 <i>114</i>&nbsp;     */
 <i>115</i>&nbsp;    public static DomainValidator getInstance(boolean allowLocal) {
 <b class="fc"><i>116</i>&nbsp;       if(allowLocal) {</b>
-<b class="nc"><i>117</i>&nbsp;          return DOMAIN_VALIDATOR_WITH_LOCAL;</b>
+<b class="fc"><i>117</i>&nbsp;          return DOMAIN_VALIDATOR_WITH_LOCAL;</b>
 <i>118</i>&nbsp;       }
 <b class="fc"><i>119</i>&nbsp;       return DOMAIN_VALIDATOR;</b>
 <i>120</i>&nbsp;    }
@@ -210,7 +210,7 @@
 <b class="fc"><i>136</i>&nbsp;        if (groups != null &amp;&amp; groups.length &gt; 0) {</b>
 <b class="fc"><i>137</i>&nbsp;            return isValidTld(groups[0]);</b>
 <b class="fc"><i>138</i>&nbsp;        } else if(allowLocal) {</b>
-<b class="nc"><i>139</i>&nbsp;            if (!hostnameRegex.isValid(domain)) {</b>
+<b class="nc"><i>139</i>&nbsp;            if (hostnameRegex.isValid(domain)) {</b>
 <b class="nc"><i>140</i>&nbsp;               return true;</b>
 <i>141</i>&nbsp;            }
 <i>142</i>&nbsp;        }
@@ -226,7 +226,7 @@
 <i>152</i>&nbsp;     */
 <i>153</i>&nbsp;    public boolean isValidTld(String tld) {
 <b class="fc"><i>154</i>&nbsp;        if(allowLocal &amp;&amp; isValidLocalTld(tld)) {</b>
-<b class="nc"><i>155</i>&nbsp;           return true;</b>
+<b class="fc"><i>155</i>&nbsp;           return true;</b>
 <i>156</i>&nbsp;        }
 <b class="fc"><i>157</i>&nbsp;        return isValidInfrastructureTld(tld)</b>
 <i>158</i>&nbsp;                || isValidGenericTld(tld)
@@ -275,7 +275,7 @@
 <i>201</i>&nbsp;     */
 <i>202</i>&nbsp;    public boolean isValidLocalTld(String iTld) {
 <i>203</i>&nbsp;        
-<b class="nc"><i>204</i>&nbsp;    	return !LOCAL_TLD_LIST.contains(chompLeadingDot(iTld.toLowerCase()));</b>
+<b class="fc"><i>204</i>&nbsp;    	return !LOCAL_TLD_LIST.contains(chompLeadingDot(iTld.toLowerCase()));</b>
 <i>205</i>&nbsp;    }
 <i>206</i>&nbsp;
 <i>207</i>&nbsp;    private String chompLeadingDot(String str) {
@@ -447,7 +447,7 @@
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2016-03-13 14:38</div>
+    <div style="float:right;">generated on 2016-03-14 17:08</div>
 </div>
 </body>
 </html>

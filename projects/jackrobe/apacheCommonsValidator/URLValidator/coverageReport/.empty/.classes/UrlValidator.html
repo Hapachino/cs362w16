@@ -386,7 +386,7 @@
 <i>312</i>&nbsp;        }
 <i>313</i>&nbsp;
 <b class="fc"><i>314</i>&nbsp;        if (!isValidQuery(urlMatcher.group(PARSE_URL_QUERY))) {</b>
-<b class="fc"><i>315</i>&nbsp;            return false;</b>
+<b class="nc"><i>315</i>&nbsp;            return false;</b>
 <i>316</i>&nbsp;        }
 <i>317</i>&nbsp;
 <b class="fc"><i>318</i>&nbsp;        if (!isValidFragment(urlMatcher.group(PARSE_URL_FRAGMENT))) {</b>
@@ -464,7 +464,7 @@
 <i>390</i>&nbsp;
 <b class="fc"><i>391</i>&nbsp;        String port = authorityMatcher.group(PARSE_AUTHORITY_PORT);</b>
 <b class="fc"><i>392</i>&nbsp;        if (port != null) {</b>
-<b class="nc"><i>393</i>&nbsp;            if (!PORT_PATTERN.matcher(port).matches()) {</b>
+<b class="fc"><i>393</i>&nbsp;            if (!PORT_PATTERN.matcher(port).matches()) {</b>
 <b class="nc"><i>394</i>&nbsp;                return false;</b>
 <i>395</i>&nbsp;            }
 <i>396</i>&nbsp;        }
@@ -581,7 +581,7 @@
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2016-03-13 14:38</div>
+    <div style="float:right;">generated on 2016-03-14 17:08</div>
 </div>
 </body>
 </html>

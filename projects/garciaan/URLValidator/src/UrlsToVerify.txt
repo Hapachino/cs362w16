@@ -1,2 +1,22 @@
 https://www.google.com valid
 https://///www.google.com invalid
+
+Valid:
+www.google.com
+http://www.google.com
+google.com
+http://google.com
+https://google.com
+http://google.com:80
+http://google.com/test1/file
+h3t://google.com
+
+Invalid:
+httpgoogle
+www.google.com.www
+file:///c:\\
+google.com//
+
+http://google.com:-1
+http://google.com/test1/file
+http://google.com

@@ -37,12 +37,6 @@ public class UrlValidatorTest extends TestCase {
     super(testName);
   }
 
-  public void testManualTest()
-  {
-    UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-    System.out.println(urlVal.isValid("http://www.amazon.com"));
-  }
-
   ResultPair[] schemeParts = {new ResultPair("http", true),
 		  new ResultPair("https", true),
 		  new ResultPair("_", false),
@@ -255,20 +249,19 @@ public class UrlValidatorTest extends TestCase {
                     new ResultPair("#0123456789",false),
                     new ResultPair("#?-:@&=+,.!~*'%$_;()[]{}/|`~",false)};
  
-
-  public void testURLRegex()
+  public void testManualTest()
   {
     UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-    assertTrue(urlVal.isValid("http://www.amazon.com"));
-
-    //test non ASCII chars
-    assertFalse(urlVal.isValid("http://www.amazon¢.com"));
-
-    //test out of order
-    assertFalse(urlVal.isValid("com.amazon.http://"));
-    assertFalse(urlVal.isValid("amazon.http://com"));
-
-    assertFalse(urlVal.isValid("this_is_not_a_url"));
+    System.out.println(urlVal.isValid("http://www.amazon.com"));
+    System.out.println(urlVal.isValid("http://www.amazon.na"));
+    System.out.println(urlVal.isValid("http://www.amazon.za"));
+    System.out.println(urlVal.isValid("http://256.256.256.256"));
+    System.out.println(urlVal.isValid("http://localhost/"));
+    System.out.println(urlVal.isValid("ftp://localdomain/"));
+    System.out.println(urlVal.isValid("http://www.amazon¢.com"));
+    System.out.println(urlVal.isValid("com.amazon.http://"));
+    System.out.println(urlVal.isValid("amazon.http://com"));
+    System.out.println(urlVal.isValid("this_is_not_a_url"));
   }
 
 
@@ -449,7 +442,7 @@ public class UrlValidatorTest extends TestCase {
         {
           for (int m = 0;m<queryParts.length;m++)
           {
-        	for (int o = 0;o<fragmentPartsNO.length;o++)
+            for (int o = 0;o<fragmentPartsNO.length;o++)
         	{
               //Determine validity of the test URL
               boolean result = schemeParts[i].valid &&

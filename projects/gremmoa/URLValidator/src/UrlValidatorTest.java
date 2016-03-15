@@ -115,10 +115,6 @@ public class UrlValidatorTest extends TestCase {
       new ResultPair("",false)};
   
   
-  //I'm not sure whether the Result pairs that are commented out in this array
-  //should be valid? I tested with the correct version of URLValidator and 
-  //it was finding them to be valid (true) but I would like to have one or
-  //both of you take a look at it with me to see what you think. (Could be a bug?)
   ResultPair[] authorityPartsLocal = { new ResultPair("www.google.com",true),
       new ResultPair("www.google.com:3000",true),
       new ResultPair("www.google.com:0",true),
@@ -133,7 +129,6 @@ public class UrlValidatorTest extends TestCase {
       new ResultPair("asdsader.435g.f82kfd1.google.com",true),
       new ResultPair(".com",false),
       new ResultPair("google.",false),
-      /*new ResultPair("google",false),*/
       new ResultPair("google.com",true),
       new ResultPair("google.com     ",true),
       new ResultPair("abcdefghijklmnopqrstuvwxyz.com",true),
@@ -174,8 +169,6 @@ public class UrlValidatorTest extends TestCase {
       new ResultPair("google.na",true),
       new ResultPair("google.za",true),
       new ResultPair("google.a",false), 
-      /*new ResultPair("google.zldsjry",false),
-      new ResultPair("google.123",false),*/
       new ResultPair("localhost",true),
       new ResultPair("localdomain",true),
       new ResultPair("0.0.0.0",true),

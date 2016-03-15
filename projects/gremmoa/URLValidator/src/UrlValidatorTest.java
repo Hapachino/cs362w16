@@ -432,7 +432,7 @@ public class UrlValidatorTest extends TestCase {
     }
   }
 
-  public void testAllPartsCombinations()
+  public void testIsValid()
   {
     boolean pass = true;
     UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS + UrlValidator.ALLOW_LOCAL_URLS));
@@ -478,28 +478,4 @@ public class UrlValidatorTest extends TestCase {
     }
   }
 
-  public void testYourSecondPartition()
-  {
-
-  }
-
-
-  public void testIsValid()
-  {
-    for(int i = 0;i<10000;i++)
-    {
-
-    }
-  }
-
-  public void testAnyOtherUnitTest()
-  {
-
-  }
-  /**
-   * Create set of tests by taking the testUrlXXX arrays and
-   * running through all possible permutations of their combinations.
-   *
-   * @param testObjects Used to create a url.
-   */
 }

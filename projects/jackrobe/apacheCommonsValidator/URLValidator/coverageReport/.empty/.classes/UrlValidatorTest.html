@@ -47,10 +47,10 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    79.5%
+    81.5%
   </span>
   <span class="absValue">
-    (198/ 249)
+    (203/ 249)
   </span>
 </td>
 </tr>
@@ -104,10 +104,10 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    79.8%
+    81.7%
   </span>
   <span class="absValue">
-    (201/ 252)
+    (206/ 252)
   </span>
 </td>
 </tr>
@@ -133,422 +133,549 @@
 <i>14</i>&nbsp; * See the License for the specific language governing permissions and
 <i>15</i>&nbsp; * limitations under the License.
 <i>16</i>&nbsp; */
-<i>17</i>&nbsp;
+<i>17</i>&nbsp;//TODO make the system out put to a file for use, not just screen output
 <i>18</i>&nbsp;
 <i>19</i>&nbsp;import junit.framework.TestCase;
 <i>20</i>&nbsp;
-<i>21</i>&nbsp;
-<i>22</i>&nbsp;
-<i>23</i>&nbsp;/**
-<i>24</i>&nbsp; * Performs Validation Test for url validations.
-<i>25</i>&nbsp; *
-<i>26</i>&nbsp; * @version $Revision: 1128446 $ $Date: 2011-05-27 13:29:27 -0700 (Fri, 27 May 2011) $
-<i>27</i>&nbsp; */
-<i>28</i>&nbsp;public class UrlValidatorTest extends TestCase {
-<i>29</i>&nbsp;
-<i>30</i>&nbsp;   private boolean printStatus = false;
-<i>31</i>&nbsp;   private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
-<i>32</i>&nbsp;
-<i>33</i>&nbsp;   public UrlValidatorTest(String testName) {
-<i>34</i>&nbsp;      super(testName);
-<i>35</i>&nbsp;   }
-<i>36</i>&nbsp;
-<i>37</i>&nbsp;   protected void setUp() {
-<i>38</i>&nbsp;      for (int index = 0; index &lt; testPartsIndex.length - 1; index++) {
-<i>39</i>&nbsp;         testPartsIndex[index] = 0;
-<i>40</i>&nbsp;      }
-<i>41</i>&nbsp;   }
-<i>42</i>&nbsp;
-<i>43</i>&nbsp;   public void testIsValid() {
-<i>44</i>&nbsp;        testIsValid(testUrlParts, UrlValidator.ALLOW_ALL_SCHEMES);
-<i>45</i>&nbsp;        setUp();
-<i>46</i>&nbsp;        //long options =
-<i>47</i>&nbsp;        //    UrlValidator.ALLOW_2_SLASHES
-<i>48</i>&nbsp;        //        + UrlValidator.ALLOW_ALL_SCHEMES
-<i>49</i>&nbsp;        //        + UrlValidator.NO_FRAGMENTS;
-<i>50</i>&nbsp;
-<b class="fc"><i>51</i>&nbsp;        //testIsValid(testUrlPartsOptions, options);</b>
-<b class="fc"><i>52</i>&nbsp;   }</b>
-<i>53</i>&nbsp;
-<i>54</i>&nbsp;   public void testIsValidScheme() {
-<i>55</i>&nbsp;      if (printStatus) {
-<i>56</i>&nbsp;         System.out.print(&quot;\n testIsValidScheme() &quot;);
-<i>57</i>&nbsp;      }
-<b class="fc"><i>58</i>&nbsp;      String[] schemes = {&quot;http&quot;, &quot;gopher&quot;};</b>
-<i>59</i>&nbsp;      //UrlValidator urlVal = new UrlValidator(schemes,false,false,false);
-<i>60</i>&nbsp;      UrlValidator urlVal = new UrlValidator(schemes, 0);
-<i>61</i>&nbsp;      for (int sIndex = 0; sIndex &lt; testScheme.length; sIndex++) {
-<i>62</i>&nbsp;         ResultPair testPair = testScheme[sIndex];
-<i>63</i>&nbsp;         boolean result = urlVal.isValidScheme(testPair.item);
-<i>64</i>&nbsp;         assertEquals(testPair.item, testPair.valid, result);
-<i>65</i>&nbsp;         if (printStatus) {
-<i>66</i>&nbsp;            if (result == testPair.valid) {
-<i>67</i>&nbsp;               System.out.print(&#39;.&#39;);
-<i>68</i>&nbsp;            } else {
-<i>69</i>&nbsp;               System.out.print(&#39;X&#39;);
-<i>70</i>&nbsp;            }
-<i>71</i>&nbsp;         }
-<b class="fc"><i>72</i>&nbsp;      }</b>
-<b class="fc"><i>73</i>&nbsp;      if (printStatus) {</b>
-<i>74</i>&nbsp;         System.out.println();
-<b class="fc"><i>75</i>&nbsp;      }</b>
-<i>76</i>&nbsp;
-<i>77</i>&nbsp;   }
-<i>78</i>&nbsp;
-<i>79</i>&nbsp;   /**
-<b class="fc"><i>80</i>&nbsp;    * Create set of tests by taking the testUrlXXX arrays and</b>
-<i>81</i>&nbsp;    * running through all possible permutations of their combinations.
-<i>82</i>&nbsp;    *
-<b class="fc"><i>83</i>&nbsp;    * @param testObjects Used to create a url.</b>
-<i>84</i>&nbsp;    */
-<b class="fc"><i>85</i>&nbsp;   public void testIsValid(Object[] testObjects, long options) {</b>
-<b class="fc"><i>86</i>&nbsp;      UrlValidator urlVal = new UrlValidator(null, null, options);</b>
-<b class="fc"><i>87</i>&nbsp;      assertTrue(urlVal.isValid(&quot;http://www.google.com&quot;));</b>
-<b class="fc"><i>88</i>&nbsp;      assertTrue(urlVal.isValid(&quot;http://www.google.com/&quot;));</b>
-<b class="fc"><i>89</i>&nbsp;      int statusPerLine = 60;</b>
-<b class="fc"><i>90</i>&nbsp;      int printed = 0;</b>
-<b class="fc"><i>91</i>&nbsp;      if (printIndex)  {</b>
-<i>92</i>&nbsp;         statusPerLine = 6;
-<i>93</i>&nbsp;      }
-<i>94</i>&nbsp;      do {
-<i>95</i>&nbsp;         StringBuffer testBuffer = new StringBuffer();
-<i>96</i>&nbsp;         boolean expected = true;
-<i>97</i>&nbsp;         for (int testPartsIndexIndex = 0; testPartsIndexIndex &lt; testPartsIndex.length; ++testPartsIndexIndex) {
-<i>98</i>&nbsp;            int index = testPartsIndex[testPartsIndexIndex];
-<i>99</i>&nbsp;            ResultPair[] part = (ResultPair[]) testObjects[testPartsIndexIndex];
-<i>100</i>&nbsp;            testBuffer.append(part[index].item);
-<i>101</i>&nbsp;            expected &amp;= part[index].valid;
-<i>102</i>&nbsp;         }
-<i>103</i>&nbsp;         //System.out.println(testPartsIndex[0]);
-<b class="fc"><i>104</i>&nbsp;         String url = testBuffer.toString();</b>
-<i>105</i>&nbsp;         boolean result = urlVal.isValid(url);
-<b class="nc"><i>106</i>&nbsp;         </b>
-<b class="nc"><i>107</i>&nbsp;         if(result == true)</b>
-<b class="nc"><i>108</i>&nbsp;        	 System.out.println(url);</b>
-<b class="nc"><i>109</i>&nbsp;         assertEquals(url, expected, result);</b>
-<i>110</i>&nbsp;         
-<i>111</i>&nbsp;         if (printStatus) {
-<b class="fc"><i>112</i>&nbsp;            if (printIndex) {</b>
-<b class="fc"><i>113</i>&nbsp;               //System.out.print(testPartsIndextoString());</b>
-<b class="fc"><i>114</i>&nbsp;            } else {</b>
-<b class="fc"><i>115</i>&nbsp;               if (result == expected) {</b>
-<b class="fc"><i>116</i>&nbsp;                  System.out.print(&#39;.&#39;);</b>
-<b class="fc"><i>117</i>&nbsp;               } else {</b>
-<b class="fc"><i>118</i>&nbsp;                  System.out.print(&#39;X&#39;);</b>
-<b class="fc"><i>119</i>&nbsp;               }</b>
-<b class="fc"><i>120</i>&nbsp;            }</b>
-<b class="fc"><i>121</i>&nbsp;            printed++;</b>
-<i>122</i>&nbsp;            if (printed == statusPerLine) {
-<i>123</i>&nbsp;               System.out.println();
-<b class="nc"><i>124</i>&nbsp;               printed = 0;</b>
-<b class="nc"><i>125</i>&nbsp;            }</b>
-<b class="nc"><i>126</i>&nbsp;         }</b>
-<b class="nc"><i>127</i>&nbsp;      } while (incrementTestPartsIndex(testPartsIndex, testObjects));</b>
-<i>128</i>&nbsp;      if (printStatus) {
-<i>129</i>&nbsp;         System.out.println();
-<b class="fc"><i>130</i>&nbsp;      }</b>
-<b class="fc"><i>131</i>&nbsp;   }</b>
-<b class="fc"><i>132</i>&nbsp;</b>
-<b class="fc"><i>133</i>&nbsp;   public void testValidator202() {</b>
-<i>134</i>&nbsp;       String[] schemes = {&quot;http&quot;,&quot;https&quot;};
-<i>135</i>&nbsp;       UrlValidator urlValidator = new UrlValidator(schemes, UrlValidator.NO_FRAGMENTS);
-<b class="fc"><i>136</i>&nbsp;       //UrlValidator urlValidator = new UrlValidator(schemes, UrlValidator.ALLOW_ALL_SCHEMES);</b>
-<b class="fc"><i>137</i>&nbsp;       assertTrue(urlValidator.isValid(&quot;http://www.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.logoworks.comwww.org&quot;));</b>
-<b class="fc"><i>138</i>&nbsp;   }</b>
-<b class="fc"><i>139</i>&nbsp;</b>
-<i>140</i>&nbsp;   public void testValidator204() {
-<i>141</i>&nbsp;       String[] schemes = {&quot;http&quot;,&quot;https&quot;};
-<i>142</i>&nbsp;       UrlValidator urlValidator = new UrlValidator(schemes);
-<b class="fc"><i>143</i>&nbsp;       assertTrue(urlValidator.isValid(&quot;http://tech.yahoo.com/rc/desktops/102;_ylt=Ao8yevQHlZ4On0O3ZJGXLEQFLZA5&quot;));</b>
-<i>144</i>&nbsp;   }
-<b class="fc"><i>145</i>&nbsp;</b>
-<b class="fc"><i>146</i>&nbsp;   public void testValidator218() {</b>
-<i>147</i>&nbsp;       UrlValidator validator = new UrlValidator(UrlValidator.ALLOW_2_SLASHES);
-<i>148</i>&nbsp;       assertTrue(&quot;parentheses should be valid in URLs&quot;,
-<b class="fc"><i>149</i>&nbsp;               validator.isValid(&quot;http://somewhere.com/pathxyz/file(1).html&quot;));</b>
-<i>150</i>&nbsp;   }
+<i>21</i>&nbsp;import java.io.*;
+<i>22</i>&nbsp;import java.net.*;
+<i>23</i>&nbsp;import java.util.ArrayList;
+<i>24</i>&nbsp;import java.util.Arrays;
+<i>25</i>&nbsp;import java.util.List;
+<i>26</i>&nbsp;import java.util.concurrent.ThreadLocalRandom;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;/**
+<i>30</i>&nbsp; * Performs Validation Test for url validations.
+<i>31</i>&nbsp; *
+<i>32</i>&nbsp; * @version $Revision: 1128446 $ $Date: 2011-05-27 13:29:27 -0700 (Fri, 27 May 2011) $
+<i>33</i>&nbsp; */
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;public class UrlValidatorTest extends TestCase {
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    //enum for url parts, used for easier choice of argument for makeInvalidPart()
+<i>40</i>&nbsp;//    public enum urlPart {
+<i>41</i>&nbsp;//        protocol(1), host(2), port(3), path(4), query(5), authority(5);
+<i>42</i>&nbsp;//        private final int value;
+<i>43</i>&nbsp;//        private urlPart(int value) {
+<i>44</i>&nbsp;//            this.value = value;
+<i>45</i>&nbsp;//        }
+<i>46</i>&nbsp;//        public int get() {
+<i>47</i>&nbsp;//            return value;
+<i>48</i>&nbsp;//        }
+<i>49</i>&nbsp;//    }
+<i>50</i>&nbsp;    //Simplified because i was unsure  of the former functions utility
+<b class="fc"><i>51</i>&nbsp;    public enum UrlPart {</b>
+<b class="fc"><i>52</i>&nbsp;        protocol, host, port, path, query, authority;</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    //Made these Global to the class so that the reporter function works, and enum too
+<i>57</i>&nbsp;    UrlPart partName;
+<b class="fc"><i>58</i>&nbsp;    UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);</b>
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    //Makes part of the URL invalid
+<i>65</i>&nbsp;    //@param string array of urls that ARE valid
+<i>66</i>&nbsp;    //@param part (which part you want to make invalid: SEE switch Statement)
+<i>67</i>&nbsp;    //Returns a List&lt;String&gt; of now BAD urls
+<i>68</i>&nbsp;    //TODO needs fixin...still not making good-bad URLS&#39;-its set to print during test run
+<i>69</i>&nbsp;    public List&lt;String&gt; makeInvalidPart(List&lt;String&gt; urls, UrlPart partName) {
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;        //defines
+<b class="fc"><i>72</i>&nbsp;        URL aURL = null;</b>
+<b class="fc"><i>73</i>&nbsp;        String auth, path, query, protocol, host, portStr, fullUrl = null;</b>
+<i>74</i>&nbsp;        int port, rand;
+<b class="fc"><i>75</i>&nbsp;        List&lt;String&gt; badUrls = new ArrayList&lt;String&gt;();</b>
+<i>76</i>&nbsp;        RandomString rnd;
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;        try {
+<i>79</i>&nbsp;
+<b class="fc"><i>80</i>&nbsp;            for (String url : urls) {</b>
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;                //Parse the URL
+<b class="fc"><i>83</i>&nbsp;                aURL = new URL(url);</b>
+<i>84</i>&nbsp;
+<b class="fc"><i>85</i>&nbsp;                protocol = aURL.getProtocol();</b>
+<b class="fc"><i>86</i>&nbsp;                auth = aURL.getAuthority();</b>
+<b class="fc"><i>87</i>&nbsp;                host = aURL.getHost();</b>
+<b class="fc"><i>88</i>&nbsp;                port = aURL.getPort();</b>
+<b class="fc"><i>89</i>&nbsp;                path = aURL.getPath();</b>
+<b class="fc"><i>90</i>&nbsp;                query = aURL.getQuery();</b>
+<b class="fc"><i>91</i>&nbsp;                portStr = null;</b>
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;                /*
+<i>94</i>&nbsp;                System.out.println(&quot;Protocol: &quot; + protocol);
+<i>95</i>&nbsp;                System.out.println(&quot;Authority: &quot; + auth);
+<i>96</i>&nbsp;                System.out.println(&quot;Host: &quot; + host);
+<i>97</i>&nbsp;                System.out.println(&quot;Port: &quot; + port);
+<i>98</i>&nbsp;                System.out.println(&quot;Path: &quot; + path);
+<i>99</i>&nbsp;                System.out.println(&quot;Query: &quot; + query);
+<i>100</i>&nbsp;                System.out.println();
+<i>101</i>&nbsp;                */
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;                //Select which part to change
+<b class="fc"><i>104</i>&nbsp;                switch (partName) {</b>
+<i>105</i>&nbsp;                    case protocol: //bad protocol
+<b class="nc"><i>106</i>&nbsp;                        rand = ThreadLocalRandom.current().nextInt(1, 5);</b>
+<b class="nc"><i>107</i>&nbsp;                        rnd = new RandomString(rand);</b>
+<b class="nc"><i>108</i>&nbsp;                        protocol = rnd.nextString();</b>
+<b class="nc"><i>109</i>&nbsp;                        break;</b>
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;                    case host: //bad host
+<b class="fc"><i>112</i>&nbsp;                        rand = ThreadLocalRandom.current().nextInt(1, 4);</b>
+<b class="fc"><i>113</i>&nbsp;                        rnd = new RandomString(rand);</b>
+<b class="fc"><i>114</i>&nbsp;                        host = rnd.nextString();</b>
+<b class="fc"><i>115</i>&nbsp;                        rand = ThreadLocalRandom.current().nextInt(1, 12);</b>
+<b class="fc"><i>116</i>&nbsp;                        rnd = new RandomString(rand);</b>
+<b class="fc"><i>117</i>&nbsp;                        host += &quot;.&quot; + rnd.nextString();</b>
+<b class="fc"><i>118</i>&nbsp;                        rand = ThreadLocalRandom.current().nextInt(1, 4);</b>
+<b class="fc"><i>119</i>&nbsp;                        rnd = new RandomString(rand);</b>
+<b class="fc"><i>120</i>&nbsp;                        host += &quot;.&quot; + rnd.nextString();</b>
+<b class="fc"><i>121</i>&nbsp;                        break;</b>
+<i>122</i>&nbsp;
+<i>123</i>&nbsp;                    case port: //bad port
+<b class="nc"><i>124</i>&nbsp;                        rand = ThreadLocalRandom.current().nextInt(1, 5);</b>
+<b class="nc"><i>125</i>&nbsp;                        rnd = new RandomString(rand);</b>
+<b class="nc"><i>126</i>&nbsp;                        portStr = &quot;:&quot; + rnd.nextString();</b>
+<b class="nc"><i>127</i>&nbsp;                        break;</b>
+<i>128</i>&nbsp;
+<i>129</i>&nbsp;                    case path: //bad path
+<b class="fc"><i>130</i>&nbsp;                        rand = ThreadLocalRandom.current().nextInt(10, 20);</b>
+<b class="fc"><i>131</i>&nbsp;                        rnd = new RandomString(rand);</b>
+<b class="fc"><i>132</i>&nbsp;                        path = &quot;/&quot; + rnd.nextString();</b>
+<b class="fc"><i>133</i>&nbsp;                        break;</b>
+<i>134</i>&nbsp;
+<i>135</i>&nbsp;                    case query: //bad query
+<b class="fc"><i>136</i>&nbsp;                        rand = ThreadLocalRandom.current().nextInt(1, 20);</b>
+<b class="fc"><i>137</i>&nbsp;                        rnd = new RandomString(rand);</b>
+<b class="fc"><i>138</i>&nbsp;                        query = &quot;?&quot; + rnd.nextString();</b>
+<b class="fc"><i>139</i>&nbsp;                        break;</b>
+<i>140</i>&nbsp;                    case authority: //bad query
+<i>141</i>&nbsp;                        //some length 3 some length 2 authorities
+<i>142</i>&nbsp;                        //todo needs some tweaking to make more halfway plausiable authorities i.e. not all ASCII
+<b class="fc"><i>143</i>&nbsp;                        int half = ThreadLocalRandom.current().nextInt(0, 2);//http://stackoverflow.com/questions/363681/generating-random-integers-in-a-specific-ran</b>
+<i>144</i>&nbsp;
+<b class="fc"><i>145</i>&nbsp;                        if (half == 0) {</b>
+<b class="fc"><i>146</i>&nbsp;                            rnd = new RandomString(3);</b>
+<i>147</i>&nbsp;
+<i>148</i>&nbsp;                        } else {
+<b class="fc"><i>149</i>&nbsp;                            rnd = new RandomString(2);</b>
+<i>150</i>&nbsp;                        }
 <i>151</i>&nbsp;
-<b class="fc"><i>152</i>&nbsp;    public void testValidator248() {</b>
-<i>153</i>&nbsp;        RegexValidator regex = new RegexValidator(new String[] {&quot;localhost&quot;, &quot;.*\\.my-testing&quot;});
-<i>154</i>&nbsp;        UrlValidator validator = new UrlValidator(regex, 0);
-<i>155</i>&nbsp;
-<i>156</i>&nbsp;        assertTrue(&quot;localhost URL should validate&quot;,
-<i>157</i>&nbsp;                validator.isValid(&quot;http://localhost/test/index.html&quot;));
-<b class="fc"><i>158</i>&nbsp;        assertTrue(&quot;first.my-testing should validate&quot;,</b>
-<b class="fc"><i>159</i>&nbsp;                validator.isValid(&quot;http://first.my-testing/test/index.html&quot;));</b>
-<b class="fc"><i>160</i>&nbsp;        assertTrue(&quot;sup3r.my-testing should validate&quot;,</b>
-<i>161</i>&nbsp;                validator.isValid(&quot;http://sup3r.my-testing/test/index.html&quot;));
-<b class="fc"><i>162</i>&nbsp;</b>
-<b class="fc"><i>163</i>&nbsp;        assertFalse(&quot;broke.my-test should not validate&quot;,</b>
-<i>164</i>&nbsp;                validator.isValid(&quot;http://broke.my-test/test/index.html&quot;));
-<b class="fc"><i>165</i>&nbsp;</b>
-<i>166</i>&nbsp;        assertTrue(&quot;www.apache.org should still validate&quot;,
-<b class="nc"><i>167</i>&nbsp;                validator.isValid(&quot;http://www.apache.org/test/index.html&quot;));</b>
-<b class="nc"><i>168</i>&nbsp;</b>
-<b class="nc"><i>169</i>&nbsp;        // Now check using options</b>
-<i>170</i>&nbsp;        validator = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
-<b class="fc"><i>171</i>&nbsp;        </b>
-<i>172</i>&nbsp;        assertTrue(&quot;localhost URL should validate&quot;,
-<b class="fc"><i>173</i>&nbsp;              validator.isValid(&quot;http://localhost/test/index.html&quot;));</b>
-<i>174</i>&nbsp;        
-<i>175</i>&nbsp;        assertTrue(&quot;machinename URL should validate&quot;,
-<i>176</i>&nbsp;              validator.isValid(&quot;http://machinename/test/index.html&quot;));
-<i>177</i>&nbsp;        
-<i>178</i>&nbsp;        assertTrue(&quot;www.apache.org should still validate&quot;,
-<i>179</i>&nbsp;              validator.isValid(&quot;http://www.apache.org/test/index.html&quot;));
-<i>180</i>&nbsp;    }
-<b class="fc"><i>181</i>&nbsp;</b>
-<i>182</i>&nbsp;    public void testValidator288() {
-<i>183</i>&nbsp;        UrlValidator validator = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
+<b class="fc"><i>152</i>&nbsp;                        auth = &quot;.&quot; + rnd.nextString();</b>
+<i>153</i>&nbsp;                        //badUrls.add(protocol +&quot;://&quot; + host + auth);
+<i>154</i>&nbsp;
+<i>155</i>&nbsp;                        break;
+<i>156</i>&nbsp;                }
+<i>157</i>&nbsp;                //todo figure out if my version of enum can be used like this...ehhh
+<b class="fc"><i>158</i>&nbsp;                if (port == -1 &amp;&amp; partName != partName.port) portStr = &quot;&quot;;</b>
+<b class="fc"><i>159</i>&nbsp;                if (query == null &amp;&amp; partName != partName.query) query = &quot;&quot;;</b>
+<b class="fc"><i>160</i>&nbsp;                if (auth != null &amp;&amp; partName != partName.authority) auth = &quot;&quot;;</b>
+<i>161</i>&nbsp;
+<b class="fc"><i>162</i>&nbsp;                fullUrl = protocol + &quot;://&quot; + host + auth + portStr + path + query;</b>
+<b class="fc"><i>163</i>&nbsp;                badUrls.add(fullUrl);</b>
+<i>164</i>&nbsp;                //System.out.println(fullUrl);
+<b class="fc"><i>165</i>&nbsp;            }</b>
+<i>166</i>&nbsp;
+<b class="nc"><i>167</i>&nbsp;        } catch (IOException ex) {</b>
+<b class="nc"><i>168</i>&nbsp;            System.out.println(ex.toString());</b>
+<b class="nc"><i>169</i>&nbsp;            System.out.println(&quot;Could not find file &quot;);</b>
+<i>170</i>&nbsp;
+<b class="fc"><i>171</i>&nbsp;        }</b>
+<i>172</i>&nbsp;
+<b class="fc"><i>173</i>&nbsp;        return badUrls;</b>
+<i>174</i>&nbsp;    }
+<i>175</i>&nbsp;
+<i>176</i>&nbsp;    //Makes a VALID URL
+<i>177</i>&nbsp;    //@param number of URLS to make
+<i>178</i>&nbsp;    //Returns a List&lt;String&gt; of GOOD urls
+<i>179</i>&nbsp;    public List&lt;String&gt; makeValidURL(int n){
+<i>180</i>&nbsp;
+<b class="fc"><i>181</i>&nbsp;        List&lt;String&gt; urls =new ArrayList&lt;String&gt;();</b>
+<i>182</i>&nbsp;        String builtURL;
+<i>183</i>&nbsp;        RandomString rnd;
 <i>184</i>&nbsp;
-<b class="fc"><i>185</i>&nbsp;        assertTrue(&quot;hostname should validate&quot;,</b>
-<i>186</i>&nbsp;                validator.isValid(&quot;http://hostname&quot;));
-<b class="fc"><i>187</i>&nbsp;</b>
-<i>188</i>&nbsp;        assertTrue(&quot;hostname with path should validate&quot;,
-<b class="fc"><i>189</i>&nbsp;                validator.isValid(&quot;http://hostname/test/index.html&quot;));</b>
-<i>190</i>&nbsp;        
-<i>191</i>&nbsp;        assertTrue(&quot;localhost URL should validate&quot;,
-<b class="fc"><i>192</i>&nbsp;                validator.isValid(&quot;http://localhost/test/index.html&quot;));</b>
-<i>193</i>&nbsp;        
-<b class="fc"><i>194</i>&nbsp;        assertFalse(&quot;first.my-testing should not validate&quot;,</b>
-<b class="fc"><i>195</i>&nbsp;                validator.isValid(&quot;http://first.my-testing/test/index.html&quot;));</b>
-<i>196</i>&nbsp;
-<b class="fc"><i>197</i>&nbsp;        assertFalse(&quot;broke.hostname should not validate&quot;,</b>
-<i>198</i>&nbsp;                validator.isValid(&quot;http://broke.hostname/test/index.html&quot;));
+<b class="fc"><i>185</i>&nbsp;        for(int i =0; i &lt; n ; i ++){</b>
+<i>186</i>&nbsp;
+<b class="fc"><i>187</i>&nbsp;            HelpFunctions h = new HelpFunctions();</b>
+<i>188</i>&nbsp;
+<b class="fc"><i>189</i>&nbsp;            builtURL = h.getRandomProtocol()+&quot;://&quot;;</b>
+<i>190</i>&nbsp;
+<i>191</i>&nbsp;            //half the time make it an ip address or for some a localhost
+<b class="fc"><i>192</i>&nbsp;            if(i%2 == 0) {</b>
+<i>193</i>&nbsp;
+<b class="fc"><i>194</i>&nbsp;                if(i &lt; .75*n) {</b>
+<b class="fc"><i>195</i>&nbsp;                    builtURL += h.makeIP();</b>
+<i>196</i>&nbsp;                }else{
+<b class="fc"><i>197</i>&nbsp;                    builtURL += &quot;localhost&quot;;</b>
+<i>198</i>&nbsp;                }
 <i>199</i>&nbsp;
-<i>200</i>&nbsp;        assertTrue(&quot;www.apache.org should still validate&quot;,
-<i>201</i>&nbsp;                validator.isValid(&quot;http://www.apache.org/test/index.html&quot;));
-<i>202</i>&nbsp;
-<b class="fc"><i>203</i>&nbsp;        // Turn it off, and check</b>
-<b class="fc"><i>204</i>&nbsp;        validator = new UrlValidator(0);</b>
+<i>200</i>&nbsp;            }else{
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;                //make a random string for the domain name
+<b class="fc"><i>203</i>&nbsp;                int dsize = ThreadLocalRandom.current().nextInt(3, 10);</b>
+<b class="fc"><i>204</i>&nbsp;                rnd = new RandomString(dsize);</b>
 <i>205</i>&nbsp;
-<i>206</i>&nbsp;        assertFalse(&quot;hostname should no longer validate&quot;,
-<b class="fc"><i>207</i>&nbsp;                validator.isValid(&quot;http://hostname&quot;));</b>
-<b class="fc"><i>208</i>&nbsp;</b>
-<i>209</i>&nbsp;        assertFalse(&quot;localhost URL should no longer validate&quot;,
-<i>210</i>&nbsp;                validator.isValid(&quot;http://localhost/test/index.html&quot;));
-<i>211</i>&nbsp;        
-<b class="fc"><i>212</i>&nbsp;        assertTrue(&quot;www.apache.org should still validate&quot;,</b>
-<i>213</i>&nbsp;                validator.isValid(&quot;http://www.apache.org/test/index.html&quot;));
-<b class="fc"><i>214</i>&nbsp;    }</b>
-<b class="fc"><i>215</i>&nbsp;    </b>
-<i>216</i>&nbsp;    public void testValidator276() {
-<b class="fc"><i>217</i>&nbsp;        // file:// isn&#39;t allowed by default</b>
-<i>218</i>&nbsp;        UrlValidator validator = new UrlValidator();
-<i>219</i>&nbsp;        
-<b class="fc"><i>220</i>&nbsp;        assertTrue(&quot;http://apache.org/ should be allowed by default&quot;,</b>
-<i>221</i>&nbsp;                 validator.isValid(&quot;http://www.apache.org/test/index.html&quot;));
-<i>222</i>&nbsp;       
-<i>223</i>&nbsp;        assertFalse(&quot;file:///c:/ shouldn&#39;t be allowed by default&quot;,
-<i>224</i>&nbsp;                 validator.isValid(&quot;file:///C:/some.file&quot;));
-<b class="fc"><i>225</i>&nbsp;        </b>
-<i>226</i>&nbsp;        assertFalse(&quot;file:///c:\\ shouldn&#39;t be allowed by default&quot;,
-<i>227</i>&nbsp;              validator.isValid(&quot;file:///C:\\some.file&quot;));
-<i>228</i>&nbsp;        
-<i>229</i>&nbsp;        assertFalse(&quot;file:///etc/ shouldn&#39;t be allowed by default&quot;,
-<i>230</i>&nbsp;              validator.isValid(&quot;file:///etc/hosts&quot;));
-<b class="fc"><i>231</i>&nbsp;        </b>
-<i>232</i>&nbsp;        assertFalse(&quot;file://localhost/etc/ shouldn&#39;t be allowed by default&quot;,
-<b class="fc"><i>233</i>&nbsp;              validator.isValid(&quot;file://localhost/etc/hosts&quot;));</b>
-<b class="fc"><i>234</i>&nbsp;        </b>
-<b class="fc"><i>235</i>&nbsp;        assertFalse(&quot;file://localhost/c:/ shouldn&#39;t be allowed by default&quot;,</b>
-<i>236</i>&nbsp;              validator.isValid(&quot;file://localhost/c:/some.file&quot;));
-<b class="fc"><i>237</i>&nbsp;        </b>
-<b class="fc"><i>238</i>&nbsp;        // Turn it on, and check</b>
-<b class="fc"><i>239</i>&nbsp;        // Note - we need to enable local urls when working with file:</b>
-<b class="fc"><i>240</i>&nbsp;        validator = new UrlValidator(new String[] {&quot;http&quot;,&quot;file&quot;}, UrlValidator.ALLOW_LOCAL_URLS);</b>
-<b class="fc"><i>241</i>&nbsp;        </b>
-<i>242</i>&nbsp;        assertTrue(&quot;http://apache.org/ should be allowed by default&quot;,
-<b class="nc"><i>243</i>&nbsp;                 validator.isValid(&quot;http://www.apache.org/test/index.html&quot;));</b>
-<i>244</i>&nbsp;       
-<b class="fc"><i>245</i>&nbsp;        assertTrue(&quot;file:///c:/ should now be allowed&quot;,</b>
-<b class="fc"><i>246</i>&nbsp;                 validator.isValid(&quot;file:///C:/some.file&quot;));</b>
-<i>247</i>&nbsp;        
-<b class="fc"><i>248</i>&nbsp;        // Currently, we don&#39;t support the c:\ form</b>
-<i>249</i>&nbsp;        assertFalse(&quot;file:///c:\\ shouldn&#39;t be allowed&quot;,
-<b class="fc"><i>250</i>&nbsp;              validator.isValid(&quot;file:///C:\\some.file&quot;));</b>
-<b class="fc"><i>251</i>&nbsp;        </b>
-<i>252</i>&nbsp;        assertTrue(&quot;file:///etc/ should now be allowed&quot;,
-<b class="fc"><i>253</i>&nbsp;              validator.isValid(&quot;file:///etc/hosts&quot;));</b>
-<i>254</i>&nbsp;        
-<b class="fc"><i>255</i>&nbsp;        assertTrue(&quot;file://localhost/etc/ should now be allowed&quot;,</b>
-<b class="fc"><i>256</i>&nbsp;              validator.isValid(&quot;file://localhost/etc/hosts&quot;));</b>
-<i>257</i>&nbsp;        
-<b class="nc"><i>258</i>&nbsp;        assertTrue(&quot;file://localhost/c:/ should now be allowed&quot;,</b>
-<i>259</i>&nbsp;              validator.isValid(&quot;file://localhost/c:/some.file&quot;));
-<b class="fc"><i>260</i>&nbsp;        </b>
-<b class="fc"><i>261</i>&nbsp;        // These are never valid</b>
-<i>262</i>&nbsp;        assertFalse(&quot;file://c:/ shouldn&#39;t ever be allowed, needs file:///c:/&quot;,
-<b class="fc"><i>263</i>&nbsp;              validator.isValid(&quot;file://C:/some.file&quot;));</b>
-<i>264</i>&nbsp;     
-<i>265</i>&nbsp;        assertFalse(&quot;file://c:\\ shouldn&#39;t ever be allowed, needs file:///c:/&quot;,
-<b class="fc"><i>266</i>&nbsp;              validator.isValid(&quot;file://C:\\some.file&quot;));</b>
-<b class="fc"><i>267</i>&nbsp;    }</b>
-<b class="fc"><i>268</i>&nbsp;</b>
-<b class="fc"><i>269</i>&nbsp;    </b>
-<i>270</i>&nbsp;   static boolean incrementTestPartsIndex(int[] testPartsIndex, Object[] testParts) {
-<i>271</i>&nbsp;      boolean carry = true;  //add 1 to lowest order part.
-<b class="fc"><i>272</i>&nbsp;      boolean maxIndex = true;</b>
-<b class="fc"><i>273</i>&nbsp;      for (int testPartsIndexIndex = testPartsIndex.length - 1; testPartsIndexIndex &gt;= 0; --testPartsIndexIndex) {</b>
-<b class="fc"><i>274</i>&nbsp;         int index = testPartsIndex[testPartsIndexIndex];</b>
-<b class="fc"><i>275</i>&nbsp;         ResultPair[] part = (ResultPair[]) testParts[testPartsIndexIndex];</b>
-<b class="fc"><i>276</i>&nbsp;         if (carry) {</b>
-<i>277</i>&nbsp;            if (index &lt; part.length - 1) {
-<i>278</i>&nbsp;               index++;
-<i>279</i>&nbsp;               testPartsIndex[testPartsIndexIndex] = index;
-<i>280</i>&nbsp;               carry = false;
-<b class="fc"><i>281</i>&nbsp;            } else {</b>
-<b class="fc"><i>282</i>&nbsp;               testPartsIndex[testPartsIndexIndex] = 0;</b>
-<i>283</i>&nbsp;               carry = true;
-<i>284</i>&nbsp;            }
-<i>285</i>&nbsp;         }
-<i>286</i>&nbsp;         maxIndex &amp;= (index == (part.length - 1));
-<b class="fc"><i>287</i>&nbsp;      }</b>
-<b class="fc"><i>288</i>&nbsp;</b>
+<i>206</i>&nbsp;                //add the tld
+<b class="fc"><i>207</i>&nbsp;                builtURL += rnd.aString() + &quot;.&quot;;</b>
+<b class="fc"><i>208</i>&nbsp;                builtURL += h.makeValidDomain();</b>
+<i>209</i>&nbsp;
+<i>210</i>&nbsp;            }
+<i>211</i>&nbsp;
+<b class="fc"><i>212</i>&nbsp;            builtURL += &quot;/&quot;; // this depending on if there are parts added after the host</b>
+<i>213</i>&nbsp;            //TODO make this change  sometimes path sometimes query sometimes both
+<b class="fc"><i>214</i>&nbsp;            builtURL += h.makePath();</b>
+<b class="fc"><i>215</i>&nbsp;            builtURL += h.makeQuery();</b>
+<i>216</i>&nbsp;
+<b class="fc"><i>217</i>&nbsp;            urls.add(builtURL);</b>
+<i>218</i>&nbsp;        }
+<i>219</i>&nbsp;
+<b class="fc"><i>220</i>&nbsp;        return urls;</b>
+<i>221</i>&nbsp;    }
+<i>222</i>&nbsp;
+<i>223</i>&nbsp;    public int reporter(List&lt;String&gt; Urls, int passRate, int failRate, int maxTests){
+<i>224</i>&nbsp;        //pass altered (bad) urls to isValid for testing
+<b class="fc"><i>225</i>&nbsp;        for (String url: Urls) {</b>
+<i>226</i>&nbsp;
+<i>227</i>&nbsp;            //USE JAVAS OWN URL breakapart function
+<i>228</i>&nbsp;            //To tell us which part is bad
+<i>229</i>&nbsp;            URL jurl;
+<i>230</i>&nbsp;            try {
+<b class="fc"><i>231</i>&nbsp;                jurl = new URL(url);</b>
+<i>232</i>&nbsp;
+<b class="fc"><i>233</i>&nbsp;                if (urlVal.isValid(url)) {</b>
+<b class="fc"><i>234</i>&nbsp;                    passRate++;</b>
+<b class="fc"><i>235</i>&nbsp;                    System.out.println(&quot;Passed UrlValidator: &quot; + url);</b>
+<i>236</i>&nbsp;                } else {
+<b class="fc"><i>237</i>&nbsp;                    failRate++;</b>
+<b class="fc"><i>238</i>&nbsp;                    System.out.println(&quot;--Failed UrlValidator: &quot; + url);</b>
+<b class="fc"><i>239</i>&nbsp;                    System.out.print(&quot;--Java Says: &quot;);</b>
+<b class="fc"><i>240</i>&nbsp;                    if (urlVal.isValidScheme(jurl.getProtocol())) {</b>
+<b class="fc"><i>241</i>&nbsp;                        System.out.print(&quot;Protocol: OK, &quot;);</b>
+<i>242</i>&nbsp;                    } else {
+<b class="nc"><i>243</i>&nbsp;                        System.out.print(&quot;Protocol: FAIL, &quot; + jurl.getProtocol() + &quot;, &quot;);</b>
+<i>244</i>&nbsp;                    }
+<b class="fc"><i>245</i>&nbsp;                    if (urlVal.isValidAuthority(jurl.getHost())) {</b>
+<b class="fc"><i>246</i>&nbsp;                        System.out.print(&quot;Host: OK, &quot;);</b>
+<i>247</i>&nbsp;                    } else {
+<b class="fc"><i>248</i>&nbsp;                        System.out.print(&quot;Host: FAIL &quot; + jurl.getHost() + &quot;, &quot;);</b>
+<i>249</i>&nbsp;                    }
+<b class="fc"><i>250</i>&nbsp;                    if (urlVal.isValidAuthority(jurl.getAuthority())) {</b>
+<b class="fc"><i>251</i>&nbsp;                        System.out.print(&quot;Authority: OK, &quot;);</b>
+<i>252</i>&nbsp;                    } else {
+<b class="fc"><i>253</i>&nbsp;                        System.out.print(&quot;Authority: FAIL &quot; + jurl.getAuthority() + &quot;, &quot;);</b>
+<i>254</i>&nbsp;                    }
+<b class="fc"><i>255</i>&nbsp;                    if (urlVal.isValidQuery(jurl.getQuery())) {</b>
+<b class="fc"><i>256</i>&nbsp;                        System.out.print(&quot;Query: OK, &quot;);</b>
+<i>257</i>&nbsp;                    } else {
+<b class="fc"><i>258</i>&nbsp;                        System.out.print(&quot;Query: FAIL &quot;+ jurl.getQuery() + &quot;, &quot;);</b>
+<i>259</i>&nbsp;                    }
+<b class="fc"><i>260</i>&nbsp;                    if (urlVal.isValidPath(jurl.getPath())) {</b>
+<b class="fc"><i>261</i>&nbsp;                        System.out.print(&quot;Path: OK\n&quot;);</b>
+<i>262</i>&nbsp;                    } else {
+<b class="fc"><i>263</i>&nbsp;                        System.out.printf(&quot; Path: FAIL %s \n&quot;,  jurl.getPath());</b>
+<i>264</i>&nbsp;                    }
+<i>265</i>&nbsp;                }
+<b class="fc"><i>266</i>&nbsp;            }catch (IOException e) {</b>
+<b class="fc"><i>267</i>&nbsp;                System.out.println(&quot;FAILED the JAVA URL VALIDATION: &quot; + url);</b>
+<b class="fc"><i>268</i>&nbsp;                failRate++;</b>
+<b class="fc"><i>269</i>&nbsp;            }</b>
+<i>270</i>&nbsp;
+<i>271</i>&nbsp;            //limit number of urls for dev testing
+<b class="fc"><i>272</i>&nbsp;            if (passRate + failRate &gt;= maxTests) break;</b>
+<b class="fc"><i>273</i>&nbsp;        }</b>
+<b class="fc"><i>274</i>&nbsp;        System.out.println(&quot;Passed &quot; + passRate + &quot;/&quot; + maxTests + &quot; test(s).&quot;);</b>
+<b class="fc"><i>275</i>&nbsp;        System.out.println(&quot;Failed &quot; + failRate + &quot;/&quot; + maxTests + &quot; test(s).&quot;);</b>
+<b class="fc"><i>276</i>&nbsp;        return failRate;</b>
+<i>277</i>&nbsp;    }
+<i>278</i>&nbsp;
+<i>279</i>&nbsp;
+<i>280</i>&nbsp;    public UrlValidatorTest(String testName) {
+<b class="fc"><i>281</i>&nbsp;        super(testName);</b>
+<b class="fc"><i>282</i>&nbsp;    }</b>
+<i>283</i>&nbsp;
+<i>284</i>&nbsp;    //Tests Known Valid URLS, using a text file
+<i>285</i>&nbsp;    public void testKnownValid()
+<i>286</i>&nbsp;    {
+<b class="fc"><i>287</i>&nbsp;       HelpFunctions h = new HelpFunctions();</b>
+<b class="fc"><i>288</i>&nbsp;        int failRate=0, passRate=0, maxTests=0;</b>
 <i>289</i>&nbsp;
-<b class="fc"><i>290</i>&nbsp;      return (!maxIndex);</b>
-<b class="fc"><i>291</i>&nbsp;   }</b>
+<b class="fc"><i>290</i>&nbsp;        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);</b>
+<b class="fc"><i>291</i>&nbsp;        String fileName = &quot;src&quot; + File.separator + &quot;UrlsToVerify.txt&quot;;</b>
 <i>292</i>&nbsp;
-<b class="fc"><i>293</i>&nbsp;   private String testPartsIndextoString() {</b>
-<i>294</i>&nbsp;      StringBuffer carryMsg = new StringBuffer(&quot;{&quot;);
-<i>295</i>&nbsp;      for (int testPartsIndexIndex = 0; testPartsIndexIndex &lt; testPartsIndex.length; ++testPartsIndexIndex) {
-<b class="fc"><i>296</i>&nbsp;         carryMsg.append(testPartsIndex[testPartsIndexIndex]);</b>
-<b class="fc"><i>297</i>&nbsp;         if (testPartsIndexIndex &lt; testPartsIndex.length - 1) {</b>
-<i>298</i>&nbsp;            carryMsg.append(&#39;,&#39;);
-<i>299</i>&nbsp;         } else {
-<b class="fc"><i>300</i>&nbsp;            carryMsg.append(&#39;}&#39;);</b>
-<i>301</i>&nbsp;         }
-<b class="fc"><i>302</i>&nbsp;      }</b>
-<i>303</i>&nbsp;      return carryMsg.toString();
-<b class="nc"><i>304</i>&nbsp;</b>
-<b class="nc"><i>305</i>&nbsp;   }</b>
-<b class="nc"><i>306</i>&nbsp;</b>
-<b class="nc"><i>307</i>&nbsp;   public void testValidateUrl() {</b>
-<i>308</i>&nbsp;      assertTrue(true);
-<b class="nc"><i>309</i>&nbsp;   }</b>
-<i>310</i>&nbsp;   
-<i>311</i>&nbsp;   public void testBug1(){
-<i>312</i>&nbsp;	  //http://www.google.com:80/test1?action=view true
-<b class="fc"><i>313</i>&nbsp;	   UrlValidator validator = new UrlValidator();</b>
-<b class="fc"><i>314</i>&nbsp;	   validator.isValid(&quot;http://www.google.com:80/test1?action=view true&quot;);</b>
-<b class="fc"><i>315</i>&nbsp;	   </b>
-<i>316</i>&nbsp;   }
-<i>317</i>&nbsp;   
-<b class="fc"><i>318</i>&nbsp;   public void testBug2(){</b>
-<i>319</i>&nbsp;	   UrlValidator validator = new UrlValidator();
-<b class="fc"><i>320</i>&nbsp;	   validator.isValid(&quot;http://0.0.0.0:80/test1?action=view true&quot;);</b>
-<b class="fc"><i>321</i>&nbsp;   }</b>
+<b class="fc"><i>293</i>&nbsp;        System.out.println(&quot;--------------------------- TESTING KNOWN GOOD URLS ------------------------------- &quot;);</b>
+<i>294</i>&nbsp;        //read in Valid urls
+<i>295</i>&nbsp;        try {
+<b class="fc"><i>296</i>&nbsp;            List&lt;String&gt; urls = h.readLines(fileName);</b>
+<b class="fc"><i>297</i>&nbsp;            maxTests = 1000;	//change to urls.length for full testing</b>
+<i>298</i>&nbsp;
+<i>299</i>&nbsp;            //pass the lines to isValid parts
+<b class="fc"><i>300</i>&nbsp;            int fails = reporter(urls, passRate, failRate, maxTests );</b>
+<i>301</i>&nbsp;
+<b class="fc"><i>302</i>&nbsp;            assertEquals(0, fails);  // Makes sure</b>
+<i>303</i>&nbsp;
+<b class="nc"><i>304</i>&nbsp;        } catch(IOException ex){</b>
+<b class="nc"><i>305</i>&nbsp;            System.out.println (ex.toString());</b>
+<b class="nc"><i>306</i>&nbsp;            System.out.println(&quot;Could not find file &quot; + fileName);</b>
+<b class="nc"><i>307</i>&nbsp;        }</b>
+<i>308</i>&nbsp;
+<b class="nc"><i>309</i>&nbsp;    }</b>
+<i>310</i>&nbsp;
+<i>311</i>&nbsp;    public void testKnownRandomValid()
+<i>312</i>&nbsp;    {
+<b class="fc"><i>313</i>&nbsp;       HelpFunctions h = new HelpFunctions();</b>
+<b class="fc"><i>314</i>&nbsp;        int failRate=0, passRate=0, maxTests=0;</b>
+<b class="fc"><i>315</i>&nbsp;        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES );</b>
+<i>316</i>&nbsp;
+<i>317</i>&nbsp;
+<b class="fc"><i>318</i>&nbsp;        System.out.println(&quot;--------------------------- TESTING GOOD RANDOM URLS ------------------------------- &quot;);</b>
+<i>319</i>&nbsp;        //read in Valid urls
+<b class="fc"><i>320</i>&nbsp;        maxTests = 1000;	//change to urls.length for full testing</b>
+<b class="fc"><i>321</i>&nbsp;        List&lt;String&gt; urls = makeValidURL(maxTests);</b>
 <i>322</i>&nbsp;
-<i>323</i>&nbsp;   /**
-<b class="fc"><i>324</i>&nbsp;    * Only used to debug the unit tests.</b>
-<i>325</i>&nbsp;    * @param argv
-<b class="fc"><i>326</i>&nbsp;    */</b>
-<i>327</i>&nbsp;   public static void main(String[] argv) {
-<b class="nc"><i>328</i>&nbsp;</b>
-<i>329</i>&nbsp;      UrlValidatorTest fct = new UrlValidatorTest(&quot;url test&quot;);
-<i>330</i>&nbsp;      fct.setUp();
-<b class="fc"><i>331</i>&nbsp;      fct.testIsValid();</b>
-<b class="fc"><i>332</i>&nbsp;      fct.testIsValidScheme();</b>
-<b class="fc"><i>333</i>&nbsp;   }</b>
-<b class="fc"><i>334</i>&nbsp;   //-------------------- Test data for creating a composite URL</b>
-<i>335</i>&nbsp;   /**
-<b class="fc"><i>336</i>&nbsp;    * The data given below approximates the 4 parts of a URL</b>
-<i>337</i>&nbsp;    * &lt;scheme&gt;://&lt;authority&gt;&lt;path&gt;?&lt;query&gt; except that the port number
-<b class="fc"><i>338</i>&nbsp;    * is broken out of authority to increase the number of permutations.</b>
-<b class="fc"><i>339</i>&nbsp;    * A complete URL is composed of a scheme+authority+port+path+query,</b>
-<i>340</i>&nbsp;    * all of which must be individually valid for the entire URL to be considered
-<i>341</i>&nbsp;    * valid.
-<i>342</i>&nbsp;    */
-<b class="fc"><i>343</i>&nbsp;   ResultPair[] testUrlScheme = {new ResultPair(&quot;http://&quot;, true),</b>
-<i>344</i>&nbsp;                               new ResultPair(&quot;ftp://&quot;, true),
-<i>345</i>&nbsp;                               new ResultPair(&quot;h3t://&quot;, true),
-<i>346</i>&nbsp;                               new ResultPair(&quot;3ht://&quot;, false),
-<i>347</i>&nbsp;                               new ResultPair(&quot;http:/&quot;, false),
-<i>348</i>&nbsp;                               new ResultPair(&quot;http:&quot;, false),
-<b class="fc"><i>349</i>&nbsp;                               new ResultPair(&quot;http/&quot;, false),</b>
-<i>350</i>&nbsp;                               new ResultPair(&quot;://&quot;, false),
-<b class="fc"><i>351</i>&nbsp;                               new ResultPair(&quot;&quot;, true)};</b>
-<b class="fc"><i>352</i>&nbsp;</b>
-<b class="fc"><i>353</i>&nbsp;   ResultPair[] testUrlAuthority = {new ResultPair(&quot;www.google.com&quot;, true),</b>
-<i>354</i>&nbsp;                                  new ResultPair(&quot;go.com&quot;, true),
-<b class="nc"><i>355</i>&nbsp;                                  new ResultPair(&quot;go.au&quot;, true),</b>
-<b class="nc"><i>356</i>&nbsp;                                  new ResultPair(&quot;0.0.0.0&quot;, true),</b>
-<b class="nc"><i>357</i>&nbsp;                                  new ResultPair(&quot;255.255.255.255&quot;, true),</b>
-<b class="nc"><i>358</i>&nbsp;                                  new ResultPair(&quot;256.256.256.256&quot;, false),</b>
-<b class="nc"><i>359</i>&nbsp;                                  new ResultPair(&quot;255.com&quot;, true),</b>
-<i>360</i>&nbsp;                                  new ResultPair(&quot;1.2.3.4.5&quot;, false),
-<b class="nc"><i>361</i>&nbsp;                                  new ResultPair(&quot;1.2.3.4.&quot;, false),</b>
-<i>362</i>&nbsp;                                  new ResultPair(&quot;1.2.3&quot;, false),
-<i>363</i>&nbsp;                                  new ResultPair(&quot;.1.2.3.4&quot;, false),
-<i>364</i>&nbsp;                                  new ResultPair(&quot;go.a&quot;, false),
-<b class="nc"><i>365</i>&nbsp;                                  new ResultPair(&quot;go.a1a&quot;, false),</b>
-<b class="nc"><i>366</i>&nbsp;                                  new ResultPair(&quot;go.cc&quot;, true),</b>
-<b class="fc"><i>367</i>&nbsp;                                  new ResultPair(&quot;go.1aa&quot;, false),</b>
-<i>368</i>&nbsp;                                  new ResultPair(&quot;aaa.&quot;, false),
-<b class="fc"><i>369</i>&nbsp;                                  new ResultPair(&quot;.aaa&quot;, false),</b>
-<b class="fc"><i>370</i>&nbsp;                                  new ResultPair(&quot;aaa&quot;, false),</b>
-<i>371</i>&nbsp;                                  new ResultPair(&quot;&quot;, false)
-<b class="fc"><i>372</i>&nbsp;   };</b>
-<i>373</i>&nbsp;   ResultPair[] testUrlPort = {new ResultPair(&quot;:80&quot;, true),
-<i>374</i>&nbsp;                             new ResultPair(&quot;:65535&quot;, true),
-<b class="fc"><i>375</i>&nbsp;                             new ResultPair(&quot;:0&quot;, true),</b>
-<b class="fc"><i>376</i>&nbsp;                             new ResultPair(&quot;&quot;, true),</b>
-<b class="fc"><i>377</i>&nbsp;                             new ResultPair(&quot;:-1&quot;, false),</b>
-<b class="fc"><i>378</i>&nbsp;                             new ResultPair(&quot;:65636&quot;, true),</b>
-<i>379</i>&nbsp;                             new ResultPair(&quot;:65a&quot;, false)
-<b class="fc"><i>380</i>&nbsp;   };</b>
-<i>381</i>&nbsp;   ResultPair[] testPath = {new ResultPair(&quot;/test1&quot;, true),
-<i>382</i>&nbsp;                          new ResultPair(&quot;/t123&quot;, true),
-<i>383</i>&nbsp;                          new ResultPair(&quot;/$23&quot;, true),
-<b class="fc"><i>384</i>&nbsp;                          new ResultPair(&quot;/..&quot;, false),</b>
-<i>385</i>&nbsp;                          new ResultPair(&quot;/../&quot;, false),
-<b class="fc"><i>386</i>&nbsp;                          new ResultPair(&quot;/test1/&quot;, true),</b>
-<i>387</i>&nbsp;                          new ResultPair(&quot;&quot;, true),
-<b class="fc"><i>388</i>&nbsp;                          new ResultPair(&quot;/test1/file&quot;, true),</b>
-<b class="fc"><i>389</i>&nbsp;                          new ResultPair(&quot;/..//file&quot;, false),</b>
-<b class="fc"><i>390</i>&nbsp;                          new ResultPair(&quot;/test1//file&quot;, false)</b>
-<i>391</i>&nbsp;   };
-<b class="nc"><i>392</i>&nbsp;   //Test allow2slash, noFragment</b>
-<b class="nc"><i>393</i>&nbsp;   ResultPair[] testUrlPathOptions = {new ResultPair(&quot;/test1&quot;, true),</b>
-<i>394</i>&nbsp;                                    new ResultPair(&quot;/t123&quot;, true),
-<i>395</i>&nbsp;                                    new ResultPair(&quot;/$23&quot;, true),
-<b class="fc"><i>396</i>&nbsp;                                    new ResultPair(&quot;/..&quot;, false),</b>
-<b class="fc"><i>397</i>&nbsp;                                    new ResultPair(&quot;/../&quot;, false),</b>
-<b class="fc"><i>398</i>&nbsp;                                    new ResultPair(&quot;/test1/&quot;, true),</b>
-<i>399</i>&nbsp;                                    new ResultPair(&quot;/#&quot;, false),
-<i>400</i>&nbsp;                                    new ResultPair(&quot;&quot;, true),
-<i>401</i>&nbsp;                                    new ResultPair(&quot;/test1/file&quot;, true),
-<i>402</i>&nbsp;                                    new ResultPair(&quot;/t123/file&quot;, true),
-<i>403</i>&nbsp;                                    new ResultPair(&quot;/$23/file&quot;, true),
-<i>404</i>&nbsp;                                    new ResultPair(&quot;/../file&quot;, false),
-<b class="fc"><i>405</i>&nbsp;                                    new ResultPair(&quot;/..//file&quot;, false),</b>
-<b class="fc"><i>406</i>&nbsp;                                    new ResultPair(&quot;/test1//file&quot;, true),</b>
-<b class="fc"><i>407</i>&nbsp;                                    new ResultPair(&quot;/#/file&quot;, false)</b>
-<b class="fc"><i>408</i>&nbsp;   };</b>
-<b class="fc"><i>409</i>&nbsp;</b>
-<i>410</i>&nbsp;   ResultPair[] testUrlQuery = {new ResultPair(&quot;?action=view&quot;, true),
-<b class="fc"><i>411</i>&nbsp;                              new ResultPair(&quot;?action=edit&amp;mode=up&quot;, true),</b>
-<i>412</i>&nbsp;                              new ResultPair(&quot;&quot;, true)
-<i>413</i>&nbsp;   };
-<b class="fc"><i>414</i>&nbsp;</b>
-<b class="fc"><i>415</i>&nbsp;   Object[] testUrlParts = {testUrlScheme, testUrlAuthority, testUrlPort, testPath, testUrlQuery};</b>
-<i>416</i>&nbsp;   Object[] testUrlPartsOptions = {testUrlScheme, testUrlAuthority, testUrlPort, testUrlPathOptions, testUrlQuery};
-<b class="fc"><i>417</i>&nbsp;   int[] testPartsIndex = {0, 0, 0, 0, 0};</b>
+<i>323</i>&nbsp;        //pass the lines to isValid parts
+<b class="fc"><i>324</i>&nbsp;        int fails = reporter(urls, passRate, failRate, maxTests );</b>
+<i>325</i>&nbsp;
+<b class="fc"><i>326</i>&nbsp;        assertEquals(0, fails);  // Makes sure</b>
+<i>327</i>&nbsp;
+<b class="nc"><i>328</i>&nbsp;    }</b>
+<i>329</i>&nbsp;
+<i>330</i>&nbsp;    public void testKnownRandomValid_forQuery() {
+<b class="fc"><i>331</i>&nbsp;        HelpFunctions h = new HelpFunctions();</b>
+<b class="fc"><i>332</i>&nbsp;        int failRate = 0, passRate = 0, maxTests = 0;</b>
+<b class="fc"><i>333</i>&nbsp;        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);</b>
+<b class="fc"><i>334</i>&nbsp;        DomainValidator.getInstance(true); // set this to true for</b>
+<i>335</i>&nbsp;
+<b class="fc"><i>336</i>&nbsp;        System.out.println(&quot;--------------------------- TESTING GOOD RANDOM URLS FOR QUERY FUNCTION------------------------------- &quot;);</b>
+<i>337</i>&nbsp;        //read in Valid urls
+<b class="fc"><i>338</i>&nbsp;        maxTests = 1000;    //change to urls.length for full testing</b>
+<b class="fc"><i>339</i>&nbsp;        List&lt;String&gt; urls = makeValidURL(maxTests);</b>
+<i>340</i>&nbsp;
+<i>341</i>&nbsp;        //pass the lines to isValid parts
+<i>342</i>&nbsp;        //int fails = reporter(urls, passRate, failRate, maxTests );
+<b class="fc"><i>343</i>&nbsp;        for (String url : urls) {</b>
+<i>344</i>&nbsp;
+<i>345</i>&nbsp;            //USE JAVAS OWN URL breakapart function
+<i>346</i>&nbsp;            //To tell us which part is bad
+<i>347</i>&nbsp;            URL jurl;
+<i>348</i>&nbsp;            try {
+<b class="fc"><i>349</i>&nbsp;                jurl = new URL(url);</b>
+<i>350</i>&nbsp;
+<b class="fc"><i>351</i>&nbsp;                if (urlVal.isValidQuery(url)) {</b>
+<b class="nc"><i>352</i>&nbsp;                    passRate++;</b>
+<b class="nc"><i>353</i>&nbsp;                    System.out.println(&quot;Passed UrlValidator: &quot; + url);</b>
+<i>354</i>&nbsp;                } else {
+<b class="fc"><i>355</i>&nbsp;                    failRate++;</b>
+<b class="fc"><i>356</i>&nbsp;                    System.out.println(&quot;--Failed UrlValidator: &quot; + url);</b>
+<b class="fc"><i>357</i>&nbsp;                    System.out.print(&quot;--Java Says: &quot;);</b>
+<b class="fc"><i>358</i>&nbsp;                    if (urlVal.isValidQuery(jurl.getQuery())) {</b>
+<b class="fc"><i>359</i>&nbsp;                        System.out.print(&quot;Query: OK, &quot;);</b>
+<i>360</i>&nbsp;                    } else {
+<b class="nc"><i>361</i>&nbsp;                        System.out.print(&quot;Query: FAIL &quot; + jurl.getQuery() + &quot;, &quot;);</b>
+<i>362</i>&nbsp;                    }
+<i>363</i>&nbsp;
+<i>364</i>&nbsp;                }
+<b class="nc"><i>365</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>366</i>&nbsp;                System.out.println(&quot;FAILED the JAVA URL VALIDATION&quot; + url);</b>
+<b class="fc"><i>367</i>&nbsp;            }</b>
+<i>368</i>&nbsp;
+<b class="fc"><i>369</i>&nbsp;        }</b>
+<b class="fc"><i>370</i>&nbsp;        assertEquals(0, failRate);  // Makes sure</b>
+<i>371</i>&nbsp;
+<b class="nc"><i>372</i>&nbsp;    }</b>
+<i>373</i>&nbsp;
+<i>374</i>&nbsp;    public void testKnownRandomValid_forTLD() {
+<b class="fc"><i>375</i>&nbsp;        HelpFunctions h = new HelpFunctions();</b>
+<b class="fc"><i>376</i>&nbsp;        int failRate = 0, passRate = 0, maxTests = 0;</b>
+<b class="fc"><i>377</i>&nbsp;        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);</b>
+<b class="fc"><i>378</i>&nbsp;        DomainValidator domainValidator = DomainValidator.getInstance(true);</b>
+<i>379</i>&nbsp;
+<b class="fc"><i>380</i>&nbsp;        System.out.println(&quot;--------------------------- TESTING GOOD RANDOM URLS FOR DOMAIN/ TLD FUNCTION------------------------------- &quot;);</b>
+<i>381</i>&nbsp;
+<i>382</i>&nbsp;        //read in Valid TLDs
+<i>383</i>&nbsp;
+<b class="fc"><i>384</i>&nbsp;        List&lt;String&gt; urls = h.makeValidTLDList();</b>
+<i>385</i>&nbsp;
+<b class="fc"><i>386</i>&nbsp;        for (String url : urls) {</b>
+<i>387</i>&nbsp;
+<b class="fc"><i>388</i>&nbsp;            if (domainValidator.isValidTld(&quot;.&quot; + url)) {</b>
+<b class="fc"><i>389</i>&nbsp;                passRate++;</b>
+<b class="fc"><i>390</i>&nbsp;                System.out.println(&quot;Passed UrlValidator: &quot; + url);</b>
+<i>391</i>&nbsp;            } else {
+<b class="nc"><i>392</i>&nbsp;                failRate++;</b>
+<b class="nc"><i>393</i>&nbsp;                System.out.println(&quot;--Failed UrlValidator: &quot; + url);</b>
+<i>394</i>&nbsp;            }
+<i>395</i>&nbsp;
+<b class="fc"><i>396</i>&nbsp;        }</b>
+<b class="fc"><i>397</i>&nbsp;        assertEquals(0, failRate);  // Makes sure</b>
+<b class="fc"><i>398</i>&nbsp;    }</b>
+<i>399</i>&nbsp;
+<i>400</i>&nbsp;
+<i>401</i>&nbsp;
+<i>402</i>&nbsp;    //Takes input from known good URLs, changes one part of the URL, and tests
+<i>403</i>&nbsp;    public void testKnownBadAuthority() {
+<i>404</i>&nbsp;
+<b class="fc"><i>405</i>&nbsp;        HelpFunctions h = new HelpFunctions();</b>
+<b class="fc"><i>406</i>&nbsp;        int failRate = 0, passRate = 0, maxTests = 0;</b>
+<b class="fc"><i>407</i>&nbsp;        List&lt;String&gt; failedUrls = new ArrayList&lt;String&gt;();</b>
+<b class="fc"><i>408</i>&nbsp;        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.ALLOW_LOCAL_URLS);</b>
+<b class="fc"><i>409</i>&nbsp;        String fileName = &quot;src&quot; + File.separator + &quot;UrlsToVerify.txt&quot;;</b>
+<i>410</i>&nbsp;
+<b class="fc"><i>411</i>&nbsp;        System.out.println(&quot;---------------------------TESTING BAD AUTHORITIES ------------------------------- &quot;);</b>
+<i>412</i>&nbsp;        //read in Valid urls
+<i>413</i>&nbsp;        try {
+<b class="fc"><i>414</i>&nbsp;            List&lt;String&gt; urls = h.readLines(fileName);</b>
+<b class="fc"><i>415</i>&nbsp;            maxTests = 1000;    //change to urls.length for full testing</b>
+<i>416</i>&nbsp;            //change urlPart to either - protocol/host/port/path/query urlPart.protocol.get()
+<b class="fc"><i>417</i>&nbsp;            failedUrls = makeInvalidPart(urls, partName.authority);</b>
 <i>418</i>&nbsp;
-<i>419</i>&nbsp;   //---------------- Test data for individual url parts ----------------
-<i>420</i>&nbsp;   ResultPair[] testScheme = {new ResultPair(&quot;http&quot;, true),
-<i>421</i>&nbsp;                            new ResultPair(&quot;ftp&quot;, false),
-<b class="fc"><i>422</i>&nbsp;                            new ResultPair(&quot;httpd&quot;, false),</b>
-<i>423</i>&nbsp;                            new ResultPair(&quot;telnet&quot;, false)};
-<b class="fc"><i>424</i>&nbsp;</b>
+<i>419</i>&nbsp;            //pass altered (bad) urls to isValid for testing
+<i>420</i>&nbsp;            //pass the lines to isValid parts
+<i>421</i>&nbsp;            //TODO add section here
+<b class="fc"><i>422</i>&nbsp;            int fails = reporter(failedUrls, passRate, failRate, maxTests);</b>
+<i>423</i>&nbsp;
+<b class="fc"><i>424</i>&nbsp;            assertEquals(maxTests, fails);  // Makes sure</b>
 <i>425</i>&nbsp;
-<b class="nc"><i>426</i>&nbsp;}</b>
+<b class="nc"><i>426</i>&nbsp;        } catch (IOException ex) {</b>
+<b class="nc"><i>427</i>&nbsp;            System.out.println(ex.toString());</b>
+<b class="nc"><i>428</i>&nbsp;            System.out.println(&quot;Could not find file &quot; + fileName);</b>
+<b class="nc"><i>429</i>&nbsp;            failRate ++;</b>
+<b class="nc"><i>430</i>&nbsp;        }</b>
+<i>431</i>&nbsp;
+<b class="nc"><i>432</i>&nbsp;    }</b>
+<i>433</i>&nbsp;    public void testKnownBadHosts() {
+<b class="fc"><i>434</i>&nbsp;        HelpFunctions h = new HelpFunctions();</b>
+<b class="fc"><i>435</i>&nbsp;        int failRate = 0, passRate = 0, maxTests = 0;</b>
+<b class="fc"><i>436</i>&nbsp;        List&lt;String&gt; failedUrls = new ArrayList&lt;String&gt;();</b>
+<b class="fc"><i>437</i>&nbsp;        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);</b>
+<b class="fc"><i>438</i>&nbsp;        String fileName = &quot;src&quot; + File.separator + &quot;UrlsToVerify.txt&quot;;</b>
+<i>439</i>&nbsp;
+<b class="fc"><i>440</i>&nbsp;        System.out.println(&quot;---------------------------TESTING BAD HOSTS ------------------------------- &quot;);</b>
+<i>441</i>&nbsp;        //read in Valid urls
+<i>442</i>&nbsp;        try {
+<b class="fc"><i>443</i>&nbsp;            List&lt;String&gt; urls = h.readLines(fileName);</b>
+<b class="fc"><i>444</i>&nbsp;            maxTests = 1000;    //change to urls.length for full testing</b>
+<i>445</i>&nbsp;            //change urlPart to either - protocol/host/port/path/query urlPart.protocol.get()
+<b class="fc"><i>446</i>&nbsp;            failedUrls = makeInvalidPart(urls, partName.host);</b>
+<i>447</i>&nbsp;
+<i>448</i>&nbsp;            //pass altered (bad) urls to isValid for testing
+<i>449</i>&nbsp;            //pass the lines to isValid parts
+<i>450</i>&nbsp;            //TODO add section here
+<b class="fc"><i>451</i>&nbsp;            int fails = reporter(failedUrls, passRate, failRate, maxTests);</b>
+<i>452</i>&nbsp;
+<b class="fc"><i>453</i>&nbsp;            assertEquals(maxTests, fails);  // Makes sure</b>
+<i>454</i>&nbsp;
+<b class="nc"><i>455</i>&nbsp;        } catch (IOException ex) {</b>
+<b class="nc"><i>456</i>&nbsp;            System.out.println(ex.toString());</b>
+<b class="nc"><i>457</i>&nbsp;            System.out.println(&quot;Could not find file &quot; + fileName);</b>
+<b class="nc"><i>458</i>&nbsp;            failRate ++;</b>
+<b class="fc"><i>459</i>&nbsp;        }</b>
+<i>460</i>&nbsp;
+<b class="fc"><i>461</i>&nbsp;    }</b>
+<i>462</i>&nbsp;    public void testKnownBadQuery() {
+<b class="fc"><i>463</i>&nbsp;        HelpFunctions h = new HelpFunctions();</b>
+<b class="fc"><i>464</i>&nbsp;        int failRate = 0, passRate = 0, maxTests = 0;</b>
+<b class="fc"><i>465</i>&nbsp;        List&lt;String&gt; failedUrls = new ArrayList&lt;String&gt;();</b>
+<b class="fc"><i>466</i>&nbsp;        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);</b>
+<b class="fc"><i>467</i>&nbsp;        String fileName = &quot;src&quot; + File.separator + &quot;UrlsToVerify.txt&quot;;</b>
+<i>468</i>&nbsp;
+<b class="fc"><i>469</i>&nbsp;        System.out.println(&quot;---------------------------TESTING BAD Queries ------------------------------- &quot;);</b>
+<i>470</i>&nbsp;        //read in Valid urls
+<i>471</i>&nbsp;        try {
+<b class="fc"><i>472</i>&nbsp;            List&lt;String&gt; urls = h.readLines(fileName);</b>
+<b class="fc"><i>473</i>&nbsp;            maxTests = 1000;    //change to urls.length for full testing</b>
+<i>474</i>&nbsp;            //change urlPart to either - protocol/host/port/path/query urlPart.protocol.get()
+<b class="fc"><i>475</i>&nbsp;            failedUrls = makeInvalidPart(urls, partName.query);</b>
+<i>476</i>&nbsp;
+<i>477</i>&nbsp;            //pass altered (bad) urls to isValid for testing
+<i>478</i>&nbsp;            //pass the lines to isValid parts
+<i>479</i>&nbsp;            //TODO add section here
+<b class="fc"><i>480</i>&nbsp;            int fails = reporter(failedUrls, passRate, failRate, maxTests);</b>
+<i>481</i>&nbsp;
+<b class="fc"><i>482</i>&nbsp;            assertEquals(maxTests, fails);  // Makes sure</b>
+<i>483</i>&nbsp;
+<b class="nc"><i>484</i>&nbsp;        } catch (IOException ex) {</b>
+<b class="nc"><i>485</i>&nbsp;            System.out.println(ex.toString());</b>
+<b class="nc"><i>486</i>&nbsp;            System.out.println(&quot;Could not find file &quot; + fileName);</b>
+<b class="nc"><i>487</i>&nbsp;            failRate ++;</b>
+<b class="fc"><i>488</i>&nbsp;        }</b>
+<i>489</i>&nbsp;
+<b class="fc"><i>490</i>&nbsp;    }</b>
+<i>491</i>&nbsp;    public void testKnownBadPaths() {
+<b class="fc"><i>492</i>&nbsp;        HelpFunctions h = new HelpFunctions();</b>
+<b class="fc"><i>493</i>&nbsp;        int failRate = 0, passRate = 0, maxTests = 0;</b>
+<b class="fc"><i>494</i>&nbsp;        List&lt;String&gt; failedUrls = new ArrayList&lt;String&gt;();</b>
+<b class="fc"><i>495</i>&nbsp;        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);</b>
+<b class="fc"><i>496</i>&nbsp;        String fileName = &quot;src&quot; + File.separator + &quot;UrlsToVerify.txt&quot;;</b>
+<i>497</i>&nbsp;
+<b class="fc"><i>498</i>&nbsp;        System.out.println(&quot;---------------------------TESTING BAD paths ------------------------------- &quot;);</b>
+<i>499</i>&nbsp;        //read in Valid urls
+<i>500</i>&nbsp;        try {
+<b class="fc"><i>501</i>&nbsp;            List&lt;String&gt; urls = h.readLines(fileName);</b>
+<b class="fc"><i>502</i>&nbsp;            maxTests = 1000;    //change to urls.length for full testing</b>
+<i>503</i>&nbsp;            //change urlPart to either - protocol/host/port/path/query urlPart.protocol.get()
+<b class="fc"><i>504</i>&nbsp;            failedUrls = makeInvalidPart(urls, partName.path);</b>
+<i>505</i>&nbsp;
+<i>506</i>&nbsp;            //pass altered (bad) urls to isValid for testing
+<i>507</i>&nbsp;            //pass the lines to isValid parts
+<i>508</i>&nbsp;            //TODO add section here
+<b class="fc"><i>509</i>&nbsp;            int fails = reporter(failedUrls, passRate, failRate, maxTests);</b>
+<i>510</i>&nbsp;
+<b class="fc"><i>511</i>&nbsp;            assertEquals(maxTests, fails);  // Makes sure</b>
+<i>512</i>&nbsp;
+<b class="nc"><i>513</i>&nbsp;        } catch (IOException ex) {</b>
+<b class="nc"><i>514</i>&nbsp;            System.out.println(ex.toString());</b>
+<b class="nc"><i>515</i>&nbsp;            System.out.println(&quot;Could not find file &quot; + fileName);</b>
+<b class="nc"><i>516</i>&nbsp;            failRate ++;</b>
+<i>517</i>&nbsp;
+<b class="nc"><i>518</i>&nbsp;        }</b>
+<i>519</i>&nbsp;
+<b class="nc"><i>520</i>&nbsp;    }</b>
+<i>521</i>&nbsp;
+<i>522</i>&nbsp;    public void testThis(){
+<b class="fc"><i>523</i>&nbsp;       HelpFunctions h = new HelpFunctions();</b>
+<i>524</i>&nbsp;//        System.out.println(h.makeIP(10));
+<i>525</i>&nbsp;//        System.out.println(h.makePath(10));
+<i>526</i>&nbsp;//        System.out.println(h.makeQuery(10));
+<i>527</i>&nbsp;        //System.out.println(makeValidURL(10));
+<i>528</i>&nbsp;
+<b class="fc"><i>529</i>&nbsp;    }</b>
+<i>530</i>&nbsp;    
+<i>531</i>&nbsp;    public void testManual() {
+<b class="fc"><i>532</i>&nbsp;    	HelpFunctions h = new HelpFunctions();</b>
+<b class="fc"><i>533</i>&nbsp;    	int failRate=0, passRate=0, maxTests=0;</b>
+<b class="fc"><i>534</i>&nbsp;        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);</b>
+<b class="fc"><i>535</i>&nbsp;    	List&lt;String&gt; goodUrls = Arrays.asList(&quot;http://www.google.com&quot;,</b>
+<i>536</i>&nbsp;    									  	  &quot;ftp://143.243.34.342:80&quot;,
+<i>537</i>&nbsp;    										  &quot;http://www.microsoft.com/testing&quot;,
+<i>538</i>&nbsp;    										  &quot;http://www.amazon.com/s/ref=nb_sb_noss_2/177-1505020-6778424?url=search-alias%3Daps&amp;field-keywords=books&quot;);
+<b class="fc"><i>539</i>&nbsp;    	List&lt;String&gt; badUrls = Arrays.asList(&quot;httx://www.google.com&quot;,</b>
+<i>540</i>&nbsp;    										 &quot;ftp://www.testing.zxcv/&quot;,
+<i>541</i>&nbsp;    										 &quot;http://zxc.123/testing/stuff&quot;,
+<i>542</i>&nbsp;    										 &quot;ftp://345.23.45.234:abc&quot;,
+<i>543</i>&nbsp;                &quot;ftp://localhost/test.html&quot;);
+<i>544</i>&nbsp;    	
+<b class="fc"><i>545</i>&nbsp;        System.out.println(&quot;---------------------------MANUAL TESTING OF GOOD URLS ------------------------------- &quot;);</b>
+<b class="fc"><i>546</i>&nbsp;    	int fails = reporter(goodUrls, passRate, failRate, goodUrls.size());</b>
+<i>547</i>&nbsp;    	
+<b class="fc"><i>548</i>&nbsp;        System.out.println(&quot;---------------------------MANUAL TESTING OF BAD URLS ------------------------------- &quot;);</b>
+<b class="fc"><i>549</i>&nbsp;    	fails = reporter(badUrls, passRate, failRate, badUrls.size());</b>
+<i>550</i>&nbsp;
+<b class="fc"><i>551</i>&nbsp;    }</b>
+<i>552</i>&nbsp;    
+<i>553</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2016-03-14 17:08</div>
+    <div style="float:right;">generated on 2016-03-14 20:44</div>
 </div>
 </body>
 </html>

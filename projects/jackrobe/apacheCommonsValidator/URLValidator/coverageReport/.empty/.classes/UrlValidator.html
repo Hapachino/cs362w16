@@ -58,10 +58,10 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    80.9%
+    82.7%
   </span>
   <span class="absValue">
-    (89/ 110)
+    (91/ 110)
   </span>
 </td>
 </tr>
@@ -221,15 +221,15 @@
 <i>147</i>&nbsp;
 <i>148</i>&nbsp;    private static final String PATH_REGEX = &quot;^(/[-\\w:@&amp;?=+,.!/~*&#39;%$_;\\(\\)]*)?$&quot;;
 <b class="fc"><i>149</i>&nbsp;    private static final Pattern PATH_PATTERN = Pattern.compile(PATH_REGEX);</b>
-<i>150</i>&nbsp;    //bug1 christia
+<i>150</i>&nbsp;    
 <i>151</i>&nbsp;    private static final String QUERY_REGEX = &quot;^(.*)$&quot;;
-<i>152</i>&nbsp;    //private static final String QUERY_REGEX = &quot;^(.)$&quot;;
+<i>152</i>&nbsp;    
 <b class="fc"><i>153</i>&nbsp;    private static final Pattern QUERY_PATTERN = Pattern.compile(QUERY_REGEX);</b>
 <i>154</i>&nbsp;
 <i>155</i>&nbsp;    private static final String LEGAL_ASCII_REGEX = &quot;^\\p{ASCII}+$&quot;;
 <b class="fc"><i>156</i>&nbsp;    private static final Pattern ASCII_PATTERN = Pattern.compile(LEGAL_ASCII_REGEX);</b>
 <i>157</i>&nbsp;
-<i>158</i>&nbsp;    private static final String PORT_REGEX = &quot;^:(\\d{1,5})$&quot;;
+<i>158</i>&nbsp;    private static final String PORT_REGEX = &quot;^:(\\d{1,3})$&quot;;
 <b class="fc"><i>159</i>&nbsp;    private static final Pattern PORT_PATTERN = Pattern.compile(PORT_REGEX);</b>
 <i>160</i>&nbsp;
 <i>161</i>&nbsp;    /**
@@ -386,7 +386,7 @@
 <i>312</i>&nbsp;        }
 <i>313</i>&nbsp;
 <b class="fc"><i>314</i>&nbsp;        if (!isValidQuery(urlMatcher.group(PARSE_URL_QUERY))) {</b>
-<b class="nc"><i>315</i>&nbsp;            return false;</b>
+<b class="fc"><i>315</i>&nbsp;            return false;</b>
 <i>316</i>&nbsp;        }
 <i>317</i>&nbsp;
 <b class="fc"><i>318</i>&nbsp;        if (!isValidFragment(urlMatcher.group(PARSE_URL_FRAGMENT))) {</b>
@@ -465,7 +465,7 @@
 <b class="fc"><i>391</i>&nbsp;        String port = authorityMatcher.group(PARSE_AUTHORITY_PORT);</b>
 <b class="fc"><i>392</i>&nbsp;        if (port != null) {</b>
 <b class="fc"><i>393</i>&nbsp;            if (!PORT_PATTERN.matcher(port).matches()) {</b>
-<b class="nc"><i>394</i>&nbsp;                return false;</b>
+<b class="fc"><i>394</i>&nbsp;                return false;</b>
 <i>395</i>&nbsp;            }
 <i>396</i>&nbsp;        }
 <i>397</i>&nbsp;
@@ -516,8 +516,8 @@
 <b class="fc"><i>442</i>&nbsp;        if (query == null) {</b>
 <b class="fc"><i>443</i>&nbsp;            return true;</b>
 <i>444</i>&nbsp;        }
-<i>445</i>&nbsp;
-<b class="fc"><i>446</i>&nbsp;        return QUERY_PATTERN.matcher(query).matches();</b>
+<i>445</i>&nbsp;        
+<b class="fc"><i>446</i>&nbsp;        return !QUERY_PATTERN.matcher(query).matches();</b>
 <i>447</i>&nbsp;    }
 <i>448</i>&nbsp;
 <i>449</i>&nbsp;    /**
@@ -581,7 +581,7 @@
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2016-03-14 17:08</div>
+    <div style="float:right;">generated on 2016-03-14 20:44</div>
 </div>
 </body>
 </html>

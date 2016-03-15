@@ -210,7 +210,7 @@
 <b class="fc"><i>136</i>&nbsp;        if (groups != null &amp;&amp; groups.length &gt; 0) {</b>
 <b class="fc"><i>137</i>&nbsp;            return isValidTld(groups[0]);</b>
 <b class="fc"><i>138</i>&nbsp;        } else if(allowLocal) {</b>
-<b class="nc"><i>139</i>&nbsp;            if (hostnameRegex.isValid(domain)) {</b>
+<b class="nc"><i>139</i>&nbsp;            if (!hostnameRegex.isValid(domain)) {</b>
 <b class="nc"><i>140</i>&nbsp;               return true;</b>
 <i>141</i>&nbsp;            }
 <i>142</i>&nbsp;        }
@@ -447,7 +447,7 @@
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2016-03-14 17:08</div>
+    <div style="float:right;">generated on 2016-03-14 20:44</div>
 </div>
 </body>
 </html>

@@ -43,7 +43,13 @@ public class UrlValidatorTest extends TestCase {
     System.out.println(urlVal.isValid("http://www.amazon.com"));
   }
 
-  ResultPair[] schemeParts = {new ResultPair("http://", true)};
+  ResultPair[] schemeParts = {new ResultPair("http", true),
+		  new ResultPair("https", true),
+		  new ResultPair("_", false),
+//		  new ResultPair("ftp", true),
+		  new ResultPair("test", false),
+		  new ResultPair("", false)
+  };
 
   ResultPair[] authorityParts = { new ResultPair("www.google.com",true),
       new ResultPair("www.google.com:3000",true),
@@ -248,8 +254,9 @@ public class UrlValidatorTest extends TestCase {
                     new ResultPair("#ABCDEFGHIJKLMNOPQRSTUVWXYZ",false),
                     new ResultPair("#0123456789",false),
                     new ResultPair("#?-:@&=+,.!~*'%$_;()[]{}/|`~",false)};
+ 
 
-  public void testYourFirstPartition()
+  public void testURLRegex()
   {
     UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
     assertTrue(urlVal.isValid("http://www.amazon.com"));
@@ -267,26 +274,20 @@ public class UrlValidatorTest extends TestCase {
 
   public void testURLScheme()
   {
-    //Test allowing only "test" scheme
-    String[] schemes = {"test"};
-    UrlValidator urlValStrictScheme = new UrlValidator(schemes);
-    assertTrue(urlValStrictScheme.isValid("test://www.amazon.com"));
-    assertFalse(urlValStrictScheme.isValid("http://www.amazon.com"));
-
-    //Test default schemes
-    UrlValidator urlValDefaultScheme = new UrlValidator();
-    assertTrue(urlValDefaultScheme.isValid("http://www.amazon.com"));
-    assertTrue(urlValDefaultScheme.isValid("https://www.amazon.com"));
-    assertTrue(urlValDefaultScheme.isValid("ftp://www.amazon.com"));
-    assertFalse(urlValDefaultScheme.isValid("test://www.amazon.com"));
-
-    //Test allowing any scheme
-    UrlValidator urlValAnyScheme = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-    assertTrue(urlValAnyScheme.isValid("https://www.amazon.com"));
-    assertFalse(urlValAnyScheme.isValid("https:/www.amazon.com"));
-    assertFalse(urlValAnyScheme.isValid("https//www.amazon.com"));
-    assertFalse(urlValAnyScheme.isValid("httpswww.amazon.com"));
-    assertTrue(urlValAnyScheme.isValid("anything://www.amazon.com"));
+	boolean pass = true;
+	UrlValidator urlVal = new UrlValidator();
+	for(int i = 0; i < schemeParts.length; i++) {
+	  System.out.println(schemeParts[i].item);
+	  if(printFlag){
+	    if(schemeParts[i].valid != urlVal.isValidScheme(schemeParts[i].item)){
+	      pass = false;
+	      System.out.println("testIsValidScheme(): " + schemeParts[i].item + " Failed");
+	      System.out.println("expected: " + schemeParts[i].valid);
+	    }
+	  } else {
+	    assertEquals(schemeParts[i].valid, urlVal.isValidScheme(schemeParts[i].item));
+	  }
+	}
   }
 
   public void testIsValidAuthority() {
@@ -439,45 +440,38 @@ public class UrlValidatorTest extends TestCase {
   public void testAllPartsCombinations()
   {
     boolean pass = true;
-
+    UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
     for (int i = 0;i<schemeParts.length;i++)
     {
       for (int j = 0;j<authorityParts.length;j++)
       {
-        for (int k = 0;k<portParts.length;k++)
+        for (int l = 0;l<pathParts.length;l++)
         {
-          for (int l = 0;l<pathParts.length;l++)
+          for (int m = 0;m<queryParts.length;m++)
           {
-            for (int m = 0;m<queryParts.length;m++)
-            {
-              //Determine validity of the test URL
-              boolean result = schemeParts[i].valid &&
-                authorityParts[j].valid &&
-                portParts[k].valid &&
-                pathParts[l].valid &&
-                queryParts[m].valid;
+            //Determine validity of the test URL
+            boolean result = schemeParts[i].valid &&
+              authorityParts[j].valid &&
+              pathParts[l].valid &&
+              queryParts[m].valid;
 
-              //Build test URL
-              String testUrl = new StringBuilder(255).append(schemeParts[i].item)
-                .append(authorityParts[j].item)
-                .append(portParts[k].item)
-                .append(pathParts[l].item)
-                .append(queryParts[m].item)
-                .toString();
-
-              System.out.println(testUrl);
+            //Build test URL
+            String testUrl = new StringBuilder(255).append(schemeParts[i].item)
+              .append("://")
+              .append(authorityParts[j].item)
+              .append(pathParts[l].item)
+              .append(queryParts[m].item)
+              .toString();
 
               
-              if(printFlag){
-                if(urlVal.isValidPath(testUrl) != result){
-                  pass = false;
-                  System.out.println("testIsValid: " + testUrl + " Failed");
-                  System.out.println("expected: " + result);
-                }
-                else{
-                  assertEquals(result, urlVal.isValidPath(testUrl));
-                }
-              } 
+            if(printFlag){
+              if(urlVal.isValidPath(testUrl) != result){
+                pass = false;
+                System.out.println("testIsValid: " + testUrl + " Failed");
+                System.out.println("expected: " + result);
+              } else {
+                assertEquals(result, urlVal.isValidPath(testUrl));
+              }
             }
           }
         }

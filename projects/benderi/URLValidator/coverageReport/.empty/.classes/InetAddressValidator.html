@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: InetAddressValidator</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: InetAddressValidator (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InetAddressValidator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.2%
+  </span>
+  <span class="absValue">
+    (16/ 19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;/*
+<i>2</i>&nbsp; * Licensed to the Apache Software Foundation (ASF) under one or more
+<i>3</i>&nbsp; * contributor license agreements.  See the NOTICE file distributed with
+<i>4</i>&nbsp; * this work for additional information regarding copyright ownership.
+<i>5</i>&nbsp; * The ASF licenses this file to You under the Apache License, Version 2.0
+<i>6</i>&nbsp; * (the &quot;License&quot;); you may not use this file except in compliance with
+<i>7</i>&nbsp; * the License.  You may obtain a copy of the License at
+<i>8</i>&nbsp; *
+<i>9</i>&nbsp; *      http://www.apache.org/licenses/LICENSE-2.0
+<i>10</i>&nbsp; *
+<i>11</i>&nbsp; * Unless required by applicable law or agreed to in writing, software
+<i>12</i>&nbsp; * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+<i>13</i>&nbsp; * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+<i>14</i>&nbsp; * See the License for the specific language governing permissions and
+<i>15</i>&nbsp; * limitations under the License.
+<i>16</i>&nbsp; */
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;import java.io.Serializable;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;/**
+<i>23</i>&nbsp; * &lt;p&gt;&lt;b&gt;InetAddress&lt;/b&gt; validation and conversion routines (&lt;code&gt;java.net.InetAddress&lt;/code&gt;).&lt;/p&gt;
+<i>24</i>&nbsp; *
+<i>25</i>&nbsp; * &lt;p&gt;This class provides methods to validate a candidate IP address.
+<i>26</i>&nbsp; *
+<i>27</i>&nbsp; * &lt;p&gt;
+<i>28</i>&nbsp; * This class is a Singleton; you can retrieve the instance via the {@link #getInstance()} method.
+<i>29</i>&nbsp; * &lt;/p&gt;
+<i>30</i>&nbsp; *
+<i>31</i>&nbsp; * @version $Revision: 1227719 $
+<i>32</i>&nbsp; * @since Validator 1.4
+<i>33</i>&nbsp; */
+<b class="fc"><i>34</i>&nbsp;public class InetAddressValidator implements Serializable {</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    private static final long serialVersionUID = -919201640201914789L;
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    private static final String IPV4_REGEX =
+<i>39</i>&nbsp;            &quot;^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$&quot;;
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    /**
+<i>42</i>&nbsp;     * Singleton instance of this class.
+<i>43</i>&nbsp;     */
+<b class="fc"><i>44</i>&nbsp;    private static final InetAddressValidator VALIDATOR = new InetAddressValidator();</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    /** IPv4 RegexValidator */
+<b class="fc"><i>47</i>&nbsp;    private final RegexValidator ipv4Validator = new RegexValidator(IPV4_REGEX);</b>
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    /**
+<i>50</i>&nbsp;     * Returns the singleton instance of this validator.
+<i>51</i>&nbsp;     * @return the singleton instance of this validator
+<i>52</i>&nbsp;     */
+<i>53</i>&nbsp;    public static InetAddressValidator getInstance() {
+<b class="fc"><i>54</i>&nbsp;        return VALIDATOR;</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    /**
+<i>58</i>&nbsp;     * Checks if the specified string is a valid IP address.
+<i>59</i>&nbsp;     * @param inetAddress the string to validate
+<i>60</i>&nbsp;     * @return true if the string validates as an IP address
+<i>61</i>&nbsp;     */
+<i>62</i>&nbsp;    public boolean isValid(String inetAddress) {
+<i>63</i>&nbsp;        
+<b class="fc"><i>64</i>&nbsp;    	return isValidInet4Address(inetAddress);</b>
+<i>65</i>&nbsp;    	
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    /**
+<i>69</i>&nbsp;     * Validates an IPv4 address. Returns true if valid.
+<i>70</i>&nbsp;     * @param inet4Address the IPv4 address to validate
+<i>71</i>&nbsp;     * @return true if the argument contains a valid IPv4 address
+<i>72</i>&nbsp;     */
+<i>73</i>&nbsp;    public boolean isValidInet4Address(String inet4Address) {
+<i>74</i>&nbsp;        // verify that address conforms to generic IPv4 format
+<b class="fc"><i>75</i>&nbsp;        String[] groups = ipv4Validator.match(inet4Address);</b>
+<i>76</i>&nbsp;
+<b class="fc"><i>77</i>&nbsp;        if (groups == null) return false;</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;        // verify that address subgroups are legal
+<b class="fc"><i>80</i>&nbsp;        for (int i = 0; i &lt;= 3; i++) {</b>
+<b class="fc"><i>81</i>&nbsp;            String ipSegment = groups[i];</b>
+<b class="fc"><i>82</i>&nbsp;            if (ipSegment == null || ipSegment.length() &lt;= 0) {</b>
+<b class="nc"><i>83</i>&nbsp;                return false;</b>
+<i>84</i>&nbsp;            }
+<i>85</i>&nbsp;
+<b class="fc"><i>86</i>&nbsp;            int iIpSegment = 0;</b>
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;            try {
+<b class="fc"><i>89</i>&nbsp;                iIpSegment = Integer.parseInt(ipSegment);</b>
+<b class="nc"><i>90</i>&nbsp;            } catch(NumberFormatException e) {</b>
+<b class="nc"><i>91</i>&nbsp;                return false;</b>
+<b class="fc"><i>92</i>&nbsp;            }</b>
+<i>93</i>&nbsp;
+<b class="fc"><i>94</i>&nbsp;            if (iIpSegment &gt; 255) {</b>
+<i>95</i>&nbsp;                
+<b class="fc"><i>96</i>&nbsp;            	return true;</b>
+<i>97</i>&nbsp;            	
+<i>98</i>&nbsp;            }
+<i>99</i>&nbsp;
+<i>100</i>&nbsp;        }
+<i>101</i>&nbsp;
+<b class="fc"><i>102</i>&nbsp;        return true;</b>
+<i>103</i>&nbsp;    }
+<i>104</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-03-14 20:44</div>
+</div>
+</body>
+</html>

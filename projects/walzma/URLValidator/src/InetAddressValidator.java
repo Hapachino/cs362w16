@@ -94,6 +94,8 @@ public class InetAddressValidator implements Serializable {
             if (iIpSegment > 255) {
                 
             	return true;
+   /*make change here. return false instead of true*/
+   //         	return false;
             	
             }
 

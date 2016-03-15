@@ -1,0 +1,243 @@
+URLValidator.txt
+Description: CS362-400 Final Project write up
+By: Lynn Herrick, Regina Imhoff, Kim McLeod
+
+Manual Testing:
+
+	The methodology for manual testing of the UrlValidator was to use good tests, 
+	bad tests, and boundary/edge tests.  
+	
+	The URL has the following major sections:
+		-Schemas
+		-Hosts
+		-Paths
+		-Ports
+		-Queries
+	
+	To test these, an object was created and the "isValid" method was called with
+	the tests with either assertTrue or assertFalse.  Bugs were found and were 
+	noted in the code and the assert was changed so that the test would run to 
+	completion.  
+	
+	The manual testing is in the testManualTest method in UrlValidatorTest.java.
+	
+Examples of URLs tested:
+
+	Good URLs:
+		https://www.google.com
+		http://www.cnn.com//world (when 2 slashes are allowed)
+		http://127.0.0.1 (when Local URLs are allowed)
+		https://www.amazon.au
+		http://www.disney.go.com
+		http://www.eecs.oregonstate.edu/index.html
+	
+	Bad URLs:
+		http:///amazon.com
+		google.com
+		https://www.google.&&&
+		http://@.@.#.$
+		
+Bugs found in Manual Testing:
+
+	1.  assertFalse(urlVal.isValid("http://www.cnn.com///world"));	
+	This failed while testing when the UrlValidator(UrlValidator.ALLOW_2_SLASHES)
+	
+	2.  assertTrue(urlVal.isValid("http://localhost"));
+	This failed while UrlValidator(UrlValidator.ALLOW_LOCAL_URLS)
+	
+	3.  assertTrue(urlVal.isValid("http://www.amazon.love"));
+	This failed while UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES)
+	
+	4.  assertTrue(urlVal.isValid("https://www.google.com/?q=foo"));
+	This failed while UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES)
+
+	5.  assertTrue(urlVal.isValid("http://3.3.3.3:1000")); and
+	This failed while UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES)
+	
+	
+	Type: Bug
+	Status: Open
+	Priority: Major
+	Affects Versions: (cs362 w16 Version Files)
+	Component/s: UrlValidator.java
+	Labels: Easy Fix
+	Resoluition: Unresolved
+	Version/s: None
+	Description:
+		UrlValidator does not accept port numbers greater than 3 digits long.
+		The following code returns false:
+
+			assertTrue(urlVal.isValid("http://3.3.3.3:1000"))
+		
+		The URL’s port is either null (none typed out) or a 16-bit unsigned
+		int that routes to a networking port.  16-bits unsigned goes from
+		0 to 65535, so a possible 5 digit port number should be accepted.  
+
+		The following lines of code are the problem:
+
+			
+    			private static final String PORT_REGEX = "^:(\\d{1,3})$";
+   			private static final Pattern PORT_PATTERN = Pattern.compile(PORT_REGEX);
+
+		
+
+=======
+
+Input Partitioning Testing Methodology:
+
+	To thoroughly test each part of the URL with the URL validator, the different 
+	parts of a URL were broken into separate groups and tested on their own. These 
+	parts are the scheme, authority, path, port, and query. Both valid and invalid 
+	samples of each part of the URL were sent through the URL tester to narrow down 
+	where a bug may occur. 
+
+
+Bug found with input partitioning:
+
+	All port tests passed when they should have failed or failed when they should have passed.
+
+	Problematic code (UrlValidator.java line 158):
+	private static final String PORT_REGEX = "^:(\\d{1,3})$";
+
+
+	The current regex has two slashes in front of the d, meaning that instead of checking for 
+	1-3 digits ranging from 0-9, it checks for a literal slash and a literal d. This causes 
+	the port tests to return incorrect results. 
+
+
+
+Unit and Random Test Methodology Description ( testIsValid() ):
+
+	We use the ResultPair type defined in ResultPair.java to define valid and invalid
+	schemes, authorities, paths, queries, and fragments and placed them in an array.  
+	Using a random number generator, one ResultPair is chosen from each part of the 
+	url.  For this method, all parts were tested.  To make sure that schemes were 
+	properly tested for bugs, we did not use ACCEPT_ALL_SCHEMES but this also limited 
+	us to "http://", "https://", "ftp://", and "" as stated in UrlValidator.java.  For
+	random testing, there is a loop that currently tests 1000 randomly selected urls
+	using random numbers for the index of each part of the url.  After assembling the 
+	url, a test state of UrlValidator is called with isValid() and all parts of the 
+	isValid function are tested against a clean state -- is the scheme valid, is the
+	authority valid, is the path valid, is the query valid, and is the fragment valid?
+	If the result of the test state and the clean state are not equal, information
+	regarding at which part of isValid the results differ is printed to the console 
+	along with test and clean state results.
+
+Bugs Found In Unit Tests:
+
+	Type: Bug
+	Status: Open
+	Priority: Major
+	Affects Versions: (cs362 w16 Version Files)
+	Component/s: UrlValidator.java
+	Labels: Easy Fix
+	Resoluition: Unresolved
+	Version/s: None
+	Description:
+		Random Test7: http://reddit.com/about?name=StephCurry
+		**scheme: http://
+		**authority: reddit.com
+		**path: /about
+		**query: ?name=StephCurry
+		**fragment: //
+		**Expected: true, Result: false
+
+		Problematic Code (UrlValidator.java line 459):
+			return isOff(NO_FRAGMENTS);
+
+		Code currently allows anything to be a fragment and does not require a 
+		starting delimiter.  
+		RFC 3986 specifies that a fragment should begin with a "#".  
+                foo://example.com:8042/over/there?name=ferret#nose
+                \_/   \______________/\_________/ \_________/ \__/
+                 |           |            |            |        |
+              scheme     authority       path        query   fragment
+
+
+	Type: Bug
+	Status: Open
+	Priority: Major
+	Affects Versions: (cs362 w16 Version Files)
+	Component/s: UrlValidator.java
+	Labels: Easy Fix
+	Resoluition: Unresolved
+	Version/s: None
+	Description:
+		Random Test21: http://www.com/about/#inbox
+		**Expected: false, Result: true, authority: www.com
+
+		Problematic Code (UrlValidator.java line 134-135): 
+			private static final String AUTHORITY_REGEX =
+            	"^([" + AUTHORITY_CHARS_REGEX + "]*)(:\\d*)?(.*)?";
+
+          Code currently only looks for proper beginning and ending to authority but
+          does not check that there is a proper middle.  This occurs because the 
+          validator needs to accept things like "oregonstate.edu" as well as 
+          "www.oregonstate.edu".  Some valid authorities are made of 2 parts while
+          others are made of 3.  If an authority has "www" and/or other 
+          valid ways to start an authority, it must have two "." and a middle set of 
+          chars.
+
+
+	Type: Bug
+	Status: Open
+	Priority: Major
+	Affects Versions: (cs362 w16 Version Files)
+	Component/s: UrlValidator.java
+	Labels: Easy Fix
+	Resoluition: Unresolved
+	Version/s: None
+		Random Test117: https://ww.reddit.com/about.phpname=StephCurry#inbox
+		**Expected: false, Result: true, authority: ww.reddit.com
+
+		Problematic Code (UrlValidator.java line 102): 
+			private static final String AUTHORITY_CHARS_REGEX = "\\p{Alnum}\\-\\.";
+
+		Alnum needs to specify specifc REGEX/chars that are allowed for beginning of authority.
+
+
+	Type: Bug
+	Status: Open
+	Priority: Major
+	Affects Versions: (cs362 w16 Version Files)
+	Component/s: UrlValidator.java
+	Labels: Easy Fix
+	Resoluition: Unresolved
+	Version/s: None
+	Description:
+		Random Test127: https://oregonstate.edu/about?name=StephCurry&position=PointGuard/#30
+		**scheme: https://
+		**authority: oregonstate.edu
+		**path: /about
+		**query: ?name=StephCurry&position=PointGuard
+		**fragment: /#30
+		**Expected: true, Result: false
+
+
+		Problematic Code (UrlValidator.java line 151):
+			private static final String QUERY_REGEX = "^(.*)$";
+
+		Code currently allows anything to be a query and does not require a starting delimiter.  
+		This creates a problem with parsing as now the query can't be parsed from the path and 
+		will always validate as true if the characters used are proper url path characters. 
+		While this currently allows for kwargs within a route that may be used for a query, it 
+		does not meet the requirements of validating a query part of the url.While RFC 3986 
+		specifies a "?" as a delminator, further discussion would need to be had to decide what 
+		should be allowed for cases of kwargs used as routes for queries vs standard paramaters 
+		for queries.
+                foo://example.com:8042/over/there?name=ferret#nose
+                \_/   \______________/\_________/ \_________/ \__/
+                 |           |            |            |        |
+              scheme     authority       path        query   fragment
+
+
+
+
+
+Team Collaboration:
+	We communicated via Google Hangouts throughout the project. We had an initial meeting to 
+	divide the work and had an open Google Hangouts chat thread to discuss the project as
+	questions or comments came up.  Regina worked on the manual testing and preparing the 
+	final text document, Lynn did the unit testing, and Kimberly did the input partitioning. 
+	Lynn made a private Github repository for us to share the codebase and she later moved the 
+	project to the main class Github repository.  

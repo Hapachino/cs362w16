@@ -60,9 +60,9 @@ public class InetAddressValidator implements Serializable {
      * @return true if the string validates as an IP address
      */
     public boolean isValid(String inetAddress) {
-        // christia : bug2
+        
     	return isValidInet4Address(inetAddress);
-    	//return !isValidInet4Address(inetAddress);
+    	
     }
 
     /**
@@ -92,9 +92,9 @@ public class InetAddressValidator implements Serializable {
             }
 
             if (iIpSegment > 255) {
-                //christia : error introduced by arpit
-            	 return false;
-            	//return true;
+                
+            	return true;
+            	
             }
 
         }

@@ -16,20 +16,21 @@
 //Sets up a random state of cards
 // stacks the deck to have all cards other than coins
 int makeRandomState (int players, struct gameState * G){
-    int i, j, maxDeck, maxDisc;
+    int i, j, maxDeck, maxDisc, maxHand;
     float l = Random();
     float pro1 = 0.2;
     maxDeck = MAX_DECK;
     maxDisc = MAX_DECK;
+    maxHand = 100;
 
     //20% of the time the deck or discard or Hand is 0
     if(l < 0.2){
-        maxDeck = 0;
+        maxDeck = 2;
        // printf("  set maxDeck  ");
     }
 
     //can't both be 0
-    if((l < 0.4) && (maxDeck !=0 )){
+    if((l < 0.4) && (maxDeck !=1 )){
         maxDisc = 0;
         //printf("  set maxDisc  ");
     }
@@ -55,7 +56,7 @@ int makeRandomState (int players, struct gameState * G){
 
         }
 
-        G->handCount[i] = Random() * maxDeck +2;
+        G->handCount[i] = Random() * maxHand +2;
         for(j=0; j <  G->handCount[i]-1; j++){
            // G->hand[i][j] = Random() * 19;
             //set the whole deck to something other than treasure

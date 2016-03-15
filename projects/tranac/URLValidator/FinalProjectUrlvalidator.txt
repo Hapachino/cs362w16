@@ -1,0 +1,169 @@
+﻿Megan Fanning
+Christopher Trana
+Jennifer Mendoza
+
+
+URL Validator Final Project
+
+
+Manual testing
+For manual testing, both valid and invalid URLS were hard coded into the test and passed into the isValid function of URLValidator. The URLs were specifically chosen to strategically test each if statement in the isValid() function. For example, a known URL http://www.amazon.com was used and each part of the URL, for example the port http://www.amazon.com:-9, was added to test that particular if statement and to better pinpoint the bug in the program.
+
+
+Valid URLs tested:
+http://www.go.com
+http://yahoo.com
+http://www.amazon.com:65535
+
+
+Invalid URLs tested:
+http://www.amazÅ¡n.com
+http://google.4a
+http://yah oo.com
+
+
+Partitions
+We choose to split our partitions on numbers and letters and letters and punctuation so that it would be easy to discern which was causing failures without introducing too many variables into the tests.
+
+
+Provide names of tests
+URLValidatorTest.java testManualTest()
+URLValidatorRandomTest.java : testRandomlettersTest(int) and testRandomTest(int);
+
+
+Random Testing
+I created a random string of numbers, letters and dashes using Javas UUID library. After running tests I realized it would be necessary to append a schema to my test strings.
+I created two arrays one called prefix with common schemes (correct and incorrect for example “www.” and “https://”) and one called postfix (“.com” and “.net”) once this change was done we were able to generate both successful and unsuccessful URLS. The use of both letters and numbers fulfilled out partition of letters and numbers.
+
+
+Group Collaboration
+To start the project, initially Megan and Jennifer were a group of 2. We divided the project with Jennifer tackling manual testing and Megan with random testing. A week in, we had Chris join the group. Immediately, he provided assistance by researching the partitions and going over the tests that Megan and Jennifer had written. During the beginning of week 9, all 3 of us met to ensure that we were on schedule to complete the project. We gave updates and explanations of the existing test code that we had. We all agreed on tasks to be completed for the week. 
+Jennifer would start to write up about the bugs found in manual testing while Megan and Chris polish up the random testing to find additional bugs. Chris would also look for clarification regarding partitions. All 3 are responsible for assisting with the final project write up. Work was divided equally and teammates updated their progress by google chat. All group members assisted with another needed help. 
+        One of the ways we collaborated was to bounce ideas off each other. After Jennifer completed her manual tests Megan suggested refactoring her code into functions to make it more readable and reusable.When Megan completed designed her randomized tests Christopher took her code as a starting point and created additional random tests leveraging her existing code and design.
+On a more technical note, all 3 teammates collaborated by using github. Code was modified and pushed to git in order for other teammates to test and make modifications to the overall testing suite. 
+
+
+Bug Reports
+
+
+Description of Bug #1
+-----------------------------------------
+Title:   Error: Valid ports are returning as false 
+Class: Serious Bug
+Date: 3/8/2016              
+Reported By:  Jennifer Mendoza
+Found in Test name: URLValidatorTest.java testManualTest()
+URL:http://www.amazon.com:65535
+
+
+Is it reproducible: Yes
+
+
+Description: Port validation of isValid() contains a bug. Valid ports having 1-5 numbers should pass.
+
+
+Steps to Produce/Reproduce: Pass URL http://www.amazon.com:65535 or any url with more than 3 integers for port.
+
+Expected Results: isValid function should return true for a port with more than 3 integers.
+
+Actual Results: URLs with 4-5 integers should return true
+
+
+Code responsible for error: When debugging code with eclipse, the source of the buggy code is line 393 in URLValidator.java, if (!PORT_PATTERN.matcher(port).matches()). When this line is called, the URL is checked using line 158 private static final String PORT_REGEX = "^:(\\d{1,3})$";
+    private static final Pattern PORT_PATTERN = Pattern.compile(PORT_REGEX). The 1,3 specifies that valid ports have 1-3 integers only.
+
+
+
+
+
+
+Description of Bug #2
+--------------------------------
+Title:   Error: URLs with a query are returning as false
+Class: Serious Bug
+Date: 3/8/2016
+Reported By:  Jennifer Mendoza
+Found in Test name: URLValidatorTest.java testManualTest()
+URL: http://www.amazon.com?action=edit&mode=up
+
+
+Is it reproducible: Yes
+
+
+Description: Query in isValid function has an incorrect check since a valid url with a correct query results in a false return. 
+Steps to Produce/Reproduce: Pass URL http://www.amazon.com?action=edit&mode=up or any url with a query
+
+Expected Results: isValid function should return true for URLs containing a query
+
+
+Actual Results: isValid function returns false.
+
+Code responsible for error: Using eclipse debugger, the source of the buggy code can be found in DomainValidator.java line 446
+            return !LOCAL_TLD_LIST.contains(chompLeadingDot(iTld.toLowerCase()));
+   Should be 
+        return LOCAL_TLD_LIST.contains(chompLeadingDot(iTld.toLowerCase()));
+   the leading ! negates the list incorrectly
+
+
+
+
+Description of Bug #3
+-----------------------------------------
+Title:   Error: US country code not correctly recognized. 
+Class: Serious Bug
+Date: 3/8/2016              
+Reported By:  Megan Fanning
+Found in Test name: URLValidatorRandomTest.java 
+
+
+URL:http://www.d6ea7695-b59a-4e54-8de5-49041cee0b07.us
+URL:http://www.9dff3f28-63d4-4a62-94bd-3c7c0469d70b.us
+URL:http://www./iadc-uu[w.us Fail
+
+
+Is it reproducible: Yes
+
+
+Description: US country code not correctly recognized. 
+
+
+Steps to Produce/Reproduce: run a test with a URL ending in “.us”
+
+Expected Results: URLS ending in .us should return a “pass” message from the validator.
+
+Actual Results: URLs ending in .us return a fail message from the validator.
+
+
+Code responsible for error: line 358 in domainvalidator.java shows that the last country code listed is for italy. The country list doesn’t contain the USA or any other country codes after italy, this should be corrected so that all appropriate country codes can be used.
+
+
+
+
+Description of Bug #4
+-----------------------------------------
+Title:   Error: IPv4 addresses above 255 are incorrectly validated. 
+Class: Serious Bug
+Date: 3/9/2016              
+Reported By:  Chris Trana
+Found in Test name: URLValidatorTest.java testManualTest() 
+
+
+URL:http://256.256.256.256
+URL:ftp://192.256.256.256
+
+
+Is it reproducible: Yes
+
+
+Description: IP addresses with an 8 bit field greater than 255 (ie. 0.256.0 with middle 8 bit field greater than 255) returns as a valid IPv4 address.
+
+
+Steps to Produce/Reproduce: run a test with an 8 bit portion of dotted decimal IP address with a value above 255.
+
+Expected Results: IP addresses with an 8 bit portion above 255 should return a “fail” message from the validator.
+
+Actual Results:  IP addresses with an 8 bit portion above 255 should return a “pass” message from the validator.
+.
+
+
+Code responsible for error: In InetAddressValidator.java the if statement starting on line 94 is incorrect.  Line 96 in this statement should return false with the iIpSegment is > 255 instead of returning true.

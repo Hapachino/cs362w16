@@ -1,0 +1,129 @@
+Tarantula Implementation for dominion testing
+Class: CS362 Winter 2016
+Student:  Jeannine Amm (ammj)
+
+****************************
+Strategy for implementation:
+****************************
+The goal of the implementation was to:
+1) Have the ability to run the test multiple times
+2) Calculate whether the test passed or failed
+3) If the test passed add the delta iterations from the gcov file to the passed metric
+4) If the test failed add the delta iterations from the gcov file to the failed metric
+5) Calculate the suspiciousness for each line upon completion
+6) Output the suspiciousness to a file to aid in troubleshooting
+
+The first challenge in the implementation was the gcov data was not calculated until the 
+test file closed.  Refactoring the test to run only once and creating a driver program to handle
+the iterating resolved the issue.
+
+The second challenge in the implementation was determining if the test passed or failed.  
+The test program was refactored to return 1 from main if the test passed and 0 from main if 
+the test failed.  The program was then run using a child process with the return from main piped 
+into a variable in the parent.
+
+The third challenge was ensuring a clean starting gcov file.  The driver file tarantulaMain was
+refactored to clean up the files and run the make rule for the file under test to manage this.
+
+The gcov file was then parsed and the difference from the last run to the current run for each
+line was added to the metric for the pass/fail based on the return value.
+
+After all iterations completed the suspiciousness was calculated using the forumula[1]:
+suspiciousness(e) = (failed(e)/totalfailed) / ((passed(e)/totalpassed) + (failed(e) / totalfailed))
+
+						if(suspiciousness == 0)
+							green was assigned
+						else if(suspiciousness > 0 && suspiciousness < 0.49)
+							yellow was assigned
+						else if(suspiciousness > 0.49 && suspiciousness < 1)
+							orange was assigned
+						else if(suspiciousness == 1)
+							red was assigned
+
+The html output colors the lines of code with the color assigned while the text file output 
+identifies the line number, the suspiciousness and the color.
+
+Files:
+tarantula.c - functions for tarantula
+tarantula.h - header file for tarantula
+tarantulaMain.c - driver file
+
+*******************
+File Usage:
+*******************
+First run:
+make tarantulaMain
+
+Usage:
+   ./tarantulaMain -t testfile -m fileUnderTest [-i iterations] [-s seed] [-o]
+
+Required Switches: -t [makerule] -m [makerule]
+
+	-h:  help menu
+	-v:  version
+	-t:  make rule for test file (make rule must match testfile name)
+	-m:  make rule for file under test (make rule must match file under
+	     test name
+	-o:  [optional] used for html output
+	-i:  [optional] followed by an integer for number of iterations of the
+	     test file
+	     (default: 10)
+	-s:  [optional] followed by an integer for the starting seed
+	     (default: 9987)
+
+***************************************************
+Using the file to troubleshoot an issue in dominion:
+***************************************************
+unittest4.c was refactored for using with the tarantula file under testgetwinners.c
+
+The command used:
+	./tarantulaMain -t testgetwinners -m dominion -o -i 1000
+
+As the file made use of several other functions in dominion for initialization, it was further
+updated to retrieve better metrics under testGetWinnersOnly.c which only tested the function 
+getWinners().
+
+The command used:
+	./tarantulaMain -t testGetWinnersOnly -m dominion -o -i 1000
+	
+Bug to troubleshoot in getWinners():
+Scores were not being calculated correctly which caused the winner to be incorrectly identified.
+
+Using Tarantula to narrow down the lines of suspicious code:
+This example was a slightly more difficult one for the program to narrow down the root cause as 
+the score was calculated incorrectly every time.
+
+Tarantula identified roughly 55 lines as RED with the remaining lines GREEN.
+This greatly reduced our suspicious area from 1445 lines of code down to 55.
+
+Using the html output where the code was highlighted by color, it was easier to determine 
+which lines could be further narrowed down to get closer to the cause.
+
+Using the functions that were highlighted mostly all red,
+getWinners calls scoreFor
+getWinners calls whoseTurn 
+scoreFor calls fullDeckCount
+
+Troubleshooting started at the root of the red functions with fullDeckCount.
+stepping through fullDeckCount only counted the card passed and returned an incorrect count of
+cards. 
+
+Hypothesis:  Adding an option to return the full deck count would fix the error.
+After hypothesis was implemented the test was rerun.
+
+Opening the html file showed all lines green.
+
+*****************************
+Observations Using Tarantula
+*****************************
+Using tarantula proved effective to narrow down the error even in a small program like this one.
+It does make troubleshooting easier by highlighting which lines of code a failing test ran as 
+opposed to a passing test.  This eliminates the need to walk through the lines of gcov manually
+after running both a passing and a failing test and helps to narrow down breakpoint positions for
+use with gdb.
+
+Tarantula seems to be more effective when using tests that affect smaller amounts of code at a time.
+and would also be more effective if there are some values that cause the test pass and some 
+values that cause the test to fail. 
+
+ [1] https://oregonstate.instructure.com/courses/1568425/files/63553127/preview

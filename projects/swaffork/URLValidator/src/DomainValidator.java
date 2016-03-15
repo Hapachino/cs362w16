@@ -136,7 +136,7 @@ public class DomainValidator implements Serializable {
         if (groups != null && groups.length > 0) {
             return isValidTld(groups[0]);
         } else if(allowLocal) {
-            if (hostnameRegex.isValid(domain)) {
+            if (!hostnameRegex.isValid(domain)) {
                return true;
             }
         }
@@ -200,8 +200,7 @@ public class DomainValidator implements Serializable {
      * @return true if the parameter is an local TLD
      */
     public boolean isValidLocalTld(String iTld) {
-        // bug 3
-    	//return LOCAL_TLD_LIST.contains(chompLeadingDot(iTld.toLowerCase()));
+        
     	return !LOCAL_TLD_LIST.contains(chompLeadingDot(iTld.toLowerCase()));
     }
 
@@ -356,146 +355,7 @@ public class DomainValidator implements Serializable {
         "ir",                 // Iran
         "is",                 // Iceland
         "it",                 // Italy
-        "je",                 // Jersey
-        "jm",                 // Jamaica
-        "jo",                 // Jordan
-        "jp",                 // Japan
-        "ke",                 // Kenya
-        "kg",                 // Kyrgyzstan
-        "kh",                 // Cambodia (Khmer)
-        "ki",                 // Kiribati
-        "km",                 // Comoros
-        "kn",                 // Saint Kitts and Nevis
-        "kp",                 // North Korea
-        "kr",                 // South Korea
-        "kw",                 // Kuwait
-        "ky",                 // Cayman Islands
-        "kz",                 // Kazakhstan
-        "la",                 // Laos (currently being marketed as the official domain for Los Angeles)
-        "lb",                 // Lebanon
-        "lc",                 // Saint Lucia
-        "li",                 // Liechtenstein
-        "lk",                 // Sri Lanka
-        "lr",                 // Liberia
-        "ls",                 // Lesotho
-        "lt",                 // Lithuania
-        "lu",                 // Luxembourg
-        "lv",                 // Latvia
-        "ly",                 // Libya
-        "ma",                 // Morocco
-        "mc",                 // Monaco
-        "md",                 // Moldova
-        "me",                 // Montenegro
-        "mg",                 // Madagascar
-        "mh",                 // Marshall Islands
-        "mk",                 // Republic of Macedonia
-        "ml",                 // Mali
-        "mm",                 // Myanmar
-        "mn",                 // Mongolia
-        "mo",                 // Macau
-        "mp",                 // Northern Mariana Islands
-        "mq",                 // Martinique
-        "mr",                 // Mauritania
-        "ms",                 // Montserrat
-        "mt",                 // Malta
-        "mu",                 // Mauritius
-        "mv",                 // Maldives
-        "mw",                 // Malawi
-        "mx",                 // Mexico
-        "my",                 // Malaysia
-        "mz",                 // Mozambique
-        "na",                 // Namibia
-        "nc",                 // New Caledonia
-        "ne",                 // Niger
-        "nf",                 // Norfolk Island
-        "ng",                 // Nigeria
-        "ni",                 // Nicaragua
-        "nl",                 // Netherlands
-        "no",                 // Norway
-        "np",                 // Nepal
-        "nr",                 // Nauru
-        "nu",                 // Niue
-        "nz",                 // New Zealand
-        "om",                 // Oman
-        "pa",                 // Panama
-        "pe",                 // Peru
-        "pf",                 // French Polynesia With Clipperton Island
-        "pg",                 // Papua New Guinea
-        "ph",                 // Philippines
-        "pk",                 // Pakistan
-        "pl",                 // Poland
-        "pm",                 // Saint-Pierre and Miquelon
-        "pn",                 // Pitcairn Islands
-        "pr",                 // Puerto Rico
-        "ps",                 // Palestinian territories (PA-controlled West Bank and Gaza Strip)
-        "pt",                 // Portugal
-        "pw",                 // Palau
-        "py",                 // Paraguay
-        "qa",                 // Qatar
-        "re",                 // Réunion
-        "ro",                 // Romania
-        "rs",                 // Serbia
-        "ru",                 // Russia
-        "rw",                 // Rwanda
-        "sa",                 // Saudi Arabia
-        "sb",                 // Solomon Islands
-        "sc",                 // Seychelles
-        "sd",                 // Sudan
-        "se",                 // Sweden
-        "sg",                 // Singapore
-        "sh",                 // Saint Helena
-        "si",                 // Slovenia
-        "sj",                 // Svalbard and Jan Mayen Islands Not in use (Norwegian dependencies; see .no)
-        "sk",                 // Slovakia
-        "sl",                 // Sierra Leone
-        "sm",                 // San Marino
-        "sn",                 // Senegal
-        "so",                 // Somalia
-        "sr",                 // Suriname
-        "st",                 // São Tomé and Príncipe
-        "su",                 // Soviet Union (deprecated)
-        "sv",                 // El Salvador
-        "sy",                 // Syria
-        "sz",                 // Swaziland
-        "tc",                 // Turks and Caicos Islands
-        "td",                 // Chad
-        "tf",                 // French Southern and Antarctic Lands
-        "tg",                 // Togo
-        "th",                 // Thailand
-        "tj",                 // Tajikistan
-        "tk",                 // Tokelau
-        "tl",                 // East Timor (deprecated old code)
-        "tm",                 // Turkmenistan
-        "tn",                 // Tunisia
-        "to",                 // Tonga
-        "tp",                 // East Timor
-        "tr",                 // Turkey
-        "tt",                 // Trinidad and Tobago
-        "tv",                 // Tuvalu
-        "tw",                 // Taiwan, Republic of China
-        "tz",                 // Tanzania
-        "ua",                 // Ukraine
-        "ug",                 // Uganda
-        "uk",                 // United Kingdom
-        "um",                 // United States Minor Outlying Islands
-        "us",                 // United States of America
-        "uy",                 // Uruguay
-        "uz",                 // Uzbekistan
-        "va",                 // Vatican City State
-        "vc",                 // Saint Vincent and the Grenadines
-        "ve",                 // Venezuela
-        "vg",                 // British Virgin Islands
-        "vi",                 // U.S. Virgin Islands
-        "vn",                 // Vietnam
-        "vu",                 // Vanuatu
-        "wf",                 // Wallis and Futuna
-        "ws",                 // Samoa (formerly Western Samoa)
-        "ye",                 // Yemen
-        "yt",                 // Mayotte
-        "yu",                 // Serbia and Montenegro (originally Yugoslavia)
-        "za",                 // South Africa
-        "zm",                 // Zambia
-        "zw",                 // Zimbabwe
+        
     };
 
     private static final String[] LOCAL_TLDS = new String[] {

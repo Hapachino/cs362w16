@@ -37,12 +37,6 @@ public class UrlValidatorTest extends TestCase {
     super(testName);
   }
 
-  public void testManualTest()
-  {
-    UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-    System.out.println(urlVal.isValid("http://www.amazon.com"));
-  }
-
   ResultPair[] schemeParts = {new ResultPair("http", true),
 		  new ResultPair("https", true),
 		  new ResultPair("_", false),
@@ -121,10 +115,6 @@ public class UrlValidatorTest extends TestCase {
       new ResultPair("",false)};
   
   
-  //I'm not sure whether the Result pairs that are commented out in this array
-  //should be valid? I tested with the correct version of URLValidator and 
-  //it was finding them to be valid (true) but I would like to have one or
-  //both of you take a look at it with me to see what you think. (Could be a bug?)
   ResultPair[] authorityPartsLocal = { new ResultPair("www.google.com",true),
       new ResultPair("www.google.com:3000",true),
       new ResultPair("www.google.com:0",true),
@@ -139,7 +129,6 @@ public class UrlValidatorTest extends TestCase {
       new ResultPair("asdsader.435g.f82kfd1.google.com",true),
       new ResultPair(".com",false),
       new ResultPair("google.",false),
-      /*new ResultPair("google",false),*/
       new ResultPair("google.com",true),
       new ResultPair("google.com     ",true),
       new ResultPair("abcdefghijklmnopqrstuvwxyz.com",true),
@@ -180,8 +169,6 @@ public class UrlValidatorTest extends TestCase {
       new ResultPair("google.na",true),
       new ResultPair("google.za",true),
       new ResultPair("google.a",false), 
-      /*new ResultPair("google.zldsjry",false),
-      new ResultPair("google.123",false),*/
       new ResultPair("localhost",true),
       new ResultPair("localdomain",true),
       new ResultPair("0.0.0.0",true),
@@ -255,24 +242,25 @@ public class UrlValidatorTest extends TestCase {
                     new ResultPair("#0123456789",false),
                     new ResultPair("#?-:@&=+,.!~*'%$_;()[]{}/|`~",false)};
  
-
-  public void testURLRegex()
+  public void testManualTest()
   {
     UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-    assertTrue(urlVal.isValid("http://www.amazon.com"));
-
-    //test non ASCII chars
-    assertFalse(urlVal.isValid("http://www.amazon¢.com"));
-
-    //test out of order
-    assertFalse(urlVal.isValid("com.amazon.http://"));
-    assertFalse(urlVal.isValid("amazon.http://com"));
-
-    assertFalse(urlVal.isValid("this_is_not_a_url"));
+    System.out.println(urlVal.isValid("http://www.amazon.com"));
+    System.out.println(urlVal.isValid("http://www.amazon.na"));
+    System.out.println(urlVal.isValid("http://www.amazon.za"));
+    System.out.println(urlVal.isValid("http://256.256.256.256"));
+    System.out.println(urlVal.isValid("http://www.google.com:124"));
+    System.out.println(urlVal.isValid("http://www.google.com:25565"));
+    System.out.println(urlVal.isValid("http://localhost/"));
+    System.out.println(urlVal.isValid("ftp://localdomain/"));
+    System.out.println(urlVal.isValid("http://www.amazon¢.com"));
+    System.out.println(urlVal.isValid("com.amazon.http://"));
+    System.out.println(urlVal.isValid("amazon.http://com"));
+    System.out.println(urlVal.isValid("this_is_not_a_url"));
   }
 
 
-  public void testURLScheme()
+  public void testIsValidScheme()
   {
 	boolean pass = true;
 	UrlValidator urlVal = new UrlValidator();
@@ -437,7 +425,7 @@ public class UrlValidatorTest extends TestCase {
     }
   }
 
-  public void testAllPartsCombinations()
+  public void testIsValid()
   {
     boolean pass = true;
     UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS + UrlValidator.ALLOW_LOCAL_URLS));
@@ -449,7 +437,7 @@ public class UrlValidatorTest extends TestCase {
         {
           for (int m = 0;m<queryParts.length;m++)
           {
-        	for (int o = 0;o<fragmentPartsNO.length;o++)
+            for (int o = 0;o<fragmentPartsNO.length;o++)
         	{
               //Determine validity of the test URL
               boolean result = schemeParts[i].valid &&
@@ -483,28 +471,4 @@ public class UrlValidatorTest extends TestCase {
     }
   }
 
-  public void testYourSecondPartition()
-  {
-
-  }
-
-
-  public void testIsValid()
-  {
-    for(int i = 0;i<10000;i++)
-    {
-
-    }
-  }
-
-  public void testAnyOtherUnitTest()
-  {
-
-  }
-  /**
-   * Create set of tests by taking the testUrlXXX arrays and
-   * running through all possible permutations of their combinations.
-   *
-   * @param testObjects Used to create a url.
-   */
 }

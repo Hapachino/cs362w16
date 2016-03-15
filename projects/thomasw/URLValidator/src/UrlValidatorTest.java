@@ -15,12 +15,7 @@
  * limitations under the License.
  */
 
-
 import junit.framework.TestCase;
-
-
-
-
 
 /**
  * Performs Validation Test for url validations.
@@ -29,14 +24,15 @@ import junit.framework.TestCase;
  */
 public class UrlValidatorTest extends TestCase {
 
-   private boolean printStatus = false;
-   private boolean printIndex = false;//print index that indicates current scheme,host,port,path, query test were using.
-
-   public UrlValidatorTest(String testName) {
+   public UrlValidatorTest(String testName) 
+   {
       super(testName);
    }
 
    
+   /******************************************
+    * Part 1: Manual Testing
+    ******************************************/
    
    public void testManualTest()
    {
@@ -72,204 +68,157 @@ public class UrlValidatorTest extends TestCase {
 			   "http//www.oregonstate.edu",
 			   "http:\\www.amazon.com"};
 	   
-	   int i;
-	   boolean isValid;
-	   
-	   for(i = 0; i < validUrls.length; i++)
-	   {
-		   System.out.println("Testing URL: " + validUrls[i]);
-		   isValid = urlVal.isValid(validUrls[i]);
-		   if (isValid)
-		   {
-			   System.out.println("TEST PASSED");
-		   }
+	   // Make sure the validator correctly identifies VALID URLs
+	   for (String url : validUrls) {
+		   if (urlVal.isValid(url)) 
+			   System.out.print("TEST PASSED");
 		   else
-		   {
-			   System.out.println("TEST FAILED");
-		   }
+			   System.out.print("TEST FAILED");
+		   
+		   System.out.print(": \"" + url + "\"\n");
 	   }
+
+	   System.out.print("\n");
 	   
-	   System.out.println();
-	   
-	   for(i = 0; i < invalidUrls.length; i++)
-	   {
-		   System.out.println("Testing invalid URL: " + invalidUrls[i]);
-		   isValid = urlVal.isValid(invalidUrls[i]);
-		   if (!isValid)
-		   {
-			   System.out.println("TEST PASSED");
-		   }
+	   // Make sure the validator correctly identifies INVALID URLs
+	   for (String url : invalidUrls) {
+		   if (urlVal.isValid(url))
+			   System.out.print("TEST FAILED");
 		   else
-		   {
-			   System.out.println("TEST FAILED");
-		   }
+			   System.out.print("TEST PASSED");
+		   
+		   System.out.print(": \"" + url + "\"\n");
 	   }
+
+	   System.out.print("\n");
    }
    
    /******************************************
     * Part 2: Input Partitioning
     ******************************************/
    
+   // First partition: Schemes
    public void testYourFirstPartition()
-   {
-	   //Testing Schemes
-	   
+   {   
 	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
 	   
 	   boolean passed = true;
 	   
-	   String validOne = "http://";
-	   String validTwo = "https://";
-	   String validThree = "ftp://";
-	   
+	   String [] validSchemes = {"http://", "https://", "ftp://"};
 	   String invalidOne = "h3pp://";
 	   
+	   // URL Base, this is correct
 	   String urlBig = "www.google.com";
 	   
-	   String validUrl = validOne + urlBig;
+	   String validUrl;
 	   String invalidUrl = invalidOne + urlBig;
 	   
-	   System.out.println("");
 	   System.out.println("Testing Schemes");
 	   
-	   if(!urlVal.isValid(validUrl))
+	   // Try each valid scheme
+	   for (String scheme : validSchemes) 
 	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
+		   validUrl = scheme + urlBig;
+		   if (!urlVal.isValid(validUrl))
+		   {
+			   System.out.println("TEST FAILED. Expected VALID for URL: \"" + validUrl + "\"");
+			   passed = false;
+		   }
+	   }
+	   
+	   // Try the invalid scheme
+	   if (urlVal.isValid(invalidUrl))
+	   {
+		   System.out.println("TEST FAILED. Expected INVALID for URL: \"" + invalidUrl + "\"");
 		   passed = false;
 	   }
 	   
-	   validUrl = validTwo + urlBig;
-	   
-	   if(!urlVal.isValid(validUrl))
-	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
-		   passed = false;
-	   }
-	   
-	   validUrl = validThree + urlBig;
-	   
-	   if(!urlVal.isValid(validUrl))
-	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
-		   passed = false;
-	   }
-	   
-	   if(urlVal.isValid(invalidUrl))
-	   {
-		   System.out.println("TEST FAILED. Expected invalid for URL: " + invalidUrl);
-		   passed = false;
-	   }
-	   
-	   if(passed)
-	   {
+	   if (passed)
 		   System.out.println("Scheme Test Passed");
-	   }
 	   else
-	   {
 		   System.out.println("Scheme Test Failed");
-	   }
+	   
+	   System.out.print("\n");
    }
    
+   // Second partition: Hosts
    public void testYourSecondPartition()
    {
 	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
 	   
-	   System.out.println("");
 	   System.out.println("Testing Authority");
 	   
 	   boolean passed = true;
 	   
-	   String validOne = "www.google.com";
-	   String validTwo = "amazon.com";
-	   String validThree = "127.0.0.1";
+	   String [] validHosts = {"www.google.com", "amazon.com", "127.0.0.1"};
+	   String [] invalidHosts = {"google", ".google.com"};
 	   
-	   String invalidOne = "google";
-	   String invalidTwo = ".google.com";
-	   
+	   // URL Base, this is correct
 	   String urlBig = "http://";
 	   
-	   String validUrl = urlBig + validOne;
-	   String invalidUrl = urlBig + invalidOne;
+	   String validUrl;
+	   String invalidUrl;
 	   
-	   if(!urlVal.isValid(validUrl))
+	   // Try each valid host
+	   for (String host : validHosts)
 	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
-		   passed = false;
+		   validUrl = urlBig + host;
+		   if (!urlVal.isValid(validUrl))
+		   {
+			   System.out.println("TEST FAILED. Expected VALID for URL: \"" + validUrl + "\"");
+			   passed = false;
+		   }
 	   }
 	   
-	   validUrl = urlBig + validTwo;
-	   
-	   if(!urlVal.isValid(validUrl))
+	   // Try each invalid host
+	   for (String host : invalidHosts)
 	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
-		   passed = false;
-	   }
-	   
-	   validUrl = urlBig + validThree;
-	   
-	   if(!urlVal.isValid(validUrl))
-	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
-		   passed = false;
-	   }
-	   
-	   if(urlVal.isValid(invalidUrl))
-	   {
-		   System.out.println("TEST FAILED. Expected invalid for URL: " + invalidUrl);
-		   passed = false;
-	   }
-	   
-	   invalidUrl = urlBig + invalidTwo;
-	   
-	   if(urlVal.isValid(invalidUrl))
-	   {
-		   System.out.println("TEST FAILED. Expected invalid for URL: " + invalidUrl);
-		   passed = false;
+		   invalidUrl = urlBig + host;
+		   if (urlVal.isValid(invalidUrl))
+		   {
+			   System.out.println("TEST FAILED. Expected INVALID for URL: \"" + invalidUrl + "\"");
+			   passed = false;
+		   }
 	   }
 	   
 	   if(passed)
-	   {
 		   System.out.println("Authority Test Passed");
-	   }
 	   else
-	   {
 		   System.out.println("Authority Test Failed");
-	   }
+	   
+	   System.out.print("\n");
    }
    
+   // Third partition: Path
    public void testYourThirdPartition()
    {
 	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
 	   
-	   System.out.println("");
 	   System.out.println("Testing Path");
 	   
 	   boolean passed = true;
 	   
-	   String validOne = "/test1";
-	   String validTwo = "/test1/pics";
-	   
+	   String [] validPaths = {"/test1", "/test1/pics"};
 	   String invalidOne = "/..";
 
+	   // URL Base, this is correct
 	   String urlBig = "http://www.google.com";
 	   
-	   String validUrl = urlBig + validOne;
+	   String validUrl;
 	   String invalidUrl = urlBig + invalidOne;
 	   
-	   if(!urlVal.isValid(validUrl))
+	   // Try each valid path
+	   for (String path : validPaths)
 	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
-		   passed = false;
+		   validUrl = urlBig + path;
+		   if (!urlVal.isValid(validUrl))
+		   {
+			   System.out.println("TEST FAILED. Expected VALID for URL: \"" + validUrl + "\"");
+			   passed = false;
+		   }
 	   }
 	   
-	   validUrl = urlBig + validTwo;
-	   
-	   if(!urlVal.isValid(validUrl))
-	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
-		   passed = false;
-	   }
-	   
+	   // Try the invalid path
 	   if(urlVal.isValid(invalidUrl))
 	   {
 		   System.out.println("TEST FAILED. Expected invalid for URL: " + invalidUrl);
@@ -277,53 +226,46 @@ public class UrlValidatorTest extends TestCase {
 	   }
 	   
 	   if(passed)
-	   {
 		   System.out.println("Path Test Passed");
-	   }
 	   else
-	   {
 		   System.out.println("Path Test Failed");
-	   }
+	   
+	   System.out.print("\n");
    }
    
+   // Fourth partition: Query
    public void testYourFourthPartition()
    {
 	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
 	   
-	   System.out.println("");
 	   System.out.println("Testing Query");
 	   
 	   boolean passed = true;
 	   
-	   String validOne = "?action=view";
-	   String validTwo = "?action=edit&mode=up";
+	   String [] validQueries = {"?action=view", "?action=edit&mode=up"};
 
+	   // URL Base, this is correct
 	   String urlBig = "http://www.google.com";
 	   
-	   String validUrl = urlBig + validOne;
+	   String validUrl;
 	   
-	   if(!urlVal.isValid(validUrl))
+	   // Try each valid query
+	   for (String query : validQueries)
 	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
-		   passed = false;
+		   validUrl = urlBig + query;
+		   if (!urlVal.isValid(validUrl))
+		   {
+			   System.out.println("TEST FAILED. Expected VALID for URL: \"" + validUrl + "\"");
+			   passed = false;
+		   }
 	   }
 	   
-	   validUrl = urlBig + validTwo;
-	   
-	   if(!urlVal.isValid(validUrl))
-	   {
-		   System.out.println("TEST FAILED. Expected valid for URL: " + validUrl);
-		   passed = false;
-	   }
-	   
-	   if(passed)
-	   {
-		   System.out.println("Path Test Passed");
-	   }
+	   if (passed)
+		   System.out.println("Query Test Passed");
 	   else
-	   {
 		   System.out.println("Query Test Failed");
-	   }
+	   
+	  System.out.print("\n");
    }
    
    
@@ -339,7 +281,7 @@ public class UrlValidatorTest extends TestCase {
 	    * 
 	    * Each of these will have their own set of key-pairs that will be mapped to true or false.
 	    * When testing, if all key pairs are true, then we expect a true response from isValid(). 
-	    * If any of the pairs are all false, then we expect a "false" response from isValid(). 
+	    * If any of the pairs are false, then we expect a "false" response from isValid(). 
 	    * 
 	    * For each of our domain names, we will also be appending a sub-domain (www.), so we 
 	    * will be testing with and without the sub-domain.
@@ -347,9 +289,11 @@ public class UrlValidatorTest extends TestCase {
 	   
 	   /* http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml
 	    * Provides a list of valid schemes. We used these in our key-pair map.
-	    * Commented out some because it was simply taking too long and crashing Eclipse
+	    * Commented out some because it was simply taking too long and crashing Eclipse, while
+	    * producing the results of many of the same bugs, creating huge numbers of failed test
+	    * cases.
 	    * You would want to use separate arrays to test each individually if thoroughly looking
-	    * for more bugs
+	    * for more bugs.
 	    */
 	   ResultPair [] protocolPairs = {
 			   /*new ResultPair("aaa://", true),
@@ -442,7 +386,7 @@ public class UrlValidatorTest extends TestCase {
 			   new ResultPair("z39.50r://", true),
 			   new ResultPair("z39.50s://", true),*/
 			   new ResultPair("www?google", false),
-			   new ResultPair("w12°", false),
+			   new ResultPair("w12ï¿½", false),
 			   new ResultPair(":://", false),
 			   new ResultPair("hp://www.bitup.org/\"", false),
 			   new ResultPair("12www://", false),
@@ -453,10 +397,12 @@ public class UrlValidatorTest extends TestCase {
 	   };		   
 	   
 	   /* https://en.wikipedia.org/wiki/List_of_Internet_top-level_domains
-	    * Provides a list of valid TOLD. We used these in our key-pair map.
-	    * Commented out some because it was taking too long and crashing Eclipse.
+	    * Provides a list of valid TLDs. We used these in our key-pair map.
+	    * Commented out some because it was taking too long and crashing Eclipse,
+	    * causing the same issue with heavily repeated failure reports as with the
+	    * protocol pairs.
 	    * Might want a separate array if doing thorough testing to find all bugs
-	    * not just 3
+	    * beyond the 3 for this assignment.
 	    */
 	   ResultPair [] domainPairs = {
 			   new ResultPair("bread.com", true),
@@ -728,7 +674,7 @@ public class UrlValidatorTest extends TestCase {
 	   };
 	   
 	   /* 
-	    * Port numbers should not have special characters, or be just letters
+	    * Port numbers should not contain special characters or letters
 	    */
 	   ResultPair [] portPairs = {
 			   new ResultPair(":5000", true),
@@ -741,7 +687,9 @@ public class UrlValidatorTest extends TestCase {
 			   new ResultPair("", true)
 	   };
 	   
-	   /* Paths shouldn't have double slashes, or .. */
+	   /*
+	    *  Paths shouldn't have double slashes, or .. 
+	    */
 	   ResultPair [] pathPairs = {
 			   new ResultPair("/somepath1", true),
                new ResultPair("/somepath/path2/path3", true),
@@ -754,7 +702,10 @@ public class UrlValidatorTest extends TestCase {
                new ResultPair("/test1//file", false)
 	   };
 	   
-	   /* No special characters int eh wrong place, and should have proper pairs */
+	   /* 
+	    * No special characters in the wrong place. Pairs should have proper pair
+	    * configuration
+	    */
 	   ResultPair [] parameterPairs = {
 			   new ResultPair("?request=answer", true),
                new ResultPair("?one=ten&two=eleven", true),
@@ -778,7 +729,8 @@ public class UrlValidatorTest extends TestCase {
 	   int z;
 	   int itrNum = 0;
 	   int testFails = 0;
-	   // Create an instance for our UrlValidator
+	   
+	   // Create an instance of our UrlValidator
 	   UrlValidator urlVal = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES);
 	   
 	   // For loops to loop through all possible combinations
@@ -792,15 +744,19 @@ public class UrlValidatorTest extends TestCase {
 				   {
 					   for(z = 0; z < parameterPairs.length; z++) 
 					   {
-						   // Bools to store results, and iterate count of tests performed 
+						   // Booleans to store results
+						   // Counter of tests performed 
 						   boolean inputValid;
 						   boolean testValid;
 						   itrNum++;
+						   
 						   // Create the URL that will be tested
-						   String url = protocolPairs[v].item + domainPairs[w].item + portPairs[x].item + pathPairs[y].item + parameterPairs[z].item;
+						   String url = protocolPairs[v].item + domainPairs[w].item + portPairs[x].item 
+								   + pathPairs[y].item + parameterPairs[z].item;
 						   
 						   // Check to see if a valid URL was generated by our programmatic tester
-						   if (protocolPairs[v].valid && domainPairs[w].valid && portPairs[x].valid && pathPairs[y].valid && parameterPairs[z].valid) {
+						   if (protocolPairs[v].valid && domainPairs[w].valid && portPairs[x].valid 
+								   && pathPairs[y].valid && parameterPairs[z].valid) {
 							   inputValid = true; 
 						   } else {
 							   inputValid = false;
@@ -815,13 +771,15 @@ public class UrlValidatorTest extends TestCase {
 						   } else {
 							   // Increment the count of failed tests. Print out error results to console
 							   testFails++;
-							   System.out.println("TEST FAILED " + itrNum + ": URL: " + url + " Expected: " + inputValid + " Result: " + testValid);
+							   System.out.println("TEST FAILED " + itrNum + ": URL: " + url 
+									   + " Expected: " + inputValid + " Result: " + testValid);
 						   }
 					   }
 				   }
 			   }
 		   }  
 	   }
+	   
 	   // Print out aggregate results of the test to the console (good summary at the end)
 	   double d = ((double)testFails)  / ((int)itrNum);
 	   System.out.println("TESTS RUN: " + itrNum + " TESTS FAILED: " + testFails + " Percentage: " + d);

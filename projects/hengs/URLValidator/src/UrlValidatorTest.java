@@ -40,15 +40,7 @@ public class UrlValidatorTest extends TestCase {
    
    public void testManualTest()
    {
-	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-	   System.out.println(urlVal.isValid("http://www.amazon.com"));
-	   
-	   
-   }
-   
-   public class manualTest {
-	public static void main (String[] args) {
-		int i;
+	   int i;
 		String testGoodURLS[] = {"www.google.com", "http://google.com/test", "https://amazon.co.uk", "www.oregonstate.edu"};
 		String testBadURLS[] = {"httq://www.google.com", "http://google.com/$test", "www.$$$$.com", "www.amazon.com:-1"};
 		UrlValidator validator = new UrlValidator();
@@ -74,9 +66,9 @@ public class UrlValidatorTest extends TestCase {
 			else
 				System.out.println("Actual Result: Test failed");
 		}
-
-	}
-}
+	   
+	   
+   }
    
    
    public void testYourFirstPartition()
@@ -85,7 +77,7 @@ public class UrlValidatorTest extends TestCase {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   System.out.println("\n\nTesting First Partition: Schemes");
 	   
-	   String[] goodschemes = new String[4];
+	   String[] goodschemes = new String[5];
 	   String[] badschemes = new String[5];
 	   
 	   
@@ -93,6 +85,8 @@ public class UrlValidatorTest extends TestCase {
 	   goodschemes[1] = "ftp://";
 	   goodschemes[2] = "h3t://";
 	   goodschemes[3] = "";
+	   goodschemes[4] = "h://";
+	   
 	   badschemes[0] = "3ht://";
 	   badschemes[1] = "http:/";
 	   badschemes[2] = "http:";
@@ -106,7 +100,7 @@ public class UrlValidatorTest extends TestCase {
 	   String validQuery = "";
 	   
 	   System.out.println("\nTesting Expected Good Schemes");
-	   for(int i = 0; i < 4; i++){
+	   for(int i = 0; i < 5; i++){
 		   String testUrl = goodschemes[i] + validAuthority + validPort + validPath + validOption + validQuery;
 		   if(urlVal.isValid(testUrl)){
 			   System.out.println("\nSUCCESS!!! Correct Expecation, URL is valid: " + testUrl);
@@ -190,7 +184,7 @@ public class UrlValidatorTest extends TestCase {
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   System.out.println("\n\nTesting Third Partition: Port");
 	   
-	   String[] goodport = new String[5];
+	   String[] goodport = new String[8];
 	   String[] badport = new String[5];
 	   
 	   
@@ -199,6 +193,9 @@ public class UrlValidatorTest extends TestCase {
 	   goodport[2] = ":65535";
 	   goodport[3] = "";
 	   goodport[4] = ":65636";
+	   goodport[5] = ":800";
+	   goodport[6] = ":8000";
+	   goodport[7] = ":800000";
 	  
 	   
 	   
@@ -218,7 +215,7 @@ public class UrlValidatorTest extends TestCase {
 	   String validQuery = "";
 	   
 	   System.out.println("\n\nTesting Expected Good Port:");
-	   for(int i = 0; i < 5; i++){
+	   for(int i = 0; i < 8; i++){
 		   String testUrl = validScheme + validAuthority + goodport[i] + validPath + validOption + validQuery;
 		   if(urlVal.isValid(testUrl)){
 			   System.out.println("\nSUCCESS!!! Correct Expecation, URL is valid: " + testUrl);
@@ -395,9 +392,9 @@ public void testYourFourthPartition(){
 		   }
 		   
 	}
-   public class testIsValid {
-	public static void main(String[] args) {
-		int testNumber, randScheme, randAuthority, randPort, randPath;
+   public void testIsValid()
+   {
+	   int testNumber, randScheme, randAuthority, randPort, randPath;
 		boolean isValid;
 		String testURL;
 		Random rand = new Random();
@@ -426,10 +423,9 @@ public void testYourFourthPartition(){
 
 			testOracle(testURL, isValid);
 		}
-
-	}
-
-	public static void testOracle(String testURL, boolean isValid) {
+   }
+   
+   public static void testOracle(String testURL, boolean isValid) {
 		UrlValidator validator = new UrlValidator();
 		boolean result = validator.isValid(testURL);
 
@@ -443,12 +439,8 @@ public void testYourFourthPartition(){
 		System.out.println("Expected Result: " + isValid + "%n");
 		System.out.println("Actual Result: " + result + "%n");
 	}
-}
    
-   public void testAnyOtherUnitTest()
-   {
-	   
-   }
+  
    /**
     * Create set of tests by taking the testUrlXXX arrays and
     * running through all possible permutations of their combinations.

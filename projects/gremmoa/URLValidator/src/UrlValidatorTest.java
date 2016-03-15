@@ -46,7 +46,7 @@ public class UrlValidatorTest extends TestCase {
   ResultPair[] schemeParts = {new ResultPair("http", true),
 		  new ResultPair("https", true),
 		  new ResultPair("_", false),
-//		  new ResultPair("ftp", true),
+		  new ResultPair("ftp", true),
 		  new ResultPair("test", false),
 		  new ResultPair("", false)
   };
@@ -440,37 +440,41 @@ public class UrlValidatorTest extends TestCase {
   public void testAllPartsCombinations()
   {
     boolean pass = true;
-    UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS));
+    UrlValidator urlVal = new UrlValidator(null, null, (UrlValidator.ALLOW_2_SLASHES + UrlValidator.ALLOW_ALL_SCHEMES + UrlValidator.NO_FRAGMENTS + UrlValidator.ALLOW_LOCAL_URLS));
     for (int i = 0;i<schemeParts.length;i++)
     {
-      for (int j = 0;j<authorityParts.length;j++)
+      for (int j = 0;j<authorityPartsLocal.length;j++)
       {
-        for (int l = 0;l<pathParts.length;l++)
+        for (int l = 0;l<pathPartsSlashes.length;l++)
         {
           for (int m = 0;m<queryParts.length;m++)
           {
-            //Determine validity of the test URL
-            boolean result = schemeParts[i].valid &&
-              authorityParts[j].valid &&
-              pathParts[l].valid &&
-              queryParts[m].valid;
+        	for (int o = 0;o<fragmentPartsNO.length;o++)
+        	{
+              //Determine validity of the test URL
+              boolean result = schemeParts[i].valid &&
+                authorityPartsLocal[j].valid &&
+                pathPartsSlashes[l].valid &&
+                queryParts[m].valid &&
+                fragmentPartsNO[o].valid;
 
-            //Build test URL
-            String testUrl = new StringBuilder(255).append(schemeParts[i].item)
-              .append("://")
-              .append(authorityParts[j].item)
-              .append(pathParts[l].item)
-              .append(queryParts[m].item)
-              .toString();
+              //Build test URL
+              String testUrl = new StringBuilder(255).append(schemeParts[i].item)
+                .append("://")
+                .append(authorityPartsLocal[j].item)
+                .append(pathPartsSlashes[l].item)
+                .append(queryParts[m].item)
+                .append(fragmentPartsNO[o].item)
+                .toString();
 
-              
-            if(printFlag){
-              if(urlVal.isValidPath(testUrl) != result){
-                pass = false;
-                System.out.println("testIsValid: " + testUrl + " Failed");
-                System.out.println("expected: " + result);
-              } else {
-                assertEquals(result, urlVal.isValidPath(testUrl));
+              if(printFlag){
+                if(urlVal.isValidPath(testUrl) != result){
+                  pass = false;
+                  System.out.println("testIsValid: " + testUrl + " Failed");
+                  System.out.println("expected: " + result);
+                } else {
+                  assertEquals(result, urlVal.isValidPath(testUrl));
+                }
               }
             }
           }

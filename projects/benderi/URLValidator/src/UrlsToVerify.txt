@@ -3994,6 +3994,6 @@ http://www.naaptol.com/
 http://www.adobelogin.com/
 http://www.google.com.ni/
 http://www.qip.ru/
-http://www.blockchain.info:45/
-http://www.dota2.com:98/
-http://www.americanoverlook.com:5050/
+http://www.blockchain.info/
+http://www.dota2.com/
+http://www.americanoverlook.com/

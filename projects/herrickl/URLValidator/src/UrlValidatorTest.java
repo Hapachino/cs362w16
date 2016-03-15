@@ -143,7 +143,7 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
-   // Note: Partition code is based on code from the original URLValidatorTest.java
+   // Note: Partition code is based on code from durhamch and the original URLValidatorTest.java
 
    // test schemes
    public void testYourFirstPartition()

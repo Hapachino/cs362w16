@@ -18,13 +18,11 @@
 
 import junit.framework.TestCase;
 
-import java.lang.reflect.Array;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -129,7 +127,7 @@ public class UrlValidatorTest extends TestCase {
                         break;
 
                     case path: //bad path
-                        rand = ThreadLocalRandom.current().nextInt(1, 20);
+                        rand = ThreadLocalRandom.current().nextInt(10, 20);
                         rnd = new RandomString(rand);
                         path = "/" + rnd.nextString();
                         break;
@@ -316,6 +314,7 @@ public class UrlValidatorTest extends TestCase {
         int failRate=0, passRate=0, maxTests=0;
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES );
 
+
         System.out.println("--------------------------- TESTING GOOD RANDOM URLS ------------------------------- ");
         //read in Valid urls
         maxTests = 1000;	//change to urls.length for full testing
@@ -332,6 +331,7 @@ public class UrlValidatorTest extends TestCase {
         HelpFunctions h = new HelpFunctions();
         int failRate = 0, passRate = 0, maxTests = 0;
         UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        DomainValidator.getInstance(true); // set this to true for
 
         System.out.println("--------------------------- TESTING GOOD RANDOM URLS FOR QUERY FUNCTION------------------------------- ");
         //read in Valid urls
@@ -366,24 +366,22 @@ public class UrlValidatorTest extends TestCase {
                 System.out.println("FAILED the JAVA URL VALIDATION" + url);
             }
 
-
-            assertEquals(0, failRate);  // Makes sure
-
         }
+        assertEquals(0, failRate);  // Makes sure
 
     }
 
-    public void testKnownRandomValid_forDomain() {
+    public void testKnownRandomValid_forTLD() {
         HelpFunctions h = new HelpFunctions();
         int failRate = 0, passRate = 0, maxTests = 0;
-        //UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
-        DomainValidator domainValidator = DomainValidator.getInstance();
+        UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+        DomainValidator domainValidator = DomainValidator.getInstance(true);
 
         System.out.println("--------------------------- TESTING GOOD RANDOM URLS FOR DOMAIN/ TLD FUNCTION------------------------------- ");
 
         //read in Valid TLDs
 
-        List<String> urls = h.makeValidDomainList();
+        List<String> urls = h.makeValidTLDList();
 
         for (String url : urls) {
 
@@ -398,6 +396,8 @@ public class UrlValidatorTest extends TestCase {
         }
         assertEquals(0, failRate);  // Makes sure
     }
+
+
 
     //Takes input from known good URLs, changes one part of the URL, and tests
     public void testKnownBadAuthority() {
@@ -539,7 +539,8 @@ public class UrlValidatorTest extends TestCase {
     	List<String> badUrls = Arrays.asList("httx://www.google.com",
     										 "ftp://www.testing.zxcv/",
     										 "http://zxc.123/testing/stuff",
-    										 "ftp://345.23.45.234:abc");
+    										 "ftp://345.23.45.234:abc",
+                "ftp://localhost/test.html");
     	
         System.out.println("---------------------------MANUAL TESTING OF GOOD URLS ------------------------------- ");
     	int fails = reporter(goodUrls, passRate, failRate, goodUrls.size());

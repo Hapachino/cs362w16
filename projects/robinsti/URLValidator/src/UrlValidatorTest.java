@@ -57,6 +57,7 @@ public class UrlValidatorTest extends TestCase {
 			   "http://eecs.oregonstate.edu/current%20students",
 			   "http://localhost/", 
 			   "http://www.amazon.com:80",
+			   "http://www.amazon.com:8080",
 			   "https://mail.google.com/mail/u/0/?hl=en&shva=1#inbox",
 			   "http://blog.yourwebsite.com"};
 	   

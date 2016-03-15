@@ -267,7 +267,7 @@ public class UrlValidatorTest extends TestCase {
   }
 
 
-  public void testURLScheme()
+  public void testIsValidScheme()
   {
 	boolean pass = true;
 	UrlValidator urlVal = new UrlValidator();
